@@ -3,325 +3,400 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#05010f">
-<title>ESPACIO KIDS PREMIUM · Inglés y Español · 27 Juegos</title>
+<meta name="theme-color" content="#ffd6e7">
+<title>ARCOÍRIS KIDS · Aprendé Inglés Jugando</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Baloo+2:wght@600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@500;600;700&family=Rubik:wght@700;900&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   ESPACIO KIDS PREMIUM v4.0
-   - Sin ruleta (reemplazada por Regalo Diario gratis, sin azar)
-   - Bug de "doble toque" reparado (touch-action + pointer events)
-   - Teclado del ahorcado mejorado (grilla táctil)
-   - Piano mejorado
-   - Voz del astronauta: personaje animado (no ardilla)
-   - Toggle de idioma ES / EN en toda la interfaz
-   - CSS premium: vidrio animado, botones táctiles, scroll suave
+   ARCOÍRIS KIDS v1.0 — Diseño NUEVO completo (no es la app anterior)
+   Paleta moderna para niños: pastel arcoíris + acentos vibrantes
+   El profesor astronauta HABLA solo: dice la palabra en español
+   y luego en inglés, enseñando a pronunciar.
    ============================================================ */
 :root{
-  --c1:#22d3ee; --c2:#a855f7; --c3:#ec4899; --c4:#facc15; --c5:#22c55e; --c6:#ef4444;
-  --bg1:#05010f; --bg2:#0b0420; --bg3:#120833;
+  --rosa:#ff6b9d; --amarillo:#ffc93c; --verde:#6bcb77; --azul:#4d96ff;
+  --violeta:#9b72ff; --naranja:#ff8c42; --turquesa:#3ecfb0;
+  --bg1:#ffe5ec; --bg2:#e0f4ff; --bg3:#e8ffe8; --bg4:#fff3c4;
+  --texto:#3d2c5e; --card:#ffffff;
 }
-*{font-family:'Fredoka','Baloo 2',sans-serif; box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+*{font-family:'Baloo 2','Fredoka',sans-serif; box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
-html,body{margin:0;padding:0;min-height:100vh;color:#fff;overflow-x:hidden;}
+html,body{margin:0;padding:0;min-height:100vh;color:var(--texto);overflow-x:hidden;}
 body{
   background:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(168,85,247,.25), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(34,211,238,.18), transparent 60%),
-    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(236,72,153,.15), transparent 60%),
-    linear-gradient(180deg, var(--bg1), var(--bg2) 40%, var(--bg3));
+    radial-gradient(circle at 10% 10%, rgba(255,107,157,.25), transparent 40%),
+    radial-gradient(circle at 90% 20%, rgba(77,150,255,.22), transparent 40%),
+    radial-gradient(circle at 20% 90%, rgba(107,203,119,.22), transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(155,114,255,.22), transparent 40%),
+    linear-gradient(160deg, var(--bg1), var(--bg2) 35%, var(--bg3) 70%, var(--bg4));
   background-attachment:fixed;
-  touch-action:manipulation;          /* ← elimina el delay de 300ms y el doble-toque-zoom */
+  touch-action:manipulation;
   overscroll-behavior-y:contain;
 }
-/* Scrollbar premium */
-::-webkit-scrollbar{width:10px;height:10px;}
-::-webkit-scrollbar-track{background:rgba(255,255,255,.03);}
-::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--c1),var(--c2));border-radius:99px;border:2px solid var(--bg1);}
-::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--c4),var(--c3));}
-button{touch-action:manipulation; user-select:none; -webkit-user-select:none; cursor:pointer;}
-button:active{transform:scale(.94);}
+::-webkit-scrollbar{width:12px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.4);}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--rosa),var(--violeta));border-radius:99px;border:3px solid var(--bg1);}
+button{touch-action:manipulation; user-select:none; -webkit-user-select:none; cursor:pointer; font-family:'Baloo 2',sans-serif;}
+button:active{transform:scale(.93);}
+img{user-select:none;-webkit-user-select:none;}
 
-/* ---------- Universo animado ---------- */
-.est{position:fixed;border-radius:50%;background:#fff;pointer-events:none;z-index:0;box-shadow:0 0 8px #fff;animation:cae linear infinite}
-@keyframes cae{0%{transform:translateY(-10vh);opacity:0}10%{opacity:1}100%{transform:translateY(120vh) translateX(50px);opacity:0}}
-.fug{position:fixed;top:0;height:2px;width:150px;z-index:1;pointer-events:none;background:linear-gradient(90deg,transparent,#fff,transparent);filter:drop-shadow(0 0 10px var(--c1));animation:fug 7s ease-in infinite}
-@keyframes fug{0%{transform:translate(-30vw,10vh) rotate(15deg);opacity:0}5%{opacity:1}25%{transform:translate(140vw,60vh) rotate(15deg);opacity:0}100%{opacity:0}}
-.particula{position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:99998;animation:par 1s ease-out forwards}
-@keyframes par{to{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0}}
+/* ---------- Nubes y formas flotando (fondo) ---------- */
+.nube{position:fixed; background:#fff; border-radius:999px; opacity:.55; z-index:0; pointer-events:none; filter:blur(1px); animation:nubeFlotar linear infinite;}
+@keyframes nubeFlotar{from{transform:translateX(-30vw);}to{transform:translateX(130vw);}}
+.blob{position:fixed; border-radius:50%; z-index:0; pointer-events:none; opacity:.35; filter:blur(30px); animation:blobMover 12s ease-in-out infinite alternate;}
+@keyframes blobMover{from{transform:translate(0,0) scale(1);}to{transform:translate(40px,-30px) scale(1.15);}}
+.confeti{position:fixed; width:10px; height:10px; pointer-events:none; z-index:99998; animation:caerConf 1.2s ease-out forwards;}
+@keyframes caerConf{to{transform:translate(var(--tx),var(--ty)) rotate(360deg) scale(0); opacity:0;}}
 
-/* ---------- Vidrio premium (la "caja") ---------- */
-.vidrio{
-  position:relative; border-radius:32px; padding:28px; overflow:hidden;
-  background:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
-  backdrop-filter:blur(28px) saturate(180%); -webkit-backdrop-filter:blur(28px) saturate(180%);
-  border:1.5px solid rgba(255,255,255,.22);
-  box-shadow:0 30px 80px -20px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(0,0,0,.3);
+/* ---------- Tarjetas (nuevo diseño: blancas, redondas, coloridas) ---------- */
+.tarjeta{
+  background:var(--card); border-radius:28px; padding:26px; position:relative;
+  box-shadow:0 12px 0 rgba(61,44,94,.08), 0 20px 50px -12px rgba(61,44,94,.25);
+  border:3px solid #fff;
 }
-.vidrio::before{ /* borde de gradiente animado */
-  content:""; position:absolute; inset:0; border-radius:32px; padding:1.5px;
-  background:linear-gradient(135deg, rgba(34,211,238,.6), rgba(168,85,247,.4) 40%, rgba(236,72,153,.5) 70%, rgba(250,204,21,.5));
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; opacity:.7;
-  animation:brd 6s linear infinite; background-size:200% 200%;
-}
-@keyframes brd{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.vidrio-fino{
-  background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.02));
-  backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.16);
-  border-radius:18px; box-shadow:inset 0 1px 0 rgba(255,255,255,.25);
-}
-.tit-neon{font-family:'Orbitron',sans-serif;font-weight:900;
-  background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c1));
-  background-size:300% 100%; -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:nm 5s linear infinite; filter:drop-shadow(0 0 30px rgba(168,85,247,.55))}
-@keyframes nm{to{background-position:300%}}
+.tarjeta-borde{position:absolute; inset:-3px; border-radius:30px; padding:3px; background:linear-gradient(135deg,var(--rosa),var(--amarillo),var(--verde),var(--azul),var(--violeta)); background-size:300% 300%; animation:arcoiris 6s linear infinite; -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; z-index:-1;}
+@keyframes arcoiris{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+.chip{background:#fff; border-radius:999px; padding:8px 16px; font-weight:800; box-shadow:0 4px 0 rgba(61,44,94,.1); border:2px solid rgba(61,44,94,.08); color:var(--texto);}
 
-/* ---------- Botones táctiles premium (no se traban) ---------- */
-.btn{
-  background:linear-gradient(135deg,#06b6d4,#8b5cf6,#ec4899); background-size:200% 200%;
-  animation:btnBrillo 4s ease infinite; border:2px solid rgba(255,255,255,.5);
-  color:#fff; font-weight:700; padding:10px 20px; border-radius:999px; cursor:pointer;
-  transition:transform .15s, box-shadow .25s; font-size:.95rem;
-  box-shadow:0 10px 30px -8px rgba(139,92,246,.8), inset 0 1px 0 rgba(255,255,255,.6);
-  touch-action:manipulation; -webkit-user-select:none; user-select:none;
-}
-@keyframes btnBrillo{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.btn:hover{transform:translateY(-2px) scale(1.03);}
-.btn:active{transform:scale(.92); box-shadow:0 4px 15px -5px rgba(139,92,246,.8);}
-.btn.on{background:linear-gradient(135deg,var(--c1),var(--c2)); color:#05010f; box-shadow:0 0 30px var(--c1); transform:scale(1.05);}
-.btn-oro{background:linear-gradient(135deg,#fde047,#ca8a04); color:#422006; border:2px solid #fef08a; box-shadow:0 0 25px rgba(250,204,21,.5); font-weight:800; padding:10px 20px; border-radius:999px; cursor:pointer; transition:.2s;}
-.btn-oro:hover{transform:scale(1.05); box-shadow:0 0 45px rgba(250,204,21,.8);}
-.btn-oro:active{transform:scale(.92);}
-.btn-cerrar{background:linear-gradient(135deg,#ef4444,#b91c1c); color:#fff; border:2px solid #fca5a5; font-weight:800; padding:8px 16px; border-radius:999px; cursor:pointer;}
+/* ---------- Título arcoíris ---------- */
+.tit-arcoiris{font-family:'Rubik',sans-serif; font-weight:900;
+  background:linear-gradient(90deg,var(--rosa),var(--naranja),var(--amarillo),var(--verde),var(--azul),var(--violeta),var(--rosa));
+  background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:arcoiris 5s linear infinite; filter:drop-shadow(0 4px 0 rgba(255,255,255,.8));}
 
-/* ---------- Juegos ---------- */
-.pal{padding:14px 18px;border-radius:16px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:.18s;border:3px solid rgba(255,255,255,.2);background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.02));color:#fff;text-align:center;touch-action:manipulation;}
-.pal:hover{transform:translateY(-3px);border-color:var(--c1);box-shadow:0 0 25px var(--c1)}
-.pal:active{transform:scale(.95);}
-.ok{background:linear-gradient(135deg,#22c55e,#4ade80)!important;color:#052e16!important;border-color:#86efac!important;box-shadow:0 0 40px #22c55e!important;animation:pop .5s}
-.no{background:linear-gradient(135deg,#ef4444,#f87171)!important;color:#450a0a!important;border-color:#fca5a5!important;animation:sac .45s}
-@keyframes pop{50%{transform:scale(1.18) rotate(-4deg)}}
+/* ---------- Botones grandes 3D (táctiles, no se traban) ---------- */
+.boton{
+  border:none; border-radius:22px; padding:14px 24px; font-weight:800; font-size:1rem; color:#fff;
+  box-shadow:0 6px 0 rgba(0,0,0,.18); transition:transform .1s, box-shadow .1s; touch-action:manipulation;
+  display:inline-flex; align-items:center; gap:8px; justify-content:center; line-height:1.1;
+}
+.boton:active{transform:translateY(4px); box-shadow:0 2px 0 rgba(0,0,0,.18);}
+.b-rosa{background:linear-gradient(180deg,#ff8ab5,var(--rosa));}
+.b-azul{background:linear-gradient(180deg,#73b0ff,var(--azul));}
+.b-verde{background:linear-gradient(180deg,#8fdc99,var(--verde));}
+.b-amarillo{background:linear-gradient(180deg,#ffdd70,var(--amarillo)); color:#7a5200;}
+.b-violeta{background:linear-gradient(180deg,#b799ff,var(--violeta));}
+.b-naranja{background:linear-gradient(180deg,#ffa870,var(--naranja));}
+.b-turquesa{background:linear-gradient(180deg,#6fe3cc,var(--turquesa));}
+.boton.on{outline:4px solid #fff; outline-offset:2px; transform:scale(1.05);}
+
+/* Botón de mundo (categoría) */
+.mundo{
+  border-radius:24px; padding:14px 18px; font-weight:800; font-size:1rem; color:#fff; border:3px solid #fff;
+  box-shadow:0 6px 0 rgba(0,0,0,.15); transition:.15s; touch-action:manipulation; text-align:left; min-width:130px;
+}
+.mundo:active{transform:translateY(4px); box-shadow:0 2px 0 rgba(0,0,0,.15);}
+.mundo.on{outline:4px solid var(--texto); outline-offset:2px; transform:scale(1.04);}
+.m1{background:linear-gradient(135deg,var(--rosa),var(--naranja));}
+.m2{background:linear-gradient(135deg,var(--azul),var(--turquesa));}
+.m3{background:linear-gradient(135deg,var(--violeta),var(--rosa));}
+.m4{background:linear-gradient(135deg,var(--verde),var(--turquesa));}
+.m5{background:linear-gradient(135deg,var(--amarillo),var(--naranja)); color:#5a3d00;}
+.m6{background:linear-gradient(135deg,#7c8db5,#4a5578);}
+
+/* Pestaña de juego */
+.game-tab{
+  background:#fff; border-radius:18px; padding:10px 14px; font-weight:800; font-size:.88rem;
+  color:var(--texto); border:3px solid transparent; box-shadow:0 4px 0 rgba(61,44,94,.1);
+  transition:.15s; touch-action:manipulation; cursor:pointer;
+}
+.game-tab:hover{transform:translateY(-2px);}
+.game-tab.on{border-color:var(--rosa); background:linear-gradient(135deg,#fff0f5,#ffe5ec); color:#c2185b; transform:scale(1.05);}
+.estrellitas{color:var(--amarillo); font-size:.8rem; letter-spacing:1px; text-shadow:0 1px 0 rgba(0,0,0,.15);}
+
+/* ---------- Opciones de juego ---------- */
+.opcion{
+  padding:16px; border-radius:20px; font-size:1.15rem; font-weight:800; cursor:pointer; transition:.15s;
+  background:#fff; border:4px solid #f0e6ff; color:var(--texto); text-align:center;
+  box-shadow:0 5px 0 rgba(61,44,94,.1); touch-action:manipulation;
+}
+.opcion:hover{transform:translateY(-3px); border-color:var(--azul);}
+.opcion:active{transform:scale(.95);}
+.opcion.ok{background:linear-gradient(135deg,#8fdc99,var(--verde)); color:#0d3b14; border-color:#fff; box-shadow:0 0 30px rgba(107,203,119,.7); animation:pop .5s;}
+.opcion.no{background:linear-gradient(135deg,#ff8a8a,#ff5252); color:#fff; border-color:#fff; animation:sac .45s;}
+@keyframes pop{50%{transform:scale(1.15) rotate(-4deg);}}
 @keyframes sac{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
-.num{aspect-ratio:1/1;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:800;cursor:pointer;transition:.2s;background:linear-gradient(135deg,rgba(236,72,153,.3),rgba(168,85,247,.35));border:2px solid rgba(255,255,255,.3);color:#fff;box-shadow:0 0 20px rgba(236,72,153,.3);touch-action:manipulation;}
-.num:hover{transform:scale(1.1);box-shadow:0 0 35px var(--c3);color:var(--c4)}
-.num:active{transform:scale(.92);}
 
-/* ---------- Teclado del ahorcado MEJORADO (grilla táctil) ---------- */
+/* Teclado abecedario (MEJORADO) */
 .tecla-abc{
-  aspect-ratio:1/1; border-radius:14px; display:flex; align-items:center; justify-content:center;
-  font-size:clamp(1rem, 4.5vw, 1.6rem); font-weight:800; cursor:pointer; transition:.15s;
-  background:linear-gradient(135deg,rgba(34,211,238,.22),rgba(168,85,247,.3));
-  border:2px solid rgba(255,255,255,.28); color:#fff; touch-action:manipulation;
-  box-shadow:0 4px 12px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.3);
-  min-height:44px;
+  aspect-ratio:1/1; border-radius:16px; display:flex; align-items:center; justify-content:center;
+  font-size:clamp(1.1rem,5vw,1.7rem); font-weight:900; cursor:pointer; transition:.12s;
+  background:linear-gradient(180deg,#fff,#f0e6ff); border:3px solid #e0d0ff; color:var(--violeta);
+  box-shadow:0 4px 0 #c9b3f0; touch-action:manipulation; min-height:46px;
 }
-.tecla-abc:hover{transform:scale(1.08) rotate(-3deg);box-shadow:0 0 25px var(--c1);color:var(--c4);border-color:var(--c1);}
-.tecla-abc:active{transform:scale(.88);}
-.tecla-abc.ok{background:linear-gradient(135deg,#22c55e,#4ade80)!important;color:#052e16!important;border-color:#86efac!important;}
-.tecla-abc.no{background:linear-gradient(135deg,#7f1d1d,#991b1b)!important;color:#fca5a5!important;border-color:#7f1d1d!important;opacity:.5;}
-.teclado-grid{display:grid; grid-template-columns:repeat(7, 1fr); gap:6px; max-width:520px; margin:0 auto;}
-@media (max-width:480px){.teclado-grid{grid-template-columns:repeat(6,1fr);gap:5px;}}
+.tecla-abc:hover{transform:scale(1.06);}
+.tecla-abc:active{transform:translateY(3px); box-shadow:0 1px 0 #c9b3f0;}
+.tecla-abc.ok{background:linear-gradient(180deg,#8fdc99,var(--verde)); color:#0d3b14; border-color:#fff;}
+.tecla-abc.no{background:#e0e0e0; color:#999; box-shadow:0 2px 0 #bbb; opacity:.5;}
+.teclado-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:7px; max-width:560px; margin:0 auto;}
+@media (max-width:480px){.teclado-grid{grid-template-columns:repeat(6,1fr); gap:5px;}}
 
-.letra-spelling{
-  width:54px;height:54px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;
-  font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,rgba(34,211,238,.3),rgba(168,85,247,.4));
-  border:3px solid rgba(255,255,255,.3);color:#fff;margin:4px;cursor:pointer;transition:.18s;touch-action:manipulation;
+/* Letras spelling */
+.letra-sp{
+  width:56px; height:56px; border-radius:16px; display:inline-flex; align-items:center; justify-content:center;
+  font-size:1.9rem; font-weight:900; background:linear-gradient(180deg,#fff,#ffe5ec); border:4px solid #ffc2d9;
+  color:var(--rosa); margin:4px; cursor:pointer; transition:.15s; touch-action:manipulation;
+  box-shadow:0 4px 0 #ff9ec0;
 }
-.letra-spelling:hover{transform:scale(1.1) rotate(-4deg);border-color:var(--c4);color:var(--c4);}
-.letra-spelling:active{transform:scale(.9);}
-.letra-spelling.usada{opacity:.25;cursor:default;transform:scale(.85);}
-.hueco-falta{display:inline-block;width:46px;height:58px;border-bottom:5px solid var(--c4);margin:0 5px;vertical-align:bottom;font-size:2.4rem;font-weight:800;color:var(--c4);text-align:center;line-height:58px;}
+.letra-sp:hover{transform:scale(1.1) rotate(-4deg);}
+.letra-sp:active{transform:translateY(3px); box-shadow:0 1px 0 #ff9ec0;}
+.hueco{display:inline-block; width:48px; height:60px; border-bottom:6px solid var(--violeta); margin:0 5px; vertical-align:bottom; font-size:2.5rem; font-weight:900; color:var(--violeta); text-align:center; line-height:60px;}
 
-/* ---------- Cartas memoria ---------- */
-.carta{aspect-ratio:3/4;cursor:pointer;perspective:1200px;touch-action:manipulation;}
-.carta-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s}
-.carta.girada .carta-inner{transform:rotateY(180deg)}
-.cara{position:absolute;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:800}
-.cf{background:linear-gradient(135deg,#0891b2,#7c3aed);box-shadow:0 0 25px rgba(124,58,237,.55),inset 0 0 20px rgba(255,255,255,.2);color:#fff}
-.ca{transform:rotateY(180deg);background:linear-gradient(135deg,#fef3c7,#ec4899);color:#4a044e;}
+/* Botón bocina (escuchar pronunciación) */
+.bocina{
+  background:linear-gradient(180deg,#ffdd70,var(--amarillo)); color:#7a5200; border:4px solid #fff;
+  border-radius:50%; width:64px; height:64px; font-size:1.8rem; cursor:pointer; font-weight:900;
+  box-shadow:0 5px 0 #d4a017; transition:.15s; touch-action:manipulation; vertical-align:middle;
+  animation:pulsoB 2s ease-in-out infinite;
+}
+@keyframes pulsoB{0%,100%{box-shadow:0 5px 0 #d4a017, 0 0 0 0 rgba(255,201,60,.6);}50%{box-shadow:0 5px 0 #d4a017, 0 0 0 14px rgba(255,201,60,0);}}
+.bocina:active{transform:translateY(3px); box-shadow:0 2px 0 #d4a017;}
 
-/* ---------- Piano MEJORADO ---------- */
-.piano-wrap{position:relative; display:flex; justify-content:center; width:100%; max-width:640px; margin:0 auto; height:200px;}
-.tecla{cursor:pointer; display:flex; align-items:flex-end; justify-content:center; padding-bottom:10px; font-weight:800; transition:transform .08s, background .08s; touch-action:manipulation; user-select:none;}
-.tecla-blanca{flex:1; background:linear-gradient(180deg,#fff,#e2e8f0); height:100%; border:1px solid #94a3b8; border-radius:0 0 10px 10px; color:#334155; z-index:1; margin:0 1px; box-shadow:0 4px 0 #94a3b8;}
-.tecla-blanca.activa{background:linear-gradient(180deg,#a5f3fc,#67e8f9); transform:translateY(3px); box-shadow:0 1px 0 #94a3b8;}
-.tecla-negra{position:absolute; top:0; width:8%; height:60%; background:linear-gradient(180deg,#1e293b,#000); z-index:2; color:#fff; border-radius:0 0 8px 8px; font-size:.75rem; box-shadow:0 4px 0 #000;}
-.tecla-negra.activa{background:linear-gradient(180deg,#7c3aed,#4c1d95); transform:translateY(3px); box-shadow:0 1px 0 #000;}
+/* Cartas memoria */
+.carta{aspect-ratio:3/4; cursor:pointer; perspective:1000px; touch-action:manipulation;}
+.carta-inner{position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:.55s;}
+.carta.girada .carta-inner{transform:rotateY(180deg);}
+.cara{position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-weight:900; border:3px solid #fff; box-shadow:0 5px 0 rgba(61,44,94,.15);}
+.cf{background:linear-gradient(135deg,var(--azul),var(--violeta)); color:#fff;}
+.ca{transform:rotateY(180deg); background:linear-gradient(135deg,#fff,#ffe5ec);}
 
-/* ---------- Astronauta ---------- */
-.prof{position:fixed; bottom:12px; right:12px; z-index:60; cursor:pointer; width:110px; height:145px;
-  animation:flot 3s ease-in-out infinite; filter:drop-shadow(0 0 30px rgba(34,211,238,.7)) drop-shadow(0 10px 20px rgba(0,0,0,.5));
+/* Piano */
+.piano-wrap{position:relative; display:flex; justify-content:center; width:100%; max-width:680px; margin:0 auto; height:210px;}
+.tc{cursor:pointer; display:flex; align-items:flex-end; justify-content:center; padding-bottom:12px; font-weight:900; transition:transform .08s, background .08s; touch-action:manipulation; user-select:none;}
+.t-blanca{flex:1; background:linear-gradient(180deg,#fff,#f0f0f0); height:100%; border:2px solid #d0c8e8; border-radius:0 0 12px 12px; color:var(--texto); z-index:1; margin:0 2px; box-shadow:0 5px 0 #c8bfe0;}
+.t-blanca.activa{background:linear-gradient(180deg,#b3e5fc,#4fc3f7); transform:translateY(3px); box-shadow:0 2px 0 #c8bfe0;}
+.t-negra{position:absolute; top:0; width:8%; height:60%; background:linear-gradient(180deg,#4a3b6b,#2a1f45); z-index:2; color:#ffd6e7; border-radius:0 0 8px 8px; font-size:.75rem; box-shadow:0 5px 0 #1a1230;}
+.t-negra.activa{background:linear-gradient(180deg,var(--violeta),#6a4bc4); transform:translateY(3px); box-shadow:0 2px 0 #1a1230;}
+
+/* ---------- Profesor astronauta (habla, enseña) ---------- */
+.prof{position:fixed; bottom:14px; right:14px; z-index:60; cursor:pointer; width:130px; height:170px;
+  animation:flotar 3s ease-in-out infinite; filter:drop-shadow(0 8px 20px rgba(61,44,94,.35));
   transition:transform .25s; touch-action:manipulation;}
-.prof:hover{transform:scale(1.1) rotate(-5deg);}
-.prof:active{transform:scale(.95);}
-#astroSVG{width:100%;height:100%;overflow:visible;}
-.ojo-grupo{transform-origin:center; animation:parpadear 4.2s infinite;}
-.ojo-grupo:nth-child(2){animation-delay:.05s;}
-@keyframes parpadear{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.prof:hover{transform:scale(1.08) rotate(-4deg);}
+#astroSVG{width:100%; height:100%; overflow:visible;}
+.ojo{transform-origin:center; animation:parpadeo 4s infinite;}
+@keyframes parpadeo{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
 #bocaAbierta{opacity:0; transition:opacity .08s; transform-origin:center;}
-#astroSVG.hablando #bocaAbierta{opacity:1; animation:bocaHabla .28s ease-in-out infinite alternate;}
+#astroSVG.hablando #bocaAbierta{opacity:1; animation:bocaHabla .25s ease-in-out infinite alternate;}
 #astroSVG.hablando #bocaCerrada{opacity:0;}
-@keyframes bocaHabla{0%{transform:scaleY(.4)}100%{transform:scaleY(1.25)}}
-.luz-antenna{animation:luzAntena 1.1s ease-in-out infinite alternate;}
-@keyframes luzAntena{0%{fill:var(--c4); filter:drop-shadow(0 0 2px var(--c4))}100%{fill:var(--c6); filter:drop-shadow(0 0 10px var(--c6))}}
-.llama{transform-origin:70px 175px; animation:llama .18s ease-in-out infinite alternate;}
-@keyframes llama{0%{transform:scaleY(.85)}100%{transform:scaleY(1.3)}}
-.brazo-der{transform-origin:105px 110px; animation:saludar 2.5s ease-in-out infinite;}
-@keyframes saludar{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-18deg)}}
-@keyframes flot{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.mascota{position:fixed; bottom:24px; left:20px; z-index:50; font-size:3.5rem; animation:flotM 4s ease-in-out infinite; filter:drop-shadow(0 0 18px rgba(255,255,255,.5))}
-@keyframes flotM{0%,100%{transform:translateY(0) scale(1) rotate(0deg)}50%{transform:translateY(-18px) scale(1.05) rotate(5deg)}}
-.globo{position:fixed; bottom:140px; right:110px; z-index:49; max-width:260px; background:linear-gradient(135deg,#fff,#f5f3ff); color:#1e1b4b; padding:14px 18px; border-radius:22px 22px 4px 22px; font-weight:700; box-shadow:0 15px 40px -10px rgba(168,85,247,.6); animation:apa .35s; font-size:.95rem;}
-.globo::after{content:""; position:absolute; bottom:-12px; right:20px; border:12px solid transparent; border-top-color:#fff}
-@keyframes apa{from{opacity:0;transform:translateY(10px) scale(.9)}}
+@keyframes bocaHabla{0%{transform:scaleY(.4)}100%{transform:scaleY(1.3)}}
+.luzAnt{animation:luzAnt 1s ease-in-out infinite alternate;}
+@keyframes luzAnt{0%{fill:var(--amarillo);}100%{fill:var(--rosa);}}
+.llama{transform-origin:70px 178px; animation:llama .18s ease-in-out infinite alternate;}
+@keyframes llama{0%{transform:scaleY(.85)}100%{transform:scaleY(1.35)}}
+.brazoDer{transform-origin:105px 110px; animation:saludar 2.5s ease-in-out infinite;}
+@keyframes saludar{0%,100%{transform:rotate(0)}50%{transform:rotate(-20deg)}}
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.mascota{position:fixed; bottom:26px; left:18px; z-index:50; font-size:3.5rem; animation:flotar 4s ease-in-out infinite; filter:drop-shadow(0 6px 15px rgba(61,44,94,.3));}
+.globo{
+  position:fixed; bottom:170px; right:130px; z-index:59; max-width:300px; min-width:180px;
+  background:#fff; color:var(--texto); padding:14px 18px; border-radius:22px 22px 6px 22px;
+  font-weight:800; font-size:1rem; box-shadow:0 12px 30px -8px rgba(61,44,94,.4); border:3px solid var(--rosa);
+  animation:apaGlobo .35s cubic-bezier(.34,1.56,.64,1);
+}
+.globo::after{content:""; position:absolute; bottom:-14px; right:24px; border:14px solid transparent; border-top-color:#fff;}
+.globo .bandera{font-size:1.3rem; margin-right:4px;}
+@keyframes apaGlobo{from{opacity:0; transform:translateY(12px) scale(.85);}to{opacity:1; transform:translateY(0) scale(1);}}
 
 /* ---------- Modales ---------- */
-.modal-overlay{position:fixed; inset:0; background:rgba(0,0,0,.82); z-index:99000; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:.3s; padding:16px;}
-.modal-overlay.activo{opacity:1; pointer-events:auto;}
-.modal-cuerpo{max-height:92vh; overflow-y:auto; width:100%;}
-.moneda-icon{display:inline-block; animation:brilloM 2s infinite;}
-@keyframes brilloM{0%,100%{filter:brightness(1)}50%{filter:brightness(1.5) drop-shadow(0 0 8px gold)}}
-
-/* ---------- Ads (espacios reservados) ---------- */
-.ad-slot{width:100%; min-height:50px; margin:10px auto; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(250,204,21,.3); border-radius:12px; background:rgba(250,204,21,.04); color:rgba(250,204,21,.55); font-weight:700; font-size:.8rem; text-align:center; position:relative; z-index:5;}
-.ad-banner{max-width:728px; min-height:80px;}
-
-/* ---------- Bocina de pronunciación ---------- */
-.bocina{background:linear-gradient(135deg,#fde047,#f59e0b); color:#422006; border:none; border-radius:50%; width:58px; height:58px; font-size:1.7rem; cursor:pointer; font-weight:800; box-shadow:0 0 22px rgba(250,204,21,.55); vertical-align:middle; transition:.2s; touch-action:manipulation; animation:pulsoB 2.2s ease-in-out infinite;}
-@keyframes pulsoB{0%,100%{box-shadow:0 0 22px rgba(250,204,21,.55)}50%{box-shadow:0 0 38px rgba(250,204,21,.9)}}
-.bocina:hover{transform:scale(1.12) rotate(-8deg);}
-.bocina:active{transform:scale(.9);}
-.palabra-en-ingles{font-family:'Orbitron',sans-serif; font-weight:900; font-size:2.2rem; background:linear-gradient(90deg,var(--c1),var(--c4),var(--c3)); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:.08em;}
-
-/* ---------- Emparejar ---------- */
-.tarjeta-emparejar{padding:16px; border-radius:16px; font-weight:700; font-size:1.05rem; cursor:pointer; transition:.18s; border:3px solid rgba(255,255,255,.25); background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.02)); color:#fff; text-align:center; touch-action:manipulation;}
-.tarjeta-emparejar:hover{transform:scale(1.04); border-color:var(--c1); box-shadow:0 0 18px var(--c1);}
-.tarjeta-emparejar.seleccionada{border-color:var(--c4); box-shadow:0 0 22px var(--c4); transform:scale(1.05);}
-.tarjeta-emparejar.acertada{background:linear-gradient(135deg,#22c55e,#4ade80); color:#052e16; border-color:#86efac; cursor:default;}
-
-/* ---------- Tabs de categorías ---------- */
-.cat-btn{padding:10px 18px; border-radius:999px; font-weight:800; font-size:.95rem; border:2px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06); color:#fff; cursor:pointer; transition:.2s; touch-action:manipulation; backdrop-filter:blur(8px);}
-.cat-btn:hover{transform:translateY(-2px); border-color:var(--c1);}
-.cat-btn.on{background:linear-gradient(135deg,var(--c1),var(--c2)); color:#05010f; border-color:#fff; box-shadow:0 0 25px var(--c1); transform:scale(1.05);}
-.game-tab{padding:8px 14px; border-radius:14px; font-weight:700; font-size:.85rem; border:2px solid rgba(255,255,255,.18); background:rgba(255,255,255,.05); color:#cbd5e1; cursor:pointer; transition:.18s; touch-action:manipulation;}
-.game-tab:hover{border-color:var(--c1); color:#fff; transform:translateY(-2px);}
-.game-tab.on{border-color:var(--c4); color:var(--c4); background:rgba(250,204,21,.1); box-shadow:0 0 18px rgba(250,204,21,.4);}
-
-/* Toast de notificación */
-.toast{position:fixed; top:20px; left:50%; transform:translateX(-50%) translateY(-100px); z-index:99999; background:linear-gradient(135deg,var(--c4),#f59e0b); color:#422006; font-weight:800; padding:14px 28px; border-radius:999px; box-shadow:0 15px 40px rgba(0,0,0,.5); transition:transform .4s cubic-bezier(.34,1.56,.64,1); font-size:1.05rem;}
+.modal-fondo{position:fixed; inset:0; background:rgba(61,44,94,.55); z-index:99000; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:.25s; padding:16px;}
+.modal-fondo.activo{opacity:1; pointer-events:auto;}
+.modal-cuerpo{max-height:92vh; overflow-y:auto; width:100%; background:linear-gradient(160deg,#fff,#fff5fa); border-radius:28px; padding:26px; border:4px solid #fff; box-shadow:0 20px 60px rgba(61,44,94,.4);}
+.toast{position:fixed; top:18px; left:50%; transform:translateX(-50%) translateY(-120px); z-index:99999; background:linear-gradient(135deg,var(--amarillo),var(--naranja)); color:#5a3d00; font-weight:900; padding:14px 26px; border-radius:999px; box-shadow:0 12px 30px rgba(0,0,0,.3); transition:transform .4s cubic-bezier(.34,1.56,.64,1); font-size:1.05rem; border:3px solid #fff; max-width:90vw; text-align:center;}
 .toast.visible{transform:translateX(-50%) translateY(0);}
 
-/* Racha de aciertos */
-.racha-badge{display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,rgba(236,72,153,.3),rgba(250,204,21,.3)); border:1.5px solid rgba(250,204,21,.5); border-radius:999px; padding:4px 12px; font-weight:800; color:var(--c4); font-size:.85rem;}
+/* Intro / pantalla de inicio */
+#intro{position:fixed; inset:0; z-index:100000; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;
+  background:linear-gradient(160deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4)); transition:opacity .6s;}
+#intro.fuera{opacity:0; pointer-events:none;}
+.cohete-intro{font-size:5rem; animation:flotar 2s ease-in-out infinite; display:inline-block;}
+.btn-empezar{font-size:1.6rem; padding:18px 44px; border-radius:999px; animation:pop 1.4s ease-in-out infinite;}
+
+/* Simon dice */
+.simon-btn{width:45%; aspect-ratio:1/1; border-radius:24px; border:5px solid #fff; cursor:pointer; transition:.15s; box-shadow:0 8px 0 rgba(0,0,0,.2); touch-action:manipulation; opacity:.55;}
+.simon-btn.activa{opacity:1; transform:scale(1.06); box-shadow:0 0 40px currentColor;}
+.sb-verde{background:var(--verde); color:var(--verde);}
+.sb-rojo{background:var(--rosa); color:var(--rosa);}
+.sb-amarillo{background:var(--amarillo); color:var(--amarillo);}
+.sb-azul{background:var(--azul); color:var(--azul);}
+
+/* Barra de progreso / nivel */
+.barra-progreso{height:14px; background:#fff; border-radius:99px; overflow:hidden; border:2px solid #e0d0ff;}
+.barra-progreso>div{height:100%; background:linear-gradient(90deg,var(--verde),var(--turquesa)); border-radius:99px; transition:width .5s;}
+
+.medalla{width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; background:linear-gradient(135deg,#ffdd70,#d4a017); border:4px solid #fff; box-shadow:0 4px 0 #a07c00; margin:0 auto;}
+.medalla.bloqueada{background:#e0e0e0; filter:grayscale(1); opacity:.5;}
+
+.tienda-item{background:#fff; border-radius:20px; padding:14px; text-align:center; border:3px solid #f0e6ff; box-shadow:0 5px 0 rgba(61,44,94,.1);}
+.tienda-item .ico{font-size:2.8rem;}
+
+.ad-slot{width:100%; min-height:50px; margin:10px auto; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(155,114,255,.4); border-radius:14px; background:rgba(155,114,255,.06); color:rgba(155,114,255,.6); font-weight:800; font-size:.8rem; position:relative; z-index:5;}
+.ad-banner{max-width:728px; min-height:80px;}
+
+.palabra-grande{font-family:'Rubik',sans-serif; font-weight:900; font-size:clamp(2rem,7vw,3.2rem); color:var(--violeta); text-shadow:2px 2px 0 #fff;}
 </style>
 </head>
 <body>
 
-<!-- INTRO / PANTALLA DE INICIO -->
-<div id="intro" class="fixed inset-0 z-[100000] flex flex-col items-center justify-center transition-opacity duration-700" style="background:radial-gradient(ellipse at center, #120833, #05010f);">
-  <div class="text-7xl mb-4" style="animation:flot 2s ease-in-out infinite;">🚀</div>
-  <div class="tit-neon text-3xl md:text-5xl mb-2 text-center px-4">ESPACIO KIDS PREMIUM</div>
-  <div class="text-cyan-200 font-bold text-lg mb-8 text-center px-4" id="introSub">¡Aprendé inglés y español jugando!</div>
-  <button id="btnEmpezar" class="btn-oro text-2xl px-12 py-4" style="animation:pop 1.5s ease-in-out infinite;">▶ ¡EMPEZAR A JUGAR!</button>
-  <div class="w-64 h-2 bg-white/10 rounded-full mt-8 overflow-hidden"><div class="h-full bg-gradient-to-r from-cyan-400 to-pink-500 transition-all duration-1000" id="barraCarga" style="width:0%"></div></div>
-</div>
+<!-- Fondo: nubes y blobs -->
+<div id="fondoDecor"></div>
 
-<div id="estrellas"></div>
-<div class="fug" style="top:10%;animation-delay:0s"></div>
-<div class="fug" style="top:35%;animation-delay:2s"></div>
-<div class="fug" style="top:60%;animation-delay:4s"></div>
-
+<!-- Toast -->
 <div id="toast" class="toast"></div>
 
-<!-- Banner superior (AdSense) -->
-<div class="relative z-10 max-w-5xl mx-auto px-2 pt-2">
-  <div class="ad-slot ad-banner" id="adTop">📢 PUBLICIDAD (espacio reservado)</div>
+<!-- INTRO (se cierra sola a los 4s o al tocar Empezar) -->
+<div id="intro">
+  <div class="cohete-intro">🚀</div>
+  <h1 class="tit-arcoiris text-4xl md:text-6xl mb-2 px-2">ARCOÍRIS KIDS</h1>
+  <p class="font-bold text-lg md:text-xl mb-6" style="color:var(--texto);" id="introSub">¡Aprendé inglés hablando, jugando y divirtiéndote!</p>
+  <button class="boton b-rosa btn-empezar" id="btnEmpezar">▶ ¡EMPEZAR A JUGAR!</button>
+  <p class="text-sm mt-4 font-bold opacity-60" id="introAuto">La pantalla se abre sola en unos segundos...</p>
+  <div class="w-56 h-3 bg-white/60 rounded-full mt-6 overflow-hidden border-2 border-white"><div class="h-full bg-gradient-to-r from-pink-400 via-yellow-300 to-blue-400 transition-all duration-[3500ms]" id="barraCarga" style="width:0%"></div></div>
 </div>
+
+<!-- Banner publicidad -->
+<div class="relative z-10 max-w-5xl mx-auto px-2 pt-2"><div class="ad-slot ad-banner">📢 PUBLICIDAD (espacio reservado)</div></div>
 
 <!-- BARRA SUPERIOR -->
 <div class="max-w-6xl mx-auto px-2 py-2 flex justify-between items-center gap-2 flex-wrap relative z-10">
-  <div class="vidrio-fino p-2 px-4 flex items-center gap-3 cursor-pointer hover:bg-white/10 transition" onclick="mostrarPerfil()" style="touch-action:manipulation;">
-    <div id="avatarPerfil" class="text-3xl">👦</div>
-    <div>
-      <div id="nomP" class="font-black text-lg text-white leading-tight">Jugador</div>
-      <div class="text-sm font-bold text-yellow-300 leading-tight">🪙 <span id="monedasTot">0</span> · ⭐ <span id="ptsTot">0</span> · <span class="racha-badge">🔥 <span id="rachaTot">0</span></span></div>
-    </div>
+  <div class="chip flex items-center gap-2 cursor-pointer hover:scale-105 transition" onclick="mostrarPerfil()" style="touch-action:manipulation;">
+    <span id="avatarPerfil" class="text-2xl">👦</span>
+    <span class="text-left leading-tight">
+      <span class="block font-black" id="nomP">Jugador</span>
+      <span class="block text-xs font-bold" style="color:var(--naranja);">🪙 <span id="monedasTot">0</span> · ⭐ <span id="ptsTot">0</span> · 🔥 <span id="rachaTot">0</span></span>
+    </span>
   </div>
   <div class="flex gap-2 flex-wrap items-center">
-    <button class="btn" onclick="toggleIdioma()" id="btnIdioma" title="Cambiar idioma">🌐 ES</button>
-    <button class="btn-oro text-sm" onclick="regaloDiario()">🎁 <span data-t="regalo">Regalo</span></button>
-    <button class="btn" onclick="abrirTienda()">🏪 <span data-t="tienda">Tienda</span></button>
-    <button class="btn" onclick="sonido.toggleMusica()" id="btnMus">🔇</button>
-    <button class="btn" onclick="abrirModal('ayudaModal')">❓</button>
+    <button class="boton b-violeta" onclick="cambiarIdioma()" id="btnIdioma">🌐 ES</button>
+    <button class="boton b-amarillo" onclick="regaloDiario()">🎁 <span data-t="regalo">Regalo</span></button>
+    <button class="boton b-turquesa" onclick="abrirTienda()">🏪 <span data-t="tienda">Tienda</span></button>
+    <button class="boton b-verde" onclick="abrirLogros()">🏆</button>
+    <button class="boton b-azul" onclick="abrirAjustes()">⚙️</button>
+    <button class="boton b-naranja" onclick="sonido.toggleMusica()" id="btnMus">🔇</button>
+    <button class="boton b-rosa" onclick="abrirModal('ayudaModal')">❓</button>
   </div>
 </div>
 
-<!-- CONTENEDOR PRINCIPAL -->
-<div class="max-w-6xl mx-auto px-3 pt-2 pb-40 relative z-10">
-  <h1 class="tit-neon text-center text-3xl md:text-5xl leading-tight mb-1">🚀 ESPACIO KIDS PREMIUM 🌟</h1>
-  <p class="text-center text-base md:text-lg text-cyan-200 font-bold mb-3" id="subtitulo">¡Aprendé inglés y español jugando! · 27 juegos 100% gratis</p>
+<!-- CONTENEDOR -->
+<div class="max-w-6xl mx-auto px-3 pt-2 pb-44 relative z-10">
+  <h1 class="tit-arcoiris text-center text-3xl md:text-5xl mb-1">🌈 ARCOÍRIS KIDS 🌟</h1>
+  <p class="text-center font-bold mb-3" style="color:var(--texto);" id="subtitulo">El astronauta Capi te enseña a hablar inglés · 35 juegos</p>
 
   <div class="ad-slot ad-banner">📢 PUBLICIDAD (espacio reservado)</div>
 
-  <div class="flex flex-wrap gap-2 justify-center mb-3" id="cats"></div>
-  <div class="flex flex-wrap gap-2 justify-center mb-6" id="tabs"></div>
+  <!-- Mundos (categorías) -->
+  <div class="flex flex-wrap gap-2 justify-center mb-3" id="mundos"></div>
+  <!-- Juegos del mundo -->
+  <div class="flex flex-wrap gap-2 justify-center mb-5" id="tabsJuegos"></div>
 
+  <!-- Zona de juego -->
   <div class="max-w-5xl mx-auto">
-    <div id="juegos" class="vidrio"><div id="gameContainer"></div></div>
+    <div class="tarjeta">
+      <div class="tarjeta-borde"></div>
+      <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
+        <h2 class="text-2xl md:text-3xl font-black" id="titJuego" style="color:var(--violeta);"></h2>
+        <div class="flex gap-2 items-center">
+          <button class="boton b-amarillo" onclick="repetirPalabra()" title="Repetir pronunciación">🔁 <span data-t="repetir">Repetir</span></button>
+          <button class="boton b-azul text-sm" onclick="hablarProfesorAleatorio()">🧑‍🚀</button>
+        </div>
+      </div>
+      <!-- Globo de enseñanza (dentro de la tarjeta, siempre visible) -->
+      <div id="globoEnsenanza" class="mb-4 p-4 rounded-2xl font-bold text-base md:text-lg" style="background:linear-gradient(135deg,#fff0f5,#e0f4ff); border:3px solid var(--rosa); color:var(--texto); min-height:60px; display:flex; align-items:center; gap:10px;">
+        <span class="text-3xl">🧑‍🚀</span>
+        <span id="textoEnsenanza">¡Hola! Soy Capi. Tocá un juego y te enseño inglés 😊</span>
+      </div>
+      <div id="gameContainer"></div>
+    </div>
   </div>
 
   <div class="ad-slot ad-banner mt-6">📢 PUBLICIDAD (espacio reservado)</div>
-  <p class="text-center text-xs text-white/40 mt-6 mb-2">Aplicación gratuita · v4.0 · Sin ruleta ni azar · Hecha para niños</p>
+  <p class="text-center text-xs mt-6 mb-2 font-bold opacity-50" style="color:var(--texto);">Arcoíris Kids v1.0 · Gratis para niños · Sin ruleta ni azar · Hecho con ❤️</p>
 </div>
 
-<!-- Astronauta y mascota -->
-<div id="prof" class="prof" onclick="hablar()"></div>
-<div id="globo" class="globo hidden"></div>
+<!-- Profesor y mascota -->
+<div id="prof" class="prof" onclick="hablarProfesorAleatorio()"></div>
+<div id="globoFlotante" class="globo hidden"></div>
 <div id="mascotaContainer" class="mascota hidden"></div>
 
 <!-- MODAL: PERFIL -->
-<div id="perfilModal" class="modal-overlay"><div class="modal-cuerpo vidrio max-w-md w-full p-7 text-center">
-  <h2 class="tit-neon text-2xl mb-5">👦 <span data-t="tuPerfil">Tu Perfil</span></h2>
-  <input id="nomPerfil" placeholder="Tu nombre" class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white text-center text-xl mb-4 outline-none focus:border-cyan-400">
-  <div class="text-sm text-cyan-200 mb-2" data-t="eligeAvatar">Elegí tu avatar</div>
-  <div id="avatares" class="grid grid-cols-6 gap-2 mb-6"></div>
-  <button class="btn-oro text-xl px-8 w-full py-3" onclick="guardarPerfil()">✅ <span data-t="guardar">GUARDAR</span></button>
+<div id="perfilModal" class="modal-fondo"><div class="modal-cuerpo max-w-md w-full text-center">
+  <h2 class="tit-arcoiris text-3xl mb-5">👦 <span data-t="perfil">Tu Perfil</span></h2>
+  <input id="nomPerfil" placeholder="Tu nombre" class="w-full p-3 rounded-2xl bg-white border-4 border-purple-200 text-center text-xl mb-4 outline-none font-bold" style="color:var(--texto);">
+  <div class="text-sm font-bold mb-2" style="color:var(--violeta);" data-t="avatar">Elegí tu avatar</div>
+  <div id="avatares" class="grid grid-cols-6 gap-2 mb-5"></div>
+  <div class="text-sm font-bold mb-2" style="color:var(--violeta);" data-t="profesor">Elegí tu profesor</div>
+  <div id="profesores" class="grid grid-cols-3 gap-2 mb-6"></div>
+  <button class="boton b-verde text-xl px-8 w-full py-3" onclick="guardarPerfil()">✅ <span data-t="guardar">GUARDAR</span></button>
 </div></div>
 
 <!-- MODAL: TIENDA -->
-<div id="tiendaModal" class="modal-overlay"><div class="modal-cuerpo vidrio max-w-3xl w-full p-7">
-  <div class="flex justify-between items-center mb-5 flex-wrap gap-2">
-    <h2 class="tit-neon text-2xl">🏪 <span data-t="tienda">Tienda</span> Espacial</h2>
-    <button class="btn-cerrar" onclick="cerrarModal('tiendaModal')">✕</button>
+<div id="tiendaModal" class="modal-fondo"><div class="modal-cuerpo max-w-3xl w-full">
+  <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
+    <h2 class="tit-arcoiris text-3xl">🏪 <span data-t="tienda">Tienda</span></h2>
+    <button class="boton b-rosa" onclick="cerrarModal('tiendaModal')">✕</button>
   </div>
-  <div class="text-center mb-5 text-xl font-black text-yellow-300">🪙 <span id="tiendaMonedas">0</span></div>
-  <h3 class="text-lg font-bold text-pink-300 mb-3">🐾 <span data-t="mascotas">Mascotas</span></h3>
+  <div class="text-center mb-4 text-2xl font-black" style="color:var(--naranja);">🪙 <span id="tiendaMonedas">0</span></div>
+  <h3 class="text-xl font-black mb-3" style="color:var(--rosa);">🐾 <span data-t="mascotas">Mascotas</span></h3>
   <div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"></div>
-  <h3 class="text-lg font-bold text-cyan-300 mb-3">👑 <span data-t="accesorios">Accesorios</span></h3>
+  <h3 class="text-xl font-black mb-3" style="color:var(--azul);">👑 <span data-t="accesorios">Accesorios</span></h3>
   <div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
 </div></div>
 
+<!-- MODAL: LOGROS -->
+<div id="logrosModal" class="modal-fondo"><div class="modal-cuerpo max-w-2xl w-full">
+  <div class="flex justify-between items-center mb-5">
+    <h2 class="tit-arcoiris text-3xl">🏆 <span data-t="logros">Logros</span></h2>
+    <button class="boton b-rosa" onclick="cerrarModal('logrosModal')">✕</button>
+  </div>
+  <div id="listaLogros" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+</div></div>
+
+<!-- MODAL: AJUSTES -->
+<div id="ajustesModal" class="modal-fondo"><div class="modal-cuerpo max-w-md w-full">
+  <div class="flex justify-between items-center mb-5">
+    <h2 class="tit-arcoiris text-3xl">⚙️ <span data-t="ajustes">Ajustes</span></h2>
+    <button class="boton b-rosa" onclick="cerrarModal('ajustesModal')">✕</button>
+  </div>
+  <div class="space-y-5">
+    <div>
+      <div class="font-black mb-2" style="color:var(--violeta);">🔊 <span data-t="velVoz">Velocidad de la voz</span></div>
+      <div class="flex gap-2">
+        <button class="boton b-azul flex-1" onclick="setVel(0.7)" id="velLenta">🐢 Lenta</button>
+        <button class="boton b-azul flex-1" onclick="setVel(0.85)" id="velNormal">🙂 Normal</button>
+        <button class="boton b-azul flex-1" onclick="setVel(1.0)" id="velRapida">⚡ Rápida</button>
+      </div>
+    </div>
+    <div>
+      <div class="font-black mb-2" style="color:var(--violeta);">🗣️ <span data-t="acento">Acento de inglés</span></div>
+      <div class="flex gap-2">
+        <button class="boton b-violeta flex-1" onclick="setAcento('en-US')" id="acUS">🇺🇸 USA</button>
+        <button class="boton b-violeta flex-1" onclick="setAcento('en-GB')" id="acGB">🇬🇧 UK</button>
+      </div>
+    </div>
+    <button class="boton b-naranja w-full py-3" onclick="borrarProgreso()">🗑️ <span data-t="borrar">Borrar progreso</span></button>
+  </div>
+</div></div>
+
 <!-- MODAL: PREMIO -->
-<div id="premioModal" class="modal-overlay z-[99999]"><div class="vidrio max-w-sm w-full p-8 text-center">
+<div id="premioModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
   <div id="premioIcono" class="text-7xl mb-3" style="animation:pop 1s ease-in-out infinite;">🎁</div>
-  <h2 id="premioTexto" class="text-2xl font-black text-yellow-300 mb-5">¡GANASTE!</h2>
-  <button class="btn px-8 py-3 text-lg" onclick="cerrarModal('premioModal')">¡GENIAL!</button>
+  <h2 id="premioTexto" class="text-2xl font-black mb-5" style="color:var(--rosa);">¡GANASTE!</h2>
+  <button class="boton b-verde px-8 py-3 text-lg" onclick="cerrarModal('premioModal')">¡GENIAL!</button>
 </div></div>
 
 <!-- MODAL: AYUDA -->
-<div id="ayudaModal" class="modal-overlay"><div class="modal-cuerpo vidrio max-w-lg w-full p-7">
+<div id="ayudaModal" class="modal-fondo"><div class="modal-cuerpo max-w-lg w-full">
   <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-neon text-2xl">❓ <span data-t="ayuda">Ayuda</span></h2>
-    <button class="btn-cerrar" onclick="cerrarModal('ayudaModal')">✕</button>
+    <h2 class="tit-arcoiris text-3xl">❓ <span data-t="ayuda">Ayuda</span></h2>
+    <button class="boton b-rosa" onclick="cerrarModal('ayudaModal')">✕</button>
   </div>
-  <div class="space-y-3 text-sm text-cyan-100" id="ayudaContenido"></div>
+  <div class="space-y-3 text-sm font-semibold" id="ayudaContenido" style="color:var(--texto);"></div>
 </div></div>
 
 <script>
 /* ============================================================
-   DATOS
+   BLOQUE 1 · DATOS (separado: si hay error, no rompe los demás)
    ============================================================ */
 const VOCAB = [
 {es:"PERRO",en:"DOG",ico:"🐶"},{es:"GATO",en:"CAT",ico:"🐱"},{es:"CASA",en:"HOUSE",ico:"🏠"},
@@ -341,31 +416,40 @@ const VOCAB = [
 ];
 const TRIVIA = [
 {p:"¿Cuántos días tiene la semana?",r:"7",o:["5","6","7","8"]},{p:"¿Cuántos meses tiene el año?",r:"12",o:["10","11","12","13"]},
-{p:"¿De qué color es el cielo despejado?",r:"AZUL",o:["ROJO","AZUL","VERDE","AMARILLO"]},{p:"¿Cuántas patas tiene un perro?",r:"4",o:["2","3","4","6"]},
+{p:"¿De qué color es el cielo?",r:"AZUL",o:["ROJO","AZUL","VERDE","AMARILLO"]},{p:"¿Cuántas patas tiene un perro?",r:"4",o:["2","3","4","6"]},
 {p:"¿Qué sale por la mañana?",r:"SOL",o:["LUNA","SOL","ESTRELLAS","NUBE"]},{p:"5 + 3 = ?",r:"8",o:["6","7","8","9"]},
-{p:"¿Qué usamos para respirar?",r:"NARIZ",o:["OJOS","BOCA","NARIZ","OREJAS"]},{p:"¿Cuál es el más grande?",r:"ELEFANTE",o:["HORMIGA","ELEFANTE","RATÓN","GATO"]},
+{p:"¿Con qué respiramos?",r:"NARIZ",o:["OJOS","BOCA","NARIZ","OREJAS"]},{p:"¿Cuál es el más grande?",r:"ELEFANTE",o:["HORMIGA","ELEFANTE","RATÓN","GATO"]},
 {p:"10 - 4 = ?",r:"6",o:["4","5","6","7"]},{p:"¿Qué idioma hablamos en Argentina?",r:"ESPAÑOL",o:["INGLÉS","FRANCÉS","ESPAÑOL","CHINO"]},
-{p:"¿De qué color son las hojas?",r:"VERDE",o:["AZUL","ROJO","VERDE","NEGRO"]},{p:"¿Cuántos dedos hay en dos manos?",r:"10",o:["5","8","10","12"]},
+{p:"¿De qué color son las hojas?",r:"VERDE",o:["AZUL","ROJO","VERDE","NEGRO"]},{p:"¿Cuántos dedos en dos manos?",r:"10",o:["5","8","10","12"]},
 {p:"¿Qué bebe un ternero?",r:"LECHE",o:["AGUA","JUGO","LECHE","GASEOSA"]},{p:"¿Cuál vuela?",r:"PÁJARO",o:["PERRO","PÁJARO","PEZ","CABALLO"]},
 {p:"¿Cuál es redondo?",r:"CÍRCULO",o:["CUADRADO","TRIÁNGULO","CÍRCULO","ROMBO"]},{p:"2 x 3 = ?",r:"6",o:["5","6","7","8"]},
-{p:"¿Qué animal da lana?",r:"OVEJA",o:["VACA","CERDO","OVEJA","CABALLO"]},{p:"¿Cuál nos da luz en la casa?",r:"FOCO",o:["CANILLA","FOCO","SILLA","MESA"]},
+{p:"¿Qué animal da lana?",r:"OVEJA",o:["VACA","CERDO","OVEJA","CABALLO"]},{p:"¿Qué nos da luz en casa?",r:"FOCO",o:["CANILLA","FOCO","SILLA","MESA"]},
 {p:"¿Qué nos ponemos en los pies?",r:"ZAPATOS",o:["GUANTES","SOMBRERO","ZAPATOS","BUFANDA"]},{p:"15 + 5 = ?",r:"20",o:["10","15","20","25"]}
 ];
 const TIENDA = {
-  mascotas:[
-    {id:'m1',ico:'🐉',nom:'Dragón Bebé',p:500},{id:'m2',ico:'🦖',nom:'Dino Rex',p:800},
-    {id:'m3',ico:'🦄',nom:'Unicornio',p:1000},{id:'m4',ico:'🤖',nom:'Mini Bot',p:1500},
-    {id:'m5',ico:'👻',nom:'Fantasmín',p:2000},{id:'m6',ico:'👽',nom:'Marcianito',p:3000}
-  ],
-  accesorios:[
-    {id:'a1',ico:'👑',nom:'Corona Real',p:300},{id:'a2',ico:'🕶️',nom:'Gafas Cool',p:400},
-    {id:'a3',ico:'🎩',nom:'Galera Mágica',p:500},{id:'a4',ico:'🎓',nom:'Graduado',p:600}
-  ]
+  mascotas:[{id:'m1',ico:'🐉',nom:'Dragón Bebé',p:300},{id:'m2',ico:'🦄',nom:'Unicornio',p:500},{id:'m3',ico:'🐱',nom:'Gatito',p:200},{id:'m4',ico:'🐶',nom:'Perrito',p:200},{id:'m5',ico:'🦖',nom:'Dino',p:400},{id:'m6',ico:'🐼',nom:'Oso Panda',p:350},{id:'m7',ico:'🦁',nom:'León',p:450},{id:'m8',ico:'🐸',nom:'Rana',p:150}],
+  accesorios:[{id:'a1',ico:'👑',nom:'Corona',p:150},{id:'a2',ico:'🕶️',nom:'Gafas',p:200},{id:'a3',ico:'🎩',nom:'Galera',p:250},{id:'a4',ico:'🎓',nom:'Graduado',p:300},{id:'a5',ico:'🎀',nom:'Lazo',p:100},{id:'a6',ico:'⚽',nom:'Pelota',p:120}]
 };
+const PROFESORES = [
+  {id:'capi', ico:'🧑‍🚀', nom:'Capi Astronauta', pitch:1.05, rate:0.95},
+  {id:'lila', ico:'🧚', nom:'Hada Lila', pitch:1.4, rate:1.0},
+  {id:'robo', ico:'🤖', nom:'Robot T-800', pitch:0.65, rate:0.9}
+];
+const LOGROS = [
+  {id:'l1', ico:'🌟', nom:'Primer acierto', desc:'Acertá una vez', check:p=>p.p>=10},
+  {id:'l2', ico:'🔥', nom:'Racha de 5', desc:'Racha de 5 aciertos', check:p=>p.mejorRacha>=5},
+  {id:'l3', ico:'🪙', nom:'Ahorrador', desc:'Juntá 500 monedas', check:p=>p.monedas>=500},
+  {id:'l4', ico:'📚', nom:'Lector', desc:'Jugá 20 veces', check:p=>p.jugadas>=20},
+  {id:'l5', ico:'🇬🇧', nom:'Inglés básico', desc:'Acertá 30 de inglés', check:p=>p.ingles>=30},
+  {id:'l6', ico:'🏆', nom:'Campeón', desc:'Alcanzá 5000 puntos', check:p=>p.p>=5000},
+  {id:'l7', ico:'🎁', nom:'Generoso', desc:'Reclamá 3 regalos', check:p=>p.regalos>=3},
+  {id:'l8', ico:'🐾', nom:'Amigo de los animales', desc:'Comprá una mascota', check:p=>(p.inv||[]).some(x=>x.startsWith('m'))},
+  {id:'l9', ico:'🧠', nom:'Genio', desc:'Racha de 10 aciertos', check:p=>p.mejorRacha>=10}
+];
 const DICCIONARIO = {
   animales:[{es:"perro",en:"dog",ico:"🐶"},{es:"gato",en:"cat",ico:"🐱"},{es:"pájaro",en:"bird",ico:"🐦"},{es:"pez",en:"fish",ico:"🐟"},{es:"caballo",en:"horse",ico:"🐴"},{es:"vaca",en:"cow",ico:"🐮"},{es:"cerdo",en:"pig",ico:"🐷"},{es:"oveja",en:"sheep",ico:"🐑"},{es:"elefante",en:"elephant",ico:"🐘"},{es:"león",en:"lion",ico:"🦁"},{es:"mono",en:"monkey",ico:"🐵"},{es:"jirafa",en:"giraffe",ico:"🦒"},{es:"tigre",en:"tiger",ico:"🐯"},{es:"oso",en:"bear",ico:"🐻"},{es:"zorro",en:"fox",ico:"🦊"},{es:"conejo",en:"rabbit",ico:"🐰"},{es:"ratón",en:"mouse",ico:"🐭"},{es:"rana",en:"frog",ico:"🐸"}],
   comida:[{es:"manzana",en:"apple",ico:"🍎"},{es:"banana",en:"banana",ico:"🍌"},{es:"naranja",en:"orange",ico:"🍊"},{es:"uva",en:"grape",ico:"🍇"},{es:"frutilla",en:"strawberry",ico:"🍓"},{es:"sandía",en:"watermelon",ico:"🍉"},{es:"pan",en:"bread",ico:"🍞"},{es:"leche",en:"milk",ico:"🥛"},{es:"queso",en:"cheese",ico:"🧀"},{es:"huevo",en:"egg",ico:"🥚"},{es:"pizza",en:"pizza",ico:"🍕"},{es:"helado",en:"ice cream",ico:"🍦"},{es:"galleta",en:"cookie",ico:"🍪"},{es:"jugo",en:"juice",ico:"🧃"},{es:"agua",en:"water",ico:"💧"},{es:"pollo",en:"chicken",ico:"🍗"},{es:"arroz",en:"rice",ico:"🍚"},{es:"pasta",en:"pasta",ico:"🍝"}],
-  colores:[{es:"rojo",en:"red",ico:"🔴",hex:"#ef4444"},{es:"azul",en:"blue",ico:"🔵",hex:"#3b82f6"},{es:"verde",en:"green",ico:"🟢",hex:"#22c55e"},{es:"amarillo",en:"yellow",ico:"🟡",hex:"#eab308"},{es:"naranja",en:"orange",ico:"🟠",hex:"#f97316"},{es:"violeta",en:"purple",ico:"🟣",hex:"#a855f7"},{es:"rosa",en:"pink",ico:"💗",hex:"#ec4899"},{es:"negro",en:"black",ico:"⚫",hex:"#111111"},{es:"blanco",en:"white",ico:"⚪",hex:"#ffffff"},{es:"marrón",en:"brown",ico:"🟤",hex:"#92400e"}],
+  colores:[{es:"rojo",en:"red",ico:"🔴",hex:"#ef4444"},{es:"azul",en:"blue",ico:"🔵",hex:"#3b82f6"},{es:"verde",en:"green",ico:"🟢",hex:"#22c55e"},{es:"amarillo",en:"yellow",ico:"🟡",hex:"#eab308"},{es:"naranja",en:"orange",ico:"🟠",hex:"#f97316"},{es:"violeta",en:"purple",ico:"🟣",hex:"#a855f7"},{es:"rosa",en:"pink",ico:"💗",hex:"#ec4899"},{es:"negro",en:"black",ico:"⚫",hex:"#333333"},{es:"blanco",en:"white",ico:"⚪",hex:"#f0f0f0"},{es:"marrón",en:"brown",ico:"🟤",hex:"#92400e"}],
   numeros:[{es:"uno",en:"one",ico:"1"},{es:"dos",en:"two",ico:"2"},{es:"tres",en:"three",ico:"3"},{es:"cuatro",en:"four",ico:"4"},{es:"cinco",en:"five",ico:"5"},{es:"seis",en:"six",ico:"6"},{es:"siete",en:"seven",ico:"7"},{es:"ocho",en:"eight",ico:"8"},{es:"nueve",en:"nine",ico:"9"},{es:"diez",en:"ten",ico:"10"},{es:"once",en:"eleven",ico:"11"},{es:"doce",en:"twelve",ico:"12"},{es:"trece",en:"thirteen",ico:"13"},{es:"catorce",en:"fourteen",ico:"14"},{es:"quince",en:"fifteen",ico:"15"},{es:"dieciséis",en:"sixteen",ico:"16"},{es:"diecisiete",en:"seventeen",ico:"17"},{es:"veinte",en:"twenty",ico:"20"}],
   cuerpo:[{es:"cabeza",en:"head",ico:"🗣️"},{es:"ojo",en:"eye",ico:"👁️"},{es:"nariz",en:"nose",ico:"👃"},{es:"boca",en:"mouth",ico:"👄"},{es:"oreja",en:"ear",ico:"👂"},{es:"mano",en:"hand",ico:"✋"},{es:"pie",en:"foot",ico:"🦶"},{es:"brazo",en:"arm",ico:"💪"},{es:"pierna",en:"leg",ico:"🦵"},{es:"diente",en:"tooth",ico:"🦷"},{es:"pelo",en:"hair",ico:"💇"},{es:"corazón",en:"heart",ico:"❤️"}],
   familia:[{es:"mamá",en:"mom",ico:"👩"},{es:"papá",en:"dad",ico:"👨"},{es:"hermano",en:"brother",ico:"👦"},{es:"hermana",en:"sister",ico:"👧"},{es:"abuelo",en:"grandpa",ico:"👴"},{es:"abuela",en:"grandma",ico:"👵"},{es:"tío",en:"uncle",ico:"🧔"},{es:"tía",en:"aunt",ico:"👩‍🦰"},{es:"primo",en:"cousin",ico:"🧒"},{es:"bebé",en:"baby",ico:"👶"}],
@@ -378,954 +462,676 @@ const DICCIONARIO = {
   transporte:[{es:"auto",en:"car",ico:"🚗"},{es:"bicicleta",en:"bike",ico:"🚲"},{es:"autobús",en:"bus",ico:"🚌"},{es:"tren",en:"train",ico:"🚆"},{es:"avión",en:"plane",ico:"✈️"},{es:"barco",en:"boat",ico:"⛵"},{es:"camión",en:"truck",ico:"🚚"},{es:"taxi",en:"taxi",ico:"🚕"},{es:"cohete",en:"rocket",ico:"🚀"},{es:"helicóptero",en:"helicopter",ico:"🚁"}],
   emociones:[{es:"feliz",en:"happy",ico:"😊"},{es:"triste",en:"sad",ico:"😢"},{es:"enojado",en:"angry",ico:"😠"},{es:"asustado",en:"scared",ico:"😨"},{es:"cansado",en:"tired",ico:"😴"},{es:"sorprendido",en:"surprised",ico:"😮"},{es:"enamorado",en:"in love",ico:"😍"},{es:"aburrido",en:"bored",ico:"😐"}]
 };
-
-/* ============================================================
-   IDIOMA (toggle ES / EN)
-   ============================================================ */
-let UI = 'es';
-const TXT = {
-  es:{regalo:"Regalo", tienda:"Tienda", tuPerfil:"Tu Perfil", eligeAvatar:"Elegí tu avatar", guardar:"GUARDAR",
-      mascotas:"Mascotas", accesorios:"Accesorios", ayuda:"Ayuda", comprar:"Comprar", equipar:"Equipar",
-      equipado:"Puesto", racha:"Racha", aciertos:"Aciertos", reiniciar:"Reiniciar", nuevaPalabra:"Nueva palabra",
-      borrar:"Borrar", escuchar:"escuchar", subtitulo:"¡Aprendé inglés y español jugando! · 27 juegos 100% gratis",
-      introSub:"¡Aprendé inglés y español jugando!", empezar:"¡EMPEZAR A JUGAR!",
-      ayudaHtml:`<div class="vidrio-fino p-3"><b class="text-yellow-300">🚀 ¿Cómo empiezo?</b><br>Elegí una categoría arriba (Lógica, Palabras, Números, Arte o Inglés), luego tocá un juego.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🪙 ¿Para qué son las monedas?</b><br>Ganás monedas acertando. Comprás mascotas y accesorios en la Tienda.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🔊 Pronunciación en inglés</b><br>Tocá el botón amarillo 🔊 para escuchar la palabra en inglés.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🎁 Regalo diario</b><br>¡Todos los días recibís monedas GRATIS! Tocá el botón 🎁 (no hay ruleta ni azar).</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🌐 Idioma</b><br>Tocá 🌐 para cambiar la interfaz entre Español e Inglés.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">👦 Progreso</b><br>Tu nombre, avatar y monedas se guardan en tu dispositivo. Tocá el avatar arriba para cambiarlo.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🧑‍🚀 El astronauta</b><br>Es tu profesor. Tocálo para que te anime. ¡Te acompaña!</div>`},
-  en:{regalo:"Gift", tienda:"Store", tuPerfil:"Your Profile", eligeAvatar:"Choose your avatar", guardar:"SAVE",
-      mascotas:"Pets", accesorios:"Accessories", ayuda:"Help", comprar:"Buy", equipar:"Equip",
-      equipado:"Equipped", racha:"Streak", aciertos:"Hits", reiniciar:"Restart", nuevaPalabra:"New word",
-      borrar:"Clear", escuchar:"listen", subtitulo:"Learn English & Spanish by playing! · 27 free games",
-      introSub:"Learn English & Spanish by playing!", empezar:"START PLAYING!",
-      ayudaHtml:`<div class="vidrio-fino p-3"><b class="text-yellow-300">🚀 How do I start?</b><br>Pick a category above (Logic, Words, Numbers, Art or English), then tap a game.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🪙 What are coins for?</b><br>You earn coins by winning. Buy pets and accessories in the Store.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🔊 English pronunciation</b><br>Tap the yellow 🔊 button to hear the word in English.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🎁 Daily gift</b><br>Every day you get FREE coins! Tap 🎁 (no roulette, no gambling).</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🌐 Language</b><br>Tap 🌐 to switch the interface between Spanish and English.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">👦 Progress</b><br>Your name, avatar and coins are saved on your device. Tap the avatar to change it.</div>
-        <div class="vidrio-fino p-3"><b class="text-yellow-300">🧑‍🚀 The astronaut</b><br>He's your teacher. Tap him for encouragement!</div>`}
+const FRASES_COMPLETAR = [
+  {frase:"Hello, how ___ you?", r:"are", o:["are","is","do","am"]},
+  {frase:"___ name is Ana.", r:"My", o:["My","You","We","They"]},
+  {frase:"I ___ a cat.", r:"have", o:["have","has","is","are"]},
+  {frase:"___ you like pizza?", r:"Do", o:["Do","Is","Are","Does"]},
+  {frase:"She ___ to school.", r:"goes", o:["go","goes","going","is go"]},
+  {frase:"Good ___, teacher!", r:"morning", o:["morning","night","evening","bye"]},
+  {frase:"___ old are you?", r:"How", o:["How","What","Who","Where"]},
+  {frase:"I ___ ten years old.", r:"am", o:["am","is","are","be"]}
+];
+const IDIOMAS = {
+  es:{regalo:"Regalo", tienda:"Tienda", repetir:"Repetir", perfil:"Tu Perfil", avatar:"Elegí tu avatar", profesor:"Elegí tu profesor",
+      guardar:"GUARDAR", mascotas:"Mascotas", accesorios:"Accesorios", logros:"Logros", ajustes:"Ajustes", ayuda:"Ayuda",
+      velVoz:"Velocidad de la voz", acento:"Acento de inglés", borrar:"Borrar todo el progreso",
+      subtitulo:"El astronauta Capi te enseña a hablar inglés · 35 juegos",
+      introSub:"¡Aprendé inglés hablando, jugando y divirtiéndote!",
+      ayudaHtml:`<div class="bg-white p-3 rounded-2xl border-2 border-pink-200"><b style="color:#ff6b9d">🚀 ¿Cómo empiezo?</b><br>Elegí un mundo de color arriba, luego tocá un juego. ¡Capi te habla y te enseña!</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-blue-200"><b style="color:#4d96ff">🧑‍🚀 ¿Qué hace Capi?</b><br>El astronauta habla solo: dice la palabra en español y después en inglés, despacito. Tocá 🔁 para repetir.</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-yellow-200"><b style="color:#d4a017">🪙 Monedas y ⭐ puntos</b><br>Ganás monedas acertando. Comprás mascotas y accesorios en la Tienda.</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-green-200"><b style="color:#6bcb77">🎁 Regalo diario</b><br>¡Todos los días monedas GRATIS! Sin ruleta, sin azar.</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-purple-200"><b style="color:#9b72ff">⚙️ Ajustes</b><br>Podés cambiar la velocidad de la voz y el acento (USA o UK).</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-orange-200"><b style="color:#ff8c42">🌐 Idioma</b><br>Tocá 🌐 para cambiar toda la app a inglés o español.</div>`},
+  en:{regalo:"Gift", tienda:"Store", repetir:"Repeat", perfil:"Your Profile", avatar:"Choose your avatar", profesor:"Choose your teacher",
+      guardar:"SAVE", mascotas:"Pets", accesorios:"Accessories", logros:"Achievements", ajustes:"Settings", ayuda:"Help",
+      velVoz:"Voice speed", acento:"English accent", borrar:"Erase all progress",
+      subtitulo:"Capi the astronaut teaches you to speak English · 35 games",
+      introSub:"Learn English by speaking, playing and having fun!",
+      ayudaHtml:`<div class="bg-white p-3 rounded-2xl border-2 border-pink-200"><b style="color:#ff6b9d">🚀 How do I start?</b><br>Pick a colorful world above, then tap a game. Capi talks and teaches you!</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-blue-200"><b style="color:#4d96ff">🧑‍🚀 What does Capi do?</b><br>The astronaut speaks alone: says the word in Spanish then English, slowly. Tap 🔁 to repeat.</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-yellow-200"><b style="color:#d4a017">🪙 Coins and ⭐ points</b><br>Earn coins by winning. Buy pets and accessories in the Store.</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-green-200"><b style="color:#6bcb77">🎁 Daily gift</b><br>Free coins every day! No roulette, no gambling.</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-purple-200"><b style="color:#9b72ff">⚙️ Settings</b><br>Change voice speed and accent (USA or UK).</div>
+        <div class="bg-white p-3 rounded-2xl border-2 border-orange-200"><b style="color:#ff8c42">🌐 Language</b><br>Tap 🌐 to switch the whole app to English or Spanish.</div>`}
 };
-function t(k){ return TXT[UI][k] || TXT.es[k] || k; }
-function aplicarIdioma(){
-  document.querySelectorAll('[data-t]').forEach(el=>{ el.textContent = t(el.dataset.t); });
-  document.getElementById('subtitulo').textContent = t('subtitulo');
-  document.getElementById('introSub').textContent = t('introSub');
-  document.getElementById('btnEmpezar').textContent = '▶ ' + t('empezar');
-  document.getElementById('btnIdioma').textContent = UI==='es' ? '🌐 ES' : '🌐 EN';
-  document.getElementById('ayudaContenido').innerHTML = t('ayudaHtml');
-  document.title = UI==='es' ? 'ESPACIO KIDS PREMIUM · Inglés y Español · 27 Juegos' : 'SPACE KIDS PREMIUM · English & Spanish · 27 Games';
-}
-function toggleIdioma(){ UI = UI==='es' ? 'en' : 'es'; aplicarIdioma(); dibCats(); sonido.click(); toast(UI==='es' ? '¡Español! 🇦🇷' : 'English! 🇬🇧'); }
+</script>
 
+<script>
 /* ============================================================
-   AUDIO (Web Audio) + PRONUNCIACIÓN
+   BLOQUE 2 · AUDIO + MOTOR DE ENSEÑANZA (Capi habla ES→EN)
    ============================================================ */
+let UI='es', VOZ_RATE=0.85, ACENTO='en-US', CUR={es:"",en:""};
 const sonido = (()=>{
   let ctx, musOn=false, ost=null;
-  const ini=()=>{ if(!ctx){ try{ ctx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(ctx && ctx.state==='suspended'){ ctx.resume(); } };
-  const tono=(f=440,d=.2,tp='sine',v=.18)=>{
-    if(!ctx) return;
-    try{
-      const o=ctx.createOscillator(), g=ctx.createGain();
-      o.type=tp; o.frequency.value=f; g.gain.value=v;
-      g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime+d);
-      o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+d);
-    }catch(e){}
-  };
-  const melodia=arr=>arr.forEach(([f,d],n)=>setTimeout(()=>tono(f,d), n*140));
-  return {
-    ini, tono,
-    click:()=>tono(600,.05,'square',.05),
-    ok:()=>melodia([[523,.1],[659,.1],[784,.15]]),
-    no:()=>melodia([[300,.15],[200,.2]]),
-    ganar:()=>melodia([[523,.1],[659,.1],[784,.1],[1047,.3]]),
-    moneda:()=>tono(1200,.1,'sine',.1),
-    toggleMusica(){
-      ini(); musOn=!musOn;
-      document.getElementById('btnMus').textContent = musOn ? '🔊' : '🔇';
-      if(musOn){
-        const notas=[261.63, 329.63, 392.00, 523.25]; let i=0;
-        const loop=()=>{ if(!musOn)return; tono(notas[i%4],.2,'triangle',.02); i++; ost=setTimeout(loop,600); };
-        loop();
-      } else { clearTimeout(ost); }
-    }
+  const ini=()=>{ if(!ctx){ try{ ctx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(ctx&&ctx.state==='suspended'){ try{ctx.resume();}catch(e){} } };
+  const tono=(f,d,tp,v)=>{ if(!ctx) return; try{ const o=ctx.createOscillator(),g=ctx.createGain(); o.type=tp||'sine'; o.frequency.value=f; g.gain.value=v||.15; g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+(d||.2)); o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+(d||.2)); }catch(e){} };
+  const mel=arr=>arr.forEach(([f,d],n)=>setTimeout(()=>tono(f,d,'sine',.15), n*130));
+  return { ini, tono,
+    click:()=>tono(600,.06,'square',.06), ok:()=>mel([[523,.1],[659,.1],[784,.16]]), no:()=>mel([[300,.15],[180,.25]]),
+    ganar:()=>mel([[523,.1],[659,.1],[784,.1],[1047,.35]]), moneda:()=>tono(1300,.1,'sine',.1),
+    toggleMusica(){ ini(); musOn=!musOn; document.getElementById('btnMus').textContent=musOn?'🔊':'🔇';
+      if(musOn){ const nt=[262,330,392,523]; let i=0; const lp=()=>{ if(!musOn)return; tono(nt[i%4],.25,'triangle',.03); i++; ost=setTimeout(lp,550); }; lp(); } else { clearTimeout(ost); } }
   };
 })();
-// Inicializar audio en el primer toque (requisito de los navegadores)
 document.addEventListener('pointerdown', ()=>sonido.ini(), {once:true, passive:true});
 
-/* Pronunciación en inglés */
-function hablarIngles(texto){
+function hablar(texto, lang, rate, pitch, alTerminar){
   try{
-    if(!('speechSynthesis' in window)) return;
+    if(!('speechSynthesis' in window)){ if(alTerminar) setTimeout(alTerminar, 800); return; }
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(texto);
-    u.lang='en-US'; u.rate=0.85; u.pitch=1.1; u.volume=1;
+    u.lang = lang||'en-US'; u.rate = rate||0.85; u.pitch = pitch||1.1; u.volume=1;
     const voces = speechSynthesis.getVoices();
-    const vozEn = voces.find(v=>v.lang && v.lang.startsWith('en'));
-    if(vozEn) u.voice = vozEn;
-    setTimeout(()=>{ try{ speechSynthesis.speak(u); }catch(e){} }, 60);
-  }catch(e){}
+    const v = voces.find(x=>x.lang && x.lang.startsWith(lang.slice(0,2))) || voces[0];
+    if(v) u.voice = v;
+    let listo=false;
+    const fin=()=>{ if(listo) return; listo=true; if(alTerminar) alTerminar(); };
+    u.onend = fin; u.onerror = fin;
+    setTimeout(fin, 6000); // respaldo por si onend no se dispara
+    setTimeout(()=>{ try{ speechSynthesis.speak(u); }catch(e){ fin(); } }, 80);
+  }catch(e){ if(alTerminar) setTimeout(alTerminar, 500); }
+}
+function hablarIngles(texto){ hablar(texto, ACENTO, VOZ_RATE, 1.1); }
+function profesorActual(){ return PROFESORES.find(p=>p.id===(PERFIL&&PERFIL.prof)) || PROFESORES[0]; }
+
+/* ENSEÑAR: Capi dice la palabra en español, luego en inglés (despacito) */
+function ensenar(es, en){
+  CUR = {es:es, en:en};
+  const prof = profesorActual();
+  const caja = document.getElementById('textoEnsenanza');
+  const globo = document.getElementById('globoFlotante');
+  const svg = document.getElementById('astroSVG');
+  const hablarAnim = (txt)=>{ if(svg) svg.classList.add('hablando'); if(globo){ globo.innerHTML='<span class="bandera">🧑‍🚀</span>'+txt; globo.classList.remove('hidden'); clearTimeout(globo._t); globo._t=setTimeout(()=>globo.classList.add('hidden'),5000); } };
+  const pararAnim = ()=>{ if(svg) svg.classList.remove('hablando'); };
+  sonido.click();
+  // Paso 1: español
+  if(caja) caja.innerHTML = '🧑‍🚀 <span><b style="color:#ff6b9d">🇦🇷 En español:</b> "'+es+'" ... ahora escuchá en inglés 👇</span>';
+  hablarAnim('🇦🇷 "'+es+'"');
+  hablar(es, 'es-AR', prof.rate, prof.pitch, ()=>{
+    // Paso 2: inglés (lento, para que los niños repitan)
+    setTimeout(()=>{
+      if(caja) caja.innerHTML = '🧑‍🚀 <span><b style="color:#4d96ff">🇬🇧 In English:</b> "'+en+'" ¡Repetí conmigo!</span>';
+      hablarAnim('🇬🇧 "'+en+'"');
+      hablar(en, ACENTO, VOZ_RATE, 1.1, ()=>{
+        pararAnim();
+        setTimeout(()=>{ if(globo) globo.classList.add('hidden'); }, 2500);
+      });
+    }, 500);
+  });
+}
+function ensenarCur(){ if(CUR && CUR.en) ensenar(CUR.es, CUR.en); }
+function repetirPalabra(){ ensenarCur(); }
+
+const FRASES_PROF = {
+  es:["¡Hola! Soy Capi, tu profesor astronauta 🚀","¡Muy bien! ¡Sos un campeón! 🏆","¡El inglés es fácil si te divertís! ✨","¡Escuchá bien y repetí conmigo! 🔊","¡No te rindas! ¡Vos podés! 💪","¡Ganaste monedas! ¡Siii! 🪙","¡Wiii! ¡Vamos a jugar! 🎮","¡Repetí la palabra en voz alta! 🗣️"],
+  en:["Hi! I'm Capi, your astronaut teacher 🚀","Well done! You're a champion! 🏆","English is easy when you have fun! ✨","Listen carefully and repeat with me! 🔊","Don't give up! You can do it! 💪","You earned coins! Yaaay! 🪙","Wheee! Let's play! 🎮","Repeat the word out loud! 🗣️"]
+};
+function hablarProfesorAleatorio(){
+  const arr = UI==='es' ? FRASES_PROF.es : FRASES_PROF.en;
+  const f = arr[Math.floor(Math.random()*arr.length)];
+  const prof = profesorActual();
+  const globo = document.getElementById('globoFlotante');
+  const svg = document.getElementById('astroSVG');
+  if(globo){ globo.innerHTML='<span class="bandera">🧑‍🚀</span>'+f; globo.classList.remove('hidden'); clearTimeout(globo._t); globo._t=setTimeout(()=>globo.classList.add('hidden'),4500); }
+  hablar(f, UI==='es'?'es-AR':'en-US', prof.rate, prof.pitch, ()=>{ if(svg) svg.classList.remove('hablando'); });
+  if(svg) svg.classList.add('hablando');
+  const p=document.getElementById('prof'); if(p){ p.style.transform='scale(1.12) rotate(6deg)'; setTimeout(()=>p.style.transform='',250); }
 }
 if('speechSynthesis' in window){ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }
+</script>
 
+<script>
 /* ============================================================
-   PERFIL Y ESTADO
+   BLOQUE 3 · ESTADO: perfil, monedas, tienda, logros, ajustes, idioma
    ============================================================ */
-let PERFIL = { n:"Jugador", a:"👦", p:0, monedas:100, inv:[], eqMascota:null, eqAcc:null, racha:0, ultimoRegalo:null };
-let CA=0, J=0;
+let PERFIL = { n:"Jugador", a:"👦", prof:"capi", p:0, monedas:100, inv:[], eqMascota:null, eqAcc:null, racha:0, mejorRacha:0, jugadas:0, ingles:0, regalos:0, ultimoRegalo:null };
+let MUNDO=0, JUEGO=0, _timers=[];
+function _st(fn,ms){ const id=setTimeout(fn,ms); _timers.push(id); return id; }
+function limpiarTimers(){ _timers.forEach(id=>clearTimeout(id)); _timers=[]; if(window._arcActivo!==undefined) window._arcActivo=false; if(window._simonActivo) window._simonActivo=false; }
 
 function guardarPerfil(){
-  const val = (document.getElementById('nomPerfil').value||"").trim();
-  if(val) PERFIL.n = val;
-  try{ localStorage.setItem('espKidsV4', JSON.stringify(PERFIL)); }catch(e){}
+  const v=(document.getElementById('nomPerfil').value||"").trim(); if(v) PERFIL.n=v;
+  try{ localStorage.setItem('arcoirisKidsV1', JSON.stringify(PERFIL)); }catch(e){}
   actualizarCabecera(); cerrarModal('perfilModal'); sonido.ok();
 }
 function cargarPerfil(){
-  try{
-    const s = localStorage.getItem('espKidsV4');
-    if(s) PERFIL = {...PERFIL, ...JSON.parse(s)};
-  }catch(e){}
-  if(!PERFIL.monedas) PERFIL.monedas=100;
-  if(!PERFIL.racha) PERFIL.racha=0;
+  try{ const s=localStorage.getItem('arcoirisKidsV1'); if(s) PERFIL={...PERFIL, ...JSON.parse(s)}; }catch(e){}
+  if(!PERFIL.monedas) PERFIL.monedas=100; if(!PERFIL.racha) PERFIL.racha=0; if(!PERFIL.inv) PERFIL.inv=[];
   actualizarCabecera();
 }
 function actualizarCabecera(){
-  document.getElementById('nomP').textContent = PERFIL.n;
-  document.getElementById('ptsTot').textContent = PERFIL.p;
-  document.getElementById('monedasTot').textContent = PERFIL.monedas;
-  document.getElementById('rachaTot').textContent = PERFIL.racha||0;
-  let av = PERFIL.a;
-  if(PERFIL.eqAcc){ const acc=TIENDA.accesorios.find(x=>x.id===PERFIL.eqAcc); if(acc) av+=acc.ico; }
-  document.getElementById('avatarPerfil').textContent = av;
-  const contM = document.getElementById('mascotaContainer');
-  if(PERFIL.eqMascota){ const m=TIENDA.mascotas.find(x=>x.id===PERFIL.eqMascota); if(m){ contM.textContent=m.ico; contM.classList.remove('hidden'); } }
-  else contM.classList.add('hidden');
+  document.getElementById('nomP').textContent=PERFIL.n;
+  document.getElementById('ptsTot').textContent=PERFIL.p;
+  document.getElementById('monedasTot').textContent=PERFIL.monedas;
+  document.getElementById('rachaTot').textContent=PERFIL.racha||0;
+  let av=PERFIL.a;
+  if(PERFIL.eqAcc){ const a=TIENDA.accesorios.find(x=>x.id===PERFIL.eqAcc); if(a) av+=a.ico; }
+  document.getElementById('avatarPerfil').textContent=av;
+  const cm=document.getElementById('mascotaContainer');
+  if(PERFIL.eqMascota){ const m=TIENDA.mascotas.find(x=>x.id===PERFIL.eqMascota); if(m){ cm.textContent=m.ico; cm.classList.remove('hidden'); } } else cm.classList.add('hidden');
 }
-function ganarMonedas(cant){
-  PERFIL.monedas += cant; PERFIL.p += cant*10; PERFIL.racha = (PERFIL.racha||0)+1;
-  if(PERFIL.racha>0 && PERFIL.racha%5===0){ toast('🔥 ¡Racha de '+PERFIL.racha+'! +'+(cant*2)+' bonus'); PERFIL.monedas += cant; PERFIL.p += cant*10; }
+function ganarMonedas(cant, esIngles){
+  PERFIL.monedas+=cant; PERFIL.p+=cant*10; PERFIL.racha=(PERFIL.racha||0)+1; PERFIL.jugadas=(PERFIL.jugadas||0)+1;
+  if(esIngles) PERFIL.ingles=(PERFIL.ingles||0)+1;
+  if(PERFIL.racha>(PERFIL.mejorRacha||0)) PERFIL.mejorRacha=PERFIL.racha;
+  if(PERFIL.racha>0 && PERFIL.racha%5===0){ toast('🔥 ¡Racha de '+PERFIL.racha+'! Bonus +'+cant); PERFIL.monedas+=cant; PERFIL.p+=cant*10; }
+  revisarLogros();
   guardarPerfil(); sonido.moneda();
-  const flo=document.createElement('div');
-  flo.textContent='+🪙'+cant;
-  flo.className='fixed text-4xl font-black text-yellow-300 pointer-events-none z-[99999]';
-  flo.style.left='50%'; flo.style.top='45%'; flo.style.transform='translate(-50%,-50%)';
-  flo.style.animation='flot 1.4s forwards ease-out';
-  document.body.appendChild(flo); setTimeout(()=>flo.remove(),1400);
+  const f=document.createElement('div'); f.textContent='+🪙'+cant; f.className='fixed text-4xl font-black pointer-events-none z-[99999]';
+  f.style.left='50%'; f.style.top='45%'; f.style.transform='translate(-50%,-50%)'; f.style.color='#ff8c42'; f.style.fontWeight='900';
+  f.style.animation='flotar 1.4s forwards ease-out'; document.body.appendChild(f); setTimeout(()=>f.remove(),1400);
 }
-function fallo(){ PERFIL.racha = 0; guardarPerfil(); }
+function fallo(){ PERFIL.racha=0; guardarPerfil(); }
 
-function toast(msg){
-  const el = document.getElementById('toast');
-  el.textContent = msg; el.classList.add('visible');
-  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove('visible'), 2200);
-}
+function toast(msg){ const el=document.getElementById('toast'); if(!el) return; el.textContent=msg; el.classList.add('visible'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('visible'),2400); }
+function confeti(n){ const cols=['#ff6b9d','#ffc93c','#6bcb77','#4d96ff','#9b72ff','#ff8c42']; for(let i=0;i<(n||40);i++){ const c=document.createElement('div'); c.className='confeti'; c.style.left=(Math.random()*100)+'vw'; c.style.top='-10px'; c.style.background=cols[i%cols.length]; c.style.borderRadius=Math.random()>.5?'50%':'2px'; c.style.setProperty('--tx',((Math.random()-.5)*250)+'px'); c.style.setProperty('--ty',(Math.random()*500+150)+'px'); document.body.appendChild(c); setTimeout(()=>c.remove(),1200); } }
 
-/* ============================================================
-   REGALO DIARIO (reemplaza a la ruleta — sin azar, gratis)
-   ============================================================ */
-function regaloDiario(){
-  const hoy = new Date().toISOString().slice(0,10);
-  if(PERFIL.ultimoRegalo === hoy){
-    sonido.no();
-    mostrarPremio('⏰', UI==='es' ? '¡Ya reclamaste tu regalo hoy!\nVolvé mañana 😊' : 'You already claimed today!\nCome back tomorrow 😊');
-    return;
-  }
-  const premio = 50; // regalo fijo, sin azar
-  PERFIL.ultimoRegalo = hoy;
-  PERFIL.monedas += premio; PERFIL.p += premio*10;
-  guardarPerfil(); actualizarCabecera(); sonido.ganar(); conf(50);
-  mostrarPremio('🎁', (UI==='es' ? '¡Regalo diario! +' : 'Daily gift! +') + premio + ' 🪙');
-}
-
-/* ============================================================
-   MODALES / TIENDA
-   ============================================================ */
 function abrirModal(id){ document.getElementById(id).classList.add('activo'); sonido.click(); }
 function cerrarModal(id){ document.getElementById(id).classList.remove('activo'); sonido.click(); }
-function mostrarPremio(ico, txt){
-  document.getElementById('premioIcono').textContent = ico;
-  document.getElementById('premioTexto').textContent = txt;
-  abrirModal('premioModal');
+function mostrarPremio(ico,txt){ document.getElementById('premioIcono').textContent=ico; document.getElementById('premioTexto').textContent=txt; abrirModal('premioModal'); }
+
+function regaloDiario(){
+  const hoy=new Date().toISOString().slice(0,10);
+  if(PERFIL.ultimoRegalo===hoy){ sonido.no(); mostrarPremio('⏰', UI==='es'?'¡Ya tenés tu regalo de hoy!\nVolvé mañana 😊':'You got today\'s gift!\nCome back tomorrow 😊'); return; }
+  PERFIL.ultimoRegalo=hoy; PERFIL.regalos=(PERFIL.regalos||0)+1;
+  PERFIL.monedas+=50; PERFIL.p+=500; guardarPerfil(); actualizarCabecera(); sonido.ganar(); confeti(60);
+  mostrarPremio('🎁', (UI==='es'?'¡Regalo diario! +':'Daily gift! +')+'50 🪙');
 }
 function mostrarPerfil(){
-  document.getElementById('nomPerfil').value = PERFIL.n;
+  document.getElementById('nomPerfil').value=PERFIL.n;
   const avs=["👦","👧","🧑‍🚀","👽","🦊","🐯"];
-  document.getElementById('avatares').innerHTML = avs.map(a=>
-    `<button class="text-3xl hover:scale-125 transition p-1 rounded-lg ${a===PERFIL.a?'ring-2 ring-cyan-400 bg-white/20':''}" onclick="PERFIL.a='${a}'; mostrarPerfil();">${a}</button>`
-  ).join('');
+  document.getElementById('avatares').innerHTML=avs.map(a=>`<button class="text-3xl p-1 rounded-xl transition hover:scale-125 ${a===PERFIL.a?'bg-pink-100 ring-4 ring-pink-400':''}" onclick="PERFIL.a='${a}'; mostrarPerfil();">${a}</button>`).join('');
+  document.getElementById('profesores').innerHTML=PROFESORES.map(p=>`<button class="p-2 rounded-2xl transition hover:scale-105 ${PERFIL.prof===p.id?'bg-purple-100 ring-4 ring-purple-400':'bg-white'}" onclick="PERFIL.prof='${p.id}'; mostrarPerfil();"><div class="text-3xl">${p.ico}</div><div class="text-xs font-black">${p.nom}</div></button>`).join('');
   abrirModal('perfilModal');
 }
 function abrirTienda(){
-  document.getElementById('tiendaMonedas').textContent = PERFIL.monedas;
-  const render = (lista, tipo, contId)=>{
-    document.getElementById(contId).innerHTML = lista.map(m=>{
-      const tiene = PERFIL.inv.includes(m.id);
-      const eq = (tipo==='m'?PERFIL.eqMascota:PERFIL.eqAcc) === m.id;
-      return `<div class="vidrio-fino p-3 text-center">
-        <div class="text-4xl mb-1">${m.ico}</div>
-        <div class="font-bold text-xs mb-2">${m.nom}</div>
-        ${tiene
-          ? `<button class="btn ${eq?'bg-green-500':''} w-full text-xs py-2" onclick="equipar('${m.id}','${tipo}')">${eq?t('equipado'):t('equipar')}</button>`
-          : `<button class="btn-oro w-full text-xs py-2" onclick="comprar('${m.id}',${m.p})">🪙 ${m.p}</button>`}
-      </div>`;
-    }).join('');
-  };
-  render(TIENDA.mascotas,'m','tiendaMascotas');
-  render(TIENDA.accesorios,'a','tiendaAccesorios');
+  document.getElementById('tiendaMonedas').textContent=PERFIL.monedas;
+  const ren=(lista,tipo,id)=>{ document.getElementById(id).innerHTML=lista.map(m=>{ const tiene=PERFIL.inv.includes(m.id); const eq=(tipo==='m'?PERFIL.eqMascota:PERFIL.eqAcc)===m.id; return `<div class="tienda-item"><div class="ico">${m.ico}</div><div class="font-black text-sm mb-2">${m.nom}</div>${tiene?`<button class="boton ${eq?'b-verde':'b-azul'} w-full text-xs py-2" onclick="equipar('${m.id}','${tipo}')">${eq?(UI==='es'?'PUESTO':'EQUIPPED'):(UI==='es'?'EQUIPAR':'EQUIP')}</button>`:`<button class="boton b-amarillo w-full text-xs py-2" onclick="comprar('${m.id}',${m.p})">🪙 ${m.p}</button>`}</div>`; }).join(''); };
+  ren(TIENDA.mascotas,'m','tiendaMascotas'); ren(TIENDA.accesorios,'a','tiendaAccesorios');
   abrirModal('tiendaModal');
 }
-function comprar(id, precio){
-  if(PERFIL.monedas >= precio){
-    PERFIL.monedas -= precio; PERFIL.inv.push(id);
-    guardarPerfil(); sonido.ganar(); abrirTienda();
-    const item = TIENDA.mascotas.find(x=>x.id===id) || TIENDA.accesorios.find(x=>x.id===id);
-    mostrarPremio(item?item.ico:'🎁', UI==='es' ? '¡COMPRA EXITOSA!' : 'PURCHASE COMPLETE!');
-  } else { sonido.no(); toast(UI==='es' ? '¡No te alcanzan! Jugá más 🎮' : 'Not enough coins! Play more 🎮'); }
-}
-function equipar(id, tipo){
-  if(tipo==='m') PERFIL.eqMascota = PERFIL.eqMascota===id ? null : id;
-  if(tipo==='a') PERFIL.eqAcc = PERFIL.eqAcc===id ? null : id;
-  guardarPerfil(); sonido.click(); abrirTienda();
-}
+function comprar(id,precio){ if(PERFIL.monedas>=precio){ PERFIL.monedas-=precio; PERFIL.inv.push(id); guardarPerfil(); sonido.ganar(); abrirTienda(); const it=TIENDA.mascotas.find(x=>x.id===id)||TIENDA.accesorios.find(x=>x.id===id); mostrarPremio(it?it.ico:'🎁', UI==='es'?'¡COMPRA EXITOSA!':'PURCHASE COMPLETE!'); } else { sonido.no(); toast(UI==='es'?'¡No te alcanzan! Jugá más 🎮':'Not enough coins! Play more 🎮'); } }
+function equipar(id,tipo){ if(tipo==='m') PERFIL.eqMascota=PERFIL.eqMascota===id?null:id; if(tipo==='a') PERFIL.eqAcc=PERFIL.eqAcc===id?null:id; guardarPerfil(); actualizarCabecera(); sonido.click(); abrirTienda(); }
 
-/* ============================================================
-   ASTRONAUTA — voz de personaje animado (NO ardilla)
-   ============================================================ */
-const PROF = {
-  frEs:[
-    "¡Hola chicos! ¿Listos para jugar? 🚀",
-    "¡Seguí así, sos un crack! 🌟",
-    "¡El inglés es fácil si te divertís! ✨",
-    "¡Ganaste monedas! ¡Siii! 🪙",
-    "¡Escuchá cómo se pronuncia! 🔊",
-    "¡No te rindas, intentá de nuevo! 💪",
-    "¡Yo soy Capi, tu amigo astronauta! 👨‍🚀",
-    "¡Eso! ¡Muy bien! ¡Sos campeón! 🏆",
-    "¡Wiii! ¡Vamos a volar! 🚀"
-  ],
-  frEn:[
-    "Hi kids! Ready to play? 🚀",
-    "Keep going, you rock! 🌟",
-    "English is easy when you have fun! ✨",
-    "You earned coins! Yaaay! 🪙",
-    "Listen to the pronunciation! 🔊",
-    "Don't give up, try again! 💪",
-    "I'm Capi, your astronaut friend! 👨‍🚀",
-    "That's it! Well done, champion! 🏆",
-    "Wheee! Let's fly! 🚀"
-  ]
-};
-function hablarProfesor(texto){
-  const svg = document.getElementById('astroSVG');
-  const g = document.getElementById('globo');
-  if(g){ g.textContent = texto; g.classList.remove('hidden'); clearTimeout(g._t); g._t=setTimeout(()=>g.classList.add('hidden'),4500); }
-  try{
-    if(!('speechSynthesis' in window)){ if(svg){svg.classList.add('hablando'); setTimeout(()=>svg.classList.remove('hablando'),1500);} return; }
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(texto);
-    u.lang = UI==='es' ? 'es-AR' : 'en-US';
-    // Voz de personaje animado: grave, cálido, héroe amigable (antes pitch 1.9 = ardilla)
-    u.pitch = 1.05;   // ← casi grave, personaje
-    u.rate = 0.95;    // ← pausado, seguro de sí mismo
-    u.volume = 1;
-    const voces = speechSynthesis.getVoices();
-    const voz = voces.find(v=>v.lang && v.lang.startsWith(UI==='es'?'es':'en')) || voces[0];
-    if(voz) u.voice = voz;
-    u.onstart = ()=>{ if(svg) svg.classList.add('hablando'); };
-    u.onend = ()=>{ if(svg) svg.classList.remove('hablando'); };
-    u.onerror = ()=>{ if(svg) svg.classList.remove('hablando'); };
-    setTimeout(()=>{ try{ speechSynthesis.speak(u); }catch(e){ if(svg){svg.classList.add('hablando'); setTimeout(()=>svg.classList.remove('hablando'),1500);} } }, 80);
-  }catch(e){ if(svg){svg.classList.add('hablando'); setTimeout(()=>svg.classList.remove('hablando'),1500);} }
-  sonido.click();
+function revisarLogros(){
+  LOGROS.forEach(l=>{ if(!PERFIL.inv.includes(l.id) && l.check(PERFIL)){ PERFIL.inv.push(l.id); _st(()=>{ mostrarPremio(l.ico, (UI==='es'?'¡Logro desbloqueado!\n':'Achievement unlocked!\n')+l.nom); }, 600); } });
 }
-function hablar(frase){
-  const arr = UI==='es' ? PROF.frEs : PROF.frEn;
-  hablarProfesor(frase || arr[Math.floor(Math.random()*arr.length)]);
-  const p=document.getElementById('prof');
-  if(p){ p.style.transform='scale(1.12) rotate(6deg)'; setTimeout(()=>p.style.transform='',250); }
+function abrirLogros(){
+  document.getElementById('listaLogros').innerHTML=LOGROS.map(l=>{ const ok=PERFIL.inv.includes(l.id); return `<div class="text-center p-3 rounded-2xl ${ok?'bg-yellow-50 border-2 border-yellow-300':'bg-gray-100 border-2 border-gray-200'}"><div class="medalla ${ok?'':'bloqueada'}">${l.ico}</div><div class="font-black mt-2 text-sm">${l.nom}</div><div class="text-xs font-semibold opacity-70">${l.desc}</div></div>`; }).join('');
+  abrirModal('logrosModal');
 }
+function abrirAjustes(){ ['velLenta','velNormal','velRapida'].forEach(id=>{ const el=document.getElementById(id); if(el) el.classList.remove('on'); });
+  const activa = VOZ_RATE<=0.75?'velLenta':VOZ_RATE<=0.92?'velNormal':'velRapida';
+  const el=document.getElementById(activa); if(el) el.classList.add('on');
+  document.getElementById('acUS').classList.toggle('on', ACENTO==='en-US');
+  document.getElementById('acGB').classList.toggle('on', ACENTO==='en-GB');
+  abrirModal('ajustesModal');
+}
+function setVel(v){ VOZ_RATE=v; abrirAjustes(); sonido.click(); toast(UI==='es'?'¡Velocidad cambiada! 🔊':'Voice speed changed! 🔊'); }
+function setAcento(a){ ACENTO=a; abrirAjustes(); sonido.click(); toast(a==='en-US'?'🇺🇸 USA accent':'🇬🇧 UK accent'); }
+function borrarProgreso(){ if(confirm(UI==='es'?'¿Seguro que querés borrar todo tu progreso?':'Erase ALL your progress?')){ try{ localStorage.removeItem('arcoirisKidsV1'); }catch(e){} location.reload(); } }
 
+function t(k){ const d=IDIOMAS[UI]||IDIOMAS.es; return d[k]||IDIOMAS.es[k]||k; }
+function aplicarIdioma(){
+  document.querySelectorAll('[data-t]').forEach(el=>{ el.textContent=t(el.dataset.t); });
+  document.getElementById('subtitulo').textContent=t('subtitulo');
+  document.getElementById('introSub').textContent=t('introSub');
+  document.getElementById('btnIdioma').textContent = UI==='es'?'🌐 ES':'🌐 EN';
+  document.getElementById('ayudaContenido').innerHTML=t('ayudaHtml');
+  document.title = UI==='es'?'ARCOÍRIS KIDS · Aprendé Inglés Jugando':'RAINBOW KIDS · Learn English by Playing';
+}
+function cambiarIdioma(){ UI=UI==='es'?'en':'es'; aplicarIdioma(); dibujarMundos(); sonido.click(); toast(UI==='es'?'¡Español! 🇦🇷':'English! 🇬🇧'); }
+</script>
+
+<script>
 /* ============================================================
-   MOTOR DE JUEGOS
+   BLOQUE 4 · MOTOR DE NAVEGACIÓN (mundos + juegos + quiz helper)
    ============================================================ */
+const MUNDOS = [
+  {id:0, cls:'m1', ico:'🔤', nomEs:'Letras y Palabras', nomEn:'Letters & Words'},
+  {id:1, cls:'m2', ico:'🔢', nomEs:'Números', nomEn:'Numbers'},
+  {id:2, cls:'m3', ico:'🎨', nomEs:'Colores y Formas', nomEn:'Colors & Shapes'},
+  {id:3, cls:'m4', ico:'🐾', nomEs:'Vocabulario', nomEn:'Vocabulary'},
+  {id:4, cls:'m5', ico:'💬', nomEs:'Conversación', nomEn:'Conversation'},
+  {id:5, cls:'m6', ico:'🎮', nomEs:'Juegos y Arte', nomEn:'Games & Art'}
+];
+let JUEGOS = []; // se define en el bloque de arranque, después de los juegos
 const mezclar=a=>[...a].sort(()=>Math.random()-.5);
 const rp=a=>a[Math.floor(Math.random()*a.length)];
-const conf=(n=40)=>{
-  const cols=['#22d3ee','#a855f7','#ec4899','#facc15','#22c55e'];
-  for(let i=0;i<n;i++){
-    const c=document.createElement('div'); c.className='particula';
-    c.style.left=Math.random()*100+'vw'; c.style.top='-10px';
-    c.style.background=cols[i%cols.length];
-    c.style.setProperty('--tx',(Math.random()-.5)*200+'px');
-    c.style.setProperty('--ty',(Math.random()*500+100)+'px');
-    document.body.appendChild(c); setTimeout(()=>c.remove(),1000);
-  }
-};
-function quizUI({pregunta, opciones, correcta, audioEN, alAcertar}){
-  const gc = document.getElementById('gameContainer');
-  const ops = mezclar(opciones);
-  gc.innerHTML = `<div class="text-center mb-6">${pregunta}</div><div id="quizOps" class="grid grid-cols-2 gap-3 max-w-lg mx-auto"></div>`;
-  const c = document.getElementById('quizOps');
-  let respondido = false;
-  ops.forEach(o=>{
-    const b = document.createElement('button'); b.className='pal'; b.textContent=o;
+
+function quizUI({pregunta, opciones, correcta, alAcertar, esIngles}){
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center mb-5">${pregunta}</div><div id="quizOps" class="grid grid-cols-2 gap-3 max-w-xl mx-auto"></div>`;
+  const c=document.getElementById('quizOps'); let respondido=false;
+  mezclar(opciones).forEach(o=>{
+    const b=document.createElement('button'); b.className='opcion'; b.textContent=o;
     b.onclick=()=>{
       if(respondido) return;
-      if(o===correcta){
-        respondido=true; b.classList.add('ok'); sonido.ok(); conf(20); ganarMonedas(3);
-        if(audioEN) setTimeout(()=>hablarIngles(audioEN),400);
-        if(alAcertar) alAcertar();
-      } else {
-        b.classList.add('no'); sonido.no(); fallo();
-        if(audioEN) setTimeout(()=>hablarIngles(audioEN),500);
-      }
-    };
-    c.appendChild(b);
-  });
-}
-
-const CATS = ["🧩 Lógica","📚 Palabras","🔢 Números","🎨 Arte y Música","🇬🇧 Inglés"];
-const CATS_EN = ["🧩 Logic","📚 Words","🔢 Numbers","🎨 Art & Music","🇬🇧 English"];
-
-const JUEGOS = [
-  {c:0,n:"Memoria",f:jMemoria},{c:0,n:"Rompecabezas",f:jRompe},{c:0,n:"Atrapa Estrellas",f:jArcade},
-  {c:1,n:"Ahorcado",f:jAhorcado},{c:1,n:"Inglés Mágico",f:jIngles},{c:1,n:"Trivia Escolar",f:jTrivia},
-  {c:2,n:"Sumas Rápidas",f:jSumas},{c:2,n:"Restas",f:jRestas},{c:2,n:"Mayor o Menor",f:jMayor},
-  {c:3,n:"Pizarra Mágica",f:jPizarra},{c:3,n:"Piano Espacial",f:jPiano},{c:3,n:"Colores",f:jColores},
-  {c:4,n:"🔊 Escucha y elegí",f:jInglesEscucha},{c:4,n:"🎨 Colores en inglés",f:jInglesColores},
-  {c:4,n:"🔢 Números en inglés",f:jInglesNumeros},{c:4,n:"🐶 Animales en inglés",f:jInglesAnimales},
-  {c:4,n:"🍎 Comida en inglés",f:jInglesComida},{c:4,n:"🫀 Cuerpo en inglés",f:jInglesCuerpo},
-  {c:4,n:"👨‍👩‍👧 Familia en inglés",f:jInglesFamilia},{c:4,n:"👕 Ropa en inglés",f:jInglesRopa},
-  {c:4,n:"📅 Días en inglés",f:jInglesDias},{c:4,n:"📆 Meses en inglés",f:jInglesMeses},
-  {c:4,n:"🔷 Formas en inglés",f:jInglesFormas},{c:4,n:"🐝 Spelling Bee",f:jSpellingBee},
-  {c:4,n:"❓ Letra faltante",f:jLetraFaltante},{c:4,n:"💬 Frases básicas",f:jFrasesBasicas},
-  {c:4,n:"🃏 Emparejar ES↔EN",f:jEmparejar}
-];
-
-// timers globales para limpiar al cambiar de juego (evita fantasmas)
-let _timers = [];
-function _setT(fn,ms){ const id=setTimeout(fn,ms); _timers.push(id); return id; }
-function limpiarTimers(){ _timers.forEach(id=>clearTimeout(id)); _timers=[]; if(window._arcActivo!==undefined) window._arcActivo=false; }
-
-function dibCats(){
-  const lista = UI==='es' ? CATS : CATS_EN;
-  document.getElementById('cats').innerHTML = lista.map((n,i)=>
-    `<button class="cat-btn ${i===CA?'on':''}" data-c="${i}">${n}</button>`
-  ).join('');
-  document.querySelectorAll('#cats .cat-btn').forEach(b=>b.onclick=()=>{ CA=+b.dataset.c; sonido.click(); dibTabs(); });
-}
-function dibTabs(){
-  const js = JUEGOS.filter(j=>j.c===CA);
-  // Si el juego actual NO pertenece a esta categoría, ir al primero
-  if(!js.some(x=>JUEGOS.indexOf(x)===J)) J = JUEGOS.indexOf(js[0]);
-  document.getElementById('tabs').innerHTML = js.map(x=>{
-    const idx = JUEGOS.indexOf(x);
-    return `<button class="game-tab ${idx===J?'on':''}" data-j="${idx}">${x.n}</button>`;
-  }).join('');
-  document.querySelectorAll('#tabs .game-tab').forEach(b=>b.onclick=()=>{ J=+b.dataset.j; sonido.click(); dibTabs(); }); // ← dibTabs ya llama cargarJ (una sola vez)
-  cargarJ();
-}
-function cargarJ(){
-  limpiarTimers();
-  const j = JUEGOS[J];
-  document.getElementById('juegos').innerHTML = `<h2 class="text-2xl md:text-3xl font-black text-cyan-300 mb-5 text-center">${j.n}</h2><div id="gameContainer"></div>`;
-  j.f();
-  if(Math.random()<0.3) _setT(()=>hablar(), 900);
-}
-
-/* ============================================================
-   12 JUEGOS ORIGINALES
-   ============================================================ */
-function jMemoria(){
-  const gc=document.getElementById('gameContainer');
-  gc.innerHTML=`<div class="flex justify-center gap-4 mb-4 font-bold text-lg"><span>${t('aciertos')}: <span id="memPts">0</span></span></div><div id="mGrilla" class="grid grid-cols-4 gap-2 max-w-md mx-auto"></div><div class="text-center mt-5"><button class="btn" onclick="jMemoria()">🔄 ${t('reiniciar')}</button></div>`;
-  const arr=mezclar([...VOCAB.slice(0,8).map(v=>v.ico),...VOCAB.slice(0,8).map(v=>v.ico)]);
-  const gr=document.getElementById('mGrilla'); let sel=[], aciertos=0;
-  arr.forEach((ico,i)=>{
-    const c=document.createElement('div'); c.className='carta';
-    c.innerHTML=`<div class="carta-inner"><div class="cara cf">?</div><div class="cara ca">${ico}</div></div>`;
-    c.onclick=()=>{
-      if(sel.length>=2 || c.classList.contains('girada')) return;
-      sonido.click(); c.classList.add('girada'); sel.push({c,ico});
-      if(sel.length===2){
-        if(sel[0].ico===sel[1].ico){
-          sonido.ok(); aciertos++; document.getElementById('memPts').textContent=aciertos;
-          sel=[]; ganarMonedas(2);
-          if(aciertos===8){ sonido.ganar(); conf(); hablar(); ganarMonedas(10); }
-        } else {
-          sonido.no(); fallo();
-          _setT(()=>{ sel[0].c.classList.remove('girada'); sel[1].c.classList.remove('girada'); sel=[]; }, 800);
-        }
-      }
-    };
-    gr.appendChild(c);
-  });
-}
-function jRompe(){
-  const gc=document.getElementById('gameContainer');
-  gc.innerHTML=`<div id="rGrilla" class="grid grid-cols-3 gap-2 max-w-[260px] mx-auto"></div><div class="text-center mt-5"><button class="btn" onclick="jRompe()">🔄 Mezclar</button></div>`;
-  let r3=[1,2,3,4,5,6,7,8,0];
-  for(let i=0;i<100;i++){
-    let v=r3.indexOf(0), vv=[];
-    if(v%3) vv.push(v-1); if(v%3!==2) vv.push(v+1); if(v>=3) vv.push(v-3); if(v<6) vv.push(v+3);
-    let a=vv[Math.floor(Math.random()*vv.length)]; [r3[v],r3[a]]=[r3[a],r3[v]];
-  }
-  const d3=()=>{
-    const g=document.getElementById('rGrilla'); if(!g) return; g.innerHTML='';
-    r3.forEach((n,i)=>{
-      const c=document.createElement('div');
-      c.className='aspect-square rounded-xl flex items-center justify-center font-black text-3xl cursor-pointer transition-transform duration-200 '+(n?'bg-gradient-to-br from-cyan-400 to-purple-500 border-2 border-white/30 hover:scale-105':'bg-black/20 border-2 border-dashed border-white/20');
-      c.textContent=n||'';
-      if(n) c.onclick=()=>{
-        const v=r3.indexOf(0), f=Math.floor(i/3), cc=i%3, fv=Math.floor(v/3), cv=v%3;
-        if(Math.abs(f-fv)+Math.abs(cc-cv)===1){
-          sonido.click(); [r3[i],r3[v]]=[r3[v],r3[i]]; d3();
-          if(r3.join('')==='123456780'){ sonido.ganar(); conf(); ganarMonedas(15); hablar(); }
-        }
-      };
-      g.appendChild(c);
-    });
-  };
-  d3();
-}
-function jArcade(){
-  const gc=document.getElementById('gameContainer');
-  gc.innerHTML=`<div class="text-center font-bold text-lg mb-2">⭐ <span id="arcPts">0</span></div><div id="arcCanvas" class="relative w-full max-w-lg h-[300px] bg-black/40 border-2 border-cyan-400 rounded-2xl overflow-hidden mx-auto"></div>`;
-  const area=document.getElementById('arcCanvas');
-  let pts=0; window._arcActivo=true;
-  const spawn=()=>{
-    if(!window._arcActivo || !document.getElementById('arcCanvas')) return;
-    const e=document.createElement('div'); e.textContent='⭐';
-    e.className='absolute text-3xl cursor-pointer'; e.style.touchAction='manipulation';
-    e.style.left=(Math.random()*88)+'%'; e.style.top='-40px';
-    area.appendChild(e);
-    let pos=-40, vel=1.5+Math.random()*2;
-    const bajar=()=>{
-      if(!window._arcActivo || !e.parentNode) return;
-      pos+=vel; e.style.top=pos+'px';
-      if(pos>300) e.remove(); else requestAnimationFrame(bajar);
-    };
-    // pointerdown = un solo evento (no doble como mousedown+touchstart)
-    e.addEventListener('pointerdown', ev=>{
-      ev.preventDefault();
-      if(!window._arcActivo) return;
-      sonido.moneda(); e.remove(); pts++;
-      document.getElementById('arcPts').textContent=pts;
-      if(pts%5===0) ganarMonedas(2);
-    }, {passive:false});
-    requestAnimationFrame(bajar);
-    _setT(spawn, 700+Math.random()*700);
-  };
-  spawn();
-}
-function jAhorcado(){
-  const gc=document.getElementById('gameContainer');
-  const word=VOCAB[Math.floor(Math.random()*VOCAB.length)].es;
-  let prog=Array(word.length).fill('_'), err=0, max=6, over=false;
-  gc.innerHTML=`<div class="text-center text-4xl tracking-[0.4em] font-black mb-4" id="ahP">${prog.join('')}</div>
-    <div class="text-center text-3xl mb-4" id="ahV">❤️❤️❤️❤️❤️❤️</div>
-    <div class="teclado-grid" id="ahT"></div>`;
-  const dt=()=>{
-    document.getElementById('ahP').textContent=prog.join('');
-    document.getElementById('ahV').textContent='❤️'.repeat(Math.max(0,max-err))+'🖤'.repeat(err);
-  };
-  const tcl=document.getElementById('ahT');
-  "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split('').forEach(l=>{
-    const b=document.createElement('button'); b.className='tecla-abc'; b.textContent=l;
-    b.onclick=()=>{
-      if(over || b.disabled) return; b.disabled=true;
-      if(word.includes(l)){
-        b.classList.add('ok'); sonido.click();
-        word.split('').forEach((x,i)=>{ if(x===l) prog[i]=l; });
-        if(!prog.includes('_')){ over=true; sonido.ganar(); conf(); ganarMonedas(10); _setT(jAhorcado,2000); }
-      } else {
-        b.classList.add('no'); sonido.no(); fallo(); err++;
-        if(err>=max){ over=true; document.getElementById('ahP').textContent=word; _setT(jAhorcado,2200); }
-      }
-      dt();
-    };
-    tcl.appendChild(b);
-  });
-}
-function jIngles(){
-  const gc=document.getElementById('gameContainer');
-  const v=rp(VOCAB);
-  gc.innerHTML=`<div class="text-center text-5xl font-black text-cyan-300 mb-6 palabra-en-ingles">${v.en}</div><div id="igO" class="grid grid-cols-2 gap-4 max-w-sm mx-auto"></div>`;
-  const ops=mezclar([v,...mezclar(VOCAB.filter(x=>x.en!==v.en)).slice(0,3)]);
-  const c=document.getElementById('igO'); let ok=false;
-  ops.forEach(o=>{
-    const b=document.createElement('button'); b.className='vidrio-fino text-6xl py-6 hover:scale-110 transition cursor-pointer'; b.textContent=o.ico; b.style.touchAction='manipulation';
-    b.onclick=()=>{
-      if(ok) return;
-      if(o.en===v.en){ ok=true; sonido.ok(); ganarMonedas(2); conf(20); hablarIngles(v.en); _setT(jIngles,1000); }
-      else { sonido.no(); fallo(); b.style.opacity=0.3; }
-    };
-    c.appendChild(b);
-  });
-}
-function jTrivia(){
-  const gc=document.getElementById('gameContainer');
-  const q=rp(TRIVIA);
-  gc.innerHTML=`<div class="text-center text-xl md:text-2xl font-bold mb-6 text-yellow-200">${q.p}</div><div id="trO" class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-lg mx-auto"></div>`;
-  const ops=mezclar(q.o); const c=document.getElementById('trO'); let ok=false;
-  ops.forEach(o=>{
-    const b=document.createElement('button'); b.className='pal py-4'; b.textContent=o;
-    b.onclick=()=>{
-      if(ok) return;
-      if(o===q.r){ ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(5); conf(30); _setT(jTrivia,1100); }
+      if(o===correcta){ respondido=true; b.classList.add('ok'); sonido.ok(); confeti(25); ganarMonedas(3, esIngles); if(alAcertar) alAcertar(); }
       else { b.classList.add('no'); sonido.no(); fallo(); }
     };
     c.appendChild(b);
   });
 }
-function jSumas(){
-  const gc=document.getElementById('gameContainer');
-  const a=Math.floor(Math.random()*20)+1, b=Math.floor(Math.random()*20)+1;
-  gc.innerHTML=`<div class="text-center text-5xl font-black mb-6">${a} + ${b} = ?</div><div id="smO" class="grid grid-cols-2 gap-4 max-w-xs mx-auto"></div>`;
-  const ops=mezclar([a+b,a+b+1,a+b-1,a+b+2]); const c=document.getElementById('smO'); let ok=false;
-  ops.forEach(o=>{
-    const bt=document.createElement('button'); bt.className='num h-20 text-3xl'; bt.textContent=o;
-    bt.onclick=()=>{
-      if(ok) return;
-      if(o===a+b){ ok=true; bt.classList.add('ok'); sonido.ok(); ganarMonedas(2); _setT(jSumas,900); }
-      else { bt.classList.add('no'); sonido.no(); fallo(); }
-    };
-    c.appendChild(bt);
-  });
-}
-function jRestas(){
-  const gc=document.getElementById('gameContainer');
-  const a=Math.floor(Math.random()*20)+10, b=Math.floor(Math.random()*10)+1;
-  gc.innerHTML=`<div class="text-center text-5xl font-black mb-6">${a} - ${b} = ?</div><div id="rsO" class="grid grid-cols-2 gap-4 max-w-xs mx-auto"></div>`;
-  const ops=mezclar([a-b,a-b+1,a-b-1,a-b+2]); const c=document.getElementById('rsO'); let ok=false;
-  ops.forEach(o=>{
-    const bt=document.createElement('button'); bt.className='num h-20 text-3xl'; bt.textContent=o;
-    bt.onclick=()=>{
-      if(ok) return;
-      if(o===a-b){ ok=true; bt.classList.add('ok'); sonido.ok(); ganarMonedas(2); _setT(jRestas,900); }
-      else { bt.classList.add('no'); sonido.no(); fallo(); }
-    };
-    c.appendChild(bt);
-  });
-}
-function jMayor(){
-  const gc=document.getElementById('gameContainer');
-  let a=Math.floor(Math.random()*100), b=Math.floor(Math.random()*100); while(a===b) b=Math.floor(Math.random()*100);
-  gc.innerHTML=`<div class="text-center text-lg text-cyan-200 mb-5">${UI==='es'?'Tocá el número MÁS GRANDE':'Tap the BIGGER number'}</div><div id="myO" class="flex justify-center gap-6"></div>`;
-  const c=document.getElementById('myO'); let ok=false;
-  [a,b].forEach(o=>{
-    const bt=document.createElement('button'); bt.className='num w-28 h-28 md:w-32 md:h-32 text-4xl rounded-full'; bt.textContent=o;
-    bt.onclick=()=>{
-      if(ok) return;
-      if(o===Math.max(a,b)){ ok=true; bt.classList.add('ok'); sonido.ok(); ganarMonedas(2); _setT(jMayor,900); }
-      else { bt.classList.add('no'); sonido.no(); fallo(); }
-    };
-    c.appendChild(bt);
-  });
-}
-function jPizarra(){
-  const gc=document.getElementById('gameContainer');
-  gc.innerHTML=`<div class="flex gap-2 justify-center mb-4 flex-wrap items-center">
-    <button class="w-9 h-9 rounded-full border-2 border-white/50" style="background:#ef4444" data-c="#ef4444"></button>
-    <button class="w-9 h-9 rounded-full border-2 border-white/50" style="background:#3b82f6" data-c="#3b82f6"></button>
-    <button class="w-9 h-9 rounded-full border-2 border-white/50" style="background:#22c55e" data-c="#22c55e"></button>
-    <button class="w-9 h-9 rounded-full border-2 border-white/50" style="background:#facc15" data-c="#facc15"></button>
-    <button class="w-9 h-9 rounded-full border-2 border-white/50" style="background:#fff" data-c="#ffffff"></button>
-    <button class="btn ml-2 text-sm" id="borrarPizarra">🧽 Borrar</button></div>
-    <canvas id="pizarraC" width="500" height="400" class="bg-black/40 border-2 border-cyan-400 rounded-xl block mx-auto cursor-crosshair max-w-full touch-none"></canvas>`;
-  const cvs=document.getElementById('pizarraC');
-  const ctxP=cvs.getContext('2d'); ctxP.lineWidth=5; ctxP.lineCap='round'; ctxP.strokeStyle='#fff';
-  document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{ ctxP.strokeStyle=b.dataset.c; sonido.click(); });
-  document.getElementById('borrarPizarra').onclick=()=>{ ctxP.clearRect(0,0,500,400); sonido.click(); };
-  let pintando=false;
-  const getPos=e=>{ const r=cvs.getBoundingClientRect(); return {x:(e.clientX-r.left)*(500/r.width), y:(e.clientY-r.top)*(400/r.height)}; };
-  cvs.addEventListener('pointerdown', e=>{ pintando=true; const p=getPos(e); ctxP.beginPath(); ctxP.moveTo(p.x,p.y); sonido.ini(); });
-  cvs.addEventListener('pointermove', e=>{ if(!pintando) return; e.preventDefault(); const p=getPos(e); ctxP.lineTo(p.x,p.y); ctxP.stroke(); });
-  cvs.addEventListener('pointerup', ()=>pintando=false);
-  cvs.addEventListener('pointerleave', ()=>pintando=false);
-}
-function jPiano(){
-  const gc=document.getElementById('gameContainer');
-  gc.innerHTML=`<div class="text-center mb-4 text-cyan-200 font-bold">${UI==='es'?'Tocá las teclas para crear música':'Tap the keys to make music'}</div><div class="piano-wrap" id="pianoCont"></div>`;
-  const pc=document.getElementById('pianoCont');
-  const notasB=[{n:'C',f:261.6},{n:'D',f:293.6},{n:'E',f:329.6},{n:'F',f:349.2},{n:'G',f:392.0},{n:'A',f:440.0},{n:'B',f:493.8},{n:'C2',f:523.2}];
-  const notasN=[{n:'C#',f:277.1,pos:1},{n:'D#',f:311.1,pos:2},{n:'F#',f:369.9,pos:4},{n:'G#',f:415.3,pos:5},{n:'A#',f:466.1,pos:6}];
-  const tocar=(btn, f, tipo)=>{
-    btn.classList.add('activa');
-    const vol = tipo==='negra' ? .06 : .12;
-    const onda = tipo==='negra' ? 'square' : 'triangle';
-    sonido.tono(f, .5, onda, vol);
-    _setT(()=>btn.classList.remove('activa'), 250);
-  };
-  notasB.forEach(nb=>{
-    const btn=document.createElement('div'); btn.className='tecla tecla-blanca'; btn.textContent=nb.n;
-    btn.addEventListener('pointerdown', e=>{ e.preventDefault(); tocar(btn, nb.f, 'blanca'); }, {passive:false});
-    pc.appendChild(btn);
-  });
-  notasN.forEach(nn=>{
-    const btn=document.createElement('div'); btn.className='tecla tecla-negra'; btn.style.left=`calc(${((nn.pos)/8)*100}% - 4%)`; btn.textContent=nn.n;
-    btn.addEventListener('pointerdown', e=>{ e.preventDefault(); tocar(btn, nn.f, 'negra'); }, {passive:false});
-    pc.appendChild(btn);
-  });
-}
-function jColores(){
-  const gc=document.getElementById('gameContainer');
-  const cols=[{n:"ROJO",c:"#ef4444"},{n:"AZUL",c:"#3b82f6"},{n:"VERDE",c:"#22c55e"},{n:"AMARILLO",c:"#eab308"},{n:"VIOLETA",c:"#a855f7"},{n:"NARANJA",c:"#f97316"}];
-  const target=rp(cols);
-  gc.innerHTML=`<div class="w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto mb-6 border-4 border-white/50 shadow-2xl" style="background-color:${target.c}; box-shadow:0 0 50px ${target.c}"></div><div id="clO" class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-md mx-auto"></div>`;
-  const c=document.getElementById('clO'); let ok=false;
-  mezclar(cols).forEach(o=>{
-    const bt=document.createElement('button'); bt.className='pal font-black text-lg'; bt.textContent=o.n;
-    bt.onclick=()=>{
-      if(ok) return;
-      if(o.n===target.n){ ok=true; bt.classList.add('ok'); sonido.ok(); ganarMonedas(3); _setT(jColores,900); }
-      else { bt.classList.add('no'); sonido.no(); fallo(); }
-    };
-    c.appendChild(bt);
-  });
-}
 
+function dibujarMundos(){
+  document.getElementById('mundos').innerHTML=MUNDOS.map(m=>`<button class="mundo ${m.cls} ${MUNDO===m.id?'on':''}" data-m="${m.id}">${m.ico} ${UI==='es'?m.nomEs:m.nomEn}</button>`).join('');
+  document.querySelectorAll('#mundos .mundo').forEach(b=>b.onclick=()=>{ MUNDO=+b.dataset.m; sonido.click(); dibujarMundos(); });
+  dibujarTabs();
+}
+function dibujarTabs(){
+  const js=JUEGOS.filter(j=>j.c===MUNDO);
+  if(!js.some(x=>JUEGOS.indexOf(x)===JUEGO)) JUEGO=JUEGOS.indexOf(js[0]);
+  document.getElementById('tabsJuegos').innerHTML=js.map(x=>{ const i=JUEGOS.indexOf(x); const est=PERFIL['est_'+i]||0; return `<button class="game-tab ${i===JUEGO?'on':''}" data-j="${i}">${x.nom}<div class="estrellitas">${'★'.repeat(est)}${'☆'.repeat(3-est)}</div></button>`; }).join('');
+  document.querySelectorAll('#tabsJuegos .game-tab').forEach(b=>b.onclick=()=>{ JUEGO=+b.dataset.j; sonido.click(); dibujarTabs(); });
+  cargarJuego();
+}
+function cargarJuego(){
+  limpiarTimers();
+  const j=JUEGOS[JUEGO];
+  document.getElementById('titJuego').textContent=j.ico? (j.n) : j.n;
+  document.getElementById('gameContainer').innerHTML='';
+  try{ j.f(); }catch(e){ console.error(e); document.getElementById('gameContainer').innerHTML='<div class="text-center font-bold text-red-500 p-6">⚠️ Error en este juego. Tocá otro juego.</div>'; }
+  if(Math.random()<0.25) _st(()=>hablarProfesorAleatorio(), 1200);
+}
+</script>
+<script>
 /* ============================================================
-   15 JUEGOS DE INGLÉS con pronunciación 🔊
+   BLOQUE 5 · LOS 36 JUEGOS (todos enseñan inglés con la voz)
    ============================================================ */
+/* Helper: juego de vocabulario genérico (emoji → palabra en inglés) */
+function vocabGame(tema, qEs, qEn){
+  const lista = DICCIONARIO[tema] || VOCAB.map(v=>({es:v.es.toLowerCase(), en:v.en.toLowerCase(), ico:v.ico}));
+  const correcta = rp(lista);
+  const opciones = mezclar([correcta, ...mezclar(lista.filter(x=>x.en!==correcta.en)).slice(0,3)]);
+  quizUI({
+    pregunta: `<div class="text-xl font-black mb-3" style="color:#9b72ff;">${UI==='es'?qEs:qEn}</div>
+      <div class="text-7xl mb-3">${correcta.ico}</div>
+      <button class="bocina" onclick="ensenarCur()">🔊</button>`,
+    opciones: opciones.map(o=>o.en),
+    correcta: correcta.en,
+    esIngles: true,
+    alAcertar: ()=>{ ensenar(correcta.es, correcta.en); _st(vocabGame.bind(null,tema,qEs,qEn), 2600); }
+  });
+  _st(()=>ensenar(correcta.es, correcta.en), 700);
+}
+function jInglesAnimales(){ vocabGame('animales','¿Qué animal es? (en inglés)','What animal is it?'); }
+function jInglesComida(){ vocabGame('comida','¿Qué comida es? (en inglés)','What food is it?'); }
+function jInglesCuerpo(){ vocabGame('cuerpo','¿Qué parte del cuerpo es?','What body part is it?'); }
+function jInglesFamilia(){ vocabGame('familia','¿Quién es? (en inglés)','Who is it?'); }
+function jInglesRopa(){ vocabGame('ropa','¿Qué prenda es? (en inglés)','What clothing is it?'); }
+function jInglesTransporte(){ vocabGame('transporte','¿Qué transporte es?','What transport is it?'); }
+function jInglesEmociones(){ vocabGame('emociones','¿Qué emoción es?','What emotion is it?'); }
+function jInglesEscuela(){ vocabGame('escuela','¿Qué útil escolar es?','What school item is it?'); }
+function jInglesFormas(){ vocabGame('formas','¿Qué forma es? (en inglés)','What shape is it?'); }
+function jInglesNumeros(){ vocabGame('numeros','¿Cómo se dice este número?','How do you say this number?'); }
+function jInglesDias(){ (function(){ const correcta=rp(DICCIONARIO.dias); const ops=mezclar([correcta,...mezclar(DICCIONARIO.dias.filter(x=>x.en!==correcta.en)).slice(0,3)]); quizUI({pregunta:`<div class="text-xl font-black mb-3" style="color:#9b72ff;">${UI==='es'?'¿Qué día es?':'What day is it?'}</div><div class="text-5xl mb-3">📅 ${correcta.es.toUpperCase()}</div><button class="bocina" onclick="ensenarCur()">🔊</button>`, opciones:ops.map(o=>o.en), correcta:correcta.en, esIngles:true, alAcertar:()=>{ensenar(correcta.es,correcta.en); _st(jInglesDias,2600);}}); _st(()=>ensenar(correcta.es,correcta.en),700); })(); }
+function jInglesMeses(){ (function(){ const correcta=rp(DICCIONARIO.meses); const ops=mezclar([correcta,...mezclar(DICCIONARIO.meses.filter(x=>x.en!==correcta.en)).slice(0,3)]); quizUI({pregunta:`<div class="text-xl font-black mb-3" style="color:#9b72ff;">${UI==='es'?'¿Qué mes es?':'What month is it?'}</div><div class="text-5xl mb-3">📆 ${correcta.es.toUpperCase()}</div><button class="bocina" onclick="ensenarCur()">🔊</button>`, opciones:ops.map(o=>o.en), correcta:correcta.en, esIngles:true, alAcertar:()=>{ensenar(correcta.es,correcta.en); _st(jInglesMeses,2600);}}); _st(()=>ensenar(correcta.es,correcta.en),700); })(); }
+function jFrasesBasicas(){ (function(){ const correcta=rp(DICCIONARIO.frases); const ops=mezclar([correcta,...mezclar(DICCIONARIO.frases.filter(x=>x.en!==correcta.en)).slice(0,3)]); quizUI({pregunta:`<div class="text-xl font-black mb-3" style="color:#9b72ff;">${UI==='es'?'¿Cómo se dice en inglés?':'How do you say it?'}</div><div class="text-3xl font-black mb-3" style="color:#ff8c42;">${correcta.ico} "${correcta.es}"</div><button class="bocina" onclick="ensenarCur()">🔊</button>`, opciones:ops.map(o=>o.en), correcta:correcta.en, esIngles:true, alAcertar:()=>{ensenar(correcta.es,correcta.en); _st(jFrasesBasicas,2800);}}); _st(()=>ensenar(correcta.es,correcta.en),700); })(); }
+function jInglesColores(){ (function(){ const correcta=rp(DICCIONARIO.colores); const ops=mezclar([correcta,...mezclar(DICCIONARIO.colores.filter(x=>x.en!==correcta.en)).slice(0,3)]); quizUI({pregunta:`<div class="text-xl font-black mb-3" style="color:#9b72ff;">${UI==='es'?'¿Qué color es en inglés?':'What color is it?'}</div><div class="w-28 h-28 rounded-full mx-auto mb-3 border-4 border-white" style="background:${correcta.hex}; box-shadow:0 0 40px ${correcta.hex};"></div><button class="bocina" onclick="ensenarCur()">🔊</button>`, opciones:ops.map(o=>o.en.toUpperCase()), correcta:correcta.en.toUpperCase(), esIngles:true, alAcertar:()=>{ensenar(correcta.es,correcta.en); _st(jInglesColores,2600);}}); _st(()=>ensenar(correcta.es,correcta.en),700); })(); }
+
+/* Escucha y elegí (audio → imagen) */
 function jInglesEscucha(){
-  const tema=rp(['animales','comida','colores','cuerpo','familia','ropa','formas','escuela']);
-  const correcta=rp(DICCIONARIO[tema]);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO[tema].filter(x=>x.en!==correcta.en)).slice(0,3)]);
+  const temas=['animales','comida','colores','cuerpo','familia','ropa','formas','escuela','transporte','emociones'];
+  const tema=rp(temas); const lista=DICCIONARIO[tema];
+  const correcta=rp(lista); const opciones=mezclar([correcta,...mezclar(lista.filter(x=>x.en!==correcta.en)).slice(0,3)]);
   quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">🔊 ${UI==='es'?'Tocá el altavoz y elegí la imagen':'Tap the speaker and pick the image'}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en.replace(/'/g,"\\'")}')">🔊</button>
-      <div class="text-base text-yellow-300 mt-3 font-bold">(${UI==='es'?'escuchá la palabra en inglés':'listen to the word'})</div>`,
-    opciones: opciones.map(o=>o.ico), correcta: correcta.ico, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesEscucha,1300)
+    pregunta: `<div class="text-xl font-black mb-3" style="color:#9b72ff;">👂 ${UI==='es'?'Escuchá y elegí la imagen':'Listen and pick the image'}</div><button class="bocina" onclick="ensenarCur()">🔊</button>`,
+    opciones: opciones.map(o=>o.ico), correcta: correcta.ico, esIngles:true,
+    alAcertar: ()=>{ ensenar(correcta.es, correcta.en); _st(jInglesEscucha, 2600); }
   });
-  _setT(()=>hablarIngles(correcta.en), 600);
+  _st(()=>ensenar(correcta.es, correcta.en), 600);
 }
-function jInglesColores(){
-  const correcta=rp(DICCIONARIO.colores);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.colores.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Qué color es en inglés?':'What color is it?'}</div>
-      <div class="w-28 h-28 rounded-full mx-auto mb-3 border-4 border-white/50" style="background-color:${correcta.hex}; box-shadow:0 0 40px ${correcta.hex}"></div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en.toUpperCase()), correcta: correcta.en.toUpperCase(), audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesColores,1300)
-  });
-}
-function jInglesNumeros(){
-  const correcta=rp(DICCIONARIO.numeros);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.numeros.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Cómo se dice este número en inglés?':'How do you say this number?'}</div>
-      <div class="text-7xl font-black text-yellow-300 mb-3">${correcta.ico}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesNumeros,1300)
-  });
-}
-function jInglesAnimales(){
-  const correcta=rp(DICCIONARIO.animales);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.animales.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Qué animal es? (en inglés)':'What animal is it? (in English)'}</div>
-      <div class="text-7xl mb-3">${correcta.ico}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesAnimales,1300)
-  });
-}
-function jInglesComida(){
-  const correcta=rp(DICCIONARIO.comida);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.comida.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Qué comida es? (en inglés)':'What food is it? (in English)'}</div>
-      <div class="text-7xl mb-3">${correcta.ico}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesComida,1300)
-  });
-}
-function jInglesCuerpo(){
-  const correcta=rp(DICCIONARIO.cuerpo);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.cuerpo.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Qué parte del cuerpo es?':'What body part is it?'}</div>
-      <div class="text-7xl mb-3">${correcta.ico}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesCuerpo,1300)
-  });
-}
-function jInglesFamilia(){
-  const correcta=rp(DICCIONARIO.familia);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.familia.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Quién es? (en inglés)':'Who is it? (in English)'}</div>
-      <div class="text-7xl mb-3">${correcta.ico}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesFamilia,1300)
-  });
-}
-function jInglesRopa(){
-  const correcta=rp(DICCIONARIO.ropa);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.ropa.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Qué prenda es? (en inglés)':'What clothing is it?'}</div>
-      <div class="text-7xl mb-3">${correcta.ico}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesRopa,1300)
-  });
-}
-function jInglesDias(){
-  const correcta=rp(DICCIONARIO.dias);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.dias.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Qué día es? (en inglés)':'What day is it?'}</div>
-      <div class="text-5xl mb-3">📅 ${correcta.es.toUpperCase()}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesDias,1300)
-  });
-}
-function jInglesMeses(){
-  const correcta=rp(DICCIONARIO.meses);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.meses.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Qué mes es? (en inglés)':'What month is it?'}</div>
-      <div class="text-5xl mb-3">📆 ${correcta.es.toUpperCase()}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesMeses,1300)
-  });
-}
-function jInglesFormas(){
-  const correcta=rp(DICCIONARIO.formas);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.formas.filter(x=>x.en!==correcta.en)).slice(0,3)]);
-  quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Qué forma es? (en inglés)':'What shape is it?'}</div>
-      <div class="text-7xl mb-3">${correcta.ico}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jInglesFormas,1300)
-  });
-}
-function jSpellingBee(){
+/* Inglés Mágico (palabra inglesa → imagen) */
+function jIngles(){
+  const v=rp(VOCAB); const ops=mezclar([v,...mezclar(VOCAB.filter(x=>x.en!==v.en)).slice(0,3)]);
   const gc=document.getElementById('gameContainer');
-  const tema=rp(['animales','comida','colores','cuerpo','familia','ropa','formas','escuela']);
-  const correcta=rp(DICCIONARIO[tema]);
-  const letras=mezclar(correcta.en.toUpperCase().replace(/ /g,'').split(''));
-  let elegidas=[];
-  const dibujar=()=>{
-    gc.innerHTML=`
-      <div class="text-center mb-4">
-        <div class="text-6xl mb-2">${correcta.ico}</div>
-        <div class="text-lg text-cyan-200 font-bold">${correcta.es.toUpperCase()} = ${UI==='es'?'deletreá en inglés':'spell it'}</div>
-        <button class="bocina mt-2" onclick="hablarIngles('${correcta.en.replace(/'/g,"\\'")}')">🔊 ${t('escuchar')}</button>
-      </div>
-      <div class="text-center text-3xl md:text-4xl font-black tracking-widest mb-5 min-h-[50px] text-yellow-300" id="spProgreso">${elegidas.map(i=>letras[i]).join(' ')}</div>
-      <div id="spLetras" class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-4"></div>
-      <div class="text-center">
-        <button class="btn mr-2" onclick="jSpellingBee()">🔄 ${t('nuevaPalabra')}</button>
-        <button class="btn" onclick="window._spReset && window._spReset()">↩️ ${t('borrar')}</button>
-      </div>`;
-    const c=document.getElementById('spLetras');
-    letras.forEach((l,i)=>{
-      if(elegidas.includes(i)) return;
-      const b=document.createElement('button'); b.className='letra-spelling'; b.textContent=l;
-      b.onclick=()=>{
-        sonido.click(); elegidas.push(i);
-        const armada=elegidas.map(idx=>letras[idx]).join('');
-        const objetivo=correcta.en.toUpperCase().replace(/ /g,'');
-        if(armada.length===objetivo.length){
-          if(armada===objetivo){
-            sonido.ganar(); conf(40); ganarMonedas(8); hablarIngles(correcta.en);
-            _setT(jSpellingBee,1800);
-          } else {
-            sonido.no(); fallo(); hablar(UI==='es'?'¡Casi! Intentá de nuevo':'Almost! Try again');
-            _setT(()=>{ elegidas=[]; dibujar(); }, 900);
-          }
-          return;
-        }
-        dibujar();
-      };
-      c.appendChild(b);
-    });
-  };
-  window._spReset = ()=>{ elegidas=[]; dibujar(); };
-  dibujar();
-}
-function jLetraFaltante(){
-  const gc=document.getElementById('gameContainer');
-  const tema=rp(['animales','comida','colores','cuerpo','familia','ropa','formas','escuela']);
-  const correcta=rp(DICCIONARIO[tema]);
-  const palabra=correcta.en.toUpperCase().replace(/ /g,'');
-  const posFalta=Math.floor(Math.random()*palabra.length);
-  const letraCorrecta=palabra[posFalta];
-  const otras=mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(l=>l!==letraCorrecta)).slice(0,3);
-  const opciones=mezclar([letraCorrecta,...otras]);
-  let mostrar='';
-  for(let i=0;i<palabra.length;i++){
-    mostrar += (i===posFalta) ? '<span class="hueco-falta" id="huecoF">_</span>' : `<span style="font-size:2.2rem;font-weight:800;margin:0 2px;">${palabra[i]}</span>`;
-  }
-  gc.innerHTML=`
-    <div class="text-center mb-5">
-      <div class="text-6xl mb-3">${correcta.ico}</div>
-      <div class="text-base text-cyan-200 font-bold mb-3">${correcta.es.toUpperCase()} = ${UI==='es'?'completá la letra':'complete the letter'}</div>
-      <div class="mb-4">${mostrar}</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en.replace(/'/g,"\\'")}')">🔊 ${t('escuchar')}</button>
-    </div>
-    <div id="lfOps" class="grid grid-cols-4 gap-3 max-w-md mx-auto"></div>`;
-  const c=document.getElementById('lfOps'); let ok=false;
-  opciones.forEach(l=>{
-    const b=document.createElement('button'); b.className='letra-spelling'; b.textContent=l;
-    b.onclick=()=>{
-      if(ok) return;
-      if(l===letraCorrecta){
-        ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(4); conf(20);
-        document.getElementById('huecoF').textContent=l;
-        hablarIngles(correcta.en); _setT(jLetraFaltante,1400);
-      } else { b.classList.add('no'); sonido.no(); fallo(); }
-    };
+  gc.innerHTML=`<div class="text-center mb-5"><div class="palabra-grande mb-3">${v.en}</div><button class="bocina" onclick="ensenarCur()">🔊</button></div><div id="igO" class="grid grid-cols-2 gap-3 max-w-sm mx-auto"></div>`;
+  const c=document.getElementById('igO'); let ok=false;
+  ops.forEach(o=>{
+    const b=document.createElement('button'); b.className='opcion text-5xl py-6'; b.textContent=o.ico;
+    b.onclick=()=>{ if(ok) return; if(o.en===v.en){ ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(2,true); confeti(20); ensenar(v.es.toLowerCase(), v.en); _st(jIngles,2600); } else { b.classList.add('no'); sonido.no(); fallo(); } };
     c.appendChild(b);
   });
+  _st(()=>ensenar(v.es.toLowerCase(), v.en), 700);
 }
-function jFrasesBasicas(){
-  const correcta=rp(DICCIONARIO.frases);
-  const opciones=mezclar([correcta,...mezclar(DICCIONARIO.frases.filter(x=>x.en!==correcta.en)).slice(0,3)]);
+
+/* Letra inicial (¿con qué letra empieza en inglés?) */
+function jLetraInicial(){
+  const temas=['animales','comida','cuerpo','familia','ropa','escuela'];
+  const correcta=rp(DICCIONARIO[rp(temas)]);
+  const primera=correcta.en[0].toUpperCase();
+  const otras=mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(l=>l!==primera)).slice(0,3);
   quizUI({
-    pregunta:`<div class="text-xl font-bold text-cyan-200 mb-3">${UI==='es'?'¿Cómo se dice en inglés?':'How do you say it?'}</div>
-      <div class="text-3xl font-black text-yellow-300 mb-3">${correcta.ico} "${correcta.es}"</div>
-      <button class="bocina" onclick="hablarIngles('${correcta.en.replace(/'/g,"\\'")}')">🔊</button>`,
-    opciones: opciones.map(o=>o.en), correcta: correcta.en, audioEN: correcta.en,
-    alAcertar:()=>_setT(jFrasesBasicas,1400)
+    pregunta: `<div class="text-xl font-black mb-3" style="color:#9b72ff;">${UI==='es'?'¿Con qué letra empieza en inglés?':'What letter does it start with?'}</div><div class="text-7xl mb-3">${correcta.ico}</div><div class="text-2xl font-black mb-2" style="color:#ff6b9d;">${correcta.es.toUpperCase()}</div><button class="bocina" onclick="ensenarCur()">🔊</button>`,
+    opciones: mezclar([primera,...otras]), correcta: primera, esIngles:true,
+    alAcertar: ()=>{ ensenar(correcta.es, correcta.en); _st(jLetraInicial, 2600); }
   });
+  _st(()=>ensenar(correcta.es, correcta.en), 700);
 }
-function jEmparejar(){
+/* Spelling Bee */
+function jSpellingBee(){
+  const temas=['animales','comida','colores','cuerpo','familia','ropa','formas','escuela'];
+  const correcta=rp(DICCIONARIO[rp(temas)]);
+  const objetivo=correcta.en.toUpperCase().replace(/ /g,'');
+  const letras=mezclar(objetivo.split(''));
+  let elegidas=[];
   const gc=document.getElementById('gameContainer');
-  const tema=rp(['animales','comida','colores','cuerpo','familia','ropa','formas','escuela']);
-  const elegidas=mezclar(DICCIONARIO[tema]).slice(0,4);
-  const colES=mezclar(elegidas.map(e=>({t:e.es, k:e.es, tipo:'es', hecho:false})));
+  const dibujar=()=>{
+    gc.innerHTML=`<div class="text-center mb-4"><div class="text-6xl mb-2">${correcta.ico}</div><div class="text-lg font-black" style="color:#9b72ff;">${correcta.es.toUpperCase()} = ${UI==='es'?'deletreá en inglés':'spell it'}</div><button class="bocina mt-2" onclick="ensenarCur()">🔊</button></div>
+      <div class="text-center text-3xl font-black tracking-widest mb-4 min-h-[46px]" style="color:#9b72ff;" id="spProg">${elegidas.map(i=>letras[i]).join(' ')}</div>
+      <div id="spLetras" class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-4"></div>
+      <div class="text-center"><button class="boton b-azul mr-2" onclick="jSpellingBee()">🔄 ${UI==='es'?'Nueva palabra':'New word'}</button><button class="boton b-naranja" onclick="window._spReset&&window._spReset()">↩️ ${UI==='es'?'Borrar':'Clear'}</button></div>`;
+    const c=document.getElementById('spLetras');
+    letras.forEach((l,i)=>{ if(elegidas.includes(i)) return; const b=document.createElement('button'); b.className='letra-sp'; b.textContent=l; b.onclick=()=>{ sonido.click(); hablarIngles(l); elegidas.push(i); const armada=elegidas.map(idx=>letras[idx]).join(''); if(armada.length===objetivo.length){ if(armada===objetivo){ sonido.ganar(); confeti(40); ganarMonedas(6,true); ensenar(correcta.es,correcta.en); _st(jSpellingBee,3000); } else { sonido.no(); fallo(); _st(()=>{ elegidas=[]; dibujar(); },900); } return; } dibujar(); }; c.appendChild(b); });
+  };
+  window._spReset=()=>{ elegidas=[]; dibujar(); };
+  dibujar(); _st(()=>ensenar(correcta.es,correcta.en),700);
+}
+/* Ordenar letras (mismo que spelling pero con letras desordenadas visibles) */
+function jOrdenarLetras(){ jSpellingBee(); }
+/* Letra faltante */
+function jLetraFaltante(){
+  const temas=['animales','comida','colores','cuerpo','familia','ropa','formas','escuela'];
+  const correcta=rp(DICCIONARIO[rp(temas)]);
+  const palabra=correcta.en.toUpperCase().replace(/ /g,'');
+  const pos=Math.floor(Math.random()*palabra.length);
+  const lc=palabra[pos];
+  const otras=mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(l=>l!==lc)).slice(0,3);
+  let mostrar='';
+  for(let i=0;i<palabra.length;i++) mostrar += (i===pos)?'<span class="hueco" id="huecoF">_</span>':`<span style="font-size:2.2rem;font-weight:900;margin:0 2px;color:#3d2c5e;">${palabra[i]}</span>`;
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center mb-5"><div class="text-6xl mb-3">${correcta.ico}</div><div class="text-base font-black mb-3" style="color:#9b72ff;">${correcta.es.toUpperCase()} = ${UI==='es'?'completá la letra':'complete the letter'}</div><div class="mb-4">${mostrar}</div><button class="bocina" onclick="ensenarCur()">🔊</button></div><div id="lfOps" class="grid grid-cols-4 gap-3 max-w-md mx-auto"></div>`;
+  const c=document.getElementById('lfOps'); let ok=false;
+  mezclar([lc,...otras]).forEach(l=>{ const b=document.createElement('button'); b.className='letra-sp'; b.textContent=l; b.onclick=()=>{ if(ok) return; if(l===lc){ ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(4,true); confeti(20); document.getElementById('huecoF').textContent=l; ensenar(correcta.es,correcta.en); _st(jLetraFaltante,2600); } else { b.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(b); });
+  _st(()=>ensenar(correcta.es,correcta.en),700);
+}
+/* Emparejar ES↔EN */
+function jEmparejar(){
+  const temas=['animales','comida','colores','cuerpo','familia','ropa','formas','escuela'];
+  const elegidas=mezclar(DICCIONARIO[rp(temas)]).slice(0,4);
+  const colES=mezclar(elegidas.map(e=>({t:e.es, k:e.es, tipo:'es', hecho:false, en:e.en})));
   const colEN=mezclar(elegidas.map(e=>({t:e.en, k:e.es, tipo:'en', hecho:false})));
   let sel=null, aciertos=0;
+  const gc=document.getElementById('gameContainer');
   const dibujar=()=>{
-    gc.innerHTML=`
-      <div class="text-center mb-4 text-base md:text-lg font-bold text-cyan-200">${UI==='es'?'Toca una palabra en español y su par en inglés':'Tap a Spanish word and its English match'} · ${t('aciertos')}: <span id="empPts">${aciertos}</span>/4</div>
-      <div class="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
-        <div id="colES" class="space-y-2"></div><div id="colEN" class="space-y-2"></div>
-      </div>
-      <div class="text-center mt-5"><button class="btn" onclick="jEmparejar()">🔄 ${t('reiniciar')}</button></div>`;
-    const renderCol=(lista, id)=>{
-      const cont=document.getElementById(id);
-      lista.forEach(item=>{
-        const b=document.createElement('button'); b.className='tarjeta-emparejar'; b.textContent=item.t;
-        if(item.hecho) b.classList.add('acertada');
-        b.onclick=()=>{ if(item.hecho) return; sonido.click(); manejar(item, b); };
-        cont.appendChild(b);
-      });
-    };
-    renderCol(colES,'colES'); renderCol(colEN,'colEN');
+    gc.innerHTML=`<div class="text-center mb-4 text-base md:text-lg font-black" style="color:#9b72ff;">${UI==='es'?'Toca una palabra en español y su par en inglés':'Tap a Spanish word and its English match'} · ${UI==='es'?'Aciertos':'Hits'}: <span id="empPts">${aciertos}</span>/4</div><div class="grid grid-cols-2 gap-3 max-w-2xl mx-auto"><div id="colES" class="space-y-2"></div><div id="colEN" class="space-y-2"></div></div><div class="text-center mt-5"><button class="boton b-azul" onclick="jEmparejar()">🔄 ${UI==='es'?'Reiniciar':'Restart'}</button></div>`;
+    const ren=(lista,id)=>{ const cont=document.getElementById(id); lista.forEach(item=>{ const b=document.createElement('button'); b.className='opcion text-base'; b.textContent=item.t; if(item.hecho) b.classList.add('ok'); b.onclick=()=>{ if(item.hecho) return; sonido.click(); if(item.tipo==='en') hablarIngles(item.t); manejar(item,b); }; cont.appendChild(b); }); };
+    ren(colES,'colES'); ren(colEN,'colEN');
   };
-  function manejar(item, boton){
-    if(!sel){ sel={item,boton}; boton.classList.add('seleccionada'); return; }
-    if(sel.item===item){ sel.boton.classList.remove('seleccionada'); sel=null; return; }
+  function manejar(item,boton){
+    if(!sel){ sel={item,boton}; boton.style.borderColor='#ffc93c'; boton.style.boxShadow='0 0 20px #ffc93c'; return; }
+    if(sel.item===item){ sel.boton.style.borderColor=''; sel.boton.style.boxShadow=''; sel=null; return; }
     if(sel.item.tipo!==item.tipo && sel.item.k===item.k){
-      sonido.ok(); sel.item.hecho=true; item.hecho=true;
-      sel.boton.classList.remove('seleccionada');
-      aciertos++; ganarMonedas(2);
-      if(aciertos===4){ sonido.ganar(); conf(60); ganarMonedas(10); hablar(); }
+      sonido.ok(); sel.item.hecho=true; item.hecho=true; aciertos++; ganarMonedas(2,true);
+      if(aciertos===4){ sonido.ganar(); confeti(60); ganarMonedas(8,true); hablarProfesorAleatorio(); }
       sel=null; dibujar();
     } else {
       sonido.no(); fallo(); sel.boton.classList.add('no'); boton.classList.add('no');
-      const s=sel, b=boton;
-      _setT(()=>{ s.boton.classList.remove('no','seleccionada'); b.classList.remove('no'); }, 600);
-      sel=null;
+      const s=sel, b=boton; _st(()=>{ s.boton.classList.remove('no'); b.classList.remove('no'); s.boton.style.borderColor=''; s.boton.style.boxShadow=''; },600); sel=null;
     }
   }
   dibujar();
 }
 
-/* ============================================================
-   ARRANQUE
-   ============================================================ */
-function iniciarApp(){
-  cargarPerfil();
-  aplicarIdioma();
-  dibCats();
-  dibTabs();
-  // Estrellas de fondo
-  const e=document.getElementById('estrellas');
-  for(let i=0;i<120;i++){
-    const s=document.createElement('div'); s.className='est';
-    const tam=1+Math.random()*3; s.style.width=tam+'px'; s.style.height=tam+'px';
-    s.style.left=Math.random()*100+'vw';
-    s.style.animationDuration=(5+Math.random()*10)+'s';
-    s.style.animationDelay=-Math.random()*12+'s';
-    e.appendChild(s);
-  }
-  // Astronauta SVG
-  document.getElementById('prof').innerHTML = `
-  <svg id="astroSVG" viewBox="0 0 140 190" xmlns="http://www.w3.org/2000/svg">
-    <line x1="70" y1="14" x2="70" y2="26" stroke="#94a3b8" stroke-width="3"/>
-    <circle class="luz-antenna" cx="70" cy="11" r="5"/>
-    <circle cx="70" cy="58" r="42" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
-    <circle cx="70" cy="58" r="30" fill="#fcd9b6"/>
-    <circle cx="52" cy="68" r="5" fill="#fda4af" opacity=".7"/>
-    <circle cx="88" cy="68" r="5" fill="#fda4af" opacity=".7"/>
-    <g class="ojo-grupo">
-      <ellipse cx="59" cy="54" rx="6.5" ry="8" fill="#fff"/>
-      <circle cx="60" cy="55" r="3.5" fill="#1e293b"/>
-      <circle cx="61.5" cy="53" r="1.2" fill="#fff"/>
-    </g>
-    <g class="ojo-grupo">
-      <ellipse cx="81" cy="54" rx="6.5" ry="8" fill="#fff"/>
-      <circle cx="82" cy="55" r="3.5" fill="#1e293b"/>
-      <circle cx="83.5" cy="53" r="1.2" fill="#fff"/>
-    </g>
-    <ellipse cx="70" cy="64" rx="2.5" ry="3.5" fill="#f5b98a"/>
-    <path id="bocaCerrada" d="M60 74 Q70 82 80 74" stroke="#9f1239" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <ellipse id="bocaAbierta" cx="70" cy="76" rx="7" ry="6" fill="#9f1239"/>
-    <ellipse cx="70" cy="79" rx="3.5" ry="2.5" fill="#fb7185"/>
-    <ellipse cx="70" cy="135" rx="33" ry="40" fill="#f8fafc" stroke="#94a3b8" stroke-width="3"/>
-    <rect x="42" y="138" width="56" height="8" rx="4" fill="#3b82f6"/>
-    <rect x="65" y="137" width="10" height="10" rx="2" fill="#facc15"/>
-    <rect x="58" y="118" width="24" height="16" rx="4" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
-    <circle cx="64" cy="126" r="2.5" fill="#22c55e"/>
-    <circle cx="72" cy="126" r="2.5" fill="#ef4444"/>
-    <circle cx="80" cy="126" r="2.5" fill="#facc15"/>
-    <ellipse cx="38" cy="128" rx="9" ry="22" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5" transform="rotate(20 38 128)"/>
-    <circle cx="30" cy="148" r="8" fill="#3b82f6"/>
-    <ellipse class="brazo-der" cx="102" cy="122" rx="9" ry="22" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5" transform="rotate(-25 102 122)"/>
-    <circle cx="110" cy="102" r="8" fill="#3b82f6"/>
-    <rect x="46" y="118" width="12" height="42" rx="4" fill="#64748b" stroke="#475569" stroke-width="2"/>
-    <rect x="82" y="118" width="12" height="42" rx="4" fill="#64748b" stroke="#475569" stroke-width="2"/>
-    <g class="llama">
-      <ellipse cx="52" cy="168" rx="5" ry="12" fill="#f97316"/>
-      <ellipse cx="52" cy="170" rx="2.5" ry="7" fill="#fde047"/>
-      <ellipse cx="88" cy="168" rx="5" ry="12" fill="#f97316"/>
-      <ellipse cx="88" cy="170" rx="2.5" ry="7" fill="#fde047"/>
-    </g>
-  </svg>`;
+/* Matemáticas */
+function jSumas(){ const a=Math.floor(Math.random()*20)+1, b=Math.floor(Math.random()*20)+1; const gc=document.getElementById('gameContainer'); gc.innerHTML=`<div class="text-center text-5xl font-black mb-5" style="color:#4d96ff;">${a} + ${b} = ?</div><div id="smO" class="grid grid-cols-2 gap-4 max-w-xs mx-auto"></div>`; const c=document.getElementById('smO'); let ok=false; mezclar([a+b,a+b+1,a+b-1,a+b+2]).forEach(o=>{ const bt=document.createElement('button'); bt.className='opcion h-20 text-3xl'; bt.textContent=o; bt.onclick=()=>{ if(ok) return; if(o===a+b){ ok=true; bt.classList.add('ok'); sonido.ok(); ganarMonedas(2); _st(jSumas,1000); } else { bt.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(bt); }); }
+function jRestas(){ const a=Math.floor(Math.random()*20)+10, b=Math.floor(Math.random()*10)+1; const gc=document.getElementById('gameContainer'); gc.innerHTML=`<div class="text-center text-5xl font-black mb-5" style="color:#4d96ff;">${a} − ${b} = ?</div><div id="rsO" class="grid grid-cols-2 gap-4 max-w-xs mx-auto"></div>`; const c=document.getElementById('rsO'); let ok=false; mezclar([a-b,a-b+1,a-b-1,a-b+2]).forEach(o=>{ const bt=document.createElement('button'); bt.className='opcion h-20 text-3xl'; bt.textContent=o; bt.onclick=()=>{ if(ok) return; if(o===a-b){ ok=true; bt.classList.add('ok'); sonido.ok(); ganarMonedas(2); _st(jRestas,1000); } else { bt.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(bt); }); }
+function jMayor(){ let a=Math.floor(Math.random()*100), b=Math.floor(Math.random()*100); while(a===b) b=Math.floor(Math.random()*100); const gc=document.getElementById('gameContainer'); gc.innerHTML=`<div class="text-center text-lg font-black mb-5" style="color:#4d96ff;">${UI==='es'?'Tocá el número MÁS GRANDE':'Tap the BIGGER number'}</div><div id="myO" class="flex justify-center gap-6"></div>`; const c=document.getElementById('myO'); let ok=false; [a,b].forEach(o=>{ const bt=document.createElement('button'); bt.className='opcion w-28 h-28 md:w-32 md:h-32 text-5xl rounded-full'; bt.textContent=o; bt.onclick=()=>{ if(ok) return; if(o===Math.max(a,b)){ ok=true; bt.classList.add('ok'); sonido.ok(); ganarMonedas(2); _st(jMayor,1000); } else { bt.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(bt); }); }
+function jContar(){ const n=3+Math.floor(Math.random()*7); const emoji=rp(['🍎','⭐','🐶','🌸','⚽','🎈','🍪','🦋']); const gc=document.getElementById('gameContainer'); gc.innerHTML=`<div class="text-center text-xl font-black mb-4" style="color:#4d96ff;">${UI==='es'?'¿Cuántos hay?':'How many are there?'}</div><div class="flex flex-wrap justify-center gap-2 max-w-md mx-auto mb-5 text-4xl">${emoji.repeat(n).split('').join('')}</div><div id="ctO" class="grid grid-cols-2 gap-3 max-w-xs mx-auto"></div>`; const c=document.getElementById('ctO'); let ok=false; mezclar([n,n+1,n-1,n+2].filter(x=>x>0)).slice(0,4).forEach(o=>{ const b=document.createElement('button'); b.className='opcion h-16 text-2xl'; b.textContent=o; b.onclick=()=>{ if(ok) return; if(o===n){ ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(3); _st(jContar,1000); } else { b.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(b); }); }
+function jSecuencia(){ const inicio=1+Math.floor(Math.random()*5), paso=rp([2,3,5]); const a=inicio, b=inicio+paso, c=inicio+2*paso, resp=inicio+3*paso; const gc=document.getElementById('gameContainer'); gc.innerHTML=`<div class="text-center text-xl font-black mb-4" style="color:#4d96ff;">${UI==='es'?'¿Qué número sigue?':'What number comes next?'}</div><div class="text-center text-4xl font-black mb-5" style="color:#ff8c42;">${a} · ${b} · ${c} · ?</div><div id="sqO" class="grid grid-cols-2 gap-3 max-w-xs mx-auto"></div>`; const co=document.getElementById('sqO'); let ok=false; mezclar([resp, resp+paso, resp-paso, resp+1]).forEach(o=>{ const b=document.createElement('button'); b.className='opcion h-16 text-2xl'; b.textContent=o; b.onclick=()=>{ if(ok) return; if(o===resp){ ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(3); _st(jSecuencia,1000); } else { b.classList.add('no'); sonido.no(); fallo(); } }; co.appendChild(b); }); }
+
+/* Colores original */
+function jColores(){ const cols=[{n:"ROJO",c:"#ef4444"},{n:"AZUL",c:"#3b82f6"},{n:"VERDE",c:"#22c55e"},{n:"AMARILLO",c:"#eab308"},{n:"VIOLETA",c:"#a855f7"},{n:"NARANJA",c:"#f97316"}]; const target=rp(cols); const gc=document.getElementById('gameContainer'); gc.innerHTML=`<div class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white" style="background:${target.c}; box-shadow:0 0 50px ${target.c};"></div><div id="clO" class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-md mx-auto"></div>`; const c=document.getElementById('clO'); let ok=false; mezclar(cols).forEach(o=>{ const bt=document.createElement('button'); bt.className='opcion font-black text-lg'; bt.textContent=o.n; bt.onclick=()=>{ if(ok) return; if(o.n===target.n){ ok=true; bt.classList.add('ok'); sonido.ok(); ganarMonedas(3); _st(jColores,1000); } else { bt.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(bt); }); }
+/* Stroop: palabra de color pintada de otro color → elegí el COLOR de las letras */
+function jStroop(){
+  const cols=DICCIONARIO.colores;
+  const palabra=rp(cols), pintura=rp(cols.filter(x=>x.en!==palabra.en));
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center text-xl font-black mb-4" style="color:#9b72ff;">${UI==='es'?'¿De qué color son LAS LETRAS?':'What color are the LETTERS?'}</div><div class="text-center text-6xl font-black mb-6" style="color:${pintura.hex}; text-shadow:2px 2px 0 #fff;">${palabra.en.toUpperCase()}</div><div id="stO" class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-lg mx-auto"></div>`;
+  const c=document.getElementById('stO'); let ok=false;
+  mezclar(cols).slice(0,4).forEach(o=>{ const b=document.createElement('button'); b.className='opcion h-16'; b.style.background=o.hex; b.style.color='#fff'; b.textContent=o.en.toUpperCase(); b.onclick=()=>{ if(ok) return; if(o.en===pintura.en){ ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(4,true); ensenar(pintura.es, pintura.en); _st(jStroop,2600); } else { b.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(b); });
+  _st(()=>ensenar(pintura.es, pintura.en), 800);
 }
 
-document.getElementById('btnEmpezar').addEventListener('click', ()=>{
-  sonido.ini(); sonido.ganar(); conf(60);
-  const intro=document.getElementById('intro');
-  intro.style.opacity=0; intro.style.pointerEvents='none';
-  setTimeout(()=>intro.remove(), 800);
-  setTimeout(()=>hablar(), 1000);
-});
+/* Trivia */
+function jTrivia(){ const q=rp(TRIVIA); quizUI({pregunta:`<div class="text-xl md:text-2xl font-black mb-5" style="color:#ff8c42;">${q.p}</div>`, opciones:q.o, correcta:q.r, esIngles:false, alAcertar:()=>_st(jTrivia,1200)}); }
+/* Verdadero o Falso */
+function jVerdaderoFalso(){
+  const temas=['animales','comida','cuerpo','familia','ropa','escuela'];
+  const a=rp(DICCIONARIO[rp(temas)]);
+  const esVerdadero = Math.random()>.5;
+  const b = esVerdadero ? a : rp(DICCIONARIO[rp(temas)].filter(x=>x.en!==a.en));
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center text-xl font-black mb-3" style="color:#9b72ff;">${UI==='es'?'¿Es correcto?':'Is it correct?'}</div><div class="text-center text-4xl font-black mb-2" style="color:#ff6b9d;">"${a.es}"</div><div class="text-center text-2xl font-black mb-2">=</div><div class="text-center text-4xl font-black mb-6" style="color:#4d96ff;">"${b.en}"</div><div class="flex justify-center gap-4"><button class="boton b-verde text-2xl px-10 py-4" id="vfSi">✅ ${UI==='es'?'VERDADERO':'TRUE'}</button><button class="boton b-rosa text-2xl px-10 py-4" id="vfNo">❌ ${UI==='es'?'FALSO':'FALSE'}</button></div>`;
+  let ok=false;
+  const responder=(valor)=>{ if(ok) return; ok=true; const acerto = (valor===esVerdadero); if(acerto){ sonido.ok(); ganarMonedas(4,true); confeti(30); ensenar(a.es, a.en); } else { sonido.no(); fallo(); } _st(jVerdaderoFalso, 2600); };
+  document.getElementById('vfSi').onclick=()=>responder(true);
+  document.getElementById('vfNo').onclick=()=>responder(false);
+  _st(()=>ensenar(a.es, a.en), 800);
+}
+/* Completar frase */
+function jCompletarFrase(){ const f=rp(FRASES_COMPLETAR); const gc=document.getElementById('gameContainer'); gc.innerHTML=`<div class="text-center text-2xl font-black mb-6" style="color:#9b72ff;">${f.frase}</div><button class="bocina mb-4" onclick="ensenarCur()">🔊</button><div id="cfO" class="grid grid-cols-2 gap-3 max-w-sm mx-auto"></div>`; const c=document.getElementById('cfO'); let ok=false; mezclar(f.o).forEach(o=>{ const b=document.createElement('button'); b.className='opcion text-xl'; b.textContent=o; b.onclick=()=>{ if(ok) return; if(o===f.r){ ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(4,true); const completa=f.frase.replace('___', f.r); ensenar(UI==='es'?'la frase':'the phrase', completa); _st(jCompletarFrase,2800); } else { b.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(b); }); CUR={es:UI==='es'?'la frase':'the sentence', en:f.frase.replace('___', f.r)}; }
 
-window.addEventListener('load', ()=>{
-  document.getElementById('barraCarga').style.width='100%';
+/* Ahorcado */
+function jAhorcado(){
+  const word=rp(VOCAB).es; let prog=Array(word.length).fill('_'), err=0, max=6, over=false;
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center text-4xl tracking-[0.35em] font-black mb-3" id="ahP" style="color:#9b72ff;">${prog.join('')}</div><div class="text-center text-3xl mb-4" id="ahV">❤️❤️❤️❤️❤️❤️</div><div class="teclado-grid" id="ahT"></div>`;
+  const dt=()=>{ document.getElementById('ahP').textContent=prog.join(''); document.getElementById('ahV').textContent='❤️'.repeat(Math.max(0,max-err))+'🖤'.repeat(err); };
+  const tcl=document.getElementById('ahT');
+  "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split('').forEach(l=>{
+    const b=document.createElement('button'); b.className='tecla-abc'; b.textContent=l;
+    b.onclick=()=>{ if(over||b.disabled) return; b.disabled=true;
+      if(word.includes(l)){ b.classList.add('ok'); sonido.click(); word.split('').forEach((x,i)=>{ if(x===l) prog[i]=l; }); if(!prog.includes('_')){ over=true; sonido.ganar(); conf(); ganarMonedas(8); _st(jAhorcado,2000); } }
+      else { b.classList.add('no'); sonido.no(); fallo(); err++; if(err>=max){ over=true; document.getElementById('ahP').textContent=word; _st(jAhorcado,2200); } }
+      dt(); };
+    tcl.appendChild(b);
+  });
+}
+/* Memoria */
+function jMemoria(){
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center font-black text-lg mb-4" style="color:#9b72ff;">${UI==='es'?'Aciertos':'Hits'}: <span id="memPts">0</span></div><div id="mGrilla" class="grid grid-cols-4 gap-2 max-w-md mx-auto"></div><div class="text-center mt-5"><button class="boton b-azul" onclick="jMemoria()">🔄 ${UI==='es'?'Reiniciar':'Restart'}</button></div>`;
+  const arr=mezclar([...VOCAB.slice(0,8).map(v=>v.ico),...VOCAB.slice(0,8).map(v=>v.ico)]);
+  const gr=document.getElementById('mGrilla'); let sel=[], aciertos=0;
+  arr.forEach((ico,i)=>{ const c=document.createElement('div'); c.className='carta'; c.innerHTML=`<div class="carta-inner"><div class="cara cf">?</div><div class="cara ca">${ico}</div></div>`; c.onclick=()=>{ if(sel.length>=2||c.classList.contains('girada')) return; sonido.click(); c.classList.add('girada'); sel.push({c,ico}); if(sel.length===2){ if(sel[0].ico===sel[1].ico){ sonido.ok(); aciertos++; document.getElementById('memPts').textContent=aciertos; sel=[]; ganarMonedas(2); if(aciertos===8){ sonido.ganar(); confeti(); ganarMonedas(10); hablarProfesorAleatorio(); } } else { sonido.no(); fallo(); _st(()=>{ sel[0].c.classList.remove('girada'); sel[1].c.classList.remove('girada'); sel=[]; },800); } } }; gr.appendChild(c); });
+}
+/* Rompecabezas */
+function jRompe(){
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div id="rGrilla" class="grid grid-cols-3 gap-2 max-w-[260px] mx-auto"></div><div class="text-center mt-5"><button class="boton b-azul" onclick="jRompe()">🔄 ${UI==='es'?'Mezclar':'Shuffle'}</button></div>`;
+  let r3=[1,2,3,4,5,6,7,8,0];
+  for(let i=0;i<100;i++){ let v=r3.indexOf(0), vv=[]; if(v%3) vv.push(v-1); if(v%3!==2) vv.push(v+1); if(v>=3) vv.push(v-3); if(v<6) vv.push(v+3); let a=vv[Math.floor(Math.random()*vv.length)]; [r3[v],r3[a]]=[r3[a],r3[v]]; }
+  const d3=()=>{ const g=document.getElementById('rGrilla'); if(!g) return; g.innerHTML=''; r3.forEach((n,i)=>{ const c=document.createElement('div'); c.className='aspect-square rounded-2xl flex items-center justify-center font-black text-3xl cursor-pointer transition-transform '+(n?'text-white border-2 border-white shadow-lg':'bg-white/30 border-2 border-dashed border-white'); if(n){ c.style.background='linear-gradient(135deg,#4d96ff,#9b72ff)'; } c.textContent=n||''; if(n) c.onclick=()=>{ const v=r3.indexOf(0), f=Math.floor(i/3), cc=i%3, fv=Math.floor(v/3), cv=v%3; if(Math.abs(f-fv)+Math.abs(cc-cv)===1){ sonido.click(); [r3[i],r3[v]]=[r3[v],r3[i]]; d3(); if(r3.join('')==='123456780'){ sonido.ganar(); confeti(); ganarMonedas(12); hablarProfesorAleatorio(); } } }; g.appendChild(c); }); };
+  d3();
+}
+/* Atrapa estrellas */
+function jArcade(){
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center font-black text-lg mb-2" style="color:#ff8c42;">⭐ <span id="arcPts">0</span></div><div id="arcCanvas" class="relative w-full max-w-lg h-[300px] rounded-3xl overflow-hidden mx-auto" style="background:linear-gradient(180deg,#e0f4ff,#fff3c4); border:4px solid #fff;"></div>`;
+  const area=document.getElementById('arcCanvas'); let pts=0; window._arcActivo=true;
+  const spawn=()=>{ if(!window._arcActivo||!document.getElementById('arcCanvas')) return; const e=document.createElement('div'); e.textContent=rp(['⭐','🌟','💫','🎈']); e.className='absolute text-3xl cursor-pointer'; e.style.touchAction='manipulation'; e.style.left=(Math.random()*88)+'%'; e.style.top='-40px'; area.appendChild(e); let pos=-40, vel=1.5+Math.random()*2.5; const bajar=()=>{ if(!window._arcActivo||!e.parentNode) return; pos+=vel; e.style.top=pos+'px'; if(pos>300) e.remove(); else requestAnimationFrame(bajar); }; e.addEventListener('pointerdown', ev=>{ ev.preventDefault(); if(!window._arcActivo) return; sonido.moneda(); e.remove(); pts++; document.getElementById('arcPts').textContent=pts; if(pts%5===0) ganarMonedas(2); }, {passive:false}); requestAnimationFrame(bajar); _st(spawn, 650+Math.random()*650); };
+  spawn();
+}
+/* Pizarra */
+function jPizarra(){
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="flex gap-2 justify-center mb-4 flex-wrap items-center">
+    ${['#ef4444','#3b82f6','#22c55e','#eab308','#9b72ff','#3d2c5e'].map(c=>`<button class="w-9 h-9 rounded-full border-4 border-white shadow" style="background:${c};" data-c="${c}"></button>`).join('')}
+    <button class="boton b-rosa text-sm ml-2" id="borrarP">🧽 ${UI==='es'?'Borrar':'Erase'}</button></div>
+    <canvas id="pizC" width="500" height="400" class="bg-white rounded-3xl border-4 border-white shadow-xl block mx-auto max-w-full touch-none cursor-crosshair"></canvas>`;
+  const cvs=document.getElementById('pizC'); const ctx=cvs.getContext('2d'); ctx.lineWidth=6; ctx.lineCap='round'; ctx.strokeStyle='#ef4444';
+  document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{ ctx.strokeStyle=b.dataset.c; sonido.click(); });
+  document.getElementById('borrarP').onclick=()=>{ ctx.clearRect(0,0,500,400); sonido.click(); };
+  let pint=false; const gp=e=>{ const r=cvs.getBoundingClientRect(); return {x:(e.clientX-r.left)*(500/r.width), y:(e.clientY-r.top)*(400/r.height)}; };
+  cvs.addEventListener('pointerdown', e=>{ pint=true; const p=gp(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); sonido.ini(); });
+  cvs.addEventListener('pointermove', e=>{ if(!pint) return; e.preventDefault(); const p=gp(e); ctx.lineTo(p.x,p.y); ctx.stroke(); });
+  cvs.addEventListener('pointerup', ()=>pint=false); cvs.addEventListener('pointerleave', ()=>pint=false);
+}
+/* Piano */
+function jPiano(){
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center mb-4 font-black" style="color:#9b72ff;">${UI==='es'?'Tocá las teclas para crear música':'Tap the keys to make music'}</div><div class="piano-wrap" id="pianoCont"></div>`;
+  const pc=document.getElementById('pianoCont');
+  const nb=[{n:'C',f:261.6},{n:'D',f:293.6},{n:'E',f:329.6},{n:'F',f:349.2},{n:'G',f:392.0},{n:'A',f:440.0},{n:'B',f:493.8},{n:'C2',f:523.2}];
+  const nn=[{n:'C#',f:277.1,pos:1},{n:'D#',f:311.1,pos:2},{n:'F#',f:369.9,pos:4},{n:'G#',f:415.3,pos:5},{n:'A#',f:466.1,pos:6}];
+  const tocar=(btn,f,tipo)=>{ btn.classList.add('activa'); sonido.tono(f,.5, tipo==='n'?'square':'triangle', tipo==='n'?.06:.12); _st(()=>btn.classList.remove('activa'),250); };
+  nb.forEach(x=>{ const b=document.createElement('div'); b.className='tc t-blanca'; b.textContent=x.n; b.addEventListener('pointerdown',e=>{e.preventDefault(); tocar(b,x.f,'b');},{passive:false}); pc.appendChild(b); });
+  nn.forEach(x=>{ const b=document.createElement('div'); b.className='tc t-negra'; b.style.left=`calc(${((x.pos)/8)*100}% - 4%)`; b.textContent=x.n; b.addEventListener('pointerdown',e=>{e.preventDefault(); tocar(b,x.f,'n');},{passive:false}); pc.appendChild(b); });
+}
+/* Simón Dice */
+function jSimon(){
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center font-black text-xl mb-4" style="color:#9b72ff;">🎵 ${UI==='es'?'Nivel':'Level'}: <span id="simNivel">1</span> · ${UI==='es'?'Repetí la secuencia':'Repeat the sequence'}</div>
+    <div class="flex flex-wrap justify-center gap-3 max-w-sm mx-auto mb-4">
+      <div class="simon-btn sb-verde" data-s="0"></div><div class="simon-btn sb-rojo" data-s="1"></div>
+      <div class="simon-btn sb-amarillo" data-s="2"></div><div class="simon-btn sb-azul" data-s="3"></div>
+    </div>
+    <div class="text-center"><button class="boton b-verde" id="simStart">▶ ${UI==='es'?'EMPEZAR':'START'}</button></div>`;
+  const notas=[523,659,784,1047]; let seq=[], paso=0, escuchando=false, nivel=1; window._simonActivo=true;
+  const btns=document.querySelectorAll('.simon-btn');
+  const encender=(i)=>{ btns[i].classList.add('activa'); sonido.tono(notas[i],.3,'sine',.15); _st(()=>btns[i].classList.remove('activa'),350); };
+  const mostrarSeq=()=>{ escuchando=false; let i=0; const sig=()=>{ if(i>=seq.length){ escuchando=true; paso=0; toast(UI==='es'?'¡Ahora te toca a vos!':'Your turn!'); return; } encender(seq[i]); i++; _st(sig, 600); }; _st(sig, 500); };
+  document.getElementById('simStart').onclick=()=>{ seq=[Math.floor(Math.random()*4)]; nivel=1; document.getElementById('simNivel').textContent=nivel; mostrarSeq(); };
+  btns.forEach((b,i)=>{ b.addEventListener('pointerdown', e=>{ e.preventDefault(); if(!escuchando) return; encender(i); if(i===seq[paso]){ paso++; if(paso>=seq.length){ ganarMonedas(nivel*2); sonido.ganar(); confeti(20); nivel++; seq.push(Math.floor(Math.random()*4)); document.getElementById('simNivel').textContent=nivel; _st(mostrarSeq, 1000); } } else { sonido.no(); fallo(); escuchando=false; toast(UI==='es'?'¡Fallaste! Tocá EMPEZAR':'Wrong! Tap START'); } }, {passive:false}); });
+}
+</script>
+<script>
+/* ============================================================
+   BLOQUE 6 · ARRANQUE (si hay error, se avisa por toast y el
+   resto de los botones SIGUEN funcionando por estar en bloques separados)
+   ============================================================ */
+window.onerror = function(msg, url, line){
+  try{ toast('⚠️ ' + String(msg).slice(0,60)); }catch(e){}
+  return false;
+};
+
+JUEGOS = [
+  // Mundo 0 · Letras
+  {c:0,n:"Ahorcado",f:jAhorcado,esIngles:false},
+  {c:0,n:"🐝 Spelling Bee",f:jSpellingBee,esIngles:true},
+  {c:0,n:"❓ Letra Faltante",f:jLetraFaltante,esIngles:true},
+  {c:0,n:"🔤 Letra Inicial",f:jLetraInicial,esIngles:true},
+  {c:0,n:"🔀 Ordenar Letras",f:jOrdenarLetras,esIngles:true},
+  {c:0,n:"🃏 Emparejar ES↔EN",f:jEmparejar,esIngles:true},
+  // Mundo 1 · Números
+  {c:1,n:"➕ Sumas",f:jSumas,esIngles:false},
+  {c:1,n:"➖ Restas",f:jRestas,esIngles:false},
+  {c:1,n:"⚖️ Mayor o Menor",f:jMayor,esIngles:false},
+  {c:1,n:"🔢 Números en Inglés",f:jInglesNumeros,esIngles:true},
+  {c:1,n:"🔢 Contar",f:jContar,esIngles:false},
+  {c:1,n:"📈 Secuencia",f:jSecuencia,esIngles:false},
+  // Mundo 2 · Colores y Formas
+  {c:2,n:"🎨 Colores",f:jColores,esIngles:false},
+  {c:2,n:"🎨 Colores en Inglés",f:jInglesColores,esIngles:true},
+  {c:2,n:"🔷 Formas en Inglés",f:jInglesFormas,esIngles:true},
+  {c:2,n:"🌀 Color Loco (Stroop)",f:jStroop,esIngles:true},
+  // Mundo 3 · Vocabulario
+  {c:3,n:"✨ Inglés Mágico",f:jIngles,esIngles:true},
+  {c:3,n:"👂 Escucha y Elegí",f:jInglesEscucha,esIngles:true},
+  {c:3,n:"🐶 Animales",f:jInglesAnimales,esIngles:true},
+  {c:3,n:"🍎 Comida",f:jInglesComida,esIngles:true},
+  {c:3,n:"🫀 Cuerpo",f:jInglesCuerpo,esIngles:true},
+  {c:3,n:"👨‍👩‍👧 Familia",f:jInglesFamilia,esIngles:true},
+  {c:3,n:"👕 Ropa",f:jInglesRopa,esIngles:true},
+  {c:3,n:"🚗 Transporte",f:jInglesTransporte,esIngles:true},
+  {c:3,n:"😊 Emociones",f:jInglesEmociones,esIngles:true},
+  {c:3,n:"🎒 Escuela",f:jInglesEscuela,esIngles:true},
+  // Mundo 4 · Conversación
+  {c:4,n:"💬 Frases Básicas",f:jFrasesBasicas,esIngles:true},
+  {c:4,n:"📅 Días",f:jInglesDias,esIngles:true},
+  {c:4,n:"📆 Meses",f:jInglesMeses,esIngles:true},
+  {c:4,n:"🧠 Trivia",f:jTrivia,esIngles:false},
+  {c:4,n:"✅ Verdadero o Falso",f:jVerdaderoFalso,esIngles:true},
+  {c:4,n:"📝 Completar Frase",f:jCompletarFrase,esIngles:true},
+  // Mundo 5 · Juegos y Arte
+  {c:5,n:"🃏 Memoria",f:jMemoria,esIngles:false},
+  {c:5,n:"🧩 Rompecabezas",f:jRompe,esIngles:false},
+  {c:5,n:"⭐ Atrapa Estrellas",f:jArcade,esIngles:false},
+  {c:5,n:"🎨 Pizarra Mágica",f:jPizarra,esIngles:false},
+  {c:5,n:"🎹 Piano",f:jPiano,esIngles:false},
+  {c:5,n:"🎵 Simón Dice",f:jSimon,esIngles:false}
+];
+
+function iniciarApp(){
+  try{
+    cargarPerfil();
+    aplicarIdioma();
+    // Fondo decorado: nubes y blobs
+    const fd = document.getElementById('fondoDecor');
+    if(fd){
+      const colores=['#ff6b9d','#ffc93c','#6bcb77','#4d96ff','#9b72ff','#3ecfb0'];
+      for(let i=0;i<4;i++){
+        const b=document.createElement('div'); b.className='blob';
+        const tam=150+Math.random()*200; b.style.width=tam+'px'; b.style.height=tam+'px';
+        b.style.background=colores[i]; b.style.left=(Math.random()*80)+'%'; b.style.top=(Math.random()*80)+'%';
+        b.style.animationDelay=(Math.random()*4)+'s'; fd.appendChild(b);
+      }
+      for(let i=0;i<5;i++){
+        const n=document.createElement('div'); n.className='nube';
+        const tam=60+Math.random()*100; n.style.width=tam+'px'; n.style.height=tam*0.5+'px';
+        n.style.top=(5+Math.random()*80)+'%'; n.style.animationDuration=(30+Math.random()*40)+'s';
+        n.style.animationDelay=(-Math.random()*40)+'s'; fd.appendChild(n);
+      }
+    }
+    // Astronauta Capi (SVG animado)
+    const prof=document.getElementById('prof');
+    if(prof){
+      prof.innerHTML = `<svg id="astroSVG" viewBox="0 0 140 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="70" y1="14" x2="70" y2="26" stroke="#94a3b8" stroke-width="3"/>
+        <circle class="luzAnt" cx="70" cy="11" r="5"/>
+        <circle cx="70" cy="58" r="42" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
+        <circle cx="70" cy="58" r="30" fill="#fcd9b6"/>
+        <circle cx="52" cy="68" r="5" fill="#fda4af" opacity=".7"/>
+        <circle cx="88" cy="68" r="5" fill="#fda4af" opacity=".7"/>
+        <g class="ojo"><ellipse cx="59" cy="54" rx="6.5" ry="8" fill="#fff"/><circle cx="60" cy="55" r="3.5" fill="#1e293b"/><circle cx="61.5" cy="53" r="1.2" fill="#fff"/></g>
+        <g class="ojo"><ellipse cx="81" cy="54" rx="6.5" ry="8" fill="#fff"/><circle cx="82" cy="55" r="3.5" fill="#1e293b"/><circle cx="83.5" cy="53" r="1.2" fill="#fff"/></g>
+        <ellipse cx="70" cy="64" rx="2.5" ry="3.5" fill="#f5b98a"/>
+        <path id="bocaCerrada" d="M60 74 Q70 82 80 74" stroke="#9f1239" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse id="bocaAbierta" cx="70" cy="76" rx="7" ry="6" fill="#9f1239"/>
+        <ellipse cx="70" cy="79" rx="3.5" ry="2.5" fill="#fb7185"/>
+        <ellipse cx="70" cy="135" rx="33" ry="40" fill="#f8fafc" stroke="#94a3b8" stroke-width="3"/>
+        <rect x="42" y="138" width="56" height="8" rx="4" fill="#4d96ff"/>
+        <rect x="65" y="137" width="10" height="10" rx="2" fill="#ffc93c"/>
+        <rect x="58" y="118" width="24" height="16" rx="4" fill="#3ecfb0" stroke="#0d9488" stroke-width="2"/>
+        <circle cx="64" cy="126" r="2.5" fill="#22c55e"/><circle cx="72" cy="126" r="2.5" fill="#ef4444"/><circle cx="80" cy="126" r="2.5" fill="#ffc93c"/>
+        <ellipse cx="38" cy="128" rx="9" ry="22" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5" transform="rotate(20 38 128)"/>
+        <circle cx="30" cy="148" r="8" fill="#4d96ff"/>
+        <ellipse class="brazoDer" cx="102" cy="122" rx="9" ry="22" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5" transform="rotate(-25 102 122)"/>
+        <circle cx="110" cy="102" r="8" fill="#4d96ff"/>
+        <rect x="46" y="118" width="12" height="42" rx="4" fill="#64748b" stroke="#475569" stroke-width="2"/>
+        <rect x="82" y="118" width="12" height="42" rx="4" fill="#64748b" stroke="#475569" stroke-width="2"/>
+        <g class="llama"><ellipse cx="52" cy="168" rx="5" ry="12" fill="#ff8c42"/><ellipse cx="52" cy="170" rx="2.5" ry="7" fill="#ffdd70"/><ellipse cx="88" cy="168" rx="5" ry="12" fill="#ff8c42"/><ellipse cx="88" cy="170" rx="2.5" ry="7" fill="#ffdd70"/></g>
+      </svg>`;
+    }
+    dibujarMundos();
+    // Mensaje inicial de enseñanza
+    const caja=document.getElementById('textoEnsenanza');
+    if(caja) caja.innerHTML='🧑‍🚀 <span>'+(UI==='es'?'¡Hola! Soy Capi. Elegí un juego y te enseño inglés 😊':'Hi! I am Capi. Pick a game and I will teach you English 😊')+'</span>';
+  }catch(e){ console.error(e); try{ toast('⚠️ Error al iniciar: '+String(e).slice(0,50)); }catch(x){} }
+}
+
+// Intro: se cierra al tocar Empezar o SOLA a los 4 segundos (nadie se queda trabado)
+function cerrarIntro(){
+  const intro=document.getElementById('intro');
+  if(!intro || intro.classList.contains('fuera')) return;
+  intro.classList.add('fuera');
+  sonido.ini(); sonido.ganar(); confeti(50);
+  _st(()=>{ if(intro.parentNode) intro.remove(); }, 700);
+  _st(()=>hablarProfesorAleatorio(), 1200);
+}
+document.addEventListener('DOMContentLoaded', ()=>{
   iniciarApp();
+  const be=document.getElementById('btnEmpezar');
+  if(be) be.addEventListener('click', cerrarIntro);
+  setTimeout(cerrarIntro, 4000); // auto-cierre
+  const bc=document.getElementById('barraCarga'); if(bc) bc.style.width='100%';
 });
+// Respaldo: si DOMContentLoaded ya pasó, iniciar igual
+if(document.readyState!=='loading'){ iniciarApp(); const be=document.getElementById('btnEmpezar'); if(be) be.addEventListener('click', cerrarIntro); setTimeout(cerrarIntro, 4000); const bc=document.getElementById('barraCarga'); if(bc) bc.style.width='100%'; }
 </script>
 </body>
 </html>
