@@ -263,13 +263,14 @@ img{user-select:none;-webkit-user-select:none;}
   <div class="chip flex items-center gap-2 cursor-pointer hover:scale-105 transition" onclick="mostrarPerfil()" style="touch-action:manipulation;">
     <span id="avatarPerfil" class="text-2xl">👦</span>
     <span class="text-left leading-tight">
-      <span class="block font-black" id="nomP">Jugador</span>
-      <span class="block text-xs font-bold" style="color:var(--naranja);">🪙 <span id="monedasTot">0</span> · ⭐ <span id="ptsTot">0</span> · 🔥 <span id="rachaTot">0</span></span>
+      <span class="block font-black"><span id="nivelBadge" class="text-[10px] px-2 py-0.5 rounded-full text-white mr-1" style="background:linear-gradient(135deg,#9b72ff,#4d96ff);">Nv 1</span><span id="nomP">Jugador</span></span>
+      <span class="block text-xs font-bold" style="color:var(--naranja);">🪙 <span id="monedasTot">0</span> · 💎 <span id="gemasTot">0</span> · 🎁 <span id="cofresTot">0</span> · 👑 <span id="coronasTot">0</span> · 🔥 <span id="rachaTot">0</span></span>
     </span>
   </div>
   <div class="flex gap-2 flex-wrap items-center">
     <button class="boton b-violeta" onclick="cambiarIdioma()" id="btnIdioma">🌐 ES</button>
     <button class="boton b-amarillo" onclick="regaloDiario()">🎁 <span data-t="regalo">Regalo</span></button>
+    <button class="boton b-violeta" onclick="abrirCofre()">🎁 <span id="cofresBtn">0</span></button>
     <button class="boton b-turquesa" onclick="abrirTienda()">🏪 <span data-t="tienda">Tienda</span></button>
     <button class="boton b-verde" onclick="abrirLogros()">🏆</button>
     <button class="boton b-azul" onclick="abrirAjustes()">⚙️</button>
@@ -278,6 +279,14 @@ img{user-select:none;-webkit-user-select:none;}
   </div>
 </div>
 
+<!-- Barra de XP / Nivel (premium) -->
+<div class="max-w-6xl mx-auto px-3 relative z-10">
+  <div class="flex items-center gap-3 mb-1">
+    <span class="text-2xl">⭐</span>
+    <div class="barra-progreso flex-1"><div id="xpBar" style="width:0%; background:linear-gradient(90deg,#ffc93c,#ff8c42,#ff6b9d);"></div></div>
+    <span class="text-sm font-black" id="xpTexto" style="color:#9b72ff;">0 / 100 XP</span>
+  </div>
+</div>
 <!-- CONTENEDOR -->
 <div class="max-w-6xl mx-auto px-3 pt-2 pb-44 relative z-10">
   <h1 class="tit-arcoiris text-center text-3xl md:text-5xl mb-1">🌈 ARCOÍRIS KIDS 🌟</h1>
@@ -386,6 +395,28 @@ img{user-select:none;-webkit-user-select:none;}
 </div></div>
 
 <!-- MODAL: AYUDA -->
+<!-- MODAL: SUBIDA DE NIVEL (premium) -->
+<div id="nivelModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
+  <div class="text-7xl mb-2" style="animation:pop 1s ease-in-out infinite;">🎉</div>
+  <h2 class="tit-arcoiris text-3xl mb-1" id="nivelTitulo">¡SUBISTE DE NIVEL!</h2>
+  <div class="text-5xl font-black mb-3" style="color:#9b72ff;" id="nivelNum">Nv 2</div>
+  <p class="font-bold mb-2" id="nivelRango" style="color:#ff6b9d;">¡Ahora sos Explorador Arcoíris!</p>
+  <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl p-3 mb-4 font-black text-lg" id="nivelRecompensa">+50 🪙 +2 💎 +1 🎁</div>
+  <button class="boton b-verde px-8 py-3 text-lg" onclick="cerrarModal('nivelModal')">¡SIII! 🚀</button>
+</div></div>
+
+<!-- MODAL: COFRE DEL TESORO (premium) -->
+<div id="cofreModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
+  <h2 class="tit-arcoiris text-3xl mb-4">🎁 <span id="cofreTitulo">Cofre del Tesoro</span></h2>
+  <div id="cofreCerrado" class="text-8xl mb-4 cursor-pointer select-none" style="animation:flotar 2s ease-in-out infinite;" onclick="abrirCofreClick()">📦</div>
+  <div id="cofrePremio" class="hidden mb-4">
+    <div class="text-7xl mb-2" id="cofreIcono">💎</div>
+    <div class="text-2xl font-black mb-1" id="cofreTexto" style="color:#9b72ff;">¡Ganaste 3 gemas!</div>
+  </div>
+  <p class="font-bold mb-4 opacity-70" id="cofreHint">Tocá el cofre para abrirlo ✨</p>
+  <button class="boton b-rosa px-8 py-3" onclick="cerrarModal('cofreModal')">✕</button>
+</div></div>
+
 <div id="ayudaModal" class="modal-fondo"><div class="modal-cuerpo max-w-lg w-full">
   <div class="flex justify-between items-center mb-5">
     <h2 class="tit-arcoiris text-3xl">❓ <span data-t="ayuda">Ayuda</span></h2>
@@ -1132,6 +1163,243 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 // Respaldo: si DOMContentLoaded ya pasó, iniciar igual
 if(document.readyState!=='loading'){ iniciarApp(); const be=document.getElementById('btnEmpezar'); if(be) be.addEventListener('click', cerrarIntro); setTimeout(cerrarIntro, 4000); const bc=document.getElementById('barraCarga'); if(bc) bc.style.width='100%'; }
+</script>
+<script>
+/* ============================================================
+   BLOQUE 7 · PREMIUM: Recompensas (XP/Nivel/Gemas/Cofres/Coronas)
+   + 9 juegos nuevos. Se ejecuta después del arranque y refresca.
+   ============================================================ */
+// Extender perfil con campos premium
+if(PERFIL.xp===undefined) PERFIL.xp=0;
+if(PERFIL.nivel===undefined) PERFIL.nivel=1;
+if(PERFIL.gemas===undefined) PERFIL.gemas=0;
+if(PERFIL.cofres===undefined) PERFIL.cofres=0;
+if(PERFIL.coronas===undefined) PERFIL.coronas=0;
+const RANGOS=[{n:1,t:"Aprendiz 🌱",ico:"🌱"},{n:3,t:"Explorador 🔍",ico:"🔍"},{n:5,t:"Aventurero 🧭",ico:"🧭"},{n:7,t:"Capitán ⭐",ico:"⭐"},{n:10,t:"Astronauta 🚀",ico:"🚀"},{n:15,t:"Maestro Arcoíris 👑",ico:"👑"}];
+function rangoDe(n){ let r=RANGOS[0]; RANGOS.forEach(x=>{ if(n>=x.n) r=x; }); return r; }
+function xpPara(n){ return n*100; }
+function subirNivel(){
+  PERFIL.nivel++; const r=rangoDe(PERFIL.nivel);
+  PERFIL.gemas+=2; PERFIL.monedas+=PERFIL.nivel*20;
+  if(PERFIL.nivel%2===0) PERFIL.cofres++;
+  if(PERFIL.nivel%5===0) PERFIL.coronas++;
+  document.getElementById('nivelNum').textContent='Nv '+PERFIL.nivel;
+  document.getElementById('nivelRango').textContent=(UI==='es'?'¡Ahora sos ':'Now you are ')+r.t+'!';
+  document.getElementById('nivelRecompensa').textContent='+'+(PERFIL.nivel*20)+' 🪙 +2 💎'+(PERFIL.nivel%2===0?' +1 🎁':'')+(PERFIL.nivel%5===0?' +1 👑':'');
+  guardarPerfil(); actualizarCabecera(); sonido.ganar(); confeti(120);
+  _st(()=>abrirModal('nivelModal'), 500);
+}
+function ganarXP(cant){
+  PERFIL.xp=(PERFIL.xp||0)+cant;
+  while(PERFIL.xp >= xpPara(PERFIL.nivel)){ PERFIL.xp -= xpPara(PERFIL.nivel); subirNivel(); }
+  guardarPerfil(); actualizarCabecera();
+}
+// Parchear ganarMonedas para dar XP y coronas por racha
+const _gmP = ganarMonedas;
+ganarMonedas = function(cant, esIngles){
+  _gmP(cant, esIngles);
+  ganarXP(cant*2);
+  if((PERFIL.racha||0)===10 && !PERFIL._c10){ PERFIL._c10=true; PERFIL.coronas++; mostrarPremio('👑', UI==='es'?'¡CORONA! Racha de 10 🔥':'CROWN! 10-streak 🔥'); }
+};
+// Parchear actualizarCabecera para mostrar campos premium
+const _acP = actualizarCabecera;
+actualizarCabecera = function(){
+  _acP();
+  const g=document.getElementById('gemasTot'); if(g) g.textContent=PERFIL.gemas||0;
+  const c=document.getElementById('cofresTot'); if(c) c.textContent=PERFIL.cofres||0;
+  const co=document.getElementById('coronasTot'); if(co) co.textContent=PERFIL.coronas||0;
+  const cb=document.getElementById('cofresBtn'); if(cb) cb.textContent=PERFIL.cofres||0;
+  const nb=document.getElementById('nivelBadge'); if(nb) nb.textContent='Nv '+(PERFIL.nivel||1);
+  const xp=document.getElementById('xpBar'); if(xp) xp.style.width=Math.min(100,(PERFIL.xp||0)/xpPara(PERFIL.nivel||1)*100)+'%';
+  const xt=document.getElementById('xpTexto'); if(xt) xt.textContent=(PERFIL.xp||0)+' / '+xpPara(PERFIL.nivel||1)+' XP';
+};
+function abrirCofre(){
+  if((PERFIL.cofres||0)<=0){ sonido.no(); toast(UI==='es'?'¡No tenés cofres! Subí de nivel para ganar 🎁':'No chests! Level up to earn 🎁'); return; }
+  document.getElementById('cofreCerrado').classList.remove('hidden');
+  document.getElementById('cofrePremio').classList.add('hidden');
+  document.getElementById('cofreHint').textContent=UI==='es'?'Tocá el cofre para abrirlo ✨':'Tap the chest to open it ✨';
+  abrirModal('cofreModal');
+}
+function abrirCofreClick(){
+  if((PERFIL.cofres||0)<=0) return;
+  PERFIL.cofres--;
+  const r=Math.random(); let ico,txt;
+  if(r<0.55){ const m=50+Math.floor(Math.random()*150); PERFIL.monedas+=m; ico='🪙'; txt=(UI==='es'?'¡Ganaste ':'You won ')+m+' monedas!'; }
+  else if(r<0.85){ const g=1+Math.floor(Math.random()*5); PERFIL.gemas+=g; ico='💎'; txt=(UI==='es'?'¡Ganaste ':'You won ')+g+' gemas!'; }
+  else { PERFIL.coronas++; ico='👑'; txt=UI==='es'?'¡CORONA LEGENDARIA!':'LEGENDARY CROWN!'; }
+  guardarPerfil(); actualizarCabecera(); sonido.ganar(); confeti(80);
+  document.getElementById('cofreCerrado').classList.add('hidden');
+  document.getElementById('cofrePremio').classList.remove('hidden');
+  document.getElementById('cofreIcono').textContent=ico;
+  document.getElementById('cofreTexto').textContent=txt;
+  document.getElementById('cofreHint').textContent='🎉';
+}
+
+/* ---------- 9 JUEGOS NUEVOS ---------- */
+/* 1. Sopa de letras (4x4, encontrá la palabra en inglés) */
+function jSopaLetras(){
+  const temas=['animales','comida','colores','cuerpo','ropa','escuela'];
+  const correcta=rp(DICCIONARIO[rp(temas)]); const palabra=correcta.en.toUpperCase().replace(/[^A-Z]/g,'');
+  const letras="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+  const N=4, grid=[]; for(let i=0;i<N*N;i++) grid.push(rp(letras));
+  const horizontal=Math.random()>.5; const fila=Math.floor(Math.random()*N); const col=Math.floor(Math.random()*(N-palabra.length+1));
+  for(let i=0;i<palabra.length;i++){ const idx=horizontal? fila*N+(col+i) : (col+i)*N+fila; grid[idx]=palabra[i]; }
+  let paso=0; const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center mb-3"><div class="text-5xl mb-2">${correcta.ico}</div><div class="font-black text-lg" style="color:#9b72ff;">${UI==='es'?'Encontrá: ':'Find: '}"${palabra}"</div><button class="bocina mt-2" onclick="ensenarCur()">🔊</button></div>
+    <div class="grid grid-cols-4 gap-2 max-w-xs mx-auto mb-4" id="sopaG"></div>
+    <div class="text-center text-2xl font-black tracking-widest mb-3 min-h-[30px]" id="sopaProg" style="color:#ff6b9d;"></div>
+    <div class="text-center"><button class="boton b-azul" onclick="jSopaLetras()">🔄 ${UI==='es'?'Nueva':'New'}</button></div>`;
+  const c=document.getElementById('sopaG'); let ok=false;
+  grid.forEach((l,i)=>{ const b=document.createElement('button'); b.className='letra-sp'; b.style.width='44px'; b.style.height='44px'; b.style.fontSize='1.3rem'; b.textContent=l; b.onclick=()=>{ if(ok) return; if(l===palabra[paso]){ paso++; b.classList.add('ok'); sonido.click(); hablarIngles(l); document.getElementById('sopaProg').textContent=palabra.slice(0,paso); if(paso===palabra.length){ ok=true; sonido.ganar(); confeti(40); ganarMonedas(6,true); ensenar(correcta.es,correcta.en); _st(jSopaLetras,2800); } } else { b.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(b); });
+  _st(()=>ensenar(correcta.es,correcta.en),700);
+}
+/* 2. Rueda de aprendizaje (no es azar: aprendés la palabra donde cae) */
+function jRuedaAprende(){
+  const temas=['animales','comida','colores','cuerpo','ropa','escuela'];
+  const seis=mezclar(DICCIONARIO[rp(temas)]).slice(0,6);
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center font-black text-lg mb-4" style="color:#9b72ff;">${UI==='es'?'Tocá la rueda y aprendé la palabra':'Spin and learn the word'}</div>
+    <div class="relative w-64 h-64 mx-auto mb-5 cursor-pointer select-none" id="rueda" style="transition:transform 2.5s cubic-bezier(.17,.67,.3,1);">
+      <div class="absolute inset-0 rounded-full border-8 border-white shadow-2xl overflow-hidden" style="background:conic-gradient(#ff6b9d 0 60deg,#ffc93c 60deg 120deg,#6bcb77 120deg 180deg,#4d96ff 180deg 240deg,#9b72ff 240deg 300deg,#ff8c42 300deg 360deg);">
+        ${seis.map((s,i)=>`<div class="absolute text-3xl" style="left:50%;top:${10+i*15}%;transform:translateX(-50%) rotate(${i*60+30}deg);transform-origin:center 120px;">${s.ico}</div>`).join('')}
+      </div>
+      <div class="absolute left-1/2 -top-3 -translate-x-1/2 text-4xl z-10">🔻</div>
+      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center text-3xl z-10">🎯</div>
+    </div>
+    <div class="text-center text-2xl font-black" id="ruedaRes" style="color:#ff6b9d; min-height:36px;"></div>`;
+  let girando=false; let rot=0;
+  document.getElementById('rueda').onclick=()=>{
+    if(girando) return; girando=true; sonido.click();
+    rot += 1440 + Math.floor(Math.random()*360);
+    document.getElementById('rueda').style.transform=`rotate(${rot}deg)`;
+    _st(()=>{
+      const idx = (6 - Math.round(((rot%360)/60))%6)%6;
+      const elegida=seis[(idx+6)%6];
+      document.getElementById('ruedaRes').textContent=elegida.es+' = '+elegida.en;
+      ensenar(elegida.es, elegida.en); ganarMonedas(2,true); girando=false;
+    }, 2600);
+  };
+}
+/* 3. Conectar puntos (tocá los números en orden) */
+function jConectarPuntos(){
+  const N=6+Math.floor(Math.random()*4); const orden=mezclar([...Array(N).keys()].map(x=>x+1));
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center font-black text-lg mb-4" style="color:#4d96ff;">${UI==='es'?'Tocá los números en orden: 1, 2, 3...':'Tap numbers in order: 1, 2, 3...'}</div>
+    <div class="relative w-full max-w-md h-72 mx-auto rounded-3xl" style="background:linear-gradient(180deg,#e0f4ff,#fff3c4); border:4px solid #fff;" id="conPuntos"></div>`;
+  const area=document.getElementById('conPuntos'); let sig=1;
+  orden.forEach(n=>{
+    const b=document.createElement('button'); b.textContent=n; b.dataset.n=n;
+    b.className='absolute w-11 h-11 rounded-full font-black text-lg text-white border-4 border-white shadow-lg';
+    b.style.background='linear-gradient(135deg,#4d96ff,#9b72ff)';
+    b.style.left=(8+Math.random()*80)+'%'; b.style.top=(8+Math.random()*75)+'%';
+    b.onclick=()=>{
+      if(+b.dataset.n===sig){ sonido.click(); b.style.background='linear-gradient(135deg,#6bcb77,#3ecfb0)'; b.style.transform='scale(1.2)'; sig++;
+        if(sig>N){ sonido.ganar(); confeti(50); ganarMonedas(4); _st(jConectarPuntos,1500); } }
+      else { sonido.no(); fallo(); b.style.animation='sac .4s'; }
+    };
+    area.appendChild(b);
+  });
+}
+/* 4. Clasificar (¿animal, comida u objeto?) */
+function jClasificar(){
+  const pool=[...DICCIONARIO.animales.map(x=>({...x,cat:'animal'})),...DICCIONARIO.comida.map(x=>({...x,cat:'comida'})),...DICCIONARIO.escuela.map(x=>({...x,cat:'objeto'}))];
+  const correcta=rp(pool);
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center mb-5"><div class="text-7xl mb-3">${correcta.ico}</div><div class="font-black text-xl" style="color:#9b72ff;">${UI==='es'?'¿Qué es?':'What is it?'}</div></div>
+    <div class="grid grid-cols-3 gap-3 max-w-lg mx-auto" id="clasOps"></div>`;
+  const c=document.getElementById('clasOps'); let ok=false;
+  const cats=[{id:'animal',ico:'🐾',es:'ANIMAL',en:'ANIMAL'},{id:'comida',ico:'🍎',es:'COMIDA',en:'FOOD'},{id:'objeto',ico:'✏️',es:'OBJETO',en:'OBJECT'}];
+  cats.forEach(cat=>{ const b=document.createElement('button'); b.className='opcion py-6'; b.innerHTML=`<div class="text-4xl">${cat.ico}</div><div class="font-black">${UI==='es'?cat.es:cat.en}</div>`; b.onclick=()=>{ if(ok) return; if(cat.id===correcta.cat){ ok=true; b.classList.add('ok'); sonido.ok(); ganarMonedas(3); ensenar(correcta.es,correcta.en); _st(jClasificar,2200); } else { b.classList.add('no'); sonido.no(); fallo(); } }; c.appendChild(b); });
+  _st(()=>ensenar(correcta.es,correcta.en),600);
+}
+/* 5. Ordenar la historia (mañana → tarde → noche) */
+function jOrdenarHistoria(){
+  const historias=[
+    [{i:'🌅',t:'mañana'},{i:'☀️',t:'mediodía'},{i:'🌙',t:'noche'}],
+    [{i:'🌱',t:'semilla'},{i:'🌿',t:'planta'},{i:'🌳',t:'árbol'}],
+    [{i:'🥚',t:'huevo'},{i:'🐣',t:'pichón'},{i:'🐔',t:'gallina'}]
+  ];
+  const hist=rp(historias); const orden=mezclar([...hist]);
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center font-black text-lg mb-4" style="color:#9b72ff;">${UI==='es'?'Tocá en ORDEN (primero, segundo, tercero)':'Tap in ORDER (first, second, third)'}</div>
+    <div class="flex justify-center gap-4 mb-5 flex-wrap" id="histCards"></div>
+    <div class="text-center text-3xl font-black" id="histProg" style="color:#6bcb77; min-height:40px;"></div>`;
+  const c=document.getElementById('histCards'); let paso=0;
+  orden.forEach((h,idx)=>{ const b=document.createElement('button'); b.className='opcion w-24 h-28 text-5xl'; b.textContent=h.i; b.onclick=()=>{ if(h===hist[paso]){ sonido.click(); b.classList.add('ok'); document.getElementById('histProg').textContent+=' '+h.i; paso++; if(paso===3){ sonido.ganar(); confeti(40); ganarMonedas(4); _st(jOrdenarHistoria,1800); } } else { sonido.no(); fallo(); b.classList.add('no'); } }; c.appendChild(b); });
+}
+/* 6. Preguntados (con timer de 10 segundos) */
+function jPreguntados(){
+  const q=rp(TRIVIA); const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="barra-progreso mb-4"><div id="timerBar" style="width:100%; background:linear-gradient(90deg,#6bcb77,#ffc93c,#ff6b9d); transition:width 10s linear;"></div></div>
+    <div class="text-center text-xl md:text-2xl font-black mb-5" style="color:#ff8c42;">⏰ ${q.p}</div>
+    <div id="pgO" class="grid grid-cols-2 gap-3 max-w-md mx-auto"></div>`;
+  const c=document.getElementById('pgO'); let ok=false, tiempo=setTimeout(()=>{ if(!ok){ ok=true; sonido.no(); fallo(); toast(UI==='es'?'¡Se acabó el tiempo!':'Time is up!'); _st(jPreguntados,1500); } },10000); _timers.push(tiempo);
+  mezclar(q.o).forEach(o=>{ const b=document.createElement('button'); b.className='opcion'; b.textContent=o; b.onclick=()=>{ if(ok) return; ok=true; clearTimeout(tiempo); if(o===q.r){ b.classList.add('ok'); sonido.ok(); ganarMonedas(4); } else { b.classList.add('no'); sonido.no(); fallo(); } _st(jPreguntados,1300); }; c.appendChild(b); });
+  _st(()=>{ const tb=document.getElementById('timerBar'); if(tb) tb.style.width='0%'; },50);
+}
+/* 7. Tres en raya vs Capi */
+function jTresEnRaya(){
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center font-black text-lg mb-4" style="color:#9b72ff;">${UI==='es'?'Vos sos ❌ · Capi es ⭕':'You are ❌ · Capi is ⭕'}</div>
+    <div class="grid grid-cols-3 gap-2 max-w-xs mx-auto mb-4" id="tttG"></div>
+    <div class="text-center"><button class="boton b-azul" onclick="jTresEnRaya()">🔄 ${UI==='es'?'Reiniciar':'Restart'}</button></div>`;
+  let tab=Array(9).fill(''), turnoX=true, over=false;
+  const gana=t=>{ const l=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]; return l.some(r=>t[r[0]]&&t[r[0]]===t[r[1]]&&t[r[0]]===t[r[2]]); };
+  const c=document.getElementById('tttG');
+  const ren=()=>{ c.innerHTML=''; tab.forEach((v,i)=>{ const b=document.createElement('button'); b.className='aspect-square rounded-2xl text-4xl font-black border-4 border-white shadow-lg '+(v?'bg-white':'bg-gradient-to-br from-blue-100 to-purple-100'); b.textContent=v||''; b.onclick=()=>{ if(over||v||!turnoX) return; tab[i]='❌'; turnoX=false; sonido.click(); if(gana(tab)){ over=true; sonido.ganar(); confeti(50); ganarMonedas(8); ren(); return; } if(!tab.includes('')){ over=true; ren(); return; } ren(); _st(moverCapi,600); }; c.appendChild(b); }); };
+  function moverCapi(){ if(over) return; const vacias=tab.map((v,i)=>v?null:i).filter(x=>x!==null); if(!vacias.length){ over=true; ren(); return; }
+    // Capi intenta ganar o bloquear
+    let jugada=null;
+    for(const i of vacias){ tab[i]='⭕'; if(gana(tab)){ jugada=i; tab[i]=''; break; } tab[i]=''; }
+    if(jugada===null) for(const i of vacias){ tab[i]='❌'; if(gana(tab)){ jugada=i; tab[i]=''; break; } tab[i]=''; }
+    if(jugada===null) jugada=rp(vacias);
+    tab[jugada]='⭕'; turnoX=true; sonido.tono(440,.15,'sine',.12);
+    if(gana(tab)){ over=true; sonido.no(); ren(); _st(()=>toast(UI==='es'?'¡Capi ganó! Intentá de nuevo 💪':'Capi won! Try again 💪'),500); return; }
+    if(!tab.includes('')){ over=true; } ren();
+  }
+  ren();
+}
+/* 8. Globos (Capi dice una palabra, reventá el globo correcto) */
+function jGlobos(){
+  const temas=['animales','comida','colores','cuerpo','ropa','escuela'];
+  const correcta=rp(DICCIONARIO[rp(temas)]);
+  const opciones=mezclar([correcta,...mezclar(DICCIONARIO[rp(temas)].filter(x=>x.en!==correcta.en)).slice(0,3)]);
+  const gc=document.getElementById('gameContainer');
+  gc.innerHTML=`<div class="text-center font-black text-lg mb-4" style="color:#9b72ff;">👂 ${UI==='es'?'Escuchá y reventá el globo correcto':'Listen and pop the right balloon'} <button class="bocina ml-2" style="width:44px;height:44px;font-size:1.2rem;" onclick="ensenarCur()">🔊</button></div>
+    <div class="flex justify-center gap-4 flex-wrap" id="globosC"></div>`;
+  const c=document.getElementById('globosC'); let ok=false;
+  opciones.forEach(o=>{ const b=document.createElement('button'); b.className='text-5xl transition-transform hover:scale-110 cursor-pointer select-none'; b.style.touchAction='manipulation'; b.textContent='🎈'; b.title=o.en; b.innerHTML=`<div class="text-5xl">🎈</div><div class="font-black text-sm mt-1" style="color:#3d2c5e;">${o.en.toUpperCase()}</div>`; b.onclick=()=>{ if(ok) return; if(o.en===correcta.en){ ok=true; b.textContent='💥'; sonido.tono(800,.2,'square',.15); sonido.ok(); confeti(30); ganarMonedas(4,true); ensenar(correcta.es,correcta.en); _st(jGlobos,2400); } else { b.style.opacity='.3'; sonido.no(); fallo(); } }; c.appendChild(b); });
+  _st(()=>ensenar(correcta.es,correcta.en),600);
+}
+/* 9. Baile de emojis (Simon con emojis) */
+function jBaileEmojis(){
+  const gc=document.getElementById('gameContainer');
+  const emojis=['😀','😎','🥳','🤩']; const notas=[523,659,784,1047];
+  gc.innerHTML=`<div class="text-center font-black text-xl mb-4" style="color:#9b72ff;">💃 ${UI==='es'?'Nivel':'Level'}: <span id="beNivel">1</span> · ${UI==='es'?'Repetí el baile':'Repeat the dance'}</div>
+    <div class="grid grid-cols-2 gap-3 max-w-xs mx-auto mb-4" id="beG"></div>
+    <div class="text-center"><button class="boton b-verde" id="beStart">▶ ${UI==='es'?'BAILAR':'DANCE'}</button></div>`;
+  const c=document.getElementById('beG'); const btns=[];
+  emojis.forEach((e,i)=>{ const b=document.createElement('button'); b.className='aspect-square rounded-3xl text-6xl border-4 border-white shadow-lg transition-all'; b.style.background=['#ffe5ec','#e0f4ff','#e8ffe8','#fff3c4'][i]; b.textContent=e; b.style.opacity='.6'; c.appendChild(b); btns.push(b); });
+  let seq=[], paso=0, escuchando=false, nivel=1; window._simonActivo=true;
+  const encender=i=>{ btns[i].style.opacity='1'; btns[i].style.transform='scale(1.1)'; sonido.tono(notas[i],.3,'sine',.15); _st(()=>{ btns[i].style.opacity='.6'; btns[i].style.transform=''; },350); };
+  const mostrar=()=>{ escuchando=false; let i=0; const sig=()=>{ if(i>=seq.length){ escuchando=true; paso=0; return; } encender(seq[i]); i++; _st(sig,600); }; _st(sig,500); };
+  document.getElementById('beStart').onclick=()=>{ seq=[Math.floor(Math.random()*4)]; nivel=1; document.getElementById('beNivel').textContent=nivel; mostrar(); };
+  btns.forEach((b,i)=>b.addEventListener('pointerdown',e=>{ e.preventDefault(); if(!escuchando) return; encender(i); if(i===seq[paso]){ paso++; if(paso>=seq.length){ ganarMonedas(nivel*2); sonido.ganar(); confeti(20); nivel++; seq.push(Math.floor(Math.random()*4)); document.getElementById('beNivel').textContent=nivel; _st(mostrar,1000); } } else { sonido.no(); fallo(); escuchando=false; toast(UI==='es'?'¡Fallaste! Tocá BAILAR':'Wrong! Tap DANCE'); } },{passive:false}));
+}
+
+/* Agregar los 9 juegos nuevos al listado y refrescar pestañas */
+JUEGOS.push(
+  {c:0,n:"🔍 Sopa de Letras",f:jSopaLetras,esIngles:true},
+  {c:0,n:"🎡 Rueda Mágica",f:jRuedaAprende,esIngles:true},
+  {c:1,n:"🔢 Conectar Puntos",f:jConectarPuntos,esIngles:false},
+  {c:3,n:"🗂️ Clasificar",f:jClasificar,esIngles:false},
+  {c:4,n:"📖 Ordenar Historia",f:jOrdenarHistoria,esIngles:false},
+  {c:4,n:"⏰ Preguntados",f:jPreguntados,esIngles:false},
+  {c:5,n:"❌ Tres en Raya",f:jTresEnRaya,esIngles:false},
+  {c:5,n:"🎈 Globos",f:jGlobos,esIngles:true},
+  {c:5,n:"💃 Baile de Emojis",f:jBaileEmojis,esIngles:false}
+);
+try{ actualizarCabecera(); dibujarMundos(); }catch(e){ console.error(e); }
 </script>
 </body>
 </html>
