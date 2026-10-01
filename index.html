@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Buddy Academy PRO — 60 Juegos Educativos</title>
+<title>Boogie Academy PRO — Academia de Inglés y Castellano</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{--ink:#2a1e4e;--soft:#6b5f96;--accent:#7c5cff;--accent2:#ff5fa8;--good:#22c58b;--bad:#ff7a6b;--font:'Baloo 2','Comic Sans MS',sans-serif}
 body{font-family:var(--font);color:var(--ink);min-height:100vh;overflow-x:hidden;position:relative;
-  background:linear-gradient(135deg,#ff9a9e 0%,#fecfef 25%,#a18cd1 55%,#84fab0 80%,#fccb90 100%);
+  background:linear-gradient(135deg,#ff9a9e 0%,#fecfef 22%,#c3a6ff 48%,#8ec5ff 72%,#84fab0 100%);
   background-attachment:fixed;-webkit-user-select:none;user-select:none}
 .orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.55;z-index:0;pointer-events:none;animation:floaty 9s ease-in-out infinite}
 .orb.o1{width:320px;height:320px;background:#ff6ec7;top:-60px;left:-80px}
@@ -18,52 +18,51 @@ body{font-family:var(--font);color:var(--ink);min-height:100vh;overflow-x:hidden
 .orb.o3{width:260px;height:260px;background:#ffd166;top:40%;left:60%;animation-delay:-6s}
 @keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.1)}}
 #app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:14px 14px 90px}
-.glass{background:rgba(255,255,255,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1.5px solid rgba(255,255,255,.7);border-radius:26px;box-shadow:0 12px 32px rgba(80,50,150,.22)}
+.glass{background:rgba(255,255,255,.6);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1.5px solid rgba(255,255,255,.75);border-radius:26px;box-shadow:0 12px 32px rgba(80,50,150,.22)}
 .view{display:none;animation:fade .35s ease}.view.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
 @keyframes pop{0%{transform:scale(.5)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 .shake{animation:shake .4s ease}.pop{animation:pop .35s ease}
-h1{font-size:2.1rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3px 12px rgba(124,92,255,.5)}
-.sub{text-align:center;color:#fff;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.2);margin-bottom:8px;font-size:.95rem}
+h1{font-size:2.05rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3px 12px rgba(124,92,255,.55);letter-spacing:.5px}
+.sub{text-align:center;color:#fff;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.25);margin-bottom:8px;font-size:.92rem}
 .topbar{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.back{width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);font-size:1.25rem;cursor:pointer;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.topbar h2{flex:1;font-size:1.25rem;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.25)}
-.pill{background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border-radius:999px;padding:6px 12px;font-weight:800;font-size:.85rem;flex:none}
+.back{width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);font-size:1.25rem;cursor:pointer;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.topbar h2{flex:1;font-size:1.2rem;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+.pill{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-radius:999px;padding:6px 12px;font-weight:800;font-size:.85rem;flex:none}
 .btn{border:none;cursor:pointer;font-family:var(--font);font-weight:800;border-radius:999px;padding:13px 22px;font-size:1.05rem;color:#fff;
   background:linear-gradient(135deg,#7c5cff,#ff5fa8);box-shadow:0 6px 0 rgba(0,0,0,.15),0 10px 24px rgba(124,92,255,.4);transition:transform .1s}
 .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.15)}
 .btn-green{background:linear-gradient(135deg,#22c58b,#6ee7b7)}.btn-blue{background:linear-gradient(135deg,#3b82f6,#60a5fa)}
 .btn-pink{background:linear-gradient(135deg,#ff5fa8,#ff9ecb)}.btn-yellow{background:linear-gradient(135deg,#fbbf24,#fde047);color:#7a5200}
-.btn-ghost{background:rgba(255,255,255,.7);color:var(--ink);box-shadow:0 4px 0 rgba(0,0,0,.1)}
+.btn-ghost{background:rgba(255,255,255,.75);color:var(--ink);box-shadow:0 4px 0 rgba(0,0,0,.1)}
 .btn.big{width:100%;font-size:1.25rem;padding:16px}.btn.small{padding:8px 14px;font-size:.85rem}
-/* Buddy flotante */
-.buddy-float{display:flex;justify-content:center;margin:4px 0}
-.buddy-float svg{width:120px;height:auto;filter:drop-shadow(0 12px 20px rgba(124,92,255,.45));animation:bob 3.5s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
-.buddy-float .mouth{display:none}.buddy-float svg[data-mood="happy"] .m-happy,.buddy-float svg[data-mood="idle"] .m-smile,.buddy-float svg[data-mood="sad"] .m-sad,.buddy-float svg[data-mood="talk"] .m-open{display:inline}
-.buddy-float svg[data-mood="talk"] .m-open{transform-origin:center;transform-box:fill-box;animation:talk .3s infinite alternate}
+.boogie-float{display:flex;justify-content:center;margin:4px 0}
+.boogie-float svg{width:125px;height:auto;filter:drop-shadow(0 12px 22px rgba(124,92,255,.5));animation:bob 3.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+.boogie-float .mouth{display:none}.boogie-float svg[data-mood="happy"] .m-happy,.boogie-float svg[data-mood="idle"] .m-smile,.boogie-float svg[data-mood="sad"] .m-sad,.boogie-float svg[data-mood="talk"] .m-open{display:inline}
+.boogie-float svg[data-mood="talk"] .m-open{transform-origin:center;transform-box:fill-box;animation:talk .3s infinite alternate}
 @keyframes talk{from{transform:scaleY(.4)}to{transform:scaleY(1.3)}}
-.buddy-float .blink{transform-origin:center;animation:blink 4s infinite}
+.boogie-float .blink{transform-origin:center;animation:blink 4s infinite}
 @keyframes blink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
-.bubble{background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-radius:20px;padding:10px 16px;font-weight:700;box-shadow:0 8px 20px rgba(80,50,150,.2);max-width:92%;margin:4px auto 12px;text-align:center;position:relative;font-size:.98rem;animation:pop .3s ease}
-.bubble::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:rgba(255,255,255,.85);border-bottom:0}
-.tabs{display:flex;gap:6px;background:rgba(255,255,255,.5);backdrop-filter:blur(14px);padding:5px;border-radius:999px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none}
+.bubble{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-radius:20px;padding:10px 16px;font-weight:700;box-shadow:0 8px 20px rgba(80,50,150,.2);max-width:94%;margin:4px auto 12px;text-align:center;position:relative;font-size:.98rem;animation:pop .3s ease}
+.bubble::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:rgba(255,255,255,.88);border-bottom:0}
+.tabs{display:flex;gap:6px;background:rgba(255,255,255,.55);backdrop-filter:blur(14px);padding:5px;border-radius:999px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tabs button{flex:none;border:none;background:transparent;padding:9px 14px;border-radius:999px;font-family:var(--font);font-weight:800;color:var(--soft);cursor:pointer;font-size:.82rem;white-space:nowrap}
 .tabs button.active{background:linear-gradient(135deg,#7c5cff,#ff5fa8);color:#fff;box-shadow:0 4px 12px rgba(124,92,255,.4)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.gcard{background:rgba(255,255,255,.55);backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.7);border-radius:22px;padding:14px 8px;text-align:center;cursor:pointer;transition:transform .12s;box-shadow:0 8px 20px rgba(80,50,150,.18)}
+.gcard{background:rgba(255,255,255,.6);backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.75);border-radius:22px;padding:14px 8px;text-align:center;cursor:pointer;transition:transform .12s;box-shadow:0 8px 20px rgba(80,50,150,.18)}
 .gcard:active{transform:scale(.95)}
-.gcard .em{font-size:2.4rem;line-height:1}.gcard .nm{font-weight:800;font-size:.88rem;line-height:1.15;margin-top:5px}.gcard .st{font-size:.72rem;color:var(--soft);margin-top:2px}
+.gcard .em{font-size:2.4rem;line-height:1}.gcard .nm{font-weight:800;font-size:.86rem;line-height:1.15;margin-top:5px}.gcard .st{font-size:.72rem;color:var(--soft);margin-top:2px}
 .fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fc{background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border-radius:18px;padding:14px 8px;text-align:center;cursor:pointer;position:relative;box-shadow:0 6px 16px rgba(80,50,150,.15)}
+.fc{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-radius:18px;padding:14px 8px;text-align:center;cursor:pointer;position:relative;box-shadow:0 6px 16px rgba(80,50,150,.15)}
 .fc .em{font-size:2.6rem}.fc .wd{font-weight:800;font-size:1rem;margin-top:4px}.fc .ap{font-size:.72rem;color:var(--soft);font-style:italic}
 .fc .sp{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:50%;border:none;background:#bae1ff;font-size:.85rem;cursor:pointer}
 .q-target{text-align:center;font-size:4rem;margin:6px 0;animation:pop .3s ease;min-height:64px}
-.q-word{text-align:center;font-weight:800;font-size:1.25rem;margin-bottom:4px}
+.q-word{text-align:center;font-weight:800;font-size:1.2rem;margin-bottom:4px}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.opt{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border:none;border-radius:16px;padding:14px 8px;font-family:var(--font);font-weight:800;font-size:1.05rem;box-shadow:0 6px 16px rgba(80,50,150,.18);cursor:pointer;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px}
+.opt{background:rgba(255,255,255,.78);backdrop-filter:blur(10px);border:none;border-radius:16px;padding:14px 8px;font-family:var(--font);font-weight:800;font-size:1.05rem;box-shadow:0 6px 16px rgba(80,50,150,.18);cursor:pointer;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px}
 .opt .em{font-size:2rem}.opt.ok{background:linear-gradient(135deg,#22c58b,#6ee7b7);color:#fff;animation:pop .35s}.opt.bad{background:linear-gradient(135deg,#ff7a6b,#ffb199);color:#fff;animation:shake .4s}.opt:disabled{pointer-events:none}
 .mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .mem{aspect-ratio:1;border-radius:14px;border:none;cursor:pointer;font-size:1.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#7c5cff,#ff5fa8);box-shadow:0 6px 14px rgba(124,92,255,.35);display:flex;align-items:center;justify-content:center;transition:transform .25s}
@@ -79,15 +78,15 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3
 .sbtn{aspect-ratio:1;border:none;border-radius:24px;cursor:pointer;opacity:.5;transition:opacity .15s,transform .15s}
 .sbtn.lit{opacity:1;transform:scale(1.06)}
 .sbtn:nth-child(1){background:#22c58b}.sbtn:nth-child(2){background:#ff5fa8}.sbtn:nth-child(3){background:#fbbf24}.sbtn:nth-child(4){background:#3b82f6}
-.dict-search{width:100%;border:2px solid rgba(255,255,255,.8);background:rgba(255,255,255,.6);backdrop-filter:blur(10px);border-radius:999px;padding:12px 18px;font-family:var(--font);font-size:1rem;outline:none;margin-bottom:10px}
-.dict-item{background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border-radius:14px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.dict-search{width:100%;border:2px solid rgba(255,255,255,.8);background:rgba(255,255,255,.65);backdrop-filter:blur(10px);border-radius:999px;padding:12px 18px;font-family:var(--font);font-size:1rem;outline:none;margin-bottom:10px}
+.dict-item{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-radius:14px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
 .dict-item .en{font-weight:800;color:var(--accent)}.dict-item .ap{font-style:italic;color:var(--soft);font-size:.8rem}.dict-item .es{font-size:.88rem}
 .spk{border:none;background:#bae1ff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.9rem;flex:none}
 .feedback{text-align:center;font-weight:800;min-height:26px;margin-top:10px;font-size:1.05rem}
 .center{text-align:center}.mt{margin-top:12px}.muted{color:var(--soft)}
 .pbar{height:18px;background:rgba(255,255,255,.5);border-radius:999px;overflow:hidden;margin:8px 0}
 .pbar>div{height:100%;background:linear-gradient(90deg,#fbbf24,#ff5fa8,#7c5cff);transition:width .5s;border-radius:999px}
-.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:560px;background:rgba(255,255,255,.6);backdrop-filter:blur(18px);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(80,50,150,.25);z-index:50;border-radius:22px 22px 0 0}
+.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:560px;background:rgba(255,255,255,.65);backdrop-filter:blur(18px);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(80,50,150,.25);z-index:50;border-radius:22px 22px 0 0}
 .bottomnav button{background:none;border:none;cursor:pointer;font-family:var(--font);display:flex;flex-direction:column;align-items:center;font-weight:800;font-size:.68rem;color:var(--soft);padding:4px;min-width:60px}
 .bottomnav button .i{font-size:1.4rem}.bottomnav button.active{color:var(--accent)}
 .overlay{display:none;position:fixed;inset:0;background:rgba(42,30,78,.5);z-index:100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)}
@@ -96,6 +95,8 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3
 .stars-big{font-size:2.4rem;letter-spacing:3px}
 .burst{position:fixed;pointer-events:none;z-index:200;font-size:1.3rem;animation:burst .9s ease-out forwards}
 @keyframes burst{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.2) rotate(360deg);opacity:0}}
+.read-word{text-align:center;font-size:2.4rem;font-weight:800;letter-spacing:6px;color:var(--accent);margin:8px 0}
+.read-emoji{text-align:center;font-size:4.5rem}
 @media(max-width:360px){.fc .em{font-size:2.1rem}.gcard .em{font-size:2rem}}
 </style>
 </head>
@@ -105,24 +106,25 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3
 
 <section class="view active" id="view-home">
   <div style="height:6px"></div>
-  <h1>✨ BUDDY ACADEMY PRO ✨</h1>
-  <p class="sub">60 juegos premium · 100% gratis · Aprendé castellano e inglés jugando</p>
-  <div class="buddy-float" id="buddyHome"></div>
-  <div class="bubble" id="homeBubble">¡Hola! Soy Buddy, floto y te enseño todo. ¿Qué jugamos?</div>
+  <h1>🪩 BOOGIE ACADEMY PRO 🪩</h1>
+  <p class="sub">Más de 80 juegos premium · 100% gratis · Boogie te habla en castellano y te enseña inglés</p>
+  <div class="boogie-float" id="boogieHome"></div>
+  <div class="bubble" id="homeBubble">¡Hola! Soy Boogie, floto y te enseño todo. ¿Qué jugamos?</div>
   <div class="glass center" style="padding:12px 16px;margin-bottom:12px">
-    <div style="font-weight:800;font-size:.95rem">⭐ <span id="homeStars">0</span> estrellas · <span id="homeDone">0</span>/60 juegos</div>
+    <div style="font-weight:800;font-size:.95rem">⭐ <span id="homeStars">0</span> estrellas · <span id="homeDone">0</span>/80 juegos</div>
     <div class="pbar"><div id="homeBar" style="width:0%"></div></div>
   </div>
   <div class="tabs" id="homeTabs">
     <button class="active" data-cat="all">🌟 Todos</button>
     <button data-cat="abc">🔤 ABC</button>
+    <button data-cat="leer">📖 Leer</button>
     <button data-cat="mate">🔢 Mate</button>
     <button data-cat="vocab">📚 Vocab</button>
     <button data-cat="en">🗣️ Inglés</button>
     <button data-cat="logic">🧠 Lógica</button>
   </div>
   <div class="grid" id="gameGrid"></div>
-  <p class="center mt" style="color:#fff;font-weight:700;font-size:.78rem;text-shadow:0 2px 6px rgba(0,0,0,.2)">Funciones premium desbloqueadas: voz, progreso, diccionario y los 60 juegos. Sin anuncios 💜</p>
+  <p class="center mt" style="color:#fff;font-weight:700;font-size:.78rem;text-shadow:0 2px 6px rgba(0,0,0,.2)">Funciones premium desbloqueadas: voz de Boogie, progreso, diccionario, oraciones y todos los juegos. Sin anuncios 💜</p>
 </section>
 
 <section class="view" id="view-game">
@@ -131,7 +133,7 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3
     <h2 id="gameTitle">Juego</h2>
     <div class="pill">⭐ <span id="gameStars">0</span>/3</div>
   </div>
-  <div class="buddy-float" id="buddyGame"></div>
+  <div class="boogie-float" id="boogieGame"></div>
   <div class="bubble" id="gameBubble">¡Vamos!</div>
   <div id="gameArea"></div>
 </section>
@@ -151,7 +153,7 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3
 
 <div class="overlay" id="winOverlay">
   <div class="glass">
-    <div class="buddy-float" id="buddyWin"></div>
+    <div class="boogie-float" id="boogieWin"></div>
     <div style="font-size:1.5rem;font-weight:800" id="winTitle">¡Muy bien!</div>
     <div class="stars-big mt" id="winStars">⭐⭐⭐</div>
     <p class="muted mt" id="winText">¡Ganaste estrellas!</p>
@@ -162,388 +164,900 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3
   </div>
 </div>
 
-</div>
-
-<nav class="bottomnav">
-  <button data-goto="home" class="active"><span class="i">🎮</span>Juegos</button>
-  <button data-goto="dict"><span class="i">📚</span>Diccionario</button>
-  <button data-goto="prog"><span class="i">⭐</span>Progreso</button>
-</nav>
-
-<script>
-(function(){
-'use strict';
-var BUDDY='<svg data-mood="idle" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ab8ff"/><stop offset="1" stop-color="#a06bff"/></linearGradient><radialGradient id="cc" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff9ecb" stop-opacity=".9"/><stop offset="1" stop-color="#ff9ecb" stop-opacity="0"/></radialGradient></defs><line x1="100" y1="46" x2="100" y2="22" stroke="#8a7ad0" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="16" r="9" fill="#ffe066" stroke="#fff" stroke-width="3"/><ellipse cx="46" cy="92" rx="14" ry="20" fill="url(#bb)"/><ellipse cx="154" cy="92" rx="14" ry="20" fill="url(#bb)"/><rect x="38" y="46" width="124" height="108" rx="46" fill="url(#bb)" stroke="#fff" stroke-width="4"/><ellipse cx="100" cy="130" rx="42" ry="30" fill="#eef4ff" opacity=".85"/><circle cx="76" cy="128" r="16" fill="url(#cc)"/><circle cx="124" cy="128" r="16" fill="url(#cc)"/><g class="blink"><ellipse cx="78" cy="92" rx="15" ry="17" fill="#fff"/><ellipse cx="122" cy="92" rx="15" ry="17" fill="#fff"/><circle cx="80" cy="95" r="7.5" fill="#2a1e4e"/><circle cx="124" cy="95" r="7.5" fill="#2a1e4e"/><circle cx="83" cy="92" r="2.5" fill="#fff"/><circle cx="127" cy="92" r="2.5" fill="#fff"/></g><path class="mouth m-smile" d="M84 118 Q100 132 116 118" stroke="#2a1e4e" stroke-width="4.5" fill="none" stroke-linecap="round"/><path class="mouth m-happy" d="M80 114 Q100 140 120 114 Q100 126 80 114 Z" fill="#2a1e4e"/><ellipse class="mouth m-open" cx="100" cy="122" rx="11" ry="13" fill="#2a1e4e"/><path class="mouth m-sad" d="M84 128 Q100 116 116 128" stroke="#2a1e4e" stroke-width="4.5" fill="none" stroke-linecap="round"/><rect x="60" y="152" width="80" height="46" rx="22" fill="url(#bb)" stroke="#fff" stroke-width="4"/><circle cx="100" cy="175" r="12" fill="#ffe066"/><ellipse cx="74" cy="208" rx="16" ry="9" fill="#5b8cff"/><ellipse cx="126" cy="208" rx="16" ry="9" fill="#a06bff"/></svg>';
-function $(id){return document.getElementById(id);}
-function buddyIn(el,m){el.innerHTML=BUDDY;var s=el.querySelector('svg');if(s&&m)s.setAttribute('data-mood',m);}
-function mood(el,m){var s=el.querySelector('svg');if(s)s.setAttribute('data-mood',m);}
-/* AUDIO */
-var AC=null;
-function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC;}
-function tone(f,d,t,v,dl){var c=ac();if(!c)return;var t0=c.currentTime+(dl||0),o=c.createOscillator(),g=c.createGain();o.type=t||'sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(v||.15,t0+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+.05);}
-function sOk(){tone(523,.15,'sine',.18,0);tone(659,.15,'sine',.18,.12);tone(784,.25,'sine',.2,.24);}
-function sNo(){tone(220,.2,'sine',.12,0);tone(180,.25,'sine',.1,.15);}
-function sTap(){tone(660,.1,'triangle',.1);}
-function sCheer(){[523,659,784,1047].forEach(function(f,i){tone(f,.18,'triangle',.15,i*.1);});}
-function speak(text,lang,cb){if(!('speechSynthesis' in window)){if(cb)setTimeout(cb,300);return;}try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-AR';u.rate=.9;u.pitch=1.15;var vs=speechSynthesis.getVoices(),v=vs.filter(function(x){return (x.lang||'').indexOf(lang.split('-')[0])===0;})[0]||vs[0];if(v)u.voice=v;if(cb){u.onend=cb;u.onerror=cb;}speechSynthesis.speak(u);}catch(e){if(cb)cb();}}
-function buddySay(el,bub,text,m,lang){mood(el,m||'talk');bub.textContent=text;speak(text,lang,function(){setTimeout(function(){mood(el,'idle');},900);});}
-/* UTILS */
-function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
-function optsWith(target,pool,n){var d=shuffle(pool.filter(function(x){return x!==target;})).slice(0,(n||4)-1);return shuffle([target].concat(d));}
-function burst(x,y){var em=['⭐','🌟','✨','💫','🎈'];for(var i=0;i<12;i++){var s=document.createElement('span');s.className='burst';s.textContent=em[i%5];s.style.left=x+'px';s.style.top=y+'px';var an=Math.PI*2*i/12,di=60+Math.random()*60;s.style.setProperty('--dx',Math.cos(an)*di+'px');s.style.setProperty('--dy',Math.sin(an)*di+'px');document.body.appendChild(s);(function(el){setTimeout(function(){el.remove();},950);})(s);}}
-/* PROGRESO */
-var KEY='buddyAcademyProV1', prog=load();
-function load(){try{var r=localStorage.getItem(KEY);if(r)return JSON.parse(r);}catch(e){}return{stars:{},done:{}};}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(prog));}catch(e){}}
-function stats(){var t=0,d=0;for(var k in prog.stars){t+=prog.stars[k]||0;if(prog.done[k])d++;}return{t:t,d:d};}
-function updateHome(){var s=stats();$('homeStars').textContent=s.t;$('homeDone').textContent=s.d;$('homeBar').style.width=Math.round(s.d/60*100)+'%';}
-/* NAV */
-function show(v){document.querySelectorAll('.view').forEach(function(x){x.classList.remove('active');});$('view-'+v).classList.add('active');window.scrollTo(0,0);if(v==='prog')renderProg();if(v==='dict')renderDict('');}
-document.querySelectorAll('[data-goto]').forEach(function(b){b.addEventListener('click',function(){sTap();show(b.dataset.goto);});});
-document.querySelectorAll('.bottomnav button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.bottomnav button').forEach(function(x){x.classList.remove('active');});b.classList.add('active');});});
-$('backHome').addEventListener('click',function(){sTap();show('home');});
-/* DATOS vocab: [en, emoji, aprox, esp] */
-var ANI=[['Dog','🐶','dóg','perro'],['Cat','🐱','ket','gato'],['Lion','🦁','láion','león'],['Elephant','🐘','élefant','elefante'],['Monkey','🐵','mánki','mono'],['Tiger','🐯','táiger','tigre'],['Rabbit','🐰','rábit','conejo'],['Cow','🐮','cau','vaca'],['Duck','🦆','dák','pato'],['Frog','🐸','frog','rana'],['Bear','🐻','ber','oso'],['Fish','🐟','fish','pez'],['Bird','🐦','berd','pájaro'],['Horse','🐴','jors','caballo'],['Pig','🐷','pig','cerdo']];
-var COL=[['Red','🔴','red','rojo'],['Blue','🔵','blú','azul'],['Green','🟢','grín','verde'],['Yellow','🟡','yélou','amarillo'],['Orange','🟠','órinch','naranja'],['Purple','🟣','pérpol','violeta'],['Pink','🌸','pink','rosa'],['Brown','🟤','braun','marrón'],['Black','⚫','blak','negro'],['White','⚪','juait','blanco']];
-var FOO=[['Apple','🍎','ápol','manzana'],['Banana','🍌','banána','banana'],['Orange','🍊','órinch','naranja'],['Bread','🍞','bred','pan'],['Milk','🥛','milk','leche'],['Egg','🥚','eg','huevo'],['Cheese','🧀','chís','queso'],['Water','💧','uóter','agua'],['Juice','🧃','yus','jugo'],['Cake','🎂','keik','torta'],['Cookie','🍪','kúki','galletita'],['Pizza','🍕','pitsa','pizza'],['Rice','🍚','rais','arroz'],['Pasta','🍝','pasta','fideos']];
-var NUM=[['One','1️⃣','uán','uno'],['Two','2️⃣','tú','dos'],['Three','3️⃣','zrí','tres'],['Four','4️⃣','for','cuatro'],['Five','5️⃣','faiv','cinco'],['Six','6️⃣','siks','seis'],['Seven','7️⃣','séven','siete'],['Eight','8️⃣','éit','ocho'],['Nine','9️⃣','náin','nueve'],['Ten','🔟','ten','diez']];
-var BODY=[['Head','🙂','jed','cabeza'],['Eye','👁️','ai','ojo'],['Nose','👃','nous','nariz'],['Mouth','👄','máuz','boca'],['Ear','👂','iar','oreja'],['Hand','✋','jand','mano'],['Foot','🦶','fut','pie'],['Arm','💪','arm','brazo'],['Leg','🦵','leg','pierna'],['Hair','💇','jer','pelo']];
-var HOUSE=[['House','🏠','jaus','casa'],['Door','🚪','dor','puerta'],['Window','🪟','uíndou','ventana'],['Bed','🛏️','bed','cama'],['Table','🪑','téibel','mesa'],['Chair','🪑','cher','silla'],['Lamp','💡','lamp','lámpara'],['Book','📕','buk','libro'],['Cup','🥤','kap','taza'],['Key','🔑','ki','llave']];
-var CLOTH=[['Hat','🎩','jat','sombrero'],['Shoes','👟','shus','zapatos'],['Dress','👗','dres','vestido'],['Socks','🧦','soks','medias'],['Coat','🧥','kout','campera'],['Shirt','👕','shert','remera'],['Pants','👖','pants','pantalón'],['Gloves','🧤','glávs','guantes'],['Skirt','👗','skert','falda'],['Boots','🥾','buts','botas']];
-var SHAPE=[['Circle','🔴','sérkol','círculo'],['Square','🟦','skuér','cuadrado'],['Triangle','🔺','tráiángel','triángulo'],['Star','⭐','star','estrella'],['Heart','❤️','jart','corazón'],['Oval','🥚','óuval','óvalo'],['Diamond','💎','dáimond','rombo'],['Rectangle','▭','réktanguel','rectángulo']];
-var SCHOOL=[['School','🏫','skul','escuela'],['Teacher','👩‍🏫','tícher','maestro'],['Book','📕','buk','libro'],['Pencil','✏️','pénsil','lápiz'],['Eraser','🧽','iréiser','goma'],['Ruler','📏','rúler','regla'],['Scissors','✂️','sízers','tijera'],['Glue','🧴','glu','pegamento'],['Paper','📄','péiper','papel'],['Desk','🪑','desk','escritorio']];
-var NATURE=[['Sun','☀️','san','sol'],['Moon','🌙','mun','luna'],['Star','⭐','star','estrella'],['Cloud','☁️','klaud','nube'],['Rain','🌧️','rein','lluvia'],['Tree','🌳','tri','árbol'],['Flower','🌸','fláuer','flor'],['River','🏞️','ríver','río'],['Mountain','⛰️','máuntin','montaña'],['Beach','🏖️','bích','playa']];
-var TRANS=[['Car','🚗','kar','auto'],['Bus','🚌','bas','colectivo'],['Train','🚂','trén','tren'],['Plane','✈️','pléin','avión'],['Boat','⛵','bout','barco'],['Bike','🚲','baik','bicicleta'],['Truck','🚚','trak','camión'],['Rocket','🚀','róket','cohete'],['Taxi','🚕','táksi','taxi'],['Helicopter','🚁','jelícopter','helicóptero']];
-var FOOD2=[['Pizza','🍕','pitsa','pizza'],['Burger','🍔','bérger','hamburguesa'],['Hot dog','🌭','jot dóg','pancho'],['Fries','🍟','frais','papas fritas'],['Soup','🍲','sup','sopa'],['Salad','🥗','sáled','ensalada'],['Ice cream','🍦','ais críim','helado'],['Donut','🍩','dónat','dona'],['Candy','🍬','kéndi','caramelo'],['Chocolate','🍫','chócolat','chocolate']];
-var EMOT=[['Happy','😄','jápi','feliz'],['Sad','😢','sad','triste'],['Angry','😠','ángri','enojado'],['Surprised','😲','serpráisd','sorpresa'],['Tired','😴','táierd','cansado'],['Scared','😱','skerd','asustado'],['Sleepy','😪','slípi','con sueño'],['Silly','🤪','síli','chistoso']];
-var ACTION=[['Eat','🍽️','it','comer'],['Drink','🥤','drink','beber'],['Sleep','😴','slip','dormir'],['Run','🏃','ran','correr'],['Jump','🤸','yamp','saltar'],['Sing','🎤','sing','cantar'],['Dance','💃','dans','bailar'],['Read','📖','rid','leer'],['Play','🧸','plei','jugar'],['Swim','🏊','suim','nadar']];
-var FAMILY=[['Mom','👩','mam','mamá'],['Dad','👨','dad','papá'],['Brother','👦','bráder','hermano'],['Sister','👧','síster','hermana'],['Baby','👶','béibi','bebé'],['Grandpa','👴','gránpa','abuelo'],['Grandma','👵','gránma','abuela'],['Family','👨‍👩‍👧','fémi li','familia'],['Friend','🧑‍🤝‍🧑','frend','amigo'],['Pet','🐶','pet','mascota']];
-var WEATHER=[['Sunny','☀️','sáni','soleado'],['Rainy','🌧️','réini','lluvioso'],['Cloudy','☁️','kláudi','nublado'],['Snowy','❄️','snói','nevado'],['Windy','💨','uíndi','ventoso'],['Hot','🔥','jot','calor'],['Cold','❄️','kould','frío'],['Warm','🧥','uórm','tibio']];
-var SPORT=[['Ball','⚽','bol','pelota'],['Football','⚽','futbol','fútbol'],['Basketball','🏀','básketbol','básquet'],['Swim','🏊','suim','nadar'],['Bike','🚲','baik','andar en bici'],['Run','🏃','ran','correr'],['Jump','🤸','yamp','saltar'],['Racket','🎾','ráket','raqueta']];
-var MUSIC=[['Guitar','🎸','guítar','guitarra'],['Piano','🎹','piáno','piano'],['Drum','🥁','dram','tambor'],['Violin','🎻','vaiolín','violín'],['Flute','🪈','flut','flauta'],['Sing','🎤','sing','cantar'],['Song','🎵','song','canción'],['Music','🎶','miusik','música']];
-var JOBS=[['Doctor','👨‍⚕️','dócter','médico'],['Teacher','👩‍🏫','tícher','maestro'],['Firefighter','👨‍🚒','fáirfáiter','bombero'],['Pilot','👨‍✈️','páilot','piloto'],['Chef','👨‍🍳','shef','cocinero'],['Astronaut','👨‍🚀','ástronot','astronauta'],['Artist','👨‍🎨','ártist','artista'],['Police','👮','polís','policía']];
-var ABC=[['A','Apple','🍎','ápol','manzana'],['B','Ball','⚽','bol','pelota'],['C','Cat','🐱','ket','gato'],['D','Dog','🐶','dóg','perro'],['E','Elephant','🐘','élefant','elefante'],['F','Fish','🐟','fish','pez'],['G','Giraffe','🦒','yiráf','jirafa'],['H','House','🏠','jaus','casa'],['I','Ice cream','🍦','ais críim','helado'],['J','Juice','🧃','yus','jugo'],['K','Kite','🪁','kait','barrilete'],['L','Lion','🦁','láion','león'],['M','Monkey','🐵','mánki','mono'],['N','Nose','👃','nous','nariz'],['O','Orange','🍊','órinch','naranja'],['P','Pig','🐷','pig','cerdo'],['Q','Queen','👸','kuín','reina'],['R','Rainbow','🌈','réinbou','arcoíris'],['S','Sun','☀️','san','sol'],['T','Tiger','🐯','táiger','tigre'],['U','Umbrella','☂️','ambréla','paraguas'],['V','Violin','🎻','vaiolín','violín'],['W','Water','💧','uóter','agua'],['X','Xylophone','🎹','sáilofoun','xilófono'],['Y','Yogurt','🍦','ióguert','yogur'],['Z','Zebra','🦓','zébra','cebra']];
-var SPELL=[['Dog','🐶'],['Cat','🐱'],['Sun','☀️'],['Moon','🌙'],['Fish','🐟'],['Book','📕'],['Ball','⚽'],['Tree','🌳'],['Cake','🎂'],['Frog','🐸'],['Star','⭐'],['Bird','🐦']];
-var PHRASES=[['Hello!','¡Hola!','jeló'],['Thank you!','¡Gracias!','zank yu'],['Please','Por favor','plís'],['Sorry','Perdón','sóri'],['Goodbye!','¡Adiós!','gudbái'],['Yes','Sí','yes'],['No','No','nou'],['I love you','Te quiero','ai lav yu'],['How are you?','¿Cómo estás?','jau ar yu'],['I am happy','Estoy feliz','ai am jápi'],['I am hungry','Tengo hambre','ai am jángri'],['I am thirsty','Tengo sed','ai am zérsti'],['I am tired','Estoy cansado','ai am táierd'],['Can you help me?','¿Me ayudás?','ken iu jelp mi'],['What is your name?','¿Cómo te llamás?','juat is iuor néim'],['My name is...','Me llamo...','mai néim is'],['See you later!','¡Hasta luego!','si yu léiter'],['Good morning!','¡Buenos días!','gud mórning'],['Good night!','¡Buenas noches!','gud náit'],['Let us play!','¡Juguemos!','lets plei']];
-function flashSet(arr){return arr.map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};});}
-/* 60 JUEGOS */
-var GAMES=[
-{id:1,n:'Tarjetas del ABC',e:'🔤',c:'abc',engine:'flash',cfg:{title:'ABC',set:ABC.map(function(x){return {w:x[1],em:x[2],ap:x[3],es:x[4],extra:x[0]};})}},
-{id:2,n:'Escuchá la letra',e:'👂',c:'abc',engine:'quiz',cfg:{mode:'letter'}},
-{id:3,n:'Encontrá la letra',e:'🔍',c:'abc',engine:'quiz',cfg:{mode:'letterFind'}},
-{id:4,n:'Mayúscula ↔ minúscula',e:'🔡',c:'abc',engine:'match',cfg:{pairs:ABC.slice(0,8).map(function(x){return [x[0],x[0].toLowerCase()];})}},
-{id:5,n:'Deletreá la palabra',e:'✨',c:'abc',engine:'spell',cfg:{set:SPELL}},
-{id:6,n:'Letra que falta',e:'❓',c:'abc',engine:'quiz',cfg:{mode:'missingLetter'}},
-{id:7,n:'Sumar hasta 10',e:'➕',c:'mate',engine:'math',cfg:{op:'+',max:10}},
-{id:8,n:'Sumar hasta 20',e:'➕',c:'mate',engine:'math',cfg:{op:'+',max:20}},
-{id:9,n:'Restar hasta 10',e:'➖',c:'mate',engine:'math',cfg:{op:'-',max:10}},
-{id:10,n:'Restar hasta 20',e:'➖',c:'mate',engine:'math',cfg:{op:'-',max:20}},
-{id:11,n:'Contar objetos',e:'🔢',c:'mate',engine:'quiz',cfg:{mode:'count'}},
-{id:12,n:'¿Mayor o menor?',e:'⚖️',c:'mate',engine:'quiz',cfg:{mode:'compare'}},
-{id:13,n:'¿Qué número sigue?',e:'🔢',c:'mate',engine:'quiz',cfg:{mode:'sequence'}},
-{id:14,n:'Multiplicar fácil',e:'✖️',c:'mate',engine:'math',cfg:{op:'x',max:5}},
-{id:15,n:'Tarjetas de animales',e:'🦁',c:'vocab',engine:'flash',cfg:{title:'Animales',set:flashSet(ANI)}},
-{id:16,n:'Tarjetas de colores',e:'🎨',c:'vocab',engine:'flash',cfg:{title:'Colores',set:flashSet(COL)}},
-{id:17,n:'Tarjetas de comida',e:'🍎',c:'vocab',engine:'flash',cfg:{title:'Comida',set:flashSet(FOO)}},
-{id:18,n:'Tarjetas de números',e:'🔢',c:'vocab',engine:'flash',cfg:{title:'Números',set:flashSet(NUM)}},
-{id:19,n:'Partes del cuerpo',e:'🙋',c:'vocab',engine:'flash',cfg:{title:'Cuerpo',set:flashSet(BODY)}},
-{id:20,n:'La casa',e:'🏠',c:'vocab',engine:'flash',cfg:{title:'Casa',set:flashSet(HOUSE)}},
-{id:21,n:'La ropa',e:'👕',c:'vocab',engine:'flash',cfg:{title:'Ropa',set:flashSet(CLOTH)}},
-{id:22,n:'Formas geométricas',e:'🔷',c:'vocab',engine:'flash',cfg:{title:'Formas',set:flashSet(SHAPE)}},
-{id:23,n:'La escuela',e:'🏫',c:'vocab',engine:'flash',cfg:{title:'Escuela',set:flashSet(SCHOOL)}},
-{id:24,n:'La naturaleza',e:'🌳',c:'vocab',engine:'flash',cfg:{title:'Naturaleza',set:flashSet(NATURE)}},
-{id:25,n:'Transportes',e:'🚗',c:'vocab',engine:'flash',cfg:{title:'Transportes',set:flashSet(TRANS)}},
-{id:26,n:'Comida rápida',e:'🍔',c:'vocab',engine:'flash',cfg:{title:'Comida',set:flashSet(FOOD2)}},
-{id:27,n:'Emociones',e:'😄',c:'vocab',engine:'flash',cfg:{title:'Emociones',set:flashSet(EMOT)}},
-{id:28,n:'Acciones',e:'🏃',c:'vocab',engine:'flash',cfg:{title:'Acciones',set:flashSet(ACTION)}},
-{id:29,n:'La familia',e:'👨‍👩‍👧',c:'vocab',engine:'flash',cfg:{title:'Familia',set:flashSet(FAMILY)}},
-{id:30,n:'El clima',e:'☀️',c:'vocab',engine:'flash',cfg:{title:'Clima',set:flashSet(WEATHER)}},
-{id:31,n:'Deportes',e:'⚽',c:'vocab',engine:'flash',cfg:{title:'Deportes',set:flashSet(SPORT)}},
-{id:32,n:'Instrumentos',e:'🎸',c:'vocab',engine:'flash',cfg:{title:'Música',set:flashSet(MUSIC)}},
-{id:33,n:'Profesiones',e:'👨‍🚀',c:'vocab',engine:'flash',cfg:{title:'Profesiones',set:flashSet(JOBS)}},
-{id:34,n:'Escuchá: animales',e:'👂🦁',c:'en',engine:'quiz',cfg:{mode:'listenPic',set:ANI}},
-{id:35,n:'Escuchá: colores',e:'👂🎨',c:'en',engine:'quiz',cfg:{mode:'listenPic',set:COL}},
-{id:36,n:'Escuchá: comida',e:'👂🍎',c:'en',engine:'quiz',cfg:{mode:'listenPic',set:FOO}},
-{id:37,n:'Escuchá: números',e:'👂🔢',c:'en',engine:'quiz',cfg:{mode:'listenNum'}},
-{id:38,n:'Escuchá: cuerpo',e:'👂🙋',c:'en',engine:'quiz',cfg:{mode:'listenPic',set:BODY}},
-{id:39,n:'Escuchá: casa',e:'👂🏠',c:'en',engine:'quiz',cfg:{mode:'listenPic',set:HOUSE}},
-{id:40,n:'Frases mágicas',e:'✨',c:'en',engine:'flash',cfg:{title:'Frases',set:PHRASES.map(function(x){return {w:x[0],em:'💬',ap:x[2],es:x[1]};})}},
-{id:41,n:'Repetí la palabra',e:'🎤',c:'en',engine:'repeat',cfg:{set:ANI.concat(COL).concat(FOO)}},
-{id:42,n:'Palabras opuestas',e:'↔️',c:'en',engine:'match',cfg:{pairs:[['☀️','Hot'],['❄️','Cold'],['⬆️','Up'],['⬇️','Down'],['Big','Grande'],['Small','Chico'],['Day','Día'],['Night','Noche']].map(function(p){return [p[0],p[1]];})}},
-{id:43,n:'Memoria de animales',e:'🦁',c:'logic',engine:'memory',cfg:{set:ANI.slice(0,6).map(function(x){return x[1];})}},
-{id:44,n:'Memoria de colores',e:'🎨',c:'logic',engine:'memory',cfg:{set:COL.slice(0,6).map(function(x){return x[1];})}},
-{id:45,n:'Memoria de números',e:'🔢',c:'logic',engine:'memory',cfg:{set:['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣']}},
-{id:46,n:'Memoria de emojis',e:'🎭',c:'logic',engine:'memory',cfg:{set:['🌟','🎈','🍭','🚀','🎁','🌈']}},
-{id:47,n:'Rompecabezas 3×3',e:'🧩',c:'logic',engine:'puzzle',cfg:{size:3}},
-{id:48,n:'Rompecabezas 4×4',e:'🧩',c:'logic',engine:'puzzle',cfg:{size:4}},
-{id:49,n:'Unir animal y nombre',e:'🤝',c:'logic',engine:'match',cfg:{pairs:ANI.slice(0,6).map(function(x){return [x[1],x[0]];})}},
-{id:50,n:'Unir comida y nombre',e:'🍎🤝',c:'logic',engine:'match',cfg:{pairs:FOO.slice(0,6).map(function(x){return [x[1],x[0]];})}},
-{id:51,n:'Simon dice colores',e:'🎵',c:'logic',engine:'simon',cfg:{}},
-{id:52,n:'Encontrá el intruso',e:'🕵️',c:'logic',engine:'quiz',cfg:{mode:'intruder'}},
-{id:53,n:'Adiviná el animal',e:'❓🦁',c:'logic',engine:'quiz',cfg:{mode:'riddle',set:ANI}},
-{id:54,n:'Seguí la secuencia',e:'🔁',c:'logic',engine:'quiz',cfg:{mode:'pattern'}},
-{id:55,n:'¿Qué hora es?',e:'🕐',c:'mate',engine:'quiz',cfg:{mode:'time'}},
-{id:56,n:'Contar dinero',e:'🪙',c:'mate',engine:'quiz',cfg:{mode:'money'}},
-{id:57,n:'Días de la semana',e:'📅',c:'vocab',engine:'quiz',cfg:{mode:'days'}},
-{id:58,n:'Colores en inglés',e:'🎨🗣️',c:'en',engine:'repeat',cfg:{set:COL}},
-{id:59,n:'Números en inglés',e:'🔢🗣️',c:'en',engine:'repeat',cfg:{set:NUM}},
-{id:60,n:'Quiz gigante',e:'🏆',c:'logic',engine:'quiz',cfg:{mode:'mega'}}
-];
-/* ======== ABRIR JUEGO ======== */
-var curGame=null, mistakes=0;
-function openGame(gm){
-  curGame=gm; mistakes=0;
-  $('gameTitle').textContent=gm.e+' '+gm.n;
-  $('gameStars').textContent=prog.stars[gm.id]||0;
-  buddyIn($('buddyGame'),'happy');
-  buddySay($('buddyGame'),$('gameBubble'),'¡Hola! Vamos a jugar a '+gm.n+'. ¡Vos podés!','talk','es-AR');
-  var area=$('gameArea'); area.innerHTML='';
-  try{
-    if(gm.engine==='flash') eFlash(area,gm.cfg);
-    else if(gm.engine==='quiz') eQuiz(area,gm.cfg);
-    else if(gm.engine==='math') eMath(area,gm.cfg);
-    else if(gm.engine==='memory') eMemory(area,gm.cfg);
-    else if(gm.engine==='puzzle') ePuzzle(area,gm.cfg);
-    else if(gm.engine==='match') eMatch(area,gm.cfg);
-    else if(gm.engine==='spell') eSpell(area,gm.cfg);
-    else if(gm.engine==='simon') eSimon(area,gm.cfg);
-    else if(gm.engine==='repeat') eRepeat(area,gm.cfg);
-  }catch(err){ area.innerHTML='<p class="center muted">Hubo un problema con este juego. Volvé al menú y probá otro 😊</p><div class="center mt"><button class="btn" onclick="location.reload()">Recargar</button></div>'; }
-  show('game');
-}
-function winGame(){
-  var stars=mistakes===0?3:(mistakes<=2?2:1);
-  var prev=prog.stars[curGame.id]||0;
-  if(stars>prev) prog.stars[curGame.id]=stars;
-  prog.done[curGame.id]=true; save(); updateHome();
-  sCheer(); buddyIn($('buddyWin'),'happy');
-  $('winStars').textContent='⭐'.repeat(stars)+'☆'.repeat(3-stars);
-  $('winTitle').textContent=stars===3?'¡Perfecto! 🌟':(stars===2?'¡Muy bien!':'¡Bien hecho!');
-  $('winText').textContent='Ganaste '+stars+' estrellas de 3. ¡Seguí así!';
-  $('winOverlay').classList.add('show');
-  speak($('winTitle').textContent,'es-AR');
-}
-$('againBtn').addEventListener('click',function(){sTap();$('winOverlay').classList.remove('show');openGame(curGame);});
-$('menuBtn').addEventListener('click',function(){sTap();$('winOverlay').classList.remove('show');show('home');});
-/* ======== FLASH ======== */
-function eFlash(area,cfg){
-  var h='<p class="center" style="color:#fff;font-weight:700;font-size:.85rem;text-shadow:0 2px 6px rgba(0,0,0,.2)">Tocá una tarjeta o el 🔊 para escuchar en inglés</p><div class="fc-grid">';
-  cfg.set.forEach(function(it){h+='<div class="fc" data-w="'+it.w+'"><button class="sp">🔊</button><div class="em">'+it.em+'</div><div class="wd">'+it.w+(it.extra?' <span style="color:var(--soft);font-size:.75rem">('+it.extra+')</span>':'')+'</div><div class="ap">se dice: '+it.ap+' · '+it.es+'</div></div>';});
-  h+='</div><div class="center mt"><button class="btn btn-green" id="fDone">✅ ¡Las aprendí todas!</button></div>';
-  area.innerHTML=h;
-  area.addEventListener('click',function fcL(e){
-    var sp=e.target.closest('.sp');
-    if(sp){e.stopPropagation();sTap();speak(sp.parentNode.dataset.w,'en-US');return;}
-    var c=e.target.closest('.fc');
-    if(c){sTap();speak(c.dataset.w,'en-US');}
-    var d=e.target.closest('#fDone');
-    if(d){sTap();area.removeEventListener('click',fcL);winGame();}
-  });
-}
-/* ======== QUIZ ======== */
-function emap(set){var m={};set.forEach(function(x){m[x[0]]=x[1];});return m;}
-function makeQ(mode,cfg){
-  if(mode==='letter'){var t=ABC[Math.floor(Math.random()*26)];return{q:'Escuchá la letra y tocala',say:t[0],target:t[0],opts:optsWith(t[0],ABC.map(function(x){return x[0];}),4),display:'🔤',optEm:{}};}
-  if(mode==='letterFind'){var t=ABC[Math.floor(Math.random()*26)];return{q:'Tocá la letra: '+t[0],say:'Touch the letter '+t[0],target:t[0],opts:optsWith(t[0],ABC.map(function(x){return x[0];}),4),display:t[0],optEm:{}};}
-  if(mode==='listenPic'){var s=shuffle(cfg.set).slice(0,4),t=s[0];return{q:'Escuchá y tocá la imagen correcta',say:t[0],target:t[0],opts:shuffle(s).map(function(x){return x[0];}),display:t[1],optEm:emap(cfg.set)};}
-  if(mode==='listenNum'){var n=1+Math.floor(Math.random()*10),names=['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'],emj=['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];var oe={};names.forEach(function(x,i){oe[x]=emj[i];});return{q:'Escuchá el número',say:names[n-1],target:names[n-1],opts:optsWith(names[n-1],names,4),display:emj[n-1],optEm:oe};}
-  if(mode==='count'){var n=1+Math.floor(Math.random()*9),em=['🍎','⭐','🎈','🐶'][Math.floor(Math.random()*4)];return{q:'¿Cuántos hay? Contá en voz alta',say:'How many?',target:String(n),opts:optsWith(String(n),['1','2','3','4','5','6','7','8','9'].filter(function(x){return x!==String(n);}),4),display:em.repeat(n),big:true};}
-  if(mode==='compare'){var a=1+Math.floor(Math.random()*20),b=1+Math.floor(Math.random()*20);while(b===a)b=1+Math.floor(Math.random()*20);var big=Math.max(a,b);return{q:'¿Cuál número es más grande?',say:'Which number is bigger?',target:String(big),opts:optsWith(String(big),['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'].filter(function(x){return x!==String(big);}),4),display:a+' ? '+b};}
-  if(mode==='sequence'){var st=1+Math.floor(Math.random()*8),miss=st+3;return{q:'¿Qué número sigue? '+st+', '+(st+1)+', '+(st+2)+', ?',say:'What number comes next?',target:String(miss),opts:optsWith(String(miss),['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'].filter(function(x){return x!==String(miss);}),4),display:st+' · '+(st+1)+' · '+(st+2)+' · ?'};}
-  if(mode==='pattern'){var pat=[['🍎','🍌','🍎','🍌','?','🍌'],['⭐','🌙','⭐','🌙','?','🌙'],['🔴','🔵','🔴','🔵','?','🔵'],['🐶','🐱','🐶','🐱','?','🐱']][Math.floor(Math.random()*4)];return{q:'¿Qué sigue en la fila?',say:'What comes next?',target:pat[5],opts:optsWith(pat[5],['🍎','🍌','⭐','🌙','🔴','🔵','🐶','🐱'],4),display:pat.slice(0,4).join(' ')+' ❓'};}
-  if(mode==='missingLetter'){var w=SPELL[Math.floor(Math.random()*SPELL.length)],pos=Math.floor(Math.random()*w[0].length),miss=w[0][pos].toUpperCase(),shown=w[0].split('').map(function(c,i){return i===pos?'_':c;}).join(' ');return{q:'¿Qué letra falta? '+shown,say:'Which letter is missing?',target:miss,opts:optsWith(miss,'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),4),display:w[1]+'  '+shown};}
-  if(mode==='intruder'){var th=[['🐶','🐱','🐰','🍎'],['🔴','🔵','🟢','🚗'],['🍎','🍌','🍇','👟'],['✈️','🚗','🚂','🐱']][Math.floor(Math.random()*4)],intr=th[3];return{q:'¿Cuál no pertenece al grupo?',say:'Which one does not belong?',target:intr,opts:shuffle(th),display:th.join(' '),big:true};}
-  if(mode==='riddle'){var s=shuffle(cfg.set).slice(0,4),t=s[0],clues={Dog:'Ladra y es el mejor amigo del hombre',Cat:'Maulla y le gusta la leche',Lion:'Es el rey de la selva',Elephant:'Es muy grande y tiene trompa',Monkey:'Come bananas y trepa árboles',Tiger:'Es rayado y feroz',Rabbit:'Come zanahorias y salta mucho',Cow:'Nos da la leche',Duck:'Hace cuac y nada en el agua',Frog:'Es verde y salta',Bear:'Es grande y le gusta la miel',Fish:'Vive en el agua y nada',Bird:'Vuela y canta',Horse:'Se monta y galopa',Pig:'Es rosado y le gusta el barro'};return{q:clues[t[0]]||'¿Qué animal es?',say:clues[t[0]]||'What animal is it?',target:t[0],opts:shuffle(s).map(function(x){return x[0];}),display:'❓',optEm:emap(cfg.set)};}
-  if(mode==='time'){var h=1+Math.floor(Math.random()*12);return{q:'Si la hora es '+h+', ¿qué número indica la hora?',say:'What time is it?',target:String(h),opts:optsWith(String(h),['1','2','3','4','5','6','7','8','9','10','11','12'].filter(function(x){return x!==String(h);}),4),display:'🕐 '+h+":00"};}
-  if(mode==='money'){var coins=[1,2,5,10],pick=shuffle(coins).slice(0,3),sum=pick.reduce(function(a,b){return a+b;},0);return{q:'Sumá estas monedas: '+pick.join(' + ')+' = ?',say:'How much money?',target:String(sum),opts:optsWith(String(sum),['1','2','3','5','6','7','8','10','12','13','15','17'].filter(function(x){return x!==String(sum);}),4),display:'🪙 '.repeat(Math.min(pick.length,5))};}
-  if(mode==='days'){var days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],esp=['lunes','martes','miércoles','jueves','viernes','sábado','domingo'],i=Math.floor(Math.random()*7);return{q:'¿Qué día es "'+esp[i]+'" en inglés?',say:esp[i],target:days[i],opts:optsWith(days[i],days,4),display:'📅 '+esp[i]};}
-  if(mode==='mega'){var modes=['listenPic','count','riddle','letter','compare','intruder'];var m=modes[Math.floor(Math.random()*modes.length)];return makeQ(m,{set:ANI});}
-  return null;
-}
-function eQuiz(area,cfg){
-  var total=5, idx=0;
-  function round(){
-    if(idx>=total){winGame();return;}
-    var q=makeQ(cfg.mode,cfg);
-    if(!q){winGame();return;}
-    var h='<div class="q-word">Pregunta '+(idx+1)+' de '+total+'</div>';
-    h+='<div class="q-target" style="font-size:'+(q.big?'1.8rem':'4rem')+'">'+q.display+'</div>';
-    h+='<div class="center" style="color:#fff;font-weight:700;text-shadow:0 2px 6px rgba(0,0,0,.25)">'+q.q+'</div>';
-    h+='<div class="center mt"><button class="btn btn-blue small" id="hearA">🔊 Escuchar de nuevo</button></div>';
-    h+='<div class="opts">'+q.opts.map(function(o){return '<button class="opt" data-o="'+o+'">'+(q.optEm&&q.optEm[o]?'<span class="em">'+q.optEm[o]+'</span>':'')+o+'</button>';}).join('')+'</div>';
-    h+='<div class="feedback" id="qFb"></div>';
-    area.innerHTML=h;
-    speak(q.say,'en-US');
-    $('hearA').addEventListener('click',function(){sTap();speak(q.say,'en-US');});
-    var locked=false;
-    area.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){
-      if(locked||b.disabled)return;
-      if(b.dataset.o===q.target){locked=true;sOk();b.classList.add('ok');burst(b.getBoundingClientRect().left+b.offsetWidth/2,b.getBoundingClientRect().top);$('qFb').innerHTML='<span style="color:#15803d">¡Muy bien! ⭐</span>';speak('Very good!','en-US');setTimeout(function(){idx++;round();},1300);}
-      else{mistakes++;sNo();b.classList.add('bad');b.disabled=true;$('qFb').innerHTML='<span style="color:#b91c1c">¡Casi! Probá otra vez 💪</span>';speak('Try again','en-US');setTimeout(function(){b.classList.remove('bad');},500);}
-    });});
-  }
-  round();
-}
-/* ======== MATH ======== */
-function eMath(area,cfg){
-  var total=5,idx=0;
-  function round(){
-    if(idx>=total){winGame();return;}
-    var a,b,ans;
-    if(cfg.op==='+'){a=1+Math.floor(Math.random()*(cfg.max-1));b=1+Math.floor(Math.random()*(cfg.max-a));ans=a+b;}
-    else if(cfg.op==='-'){a=2+Math.floor(Math.random()*(cfg.max-1));b=1+Math.floor(Math.random()*a);ans=a-b;}
-    else{a=1+Math.floor(Math.random()*cfg.max);b=1+Math.floor(Math.random()*cfg.max);ans=a*b;}
-    var opts=optsWith(String(ans),[String(ans+1),String(ans-1),String(ans+2),String(ans+3),String(ans-2)].filter(function(x){return Number(x)>=0;}),4);
-    var sym=cfg.op==='+'?'➕':(cfg.op==='-'?'➖':'✖️');
-    area.innerHTML='<div class="q-word">Cuenta '+(idx+1)+' de '+total+'</div><div class="q-target" style="font-size:2.6rem">'+a+' '+sym+' '+b+' = ?</div><div class="opts">'+opts.map(function(o){return '<button class="opt" data-o="'+o+'">'+o+'</button>';}).join('')+'</div><div class="feedback" id="mFb"></div>';
-    speak(a+' '+(cfg.op==='+'?'plus':cfg.op==='-'?'minus':'times')+' '+b+' equals','en-US');
-    var locked=false;
-    area.querySelectorAll('.opt').forEach(function(bt){bt.addEventListener('click',function(){
-      if(locked||bt.disabled)return;
-      if(bt.dataset.o===String(ans)){locked=true;sOk();bt.classList.add('ok');burst(bt.getBoundingClientRect().left+bt.offsetWidth/2,bt.getBoundingClientRect().top);$('mFb').innerHTML='<span style="color:#15803d">¡Correcto! ⭐</span>';speak('Correct!','en-US');setTimeout(function(){idx++;round();},1300);}
-      else{mistakes++;sNo();bt.classList.add('bad');bt.disabled=true;$('mFb').innerHTML='<span style="color:#b91c1c">Probá de nuevo 💪</span>';setTimeout(function(){bt.classList.remove('bad');},500);}
-    });});
-  }
-  round();
-}
-/* ======== MEMORY ======== */
-function eMemory(area,cfg){
-  var pairs=shuffle(cfg.set).slice(0,6),cards=shuffle(pairs.concat(pairs)),open=[],found=0,moves=0;
-  area.innerHTML='<p class="center" style="color:#fff;font-weight:700">Encontrá las 6 parejas</p><div class="mem-grid">'+cards.map(function(c,i){return '<button class="mem" data-v="'+c+'">?</button>';}).join('')+'</div><div class="feedback" id="memFb" style="color:#fff">Parejas: 0/6</div>';
-  area.querySelectorAll('.mem').forEach(function(b){b.addEventListener('click',function(){
-    if(b.classList.contains('open')||b.classList.contains('done')||open.length>=2)return;
-    sTap();b.classList.add('open');b.textContent=b.dataset.v;open.push(b);
-    if(open.length===2){moves++;
-      if(open[0].dataset.v===open[1].dataset.v){sOk();open.forEach(function(x){x.classList.add('done');});found++;open=[];$('memFb').textContent='Parejas: '+found+'/6';if(found===6){if(moves<=10)mistakes=0;else if(moves<=16)mistakes=1;else mistakes=2;setTimeout(winGame,800);}}
-      else{sNo();setTimeout(function(){open.forEach(function(x){x.classList.remove('open');x.textContent='?';});open=[];},800);}
-    }
-  });});
-}
-/* ======== PUZZLE ======== */
-function ePuzzle(area,cfg){
-  var n=cfg.size,total=n*n,board=[];for(var i=1;i<total;i++)board.push(i);board.push(0);
-  var empty=total-1;
-  for(var s=0;s<80;s++){var nb=[],er=Math.floor(empty/n),ec=empty%n;if(er>0)nb.push(empty-n);if(er<n-1)nb.push(empty+n);if(ec>0)nb.push(empty-1);if(ec<n-1)nb.push(empty+1);var r=nb[Math.floor(Math.random()*nb.length)];board[empty]=board[r];board[r]=0;empty=r;}
-  var emojis=['🌟','🎈','🍎','🐶','🌈','🎨','⚽','🚀','🌸','🎵','🍕','🦋','🌙','❤️','🎁','🐱'];
-  function render(){
-    area.innerHTML='<p class="center" style="color:#fff;font-weight:700">Ordená los números del 1 al '+(total-1)+'</p><div class="puz-grid" style="grid-template-columns:repeat('+n+',1fr);max-width:'+(n*95)+'px">'+board.map(function(v,i){return v===0?'<button class="puz empty"></button>':'<button class="puz" data-i="'+i+'">'+emojis[(v-1)%emojis.length]+'<br><span style="font-size:.9rem">'+v+'</span></button>';}).join('')+'</div><div class="center mt"><button class="btn btn-ghost small" id="pShuf">🔀 Mezclar de nuevo</button></div>';
-    area.querySelectorAll('.puz:not(.empty)').forEach(function(b){b.addEventListener('click',function(){
-      var i=Number(b.dataset.i),ei=board.indexOf(0),ir=Math.floor(i/n),ic=i%n,er=Math.floor(ei/n),ec=ei%n;
-      if((ir===er&&Math.abs(ic-ec)===1)||(ic===ec&&Math.abs(ir-er)===1)){sTap();board[ei]=board[i];board[i]=0;render();
-        if(board.every(function(v,idx){return idx===total-1?v===0:v===idx+1;})){sCheer();setTimeout(winGame,500);}}
-      else{sNo();b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');},400);}
-    });});
-    if($('pShuf'))$('pShuf').addEventListener('click',function(){sTap();ePuzzle(area,cfg);});
-  }
-  render();
-}
-/* ======== MATCH ======== */
-function eMatch(area,cfg){
-  var left=shuffle(cfg.pairs.map(function(p){return p[0];})),right=shuffle(cfg.pairs.map(function(p){return p[1];})),sel=null,found=0;
-  function render(){
-    area.innerHTML='<p class="center" style="color:#fff;font-weight:700">Tocá uno de cada columna que vayan juntos</p><div style="display:flex;gap:12px;justify-content:center"><div class="opts" style="grid-template-columns:1fr;flex:1">'+left.map(function(x){return '<button class="opt" data-v="'+x+'">'+x+'</button>';}).join('')+'</div><div class="opts" style="grid-template-columns:1fr;flex:1">'+right.map(function(x){return '<button class="opt" data-v="'+x+'">'+x+'</button>';}).join('')+'</div></div><div class="feedback" id="maFb" style="color:#fff">Parejas: 0/'+cfg.pairs.length+'</div>';
-    area.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){
-      if(b.classList.contains('ok'))return;sTap();
-      if(!sel){sel=b;b.style.outline='4px solid #7c5cff';}
-      else if(sel===b){sel.style.outline='';sel=null;}
-      else{
-        var pair=cfg.pairs.find(function(p){return (p[0]===sel.dataset.v&&p[1]===b.dataset.v)||(p[1]===sel.dataset.v&&p[0]===b.dataset.v);});
-        if(pair){sOk();sel.classList.add('ok');b.classList.add('ok');sel.disabled=b.disabled=true;found++;$('maFb').textContent='Parejas: '+found+'/'+cfg.pairs.length;if(found===cfg.pairs.length)setTimeout(winGame,700);}
-        else{mistakes++;sNo();sel.classList.add('shake');b.classList.add('shake');var s2=sel;setTimeout(function(){s2.classList.remove('shake');b.classList.remove('shake');s2.style.outline='';},500);}
-        sel=null;
-      }
-    });});
-  }
-  render();
-}
-/* ======== SPELL ======== */
-function eSpell(area,cfg){
-  var total=5,idx=0;
-  function round(){
-    if(idx>=total){winGame();return;}
-    var w=cfg.set[Math.floor(Math.random()*cfg.set.length)],letters=shuffle(w[0].split('')),picked=[];
-    function renderS(){
-      area.innerHTML='<div class="q-target">'+w[1]+'</div><div class="q-word">Deletreá: '+w[0].length+' letras</div><div class="slots">'+w[0].split('').map(function(_,i){return '<div class="slot">'+(picked[i]||'')+'</div>';}).join('')+'</div><div style="text-align:center">'+letters.map(function(l,i){return '<button class="letter '+(picked.indexOf(i)>=0?'used':'')+'" data-i="'+i+'">'+l+'</button>';}).join('')+'</div><div class="center mt"><button class="btn btn-ghost small" id="sHint">💡 Escuchar palabra</button> <button class="btn btn-pink small" id="sClr">↺ Borrar</button></div><div class="feedback" id="spFb"></div>';
-      area.querySelectorAll('.letter').forEach(function(b){b.addEventListener('click',function(){
-        if(b.classList.contains('used'))return;sTap();picked.push(Number(b.dataset.i));renderS();
-        if(picked.length===w[0].length){
-          var word=picked.map(function(i){return letters[i];}).join('');
-          if(word.toUpperCase()===w[0].toUpperCase()){sOk();$('spFb').innerHTML='<span style="color:#15803d">¡Perfecto! '+w[0]+' ⭐</span>';speak(w[0],'en-US');setTimeout(function(){idx++;round();},1400);}
-          else{mistakes++;sNo();$('spFb').innerHTML='<span style="color:#b91c1c">¡Casi! Es '+w[0]+'</span>';speak(w[0],'en-US');setTimeout(function(){picked=[];renderS();},1500);}
-        }
-      });});
-      if($('sHint'))$('sHint').addEventListener('click',function(){sTap();speak(w[0],'en-US');});
-      if($('sClr'))$('sClr').addEventListener('click',function(){sTap();picked=[];renderS();});
-    }
-    renderS();speak('Spell '+w[0],'en-US');
-  }
-  round();
-}
-/* ======== SIMON ======== */
-function eSimon(area,cfg){
-  var seq=[],userIdx=0,playing=false;
-  area.innerHTML='<p class="center" style="color:#fff;font-weight:700">Mirá la secuencia y repetila tocando los colores</p><div class="simon">'+[0,1,2,3].map(function(i){return '<button class="sbtn" data-i="'+i+'"></button>';}).join('')+'</div><div class="center mt"><button class="btn btn-green" id="siStart">▶ Empezar</button></div><div class="feedback" id="siFb" style="color:#fff">Nivel 1 · Llegá a 5 para ganar</div>';
-  var btns=area.querySelectorAll('.sbtn');
-  function playSeq(){playing=true;$('siFb').textContent='Mirá...';var i=0;
-    function step(){if(i>=seq.length){playing=false;$('siFb').textContent='¡A vos! Turno '+seq.length;userIdx=0;return;}var b=btns[seq[i]];tone([523,659,784,1047][seq[i]],.3,'sine',.2);b.classList.add('lit');setTimeout(function(){b.classList.remove('lit');i++;setTimeout(step,250);},450);}
-    setTimeout(step,600);
-  }
-  $('siStart').addEventListener('click',function(){sTap();seq=[];mistakes=0;seq.push(Math.floor(Math.random()*4));playSeq();});
-  btns.forEach(function(b){b.addEventListener('click',function(){
-    if(playing)return;var i=Number(b.dataset.i);tone([523,659,784,1047][i],.25,'sine',.2);b.classList.add('lit');setTimeout(function(){b.classList.remove('lit');},250);
-    if(i===seq[userIdx]){userIdx++;if(userIdx>=seq.length){sOk();$('siFb').textContent='¡Muy bien! Nivel '+(seq.length+1);if(seq.length>=5){setTimeout(winGame,800);}else{seq.push(Math.floor(Math.random()*4));setTimeout(playSeq,900);}}}
-    else{mistakes++;sNo();$('siFb').textContent='¡Ups! Era otro color. Empezamos de nuevo';setTimeout(function(){seq=[];seq.push(Math.floor(Math.random()*4));playSeq();},1200);}
-  });});
-}
-/* ======== REPEAT ======== */
-function eRepeat(area,cfg){
-  var item=cfg.set[Math.floor(Math.random()*cfg.set.length)];
-  area.innerHTML='<div class="q-target">'+item[1]+'</div><div class="q-word">'+item[0]+'</div><p class="center" style="color:#fff;font-weight:700">Se dice: <b>'+item[2]+'</b> · '+item[3]+'</p><div class="center mt"><button class="btn btn-blue" id="rHear">🔊 Escuchá la palabra</button></div><p class="center mt" style="color:#fff;font-size:.85rem;font-weight:600">Repetí la palabra en voz alta. Cuando la practiques, tocá "¡La dije!".</p><div class="center mt" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="btn btn-green" id="rDone">✅ ¡La dije!</button><button class="btn btn-pink" id="rNext">➡ Otra palabra</button></div>';
-  speak(item[0],'en-US');
-  area.addEventListener('click',function rL(e){
-    if(e.target.closest('#rHear')){sTap();speak(item[0],'en-US');}
-    else if(e.target.closest('#rDone')){sTap();area.removeEventListener('click',rL);winGame();}
-    else if(e.target.closest('#rNext')){sTap();area.removeEventListener('click',rL);eRepeat(area,cfg);}
-  });
-}
-/* ======== HOME GRID ======== */
-var curCat='all';
-$('homeTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;curCat=b.dataset.cat;document.querySelectorAll('#homeTabs button').forEach(function(x){x.classList.toggle('active',x===b);});renderGrid();});
-function renderGrid(){
-  var g=$('gameGrid');g.innerHTML='';
-  GAMES.forEach(function(gm){
-    if(curCat!=='all'&&gm.c!==curCat)return;
-    var d=document.createElement('div');d.className='gcard';
-    var st=prog.stars[gm.id]||0;
-    d.innerHTML='<div class="em">'+gm.e+'</div><div class="nm">'+gm.n+'</div><div class="st">'+(st?'⭐'.repeat(st):'¡Jugá!')+'</div>';
-    d.addEventListener('click',function(){sTap();openGame(gm);});
-    g.appendChild(d);
-  });
-}
-/* ======== DICCIONARIO ======== */
-var DICT=[];
-[ANI,COL,FOO,NUM,BODY,HOUSE,CLOTH,SHAPE,SCHOOL,NATURE,TRANS,FOOD2,EMOT,ACTION,FAMILY,WEATHER,SPORT,MUSIC,JOBS].forEach(function(s){s.forEach(function(x){DICT.push({en:x[0],ap:x[2],es:x[3]});});});
-PHRASES.forEach(function(x){DICT.push({en:x[0],ap:x[2],es:x[1]});});
-DICT=DICT.filter(function(v,i,a){return a.findIndex(function(x){return x.en===v.en;})===i;});
-function renderDict(q){q=(q||'').toLowerCase();var list=$('dictList');list.innerHTML='';var n=0;
-  DICT.forEach(function(w){if(q&&w.en.toLowerCase().indexOf(q)<0&&w.es.toLowerCase().indexOf(q)<0)return;n++;
-    var d=document.createElement('div');d.className='dict-item';
-    d.innerHTML='<button class="spk">🔊</button><div><span class="en">'+w.en+'</span> <span class="ap">('+w.ap+')</span><br><span class="es">'+w.es+'</span></div>';
-    d.querySelector('.spk').addEventListener('click',function(){sTap();speak(w.en,'en-US');});
-    list.appendChild(d);
-  });
-  if(n===0)list.innerHTML='<p class="center" style="color:#fff;font-weight:700">No encontramos esa palabra. Probá con otra 😊</p>';
-}
-$('dictSearch').addEventListener('input',function(e){renderDict(e.target.value);});
-/* ======== PROGRESO ======== */
-function renderProg(){var s=stats();$('totStars').textContent=s.t;var p=Math.round(s.d/60*100);$('progBar').style.width=p+'%';$('progPct').textContent=p+'% · '+s.d+' de 60 juegos';var h='';GAMES.forEach(function(g){var st=prog.stars[g.id]||0;h+='<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.08)"><span>'+g.e+'</span><span style="flex:1;font-weight:700;font-size:.85rem">'+g.n+'</span><span>'+(st?'⭐'.repeat(st):'☆☆☆')+'</span></div>';});$('progList').innerHTML=h;}
-$('resetBtn').addEventListener('click',function(){if(confirm('¿Borrar todo el progreso?')){prog={stars:{},done:{}};save();updateHome();renderProg();}});
-/* ======== INICIO ======== */
-buddyIn($('buddyHome'),'happy');
-var greet=['¡Hola! Soy Buddy, floto y te enseño todo 🤖','¿Listo para los 60 juegos? 🌟','¡Qué alegría verte! ¿Qué aprendemos hoy? 💜'];
-$('homeBubble').textContent=greet[Math.floor(Math.random()*greet.length)];
-renderGrid();updateHome();
-})();
-</script>
-</body>
-</html>
+<h2 style="color:#fff;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,.3);margin:18px 0 8px">🖨️ Tarjetas imprimibles</h2>
+<p style="color:#fff;text-align:center;font-weight:700;font-size:.85rem;text-shadow:0 2px 6px rgba(0,0,0,.25)">Recortá estas tarjetas. Cada una tiene la palabra, cómo se dice y su significado.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px">
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐜</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Ant</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: ant</div>
+    <div style="font-size:.82rem">hormiga</div>
+    <button class="fc-speak" data-say="Ant" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐝</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Bee</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: bi</div>
+    <div style="font-size:.82rem">abeja</div>
+    <button class="fc-speak" data-say="Bee" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦋</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Butterfly</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: bérflai</div>
+    <div style="font-size:.82rem">mariposa</div>
+    <button class="fc-speak" data-say="Butterfly" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🕷️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Spider</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: spáider</div>
+    <div style="font-size:.82rem">araña</div>
+    <button class="fc-speak" data-say="Spider" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐍</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Snake</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: sneik</div>
+    <div style="font-size:.82rem">serpiente</div>
+    <button class="fc-speak" data-say="Snake" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐢</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Turtle</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: tértel</div>
+    <div style="font-size:.82rem">tortuga</div>
+    <button class="fc-speak" data-say="Turtle" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐺</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Wolf</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: wulf</div>
+    <div style="font-size:.82rem">lobo</div>
+    <button class="fc-speak" data-say="Wolf" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦊</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Fox</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: foks</div>
+    <div style="font-size:.82rem">zorro</div>
+    <button class="fc-speak" data-say="Fox" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦌</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Deer</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: dir</div>
+    <div style="font-size:.82rem">ciervo</div>
+    <button class="fc-speak" data-say="Deer" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦓</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Zebra</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: zébra</div>
+    <div style="font-size:.82rem">cebra</div>
+    <button class="fc-speak" data-say="Zebra" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦘</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Kangaroo</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: kanguarú</div>
+    <div style="font-size:.82rem">canguro</div>
+    <button class="fc-speak" data-say="Kangaroo" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐼</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Panda</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: panda</div>
+    <div style="font-size:.82rem">panda</div>
+    <button class="fc-speak" data-say="Panda" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐧</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Penguin</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: pénguin</div>
+    <div style="font-size:.82rem">pingüino</div>
+    <button class="fc-speak" data-say="Penguin" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦉</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Owl</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: aul</div>
+    <div style="font-size:.82rem">búho</div>
+    <button class="fc-speak" data-say="Owl" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦜</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Parrot</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: párot</div>
+    <div style="font-size:.82rem">loro</div>
+    <button class="fc-speak" data-say="Parrot" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦈</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Shark</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: shark</div>
+    <div style="font-size:.82rem">tiburón</div>
+    <button class="fc-speak" data-say="Shark" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐋</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Whale</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: uéil</div>
+    <div style="font-size:.82rem">ballena</div>
+    <button class="fc-speak" data-say="Whale" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐙</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Octopus</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: óctopus</div>
+    <div style="font-size:.82rem">pulpo</div>
+    <button class="fc-speak" data-say="Octopus" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦀</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Crab</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: krab</div>
+    <div style="font-size:.82rem">cangrejo</div>
+    <button class="fc-speak" data-say="Crab" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐌</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Snail</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: sneil</div>
+    <div style="font-size:.82rem">caracol</div>
+    <button class="fc-speak" data-say="Snail" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐛</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Worm</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: uórm</div>
+    <div style="font-size:.82rem">gusano</div>
+    <button class="fc-speak" data-say="Worm" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐭</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Mouse</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: maus</div>
+    <div style="font-size:.82rem">ratón</div>
+    <button class="fc-speak" data-say="Mouse" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐐</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Goat</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: gout</div>
+    <div style="font-size:.82rem">cabra</div>
+    <button class="fc-speak" data-say="Goat" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐑</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Sheep</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: chíp</div>
+    <div style="font-size:.82rem">oveja</div>
+    <button class="fc-speak" data-say="Sheep" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🫏</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Donkey</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: dónki</div>
+    <div style="font-size:.82rem">burro</div>
+    <button class="fc-speak" data-say="Donkey" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐿️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Squirrel</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: skuirrel</div>
+    <div style="font-size:.82rem">ardilla</div>
+    <button class="fc-speak" data-say="Squirrel" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐰</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Rabbit</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: rábit</div>
+    <div style="font-size:.82rem">conejo</div>
+    <button class="fc-speak" data-say="Rabbit" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐬</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Dolphin</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: dolfín</div>
+    <div style="font-size:.82rem">delfín</div>
+    <button class="fc-speak" data-say="Dolphin" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦭</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Seal</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: sil</div>
+    <div style="font-size:.82rem">foca</div>
+    <button class="fc-speak" data-say="Seal" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Eagle</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: ígel</div>
+    <div style="font-size:.82rem">águila</div>
+    <button class="fc-speak" data-say="Eagle" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦩</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Flamingo</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: flamíngou</div>
+    <div style="font-size:.82rem">flamenco</div>
+    <button class="fc-speak" data-say="Flamingo" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦚</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Peacock</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: pícok</div>
+    <div style="font-size:.82rem">pavo real</div>
+    <button class="fc-speak" data-say="Peacock" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦢</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Swan</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: suan</div>
+    <div style="font-size:.82rem">cisne</div>
+    <button class="fc-speak" data-say="Swan" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐫</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Camel</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: cámel</div>
+    <div style="font-size:.82rem">camello</div>
+    <button class="fc-speak" data-say="Camel" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐘</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Elephant</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: élefant</div>
+    <div style="font-size:.82rem">elefante</div>
+    <button class="fc-speak" data-say="Elephant" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐊</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Crocodile</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: krókodail</div>
+    <div style="font-size:.82rem">cocodrilo</div>
+    <button class="fc-speak" data-say="Crocodile" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦛</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Hippo</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: hipo</div>
+    <div style="font-size:.82rem">hipopótamo</div>
+    <button class="fc-speak" data-say="Hippo" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦍</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Gorilla</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: goríla</div>
+    <div style="font-size:.82rem">gorila</div>
+    <button class="fc-speak" data-say="Gorilla" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐨</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Koala</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: koála</div>
+    <div style="font-size:.82rem">koala</div>
+    <button class="fc-speak" data-say="Koala" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍋</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Lemon</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: lémon</div>
+    <div style="font-size:.82rem">limón</div>
+    <button class="fc-speak" data-say="Lemon" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥥</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Coconut</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: cóconat</div>
+    <div style="font-size:.82rem">coco</div>
+    <button class="fc-speak" data-say="Coconut" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥝</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Kiwi</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: kíui</div>
+    <div style="font-size:.82rem">kiwi</div>
+    <button class="fc-speak" data-say="Kiwi" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥭</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Mango</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: mángou</div>
+    <div style="font-size:.82rem">mango</div>
+    <button class="fc-speak" data-say="Mango" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍑</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Peach</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: pích</div>
+    <div style="font-size:.82rem">durazno</div>
+    <button class="fc-speak" data-say="Peach" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍐</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Pear</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: per</div>
+    <div style="font-size:.82rem">pera</div>
+    <button class="fc-speak" data-say="Pear" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍑</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Plum</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: plam</div>
+    <div style="font-size:.82rem">ciruela</div>
+    <button class="fc-speak" data-say="Plum" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥑</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Avocado</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: avokádo</div>
+    <div style="font-size:.82rem">palta</div>
+    <button class="fc-speak" data-say="Avocado" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🧄</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Garlic</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: gárlik</div>
+    <div style="font-size:.82rem">ajo</div>
+    <button class="fc-speak" data-say="Garlic" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍄</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Mushroom</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: máshrum</div>
+    <div style="font-size:.82rem">hongo</div>
+    <button class="fc-speak" data-say="Mushroom" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥜</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Peanut</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: pínat</div>
+    <div style="font-size:.82rem">maní</div>
+    <button class="fc-speak" data-say="Peanut" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍯</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Honey</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: jáni</div>
+    <div style="font-size:.82rem">miel</div>
+    <button class="fc-speak" data-say="Honey" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍯</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Jam</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: yam</div>
+    <div style="font-size:.82rem">mermelada</div>
+    <button class="fc-speak" data-say="Jam" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🧈</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Butter</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: báter</div>
+    <div style="font-size:.82rem">manteca</div>
+    <button class="fc-speak" data-say="Butter" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥛</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Yogurt</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: ióguert</div>
+    <div style="font-size:.82rem">yogur</div>
+    <button class="fc-speak" data-say="Yogurt" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">☕</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Coffee</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: cófi</div>
+    <div style="font-size:.82rem">café</div>
+    <button class="fc-speak" data-say="Coffee" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍵</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Tea</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: ti</div>
+    <div style="font-size:.82rem">té</div>
+    <button class="fc-speak" data-say="Tea" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">💧</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Water</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: uóter</div>
+    <div style="font-size:.82rem">agua</div>
+    <button class="fc-speak" data-say="Water" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥤</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Soda</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: sóda</div>
+    <div style="font-size:.82rem">gaseosa</div>
+    <button class="fc-speak" data-say="Soda" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🍋</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Lemonade</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: lémonéid</div>
+    <div style="font-size:.82rem">limonada</div>
+    <button class="fc-speak" data-say="Lemonade" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🕶️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Sunglasses</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: sánglasas</div>
+    <div style="font-size:.82rem">anteojos de sol</div>
+    <button class="fc-speak" data-say="Sunglasses" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">☂️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Umbrella</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: ambréla</div>
+    <div style="font-size:.82rem">paraguas</div>
+    <button class="fc-speak" data-say="Umbrella" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📷</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Camera</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: cámera</div>
+    <div style="font-size:.82rem">cámara</div>
+    <button class="fc-speak" data-say="Camera" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">⏰</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Clock</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: klok</div>
+    <div style="font-size:.82rem">reloj</div>
+    <button class="fc-speak" data-say="Clock" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">⌚</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Watch</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: uóch</div>
+    <div style="font-size:.82rem">reloj de pulsera</div>
+    <button class="fc-speak" data-say="Watch" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📱</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Phone</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: foun</div>
+    <div style="font-size:.82rem">celular</div>
+    <button class="fc-speak" data-say="Phone" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">💻</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Computer</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: compiuter</div>
+    <div style="font-size:.82rem">computadora</div>
+    <button class="fc-speak" data-say="Computer" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📺</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Television</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: télevishon</div>
+    <div style="font-size:.82rem">televisor</div>
+    <button class="fc-speak" data-say="Television" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">💡</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Lamp</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: lamp</div>
+    <div style="font-size:.82rem">lámpara</div>
+    <button class="fc-speak" data-say="Lamp" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🕯️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Candle</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: kándel</div>
+    <div style="font-size:.82rem">vela</div>
+    <button class="fc-speak" data-say="Candle" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🪞</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Mirror</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: míror</div>
+    <div style="font-size:.82rem">espejo</div>
+    <button class="fc-speak" data-say="Mirror" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Calendar</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: kálendar</div>
+    <div style="font-size:.82rem">calendario</div>
+    <button class="fc-speak" data-say="Calendar" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🗺️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Map</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: map</div>
+    <div style="font-size:.82rem">mapa</div>
+    <button class="fc-speak" data-say="Map" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🌍</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Globe</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: gloub</div>
+    <div style="font-size:.82rem">globo terráqueo</div>
+    <button class="fc-speak" data-say="Globe" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🔭</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Telescope</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: téleskoup</div>
+    <div style="font-size:.82rem">telescopio</div>
+    <button class="fc-speak" data-say="Telescope" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🔬</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Microscope</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: máicroskoup</div>
+    <div style="font-size:.82rem">microscopio</div>
+    <button class="fc-speak" data-say="Microscope" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🧲</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Magnet</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: máignet</div>
+    <div style="font-size:.82rem">imán</div>
+    <button class="fc-speak" data-say="Magnet" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🚀</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Rocket</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: róket</div>
+    <div style="font-size:.82rem">cohete</div>
+    <button class="fc-speak" data-say="Rocket" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🤖</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Robot</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: róbot</div>
+    <div style="font-size:.82rem">robot</div>
+    <button class="fc-speak" data-say="Robot" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">👽</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Alien</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: éilien</div>
+    <div style="font-size:.82rem">alienígena</div>
+    <button class="fc-speak" data-say="Alien" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">👻</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Ghost</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: goust</div>
+    <div style="font-size:.82rem">fantasma</div>
+    <button class="fc-speak" data-say="Ghost" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🐉</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Dragon</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: drágon</div>
+    <div style="font-size:.82rem">dragón</div>
+    <button class="fc-speak" data-say="Dragon" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🦄</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Unicorn</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: iunicorn</div>
+    <div style="font-size:.82rem">unicornio</div>
+    <button class="fc-speak" data-say="Unicorn" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🧜</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Mermaid</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: mérmeid</div>
+    <div style="font-size:.82rem">sirena</div>
+    <button class="fc-speak" data-say="Mermaid" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🧙</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Wizard</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: uíizard</div>
+    <div style="font-size:.82rem">mago</div>
+    <button class="fc-speak" data-say="Wizard" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🏰</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Castle</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: kásel</div>
+    <div style="font-size:.82rem">castillo</div>
+    <button class="fc-speak" data-say="Castle" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">👑</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Crown</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: kraun</div>
+    <div style="font-size:.82rem">corona</div>
+    <button class="fc-speak" data-say="Crown" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">⚔️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Sword</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: sord</div>
+    <div style="font-size:.82rem">espada</div>
+    <button class="fc-speak" data-say="Sword" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🛡️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Shield</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: shíld</div>
+    <div style="font-size:.82rem">escudo</div>
+    <button class="fc-speak" data-say="Shield" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">💰</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Treasure</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: trécher</div>
+    <div style="font-size:.82rem">tesoro</div>
+    <button class="fc-speak" data-say="Treasure" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🎁</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Gift</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: gift</div>
+    <div style="font-size:.82rem">regalo</div>
+    <button class="fc-speak" data-say="Gift" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🎈</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Balloon</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: balún</div>
+    <div style="font-size:.82rem">globo</div>
+    <button class="fc-speak" data-say="Balloon" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🎂</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Cake</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: keik</div>
+    <div style="font-size:.82rem">torta</div>
+    <button class="fc-speak" data-say="Cake" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🎉</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Confetti</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: konféti</div>
+    <div style="font-size:.82rem">cofeti</div>
+    <button class="fc-speak" data-say="Confetti" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🎆</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Fireworks</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: fáiruerks</div>
+    <div style="font-size:.82rem">fuegos artificiales</div>
+    <button class="fc-speak" data-say="Fireworks" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🏆</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Trophy</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: trófi</div>
+    <div style="font-size:.82rem">trofeo</div>
+    <button class="fc-speak" data-say="Trophy" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🏅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Medal</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: médel</div>
+    <div style="font-size:.82rem">medalla</div>
+    <button class="fc-speak" data-say="Medal" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🎀</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Ribbon</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: ríbon</div>
+    <div style="font-size:.82rem">cinta</div>
+    <button class="fc-speak" data-say="Ribbon" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">⭐</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Star</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: star</div>
+    <div style="font-size:.82rem">estrella</div>
+    <button class="fc-speak" data-say="Star" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">❤️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Heart</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: jart</div>
+    <div style="font-size:.82rem">corazón</div>
+    <button class="fc-speak" data-say="Heart" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">💎</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Diamond</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: dáimond</div>
+    <div style="font-size:.82rem">diamante</div>
+    <button class="fc-speak" data-say="Diamond" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥇</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Gold</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: gould</div>
+    <div style="font-size:.82rem">oro</div>
+    <button class="fc-speak" data-say="Gold" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥈</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Silver</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: silver</div>
+    <div style="font-size:.82rem">plata</div>
+    <button class="fc-speak" data-say="Silver" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🥉</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Bronze</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: bronz</div>
+    <div style="font-size:.82rem">bronce</div>
+    <button class="fc-speak" data-say="Bronze" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🌈</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Rainbow</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: réinbou</div>
+    <div style="font-size:.82rem">arcoíris</div>
+    <button class="fc-speak" data-say="Rainbow" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">☀️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Sun</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: san</div>
+    <div style="font-size:.82rem">sol</div>
+    <button class="fc-speak" data-say="Sun" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🌙</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Moon</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: mun</div>
+    <div style="font-size:.82rem">luna</div>
+    <button class="fc-speak" data-say="Moon" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">☁️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Cloud</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: klaud</div>
+    <div style="font-size:.82rem">nube</div>
+    <button class="fc-speak" data-say="Cloud" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🌧️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Rain</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: rein</div>
+    <div style="font-size:.82rem">lluvia</div>
+    <button class="fc-speak" data-say="Rain" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">❄️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Snow</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: snou</div>
+    <div style="font-size:.82rem">nieve</div>
+    <button class="fc-speak" data-say="Snow" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">💨</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Wind</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: uind</div>
+    <div style="font-size:.82rem">viento</div>
+    <button class="fc-speak" data-say="Wind" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">⛈️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Storm</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: storm</div>
+    <div style="font-size:.82rem">tormenta</div>
+    <button class="fc-speak" data-say="Storm" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">⚡</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Thunder</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: zánder</div>
+    <div style="font-size:.82rem">trueno</div>
+    <button class="fc-speak" data-say="Thunder" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🌅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Morning</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: mórning</div>
+    <div style="font-size:.82rem">mañana</div>
+    <button class="fc-speak" data-say="Morning" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🌤️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Afternoon</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: áfternun</div>
+    <div style="font-size:.82rem">tarde</div>
+    <button class="fc-speak" data-say="Afternoon" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🌆</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Evening</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: ívning</div>
+    <div style="font-size:.82rem">atardecer</div>
+    <button class="fc-speak" data-say="Evening" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🌙</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Night</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: nait</div>
+    <div style="font-size:.82rem">noche</div>
+    <button class="fc-speak" data-say="Night" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Today</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: tudéi</div>
+    <div style="font-size:.82rem">hoy</div>
+    <button class="fc-speak" data-say="Today" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Tomorrow</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: tumórou</div>
+    <div style="font-size:.82rem">mañana</div>
+    <button class="fc-speak" data-say="Tomorrow" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Yesterday</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: yésterei</div>
+    <div style="font-size:.82rem">ayer</div>
+    <button class="fc-speak" data-say="Yesterday" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Week</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: uik</div>
+    <div style="font-size:.82rem">semana</div>
+    <button class="fc-speak" data-say="Week" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Monday</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: mándei</div>
+    <div style="font-size:.82rem">lunes</div>
+    <button class="fc-speak" data-say="Monday" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Tuesday</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: tiúsdei</div>
+    <div style="font-size:.82rem">martes</div>
+    <button class="fc-speak" data-say="Tuesday" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Friday</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: fráidei</div>
+    <div style="font-size:.82rem">viernes</div>
+    <button class="fc-speak" data-say="Friday" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">☀️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Sunday</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: sándei</div>
+    <div style="font-size:.82rem">domingo</div>
+    <button class="fc-speak" data-say="Sunday" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">📅</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">January</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: yánuery</div>
+    <div style="font-size:.82rem">enero</div>
+    <button class="fc-speak" data-say="January" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">☀️</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">June</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: yun</div>
+    <div style="font-size:.82rem">junio</div>
+    <button class="fc-speak" data-say="June" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🎄</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">December</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: disémber</div>
+    <div style="font-size:.82rem">diciembre</div>
+    <button class="fc-speak" data-say="December" style="margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer">🔊 escuchar</button>
+  </div>
+  <div style="background:rgba(255,255,255,.85);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff">
+    <div style="font-size:2rem">🎂</div>
+    <div style="font-weight:800;color:#7c5cff;font-size:1.05rem">Birthday</div>
+    <div style="font-size:.72rem;color:#7a6fa0;font-style:italic">se dice: berzdei</div>
+    <div style="font-size:…
