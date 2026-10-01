@@ -1,534 +1,379 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>WOODY PLANET PREMIUM · 60 Juegos · Profesor Woody</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  --gold:#f5c451; --gold2:#ffe29a; --gold3:#b8860b; --gold-soft:rgba(245,196,81,.14);
-  --cyan:#22d3ee; --violet:#a78bfa; --pink:#f472b6; --green:#34d399; --red:#fb7185;
-  --bg:#07021a; --card:rgba(255,255,255,.06); --border:rgba(245,196,81,.22);
-  --text:#f5f3ff; --muted:#a5a0c8;
-}
-*{font-family:'Fredoka',sans-serif;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-html,body{margin:0;padding:0;min-height:100vh;color:var(--text);overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;}
-body{background:var(--bg);position:relative;}
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 60% 45% at 12% -5%,rgba(34,211,238,.18),transparent 60%),
-    radial-gradient(ellipse 55% 45% at 92% 10%,rgba(244,114,182,.16),transparent 60%),
-    radial-gradient(ellipse 75% 55% at 50% 115%,rgba(245,196,81,.14),transparent 60%),
-    radial-gradient(ellipse 40% 35% at 75% 60%,rgba(167,139,250,.12),transparent 60%);}
-body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
-  background-image:radial-gradient(rgba(245,196,81,.06) 1px,transparent 1px);background-size:28px 28px;}
-.est{position:fixed;border-radius:50%;pointer-events:none;z-index:0;}
-.est.oro{background:var(--gold);box-shadow:0 0 10px rgba(245,196,81,.9);animation:cae linear infinite;}
-.est.blanca{background:#fff;box-shadow:0 0 6px rgba(255,255,255,.7);animation:cae linear infinite;opacity:.5;}
-@keyframes cae{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:.7}100%{transform:translateY(120vh) rotate(360deg);opacity:0}}
-.particula{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:99998;animation:par 1.1s ease-out forwards}
-@keyframes par{to{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0}}
-.vidrio{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px);border-radius:36px;padding:40px 24px;overflow:hidden;border:1px solid var(--border);box-shadow:0 30px 80px -20px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.18),0 0 60px -20px rgba(245,196,81,.25);}
-.vidrio::before{content:"";position:absolute;inset:0;border-radius:36px;padding:1px;background:linear-gradient(135deg,rgba(245,196,81,.5),transparent 40%,transparent 60%,rgba(34,211,238,.4));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
-.vidrio-fino{background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.04));backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;}
-.vidrio-fino:hover{background:rgba(245,196,81,.12);transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(245,196,81,.4);}
-.tit-neon{font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,var(--gold2),var(--gold),var(--cyan),var(--violet),var(--pink),var(--gold2));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nm 6s linear infinite;filter:drop-shadow(0 0 30px rgba(245,196,81,.45));}
-@keyframes nm{to{background-position:300%}}
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;background:linear-gradient(135deg,rgba(34,211,238,.9),rgba(139,92,246,.9));border:1px solid rgba(255,255,255,.3);color:#fff;font-weight:700;font-size:1rem;padding:12px 22px;border-radius:999px;cursor:pointer;user-select:none;transition:transform .15s,box-shadow .2s;box-shadow:0 10px 30px -6px rgba(139,92,246,.55),inset 0 1px 0 rgba(255,255,255,.4);overflow:hidden;}
-.btn::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:brillo 3.5s ease-in-out infinite;}
-@keyframes brillo{0%,60%{left:-80%}80%,100%{left:130%}}
-.btn:hover{box-shadow:0 16px 40px -6px rgba(139,92,246,.85);transform:translateY(-2px);}
-.btn:active{transform:scale(.95)!important;}
-.btn.on{background:linear-gradient(135deg,var(--gold),var(--gold3));color:#3a2503;border:1px solid var(--gold2);box-shadow:0 0 35px rgba(245,196,81,.7),inset 0 1px 0 rgba(255,255,255,.5);}
-.btn-oro{background:linear-gradient(135deg,var(--gold2),var(--gold) 50%,var(--gold3));color:#3a2503;border:1px solid #fff3c4;font-weight:800;box-shadow:0 12px 35px -8px rgba(245,196,81,.7),inset 0 1px 0 rgba(255,255,255,.6);position:relative;overflow:hidden;}
-.btn-oro::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:brillo 2.8s ease-in-out infinite;}
-.btn-reward{display:inline-flex;align-items:center;gap:6px;min-height:56px;background:linear-gradient(135deg,#fb923c,#ef4444);color:#fff;border:1px solid #fed7aa;font-weight:800;font-size:1rem;padding:10px 18px;border-radius:999px;cursor:pointer;user-select:none;box-shadow:0 12px 35px -8px rgba(251,146,60,.8),inset 0 1px 0 rgba(255,255,255,.4);animation:brillaBtn 2s ease-in-out infinite;}
-@keyframes brillaBtn{0%,100%{box-shadow:0 12px 35px -8px rgba(251,146,60,.8)}50%{box-shadow:0 12px 55px -4px rgba(251,146,60,1)}}
-.btn-reward:active{transform:scale(.95);}
-.pal{padding:24px 18px;border-radius:24px;font-size:1.4rem;font-weight:700;cursor:pointer;user-select:none;transition:transform .15s,box-shadow .2s;border:1px solid rgba(255,255,255,.22);color:#fff;text-align:center;min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;line-height:1.3;position:relative;overflow:hidden;}
-.pal .ico{font-size:3rem;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));}
-.pal:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 16px 40px -8px rgba(245,196,81,.5);border-color:var(--gold);}
-.pal:active{transform:scale(.96);}
-.ok{background:linear-gradient(135deg,#16a34a,#4ade80)!important;color:#052e16!important;border-color:#86efac!important;box-shadow:0 0 45px rgba(34,197,94,.7)!important;animation:pop .5s!important;}
-.no{background:linear-gradient(135deg,#dc2626,#f87171)!important;color:#450a0a!important;border-color:#fca5a5!important;animation:sac .45s!important;}
-@keyframes pop{50%{transform:scale(1.1) rotate(-2deg)}}
-@keyframes sac{0%,100%{transform:translateX(0)}25%{transform:translateX(-12px)}75%{transform:translateX(12px)}}
-.num{aspect-ratio:1/1;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;font-weight:800;cursor:pointer;user-select:none;transition:transform .12s;border:1px solid rgba(255,255,255,.22);color:#fff;min-height:90px;}
-.num:hover{transform:scale(1.1);color:var(--gold);}
-.num:active{transform:scale(.95);}
-.letra{aspect-ratio:1/1;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;cursor:pointer;user-select:none;transition:transform .12s;border:1px solid rgba(255,255,255,.22);color:#fff;min-height:64px;}
-.letra:hover{transform:scale(1.12);color:var(--gold);}
-.letra:active{transform:scale(.95);}
-.carta{aspect-ratio:3/4;cursor:pointer;perspective:1000px;user-select:none;}
-.carta-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s;}
-.carta.girada .carta-inner{transform:rotateY(180deg)}
-.cara{position:absolute;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:800;}
-.cf{background:linear-gradient(135deg,#0e7490,#6d28d9);box-shadow:0 10px 30px -6px rgba(109,40,217,.6),inset 0 1px 0 rgba(255,255,255,.25);color:#fff;font-size:2.2rem;font-family:'Orbitron';}
-.ca{transform:rotateY(180deg);background:linear-gradient(135deg,#fff3c4,#fbcfe8);color:#4a044e;}
-.tecla{flex:1;margin:0 3px;border-radius:0 0 12px 12px;cursor:pointer;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;font-weight:700;transition:transform .1s;user-select:none;}
-.tecla-blanca{background:linear-gradient(180deg,#fff,#e2e8f0);height:180px;z-index:1;border:1px solid #cbd5e1;color:#0f172a;}
-.tecla-blanca:active,.tecla-blanca.activa{background:var(--gold2);transform:translateY(3px);}
-.tecla-negra{background:linear-gradient(180deg,#1e293b,#0f172a);height:110px;width:38px;margin-left:-19px;margin-right:-19px;z-index:2;color:#e2e8f0;}
-.tecla-negra:active,.tecla-negra.activa{background:#475569;transform:translateY(3px);}
-.prof{position:fixed;bottom:10px;right:10px;z-index:55;cursor:pointer;width:90px;height:118px;animation:flot 3.5s ease-in-out infinite;filter:drop-shadow(0 0 30px rgba(245,196,81,.6));transition:transform .2s;}
-.prof:hover{transform:scale(1.08);}
-.prof.volando{animation:volarWoody 4.5s cubic-bezier(.45,.05,.55,.95) 1;}
-@keyframes flot{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes volarWoody{0%{transform:translate(0,0) rotate(0)}15%{transform:translate(-25vw,-30vh) rotate(-30deg) scale(.9)}40%{transform:translate(-60vw,-10vh) rotate(15deg) scale(1.1)}65%{transform:translate(-80vw,15vh) rotate(-10deg)}85%{transform:translate(-30vw,-20vh) rotate(20deg)}100%{transform:translate(0,0) rotate(0)}}
-#astroSVG{width:100%;height:100%;overflow:visible;}
-.ojo-grupo{transform-origin:center;animation:parpadear 4.5s infinite;}
-@keyframes parpadear{0%,93%,100%{transform:scaleY(1)}95.5%{transform:scaleY(.08)}}
-#bocaAbierta{opacity:0;transition:opacity .1s;transform-origin:center;}
-#astroSVG.hablando #bocaAbierta{opacity:1;animation:bocaHabla .3s ease-in-out infinite alternate;}
-#astroSVG.hablando #bocaCerrada{opacity:0;}
-@keyframes bocaHabla{0%{transform:scaleY(.5)}100%{transform:scaleY(1.2)}}
-.luz-antenna{animation:luzAntena 1.2s ease-in-out infinite alternate;}
-@keyframes luzAntena{0%{fill:var(--gold)}100%{fill:#ef4444;filter:drop-shadow(0 0 10px #ef4444)}}
-.llama{transform-origin:70px 178px;animation:llama .2s ease-in-out infinite alternate;}
-@keyframes llama{0%{transform:scaleY(.9)}100%{transform:scaleY(1.35)}}
-.brazo-der{transform-origin:105px 110px;animation:saludar 3s ease-in-out infinite;}
-@keyframes saludar{0%,100%{transform:rotate(0)}50%{transform:rotate(-15deg)}}
-.globo{position:fixed;bottom:128px;right:95px;z-index:54;max-width:260px;background:linear-gradient(135deg,#fff,#fff7e0);color:#3a2503;padding:16px 18px;border-radius:20px 20px 6px 20px;font-weight:700;font-size:1rem;box-shadow:0 16px 40px -10px rgba(245,196,81,.6);animation:apa .3s;line-height:1.35;border:1px solid var(--gold);}
-.globo::after{content:"";position:absolute;bottom:-10px;right:18px;border:10px solid transparent;border-top-color:#fff7e0;}
-@keyframes apa{from{opacity:0;transform:translateY(8px) scale(.95)}}
-.modal-overlay{position:fixed;inset:0;background:rgba(5,2,20,.88);z-index:99000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .3s;padding:20px;}
-.modal-overlay.activo{opacity:1;pointer-events:auto;}
-.ad-slot{width:100%;min-height:60px;margin:10px auto;display:flex;align-items:center;justify-content:center;border:1px dashed rgba(245,196,81,.4);border-radius:16px;background:rgba(245,196,81,.05);color:rgba(245,196,81,.6);font-weight:600;font-size:.8rem;text-align:center;overflow:hidden;position:relative;z-index:5;letter-spacing:1px;}
-.ad-banner{max-width:728px;}
-.bocina{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#3a2503;border:none;border-radius:50%;width:72px;height:72px;font-size:1.8rem;cursor:pointer;font-weight:800;box-shadow:0 12px 35px -6px rgba(245,196,81,.7);vertical-align:middle;transition:transform .15s;min-height:72px;animation:flotarBtn 2.5s ease-in-out infinite;}
-@keyframes flotarBtn{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-.bocina:hover{transform:scale(1.15) rotate(-5deg);}
-.bocina:active{transform:scale(.95);}
-.letra-spelling{width:58px;height:58px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:800;border:1px solid rgba(255,255,255,.22);color:#fff;margin:5px;cursor:pointer;user-select:none;transition:transform .15s;min-height:58px;}
-.letra-spelling:hover{transform:scale(1.1);border-color:var(--gold);color:var(--gold);}
-.letra-spelling:active{transform:scale(.95);}
-.letra-spelling.usada{opacity:.25;cursor:default;transform:scale(.9);}
-.simon-btn{width:45%;aspect-ratio:1/1;border-radius:24px;cursor:pointer;opacity:.45;transition:opacity .15s,transform .15s;border:3px solid rgba(255,255,255,.3);}
-.simon-btn.activo{opacity:1;transform:scale(1.05);box-shadow:0 0 40px currentColor;}
-.c0{background:linear-gradient(135deg,#06b6d4,#3b82f6);}
-.c1{background:linear-gradient(135deg,#ec4899,#8b5cf6);}
-.c2{background:linear-gradient(135deg,#f59e0b,#ef4444);}
-.c3{background:linear-gradient(135deg,#10b981,#84cc16);}
-.c4{background:linear-gradient(135deg,#8b5cf6,#ec4899);}
-.c5{background:linear-gradient(135deg,#f43f5e,#f97316);}
-.c6{background:linear-gradient(135deg,#0ea5e9,#14b8a6);}
-.c7{background:linear-gradient(135deg,#a855f7,#6366f1);}
-.xp-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;flex:1;min-width:80px;}
-.xp-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold3),var(--gold),var(--gold2));box-shadow:0 0 12px rgba(245,196,81,.8);transition:width .5s;}
-.logro{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;}
-.logro.bloq{opacity:.4;filter:grayscale(1);}
-.logro-ico{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;background:var(--gold-soft);border:1px solid var(--gold);}
-@media (max-width:640px){
-  .prof{width:72px;height:94px;bottom:6px;right:4px;opacity:.95;}
-  .globo{right:76px;bottom:100px;max-width:190px;font-size:.9rem;padding:12px 14px;}
-  #juegos{padding:28px 14px;}
-  .pal{font-size:1.15rem;min-height:84px;}
-  .pal .ico{font-size:2.4rem;}
-  .btn{min-height:48px;font-size:.9rem;padding:10px 16px;}
-}
-#intro{transition:opacity .8s;}
-.ring-gold{box-shadow:0 0 0 3px var(--gold),0 0 25px rgba(245,196,81,.6);}
-</style>
-</head>
-<body>
-<div id="intro" class="fixed inset-0 z-[100000] flex items-center justify-center flex-col" style="background:radial-gradient(ellipse at center,#1a0b3e,#07021a);">
-  <div id="introAstro" style="width:120px;height:156px;"></div>
-  <div class="tit-neon text-3xl md:text-5xl mt-4">WOODY PLANET</div>
-  <div class="text-yellow-200 mt-2 font-bold tracking-widest">EDICIÓN PREMIUM · 60 JUEGOS</div>
-  <div class="w-64 h-2 bg-white/10 rounded-full mt-8 overflow-hidden"><div class="h-full" id="barraCarga" style="width:0;background:linear-gradient(90deg,var(--gold3),var(--gold2));box-shadow:0 0 12px var(--gold);"></div></div>
-  <div class="text-white/50 text-xs mt-3 font-bold" id="txtCarga">Cargando el universo...</div>
-</div>
-<div id="estrellas"></div>
+================================================================================
+          45 JUEGOS PARA APRENDER INGLÉS JUGANDO
+          Para niños y niñas · Explicado en castellano
+          Incluye: palabras en inglés + cómo pronunciarlas + qué aprendés
+================================================================================
 
-<div class="relative z-10 max-w-5xl mx-auto px-2 pt-2"><div class="ad-slot ad-banner">PUBLICIDAD · espacio reservado Google AdSense</div></div>
+Cómo usar este archivo:
+- Cada juego tiene: qué necesitás, cómo se juega y las palabras en inglés
+  con su pronunciación aproximada (escrita como si se leyera en castellano).
+- Lo ideal es repetir las palabras en voz alta varias veces.
+- ¡No importa equivocarse! Lo importante es divertirse y practicar.
 
-<div class="max-w-5xl mx-auto px-2 py-2 flex justify-between items-center gap-2 flex-wrap">
-  <div class="vidrio-fino p-2 px-3 flex items-center gap-3 cursor-pointer" onclick="mostrarPerfil()">
-    <div id="avatarPerfil" class="text-3xl" style="filter:drop-shadow(0 0 8px rgba(245,196,81,.6));">👦</div>
-    <div>
-      <div class="flex items-center gap-2"><span id="nomP" class="font-bold text-white text-sm">Jugador</span><span id="nivelBadge" class="text-[10px] font-black px-2 py-0.5 rounded-full" style="background:linear-gradient(135deg,var(--gold2),var(--gold3));color:#3a2503;">NIVEL 1</span></div>
-      <div class="text-xs font-bold text-yellow-300 flex items-center gap-2"><span>🪙 <span id="monedasTot">0</span></span><span>⭐ <span id="ptsTot">0</span></span><span style="color:#fb923c;">🔥 <span id="rachaTot">0</span></span></div>
-      <div class="xp-bar mt-1"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
-    </div>
-  </div>
-  <div class="flex gap-2 flex-wrap">
-    <button class="btn-reward text-sm" id="btnBono" onclick="bonoDiario()">🎁 Bono</button>
-    <button class="btn-reward text-sm" onclick="verAnuncio()">🎬 +50 🪙</button>
-    <button class="btn text-sm" onclick="abrirTienda()">🏪 Tienda</button>
-    <button class="btn text-sm" onclick="abrirModal('logrosModal')">🏆 Logros</button>
-    <button class="btn text-sm" onclick="sonido.toggleMusica()" id="btnMus">🔇 Música</button>
-    <button class="btn text-sm" onclick="abrirModal('ayudaModal')">❓ Ayuda</button>
-  </div>
-</div>
+Guía rápida de pronunciación:
+- La "th" se dice con la lengua entre los dientes (ej: three = "zrí").
+- La "r" en inglés es suave, no se golpea como en castellano.
+- Las vocales suelen ser cortas: cat = "ket", dog = "dóg".
 
-<div class="max-w-6xl mx-auto px-3 pt-4 pb-40 relative z-10">
-  <h1 class="tit-neon text-center text-3xl md:text-5xl mb-1">WOODY PLANET</h1>
-  <p class="text-center text-yellow-200 font-bold mb-3 text-sm md:text-base tracking-wider">EDICIÓN PREMIUM · Woody enseña en castellano y explica en inglés · 100% gratis</p>
-  <div class="ad-slot ad-banner">PUBLICIDAD · espacio reservado Google AdSense</div>
-  <div class="flex flex-wrap gap-2 justify-center mb-3" id="cats"></div>
-  <div class="flex flex-wrap gap-2 justify-center mb-6" id="tabs"></div>
-  <div id="juegos" class="vidrio min-h-[350px]"></div>
-  <div class="ad-slot ad-banner mt-6">PUBLICIDAD · espacio reservado Google AdSense</div>
-  <p class="text-center text-xs text-white/40 mt-6">App gratuita con espacios para Google Ads · Woody Planet Premium</p>
-</div>
+================================================================================
+                      BLOQUE 1: ANIMALES (Animals)
+================================================================================
 
-<div id="prof" class="prof" onclick="hablarWoody()"></div>
-<div id="globo" class="globo hidden"></div>
-<div id="mascotaFija" class="fixed bottom-3 left-3 z-50 text-4xl hidden" style="filter:drop-shadow(0 0 15px rgba(245,196,81,.7));animation:flot 4s ease-in-out infinite;"></div>
+1) Juego: "El zoológico parlante" (The Talking Zoo)
+   Qué necesitás: juguetes o dibujos de animales.
+   Cómo se juega: Cada animal tiene un nombre en inglés. Cuando pasás por su
+   "jaula", tenés que decir su nombre en inglés y hacer su sonido.
+   Aprendés: dog (dóg) = perro, cat (ket) = gato, lion (láion) = león,
+   elephant (élefant) = elefante, monkey (mánki) = mono, tiger (táiger) = tigre,
+   rabbit (rábit) = conejo, cow (cau) = vaca.
 
-<!-- MODAL PERFIL -->
-<div id="perfilModal" class="modal-overlay"><div class="vidrio max-w-sm w-full p-6 text-center">
-  <h2 class="tit-neon text-2xl mb-5">Tu perfil</h2>
-  <input id="nomPerfil" placeholder="Tu nombre" class="w-full p-3 rounded-xl bg-white/10 border border-yellow-400/30 text-white text-center text-lg mb-4 outline-none">
-  <div id="avatares" class="grid grid-cols-6 gap-2 mb-5"></div>
-  <button class="btn-oro btn w-full text-lg" onclick="guardarPerfil()">Guardar</button>
-</div></div>
+2) Juego: "¿Qué animal soy?" (What animal am I?)
+   Qué necesitás: nada.
+   Cómo se juega: Un jugador hace mímica y sonido de un animal, los demás
+   adivinan diciendo el nombre en inglés.
+   Aprendés: pig (pig) = cerdo, duck (dák) = pato, horse (jors) = caballo,
+   sheep (chíp) = oveja, frog (frog) = rana, bird (berd) = pájaro, fish (fish) = pez.
 
-<!-- MODAL TIENDA -->
-<div id="tiendaModal" class="modal-overlay"><div class="vidrio max-w-xl w-full p-6 max-h-[90vh] overflow-y-auto">
-  <div class="flex justify-between items-center mb-5"><h2 class="tit-neon text-2xl">Tienda premium</h2><button class="btn" style="background:linear-gradient(135deg,#ef4444,#b91c1c);min-height:44px;padding:8px 16px;" onclick="cerrarModal('tiendaModal')">✕</button></div>
-  <div class="text-center mb-5 text-xl font-bold text-yellow-300">Tienes: 🪙 <span id="tiendaMonedas">0</span> <button class="btn-reward ml-2 text-sm" onclick="verAnuncio()">🎬 +50</button></div>
-  <h3 class="text-lg font-bold text-pink-300 mb-3">Mascotas</h3><div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6"></div>
-  <h3 class="text-lg font-bold text-cyan-300 mb-3">Accesorios</h3><div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
-</div></div>
+3) Juego: "La memoria de animales" (Animal Memory)
+   Qué necesitás: cartas con dibujos de animales por parejas.
+   Cómo se juega: El juego de memoria tradicional, pero al levantar una carta
+   hay que decir el animal en inglés. Si no lo decís, no vale.
+   Aprendés: bear (ber) = oso, fox (foks) = zorro, mouse (maus) = ratón,
+   bird (berd) = pájaro, snake (sneik) = serpiente, bee (bi) = abeja.
 
-<!-- MODAL AYUDA -->
-<div id="ayudaModal" class="modal-overlay"><div class="vidrio max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
-  <div class="flex justify-between items-center mb-5"><h2 class="tit-neon text-2xl">Ayuda</h2><button class="btn" style="background:linear-gradient(135deg,#ef4444,#b91c1c);min-height:44px;padding:8px 16px;" onclick="cerrarModal('ayudaModal')">✕</button></div>
-  <div class="space-y-3 text-sm text-cyan-100">
-    <div class="vidrio-fino p-3"><b class="text-yellow-300">Woody es tu profesor</b><br>Woody habla en castellano, te hace la pregunta en voz alta, y si te equivocás te explica la respuesta correcta en inglés. ¡Aprendés jugando!</div>
-    <div class="vidrio-fino p-3"><b class="text-yellow-300">Pronunciación en inglés</b><br>Tocá el altavoz dorado para escuchar la palabra en inglés.</div>
-    <div class="vidrio-fino p-3"><b class="text-yellow-300">Monedas y racha</b><br>Ganás monedas acertando. Mientras más seguido acertás, más grande es tu racha 🔥 y más puntos ganás. Comprás mascotas y accesorios en la Tienda.</div>
-    <div class="vidrio-fino p-3"><b class="text-yellow-300">Niveles y logros</b><br>Subís de nivel con la experiencia. Conseguí todos los trofeos 🏆.</div>
-  </div>
-</div></div>
+4) Juego: "Simón dice animal" (Simon says animal)
+   Qué necesitás: nada.
+   Cómo se juega: El que dirige dice "Simon says: be a cat!" (Simón dice: sé
+   un gato) y todos imitan al gato. Si no dijo "Simon says", quien se mueve
+   pierde un punto.
+   Aprendés: comandos + animales: be a dog (bi a dóg), be a frog, be a bird.
 
-<!-- MODAL PREMIO -->
-<div id="premioModal" class="modal-overlay z-[99999]"><div class="vidrio max-w-xs w-full p-6 text-center">
-  <div id="premioIcono" class="text-7xl mb-3" style="animation:pop .6s;">🎁</div>
-  <h2 id="premioTexto" class="text-2xl font-bold text-yellow-300 mb-2">¡GANASTE!</h2>
-  <div id="premioExtra" class="text-sm text-cyan-200 mb-5"></div>
-  <button class="btn-oro btn px-6" onclick="cerrarModal('premioModal')">¡Genial!</button>
-</div></div>
+5) Juego: "El sonido del animal" (Animal sound)
+   Qué necesitás: nada.
+   Cómo se juega: Un jugador hace el sonido del animal (en inglés, como lo
+   dirían ellos: el perro dice "woof woof"), los demás adivinan el animal.
+   Aprendés: woof (wuf) = guau, meow (miáu) = miau, moo (muu) = mu,
+   quack (kuak) = cuac, oink (oink) = oink.
 
-<!-- MODAL LOGROS -->
-<div id="logrosModal" class="modal-overlay"><div class="vidrio max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
-  <div class="flex justify-between items-center mb-5"><h2 class="tit-neon text-2xl">Logros</h2><button class="btn" style="background:linear-gradient(135deg,#ef4444,#b91c1c);min-height:44px;padding:8px 16px;" onclick="cerrarModal('logrosModal')">✕</button></div>
-  <div id="listaLogros" class="space-y-2"></div>
-</div></div>
+================================================================================
+                    BLOQUE 2: COLORES (Colors)
+================================================================================
 
-<!-- MODAL NIVEL UP -->
-<div id="nivelModal" class="modal-overlay z-[99998]"><div class="vidrio max-w-xs w-full p-6 text-center">
-  <div class="text-7xl mb-3" style="animation:pop .6s;">👑</div>
-  <h2 class="tit-neon text-3xl mb-2">¡NIVEL <span id="nivelNum">2</span>!</h2>
-  <p class="text-cyan-200 font-bold mb-5">Woody está orgulloso de vos. ¡Seguí así!</p>
-  <button class="btn-oro btn px-6" onclick="cerrarModal('nivelModal')">¡Continuar!</button>
-</div></div>
+6) Juego: "Busca el color" (Find the color)
+   Qué necesitás: una habitación con cosas de colores.
+   Cómo se juega: Alguien dice un color en inglés, por ejemplo "Blue!" (azul),
+   y todos corren a tocar algo de ese color. El último en tocar pierde.
+   Aprendés: red (red) = rojo, blue (blú) = azul, green (grín) = verde,
+   yellow (yélou) = amarillo, pink (pink) = rosa, purple (pérpol) = violeta,
+   orange (órinch) = naranja, black (blak) = negro, white (juait) = blanco.
 
-<script>
-const GOOGLE_ADS={enabled:false,client:'ca-pub-XXXXXXXXXXXXXXXX',rewardCoins:50};
-function verAnuncio(){if(GOOGLE_ADS.enabled){alert('Conectá tu cuenta de Google AdSense');}else{ganarMonedas(GOOGLE_ADS.rewardCoins);mostrarPremio('🎬','¡Gracias! +50 monedas','Mirá publicidades para conseguir más monedas.');}}
+7) Juego: "La bolsa de colores" (Color bag)
+   Qué necesitás: una bolsa y objetos de distintos colores.
+   Cómo se juega: Sacás un objeto de la bolsa sin mirar y tenés que decir su
+   color en inglés. Si acertás, te quedás el objeto.
+   Aprendés: It's red! (its red) = ¡Es rojo! It's blue! = ¡Es azul!
 
-/* ===== SISTEMA DE SONIDO ===== */
-const sonido=(()=>{let ctx;const ini=()=>{if(!ctx)ctx=new(window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();};
- const tono=(f=440,d=.2,t='sine',v=.15)=>{ini();try{const o=ctx.createOscillator(),g=ctx.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(v,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+d);}catch(e){}};
- const mel=arr=>arr.forEach(([f,d],n)=>setTimeout(()=>tono(f,d),n*130));
- return{ini,tono,click:()=>tono(620,.06,'square',.05),ok:()=>mel([[523,.1],[659,.1],[784,.12],[1047,.2]]),no:()=>mel([[300,.15],[220,.2]]),ganar:()=>mel([[523,.1],[659,.1],[784,.1],[1047,.15],[1319,.3]]),moneda:()=>{tono(1200,.08,'sine',.1);setTimeout(()=>tono(1600,.1,'sine',.08),70);},nivel:()=>mel([[523,.12],[659,.12],[784,.12],[1047,.12],[1319,.4]]),
- toggleMusica(){ini();this._m=!this._m;document.getElementById('btnMus').textContent=this._m?'🔊 Música':'🔇 Música';if(this._m){const n=[261.6,329.6,392,523.2,392,329.6];let i=0;const lp=()=>{if(!this._m)return;tono(n[i%6],.25,'triangle',.018);i++;this._t=setTimeout(lp,550);};lp();}else clearTimeout(this._t);}};})();
-document.addEventListener('click',()=>sonido.ini(),{once:true});
+8) Juego: "Twister de colores" (Color twister)
+   Qué necesitás: círculos de papel de colores en el piso.
+   Cómo se juega: Se dice "Put your hand on yellow!" (Pon tu mano en amarillo)
+   y el jugador lo hace. Con dos jugadores se enredan y se ríen mucho.
+   Aprendés: hand (jand) = mano, foot (fut) = pie, + colores.
 
-/* ===== VOZ: Woody en castellano + explicación en inglés ===== */
-function voz(texto,lang,pitch,rate,onstart,onend,cola){
-  try{
-    if(!('speechSynthesis' in window)){if(onend)setTimeout(onend,1200);return;}
-    if(!cola)speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(texto);
-    u.lang=lang;u.pitch=pitch;u.rate=rate;
-    let vozElegida=null;
-    if(lang.startsWith('es')){
-      vozElegida=speechSynthesis.getVoices().find(v=>/es[-_]ES/i.test(v.lang)&&/female|mujer|lucia|paulina|helena|monica|tessa|sabrina/i.test(v.name))
-        ||speechSynthesis.getVoices().find(v=>/^es/i.test(v.lang)&&/female|mujer|lucia|paulina|helena|monica|tessa|sabrina/i.test(v.name))
-        ||speechSynthesis.getVoices().find(v=>/^es/i.test(v.lang));
-    }else{
-      vozElegida=speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang)&&/female|woman|samantha|victoria|karen|tessa|zira|susan/i.test(v.name))
-        ||speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
-    }
-    if(vozElegida)u.voice=vozElegida;
-    const svg=document.getElementById('astroSVG');
-    u.onstart=()=>{if(svg)svg.classList.add('hablando');if(onstart)onstart();};
-    const fin=()=>{if(svg)svg.classList.remove('hablando');if(onend)onend();};
-    u.onend=fin;u.onerror=fin;
-    speechSynthesis.speak(u);
-  }catch(e){const svg=document.getElementById('astroSVG');if(svg){svg.classList.add('hablando');setTimeout(()=>svg.classList.remove('hablando'),1500);}if(onend)setTimeout(onend,1500);}
-}
-/* Woody habla en CASTELLANO (es-ES) */
-function hablarWoody(frase,onend){
-  const texto=frase||rp(WOODY.saludo);
-  const g=document.getElementById('globo');g.textContent=texto;g.classList.remove('hidden');clearTimeout(g._t);g._t=setTimeout(()=>g.classList.add('hidden'),6000);
-  voz(texto,'es-ES',1.25,.95,null,onend);
-  sonido.click();
-}
-/* Explicación en INGLÉS (se encola, NO corta a Woody) */
-function explicarEnIngles(texto){voz(texto,'en-US',1.1,.85,null,null,true);}
-function hablarIngles(texto){voz(texto,'en-US',1.1,.85,null,null,true);}
-if('speechSynthesis' in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
+9) Juego: "Mezcla y adivina" (Mix and guess)
+   Qué necesitás: pinturas o marcadores.
+   Cómo se juega: Mezclás dos colores y decís en inglés qué color nuevo aparece.
+   Ejemplo: red + yellow = orange! (rojo + amarillo = naranja).
+   Aprendés: red + blue = purple (pérpol), blue + yellow = green (grín).
 
-const WOODY={
-  saludo:["¡Hola! Soy Woody, tu profesor astronauta. ¡Vamos a aprender juntos!","¡Bienvenido a Woody Planet Premium! Yo te enseño en castellano y te explico en inglés.","¡Yo te ayudo a aprender! ¿Listo para jugar?"],
-  ganar:["¡Muy bien! ¡Sí se puede!","¡Genial! ¡Lo lograste!","¡Wiii! ¡Sos un campeón!","¡Bravo! ¡Woody está orgulloso de vos!"],
-  fallar:["¡Casi! Vamos, que tú puedes.","¡Muy cerca! Pensá bien, yo te ayudo.","¡No pasa nada! La próxima lo lográs.","¡Casi! Intentá de nuevo, vos podés."]
-};
+10) Juego: "El semáforo en inglés" (Traffic lights)
+    Qué necesitás: nada.
+    Cómo se juega: Uno dirige y dice "Green light!" (luz verde) = todos corren,
+    "Yellow light!" (luz amarilla) = caminan lento, "Red light!" (luz roja) =
+    se quedan quietos. Quien se mueve en rojo sale.
+    Aprendés: green light (grín lait), yellow light, red light, stop (stop) = pará.
 
-function volarWoody(){const p=document.getElementById('prof');if(!p||p.classList.contains('volando'))return;sonido.tono(800,.15,'sine',.08);setTimeout(()=>sonido.tono(1200,.2,'sine',.08),150);p.classList.add('volando');hablarWoody("¡Wiii! ¡Estoy volando por el espacio!");setTimeout(()=>p.classList.remove('volando'),4600);}
+================================================================================
+                   BLOQUE 3: NÚMEROS (Numbers)
+================================================================================
 
-/* ===== PERFIL, MONEDAS, NIVEL, RACHA, LOGROS ===== */
-let PERFIL={n:"Jugador",a:"👦",p:0,monedas:100,inv:[],eqMascota:null,eqAcc:null,nivel:1,xp:0,racha:0,mejorRacha:0,ultBono:null,logros:[]};
-const XP_POR_NIVEL=100;
-const LOGROS=[
-  {id:'l1',ico:'⭐',nom:'Primer acierto',desc:'Acertá una pregunta',check:p=>p.p>=10},
-  {id:'l2',ico:'🪙',nom:'Ahorrador',desc:'Juntá 500 monedas',check:p=>p.monedas>=500},
-  {id:'l3',ico:'🔥',nom:'En racha',desc:'Racha de 5 aciertos',check:p=>p.mejorRacha>=5},
-  {id:'l4',ico:'👑',ico2:'Nivel 5',nom:'Aprendiz',desc:'Llegá al nivel 5',check:p=>p.nivel>=5},
-  {id:'l5',ico:'🏆',nom:'Experto',desc:'Llegá al nivel 10',check:p=>p.nivel>=10},
-  {id:'l6',ico:'🐾',nom:'Compañero',desc:'Comprá una mascota',check:p=>p.inv.some(x=>x.startsWith('m'))},
-  {id:'l7',ico:'🎓',ico2:'Nivel 20',nom:'Maestro Woody',desc:'Llegá al nivel 20',check:p=>p.nivel>=20}
-];
-let CA=0,J=0;
-const TIENDA={mascotas:[{id:'m1',ico:'🐉',nom:'Dragón',p:500},{id:'m2',ico:'🦄',nom:'Unicornio',p:800},{id:'m3',ico:'🤖',nom:'Robot',p:1200},{id:'m4',ico:'👽',nom:'Marciano',p:2000},{id:'m5',ico:'🐱',nom:'Gato Astro',p:3000}],
- accesorios:[{id:'a1',ico:'👑',nom:'Corona',p:300},{id:'a2',ico:'🕶️',nom:'Gafas',p:400},{id:'a3',ico:'🎩',nom:'Galera',p:500},{id:'a4',ico:'🎓',nom:'Graduado',p:600}]};
+11) Juego: "Contar saltando" (Jump counting)
+    Qué necesitás: una soga o tiza en el piso.
+    Cómo se juega: Por cada salto decís un número en inglés, del 1 al 10.
+    Quien se equivoque empieza de nuevo.
+    Aprendés: one (uán) = 1, two (tú) = 2, three (zrí) = 3, four (for) = 4,
+    five (faiv) = 5, six (siks) = 6, seven (séven) = 7, eight (éit) = 8,
+    nine (náin) = 9, ten (ten) = 10.
 
-function guardarPerfil(){const v=document.getElementById('nomPerfil').value.trim();if(v)PERFIL.n=v;localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));actualizarCabecera();cerrarModal('perfilModal');sonido.ok();}
-function cargarPerfil(){const s=localStorage.getItem('woodyPlanet');if(s)PERFIL={...PERFIL,...JSON.parse(s)};if(!PERFIL.monedas)PERFIL.monedas=100;if(!PERFIL.nivel)PERFIL.nivel=1;if(!PERFIL.logros)PERFIL.logros=[];actualizarCabecera();}
-function actualizarCabecera(){
-  document.getElementById('nomP').textContent=PERFIL.n;
-  document.getElementById('ptsTot').textContent=PERFIL.p;
-  document.getElementById('monedasTot').textContent=PERFIL.monedas;
-  document.getElementById('rachaTot').textContent=PERFIL.racha;
-  document.getElementById('nivelBadge').textContent='NIVEL '+PERFIL.nivel;
-  document.getElementById('xpFill').style.width=Math.min(100,(PERFIL.xp/XP_POR_NIVEL)*100)+'%';
-  let av=PERFIL.a;if(PERFIL.eqAcc)av+=TIENDA.accesorios.find(x=>x.id===PERFIL.eqAcc).ico;
-  document.getElementById('avatarPerfil').textContent=av;
-  const m=document.getElementById('mascotaFija');if(PERFIL.eqMascota){m.textContent=TIENDA.mascotas.find(x=>x.id===PERFIL.eqMascota).ico;m.classList.remove('hidden');}else m.classList.add('hidden');
-}
-function ganarMonedas(c){
-  PERFIL.monedas+=c;PERFIL.p+=c*10;PERFIL.xp+=c*2;
-  let subio=false;
-  while(PERFIL.xp>=XP_POR_NIVEL){PERFIL.xp-=XP_POR_NIVEL;PERFIL.nivel++;subio=true;}
-  localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));
-  actualizarCabecera();sonido.moneda();
-  revisarLogros();
-  if(subio){setTimeout(()=>{sonido.nivel();conf(60);document.getElementById('nivelNum').textContent=PERFIL.nivel;abrirModal('nivelModal');},600);}
-}
-function acierto(){
-  PERFIL.racha++;if(PERFIL.racha>PERFIL.mejorRacha)PERFIL.mejorRacha=PERFIL.racha;
-  const bonus=Math.min(PERFIL.racha,5);
-  ganarMonedas(3+bonus);
-  actualizarCabecera();
-}
-function fallo(){PERFIL.racha=0;localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));actualizarCabecera();}
-function revisarLogros(){
-  LOGROS.forEach(l=>{if(!PERFIL.logros.includes(l.id)&&l.check(PERFIL)){PERFIL.logros.push(l.id);localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));setTimeout(()=>mostrarPremio(l.ico,'¡Logro desbloqueado!',l.nom),1200);}});
-}
-function mostrarLogros(){
-  document.getElementById('listaLogros').innerHTML=LOGROS.map(l=>{
-    const ok=PERFIL.logros.includes(l.id);
-    return `<div class="logro vidrio-fino ${ok?'':'bloq'}"><div class="logro-ico">${l.ico}</div><div><div class="font-bold text-white">${l.nom}</div><div class="text-xs text-cyan-200">${l.desc}</div></div><div class="ml-auto text-xl">${ok?'✅':'🔒'}</div></div>`;
-  }).join('');
-}
-function bonoDiario(){
-  const hoy=new Date().toDateString();
-  if(PERFIL.ultBono===hoy){sonido.no();mostrarPremio('⏰','Ya retiraste tu bono','Volvé mañana por más monedas.');return;}
-  PERFIL.ultBono=hoy;PERFIL.monedas+=100;PERFIL.p+=50;
-  localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));actualizarCabecera();
-  sonido.ganar();conf(40);mostrarPremio('🎁','¡Bono diario! +100 monedas','Volvé mañana por otro regalo.');
-}
-function mostrarPremio(ico,txt,extra){document.getElementById('premioIcono').textContent=ico;document.getElementById('premioTexto').textContent=txt;document.getElementById('premioExtra').textContent=extra||'';abrirModal('premioModal');}
-function abrirModal(id){document.getElementById(id).classList.add('activo');sonido.click();}
-function cerrarModal(id){document.getElementById(id).classList.remove('activo');sonido.click();}
-function mostrarPerfil(){document.getElementById('nomPerfil').value=PERFIL.n;const avs=["👦","👧","🧑‍🚀","👽","🦊","🐯"];document.getElementById('avatares').innerHTML=avs.map(a=>`<button class="text-2xl hover:scale-125 ${a===PERFIL.a?'ring-gold rounded-lg':''}" onclick="PERFIL.a='${a}';mostrarPerfil()">${a}</button>`).join('');abrirModal('perfilModal');}
-function abrirTienda(){
-  document.getElementById('tiendaMonedas').textContent=PERFIL.monedas;
-  document.getElementById('tiendaMascotas').innerHTML=TIENDA.mascotas.map(m=>{const t=PERFIL.inv.includes(m.id),e=PERFIL.eqMascota===m.id;return `<div class="vidrio-fino p-3 text-center"><div class="text-4xl mb-1">${m.ico}</div><div class="font-bold text-xs mb-2">${m.nom}</div>${t?`<button class="btn ${e?'on':''} w-full text-xs" onclick="equipar('${m.id}','m')">${e?'Puesta':'Equipar'}</button>`:`<button class="btn-oro btn w-full text-xs" onclick="comprar('${m.id}',${m.p})">🪙 ${m.p}</button>`}</div>`;}).join('');
-  document.getElementById('tiendaAccesorios').innerHTML=TIENDA.accesorios.map(a=>{const t=PERFIL.inv.includes(a.id),e=PERFIL.eqAcc===a.id;return `<div class="vidrio-fino p-3 text-center"><div class="text-4xl mb-1">${a.ico}</div><div class="font-bold text-xs mb-2">${a.nom}</div>${t?`<button class="btn ${e?'on':''} w-full text-xs" onclick="equipar('${a.id}','a')">${e?'Puesto':'Equipar'}</button>`:`<button class="btn-oro btn w-full text-xs" onclick="comprar('${a.id}',${a.p})">🪙 ${a.p}</button>`}</div>`;}).join('');
-  abrirModal('tiendaModal');
-}
-function comprar(id,p){if(PERFIL.monedas>=p){PERFIL.monedas-=p;PERFIL.inv.push(id);localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));actualizarCabecera();sonido.ganar();revisarLogros();abrirTienda();mostrarPremio(id.startsWith('m')?TIENDA.mascotas.find(x=>x.id===id).ico:TIENDA.accesorios.find(x=>x.id===id).ico,"¡Comprado!","Ya lo tenés en tu inventario.");}else{sonido.no();alert("No te alcanzan. ¡Jugá más!");}}
-function equipar(id,t){if(t==='m')PERFIL.eqMascota=PERFIL.eqMascota===id?null:id;else PERFIL.eqAcc=PERFIL.eqAcc===id?null:id;localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));actualizarCabecera();sonido.click();abrirTienda();}
+12) Juego: "Piedra, papel o tijera con números" (Rock paper scissors numbers)
+    Qué necesitás: nada.
+    Cómo se juega: Como el juego normal, pero el ganador dice un número en
+    inglés y el otro tiene que decir el que sigue. Si se equivoca, pierde.
+    Aprendés: eleven (ileven) = 11, twelve (tuelv) = 12, thirteen (zértín) = 13,
+    twenty (túenti) = 20.
 
-const mezclar=a=>[...a].sort(()=>Math.random()-.5);
-const rp=a=>a[Math.floor(Math.random()*a.length)];
-const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
-const conf=(n=30)=>{const cols=['#f5c451','#ffe29a','#22d3ee','#a855f7','#ec4899','#34d399'];for(let i=0;i<n;i++){const c=document.createElement('div');c.className='particula';c.style.left=Math.random()*100+'vw';c.style.top='-10px';c.style.background=cols[i%cols.length];c.style.setProperty('--tx',(Math.random()-.5)*220+'px');c.style.setProperty('--ty',Math.random()*550+'px');document.body.appendChild(c);setTimeout(()=>c.remove(),1100);}};
-/* Helper: arma opciones mezcladas devolviendo índice correcto (corrige bug del original) */
-function opc(correcto,erroneas){const arr=mezclar([String(correcto),...erroneas.map(String)]);return{opts:arr,ok:arr.indexOf(String(correcto))};}
-const COLS=['c0','c1','c2','c3','c4','c5','c6','c7'];
+13) Juego: "La memoria de números" (Number memory)
+    Qué necesitás: tarjetas con números del 1 al 20.
+    Cómo se juega: Se muestran 5 tarjetas durante 10 segundos, se tapan y el
+    niño tiene que decir la lista en inglés en orden.
+    Aprendés: números del 1 al 20.
 
-/* ===== QUIZ: Woody pregunta en castellano, explica en inglés ===== */
-function quiz({p,opts,ok,en,ico,es,pregunta,respuesta,respuestaEn,next}){
-  const gc=document.getElementById('gameContainer');
-  gc.innerHTML=`<div class="text-center mb-8 text-2xl md:text-3xl font-bold leading-relaxed">${p}</div><div class="text-center mb-4"><button class="btn text-sm" style="min-height:40px;padding:8px 16px;" onclick="repetirPregunta()">🔊 Repetir pregunta</button></div><div id="qOps" class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto"></div>`;
-  const c=document.getElementById('qOps');let respondido=false;
-  window._pregActual=pregunta;
-  opts.forEach((o,i)=>{const b=document.createElement('button');b.className='pal '+COLS[i%COLS.length];const icono=ico?ico[i]:'';b.innerHTML=(icono?`<span class="ico">${icono}</span>`:'')+`<span>${o}</span>`;
-    b.onclick=()=>{
-      if(respondido)return;
-      if(i===ok){respondido=true;b.classList.add('ok');sonido.ok();conf(30);acierto();
-        hablarWoody(rp(WOODY.ganar),()=>{if(en)explicarEnIngles(en);});
-        if(next)setTimeout(next,3000);
-      }else{respondido=true;b.classList.add('no');sonido.no();fallo();
-        /* Woody anima en castellano y EXPLICA LA RESPUESTA EN INGLÉS */
-        const fraseEs=rp(WOODY.fallar)+" Ahora escuchá la respuesta correcta en inglés.";
-        hablarWoody(fraseEs,()=>{explicarEnIngles(respuestaEn||("The correct answer is "+respuesta));});
-      }
-    };c.appendChild(b);});
-  if(pregunta)setTimeout(()=>hablarWoody(pregunta),600);
-}
-function repetirPregunta(){if(window._pregActual)hablarWoody(window._pregActual);}
+14) Juego: "¿Cuántos hay?" (How many?)
+    Qué necesitás: juguetes, frutas o lápices.
+    Cómo se juega: Ponés una cantidad de objetos sobre la mesa y preguntás
+    "How many?" (¿Cuántos hay?). El niño cuenta en inglés y responde
+    "Five pencils!" (¡Cinco lápices!).
+    Aprendés: How many? (jai méni) = ¿Cuántos?, pencil (pénsil) = lápiz.
 
-/* ===== DICCIONARIOS ===== */
-const DIC={
- animales:[{es:"perro",en:"dog",ico:"🐶"},{es:"gato",en:"cat",ico:"🐱"},{es:"pájaro",en:"bird",ico:"🐦"},{es:"pez",en:"fish",ico:"🐟"},{es:"caballo",en:"horse",ico:"🐴"},{es:"vaca",en:"cow",ico:"🐮"},{es:"león",en:"lion",ico:"🦁"},{es:"mono",en:"monkey",ico:"🐵"},{es:"elefante",en:"elephant",ico:"🐘"},{es:"conejo",en:"rabbit",ico:"🐰"}],
- comida:[{es:"manzana",en:"apple",ico:"🍎"},{es:"banana",en:"banana",ico:"🍌"},{es:"naranja",en:"orange",ico:"🍊"},{es:"uva",en:"grape",ico:"🍇"},{es:"pan",en:"bread",ico:"🍞"},{es:"leche",en:"milk",ico:"🥛"},{es:"queso",en:"cheese",ico:"🧀"},{es:"pizza",en:"pizza",ico:"🍕"},{es:"helado",en:"ice cream",ico:"🍦"},{es:"galleta",en:"cookie",ico:"🍪"}],
- colores:[{es:"rojo",en:"red",c:"#ef4444"},{es:"azul",en:"blue",c:"#3b82f6"},{es:"verde",en:"green",c:"#22c55e"},{es:"amarillo",en:"yellow",c:"#eab308"},{es:"naranja",en:"orange",c:"#f97316"},{es:"violeta",en:"purple",c:"#a855f7"},{es:"rosa",en:"pink",c:"#ec4899"},{es:"negro",en:"black",c:"#111"},{es:"blanco",en:"white",c:"#fff"},{es:"marrón",en:"brown",c:"#92400e"}],
- cuerpo:[{es:"cabeza",en:"head",ico:"🗣️"},{es:"ojo",en:"eye",ico:"👁️"},{es:"nariz",en:"nose",ico:"👃"},{es:"boca",en:"mouth",ico:"👄"},{es:"oreja",en:"ear",ico:"👂"},{es:"mano",en:"hand",ico:"✋"},{es:"pie",en:"foot",ico:"🦶"},{es:"brazo",en:"arm",ico:"💪"},{es:"pierna",en:"leg",ico:"🦵"},{es:"diente",en:"tooth",ico:"🦷"}],
- familia:[{es:"mamá",en:"mom",ico:"👩"},{es:"papá",en:"dad",ico:"👨"},{es:"hermano",en:"brother",ico:"👦"},{es:"hermana",en:"sister",ico:"👧"},{es:"abuelo",en:"grandpa",ico:"👴"},{es:"abuela",en:"grandma",ico:"👵"},{es:"tío",en:"uncle",ico:"🧔"},{es:"tía",en:"aunt",ico:"👩‍🦰"},{es:"primo",en:"cousin",ico:"🧒"},{es:"bebé",en:"baby",ico:"👶"}],
- frases:[{es:"Hola",en:"Hello",ico:"👋"},{es:"Adiós",en:"Goodbye",ico:"👋"},{es:"Gracias",en:"Thank you",ico:"🙏"},{es:"Por favor",en:"Please",ico:"🤲"},{es:"Buenos días",en:"Good morning",ico:"🌅"},{es:"Buenas noches",en:"Good night",ico:"🌙"},{es:"Sí",en:"Yes",ico:"✅"},{es:"No",en:"No",ico:"❌"},{es:"¿Cómo estás?",en:"How are you?",ico:"🤔"},{es:"Me llamo",en:"My name is",ico:"🪪"}],
- ropa:[{es:"remera",en:"t-shirt",ico:"👕"},{es:"pantalón",en:"pants",ico:"👖"},{es:"zapatos",en:"shoes",ico:"👟"},{es:"medias",en:"socks",ico:"🧦"},{es:"gorra",en:"hat",ico:"🧢"},{es:"campera",en:"jacket",ico:"🧥"},{es:"vestido",en:"dress",ico:"👗"},{es:"bufanda",en:"scarf",ico:"🧣"}],
- casa:[{es:"casa",en:"house",ico:"🏠"},{es:"puerta",en:"door",ico:"🚪"},{es:"ventana",en:"window",ico:"🪟"},{es:"cama",en:"bed",ico:"🛏️"},{es:"silla",en:"chair",ico:"🪑"},{es:"mesa",en:"table",ico:"🍽️"},{es:"cocina",en:"kitchen",ico:"🍳"},{es:"baño",en:"bathroom",ico:"🚽"}],
- transporte:[{es:"coche",en:"car",ico:"🚗"},{es:"autobús",en:"bus",ico:"🚌"},{es:"tren",en:"train",ico:"🚂"},{es:"avión",en:"airplane",ico:"✈️"},{es:"barco",en:"boat",ico:"⛵"},{es:"bicicleta",en:"bicycle",ico:"🚲"},{es:"moto",en:"motorcycle",ico:"🏍️"},{es:"taxi",en:"taxi",ico:"🚕"}]
-};
-const PALABRAS=["CASA","GATO","PERRO","SOL","LUNA","FLOR","PEZ","LIBRO","BOLA","COCHE","AVION","MANZANA","BANANA","LECHE","PAN","AGUA","FUEGO","ARBOL","ESTRELLA","NUBE"];
-const ABC="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-const CONSONANTES="BCDFGHJKLMNPQRSTVWXYZ".split('');
+15) Juego: "Bingo de números" (Number bingo)
+    Qué necesitás: cartones con números y fichas.
+    Cómo se juega: El que canta dice números en inglés, los jugadores marcan
+    en su cartón. El primero en completar una línea grita "Bingo!".
+    Aprendés: escuchar y reconocer números del 1 al 30.
 
-/* ===== GENERADORES DE LOS 60 JUEGOS (corregidos) ===== */
-const GEN={
- g1:()=>{const a=ri(1,20),b=ri(1,20);const r=opc(a+b,[a+b+1,a+b-1,a+b+2]);return{p:`¿Cuánto es ${a} + ${b}?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuánto es ${a} más ${b}?`,respuesta:`${a+b}`,respuestaEn:`The correct answer is ${a+b}. ${a} plus ${b} equals ${a+b}.`};},
- g2:()=>{const a=ri(10,30),b=ri(1,9);const r=opc(a-b,[a-b+1,a-b-1,a-b+2]);return{p:`¿Cuánto es ${a} − ${b}?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuánto es ${a} menos ${b}?`,respuesta:`${a-b}`,respuestaEn:`The correct answer is ${a-b}. ${a} minus ${b} equals ${a-b}.`};},
- g3:()=>{const a=ri(2,9),b=ri(2,9);const r=opc(a*b,[a*b+a,a*b-b,a*b+ri(2,9)]);return{p:`¿Cuánto es ${a} × ${b}?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuánto es ${a} por ${b}?`,respuesta:`${a*b}`,respuestaEn:`The correct answer is ${a*b}. ${a} times ${b} equals ${a*b}.`};},
- g4:()=>{const b=ri(2,9),r2=ri(1,9),a=b*r2;const r=opc(r2,[r2+1,Math.max(1,r2-1),r2+2]);return{p:`¿${a} ÷ ${b} = ?`,opts:r.opts,ok:r.ok,pregunta:`¿${a} dividido ${b} cuánto da?`,respuesta:`${r2}`,respuestaEn:`The correct answer is ${r2}. ${a} divided by ${b} equals ${r2}.`};},
- g5:()=>{let a=ri(1,99),b=ri(1,99);while(a===b)b=ri(1,99);return{p:`¿Cuál es MÁS GRANDE?`,opts:[String(a),String(b)],ok:a>b?0:1,pregunta:`¿Cuál es más grande, el ${a} o el ${b}?`,respuesta:`${Math.max(a,b)}`,respuestaEn:`The correct answer is ${Math.max(a,b)}. It is bigger.`};},
- g6:()=>{const inicio=ri(1,5),paso=rp([2,5,10]);const seq=[inicio,inicio+paso,inicio+paso*2,inicio+paso*3];const falta=inicio+paso*4;const r=opc(falta,[falta+paso,falta-paso,falta+ri(1,3)]);return{p:`${seq.join(', ')}, ? ¿Qué sigue?`,opts:r.opts,ok:r.ok,pregunta:`Mirá la secuencia: ${seq.join(', ')}. ¿Qué número sigue?`,respuesta:`${falta}`,respuestaEn:`The correct answer is ${falta}. The pattern adds ${paso} each time.`};},
- g7:()=>{const a=ri(2,10);const r=opc(a*2,[a*2+1,a*2-2,a*3]);return{p:`¿Cuál es el DOBLE de ${a}?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuál es el doble de ${a}?`,respuesta:`${a*2}`,respuestaEn:`The correct answer is ${a*2}. The double of ${a} is ${a*2}.`};},
- g8:()=>{const a=ri(2,10)*2;const r=opc(a/2,[a/2+1,Math.max(1,a/2-1),a/4]);return{p:`¿Cuál es la MITAD de ${a}?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuál es la mitad de ${a}?`,respuesta:`${a/2}`,respuestaEn:`The correct answer is ${a/2}. Half of ${a} is ${a/2}.`};},
- g9:()=>{const n=ri(1,20);return{p:`El número ${n} es...`,opts:["Par","Impar"],ok:n%2===0?0:1,pregunta:`El número ${n}, ¿es par o impar?`,respuesta:n%2===0?"par":"impar",respuestaEn:`The correct answer: the number ${n} is ${n%2===0?'even':'odd'}.`};},
- g10:()=>{const n=ri(10,99);const dec=Math.floor(n/10),uni=n%10;const r=opc(dec,[dec+1,Math.max(0,dec-1),uni]);return{p:`En el ${n}, ¿cuántas decenas hay?`,opts:r.opts,ok:r.ok,pregunta:`En el número ${n}, ¿cuántas decenas hay?`,respuesta:`${dec}`,respuestaEn:`The correct answer is ${dec}. The number ${n} has ${dec} tens.`};},
- g11:()=>{const n=ri(1,99);const uni=n%10;const r=opc(uni,[uni+1,Math.max(0,uni-1),Math.floor(n/10)]);return{p:`En el ${n}, ¿cuántas unidades hay?`,opts:r.opts,ok:r.ok,pregunta:`En el número ${n}, ¿cuántas unidades hay?`,respuesta:`${uni}`,respuestaEn:`The correct answer is ${uni}. The number ${n} has ${uni} ones.`};},
- g12:()=>{const a=ri(1,50),b=ri(1,50);const r=opc(Math.min(a,b),[Math.max(a,b),Math.max(a,b)+1,Math.max(1,Math.min(a,b)-1)]);return{p:`¿Cuál es el MÁS CHICO entre ${a} y ${b}?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuál es más chico, el ${a} o el ${b}?`,respuesta:`${Math.min(a,b)}`,respuestaEn:`The correct answer is ${Math.min(a,b)}. It is smaller.`};},
- g13:()=>{const l=rp(ABC.slice(0,25));const idx=ABC.indexOf(l);const sig=ABC[idx+1];const err=mezclar(ABC.filter(x=>x!==sig&&x!==l)).slice(0,3);const r=opc(sig,err);return{p:`¿Qué letra viene DESPUÉS de la "${l}"?`,opts:r.opts,ok:r.ok,pregunta:`¿Qué letra viene después de la ${l}?`,respuesta:`la ${sig}`,respuestaEn:`The correct answer is the letter ${sig}. It comes after ${l}.`};},
- g14:()=>{const l=rp(["A","E","I","O","U"]);const err=mezclar(CONSONANTES).slice(0,3);const r=opc(l,err);return{p:`¿Cuál es una VOCAL?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuál de estas letras es una vocal?`,respuesta:`la ${l}`,respuestaEn:`The correct answer is ${l}. It is a vowel.`};},
- g15:()=>{const p=rp(PALABRAS);const s=(p.match(/[AEIOU]/g)||[]).length;const r=opc(s,[s+1,Math.max(0,s-1),s+2]);return{p:`¿Cuántas vocales tiene "${p}"?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuántas vocales tiene la palabra ${p}?`,respuesta:`${s}`,respuestaEn:`The correct answer is ${s}. The word ${p} has ${s} vowels.`};},
- g16:()=>{const p=rp(PALABRAS);const err=mezclar(ABC.filter(x=>x!==p[0])).slice(0,3);const r=opc(p[0],err);return{p:`¿Con qué letra empieza "${p}"?`,opts:r.opts,ok:r.ok,pregunta:`¿Con qué letra empieza la palabra ${p}?`,respuesta:`la ${p[0]}`,respuestaEn:`The correct answer is ${p[0]}. The word ${p} starts with ${p[0]}.`};},
- g17:()=>{const p=rp(PALABRAS.filter(w=>w.length>2));const ultima=p[p.length-1];const err=mezclar(ABC.filter(x=>x!==ultima)).slice(0,3);const r=opc(ultima,err);return{p:`¿Con qué letra TERMINA "${p}"?`,opts:r.opts,ok:r.ok,pregunta:`¿Con qué letra termina la palabra ${p}?`,respuesta:`la ${ultima}`,respuestaEn:`The correct answer is ${ultima}. The word ${p} ends with ${ultima}.`};},
- g18:()=>{const pares=[["GATO","PATO"],["SOL","COLOR"],["FLOR","OLOR"],["CASA","MASA"],["LUNA","CUNA"]];const par=rp(pares);const err=mezclar(PALABRAS.filter(w=>w!==par[0]&&w!==par[1])).slice(0,3);const r=opc(par[1],err);return{p:`¿Con qué rima "${par[0]}"?`,opts:r.opts,ok:r.ok,pregunta:`¿Con qué palabra rima ${par[0]}?`,respuesta:par[1],respuestaEn:`The correct answer is ${par[1]}. It rhymes with ${par[0]}.`};},
- g19:()=>{const l=rp(ABC);const emp=PALABRAS.filter(w=>w[0]===l);const p=emp.length?rp(emp):rp(PALABRAS);const err=mezclar(PALABRAS.filter(w=>w[0]!==p[0])).slice(0,3);const r=opc(p,err);return{p:`¿Qué palabra empieza con "${p[0]}"?`,opts:r.opts,ok:r.ok,pregunta:`¿Qué palabra empieza con la letra ${p[0]}?`,respuesta:p,respuestaEn:`The correct answer is ${p}. It starts with the letter ${p[0]}.`};},
- g20:()=>{const cons=rp(CONSONANTES);const err=mezclar(["A","E","I","O","U"]).slice(0,3);const r=opc(cons,err);return{p:`¿Cuál es una CONSONANTE?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuál de estas es una consonante?`,respuesta:`la ${cons}`,respuestaEn:`The correct answer is ${cons}. It is a consonant.`};},
- g21:()=>{const p=rp(PALABRAS);const letras=mezclar(p.split('')).join('');const err=mezclar(PALABRAS.filter(w=>w!==p)).slice(0,3);const r=opc(p,err);return{p:`¿Qué palabra es? "${letras}"`,opts:r.opts,ok:r.ok,pregunta:`Las letras ${letras} forman una palabra. ¿Cuál es?`,respuesta:p,respuestaEn:`The correct answer is ${p}. The letters spell ${p}.`};},
- g22:()=>{return{especial:"ahorcado"};},
- g23:()=>{return{especial:"memoria"};},
- g24:()=>{return{especial:"rompe"};},
- g25:()=>{return{especial:"simon"};},
- g26:()=>{const grupos=[["🍎","🍌","🍇","🐶"],["🐶","🐱","🐦","🚗"],["🔴","🔵","🟢","🍎"],["✈️","🚗","🚆","🐟"]];const g=rp(grupos);const r=opc(g[3],g.slice(0,3));return{p:`¿Cuál es el INTRUSO?`,opts:r.opts,ok:r.ok,pregunta:`Mirá bien. ¿Cuál de estos no pertenece al grupo?`,respuesta:g[3],respuestaEn:`The correct answer is ${g[3]}. It does not belong with the others.`};},
- g27:()=>{const seq=rp([["🔴","🔵","🔴","🔵","🔴"],["⭐","🌙","⭐","🌙","⭐"],["🔺","🔺","🔵","🔺","🔺"],["🐶","🐱","🐶","🐱","🐶"]]);const sig=seq[4];const err=mezclar(["🟢","🌞","❤️","🍎"].filter(x=>x!==sig)).slice(0,3);const r=opc(sig,err);return{p:`Patrón: ${seq.slice(0,4).join(' ')} ? ¿Qué sigue?`,opts:r.opts,ok:r.ok,pregunta:`Mirá el patrón. ¿Qué figura sigue?`,respuesta:sig,respuestaEn:`The correct answer is ${sig}. It continues the pattern.`};},
- g28:()=>{return{especial:"arcade"};},
- g29:()=>{const s=rp([["🐶","🐾"],["⭐","✨"],["🌳","🌲"],["👤","👤"]]);const err=["🍎","🚗","🎈"].slice(0,3);const r=opc(s[1],err);return{p:`¿Qué va con ${s[0]}?`,opts:r.opts,ok:r.ok,pregunta:`¿Qué va junto con ${s[0]}?`,respuesta:s[1],respuestaEn:`The correct answer is ${s[1]}. It goes with ${s[0]}.`};},
- g30:()=>{const a=ri(2,50);const r=opc(a-1,[a+1,a+2,Math.max(1,a-2)]);return{p:`¿Qué número viene ANTES de ${a}?`,opts:r.opts,ok:r.ok,pregunta:`¿Qué número viene antes del ${a}?`,respuesta:`${a-1}`,respuestaEn:`The correct answer is ${a-1}. It comes before ${a}.`};},
- g31:()=>{const formas=[["Círculo","🔴"],["Cuadrado","🟦"],["Triángulo","🔺"],["Estrella","⭐"],["Corazón","❤️"],["Luna","🌙"]];const f=rp(formas);const err=mezclar(formas.filter(x=>x[0]!==f[0]).map(x=>x[0])).slice(0,3);const r=opc(f[0],err);return{p:`¿Qué forma es? ${f[1]}`,opts:r.opts,ok:r.ok,pregunta:`¿Qué forma geométrica es esta?`,respuesta:f[0],respuestaEn:`The correct answer is ${f[0]}. It is a ${f[0].toLowerCase()}.`};},
- g32:()=>{const op=[["El sol sale de día","☀️"],["La luna sale de noche","🌙"],["El fuego quema","🔥"],["El agua moja","💧"]];const o=rp(op);const r=opc("Verdadero",["Falso","No sé","Tal vez"]);return{p:`¿Verdadero o falso?<br><div class="text-5xl my-3">${o[1]}</div><div class="text-xl font-bold">"${o[0]}"</div>`,opts:r.opts,ok:r.ok,pregunta:`¿Es verdad o mentira que ${o[0].toLowerCase()}?`,respuesta:"verdadero",respuestaEn:`The correct answer is True. It is true that ${o[0].toLowerCase()}.`};},
- g33:()=>{return{especial:"pizarra"};},
- g34:()=>{return{especial:"piano"};},
- g35:()=>{const cols=["ROJO","AZUL","VERDE","AMARILLO","VIOLETA","NARANJA","ROSA","NEGRO","BLANCO","MARRÓN"];const hex=["#ef4444","#3b82f6","#22c55e","#eab308","#a855f7","#f97316","#ec4899","#111","#fff","#92400e"];const i=ri(0,9);const err=mezclar(cols.filter((_,j)=>j!==i)).slice(0,3);const r=opc(cols[i],err);return{p:`¿Qué color es?<br><div class="w-28 h-28 rounded-full mx-auto my-4 border-4 border-white/40" style="background:${hex[i]}"></div>`,opts:r.opts,ok:r.ok,pregunta:`¿De qué color es este círculo?`,respuesta:cols[i].toLowerCase(),respuestaEn:`The correct answer is ${cols[i].toLowerCase()}.`};},
- g36:()=>{const inst=[["🎸","Guitarra"],["🥁","Batería"],["🎹","Piano"],["🎺","Trompeta"],["🎻","Violín"],["🪘","Maracas"]];const ins=rp(inst);const err=mezclar(inst.filter(x=>x[1]!==ins[1]).map(x=>x[1])).slice(0,3);const r=opc(ins[1],err);return{p:`¿Qué instrumento es? ${ins[0]}`,opts:r.opts,ok:r.ok,pregunta:`¿Qué instrumento musical es este?`,respuesta:`la ${ins[1].toLowerCase()}`,respuestaEn:`The correct answer is the ${ins[1].toLowerCase()}.`};},
- g37:()=>{const r=opc("VERDE",["ROJO","NARANJA","VIOLETA"]);return{p:`AMARILLO + AZUL = ?`,opts:r.opts,ok:r.ok,pregunta:`Si mezclás amarillo con azul, ¿qué color sale?`,respuesta:"verde",respuestaEn:`The correct answer is green. Yellow plus blue makes green.`};},
- g38:()=>{const r=opc("NARANJA",["VERDE","AZUL","ROSA"]);return{p:`ROJO + AMARILLO = ?`,opts:r.opts,ok:r.ok,pregunta:`Si mezclás rojo con amarillo, ¿qué color sale?`,respuesta:"naranja",respuestaEn:`The correct answer is orange. Red plus yellow makes orange.`};},
- g39:()=>{const r=opc("ROSA",["VERDE","AZUL","AMARILLO"]);return{p:`ROJO + BLANCO = ?`,opts:r.opts,ok:r.ok,pregunta:`Si mezclás rojo con blanco, ¿qué color sale?`,respuesta:"rosa",respuestaEn:`The correct answer is pink. Red plus white makes pink.`};},
- g40:()=>{const r=opc("VIOLETA",["VERDE","NARANJA","AMARILLO"]);return{p:`ROJO + AZUL = ?`,opts:r.opts,ok:r.ok,pregunta:`Si mezclás rojo con azul, ¿qué color sale?`,respuesta:"violeta",respuestaEn:`The correct answer is purple. Red plus blue makes purple.`};},
- g41:()=>{const t=rp(['animales','comida','cuerpo','familia','ropa','casa','transporte']);const c=rp(DIC[t]);const ops=mezclar([c,...mezclar(DIC[t].filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`¿Cómo se dice "${c.es}" en inglés?<br><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice ${c.es} en inglés? Mirá las opciones.`,respuesta:`${c.en}`,respuestaEn:`The correct answer is ${c.en}. In English, ${c.es} is ${c.en}.`};},
- g42:()=>{const c=rp(DIC.colores);const ops=mezclar([c,...mezclar(DIC.colores.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`Este color, ¿cómo se dice en inglés?<br><div class="w-28 h-28 rounded-full mx-auto my-4 border-4 border-white/40" style="background:${c.c}"></div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en.toUpperCase()),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice el color ${c.es} en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. This color is ${c.en} in English.`};},
- g43:()=>{const n=ri(1,10);const nums=["one","two","three","four","five","six","seven","eight","nine","ten"];const c=nums[n-1];const ops=mezclar([c,...mezclar(nums.filter(x=>x!==c)).slice(0,3)]);return{p:`El número ${n}, ¿cómo se dice en inglés?<br><button class="bocina" onclick="hablarIngles('${c}')">🔊</button>`,opts:ops,ok:ops.indexOf(c),en:c,es:String(n),pregunta:`¿Cómo se dice el número ${n} en inglés?`,respuesta:c,respuestaEn:`The correct answer is ${c}. The number ${n} is ${c} in English.`};},
- g44:()=>{const c=rp(DIC.comida);const ops=mezclar([c,...mezclar(DIC.comida.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`"${c.es}" ¿cómo se dice en inglés?<br><div class="text-7xl my-4">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice ${c.es} en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. ${c.es} is ${c.en} in English.`};},
- g45:()=>{const c=rp(DIC.animales);const ops=mezclar([c,...mezclar(DIC.animales.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`"${c.es}" ¿cómo se dice en inglés?<br><div class="text-7xl my-4">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice ${c.es} en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. ${c.es} is ${c.en} in English.`};},
- g46:()=>{const c=rp(DIC.cuerpo);const ops=mezclar([c,...mezclar(DIC.cuerpo.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`"${c.es}" ¿cómo se dice en inglés?<br><div class="text-7xl my-4">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice ${c.es} en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. ${c.es} is ${c.en} in English.`};},
- g47:()=>{const c=rp(DIC.familia);const ops=mezclar([c,...mezclar(DIC.familia.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`"${c.es}" ¿cómo se dice en inglés?<br><div class="text-7xl my-4">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice ${c.es} en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. ${c.es} is ${c.en} in English.`};},
- g48:()=>{const c=rp(DIC.frases);const ops=mezclar([c,...mezclar(DIC.frases.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`"${c.es}" ¿cómo se dice en inglés?<br><div class="text-3xl font-bold text-yellow-300 my-4">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice "${c.es}" en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. "${c.es}" means "${c.en}" in English.`};},
- g49:()=>{const c=rp(DIC.ropa);const ops=mezclar([c,...mezclar(DIC.ropa.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`"${c.es}" ¿cómo se dice en inglés?<br><div class="text-7xl my-4">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice ${c.es} en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. ${c.es} is ${c.en} in English.`};},
- g50:()=>{return{especial:"spelling"};},
- g51:()=>{const dias=["lunes","martes","miércoles","jueves","viernes","sábado","domingo"];const diasEn=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];const i=ri(0,6);const ops=mezclar([diasEn[i],...mezclar(diasEn.filter((_,j)=>j!==i)).slice(0,3)]);return{p:`"${dias[i]}" ¿cómo se dice en inglés?<br><button class="bocina" onclick="hablarIngles('${diasEn[i]}')">🔊</button>`,opts:ops,ok:ops.indexOf(diasEn[i]),en:diasEn[i],es:dias[i],pregunta:`¿Cómo se dice ${dias[i]} en inglés?`,respuesta:diasEn[i],respuestaEn:`The correct answer is ${diasEn[i]}. ${dias[i]} is ${diasEn[i]} in English.`};},
- g52:()=>{const meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];const mesesEn=["January","February","March","April","May","June","July","August","September","October","November","December"];const i=ri(0,11);const ops=mezclar([mesesEn[i],...mezclar(mesesEn.filter((_,j)=>j!==i)).slice(0,3)]);return{p:`"${meses[i]}" ¿cómo se dice en inglés?<br><button class="bocina" onclick="hablarIngles('${mesesEn[i]}')">🔊</button>`,opts:ops,ok:ops.indexOf(mesesEn[i]),en:mesesEn[i],es:meses[i],pregunta:`¿Cómo se dice el mes de ${meses[i]} en inglés?`,respuesta:mesesEn[i],respuestaEn:`The correct answer is ${mesesEn[i]}. ${meses[i]} is ${mesesEn[i]} in English.`};},
- g53:()=>{const c=rp(DIC.casa);const ops=mezclar([c,...mezclar(DIC.casa.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`"${c.es}" ¿cómo se dice en inglés?<br><div class="text-7xl my-4">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice ${c.es} en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. ${c.es} is ${c.en} in English.`};},
- g54:()=>{const c=rp(DIC.transporte);const ops=mezclar([c,...mezclar(DIC.transporte.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`"${c.es}" ¿cómo se dice en inglés?<br><div class="text-7xl my-4">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`¿Cómo se dice ${c.es} en inglés?`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}. ${c.es} is ${c.en} in English.`};},
- g55:()=>{const t=rp(['animales','comida','cuerpo','familia','ropa','casa','transporte']);const c=rp(DIC[t]);const ops=mezclar([c,...mezclar(DIC[t].filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`Escuchá y elegí la imagen correcta<br><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.ico),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es,pregunta:`Escuchá la palabra en inglés y elegí la imagen correcta.`,respuesta:c.en,respuestaEn:`The correct answer is ${c.en}.`};},
- g56:()=>{const n=ri(1,100);const r=opc(Math.round(n/10)*10,[n+5,n-5,n+10]);return{p:`¿A qué decena se acerca el ${n}?`,opts:r.opts,ok:r.ok,pregunta:`El número ${n}, ¿a qué decena se acerca?`,respuesta:`${Math.round(n/10)*10}`,respuestaEn:`The correct answer is ${Math.round(n/10)*10}. ${n} rounds to the nearest ten.`};},
- g57:()=>{const r=opc("INVIERNO",["VERANO","PRIMAVERA","OTOÑO"]);return{p:`¿En qué estación hace frío y nieva?`,opts:r.opts,ok:r.ok,pregunta:`¿En qué estación del año hace frío y nieva?`,respuesta:"el invierno",respuestaEn:`The correct answer is winter. It is cold and snows in winter.`};},
- g58:()=>{const r=opc("ABEJA",["MOSCA","HORMIGA","ARAÑA"]);return{p:`¿Qué insecto hace la miel?`,opts:r.opts,ok:r.ok,pregunta:`¿Qué insecto es el que hace la miel?`,respuesta:"la abeja",respuestaEn:`The correct answer is the bee. Bees make honey.`};},
- g59:()=>{const r=opc("PEZ",["PERRO","GATO","PÁJARO"]);return{p:`¿Qué animal vive en el agua?`,opts:r.opts,ok:r.ok,pregunta:`¿Cuál de estos animales vive en el agua?`,respuesta:"el pez",respuestaEn:`The correct answer is the fish. Fish live in water.`};},
- g60:()=>{const r=opc("Luz del sol",["Piedras","Carne","Plástico"]);return{p:`¿De qué se alimentan las plantas para crecer?`,opts:r.opts,ok:r.ok,pregunta:`¿De qué se alimentan las plantas para crecer?`,respuesta:"la luz del sol",respuestaEn:`The correct answer is sunlight. Plants need sunlight to grow.`};}
-};
+================================================================================
+                    BLOQUE 4: COMIDA (Food)
+================================================================================
 
-/* ===== JUEGOS ESPECIALES ===== */
-function jMemoria(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div class="text-center mb-4 font-bold text-xl">Aciertos: <span id="mPts">0</span>/8</div><div id="mGrilla" class="grid grid-cols-4 gap-3 max-w-sm mx-auto"></div><div class="text-center mt-5"><button class="btn" onclick="cargarJ()">Otra vez</button></div>`;const emojis=["🐶","🐱","🍎","🌟","🚀","🎈","🐟","🌸"];const arr=mezclar([...emojis,...emojis]);const gr=document.getElementById('mGrilla');let sel=[],pts=0;arr.forEach((ico,i)=>{const c=document.createElement('div');c.className='carta';c.innerHTML=`<div class="carta-inner"><div class="cara cf">?</div><div class="cara ca">${ico}</div></div>`;c.onclick=()=>{if(sel.length>=2||c.classList.contains('girada'))return;sonido.click();c.classList.add('girada');sel.push({c,ico});if(sel.length===2){if(sel[0].ico===sel[1].ico){sonido.ok();pts++;document.getElementById('mPts').textContent=pts;sel=[];acierto();if(pts===8){sonido.ganar();conf(50);hablarWoody("¡Memoria perfecta! ¡Sos genial!");ganarMonedas(10);}}else{sonido.no();fallo();setTimeout(()=>{sel[0].c.classList.remove('girada');sel[1].c.classList.remove('girada');sel=[];},800);}}};gr.appendChild(c);});}
-function jRompe(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div id="rGrilla" class="grid grid-cols-3 gap-2 max-w-[260px] mx-auto"></div><div class="text-center mt-5"><button class="btn" onclick="cargarJ()">Mezclar</button></div>`;let r=[1,2,3,4,5,6,7,8,0];for(let i=0;i<80;i++){let v=r.indexOf(0),vv=[];if(v%3)vv.push(v-1);if(v%3!==2)vv.push(v+1);if(v>=3)vv.push(v-3);if(v<6)vv.push(v+3);let a=vv[ri(0,vv.length-1)];[r[v],r[a]]=[r[a],r[v]];}const d=()=>{const g=document.getElementById('rGrilla');if(!g)return;g.innerHTML='';r.forEach((n,i)=>{const c=document.createElement('div');c.className='aspect-square rounded-xl flex items-center justify-center font-bold text-3xl cursor-pointer transition '+(n?'text-white border border-yellow-400/40':'bg-black/30 border border-dashed border-white/20');if(n)c.style.background='linear-gradient(135deg,rgba(34,211,238,.8),rgba(139,92,246,.8))';c.textContent=n||'';if(n)c.onclick=()=>{const v=r.indexOf(0),f=Math.floor(i/3),cc=i%3,fv=Math.floor(v/3),cv=v%3;if(Math.abs(f-fv)+Math.abs(cc-cv)===1){sonido.click();[r[i],r[v]]=[r[v],r[i]];d();if(r.join('')==='123456780'){sonido.ganar();conf(50);hablarWoody("¡Rompecabezas armado! ¡Sos un genio!");ganarMonedas(10);}}};g.appendChild(c);});};d();}
-function jSimon(){const gc=document.getElementById('gameContainer');const cols=[{c:'#ef4444',f:329.6},{c:'#22c55e',f:392.0},{c:'#3b82f6',f:440.0},{c:'#eab308',f:523.2}];let seq=[],user=0,escuchando=false;gc.innerHTML=`<div class="text-center mb-5 font-bold text-xl" id="simonTxt">Mirá la secuencia...</div><div class="grid grid-cols-2 gap-4 max-w-xs mx-auto" id="simonGrid"></div><div class="text-center mt-5"><button class="btn" onclick="cargarJ()">Reiniciar</button></div>`;const grid=document.getElementById('simonGrid');cols.forEach((col,i)=>{const b=document.createElement('div');b.className='simon-btn';b.style.background=col.c;b.style.color=col.c;b.onclick=()=>{if(!escuchando)return;sonido.tono(col.f,.3,'sine',.2);b.classList.add('activo');setTimeout(()=>b.classList.remove('activo'),300);if(i===seq[user]){user++;if(user>=seq.length){sonido.ok();acierto();setTimeout(nivel,800);}}else{sonido.no();fallo();hablarWoody(rp(WOODY.fallar));document.getElementById('simonTxt').textContent='¡Perdiste! Llegaste a '+(seq.length-1)+' niveles';escuchando=false;}};grid.appendChild(b);});const mostrar=async()=>{escuchando=false;document.getElementById('simonTxt').textContent='Mirá la secuencia...';await new Promise(r=>setTimeout(r,600));for(const i of seq){const b=grid.children[i];b.classList.add('activo');sonido.tono(cols[i].f,.35,'sine',.2);await new Promise(r=>setTimeout(r,450));b.classList.remove('activo');await new Promise(r=>setTimeout(r,200));}escuchando=true;user=0;document.getElementById('simonTxt').textContent='¡Ahora vos! Repetí la secuencia';};const nivel=()=>{seq.push(ri(0,3));mostrar();};setTimeout(nivel,500);}
-function jArcade(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div class="text-center font-bold text-2xl mb-3">Atrapadas: <span id="aPts" style="color:var(--gold);">0</span> ⭐</div><div id="aArea" class="relative w-full max-w-lg h-[300px] border-2 rounded-2xl overflow-hidden mx-auto" style="border-color:rgba(245,196,81,.4);background:rgba(0,0,0,.4);"></div>`;const area=document.getElementById('aArea');let pts=0,activo=true;const spawn=()=>{if(!activo||!document.getElementById('aArea'))return;const e=document.createElement('div');e.textContent='⭐';e.className='absolute text-4xl';e.style.left=Math.random()*88+'%';e.style.top='-40px';area.appendChild(e);let pos=-40;const bajar=()=>{if(!activo||!e.parentNode)return;pos+=2.5;e.style.top=pos+'px';if(pos>300)e.remove();else requestAnimationFrame(bajar);};e.onmousedown=e.ontouchstart=(ev)=>{ev.preventDefault();if(!activo)return;sonido.moneda();e.remove();pts++;document.getElementById('aPts').textContent=pts;if(pts%5===0)acierto();};requestAnimationFrame(bajar);setTimeout(spawn,500+Math.random()*600);};spawn();}
-function jPizarra(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div class="flex gap-3 justify-center mb-4 flex-wrap items-center"><button class="w-10 h-10 rounded-full border-2 border-white/50" style="background:#ef4444;" onclick="window._ctx.strokeStyle='#ef4444'"></button><button class="w-10 h-10 rounded-full border-2 border-white/50" style="background:#3b82f6;" onclick="window._ctx.strokeStyle='#3b82f6'"></button><button class="w-10 h-10 rounded-full border-2 border-white/50" style="background:#22c55e;" onclick="window._ctx.strokeStyle='#22c55e'"></button><button class="w-10 h-10 rounded-full border-2 border-white/50" style="background:#eab308;" onclick="window._ctx.strokeStyle='#eab308'"></button><button class="w-10 h-10 rounded-full border-2 border-white/50" style="background:#ec4899;" onclick="window._ctx.strokeStyle='#ec4899'"></button><button class="w-10 h-10 rounded-full border-2 border-white/50" style="background:#fff;" onclick="window._ctx.strokeStyle='#ffffff'"></button><button class="btn ml-2" style="min-height:40px;padding:8px 16px;" onclick="window._ctx.clearRect(0,0,500,350)">Borrar</button></div><canvas id="piz" width="500" height="350" class="block mx-auto max-w-full touch-none rounded-2xl" style="background:rgba(0,0,0,.4);border:2px solid rgba(245,196,81,.4);"></canvas>`;const cvs=document.getElementById('piz');window._ctx=cvs.getContext('2d');window._ctx.lineWidth=7;window._ctx.lineCap='round';window._ctx.strokeStyle='#ffffff';let p=false;const gp=e=>{const r=cvs.getBoundingClientRect();return{x:(e.touches?e.touches[0].clientX:e.clientX)-r.left,y:(e.touches?e.touches[0].clientY:e.clientY)-r.top};};cvs.onmousedown=cvs.ontouchstart=e=>{p=true;const q=gp(e);window._ctx.beginPath();window._ctx.moveTo(q.x,q.y);};cvs.onmousemove=cvs.ontouchmove=e=>{if(!p)return;e.preventDefault();const q=gp(e);window._ctx.lineTo(q.x,q.y);window._ctx.stroke();};cvs.onmouseup=cvs.ontouchend=()=>p=false;}
-function jPiano(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div class="text-center mb-5 text-yellow-200 font-bold text-xl">Tocá las teclas 🎹</div><div class="flex justify-center relative w-full max-w-xl mx-auto h-[200px]" id="pianoC"></div>`;const pc=document.getElementById('pianoC');const nb=[{n:'C',f:261.6},{n:'D',f:293.6},{n:'E',f:329.6},{n:'F',f:349.2},{n:'G',f:392},{n:'A',f:440},{n:'B',f:493.8},{n:'C2',f:523.2}];const nn=[{n:'C#',f:277.1,pos:1},{n:'D#',f:311.1,pos:2},{n:'F#',f:369.9,pos:4},{n:'G#',f:415.3,pos:5},{n:'A#',f:466.1,pos:6}];nb.forEach(x=>{const b=document.createElement('div');b.className='tecla tecla-blanca';b.textContent=x.n;b.onmousedown=b.ontouchstart=e=>{e.preventDefault();b.classList.add('activa');sonido.tono(x.f,.5,'triangle',.15);};b.onmouseup=b.ontouchend=b.onmouseleave=()=>b.classList.remove('activa');pc.appendChild(b);});nn.forEach(x=>{const b=document.createElement('div');b.className='tecla tecla-negra absolute';b.style.left=`calc(${x.pos*12.5}% - 19px)`;b.textContent=x.n;b.onmousedown=b.ontouchstart=e=>{e.preventDefault();b.classList.add('activa');sonido.tono(x.f,.5,'square',.08);};b.onmouseup=b.ontouchend=b.onmouseleave=()=>b.classList.remove('activa');pc.appendChild(b);});}
-function jAhorcado(){const gc=document.getElementById('gameContainer');const word=rp(PALABRAS);let prog=Array(word.length).fill('_'),err=0,max=6,over=false;gc.innerHTML=`<div class="text-center text-5xl tracking-[0.4em] font-bold mb-5" id="ahP">${prog.join('')}</div><div class="text-center text-4xl mb-5" id="ahV">❤️❤️❤️❤️❤️❤️</div><div id="ahT" class="flex flex-wrap justify-center gap-2 max-w-xl mx-auto"></div>`;const dt=()=>{document.getElementById('ahP').textContent=prog.join('');document.getElementById('ahV').textContent='❤️'.repeat(Math.max(0,max-err))+'🖤'.repeat(err);};const tc=document.getElementById('ahT');"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split('').forEach(l=>{const b=document.createElement('button');b.className='letra w-12 h-12 text-xl c'+ri(0,7);b.textContent=l;b.onclick=()=>{if(over||b.disabled)return;b.disabled=true;if(word.includes(l)){b.style.background='linear-gradient(135deg,#16a34a,#4ade80)';sonido.click();word.split('').forEach((x,i)=>{if(x===l)prog[i]=l;});if(!prog.includes('_')){over=true;sonido.ganar();conf(40);acierto();hablarWoody("¡Adivinaste la palabra! ¡Sos un campeón!");ganarMonedas(8);setTimeout(cargarJ,2000);}}else{b.style.background='linear-gradient(135deg,#dc2626,#f87171)';sonido.no();fallo();err++;if(err>=max){over=true;document.getElementById('ahP').textContent=word;hablarWoody("¡Casi! La palabra era "+word+". Escuchala en inglés.",()=>explicarEnIngles("The word was "+word+"."));setTimeout(cargarJ,2500);}}dt();};tc.appendChild(b);});}
-function jSpelling(){const gc=document.getElementById('gameContainer');const t=rp(['animales','comida','colores','cuerpo','familia','ropa','casa','transporte']);const c=rp(DIC[t]);const letras=mezclar(c.en.toUpperCase().replace(/ /g,'').split(''));let el=[];const dib=()=>{gc.innerHTML=`<div class="text-center mb-5"><div class="text-7xl mb-3">${c.ico}</div><div class="text-xl text-yellow-200 font-bold">Woody dice: "${c.es.toUpperCase()}" en inglés se escribe...</div><button class="bocina mt-3" onclick="hablarIngles('${c.en}')">🔊</button></div><div class="text-center text-4xl font-bold tracking-widest mb-6 min-h-[60px]" style="color:var(--gold);">${el.map(i=>letras[i]).join(' ')}</div><div id="spLetras" class="flex flex-wrap justify-center gap-3 max-w-xl mx-auto mb-5"></div><div class="text-center"><button class="btn mr-3" onclick="cargarJ()">Nueva</button><button class="btn" onclick="el=[];dib()">Borrar</button></div>`;hablarWoody(`Deletreá "${c.es}" en inglés. ¡Vos podés!`);const cont=document.getElementById('spLetras');letras.forEach((l,i)=>{if(el.includes(i))return;const b=document.createElement('button');b.className='letra-spelling c'+ri(0,7);b.textContent=l;b.onclick=()=>{sonido.click();el.push(i);const arm=el.map(x=>letras[x]).join('');if(arm.length===c.en.replace(/ /g,'').length){if(arm===c.en.toUpperCase().replace(/ /g,'')){sonido.ganar();conf(40);acierto();ganarMonedas(6);hablarIngles(c.en);hablarWoody("¡Deletreaste perfecto! ¡Sos genial!");setTimeout(cargarJ,1800);}else{sonido.no();fallo();hablarWoody(rp(WOODY.fallar));setTimeout(()=>{el=[];dib();},900);return;}}dib();};cont.appendChild(b);});};dib();}
+16) Juego: "El restaurante" (The restaurant)
+    Qué necesitás: juguetes de comida o dibujos.
+    Cómo se juega: Un jugador es el mozo y toma pedidos en inglés: "What do
+    you want?" (¿Qué querés?). El cliente pide: "I want an apple, please"
+    (Quiero una manzana, por favor).
+    Aprendés: apple (ápol) = manzana, banana (banána) = banana, orange (órinch)
+    = naranja, bread (bred) = pan, milk (milk) = leche, water (uóter) = agua,
+    juice (yus) = jugo, cake (keik) = torta, pizza (pitsa) = pizza.
 
-/* ===== CATEGORÍAS Y JUEGOS ===== */
-const CATS=["🔢 Matemática","🔤 Letras","🧠 Lógica","🎨 Arte y Música","🌍 Inglés","🌟 Conocimiento"];
-const JUEGOS=[
- {c:0,n:"Sumas",g:"g1"},{c:0,n:"Restas",g:"g2"},{c:0,n:"Multiplicar",g:"g3"},{c:0,n:"Dividir",g:"g4"},{c:0,n:"Mayor",g:"g5"},{c:0,n:"Secuencias",g:"g6"},{c:0,n:"Dobles",g:"g7"},{c:0,n:"Mitades",g:"g8"},{c:0,n:"Par/Impar",g:"g9"},{c:0,n:"Decenas",g:"g10"},{c:0,n:"Unidades",g:"g11"},{c:0,n:"Más chico",g:"g12"},
- {c:1,n:"Abecedario",g:"g13"},{c:1,n:"Vocales",g:"g14"},{c:1,n:"Contar vocales",g:"g15"},{c:1,n:"Inicial",g:"g16"},{c:1,n:"Letra final",g:"g17"},{c:1,n:"Rimas",g:"g18"},{c:1,n:"Empieza con",g:"g19"},{c:1,n:"Consonante",g:"g20"},{c:1,n:"Anagrama",g:"g21"},{c:1,n:"Ahorcado",g:"g22"},
- {c:2,n:"Memoria",g:"g23"},{c:2,n:"Rompecabezas",g:"g24"},{c:2,n:"Simón",g:"g25"},{c:2,n:"Intruso",g:"g26"},{c:2,n:"Patrones",g:"g27"},{c:2,n:"Atrapa estrellas",g:"g28"},{c:2,n:"Asociar",g:"g29"},{c:2,n:"Antes de",g:"g30"},{c:2,n:"Formas",g:"g31"},{c:2,n:"V o F",g:"g32"},
- {c:3,n:"Pizarra",g:"g33"},{c:3,n:"Piano",g:"g34"},{c:3,n:"Colores",g:"g35"},{c:3,n:"Instrumentos",g:"g36"},{c:3,n:"Mezclar 1",g:"g37"},{c:3,n:"Mezclar 2",g:"g38"},{c:3,n:"Mezclar 3",g:"g39"},{c:3,n:"Mezclar 4",g:"g40"},
- {c:4,n:"Escuchá",g:"g41"},{c:4,n:"Colores EN",g:"g42"},{c:4,n:"Números EN",g:"g43"},{c:4,n:"Comida EN",g:"g44"},{c:4,n:"Animales EN",g:"g45"},{c:4,n:"Cuerpo EN",g:"g46"},{c:4,n:"Familia EN",g:"g47"},{c:4,n:"Frases EN",g:"g48"},{c:4,n:"Ropa EN",g:"g49"},{c:4,n:"Spelling",g:"g50"},{c:4,n:"Días EN",g:"g51"},{c:4,n:"Meses EN",g:"g52"},{c:4,n:"Casa EN",g:"g53"},{c:4,n:"Transporte EN",g:"g54"},{c:4,n:"Imagen",g:"g55"},
- {c:5,n:"Redondear",g:"g56"},{c:5,n:"Estaciones",g:"g57"},{c:5,n:"Ciencia",g:"g58"},{c:5,n:"Animales",g:"g59"},{c:5,n:"Plantas",g:"g60"}
-];
-function dibCats(){document.getElementById('cats').innerHTML=CATS.map((n,i)=>`<button class="btn ${i===CA?'on':''}" data-c="${i}">${n}</button>`).join('');document.querySelectorAll('#cats button').forEach(b=>b.onclick=()=>{CA=+b.dataset.c;dibTabs();});}
-function dibTabs(){const js=JUEGOS.filter(j=>j.c===CA);J=JUEGOS.indexOf(js[0]);document.getElementById('tabs').innerHTML=js.map(x=>`<button class="pal !min-h-[56px] !text-base !py-2 ${JUEGOS.indexOf(x)===J?'!border-yellow-400 !text-yellow-300':''}" data-j="${JUEGOS.indexOf(x)}">${x.n}</button>`).join('');document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{J=+b.dataset.j;dibTabs();cargarJ();});cargarJ();}
-function cargarJ(){const j=JUEGOS[J];document.getElementById('juegos').innerHTML=`<h2 class="text-3xl md:text-4xl font-bold mb-6 text-center" style="color:var(--gold);text-shadow:0 0 20px rgba(245,196,81,.4);">${j.n}</h2><div id="gameContainer"></div>`;const d=GEN[j.g]();if(d.especial){if(d.especial==='memoria')jMemoria();else if(d.especial==='rompe')jRompe();else if(d.especial==='simon')jSimon();else if(d.especial==='arcade')jArcade();else if(d.especial==='pizarra')jPizarra();else if(d.especial==='piano')jPiano();else if(d.especial==='ahorcado')jAhorcado();else if(d.especial==='spelling')jSpelling();}else{quiz({p:d.p,opts:d.opts,ok:d.ok,en:d.en,ico:d.ico,es:d.es,pregunta:d.pregunta,respuesta:d.respuesta,respuestaEn:d.respuestaEn,next:cargarJ});}}
+17) Juego: "¿Qué hay en la canasta?" (What's in the basket?)
+    Qué necesitás: una canasta con comidas de juguete.
+    Cómo se juega: Sin mirar, sacás un objeto y decís su nombre en inglés.
+    Luego lo ponés en un grupo: fruta (fruit) o no fruta.
+    Aprendés: fruit (frut) = fruta, strawberry (stróberi) = frutilla,
+    grapes (greips) = uvas, watermelon (uátermelon) = sandía.
 
-/* ===== SVG DE WOODY (premium con detalles dorados) ===== */
-function woodySVG(){return `<svg id="astroSVG" viewBox="0 0 140 190" xmlns="http://www.w3.org/2000/svg">
-<defs><linearGradient id="vis" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#67e8f9"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
-<linearGradient id="traje" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e2e8f0"/></linearGradient>
-<linearGradient id="oroGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe29a"/><stop offset="1" stop-color="#b8860b"/></linearGradient></defs>
-<line x1="70" y1="14" x2="70" y2="26" stroke="#94a3b8" stroke-width="3"/><circle class="luz-antenna" cx="70" cy="11" r="5"/>
-<circle cx="70" cy="58" r="42" fill="url(#traje)" stroke="url(#oroGrad)" stroke-width="3"/>
-<ellipse cx="58" cy="40" rx="14" ry="8" fill="rgba(255,255,255,.6)" transform="rotate(-25 58 40)"/>
-<circle cx="70" cy="58" r="30" fill="#fcd9b6"/>
-<circle cx="52" cy="68" r="5" fill="#fda4af" opacity=".7"/><circle cx="88" cy="68" r="5" fill="#fda4af" opacity=".7"/>
-<g class="ojo-grupo"><ellipse cx="59" cy="54" rx="6.5" ry="8" fill="#fff"/><circle cx="60" cy="55" r="3.5" fill="#1e293b"/><circle cx="61.5" cy="53" r="1.2" fill="#fff"/></g>
-<g class="ojo-grupo"><ellipse cx="81" cy="54" rx="6.5" ry="8" fill="#fff"/><circle cx="82" cy="55" r="3.5" fill="#1e293b"/><circle cx="83.5" cy="53" r="1.2" fill="#fff"/></g>
-<ellipse cx="70" cy="64" rx="2.5" ry="3.5" fill="#f5b98a"/>
-<path id="bocaCerrada" d="M60 74 Q70 82 80 74" stroke="#9f1239" stroke-width="3" fill="none" stroke-linecap="round"/>
-<ellipse id="bocaAbierta" cx="70" cy="76" rx="7" ry="6" fill="#9f1239"/><ellipse cx="70" cy="79" rx="3.5" ry="2.5" fill="#fb7185"/>
-<ellipse cx="70" cy="135" rx="33" ry="40" fill="url(#traje)" stroke="url(#oroGrad)" stroke-width="3"/>
-<rect x="42" y="138" width="56" height="8" rx="4" fill="url(#oroGrad)"/><rect x="65" y="137" width="10" height="10" rx="2" fill="#ef4444"/>
-<rect x="58" y="118" width="24" height="16" rx="4" fill="url(#vis)" stroke="#0369a1" stroke-width="2"/>
-<circle cx="64" cy="126" r="2.5" fill="#22c55e"/><circle cx="72" cy="126" r="2.5" fill="#ef4444"/><circle cx="80" cy="126" r="2.5" fill="#facc15"/>
-<ellipse cx="38" cy="128" rx="9" ry="22" fill="url(#traje)" stroke="#94a3b8" stroke-width="2.5" transform="rotate(20 38 128)"/><circle cx="30" cy="148" r="8" fill="url(#oroGrad)"/>
-<ellipse class="brazo-der" cx="102" cy="122" rx="9" ry="22" fill="url(#traje)" stroke="#94a3b8" stroke-width="2.5" transform="rotate(-25 102 122)"/><circle cx="110" cy="102" r="8" fill="url(#oroGrad)"/>
-<rect x="46" y="118" width="12" height="42" rx="4" fill="#64748b" stroke="#475569" stroke-width="2"/><rect x="82" y="118" width="12" height="42" rx="4" fill="#64748b" stroke="#475569" stroke-width="2"/>
-<g class="llama"><ellipse cx="52" cy="168" rx="5" ry="12" fill="#f97316"/><ellipse cx="52" cy="170" rx="2.5" ry="7" fill="#fde047"/><ellipse cx="88" cy="168" rx="5" ry="12" fill="#f97316"/><ellipse cx="88" cy="170" rx="2.5" ry="7" fill="#fde047"/></g>
-</svg>`;}
+18) Juego: "La pizza de las palabras" (Word pizza)
+    Qué necesitás: una pizza de cartón dividida en trozos.
+    Cómo se juega: Cada trozo tiene un ingrediente en inglés. Para armar la
+    pizza tenés que nombrar cada ingrediente en voz alta.
+    Aprendés: cheese (chís) = queso, egg (eg) = huevo, rice (rais) = arroz,
+    tomato (tamáteu) = tomate.
 
-/* ===== INICIO ===== */
-window.addEventListener('load',()=>{
-  cargarPerfil();dibCats();dibTabs();mostrarLogros();
-  document.getElementById('introAstro').innerHTML=woodySVG();
-  document.getElementById('prof').innerHTML=woodySVG();
-  const txts=["Cargando el universo...","Woody se está poniendo el traje...","Preparando 60 juegos...","¡Casi listo!"];
-  let ti=0;const itv=setInterval(()=>{ti++;if(ti<txts.length)document.getElementById('txtCarga').textContent=txts[ti];},500);
-  setTimeout(()=>{document.getElementById('barraCarga').style.width='100%';},100);
-  setTimeout(()=>{clearInterval(itv);document.getElementById('intro').style.opacity=0;document.getElementById('intro').style.pointerEvents='none';setTimeout(()=>{const el=document.getElementById('intro');if(el)el.remove();},1000);hablarWoody("¡Hola! Soy Woody, tu profesor astronauta. Hablo en castellano y te explico en inglés. ¡Vamos a aprender jugando!");},2200);
-  const e=document.getElementById('estrellas');
-  for(let i=0;i<80;i++){const s=document.createElement('div');s.className='est '+(i%3===0?'oro':'blanca');const t=1+Math.random()*3;s.style.width=t+'px';s.style.height=t+'px';s.style.left=Math.random()*100+'vw';s.style.animationDuration=(6+Math.random()*12)+'s';s.style.animationDelay=-Math.random()*14+'s';e.appendChild(s);}
-  setInterval(()=>{if(Math.random()<0.6)volarWoody();},30000);
-});
-</script>
-</body>
-</html>
+19) Juego: "¿Te gusta?" (Do you like?)
+    Qué necesitás: tarjetas de comida.
+    Cómo se juega: Mostrás una tarjeta y preguntás "Do you like...?" (¿Te
+    gusta...?). El niño responde "Yes, I like it!" (Sí, me gusta) o
+    "No, I don't like it" (No, no me gusta) y pone cara de gusto o disgusto.
+    Aprendés: Do you like? (du iu laik), Yes / No (yes / no).
+
+20) Juego: "El picnic sorpresa" (Surprise picnic)
+    Qué necesitás: una mantita y comida de verdad o de juguete.
+    Cómo se juega: Cada uno trae algo al picnic y lo presenta en inglés:
+    "I brought cookies!" (¡Traje galletitas!). Los demás repiten la palabra.
+    Aprendés: cookie (kúki) = galletita, sandwich (sánduch) = sándwich,
+    candy (kéndi) = caramelo.
+
+================================================================================
+                   BLOQUE 5: EL CUERPO (Body)
+================================================================================
+
+21) Juego: "Simón dice toca..." (Simon says touch)
+    Qué necesitás: nada.
+    Cómo se juega: "Simon says: touch your nose!" (Simón dice: tocate la nariz).
+    Quien se equivoca de parte del cuerpo o se mueve sin "Simon says" pierde.
+    Aprendés: head (jed) = cabeza, eyes (áis) = ojos, nose (nous) = nariz,
+    mouth (máuz) = boca, ears (íars) = orejas, hands (jands) = manos,
+    feet (fit) = pies, hair (jer) = pelo.
+
+22) Juego: "Dibujar al monstruo" (Draw the monster)
+    Qué necesitás: papel y lápices.
+    Cómo se juega: Un jugador da órdenes en inglés: "Draw three eyes!" (Dibujá
+    tres ojos), "Draw a big mouth!" (Dibujá una boca grande). El otro dibuja
+    un monstruo muy loco.
+    Aprendés: three eyes (zrí áis), big mouth (big máuz), small (smol) = chico,
+    big (big) = grande.
+
+23) Juego: "La canción de la cabeza" (Head shoulders song)
+    Qué necesitás: nada.
+    Cómo se juega: Se canta y se tocan las partes: "Head, shoulders, knees and
+    toes" (Cabeza, hombros, rodillas y pies). Cada vez se canta más rápido.
+    Aprendés: head (jed), shoulders (chóulders) = hombros, knees (nis) = rodillas,
+    toes (tous) = dedos del pie.
+
+24) Juego: "¿Qué parte falta?" (What's missing?)
+    Qué necesitás: un dibujo de una persona incompleta.
+    Cómo se juega: Mostrás un dibujo al que le falta una parte del cuerpo. El
+    niño tiene que decir en inglés qué falta: "An ear!" (¡Una oreja!).
+    Aprendés: arm (arm) = brazo, leg (leg) = pierna, finger (fínger) = dedo.
+
+25) Juego: "El espejo loco" (Crazy mirror)
+    Qué necesitás: un espejo.
+    Cómo se juega: De frente al espejo, tocá una parte de tu cuerpo y decila en
+    inglés. Luego hacé una mueca y decí una emoción: "I am happy!" (¡Estoy feliz!).
+    Aprendés: happy (jápi) = feliz, sad (sad) = triste, tired (táierd) = cansado.
+
+================================================================================
+                  BLOQUE 6: LA CASA Y LA ROPA
+================================================================================
+
+26) Juego: "La búsqueda del tesoro en casa" (House scavenger hunt)
+    Qué necesitás: una lista con dibujos.
+    Cómo se juega: Buscá objetos por la casa y decí su nombre en inglés cuando
+    los encontrás: chair (silla), table (mesa), bed (cama), door (puerta).
+    Aprendés: chair (cher), table (téibel), bed (bed), door (dor), window (uíndou),
+    lamp (lamp), book (buk), cup (kap).
+
+27) Juego: "Ordenar la habitación" (Tidy your room)
+    Qué necesitás: la habitación desordenada.
+    Cómo se juega: Por cada objeto que guardás, decís su nombre en inglés.
+    "Toy!" (juguete), "Book!" (libro), "Shoe!" (zapato). ¡Así se ordena y aprende!
+    Aprendés: toy (toi), book (buk), shoe (shu) = zapato, sock (sok) = media.
+
+28) Juego: "La muñeca se viste" (Dress the doll)
+    Qué necesitás: una muñeca o peluche con ropa de juguete.
+    Cómo se juega: Vestís al muñeco y nombrás cada prenda en inglés: "Put on
+    the hat!" (Poné el sombrero), "Put on the shoes!" (Poné los zapatos).
+    Aprendés: hat (jat) = sombrero, t-shirt (tí shert) = remera, pants (pants) =
+    pantalón, dress (dres) = vestido, coat (kout) = campera, socks (soks) = medias.
+
+29) Juego: "¿Qué clima hace?" (What's the weather?)
+    Qué necesitás: tarjetas de clima y ropa.
+    Cómo se juega: Sacás una tarjeta de clima: "It's rainy!" (¡Está lloviendo!).
+    El niño elige la ropa adecuada en inglés: "I need a coat!" (¡Necesito campera!).
+    Aprendés: sunny (sáni) = soleado, rainy (réini) = lluvioso, hot (jot) = calor,
+    cold (kould) = frío.
+
+30) Juego: "El desfile de modas" (Fashion show)
+    Qué necesitás: ropa de verdad para jugar.
+    Cómo se juega: Hacés un desfile y cada modelo presenta su ropa en inglés:
+    "Look! A pink dress!" (¡Mirá! ¡Un vestido rosa!). Combina colores y ropa.
+    Aprendés: look! (luk) = mirá, pink dress (pink dres), blue shoes (blú shus).
+
+================================================================================
+              BLOQUE 7: PRONUNCIACIÓN Y ESCUCHA (Speaking & Listening)
+================================================================================
+
+31) Juego: "El teléfono descompuesto en inglés" (Broken telephone)
+    Qué necesitás: 3 o más jugadores.
+    Cómo se juega: Se susurra una palabra en inglés al oído del compañero y
+    pasa de boca en boca. El último la dice en voz alta. ¡A ver si llega bien!
+    Aprendés: pronunciar bien palabras cortas: sun (san) = sol, moon (mun) = luna,
+    star (star) = estrella.
+
+32) Juego: "¿Qué escuchás?" (What do you hear?)
+    Qué necesitás: una grabación o sonidos de la casa.
+    Cómo se juega: Hacés un sonido (tocás la puerta, aplaudís, cantás) y el niño
+    adivina en inglés: "A door!" (¡Una puerta!), "A clap!" (¡Un aplauso!).
+    Aprendés: I hear... (ai jiér) = yo escucho..., sound (saund) = sonido.
+
+33) Juego: "El loro inglés" (The English parrot)
+    Qué necesitás: nada.
+    Cómo se juega: Un jugador es el loro y repite TODO lo que se dice, pero
+    solo en inglés. Si alguien habla en castellano, el loro no se mueve.
+    Aprendés: repetir frases: Hello! (jeló) = ¡Hola!, Thank you! (zank yu) = ¡Gracias!,
+    Please (plís) = por favor, Sorry (sóri) = perdón.
+
+34) Juego: "Trabalenguas cortos" (Tongue twisters)
+    Qué necesitás: nada.
+    Cómo se juega: Decir frases cortas en inglés lo más rápido posible:
+    "She sells seashells" (Ella vende conchas marinas) o "Red lorry, yellow lorry".
+    Aprendés: la "s" y la "sh", y las vocales cortas.
+
+35) Juego: "Adivinanzas con pistas" (Riddles)
+    Qué necesitás: nada.
+    Cómo se juega: Das pistas en inglés sencillo: "It's yellow. It's long.
+    Monkeys love it." (Es amarillo, es largo, los monos lo aman). El niño adivina:
+    "A banana!" (¡Una banana!).
+    Aprendés: escuchar frases completas y vocabulario de frutas y animales.
+
+================================================================================
+              BLOQUE 8: ACCIONES Y MOVIMIENTO (Actions)
+================================================================================
+
+36) Juego: "Baile de las acciones" (Action dance)
+    Qué necesitás: música.
+    Cómo se juega: Cuando suena la música, alguien grita una acción en inglés y
+    todos la hacen hasta la siguiente: "Jump!" (saltá), "Run!" (corré),
+    "Stop!" (pará), "Clap!" (aplaudí), "Dance!" (bailá).
+    Aprendés: jump (yamp), run (ran), stop (stop), clap (klap), dance (dans),
+    sing (sing) = cantar, sit (sit) = sentarte, stand (stand) = pararte.
+
+37) Juego: "Mímica de verbos" (Verb charades)
+    Qué necesitás: tarjetas con acciones dibujadas.
+    Cómo se juega: Un jugador hace mímica de una acción, los demás adivinan en
+    inglés: "Eating!" (¡Comer!), "Sleeping!" (¡Dormir!), "Swimming!" (¡Nadar!).
+    Aprendés: eat (it) = comer, drink (drink) = beber, sleep (slip) = dormir,
+    swim (suim) = nadar, read (rid) = leer, play (plei) = jugar.
+
+38) Juego: "Freeze dance" (Baile congelado)
+    Qué necesitás: música.
+    Cómo se juega: Se baila mientras suena la música. Cuando se corta, todos
+    se quedan congelados y el que se mueve debe decir una palabra en inglés.
+    Aprendés: freeze (frís) = congelate, dance (dans), song (song) = canción.
+
+39) Juego: "Sigue al líder" (Follow the leader)
+    Qué necesitás: nada.
+    Cómo se juega: El líder hace una acción y la dice en inglés: "I am jumping!"
+    (¡Estoy saltando!). Los demás lo imitan y repiten la frase.
+    Aprendés: I am... (ai am) = yo estoy..., + acciones.
+
+================================================================================
+                 BLOQUE 9: JUEGOS DE MESA Y CARTAS
+================================================================================
+
+40) Juego: "El ahorcado en inglés" (English hangman)
+    Qué necesitás: papel y lápiz.
+    Cómo se juega: El ahorcado de siempre, pero con palabras en inglés cortas
+    (cat, dog, sun, book). Cada letra se dice en inglés: "Letter B!" (Letra B).
+    Aprendés: el abecedario en inglés: A (éi), B (bi), C (si), D (di), E (í), etc.
+
+41) Juego: "Pictionary inglés" (English Pictionary)
+    Qué necesitás: papel y lápiz.
+    Cómo se juega: Un jugador dibuja una palabra en inglés (sin hablar) y los
+    demás adivinan diciendo la palabra en inglés. ¡No vale decirla en castellano!
+    Aprendés: vocabulario de casa, animales, comida y objetos.
+
+42) Juego: "Domi-inglés" (English dominoes)
+    Qué necesitás: cartas con dibujo por un lado y palabra en inglés por el otro.
+    Cómo se juega: Como el dominó: unís el dibujo con su palabra en inglés.
+    Para colocar una carta hay que decir la palabra en voz alta.
+    Aprendés: asociar imagen con palabra y pronunciación.
+
+43) Juego: "Yo spy" (I spy)
+    Qué necesitás: nada, en cualquier lugar.
+    Cómo se juega: Uno mira un objeto y dice: "I spy with my little eye,
+    something blue!" (Yo espío con mi ojito algo azul). Los demás adivinan
+    objetos azules hasta dar con el correcto.
+    Aprendés: I spy (ai spái), colores, objetos de la casa o la calle.
+
+44) Juego: "La cadena de palabras" (Word chain)
+    Qué necesitás: nada.
+    Cómo se juega: Uno dice una palabra en inglés, el siguiente debe decir otra
+    que empiece con la última letra de la anterior. Ejemplo: cat → tree → egg.
+    Aprendés: vocabulario variado y las letras del abecedario.
+
+45) Juego: "El cuento loco" (The silly story)
+    Qué necesitás: papel y lápiz, o hablar en ronda.
+    Cómo se juega: Arman un cuento entre todos, cada uno agrega una palabra en
+    inglés. Ejemplo: "A big dog..." (Un perro grande...) "eats pizza..." (come pizza...)
+    "on the moon!" (¡en la luna!). El cuento termina muy loco y todos se ríen.
+    Aprendés: armar frases: a (a), big (big) = grande, dog (dóg), on (on) = sobre,
+    the (de) = el/la, moon (mun) = luna.
+
+================================================================================
+                          PALABRAS MÁGICAS EN INGLÉS
+================================================================================
+Usalas siempre en todos los juegos:
+- Hello! (jeló) = ¡Hola!
+- Goodbye! (gudbái) = ¡Adiós!
+- Please (plís) = Por favor
+- Thank you! (zank yu) = ¡Gracias!
+- Sorry (sóri) = Perdón
+- Yes (yes) = Sí
+- No (nou) = No
+- I don't know (ai dont nou) = No sé
+- Can you help me? (ken iu jelp mi) = ¿Me ayudás?
+
+================================================================================
+¡Felicitaciones! Con estos 45 juegos ya tenés más de 200 palabras en inglés
+para practicar. Lo más importante: jugá, reíte y hablá en voz alta.
+¡You can do it! (Yu can du it) = ¡Podés hacerlo! 🌟
+================================================================================
