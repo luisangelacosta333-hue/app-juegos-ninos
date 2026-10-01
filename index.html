@@ -3,359 +3,229 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#05010f">
-<title>NEON KIDS · Universo de Inglés · Super Premium</title>
-<!-- Google AdSense: REEMPLAZAR ca-pub-REEMPLAZAR-TU-ID-ADSENSE por tu ID de editor -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-REEMPLAZAR-TU-ID-ADSENSE" crossorigin="anonymous"></script>
-
+<meta name="theme-color" content="#0b0b1f">
+<title>NEON KIDS · Aprendé Inglés · Producción</title>
+<!-- Google AdSense: reemplazar REEMPLAZAR-TU-ID por tu ID de editor ca-pub-... -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-REEMPLAZAR-TU-ID" crossorigin="anonymous"></script>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@500;600;700&family=Rubik:wght@700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@500;600;700&family=Rubik:wght@700;900&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   NEON KIDS SUPER PREMIUM v2.0
-   Fondo oscuro + colores neón vibrantes · Glassmorphism premium
-   Personajes flotando y hablando ES + EN · Scroll premium
+   NEON KIDS PRODUCCION · CSS ESTABLE SIN FLICKER
+   Sin blur, sin gradientes animados, sin mascaras, sin particulas.
+   Solido, limpio, premium. Scrolleable. Botones grandes.
    ============================================================ */
 :root{
-  --bg0:#05010f; --bg1:#0d0524; --bg2:#1a0b3d; --bg3:#2a1055;
-  --cyan:#00f5ff; --pink:#ff2bd6; --lime:#a3ff12; --gold:#ffd700;
-  --purple:#b026ff; --orange:#ff6b35; --blue:#3d7bff; --red:#ff3d5a;
-  --texto:#f0e9ff; --texto2:#b8a9e0;
-  --card:rgba(255,255,255,.055); --card-borde:rgba(255,255,255,.14);
+  --bg0:#0b0b1f; --bg1:#141430; --bg2:#1a1a3e;
+  --cyan:#00e5ff; --pink:#ff2bd6; --lime:#a3ff12; --gold:#ffd700;
+  --purple:#b026ff; --orange:#ff8c42; --blue:#4d7bff; --red:#ff3d5a;
+  --texto:#e8e6f5; --texto2:#9a95c0;
+  --card:#161633; --borde:#2e2e5c; --input:#1e1e44;
 }
-*{font-family:'Baloo 2','Fredoka',sans-serif; box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
-html{scroll-behavior:smooth;}
-html,body{margin:0;padding:0;color:var(--texto);overflow-x:hidden;}
-body{
-  min-height:100vh;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(176,38,255,.25), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 85% 20%, rgba(0,245,255,.18), transparent 60%),
-    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255,43,214,.2), transparent 60%),
-    linear-gradient(180deg, var(--bg0), var(--bg1) 40%, var(--bg2) 80%, var(--bg0));
-  background-attachment:scroll;
-  touch-action:manipulation;
-  overscroll-behavior-y:contain;
-}
-/* Scrollbar premium neón */
-::-webkit-scrollbar{width:14px;}
-::-webkit-scrollbar-track{background:rgba(255,255,255,.04); border-radius:99px;}
-::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cyan),var(--pink),var(--purple)); border-radius:99px; border:3px solid var(--bg0); box-shadow:0 0 12px var(--cyan);}
-::-webkit-scrollbar-thumb:hover{box-shadow:0 0 20px var(--pink);}
-button{touch-action:manipulation; user-select:none; -webkit-user-select:none; cursor:pointer; font-family:'Baloo 2',sans-serif;}
-button:active{transform:scale(.94);}
-img{user-select:none;-webkit-user-select:none; pointer-events:none;}
+*{font-family:'Baloo 2','Fredoka',sans-serif; box-sizing:border-box; -webkit-tap-highlight-color:transparent; -webkit-font-smoothing:antialiased;}
+html{scroll-behavior:auto;}
+html,body{margin:0;padding:0;min-height:100vh;color:var(--texto);background:var(--bg0);}
+body{background:linear-gradient(180deg,var(--bg0),var(--bg1) 50%,var(--bg0)); overflow-x:hidden;}
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--bg1);}
+::-webkit-scrollbar-thumb{background:var(--borde); border-radius:99px;}
+button{touch-action:manipulation; user-select:none; -webkit-user-select:none; cursor:pointer; font-family:'Baloo 2',sans-serif; border:none;}
+button:active{transform:scale(.95);}
+img{user-select:none; pointer-events:none;}
 
-/* ---------- Estrellas de fondo (parallax) ---------- */
-.estrella{position:fixed; background:#fff; border-radius:50%; z-index:0; pointer-events:none; animation:brillar 3s ease-in-out infinite;}
-@keyframes brillar{0%,100%{opacity:.2; transform:scale(1);}50%{opacity:1; transform:scale(1.4);}}
-.planeta{position:fixed; border-radius:50%; z-index:0; pointer-events:none; filter:blur(1px); opacity:.5; animation:planetaFlotar 14s ease-in-out infinite alternate;}
-@keyframes planetaFlotar{from{transform:translate(0,0) rotate(0deg);}to{transform:translate(30px,-40px) rotate(20deg);}}
-.cometa{position:fixed; width:3px; height:3px; background:#fff; border-radius:50%; z-index:0; pointer-events:none; box-shadow:0 0 8px 2px var(--cyan); animation:cometa 6s linear infinite;}
-.cometa::after{content:""; position:absolute; top:0; left:0; width:80px; height:1px; background:linear-gradient(90deg,var(--cyan),transparent); transform:rotate(-35deg); transform-origin:left;}
-@keyframes cometa{from{transform:translate(110vw,-10vh);}to{transform:translate(-20vw,60vh);}}
-.confeti{position:fixed; width:10px; height:10px; pointer-events:none; z-index:99998; animation:caerConf 1.2s ease-out forwards;}
-@keyframes caerConf{to{transform:translate(var(--tx),var(--ty)) rotate(360deg) scale(0); opacity:0;}}
+/* Ocultar cualquier particula/heredada */
+.estrella,.planeta,.cometa,.blob,.nube,#fondoDecor{display:none !important;}
 
-/* ---------- Cajas SUPER PREMIUM (glassmorphism + borde neón animado) ---------- */
-.caja-premium{
-  position:relative; background:var(--card); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  border-radius:30px; padding:28px; border:1px solid var(--card-borde);
-  box-shadow:0 25px 60px -15px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.12), 0 0 40px rgba(176,38,255,.15);
-  overflow:hidden;
-}
-.caja-premium::before{
-  content:""; position:absolute; inset:0; border-radius:30px; padding:2px;
-  background:linear-gradient(135deg,var(--cyan),var(--pink),var(--gold),var(--lime),var(--purple),var(--cyan));
-  background-size:100% 100%; /* estatico: sin flicker */
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;
-  pointer-events:none; z-index:1;
-}
-.caja-premium::after{
-  content:""; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
-  background:conic-gradient(from 0deg, transparent, rgba(0,245,255,.08), transparent 30%);
-  animation:brilloGiro 8s linear infinite; pointer-events:none; z-index:0;
-}
-@keyframes neonBorde{0%{background-position:0% 50%}100%{background-position:400% 50%}}
-@keyframes brilloGiro{to{transform:rotate(360deg);}}
-.caja-premium > *{position:relative; z-index:2;}
-.caja-chica{background:rgba(255,255,255,.06); border:1px solid var(--card-borde); border-radius:20px; padding:16px; backdrop-filter:blur(10px);}
+/* Tarjetas: solidas, sin blur, sin mascaras */
+.caja-premium{background:var(--card); border:2px solid var(--borde); border-radius:24px; padding:24px; box-shadow:0 12px 30px rgba(0,0,0,.5); position:relative;}
+.caja-chica{background:var(--input); border:1px solid var(--borde); border-radius:16px; padding:14px;}
+.chip{background:var(--input); border:1px solid var(--borde); border-radius:999px; padding:8px 14px; font-weight:800; color:var(--texto);}
 
-/* ---------- Título neón ---------- */
-.tit-neon{font-family:'Orbitron','Rubik',sans-serif; font-weight:900; letter-spacing:1px;
-  background:linear-gradient(90deg,var(--cyan),var(--pink),var(--gold),var(--lime),var(--cyan));
-  background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
-  animation:neonBorde 4s linear infinite; filter:drop-shadow(0 0 18px rgba(0,245,255,.5));}
-.tit-arcoiris{font-family:'Orbitron','Rubik',sans-serif; font-weight:900;
-  background:linear-gradient(90deg,var(--cyan),var(--pink),var(--gold),var(--lime),var(--purple),var(--cyan));
-  background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
-  animation:neonBorde 5s linear infinite;}
+/* Titulo: gradiente estatico (sin animacion) */
+.tit-neon,.tit-arcoiris{font-family:'Rubik',sans-serif; font-weight:900; letter-spacing:1px;
+  background:linear-gradient(90deg,var(--cyan),var(--pink),var(--gold));
+  -webkit-background-clip:text; background-clip:text; color:transparent;}
 
-/* ---------- Botones SUPER PREMIUM (grandes, táctiles, con brillo) ---------- */
-.boton{
-  border:none; border-radius:20px; padding:14px 22px; font-weight:800; font-size:1rem; color:#fff;
-  box-shadow:0 6px 0 rgba(0,0,0,.4), 0 0 20px rgba(0,245,255,.3); transition:transform .1s, box-shadow .15s, filter .15s;
-  touch-action:manipulation; display:inline-flex; align-items:center; gap:8px; justify-content:center; line-height:1.1;
-  position:relative; overflow:hidden; min-height:48px;
-}
-.boton::after{content:""; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent); transform:skewX(-20deg); transition:left .5s;}
-.boton:hover::after{left:130%;}
-.boton:active{transform:translateY(4px) scale(.97); box-shadow:0 2px 0 rgba(0,0,0,.4), 0 0 10px rgba(0,245,255,.2);}
-.boton.on{outline:3px solid #fff; outline-offset:2px; filter:brightness(1.2);}
-.b-cyan{background:linear-gradient(180deg,#33f7ff,var(--cyan)); color:#003338; box-shadow:0 6px 0 #0099a3, 0 0 24px rgba(0,245,255,.5);}
-.b-pink{background:linear-gradient(180deg,#ff5ce0,var(--pink)); box-shadow:0 6px 0 #b30096, 0 0 24px rgba(255,43,214,.5);}
-.b-lime{background:linear-gradient(180deg,#b8ff3d,var(--lime)); color:#2d4000; box-shadow:0 6px 0 #6d9900, 0 0 24px rgba(163,255,18,.5);}
-.b-gold{background:linear-gradient(180deg,#ffe44d,var(--gold)); color:#5c4a00; box-shadow:0 6px 0 #b39700, 0 0 24px rgba(255,215,0,.5);}
-.b-purple{background:linear-gradient(180deg,#c45cff,var(--purple)); box-shadow:0 6px 0 #7a00cc, 0 0 24px rgba(176,38,255,.5);}
-.b-orange{background:linear-gradient(180deg,#ff8c5c,var(--orange)); box-shadow:0 6px 0 #b33d00, 0 0 24px rgba(255,107,53,.5);}
-.b-blue{background:linear-gradient(180deg,#6699ff,var(--blue)); box-shadow:0 6px 0 #1a3d99, 0 0 24px rgba(61,123,255,.5);}
-.b-red{background:linear-gradient(180deg,#ff6b80,var(--red)); box-shadow:0 6px 0 #99001a, 0 0 24px rgba(255,61,90,.5);}
-/* alias de colores anteriores (los usan los juegos) */
-.b-rosa{background:linear-gradient(180deg,#ff5ce0,var(--pink)); box-shadow:0 6px 0 #b30096, 0 0 24px rgba(255,43,214,.5);}
-.b-azul{background:linear-gradient(180deg,#6699ff,var(--blue)); box-shadow:0 6px 0 #1a3d99, 0 0 24px rgba(61,123,255,.5);}
-.b-verde{background:linear-gradient(180deg,#b8ff3d,var(--lime)); color:#2d4000; box-shadow:0 6px 0 #6d9900, 0 0 24px rgba(163,255,18,.5);}
-.b-amarillo{background:linear-gradient(180deg,#ffe44d,var(--gold)); color:#5c4a00; box-shadow:0 6px 0 #b39700, 0 0 24px rgba(255,215,0,.5);}
-.b-violeta{background:linear-gradient(180deg,#c45cff,var(--purple)); box-shadow:0 6px 0 #7a00cc, 0 0 24px rgba(176,38,255,.5);}
-.b-naranja{background:linear-gradient(180deg,#ff8c5c,var(--orange)); box-shadow:0 6px 0 #b33d00, 0 0 24px rgba(255,107,53,.5);}
-.b-turquesa{background:linear-gradient(180deg,#33f7ff,var(--cyan)); color:#003338; box-shadow:0 6px 0 #0099a3, 0 0 24px rgba(0,245,255,.5);}
+/* Botones: solidos, grandes, tactiles */
+.boton{border-radius:16px; padding:12px 18px; font-weight:800; font-size:1rem; color:#fff;
+  box-shadow:0 4px 0 rgba(0,0,0,.4); transition:transform .1s; touch-action:manipulation;
+  display:inline-flex; align-items:center; gap:6px; justify-content:center; min-height:48px; line-height:1.1;}
+.boton:active{transform:translateY(3px); box-shadow:0 1px 0 rgba(0,0,0,.4);}
+.boton.on{outline:3px solid #fff; outline-offset:1px;}
+.b-cyan{background:var(--cyan); color:#003338;}
+.b-pink{background:var(--pink);}
+.b-lime{background:var(--lime); color:#1a2e00;}
+.b-gold{background:var(--gold); color:#4d3a00;}
+.b-purple{background:var(--purple);}
+.b-orange{background:var(--orange);}
+.b-blue{background:var(--blue);}
+.b-red{background:var(--red);}
+/* alias colores (los usan los juegos) */
+.b-rosa{background:var(--pink);} .b-azul{background:var(--blue);} .b-verde{background:var(--lime); color:#1a2e00;}
+.b-amarillo{background:var(--gold); color:#4d3a00;} .b-violeta{background:var(--purple);} .b-naranja{background:var(--orange);} .b-turquesa{background:var(--cyan); color:#003338;}
 
-/* Chip de perfil */
-.chip{background:rgba(255,255,255,.1); border-radius:999px; padding:8px 16px; font-weight:800; box-shadow:0 4px 0 rgba(0,0,0,.3); border:1px solid var(--card-borde); color:var(--texto);}
+/* Mundos (categorias) */
+.mundo{border-radius:16px; padding:12px 16px; font-weight:800; font-size:1rem; color:#fff; border:2px solid rgba(255,255,255,.2);
+  box-shadow:0 4px 0 rgba(0,0,0,.4); transition:transform .1s; touch-action:manipulation; min-width:120px; min-height:52px; text-align:left;}
+.mundo:active{transform:translateY(3px);}
+.mundo.on{outline:3px solid #fff; outline-offset:1px;}
+.m1{background:linear-gradient(135deg,var(--pink),var(--purple));}
+.m2{background:linear-gradient(135deg,var(--blue),var(--cyan)); color:#002233;}
+.m3{background:linear-gradient(135deg,var(--purple),var(--pink));}
+.m4{background:linear-gradient(135deg,var(--lime),var(--cyan)); color:#0d2600;}
+.m5{background:linear-gradient(135deg,var(--gold),var(--orange)); color:#3d2400;}
+.m6{background:#2a2f4a;}
 
-/* Mundos (categorías) — botones grandes premium */
-.mundo{
-  border-radius:22px; padding:14px 18px; font-weight:800; font-size:1rem; color:#fff; border:2px solid rgba(255,255,255,.3);
-  box-shadow:0 6px 0 rgba(0,0,0,.4), 0 0 20px rgba(255,255,255,.1); transition:.15s; touch-action:manipulation; text-align:left; min-width:130px; min-height:56px;
-}
-.mundo:active{transform:translateY(4px); box-shadow:0 2px 0 rgba(0,0,0,.4);}
-.mundo.on{outline:3px solid #fff; outline-offset:2px; transform:scale(1.05); filter:brightness(1.25);}
-.m1{background:linear-gradient(135deg,var(--pink),var(--purple)); box-shadow:0 6px 0 #7a0099, 0 0 24px rgba(255,43,214,.5);}
-.m2{background:linear-gradient(135deg,var(--blue),var(--cyan)); box-shadow:0 6px 0 #003d80, 0 0 24px rgba(0,245,255,.5);}
-.m3{background:linear-gradient(135deg,var(--purple),var(--pink)); box-shadow:0 6px 0 #5c0099, 0 0 24px rgba(176,38,255,.5);}
-.m4{background:linear-gradient(135deg,var(--lime),var(--cyan)); color:#0d2600; box-shadow:0 6px 0 #4d7300, 0 0 24px rgba(163,255,18,.5);}
-.m5{background:linear-gradient(135deg,var(--gold),var(--orange)); color:#4d2e00; box-shadow:0 6px 0 #996b00, 0 0 24px rgba(255,215,0,.5);}
-.m6{background:linear-gradient(135deg,#4a5578,#1a1f3d); box-shadow:0 6px 0 #0a0d1f, 0 0 24px rgba(74,85,120,.5);}
+/* Pestanas de juego */
+.game-tab{background:var(--input); border-radius:14px; padding:10px 12px; font-weight:800; font-size:.85rem; color:var(--texto);
+  border:2px solid transparent; box-shadow:0 3px 0 rgba(0,0,0,.4); transition:transform .1s; touch-action:manipulation; cursor:pointer; min-height:48px;}
+.game-tab.on{border-color:var(--pink); background:#2a1540; color:#ff9ce8;}
+.estrellitas{color:var(--gold); font-size:.75rem; letter-spacing:1px;}
 
-/* Pestañas de juego */
-.game-tab{
-  background:rgba(255,255,255,.08); backdrop-filter:blur(8px); border-radius:18px; padding:10px 14px; font-weight:800; font-size:.88rem;
-  color:var(--texto); border:2px solid transparent; box-shadow:0 4px 0 rgba(0,0,0,.3); transition:.15s; touch-action:manipulation; cursor:pointer; min-height:52px;
-}
-.game-tab:hover{transform:translateY(-2px); border-color:var(--cyan);}
-.game-tab.on{border-color:var(--pink); background:rgba(255,43,214,.18); color:#ff9ce8; transform:scale(1.06); box-shadow:0 0 20px rgba(255,43,214,.5);}
-.estrellitas{color:var(--gold); font-size:.8rem; letter-spacing:1px; text-shadow:0 0 8px var(--gold);}
-
-/* ---------- Opciones de juego ---------- */
-.opcion{
-  padding:16px; border-radius:20px; font-size:1.15rem; font-weight:800; cursor:pointer; transition:.15s;
-  background:rgba(255,255,255,.1); border:3px solid rgba(0,245,255,.3); color:var(--texto); text-align:center;
-  box-shadow:0 5px 0 rgba(0,0,0,.4); touch-action:manipulation; min-height:56px;
-}
-.opcion:hover{transform:translateY(-3px); border-color:var(--cyan); box-shadow:0 5px 0 rgba(0,0,0,.4), 0 0 20px rgba(0,245,255,.4);}
-.opcion:active{transform:scale(.95);}
-.opcion.ok{background:linear-gradient(135deg,rgba(163,255,18,.3),rgba(0,245,255,.3)); color:var(--lime); border-color:var(--lime); box-shadow:0 0 35px rgba(163,255,18,.7); animation:pop .5s;}
-.opcion.no{background:rgba(255,61,90,.3); color:#ff8a9e; border-color:var(--red); animation:sac .45s;}
-@keyframes pop{50%{transform:scale(1.15) rotate(-4deg);}}
-@keyframes sac{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+/* Opciones de juego */
+.opcion{padding:14px; border-radius:16px; font-size:1.1rem; font-weight:800; cursor:pointer; transition:transform .1s;
+  background:var(--input); border:3px solid var(--borde); color:var(--texto); text-align:center; box-shadow:0 4px 0 rgba(0,0,0,.4); touch-action:manipulation; min-height:52px;}
+.opcion:active{transform:scale(.96);}
+.opcion.ok{background:#1a3a1a; border-color:var(--lime); color:var(--lime); animation:pop .4s;}
+.opcion.no{background:#3a1a1a; border-color:var(--red); color:#ff8a9e; animation:sac .4s;}
+@keyframes pop{50%{transform:scale(1.1);}}
+@keyframes sac{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 
 /* Teclado abecedario */
-.tecla-abc{
-  aspect-ratio:1/1; border-radius:16px; display:flex; align-items:center; justify-content:center;
-  font-size:clamp(1.1rem,5vw,1.7rem); font-weight:900; cursor:pointer; transition:.12s;
-  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(176,38,255,.15)); border:3px solid rgba(176,38,255,.4); color:var(--cyan);
-  box-shadow:0 4px 0 rgba(0,0,0,.5), 0 0 12px rgba(176,38,255,.3); touch-action:manipulation; min-height:46px;
-}
-.tecla-abc:hover{transform:scale(1.06); box-shadow:0 4px 0 rgba(0,0,0,.5), 0 0 20px rgba(0,245,255,.5);}
-.tecla-abc:active{transform:translateY(3px); box-shadow:0 1px 0 rgba(0,0,0,.5);}
-.tecla-abc.ok{background:linear-gradient(180deg,rgba(163,255,18,.4),var(--lime)); color:#0d2600; border-color:#fff; box-shadow:0 0 25px var(--lime);}
-.tecla-abc.no{background:rgba(255,255,255,.03); color:#555; box-shadow:0 2px 0 rgba(0,0,0,.5); opacity:.4;}
-.teclado-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:7px; max-width:560px; margin:0 auto;}
-@media (max-width:480px){.teclado-grid{grid-template-columns:repeat(6,1fr); gap:5px;}}
+.tecla-abc{aspect-ratio:1/1; border-radius:12px; display:flex; align-items:center; justify-content:center;
+  font-size:clamp(1.1rem,5vw,1.6rem); font-weight:900; cursor:pointer; background:var(--input); border:3px solid var(--borde); color:var(--cyan);
+  box-shadow:0 3px 0 rgba(0,0,0,.5); touch-action:manipulation; min-height:44px;}
+.tecla-abc:active{transform:translateY(2px);}
+.tecla-abc.ok{background:var(--lime); color:#0d2600; border-color:#fff;}
+.tecla-abc.no{background:#222; color:#555; opacity:.4;}
+.teclado-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:6px; max-width:540px; margin:0 auto;}
+@media (max-width:480px){.teclado-grid{grid-template-columns:repeat(6,1fr); gap:4px;}}
 
 /* Letras spelling */
-.letra-sp{
-  width:56px; height:56px; border-radius:16px; display:inline-flex; align-items:center; justify-content:center;
-  font-size:1.9rem; font-weight:900; background:linear-gradient(180deg,rgba(255,43,214,.25),rgba(176,38,255,.25)); border:4px solid var(--pink);
-  color:var(--pink); margin:4px; cursor:pointer; transition:.15s; touch-action:manipulation;
-  box-shadow:0 4px 0 rgba(0,0,0,.5), 0 0 15px rgba(255,43,214,.4);
-}
-.letra-sp:hover{transform:scale(1.1) rotate(-4deg); box-shadow:0 4px 0 rgba(0,0,0,.5), 0 0 25px var(--pink);}
-.letra-sp:active{transform:translateY(3px); box-shadow:0 1px 0 rgba(0,0,0,.5);}
-.letra-sp.ok{background:linear-gradient(180deg,rgba(163,255,18,.4),var(--lime)); color:#0d2600; border-color:#fff;}
-.hueco{display:inline-block; width:48px; height:60px; border-bottom:6px solid var(--cyan); margin:0 5px; vertical-align:bottom; font-size:2.5rem; font-weight:900; color:var(--cyan); text-align:center; line-height:60px;}
+.letra-sp{width:52px; height:52px; border-radius:14px; display:inline-flex; align-items:center; justify-content:center;
+  font-size:1.7rem; font-weight:900; background:#2a1540; border:3px solid var(--pink); color:#ff9ce8; margin:3px;
+  cursor:pointer; box-shadow:0 3px 0 rgba(0,0,0,.5); touch-action:manipulation;}
+.letra-sp:active{transform:translateY(2px);}
+.letra-sp.ok{background:var(--lime); color:#0d2600; border-color:#fff;}
+.hueco{display:inline-block; width:44px; height:54px; border-bottom:5px solid var(--cyan); margin:0 4px; vertical-align:bottom; font-size:2.2rem; font-weight:900; color:var(--cyan); text-align:center; line-height:54px;}
 
 /* Bocina */
-.bocina{
-  background:linear-gradient(180deg,#ffe44d,var(--gold)); color:#5c4a00; border:4px solid #fff;
-  border-radius:50%; width:64px; height:64px; font-size:1.8rem; cursor:pointer; font-weight:900;
-  box-shadow:0 5px 0 #b39700, 0 0 25px rgba(255,215,0,.6); transition:.15s; touch-action:manipulation; vertical-align:middle;
-  animation:pulsoB 2s ease-in-out infinite; min-width:64px;
-}
-@keyframes pulsoB{0%,100%{box-shadow:0 5px 0 #b39700, 0 0 0 0 rgba(255,215,0,.6);}50%{box-shadow:0 5px 0 #b39700, 0 0 0 16px rgba(255,215,0,0);}}
-.bocina:active{transform:translateY(3px); box-shadow:0 2px 0 #b39700;}
+.bocina{background:var(--gold); color:#4d3a00; border:3px solid #fff; border-radius:50%; width:58px; height:58px; font-size:1.6rem;
+  cursor:pointer; font-weight:900; box-shadow:0 4px 0 #a08000; touch-action:manipulation; vertical-align:middle; min-width:58px;}
+.bocina:active{transform:translateY(2px);}
 
 /* Cartas memoria */
-.carta{aspect-ratio:3/4; cursor:pointer; perspective:1000px; touch-action:manipulation;}
-.carta-inner{position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:.55s;}
+.carta{aspect-ratio:3/4; cursor:pointer; perspective:800px; touch-action:manipulation;}
+.carta-inner{position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .5s;}
 .carta.girada .carta-inner{transform:rotateY(180deg);}
-.cara{position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-weight:900; border:3px solid rgba(255,255,255,.3); box-shadow:0 5px 0 rgba(0,0,0,.4);}
-.cf{background:linear-gradient(135deg,var(--purple),var(--cyan)); color:#fff; box-shadow:0 5px 0 rgba(0,0,0,.4), 0 0 15px rgba(0,245,255,.4);}
-.ca{transform:rotateY(180deg); background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,43,214,.15));}
+.cara{position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:2.2rem; font-weight:900; border:2px solid var(--borde);}
+.cf{background:linear-gradient(135deg,var(--purple),var(--blue)); color:#fff;}
+.ca{transform:rotateY(180deg); background:var(--input);}
 
 /* Piano */
-.piano-wrap{position:relative; display:flex; justify-content:center; width:100%; max-width:680px; margin:0 auto; height:210px;}
-.tc{cursor:pointer; display:flex; align-items:flex-end; justify-content:center; padding-bottom:12px; font-weight:900; transition:transform .08s, background .08s; touch-action:manipulation; user-select:none;}
-.t-blanca{flex:1; background:linear-gradient(180deg,#f0e9ff,#c8bfe0); height:100%; border:2px solid rgba(0,0,0,.3); border-radius:0 0 12px 12px; color:var(--bg0); z-index:1; margin:0 2px; box-shadow:0 5px 0 rgba(0,0,0,.5);}
-.t-blanca.activa{background:linear-gradient(180deg,var(--cyan),#0099a3); transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,.5), 0 0 25px var(--cyan);}
-.t-negra{position:absolute; top:0; width:8%; height:60%; background:linear-gradient(180deg,#3d2c5e,#1a0b2e); z-index:2; color:var(--cyan); border-radius:0 0 8px 8px; font-size:.75rem; box-shadow:0 5px 0 #000;}
-.t-negra.activa{background:linear-gradient(180deg,var(--pink),#b30096); transform:translateY(3px); box-shadow:0 2px 0 #000, 0 0 25px var(--pink);}
+.piano-wrap{position:relative; display:flex; justify-content:center; width:100%; max-width:640px; margin:0 auto; height:190px;}
+.tc{cursor:pointer; display:flex; align-items:flex-end; justify-content:center; padding-bottom:10px; font-weight:900; touch-action:manipulation; user-select:none;}
+.t-blanca{flex:1; background:#e8e6f5; height:100%; border:1px solid #888; border-radius:0 0 10px 10px; color:var(--bg0); z-index:1; margin:0 1px;}
+.t-blanca.activa{background:var(--cyan);}
+.t-negra{position:absolute; top:0; width:8%; height:60%; background:#1a1a2e; z-index:2; color:var(--cyan); border-radius:0 0 6px 6px; font-size:.7rem;}
+.t-negra.activa{background:var(--pink);}
 
-/* ---------- Personajes flotando (hablan con los niños) ---------- */
-.personaje-flotante{position:fixed; z-index:55; cursor:pointer; transition:transform .2s; touch-action:manipulation; animation:flotar 4s ease-in-out infinite;}
-.personaje-flotante:hover{transform:scale(1.15) rotate(5deg);}
-@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-#prof{position:fixed; bottom:16px; right:16px; z-index:60; cursor:pointer; width:130px; height:170px; animation:flotar 3s ease-in-out infinite; transition:transform .25s; touch-action:manipulation;}
-#prof:hover{transform:scale(1.1) rotate(-5deg);}
+/* Profesor Capi: ESTATICO (sin flotar) para evitar flicker. Tocarlo lo hace hablar. */
+#prof{position:fixed; bottom:10px; right:10px; z-index:60; cursor:pointer; width:110px; height:145px; touch-action:manipulation;}
 #astroSVG{width:100%; height:100%; overflow:visible;}
-.ojo{transform-origin:center; animation:parpadeo 4s infinite;}
-@keyframes parpadeo{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
-#bocaAbierta{opacity:0; transition:opacity .08s; transform-origin:center;}
-#astroSVG.hablando #bocaAbierta{opacity:1; animation:bocaHabla .25s ease-in-out infinite alternate;}
+.ojo{transform-origin:center;}
+#bocaAbierta{opacity:0; transform-origin:center;}
+#astroSVG.hablando #bocaAbierta{opacity:1;}
 #astroSVG.hablando #bocaCerrada{opacity:0;}
-@keyframes bocaHabla{0%{transform:scaleY(.4)}100%{transform:scaleY(1.3)}}
-.luzAnt{animation:luzAnt 1s ease-in-out infinite alternate;}
-@keyframes luzAnt{0%{fill:var(--gold);}100%{fill:var(--pink);}}
-.llama{transform-origin:70px 178px; animation:llama .18s ease-in-out infinite alternate;}
-@keyframes llama{0%{transform:scaleY(.85)}100%{transform:scaleY(1.35)}}
-.brazoDer{transform-origin:105px 110px; animation:saludar 2.5s ease-in-out infinite;}
-@keyframes saludar{0%,100%{transform:rotate(0)}50%{transform:rotate(-20deg)}}
-.mascota{position:fixed; bottom:30px; left:20px; z-index:50; font-size:3.5rem; animation:flotar 4s ease-in-out infinite; }
-.globo{
-  position:fixed; bottom:170px; right:130px; z-index:59; max-width:300px; min-width:180px;
-  background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(240,233,255,.95)); color:var(--bg0); padding:14px 18px; border-radius:22px 22px 6px 22px;
-  font-weight:800; font-size:1rem; box-shadow:0 12px 40px rgba(0,245,255,.4); border:3px solid var(--cyan);
-  animation:apaGlobo .35s cubic-bezier(.34,1.56,.64,1);
-}
-.globo::after{content:""; position:absolute; bottom:-14px; right:24px; border:14px solid transparent; border-top-color:rgba(255,255,255,.95);}
-.globo .bandera{font-size:1.3rem; margin-right:4px;}
-@keyframes apaGlobo{from{opacity:0; transform:translateY(12px) scale(.85);}to{opacity:1; transform:translateY(0) scale(1);}}
-.globo-izq{right:auto; left:130px; bottom:120px; border-radius:22px 22px 22px 6px; border-color:var(--lime); box-shadow:0 12px 40px rgba(163,255,18,.4);}
-.globo-izq::after{right:auto; left:24px; border-top-color:rgba(255,255,255,.95);}
+.luzAnt{fill:var(--gold);}
+.mascota{position:fixed; bottom:24px; left:14px; z-index:50; font-size:3rem;}
+.globo{position:fixed; bottom:150px; right:110px; z-index:59; max-width:280px; min-width:160px; background:#fff; color:#1a1a2e;
+  padding:12px 16px; border-radius:18px 18px 6px 18px; font-weight:800; font-size:.95rem; box-shadow:0 8px 24px rgba(0,0,0,.5); border:3px solid var(--cyan);}
+.globo::after{content:""; position:absolute; bottom:-12px; right:20px; border:12px solid transparent; border-top-color:#fff;}
+.globo .bandera{font-size:1.2rem; margin-right:4px;}
+.globo-izq{right:auto; left:110px; bottom:100px; border-radius:18px 18px 18px 6px; border-color:var(--lime);}
+.globo-izq::after{right:auto; left:20px;}
 
-/* ---------- Modales premium ---------- */
-.modal-fondo{position:fixed; inset:0; background:rgba(5,1,15,.75); z-index:99000; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(10px); opacity:0; pointer-events:none; transition:.25s; padding:16px;}
+/* Modales: solidos, sin blur */
+.modal-fondo{position:fixed; inset:0; background:rgba(5,5,20,.88); z-index:99000; display:flex; align-items:center; justify-content:center; padding:14px; opacity:0; pointer-events:none; transition:opacity .2s;}
 .modal-fondo.activo{opacity:1; pointer-events:auto;}
-.modal-cuerpo{max-height:92vh; overflow-y:auto; width:100%; background:linear-gradient(160deg,rgba(26,11,61,.98),rgba(13,5,36,.98)); border-radius:28px; padding:26px; border:2px solid var(--card-borde); box-shadow:0 25px 80px rgba(0,0,0,.8), 0 0 60px rgba(176,38,255,.3); position:relative;}
-.modal-cuerpo::before{content:""; position:absolute; inset:0; border-radius:28px; padding:2px; background:linear-gradient(135deg,var(--cyan),var(--pink),var(--gold)); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;}
-.toast{position:fixed; top:18px; left:50%; transform:translateX(-50%) translateY(-120px); z-index:99999; background:linear-gradient(135deg,var(--gold),var(--orange)); color:#3d2400; font-weight:900; padding:14px 26px; border-radius:999px; box-shadow:0 12px 40px rgba(0,0,0,.5), 0 0 30px rgba(255,215,0,.5); transition:transform .4s cubic-bezier(.34,1.56,.64,1); font-size:1.05rem; border:3px solid #fff; max-width:90vw; text-align:center;}
+.modal-cuerpo{max-height:92vh; overflow-y:auto; width:100%; background:var(--card); border-radius:22px; padding:22px; border:2px solid var(--borde); box-shadow:0 20px 60px rgba(0,0,0,.7);}
+.toast{position:fixed; top:16px; left:50%; transform:translateX(-50%) translateY(-120px); z-index:99999; background:var(--gold); color:#3d2400;
+  font-weight:900; padding:12px 22px; border-radius:999px; box-shadow:0 8px 24px rgba(0,0,0,.5); transition:transform .35s; font-size:1rem; border:2px solid #fff; max-width:90vw; text-align:center;}
 .toast.visible{transform:translateX(-50%) translateY(0);}
+.confeti{position:fixed; width:8px; height:8px; pointer-events:none; z-index:99998; animation:caerConf 1.1s ease-out forwards;}
+@keyframes caerConf{to{transform:translate(var(--tx),var(--ty)) rotate(360deg); opacity:0;}}
 
-/* Intro */
-#intro{position:fixed; inset:0; z-index:100000; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;
-  background:radial-gradient(ellipse at center, var(--bg2), var(--bg0)); transition:opacity .6s;}
+/* Intro: solida, se cierra sola */
+#intro{position:fixed; inset:0; z-index:100000; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; background:var(--bg0); transition:opacity .5s;}
 #intro.fuera{opacity:0; pointer-events:none;}
-.cohete-intro{font-size:5rem; animation:flotar 2s ease-in-out infinite; display:inline-block; }
-.btn-empezar{font-size:1.6rem; padding:18px 44px; border-radius:999px; animation:pop 1.4s ease-in-out infinite;}
+.cohete-intro{font-size:4.5rem; display:inline-block;}
+.btn-empezar{font-size:1.4rem; padding:16px 40px; border-radius:999px;}
 
 /* Simon */
-.simon-btn{width:45%; aspect-ratio:1/1; border-radius:24px; border:5px solid rgba(255,255,255,.3); cursor:pointer; transition:.15s; box-shadow:0 8px 0 rgba(0,0,0,.5); touch-action:manipulation; opacity:.5;}
-.simon-btn.activa{opacity:1; transform:scale(1.06); box-shadow:0 0 40px currentColor;}
-.sb-verde{background:var(--lime); color:var(--lime);}
-.sb-rojo{background:var(--red); color:var(--red);}
-.sb-amarillo{background:var(--gold); color:var(--gold);}
-.sb-azul{background:var(--blue); color:var(--blue);}
+.simon-btn{width:45%; aspect-ratio:1/1; border-radius:20px; border:4px solid rgba(255,255,255,.2); cursor:pointer; touch-action:manipulation; opacity:.5;}
+.simon-btn.activa{opacity:1;}
+.sb-verde{background:var(--lime);} .sb-rojo{background:var(--red);} .sb-amarillo{background:var(--gold);} .sb-azul{background:var(--blue);}
 
-/* Barra progreso / XP */
-.barra-progreso{height:14px; background:rgba(255,255,255,.08); border-radius:99px; overflow:hidden; border:2px solid rgba(0,245,255,.3);}
-.barra-progreso>div{height:100%; background:linear-gradient(90deg,var(--lime),var(--cyan),var(--pink)); border-radius:99px; transition:width .5s; box-shadow:0 0 12px var(--cyan);}
+/* Barra progreso */
+.barra-progreso{height:12px; background:var(--input); border-radius:99px; overflow:hidden; border:1px solid var(--borde);}
+.barra-progreso>div{height:100%; background:linear-gradient(90deg,var(--lime),var(--cyan)); border-radius:99px; transition:width .4s;}
 
-.medalla{width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; background:linear-gradient(135deg,#ffe44d,#b39700); border:4px solid #fff; box-shadow:0 4px 0 #6b5a00, 0 0 20px var(--gold); margin:0 auto;}
-.medalla.bloqueada{background:#333; filter:grayscale(1); opacity:.4; box-shadow:none;}
-.tienda-item{background:rgba(255,255,255,.09); border-radius:20px; padding:14px; text-align:center; border:2px solid var(--card-borde); box-shadow:0 5px 0 rgba(0,0,0,.3);}
-.tienda-item .ico{font-size:2.8rem;}
-.ad-slot{width:100%; min-height:50px; margin:10px auto; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(0,245,255,.3); border-radius:14px; background:rgba(0,245,255,.05); color:rgba(0,245,255,.6); font-weight:800; font-size:.8rem; position:relative; z-index:5;}
+.medalla{width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem; background:linear-gradient(135deg,var(--gold),#a08000); border:3px solid #fff; margin:0 auto;}
+.medalla.bloqueada{background:#333; opacity:.4;}
+.tienda-item{background:var(--input); border-radius:16px; padding:12px; text-align:center; border:1px solid var(--borde);}
+.tienda-item .ico{font-size:2.5rem;}
+.ad-slot{width:100%; min-height:60px; margin:8px auto; display:flex; align-items:center; justify-content:center; border:2px dashed var(--borde); border-radius:12px; color:var(--texto2); font-weight:800; font-size:.75rem;}
 .ad-banner{max-width:728px; min-height:80px;}
-.palabra-grande{font-family:'Orbitron',sans-serif; font-weight:900; font-size:clamp(2rem,7vw,3.2rem); color:var(--cyan); text-shadow:0 0 20px var(--cyan);}
+.palabra-grande{font-family:'Rubik',sans-serif; font-weight:900; font-size:clamp(1.8rem,6vw,2.8rem); color:var(--cyan);}
 
-/* Misiones diarias */
-.mision{display:flex; align-items:center; gap:12px; padding:12px; border-radius:16px; background:rgba(255,255,255,.06); border:2px solid var(--card-borde); margin-bottom:8px;}
-.mision.hecha{border-color:var(--lime); background:rgba(163,255,18,.1);}
-.mision .check{width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; background:rgba(255,255,255,.1); flex-shrink:0;}
+/* Misiones */
+.mision{display:flex; align-items:center; gap:10px; padding:10px; border-radius:14px; background:var(--input); border:1px solid var(--borde); margin-bottom:6px;}
+.mision.hecha{border-color:var(--lime);}
+.mision .check{width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; background:var(--borde); flex-shrink:0; font-size:.8rem;}
 .mision.hecha .check{background:var(--lime); color:#0d2600;}
-
-/* Personajes seleccionables */
-.pj-card{background:rgba(255,255,255,.07); border-radius:20px; padding:16px; text-align:center; cursor:pointer; transition:.2s; border:3px solid transparent;}
-.pj-card:hover{transform:translateY(-4px);}
-.pj-card.on{border-color:var(--gold); box-shadow:0 0 25px rgba(255,215,0,.5); background:rgba(255,215,0,.1);}
-/* Blobs/nubes del fondo (compatibilidad con script de arranque) */
-.blob{position:fixed; border-radius:50%; z-index:0; pointer-events:none; opacity:.25; filter:blur(40px); animation:blobMover 12s ease-in-out infinite alternate;}
-@keyframes blobMover{from{transform:translate(0,0) scale(1);}to{transform:translate(40px,-30px) scale(1.15);}}
-.nube{position:fixed; background:rgba(255,255,255,.15); border-radius:999px; opacity:.4; z-index:0; pointer-events:none; animation:nubeFlotar linear infinite;}
-@keyframes nubeFlotar{from{transform:translateX(-30vw);}to{transform:translateX(130vw);}}
-
-/* === ESTABILIDAD: sin parpadeo, listo para produccion === */
-*{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-#prof, .personaje-flotante, .mascota { will-change:transform; transform:translateZ(0); }
-.estrella, .planeta, .cometa, .blob, .nube { transform:translateZ(0); }
-.caja-premium, .modal-cuerpo { transform:translateZ(0); }
-@media (prefers-reduced-motion: reduce){
-  *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
-}
-@keyframes neonBorde{0%{background-position:0% 50%}100%{background-position:300% 50%}}
-
+.pj-card{background:var(--input); border-radius:16px; padding:14px; text-align:center; cursor:pointer; border:3px solid transparent;}
+.pj-card.on{border-color:var(--gold);}
 </style>
 </head>
 <body>
 
-<!-- Fondo: estrellas, planetas, cometas -->
 <div id="fondoDecor"></div>
-
-<!-- Personajes flotantes extra (hablan con los niños) -->
-<div class="personaje-flotante" id="pjHada" style="top:18%; left:10px; font-size:3.2rem;" onclick="personajeHablar('hada')">🧚</div>
-<div class="personaje-flotante" id="pjAlien" style="top:55%; left:8px; font-size:3rem; animation-delay:1s;" onclick="personajeHablar('alien')">👽</div>
-<div class="personaje-flotante" id="pjRobot" style="top:25%; right:8px; font-size:3rem; animation-delay:.5s;" onclick="personajeHablar('robot')">🤖</div>
-
-<!-- Globos de diálogo de personajes -->
-<div id="globoPersonaje" class="globo globo-izq hidden"></div>
-
-<!-- Toast -->
 <div id="toast" class="toast"></div>
 
 <!-- INTRO (se cierra sola a los 4s) -->
 <div id="intro">
   <div class="cohete-intro">🚀</div>
-  <h1 class="tit-neon text-4xl md:text-6xl mb-2 px-2">NEON KIDS</h1>
-  <p class="font-bold text-lg md:text-xl mb-6" id="introSub" style="color:var(--cyan);">¡Aprendé inglés en el UNIVERSO NEÓN! 🌌</p>
-  <button class="boton b-cyan btn-empezar" id="btnEmpezar">▶ ¡EMPEZAR A JUGAR!</button>
-  <p class="text-sm mt-4 font-bold opacity-60" id="introAuto" style="color:var(--texto2);">Se abre sola en unos segundos...</p>
-  <div class="w-56 h-3 bg-white/10 rounded-full mt-6 overflow-hidden border-2 border-white/20"><div class="h-full bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 transition-all duration-[3500ms]" id="barraCarga" style="width:0%"></div></div>
+  <h1 class="tit-neon text-4xl md:text-5xl mb-2 px-2">NEON KIDS</h1>
+  <p class="font-bold text-lg mb-6" id="introSub" style="color:var(--cyan);">¡Aprendé inglés jugando!</p>
+  <button class="boton b-cyan btn-empezar" id="btnEmpezar">▶ ¡EMPEZAR!</button>
+  <p class="text-sm mt-4 opacity-60" id="introAuto" style="color:var(--texto2);">Se abre sola en unos segundos...</p>
+  <div class="w-52 h-2 bg-white/10 rounded-full mt-5 overflow-hidden"><div class="h-full bg-cyan-400 transition-all duration-[3500ms]" id="barraCarga" style="width:0%"></div></div>
 </div>
 
-<!-- Banner -->
-<div class="relative z-10 max-w-5xl mx-auto px-2 pt-2"><div class="text-center text-[10px] opacity-40 font-bold tracking-widest mb-1">📢 PUBLICIDAD · ADVERTISEMENT</div>
-<ins class="adsbygoogle" style="display:block; width:100%; min-height:90px; background:rgba(255,255,255,.04); border:2px dashed rgba(0,245,255,.25); border-radius:14px;"
-  data-ad-client="ca-pub-REEMPLAZAR-TU-ID-ADSENSE"
-  data-ad-slot="1000000001"
-  data-ad-format="auto"
-  data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<!-- AdSense slot 1 -->
+<div class="relative z-10 max-w-5xl mx-auto px-2 pt-2">
+  <div class="text-center text-[10px] opacity-40 font-bold tracking-widest mb-1">📢 PUBLICIDAD</div>
+  <ins class="adsbygoogle" style="display:block; min-height:80px; border:2px dashed var(--borde); border-radius:12px;" data-ad-client="ca-pub-REEMPLAZAR-TU-ID" data-ad-slot="1000000001" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
 <!-- BARRA SUPERIOR -->
 <div class="max-w-6xl mx-auto px-2 py-2 flex justify-between items-center gap-2 flex-wrap relative z-10">
-  <div class="chip flex items-center gap-2 cursor-pointer hover:scale-105 transition" onclick="mostrarPerfil()" style="touch-action:manipulation;">
+  <div class="chip flex items-center gap-2 cursor-pointer" onclick="mostrarPerfil()" style="touch-action:manipulation;">
     <span id="avatarPerfil" class="text-2xl">👦</span>
     <span class="text-left leading-tight">
-      <span class="block font-black"><span id="nivelBadge" class="text-[10px] px-2 py-0.5 rounded-full text-white mr-1" style="background:linear-gradient(135deg,var(--purple),var(--cyan)); color:#fff;">Nv 1</span><span id="nomP">Jugador</span></span>
-      <span class="block text-xs font-bold" style="color:var(--gold);">🪙 <span id="monedasTot">0</span> · 💎 <span id="gemasTot">0</span> · 🎁 <span id="cofresTot">0</span> · 👑 <span id="coronasTot">0</span> · 🔥 <span id="rachaTot">0</span></span>
+      <span class="block font-black"><span id="nivelBadge" class="text-[10px] px-2 py-0.5 rounded-full text-white mr-1" style="background:var(--purple);">Nv 1</span><span id="nomP">Jugador</span></span>
+      <span class="block text-xs font-bold" style="color:var(--gold);">🪙<span id="monedasTot">0</span> 💎<span id="gemasTot">0</span> 🎁<span id="cofresTot">0</span> 👑<span id="coronasTot">0</span> 🔥<span id="rachaTot">0</span></span>
     </span>
   </div>
-  <div class="flex gap-2 flex-wrap items-center">
+  <div class="flex gap-1.5 flex-wrap items-center">
     <button class="boton b-cyan" onclick="cambiarIdioma()" id="btnIdioma">🌐 ES</button>
-    <button class="boton b-gold" onclick="regaloDiario()">🎁 <span data-t="regalo">Regalo</span></button>
-    <button class="boton b-purple" onclick="abrirCofre()">🎁 <span id="cofresBtn">0</span></button>
-    <button class="boton b-lime" onclick="abrirMisiones()">📋 Misiones</button>
-    <button class="boton b-pink" onclick="abrirPersonajes()">🧑‍🚀 Personajes</button>
-    <button class="boton b-turquesa" onclick="abrirTienda()">🏪 <span data-t="tienda">Tienda</span></button>
+    <button class="boton b-gold" onclick="regaloDiario()">🎁</button>
+    <button class="boton b-purple" onclick="abrirCofre()">🎁<span id="cofresBtn">0</span></button>
+    <button class="boton b-lime" onclick="abrirMisiones()">📋</button>
+    <button class="boton b-pink" onclick="abrirPersonajes()">🧑‍🚀</button>
+    <button class="boton b-turquesa" onclick="abrirTienda()">🏪</button>
     <button class="boton b-gold" onclick="abrirLogros()">🏆</button>
     <button class="boton b-blue" onclick="abrirAjustes()">⚙️</button>
     <button class="boton b-orange" onclick="sonido.toggleMusica()" id="btnMus">🔇</button>
@@ -366,179 +236,170 @@ img{user-select:none;-webkit-user-select:none; pointer-events:none;}
 <!-- Barra XP -->
 <div class="max-w-6xl mx-auto px-3 relative z-10">
   <div class="flex items-center gap-3 mb-1">
-    <span class="text-2xl">⭐</span>
+    <span class="text-xl">⭐</span>
     <div class="barra-progreso flex-1"><div id="xpBar" style="width:0%;"></div></div>
-    <span class="text-sm font-black" id="xpTexto" style="color:var(--cyan);">0 / 100 XP</span>
+    <span class="text-xs font-black" id="xpTexto" style="color:var(--cyan);">0/100 XP</span>
   </div>
 </div>
 
 <!-- CONTENEDOR -->
-<div class="max-w-6xl mx-auto px-3 pt-2 pb-48 relative z-10" id="contenidoPrincipal">
-  <h1 class="tit-neon text-center text-3xl md:text-5xl mb-1">🌌 NEON KIDS UNIVERSE 🌟</h1>
-  <p class="text-center font-bold mb-3" id="subtitulo" style="color:var(--texto2);">Los personajes hablan en castellano e inglés · 45 juegos</p>
+<div class="max-w-6xl mx-auto px-3 pt-2 pb-40 relative z-10">
+  <h1 class="tit-neon text-center text-2xl md:text-4xl mb-1">🌌 NEON KIDS</h1>
+  <p class="text-center font-bold mb-3 text-sm" id="subtitulo" style="color:var(--texto2);">Capi enseña inglés hablando · 51 juegos</p>
 
-  <div class="text-center text-[10px] opacity-40 font-bold tracking-widest mb-1">📢 PUBLICIDAD · ADVERTISEMENT</div>
-<ins class="adsbygoogle" style="display:block; width:100%; min-height:90px; background:rgba(255,255,255,.04); border:2px dashed rgba(0,245,255,.25); border-radius:14px;"
-  data-ad-client="ca-pub-REEMPLAZAR-TU-ID-ADSENSE"
-  data-ad-slot="1000000002"
-  data-ad-format="auto"
-  data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <!-- AdSense slot 2 -->
+  <div class="text-center text-[10px] opacity-40 font-bold tracking-widest mb-1">📢 PUBLICIDAD</div>
+  <ins class="adsbygoogle" style="display:block; min-height:80px; border:2px dashed var(--borde); border-radius:12px;" data-ad-client="ca-pub-REEMPLAZAR-TU-ID" data-ad-slot="1000000002" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-  <!-- Mundos -->
   <div class="flex flex-wrap gap-2 justify-center mb-3" id="mundos"></div>
-  <!-- Juegos -->
   <div class="flex flex-wrap gap-2 justify-center mb-5" id="tabsJuegos"></div>
 
-  <!-- Zona de juego (caja super premium) -->
   <div class="max-w-5xl mx-auto">
     <div class="caja-premium">
-      <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
-        <h2 class="text-2xl md:text-3xl font-black" id="titJuego" style="color:var(--cyan); text-shadow:0 0 15px var(--cyan);"></h2>
-        <div class="flex gap-2 items-center">
-          <button class="boton b-gold" onclick="repetirPalabra()">🔁 <span data-t="repetir">Repetir</span></button>
+      <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
+        <h2 class="text-xl md:text-2xl font-black" id="titJuego" style="color:var(--cyan);"></h2>
+        <div class="flex gap-2">
+          <button class="boton b-gold text-sm" onclick="repetirPalabra()">🔁 Repetir</button>
           <button class="boton b-cyan text-sm" onclick="hablarProfesorAleatorio()">🧑‍🚀</button>
         </div>
       </div>
-      <!-- Globo de enseñanza -->
-      <div id="globoEnsenanza" class="mb-4 p-4 rounded-2xl font-bold text-base md:text-lg" style="background:linear-gradient(135deg,rgba(0,245,255,.12),rgba(255,43,214,.12)); border:2px solid var(--cyan); color:var(--texto); min-height:60px; display:flex; align-items:center; gap:10px; box-shadow:0 0 20px rgba(0,245,255,.2);">
-        <span class="text-3xl">🧑‍🚀</span>
-        <span id="textoEnsenanza">¡Hola! Soy Capi. Elegí un juego y te enseño inglés 😊</span>
+      <div id="globoEnsenanza" class="mb-4 p-3 rounded-xl font-bold text-sm md:text-base" style="background:var(--input); border:2px solid var(--cyan); color:var(--texto); min-height:52px; display:flex; align-items:center; gap:8px;">
+        <span class="text-2xl">🧑‍🚀</span><span id="textoEnsenanza">¡Hola! Soy Capi. Elegí un juego 😊</span>
       </div>
       <div id="gameContainer"></div>
     </div>
   </div>
 
-  <div class="text-center text-[10px] opacity-40 font-bold tracking-widest mb-1">📢 PUBLICIDAD · ADVERTISEMENT</div>
-<ins class="adsbygoogle" style="display:block; width:100%; min-height:90px; background:rgba(255,255,255,.04); border:2px dashed rgba(0,245,255,.25); border-radius:14px;"
-  data-ad-client="ca-pub-REEMPLAZAR-TU-ID-ADSENSE"
-  data-ad-slot="1000000003"
-  data-ad-format="auto"
-  data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  <p class="text-center text-xs mt-6 mb-2 font-bold opacity-50" style="color:var(--texto2);">NEON KIDS v2.0 Super Premium · Gratis para niños · Sin ruleta · Hecho con 💜 en el espacio</p>
+  <!-- AdSense slot 3 -->
+  <div class="text-center text-[10px] opacity-40 font-bold tracking-widest mt-5 mb-1">📢 PUBLICIDAD</div>
+  <ins class="adsbygoogle" style="display:block; min-height:80px; border:2px dashed var(--borde); border-radius:12px;" data-ad-client="ca-pub-REEMPLAZAR-TU-ID" data-ad-slot="1000000003" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <p class="text-center text-xs mt-5 mb-2 opacity-50" style="color:var(--texto2);">NEON KIDS v3.0 · Gratis para niños · Listo para publicar</p>
 </div>
 
-<!-- Profesor astronauta + mascota -->
+<!-- Profesor Capi (estatico, tocarlo habla) + mascota -->
 <div id="prof" onclick="hablarProfesorAleatorio()"></div>
 <div id="globoFlotante" class="globo hidden"></div>
+<div id="globoPersonaje" class="globo globo-izq hidden"></div>
 <div id="mascotaContainer" class="mascota hidden"></div>
 
 <!-- MODAL: PERFIL -->
 <div id="perfilModal" class="modal-fondo"><div class="modal-cuerpo max-w-md w-full text-center">
-  <h2 class="tit-neon text-3xl mb-5">👦 <span data-t="perfil">Tu Perfil</span></h2>
-  <input id="nomPerfil" placeholder="Tu nombre" class="w-full p-3 rounded-2xl bg-white/10 border-4 border-purple-500/50 text-center text-xl mb-4 outline-none font-bold text-white placeholder-white/40">
-  <div class="text-sm font-bold mb-2" style="color:var(--cyan);" data-t="avatar">Elegí tu avatar</div>
-  <div id="avatares" class="grid grid-cols-6 gap-2 mb-5"></div>
-  <div class="text-sm font-bold mb-2" style="color:var(--cyan);" data-t="profesor">Elegí tu profesor</div>
-  <div id="profesores" class="grid grid-cols-3 gap-2 mb-6"></div>
-  <button class="boton b-lime text-xl px-8 w-full py-3" onclick="guardarPerfil()">✅ <span data-t="guardar">GUARDAR</span></button>
+  <h2 class="tit-neon text-2xl mb-4">👦 Tu Perfil</h2>
+  <input id="nomPerfil" placeholder="Tu nombre" class="w-full p-3 rounded-xl bg-white/10 border-2 border-purple-500/50 text-center text-xl mb-3 outline-none font-bold text-white placeholder-white/40">
+  <div class="text-sm font-bold mb-2" style="color:var(--cyan);">Elegí tu avatar</div>
+  <div id="avatares" class="grid grid-cols-6 gap-2 mb-4"></div>
+  <div class="text-sm font-bold mb-2" style="color:var(--cyan);">Elegí tu profesor</div>
+  <div id="profesores" class="grid grid-cols-3 gap-2 mb-5"></div>
+  <button class="boton b-lime text-xl px-8 w-full py-3" onclick="guardarPerfil()">✅ GUARDAR</button>
 </div></div>
 
 <!-- MODAL: TIENDA -->
 <div id="tiendaModal" class="modal-fondo"><div class="modal-cuerpo max-w-3xl w-full">
-  <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
-    <h2 class="tit-neon text-3xl">🏪 <span data-t="tienda">Tienda</span></h2>
+  <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
+    <h2 class="tit-neon text-2xl">🏪 Tienda</h2>
     <button class="boton b-red" onclick="cerrarModal('tiendaModal')">✕</button>
   </div>
-  <div class="text-center mb-4 text-2xl font-black" style="color:var(--gold);">🪙 <span id="tiendaMonedas">0</span></div>
-  <h3 class="text-xl font-black mb-3" style="color:var(--pink);">🐾 <span data-t="mascotas">Mascotas</span></h3>
-  <div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"></div>
-  <h3 class="text-xl font-black mb-3" style="color:var(--cyan);">👑 <span data-t="accesorios">Accesorios</span></h3>
-  <div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+  <div class="text-center mb-3 text-xl font-black" style="color:var(--gold);">🪙 <span id="tiendaMonedas">0</span></div>
+  <h3 class="text-lg font-black mb-2" style="color:var(--pink);">🐾 Mascotas</h3>
+  <div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4"></div>
+  <h3 class="text-lg font-black mb-2" style="color:var(--cyan);">👑 Accesorios</h3>
+  <div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-4 gap-2"></div>
 </div></div>
 
 <!-- MODAL: LOGROS -->
 <div id="logrosModal" class="modal-fondo"><div class="modal-cuerpo max-w-2xl w-full">
-  <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-neon text-3xl">🏆 <span data-t="logros">Logros</span></h2>
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="tit-neon text-2xl">🏆 Logros</h2>
     <button class="boton b-red" onclick="cerrarModal('logrosModal')">✕</button>
   </div>
-  <div id="listaLogros" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+  <div id="listaLogros" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
 </div></div>
 
 <!-- MODAL: AJUSTES -->
 <div id="ajustesModal" class="modal-fondo"><div class="modal-cuerpo max-w-md w-full">
-  <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-neon text-3xl">⚙️ <span data-t="ajustes">Ajustes</span></h2>
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="tit-neon text-2xl">⚙️ Ajustes</h2>
     <button class="boton b-red" onclick="cerrarModal('ajustesModal')">✕</button>
   </div>
-  <div class="space-y-5">
+  <div class="space-y-4">
     <div>
-      <div class="font-black mb-2" style="color:var(--cyan);">🔊 <span data-t="velVoz">Velocidad de la voz</span></div>
+      <div class="font-black mb-2 text-sm" style="color:var(--cyan);">🔊 Velocidad de la voz</div>
       <div class="flex gap-2">
-        <button class="boton b-blue flex-1" onclick="setVel(0.7)" id="velLenta">🐢 Lenta</button>
-        <button class="boton b-blue flex-1" onclick="setVel(0.85)" id="velNormal">🙂 Normal</button>
-        <button class="boton b-blue flex-1" onclick="setVel(1.0)" id="velRapida">⚡ Rápida</button>
+        <button class="boton b-blue flex-1 text-sm" onclick="setVel(0.7)" id="velLenta">🐢 Lenta</button>
+        <button class="boton b-blue flex-1 text-sm" onclick="setVel(0.85)" id="velNormal">🙂 Normal</button>
+        <button class="boton b-blue flex-1 text-sm" onclick="setVel(1.0)" id="velRapida">⚡ Rápida</button>
       </div>
     </div>
     <div>
-      <div class="font-black mb-2" style="color:var(--cyan);">🗣️ <span data-t="acento">Acento de inglés</span></div>
+      <div class="font-black mb-2 text-sm" style="color:var(--cyan);">🗣️ Acento de inglés</div>
       <div class="flex gap-2">
-        <button class="boton b-purple flex-1" onclick="setAcento('en-US')" id="acUS">🇺🇸 USA</button>
-        <button class="boton b-purple flex-1" onclick="setAcento('en-GB')" id="acGB">🇬🇧 UK</button>
+        <button class="boton b-purple flex-1 text-sm" onclick="setAcento('en-US')" id="acUS">🇺🇸 USA</button>
+        <button class="boton b-purple flex-1 text-sm" onclick="setAcento('en-GB')" id="acGB">🇬🇧 UK</button>
       </div>
     </div>
-    <button class="boton b-red w-full py-3" onclick="borrarProgreso()">🗑️ <span data-t="borrar">Borrar progreso</span></button>
+    <button class="boton b-red w-full py-3" onclick="borrarProgreso()">🗑️ Borrar progreso</button>
   </div>
 </div></div>
 
 <!-- MODAL: PREMIO -->
 <div id="premioModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
-  <div id="premioIcono" class="text-7xl mb-3" style="animation:pop 1s ease-in-out infinite;">🎁</div>
-  <h2 id="premioTexto" class="text-2xl font-black mb-5" style="color:var(--pink);">¡GANASTE!</h2>
-  <button class="boton b-lime px-8 py-3 text-lg" onclick="cerrarModal('premioModal')">¡GENIAL!</button>
+  <div id="premioIcono" class="text-6xl mb-2">🎁</div>
+  <h2 id="premioTexto" class="text-xl font-black mb-4" style="color:var(--pink);">¡GANASTE!</h2>
+  <button class="boton b-lime px-8 py-3" onclick="cerrarModal('premioModal')">¡GENIAL!</button>
 </div></div>
 
 <!-- MODAL: NIVEL -->
 <div id="nivelModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
-  <div class="text-7xl mb-2" style="animation:pop 1s ease-in-out infinite;">🎉</div>
-  <h2 class="tit-neon text-3xl mb-1" id="nivelTitulo">¡SUBISTE DE NIVEL!</h2>
-  <div class="text-5xl font-black mb-3" style="color:var(--cyan); text-shadow:0 0 20px var(--cyan);" id="nivelNum">Nv 2</div>
+  <div class="text-6xl mb-2">🎉</div>
+  <h2 class="tit-neon text-2xl mb-1" id="nivelTitulo">¡SUBISTE DE NIVEL!</h2>
+  <div class="text-4xl font-black mb-2" style="color:var(--cyan);" id="nivelNum">Nv 2</div>
   <p class="font-bold mb-2" style="color:var(--lime);" id="nivelRango">¡Ahora sos Explorador!</p>
-  <div class="caja-chica p-3 mb-4 font-black text-lg" id="nivelRecompensa" style="color:var(--gold);">+50 🪙 +2 💎 +1 🎁</div>
-  <button class="boton b-lime px-8 py-3 text-lg" onclick="cerrarModal('nivelModal')">¡SIII! 🚀</button>
+  <div class="caja-chica p-2 mb-3 font-black" id="nivelRecompensa" style="color:var(--gold);">+50🪙 +2💎 +1🎁</div>
+  <button class="boton b-lime px-8 py-3" onclick="cerrarModal('nivelModal')">¡SIII! 🚀</button>
 </div></div>
 
 <!-- MODAL: COFRE -->
 <div id="cofreModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
-  <h2 class="tit-neon text-3xl mb-4">🎁 <span id="cofreTitulo">Cofre del Tesoro</span></h2>
-  <div id="cofreCerrado" class="text-8xl mb-4 cursor-pointer select-none" style="animation:flotar 2s ease-in-out infinite;" onclick="abrirCofreClick()">📦</div>
-  <div id="cofrePremio" class="hidden mb-4">
-    <div class="text-7xl mb-2" id="cofreIcono">💎</div>
-    <div class="text-2xl font-black mb-1" id="cofreTexto" style="color:var(--cyan);">¡Ganaste 3 gemas!</div>
+  <h2 class="tit-neon text-2xl mb-3">🎁 Cofre del Tesoro</h2>
+  <div id="cofreCerrado" class="text-7xl mb-3 cursor-pointer select-none" onclick="abrirCofreClick()">📦</div>
+  <div id="cofrePremio" class="hidden mb-3">
+    <div class="text-6xl mb-1" id="cofreIcono">💎</div>
+    <div class="text-xl font-black" id="cofreTexto" style="color:var(--cyan);">¡Ganaste 3 gemas!</div>
   </div>
-  <p class="font-bold mb-4 opacity-70" id="cofreHint" style="color:var(--texto2);">Tocá el cofre para abrirlo ✨</p>
-  <button class="boton b-red px-8 py-3" onclick="cerrarModal('cofreModal')">✕</button>
+  <p class="font-bold mb-3 opacity-70 text-sm" id="cofreHint" style="color:var(--texto2);">Tocá el cofre para abrirlo ✨</p>
+  <button class="boton b-red px-8 py-2" onclick="cerrarModal('cofreModal')">✕</button>
 </div></div>
 
-<!-- MODAL: MISIONES DIARIAS -->
+<!-- MODAL: MISIONES -->
 <div id="misionesModal" class="modal-fondo"><div class="modal-cuerpo max-w-md w-full">
-  <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-neon text-3xl">📋 Misiones Diarias</h2>
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="tit-neon text-2xl">📋 Misiones Diarias</h2>
     <button class="boton b-red" onclick="cerrarModal('misionesModal')">✕</button>
   </div>
   <div id="listaMisiones"></div>
-  <p class="text-center text-sm mt-4 opacity-60" style="color:var(--texto2);">Completá misiones para ganar 💎 gemas extra</p>
+  <p class="text-center text-xs mt-3 opacity-60" style="color:var(--texto2);">Completá misiones para ganar 💎 gemas</p>
 </div></div>
 
 <!-- MODAL: PERSONAJES -->
 <div id="personajesModal" class="modal-fondo"><div class="modal-cuerpo max-w-lg w-full">
-  <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-neon text-3xl">🧑‍🚀 Tus Personajes</h2>
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="tit-neon text-2xl">🧑‍🚀 Personajes</h2>
     <button class="boton b-red" onclick="cerrarModal('personajesModal')">✕</button>
   </div>
-  <p class="text-center mb-4 font-bold" style="color:var(--texto2);">Tocá un personaje para que te hable y te anime</p>
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="listaPersonajes"></div>
+  <p class="text-center mb-3 font-bold text-sm" style="color:var(--texto2);">Tocá un personaje para que te hable</p>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="listaPersonajes"></div>
 </div></div>
 
 <!-- MODAL: AYUDA -->
 <div id="ayudaModal" class="modal-fondo"><div class="modal-cuerpo max-w-lg w-full">
-  <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-neon text-3xl">❓ <span data-t="ayuda">Ayuda</span></h2>
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="tit-neon text-2xl">❓ Ayuda</h2>
     <button class="boton b-red" onclick="cerrarModal('ayudaModal')">✕</button>
   </div>
-  <div class="space-y-3 text-sm font-semibold" id="ayudaContenido" style="color:var(--texto);"></div>
+  <div class="space-y-2 text-sm font-semibold" id="ayudaContenido" style="color:var(--texto);"></div>
 </div></div>
 
 <script>
@@ -1514,7 +1375,6 @@ JUEGOS.push(
 );
 try{ actualizarCabecera(); dibujarMundos(); }catch(e){ console.error(e); }
 </script>
-
 <script>
 /* ============================================================
    BLOQUE 8 · Personajes que hablan (ES+EN) + Misiones diarias
@@ -1632,7 +1492,6 @@ ganarMonedas = function(cant, esIngles){
 })();
 try{ actualizarCabecera(); }catch(e){}
 </script>
-
 <script>
 /* BLOQUE 9 · EXPANSION MASIVA: mas vocabulario, trivia, tienda, logros, frases, 6 juegos nuevos, libro */
 DICCIONARIO.opuestos=[{es:"grande",en:"big",ico:"🐘"},{es:"chico",en:"small",ico:"🐜"},{es:"alto",en:"tall",ico:"🦒"},{es:"bajo",en:"short",ico:"🐶"},{es:"feliz",en:"happy",ico:"😊"},{es:"triste",en:"sad",ico:"😢"},{es:"caliente",en:"hot",ico:"🔥"},{es:"frio",en:"cold",ico:"❄️"},{es:"rapido",en:"fast",ico:"⚡"},{es:"lento",en:"slow",ico:"🐢"},{es:"nuevo",en:"new",ico:"✨"},{es:"viejo",en:"old",ico:"⏳"},{es:"fuerte",en:"strong",ico:"💪"},{es:"debil",en:"weak",ico:"🪶"},{es:"limpio",en:"clean",ico:"🧼"},{es:"sucio",en:"dirty",ico:"🗑️"},{es:"abierto",en:"open",ico:"📖"},{es:"cerrado",en:"closed",ico:"🔒"}];
