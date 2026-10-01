@@ -3,42 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🚀 Woody Planet · 42 Juegos para Niños</title>
+<title>🚀 Woody Planet · Juegos para Niños</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{font-family:'Fredoka',sans-serif;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 html,body{margin:0;padding:0;min-height:100vh;color:#fff;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;}
-body{background:#000;}
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 15% 0%,rgba(34,211,238,.12),transparent 60%),radial-gradient(ellipse 60% 50% at 90% 15%,rgba(168,85,247,.12),transparent 60%),radial-gradient(ellipse 80% 60% at 50% 110%,rgba(236,72,153,.1),transparent 60%);}
+body{background:#05010f;}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 15% 0%,rgba(34,211,238,.15),transparent 60%),radial-gradient(ellipse 60% 50% at 90% 15%,rgba(236,72,153,.15),transparent 60%),radial-gradient(ellipse 80% 60% at 50% 110%,rgba(250,204,21,.12),transparent 60%);}
 .est{position:fixed;border-radius:50%;background:#fff;pointer-events:none;z-index:0;box-shadow:0 0 8px rgba(255,255,255,.7);animation:cae linear infinite;opacity:.4;}
 @keyframes cae{0%{transform:translateY(-10vh);opacity:0}10%{opacity:.4}100%{transform:translateY(120vh);opacity:0}}
 .particula{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:99998;animation:par 1s ease-out forwards}
 @keyframes par{to{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0}}
-.vidrio{position:relative;background:rgba(255,255,255,.05);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px);border-radius:36px;padding:40px 24px;overflow:hidden;border:1.5px solid rgba(255,255,255,.12);box-shadow:0 30px 80px -20px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.15);}
-.vidrio-fino{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1.5px solid rgba(255,255,255,.12);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.12);transition:all .2s;}
-.vidrio-fino:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);}
-.tit-neon{font-family:'Orbitron',sans-serif;font-weight:900;background:linear-gradient(90deg,#67e8f9,#a78bfa,#f9a8d4,#fde68a,#67e8f9);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nm 6s linear infinite;filter:drop-shadow(0 0 30px rgba(167,139,250,.4));}
+.vidrio{position:relative;background:rgba(255,255,255,.06);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px);border-radius:36px;padding:36px 20px;overflow:hidden;border:2px solid rgba(255,255,255,.15);box-shadow:0 30px 80px -20px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.2);}
+.vidrio-fino{background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border:2px solid rgba(255,255,255,.15);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;}
+.vidrio-fino:hover{background:rgba(255,255,255,.12);transform:translateY(-2px);}
+.tit-neon{font-family:'Orbitron',sans-serif;font-weight:900;background:linear-gradient(90deg,#67e8f9,#a78bfa,#f9a8d4,#fde68a,#67e8f9);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nm 6s linear infinite;filter:drop-shadow(0 0 30px rgba(167,139,250,.5));}
 @keyframes nm{to{background-position:300%}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:60px;background:linear-gradient(135deg,rgba(103,232,249,.2),rgba(167,139,250,.28));border:1.5px solid rgba(255,255,255,.2);color:#fff;font-weight:800;font-size:1.05rem;padding:12px 24px;border-radius:999px;cursor:pointer;user-select:none;transition:transform .12s,background .2s,box-shadow .2s;box-shadow:0 10px 30px -8px rgba(103,232,249,.4),inset 0 1px 0 rgba(255,255,255,.25);}
-.btn:hover{background:linear-gradient(135deg,rgba(103,232,249,.35),rgba(167,139,250,.4));}
-.btn:active{transform:scale(.95);}
-.btn.on{background:linear-gradient(135deg,#22d3ee,#a855f7);color:#05010f;box-shadow:0 0 35px rgba(34,211,238,.6);}
-.btn-oro{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#451a03;border:1.5px solid #fde68a;font-weight:900;box-shadow:0 12px 35px -8px rgba(251,191,36,.6),inset 0 1px 0 rgba(255,255,255,.4);}
-.btn-reward{display:inline-flex;align-items:center;gap:6px;min-height:60px;background:linear-gradient(135deg,#fb923c,#ef4444);color:#fff;border:1.5px solid #fed7aa;font-weight:900;font-size:1rem;padding:10px 18px;border-radius:999px;cursor:pointer;user-select:none;box-shadow:0 12px 35px -8px rgba(251,146,60,.7),inset 0 1px 0 rgba(255,255,255,.3);animation:brillaBtn 2s ease-in-out infinite;}
-@keyframes brillaBtn{0%,100%{box-shadow:0 12px 35px -8px rgba(251,146,60,.7)}50%{box-shadow:0 12px 45px -4px rgba(251,146,60,1)}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:60px;background:linear-gradient(135deg,#06b6d4,#8b5cf6);border:2px solid rgba(255,255,255,.3);color:#fff;font-weight:800;font-size:1.05rem;padding:12px 24px;border-radius:999px;cursor:pointer;user-select:none;transition:transform .15s,box-shadow .2s;box-shadow:0 10px 30px -6px rgba(139,92,246,.6),inset 0 1px 0 rgba(255,255,255,.4);animation:flotarBtn 3s ease-in-out infinite;}
+@keyframes flotarBtn{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.btn:hover{box-shadow:0 16px 40px -6px rgba(139,92,246,.9);}
+.btn:active{transform:scale(.95)!important;}
+.btn.on{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#451a03;box-shadow:0 0 35px rgba(251,191,36,.7);}
+.btn-oro{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#451a03;border:2px solid #fde68a;font-weight:900;box-shadow:0 12px 35px -8px rgba(251,191,36,.7),inset 0 1px 0 rgba(255,255,255,.5);animation:flotarBtn 3s ease-in-out infinite;}
+.btn-reward{display:inline-flex;align-items:center;gap:6px;min-height:60px;background:linear-gradient(135deg,#fb923c,#ef4444);color:#fff;border:2px solid #fed7aa;font-weight:900;font-size:1rem;padding:10px 18px;border-radius:999px;cursor:pointer;user-select:none;box-shadow:0 12px 35px -8px rgba(251,146,60,.8),inset 0 1px 0 rgba(255,255,255,.4);animation:brillaBtn 2s ease-in-out infinite;}
+@keyframes brillaBtn{0%,100%{box-shadow:0 12px 35px -8px rgba(251,146,60,.8)}50%{box-shadow:0 12px 50px -4px rgba(251,146,60,1)}}
 .btn-reward:active{transform:scale(.95);}
-.pal{padding:22px 18px;border-radius:22px;font-size:1.4rem;font-weight:800;cursor:pointer;user-select:none;transition:transform .12s,background .2s,border-color .2s;border:2px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);backdrop-filter:blur(12px);color:#fff;text-align:center;min-height:80px;display:flex;align-items:center;justify-content:center;line-height:1.2;}
-.pal:hover{transform:translateY(-3px) scale(1.02);border-color:rgba(103,232,249,.6);background:rgba(103,232,249,.12);box-shadow:0 12px 35px -8px rgba(103,232,249,.5);}
-.pal:active{transform:scale(.97);}
-.ok{background:linear-gradient(135deg,#16a34a,#4ade80)!important;color:#052e16!important;border-color:#86efac!important;box-shadow:0 0 40px rgba(34,197,94,.6)!important;animation:pop .5s;}
-.no{background:linear-gradient(135deg,#dc2626,#f87171)!important;color:#450a0a!important;border-color:#fca5a5!important;animation:sac .45s;}
+.pal{padding:20px 16px;border-radius:24px;font-size:1.3rem;font-weight:800;cursor:pointer;user-select:none;transition:transform .15s,box-shadow .2s;border:3px solid rgba(255,255,255,.25);color:#fff;text-align:center;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;line-height:1.2;animation:flotarCarta 4s ease-in-out infinite;}
+.pal .ico{font-size:2.8rem;display:block;}
+.pal:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 16px 40px -8px rgba(255,255,255,.4);}
+.pal:active{transform:scale(.96);}
+@keyframes flotarCarta{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.ok{background:linear-gradient(135deg,#16a34a,#4ade80)!important;color:#052e16!important;border-color:#86efac!important;box-shadow:0 0 45px rgba(34,197,94,.7)!important;animation:pop .5s!important;}
+.no{background:linear-gradient(135deg,#dc2626,#f87171)!important;color:#450a0a!important;border-color:#fca5a5!important;animation:sac .45s!important;}
 @keyframes pop{50%{transform:scale(1.12) rotate(-3deg)}}
 @keyframes sac{0%,100%{transform:translateX(0)}25%{transform:translateX(-12px)}75%{transform:translateX(12px)}}
-.num{aspect-ratio:1/1;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;font-weight:900;cursor:pointer;user-select:none;transition:transform .12s;background:linear-gradient(135deg,rgba(244,114,182,.22),rgba(167,139,250,.3));border:2px solid rgba(255,255,255,.16);color:#fff;box-shadow:0 12px 35px -8px rgba(244,114,182,.5);min-height:90px;}
+.num{aspect-ratio:1/1;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;font-weight:900;cursor:pointer;user-select:none;transition:transform .12s;border:3px solid rgba(255,255,255,.25);color:#fff;min-height:90px;animation:flotarCarta 4s ease-in-out infinite;}
 .num:hover{transform:scale(1.1);color:#fde047;}
 .num:active{transform:scale(.95);}
-.letra{aspect-ratio:1/1;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;cursor:pointer;user-select:none;transition:transform .12s;background:linear-gradient(135deg,rgba(103,232,249,.18),rgba(167,139,250,.25));border:2px solid rgba(255,255,255,.16);color:#fff;min-height:64px;}
+.letra{aspect-ratio:1/1;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;cursor:pointer;user-select:none;transition:transform .12s;border:3px solid rgba(255,255,255,.25);color:#fff;min-height:64px;}
 .letra:hover{transform:scale(1.12);color:#fde047;}
 .letra:active{transform:scale(.95);}
 .carta{aspect-ratio:3/4;cursor:pointer;perspective:1000px;user-select:none;}
@@ -52,7 +55,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .tecla-blanca:active,.tecla-blanca.activa{background:#cbd5e1;transform:translateY(3px);}
 .tecla-negra{background:linear-gradient(180deg,#1e293b,#0f172a);height:110px;width:38px;margin-left:-19px;margin-right:-19px;z-index:2;color:#e2e8f0;}
 .tecla-negra:active,.tecla-negra.activa{background:#334155;transform:translateY(3px);}
-/* WOODY el astronauta */
 .prof{position:fixed;bottom:8px;right:6px;z-index:55;cursor:pointer;width:82px;height:108px;animation:flot 3.5s ease-in-out infinite;filter:drop-shadow(0 0 25px rgba(103,232,249,.6));transition:transform .2s;}
 .prof:hover{transform:scale(1.08);}
 .prof.volando{animation:volarWoody 4.5s cubic-bezier(.45,.05,.55,.95) 1;}
@@ -71,27 +73,37 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 @keyframes llama{0%{transform:scaleY(.9)}100%{transform:scaleY(1.3)}}
 .brazo-der{transform-origin:105px 110px;animation:saludar 3s ease-in-out infinite;}
 @keyframes saludar{0%,100%{transform:rotate(0)}50%{transform:rotate(-15deg)}}
-.globo{position:fixed;bottom:115px;right:85px;z-index:54;max-width:230px;background:linear-gradient(135deg,#fff,#f5f3ff);color:#1e1b4b;padding:14px 16px;border-radius:20px 20px 6px 20px;font-weight:800;font-size:.95rem;box-shadow:0 16px 40px -10px rgba(167,139,250,.6);animation:apa .3s;line-height:1.3;}
+.globo{position:fixed;bottom:115px;right:85px;z-index:54;max-width:240px;background:linear-gradient(135deg,#fff,#f5f3ff);color:#1e1b4b;padding:14px 16px;border-radius:20px 20px 6px 20px;font-weight:800;font-size:.95rem;box-shadow:0 16px 40px -10px rgba(167,139,250,.6);animation:apa .3s;line-height:1.3;}
 .globo::after{content:"";position:absolute;bottom:-10px;right:18px;border:10px solid transparent;border-top-color:#fff;}
 @keyframes apa{from{opacity:0;transform:translateY(8px) scale(.95)}}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:99000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s;padding:20px;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:99000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s;padding:20px;}
 .modal-overlay.activo{opacity:1;pointer-events:auto;}
-.ad-slot{width:100%;min-height:60px;margin:10px auto;display:flex;align-items:center;justify-content:center;border:1.5px dashed rgba(250,204,21,.3);border-radius:16px;background:rgba(250,204,21,.04);color:rgba(250,204,21,.5);font-weight:700;font-size:.8rem;text-align:center;overflow:hidden;position:relative;z-index:5;}
+.ad-slot{width:100%;min-height:60px;margin:10px auto;display:flex;align-items:center;justify-content:center;border:2px dashed rgba(250,204,21,.35);border-radius:16px;background:rgba(250,204,21,.05);color:rgba(250,204,21,.55);font-weight:700;font-size:.8rem;text-align:center;overflow:hidden;position:relative;z-index:5;}
 .ad-banner{max-width:728px;}
-.bocina{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#451a03;border:none;border-radius:50%;width:68px;height:68px;font-size:1.8rem;cursor:pointer;font-weight:900;box-shadow:0 12px 35px -6px rgba(251,191,36,.6);vertical-align:middle;transition:transform .15s;min-height:68px;}
-.bocina:hover{transform:scale(1.12);}
+.bocina{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#451a03;border:none;border-radius:50%;width:68px;height:68px;font-size:1.8rem;cursor:pointer;font-weight:900;box-shadow:0 12px 35px -6px rgba(251,191,36,.7);vertical-align:middle;transition:transform .15s;min-height:68px;animation:flotarBtn 2.5s ease-in-out infinite;}
+.bocina:hover{transform:scale(1.15) rotate(-5deg);}
 .bocina:active{transform:scale(.95);}
-.letra-spelling{width:56px;height:56px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:900;background:linear-gradient(135deg,rgba(103,232,249,.18),rgba(167,139,250,.28));border:2px solid rgba(255,255,255,.2);color:#fff;margin:4px;cursor:pointer;user-select:none;transition:transform .15s;min-height:56px;}
+.letra-spelling{width:56px;height:56px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:900;border:3px solid rgba(255,255,255,.25);color:#fff;margin:4px;cursor:pointer;user-select:none;transition:transform .15s;min-height:56px;}
 .letra-spelling:hover{transform:scale(1.1);border-color:#fbbf24;color:#fbbf24;}
 .letra-spelling:active{transform:scale(.95);}
 .letra-spelling.usada{opacity:.25;cursor:default;transform:scale(.9);}
 .hueco-falta{display:inline-block;width:50px;height:60px;border-bottom:5px solid #fbbf24;margin:0 5px;vertical-align:bottom;font-size:2.4rem;font-weight:900;color:#fbbf24;text-align:center;line-height:60px;}
-.simon-btn{width:45%;aspect-ratio:1/1;border-radius:24px;cursor:pointer;opacity:.5;transition:opacity .15s,transform .15s;border:4px solid rgba(255,255,255,.2);}
+.simon-btn{width:45%;aspect-ratio:1/1;border-radius:24px;cursor:pointer;opacity:.5;transition:opacity .15s,transform .15s;border:4px solid rgba(255,255,255,.3);}
 .simon-btn.activo{opacity:1;transform:scale(1.05);box-shadow:0 0 40px currentColor;}
+.c0{background:linear-gradient(135deg,#06b6d4,#3b82f6);}
+.c1{background:linear-gradient(135deg,#ec4899,#8b5cf6);}
+.c2{background:linear-gradient(135deg,#f59e0b,#ef4444);}
+.c3{background:linear-gradient(135deg,#10b981,#84cc16);}
+.c4{background:linear-gradient(135deg,#8b5cf6,#ec4899);}
+.c5{background:linear-gradient(135deg,#f43f5e,#f97316);}
+.c6{background:linear-gradient(135deg,#0ea5e9,#14b8a6);}
+.c7{background:linear-gradient(135deg,#a855f7,#6366f1);}
 @media (max-width:640px){
-  .prof{width:68px;height:90px;bottom:6px;right:4px;opacity:.94;}
-  .globo{right:72px;bottom:95px;max-width:180px;font-size:.85rem;padding:10px 12px;}
-  #juegos{padding:24px 14px;}
+.prof{width:68px;height:90px;bottom:6px;right:4px;opacity:.94;}
+.globo{right:72px;bottom:95px;max-width:180px;font-size:.85rem;padding:10px 12px;}
+#juegos{padding:24px 12px;}
+.pal{font-size:1.1rem;min-height:80px;}
+.pal .ico{font-size:2.2rem;}
 }
 #intro{transition:opacity .8s;}
 </style>
@@ -100,17 +112,12 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 <div id="intro" class="fixed inset-0 bg-black z-[100000] flex items-center justify-center flex-col">
 <div class="text-7xl mb-4">🚀</div>
 <div class="tit-neon text-3xl md:text-5xl">WOODY PLANET</div>
-<div class="text-cyan-200 mt-2 font-bold">42 juegos para aprender y divertirte</div>
+<div class="text-cyan-200 mt-2 font-bold">Juegos para aprender y divertirte</div>
 <div class="w-64 h-2 bg-white/10 rounded-full mt-8 overflow-hidden"><div class="h-full bg-gradient-to-r from-cyan-400 to-pink-500 w-0" id="barraCarga"></div></div>
 </div>
 <div id="estrellas"></div>
-
 <!-- GOOGLE ADSENSE SLOT: banner superior -->
-<div class="relative z-10 max-w-5xl mx-auto px-2 pt-2">
-<div class="ad-slot ad-banner">📢 PUBLICIDAD GOOGLE · espacio reservado</div>
-</div>
-
-<!-- BARRA SUPERIOR -->
+<div class="relative z-10 max-w-5xl mx-auto px-2 pt-2"><div class="ad-slot ad-banner">📢 PUBLICIDAD GOOGLE · espacio reservado</div></div>
 <div class="max-w-5xl mx-auto px-2 py-2 flex justify-between items-center gap-2 flex-wrap">
 <div class="vidrio-fino p-2 px-3 flex items-center gap-2 cursor-pointer" onclick="mostrarPerfil()">
 <div id="avatarPerfil" class="text-2xl">👦</div>
@@ -123,26 +130,21 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 <button class="btn text-sm" onclick="abrirModal('ayudaModal')">❓ Ayuda</button>
 </div>
 </div>
-
 <div class="max-w-6xl mx-auto px-3 pt-4 pb-40 relative z-10">
 <h1 class="tit-neon text-center text-3xl md:text-5xl mb-1">🚀 WOODY PLANET 🌟</h1>
-<p class="text-center text-cyan-200 font-bold mb-3 text-sm md:text-base">¡Woody te invita a jugar y aprender! · 42 juegos 100% gratis</p>
-
+<p class="text-center text-cyan-200 font-bold mb-3 text-sm md:text-base">Woody te enseña y te divierte · 100% gratis</p>
 <!-- GOOGLE ADSENSE SLOT: banner intermedio -->
 <div class="ad-slot ad-banner">📢 PUBLICIDAD GOOGLE · espacio reservado</div>
-
 <div class="flex flex-wrap gap-2 justify-center mb-3" id="cats"></div>
 <div class="flex flex-wrap gap-2 justify-center mb-6" id="tabs"></div>
 <div id="juegos" class="vidrio min-h-[350px]"></div>
-
 <!-- GOOGLE ADSENSE SLOT: banner inferior -->
 <div class="ad-slot ad-banner mt-6">📢 PUBLICIDAD GOOGLE · espacio reservado</div>
-<p class="text-center text-xs text-white/40 mt-6">App gratuita con espacios para Google Ads · Woody Planet v1.0</p>
+<p class="text-center text-xs text-white/40 mt-6">App gratuita con espacios para Google Ads · Woody Planet</p>
 </div>
-
 <div id="prof" class="prof" onclick="hablarWoody()"></div>
 <div id="globo" class="globo hidden"></div>
-
+<div id="mascotaFija" class="fixed bottom-3 left-3 z-50 text-4xl hidden" style="filter:drop-shadow(0 0 15px rgba(255,255,255,.5));animation:flot 4s ease-in-out infinite;"></div>
 <!-- MODAL PERFIL -->
 <div id="perfilModal" class="modal-overlay"><div class="vidrio max-w-sm w-full p-6 text-center">
 <h2 class="tit-neon text-2xl mb-5">👦 Tu perfil</h2>
@@ -150,69 +152,53 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 <div id="avatares" class="grid grid-cols-6 gap-2 mb-5"></div>
 <button class="btn-oro w-full text-lg" onclick="guardarPerfil()">✅ Guardar</button>
 </div></div>
-
 <!-- MODAL TIENDA -->
 <div id="tiendaModal" class="modal-overlay"><div class="vidrio max-w-xl w-full p-6 max-h-[90vh] overflow-y-auto">
 <div class="flex justify-between items-center mb-5"><h2 class="tit-neon text-2xl">🏪 Tienda</h2><button class="btn bg-red-500" onclick="cerrarModal('tiendaModal')">❌</button></div>
 <div class="text-center mb-5 text-xl font-black text-yellow-300">Tienes: 🪙 <span id="tiendaMonedas">0</span> <button class="btn-reward ml-2 text-sm" onclick="verAnuncio()">🎬 +50</button></div>
-<h3 class="text-lg font-bold text-pink-300 mb-3">🐾 Mascotas</h3>
-<div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6"></div>
-<h3 class="text-lg font-bold text-cyan-300 mb-3">👑 Accesorios</h3>
-<div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+<h3 class="text-lg font-bold text-pink-300 mb-3">🐾 Mascotas</h3><div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6"></div>
+<h3 class="text-lg font-bold text-cyan-300 mb-3">👑 Accesorios</h3><div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
 </div></div>
-
 <!-- MODAL AYUDA -->
 <div id="ayudaModal" class="modal-overlay"><div class="vidrio max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
 <div class="flex justify-between items-center mb-5"><h2 class="tit-neon text-2xl">❓ Ayuda</h2><button class="btn bg-red-500" onclick="cerrarModal('ayudaModal')">❌</button></div>
 <div class="space-y-3 text-sm text-cyan-100">
-<div class="vidrio-fino p-3"><b class="text-yellow-300">🚀 ¿Quién es Woody?</b><br>Woody es tu amigo astronauta. Te habla, te explica los juegos y te alienta. Tocálo para escucharlo.</div>
-<div class="vidrio-fino p-3"><b class="text-yellow-300">🪙 Monedas</b><br>Ganás monedas acertando. Comprás mascotas y accesorios en la Tienda.</div>
+<div class="vidrio-fino p-3"><b class="text-yellow-300">🚀 Woody enseña</b><br>Woody habla en castellano, te explica cada juego y te dice cómo se dice cada palabra en inglés. Tocálo para escucharlo.</div>
 <div class="vidrio-fino p-3"><b class="text-yellow-300">🔊 Inglés</b><br>Tocá el altavoz amarillo para escuchar la pronunciación en inglés.</div>
-<div class="vidrio-fino p-3"><b class="text-yellow-300">🎬 Anuncio</b><br>Mirando un anuncio ganás +50 monedas gratis (espacio para Google Ads).</div>
-<div class="vidrio-fino p-3"><b class="text-yellow-300">👦 Perfil</b><br>Tocá tu nombre arriba a la izquierda para cambiarlo. Se guarda solo.</div>
+<div class="vidrio-fino p-3"><b class="text-yellow-300">🪙 Monedas</b><br>Ganás monedas acertando. Comprás mascotas y accesorios en la Tienda.</div>
 </div></div></div>
-
 <!-- MODAL PREMIO -->
 <div id="premioModal" class="modal-overlay z-[99999]"><div class="vidrio max-w-xs w-full p-6 text-center">
 <div id="premioIcono" class="text-7xl mb-3">🎁</div>
 <h2 id="premioTexto" class="text-2xl font-black text-yellow-300 mb-5">¡GANASTE!</h2>
 <button class="btn px-6" onclick="cerrarModal('premioModal')">¡Genial!</button>
 </div></div>
-
 <script>
-/* GOOGLE ADSENSE: cambiar enabled=true y poner tu ID cuando tengas cuenta */
 const GOOGLE_ADS={enabled:false,client:'ca-pub-XXXXXXXXXXXXXXXX',rewardCoins:50};
-function verAnuncio(){ if(GOOGLE_ADS.enabled){alert('Conectá tu cuenta de Google AdSense');} else {ganarMonedas(GOOGLE_ADS.rewardCoins);mostrarPremio('🎬','¡Gracias! +50 🪙');} }
-
-/* ============ SONIDOS ============ */
+function verAnuncio(){if(GOOGLE_ADS.enabled){alert('Conectá tu cuenta de Google AdSense');}else{ganarMonedas(GOOGLE_ADS.rewardCoins);mostrarPremio('🎬','¡Gracias! +50 🪙');}}
 const sonido=(()=>{let ctx;const ini=()=>{if(!ctx)ctx=new(window.AudioContext||window.webkitAudioContext)();};
 const tono=(f=440,d=.2,t='sine',v=.15)=>{ini();const o=ctx.createOscillator(),g=ctx.createGain();o.type=t;o.frequency.value=f;g.gain.value=v;g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+d);};
 const mel=arr=>arr.forEach(([f,d],n)=>setTimeout(()=>tono(f,d),n*140));
 return{ini,tono,click:()=>tono(600,.05,'square',.05),ok:()=>mel([[523,.1],[659,.1],[784,.15]]),no:()=>mel([[300,.15],[200,.2]]),ganar:()=>mel([[523,.1],[659,.1],[784,.1],[1047,.3]]),moneda:()=>tono(1200,.1,'sine',.1),
 toggleMusica(){ini();this._m=!this._m;document.getElementById('btnMus').textContent=this._m?'🔊 Música':'🔇 Música';if(this._m){const n=[261,329,392,523];let i=0;const lp=()=>{if(!this._m)return;tono(n[i%4],.2,'triangle',.02);i++;this._t=setTimeout(lp,600);};lp();}else clearTimeout(this._t);}};})();
 document.addEventListener('click',()=>sonido.ini(),{once:true});
-
-/* ============ PRONUNCIACIÓN INGLÉS ============ */
 function hablarIngles(texto){try{if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(texto);u.lang='en-US';u.rate=.85;u.pitch=1.1;const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('en'));if(v)u.voice=v;speechSynthesis.speak(u);}catch(e){}}
 if('speechSynthesis'in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
-
-/* ============ WOODY el astronauta (habla con los niños) ============ */
 const WOODY={
-  saludo:["¡Hola! Soy Woody, tu amigo astronauta 🚀","¡Bienvenido a Woody Planet! 🌍","¡Vamos a jugar y divertirnos! 🎮","¡Yo te ayudo a aprender, chico/a! 💫"],
-  ganar:["¡Muy bien! ¡Sí se puede! ✨","¡GENIAL! ¡Lo lograste! 🎉","¡Wiii! ¡Sos un campeón! 🏆","¡Bravo! ¡Woody está orgulloso de vos! 🌟","¡Increíble! ¡Seguí así! 🚀"],
-  fallar:["¡Casi! Intentá de nuevo, yo te ayudo 💪","¡No pasa nada! Otra vez vas a ver 🔄","¡Uuuy! ¡Seguí intentando, vos podés! ✨","¡Muy cerca! Pensá bien y volvé 🤔","¡No te rindas! Woody sabe que vos podés 🚀"],
-  juego:["¡Este juego es divertido! ¡Vamos! 🎯","¡Prestá atención que es fácil! 👀","¡Yo sé que vos lo sabés! 💡","¡A divertirse aprendiendo! 🎪"]
+saludo:["¡Hola! Soy Woody, tu amigo astronauta 🚀","¡Bienvenido a Woody Planet! 🌍","¡Vamos a aprender y divertirnos! 🎮"],
+ganar:["¡Muy bien! ¡Sí se puede! ✨","¡GENIAL! ¡Lo lograste! 🎉","¡Wiii! ¡Sos un campeón! 🏆","¡Bravo! ¡Woody está orgulloso de vos! 🌟"],
+fallar:["¡Casi! Intentá de nuevo, yo te ayudo 💪","¡No pasa nada! Otra vez vas a ver 🔄","¡Seguí intentando, vos podés! ✨","¡Muy cerca! Pensá bien y volvé 🤔"],
+juego:["¡Este juego es divertido! ¡Vamos! 🎯","¡Prestá atención que es fácil! 👀","¡Yo sé que vos lo sabés! 💡"]
 };
 function hablarWoody(frase){
-  const texto=frase||WOODY.saludo[Math.floor(Math.random()*WOODY.saludo.length)];
-  const g=document.getElementById('globo');g.textContent=texto;g.classList.remove('hidden');clearTimeout(g._t);g._t=setTimeout(()=>g.classList.add('hidden'),4500);
-  const svg=document.getElementById('astroSVG');
-  try{if('speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(texto);u.lang='es-AR';u.pitch=1.3;u.rate=.95;const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('es')&&/female|mujer|sabrina|paulina|luciana|helena|monica|karla|tessa/i.test(x.name))||speechSynthesis.getVoices().find(x=>x.lang.startsWith('es'));if(v)u.voice=v;u.onstart=()=>{if(svg)svg.classList.add('hablando');};u.onend=()=>{if(svg)svg.classList.remove('hablando');};u.onerror=()=>{if(svg)svg.classList.remove('hablando');};speechSynthesis.speak(u);}else{if(svg){svg.classList.add('hablando');setTimeout(()=>svg.classList.remove('hablando'),1500);}}}catch(e){if(svg){svg.classList.add('hablando');setTimeout(()=>svg.classList.remove('hablando'),1500);}}
-  sonido.click();
+const texto=frase||rp(WOODY.saludo);
+const g=document.getElementById('globo');g.textContent=texto;g.classList.remove('hidden');clearTimeout(g._t);g._t=setTimeout(()=>g.classList.add('hidden'),4500);
+const svg=document.getElementById('astroSVG');
+try{if('speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(texto);u.lang='es-AR';u.pitch=1.3;u.rate=.95;const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('es')&&/female|mujer|sabrina|paulina|luciana|helena|monica|karla|tessa/i.test(x.name))||speechSynthesis.getVoices().find(x=>x.lang.startsWith('es'));if(v)u.voice=v;u.onstart=()=>{if(svg)svg.classList.add('hablando');};u.onend=()=>{if(svg)svg.classList.remove('hablando');};u.onerror=()=>{if(svg)svg.classList.remove('hablando');};speechSynthesis.speak(u);}else{if(svg){svg.classList.add('hablando');setTimeout(()=>svg.classList.remove('hablando'),1500);}}}catch(e){if(svg){svg.classList.add('hablando');setTimeout(()=>svg.classList.remove('hablando'),1500);}}
+sonido.click();
 }
+function woodyEnsenia(es,en){hablarWoody("¿Cómo se dice \""+es+"\" en inglés? ... ¡Es \""+en+"\"!");setTimeout(()=>hablarIngles(en),2500);}
 function volarWoody(){const p=document.getElementById('prof');if(!p||p.classList.contains('volando'))return;sonido.tono(800,.15,'sine',.08);setTimeout(()=>sonido.tono(1200,.2,'sine',.08),150);p.classList.add('volando');hablarWoody("¡Wiii! ¡Estoy volando por el espacio! 🚀");setTimeout(()=>p.classList.remove('volando'),4600);}
-
-/* ============ PERFIL Y MONEDAS ============ */
 let PERFIL={n:"Jugador",a:"👦",p:0,monedas:100,inv:[],eqMascota:null,eqAcc:null};
 let CA=0,J=0;
 const TIENDA={mascotas:[{id:'m1',ico:'🐉',nom:'Dragón',p:500},{id:'m2',ico:'🦄',nom:'Unicornio',p:800},{id:'m3',ico:'🤖',nom:'Robot',p:1200},{id:'m4',ico:'👽',nom:'Marciano',p:2000},{id:'m5',ico:'🐱‍🚀',nom:'Gato Astro',p:3000}],
@@ -229,125 +215,116 @@ function abrirTienda(){document.getElementById('tiendaMonedas').textContent=PERF
 document.getElementById('tiendaAccesorios').innerHTML=TIENDA.accesorios.map(a=>{const t=PERFIL.inv.includes(a.id),e=PERFIL.eqAcc===a.id;return `<div class="vidrio-fino p-3 text-center"><div class="text-4xl mb-1">${a.ico}</div><div class="font-bold text-xs mb-2">${a.nom}</div>${t?`<button class="btn ${e?'bg-green-500':''} w-full text-xs" onclick="equipar('${a.id}','a')">${e?'Puesto':'Equipar'}</button>`:`<button class="btn-oro w-full text-xs" onclick="comprar('${a.id}',${a.p})">🪙 ${a.p}</button>`}</div>`;}).join('');abrirModal('tiendaModal');}
 function comprar(id,p){if(PERFIL.monedas>=p){PERFIL.monedas-=p;PERFIL.inv.push(id);localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));actualizarCabecera();sonido.ganar();abrirTienda();mostrarPremio(id.startsWith('m')?TIENDA.mascotas.find(x=>x.id===id).ico:TIENDA.accesorios.find(x=>x.id===id).ico,"¡Comprado!");}else{sonido.no();alert("No te alcanzan. ¡Jugá más!");}}
 function equipar(id,t){if(t==='m')PERFIL.eqMascota=PERFIL.eqMascota===id?null:id;else PERFIL.eqAcc=PERFIL.eqAcc===id?null:id;localStorage.setItem('woodyPlanet',JSON.stringify(PERFIL));actualizarCabecera();sonido.click();abrirTienda();}
-
-/* ============ UTILIDADES ============ */
 const mezclar=a=>[...a].sort(()=>Math.random()-.5);
 const rp=a=>a[Math.floor(Math.random()*a.length)];
 const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 const conf=(n=30)=>{const cols=['#22d3ee','#a855f7','#ec4899','#facc15','#22c55e'];for(let i=0;i<n;i++){const c=document.createElement('div');c.className='particula';c.style.left=Math.random()*100+'vw';c.style.top='-10px';c.style.background=cols[i%cols.length];c.style.setProperty('--tx',(Math.random()-.5)*200+'px');c.style.setProperty('--ty',Math.random()*500+'px');document.body.appendChild(c);setTimeout(()=>c.remove(),1000);}};
-/* Helper: opciones mezcladas con indice correcto */
 function O(correcto,erroneas){const arr=mezclar([correcto,...erroneas]);return{opts:arr.map(String),ok:arr.indexOf(correcto)};}
-
-/* ============ MOTOR DE QUIZ GENÉRICO ============ */
-function quiz({p,opts,ok,en,next}){
-  const gc=document.getElementById('gameContainer');
-  gc.innerHTML=`<div class="text-center mb-6 text-xl md:text-2xl font-bold leading-relaxed">${p}</div><div id="qOps" class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-xl mx-auto"></div>`;
-  const c=document.getElementById('qOps');
-  opts.forEach((o,i)=>{const b=document.createElement('button');b.className='pal';b.textContent=o;b.onclick=()=>{
-    if(i===ok){b.classList.add('ok');sonido.ok();conf(25);ganarMonedas(3);hablarWoody(rp(WOODY.ganar));if(en)setTimeout(()=>hablarIngles(en),1200);if(next)setTimeout(next,1800);}
-    else{b.classList.add('no');sonido.no();hablarWoody(rp(WOODY.fallar));if(en)setTimeout(()=>hablarIngles(en),1500);}};c.appendChild(b);});
+const COLS=['c0','c1','c2','c3','c4','c5','c6','c7'];
+function quiz({p,opts,ok,en,ico,es,next}){
+const gc=document.getElementById('gameContainer');
+gc.innerHTML=`<div class="text-center mb-6 text-xl md:text-2xl font-bold leading-relaxed">${p}</div><div id="qOps" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto"></div>`;
+const c=document.getElementById('qOps');
+opts.forEach((o,i)=>{const b=document.createElement('button');b.className='pal '+COLS[i%COLS.length];
+const icono=ico?ico[i]:'';b.innerHTML=(icono?`<span class="ico">${icono}</span>`:'')+`<span>${o}</span>`;
+b.onclick=()=>{
+if(i===ok){b.classList.add('ok');sonido.ok();conf(25);ganarMonedas(3);
+if(es&&en){hablarWoody("¡Sí! \""+es+"\" en inglés es \""+en+"\"! 🎉");setTimeout(()=>hablarIngles(en),1800);}
+else hablarWoody(rp(WOODY.ganar));
+if(next)setTimeout(next,2500);}
+else{b.classList.add('no');sonido.no();hablarWoody(rp(WOODY.fallar));if(es&&en)setTimeout(()=>woodyEnsenia(es,en),1500);}};c.appendChild(b);});
+if(es&&en)setTimeout(()=>hablarWoody("¿Cómo se dice \""+es+"\" en inglés? Mirá las opciones..."),600);
 }
-
-/* ============ DICCIONARIO INGLÉS ============ */
 const DIC={
 animales:[{es:"perro",en:"dog",ico:"🐶"},{es:"gato",en:"cat",ico:"🐱"},{es:"pájaro",en:"bird",ico:"🐦"},{es:"pez",en:"fish",ico:"🐟"},{es:"caballo",en:"horse",ico:"🐴"},{es:"vaca",en:"cow",ico:"🐮"},{es:"león",en:"lion",ico:"🦁"},{es:"mono",en:"monkey",ico:"🐵"},{es:"elefante",en:"elephant",ico:"🐘"},{es:"conejo",en:"rabbit",ico:"🐰"}],
 comida:[{es:"manzana",en:"apple",ico:"🍎"},{es:"banana",en:"banana",ico:"🍌"},{es:"naranja",en:"orange",ico:"🍊"},{es:"uva",en:"grape",ico:"🍇"},{es:"pan",en:"bread",ico:"🍞"},{es:"leche",en:"milk",ico:"🥛"},{es:"queso",en:"cheese",ico:"🧀"},{es:"pizza",en:"pizza",ico:"🍕"},{es:"helado",en:"ice cream",ico:"🍦"},{es:"galleta",en:"cookie",ico:"🍪"}],
 colores:[{es:"rojo",en:"red",c:"#ef4444"},{es:"azul",en:"blue",c:"#3b82f6"},{es:"verde",en:"green",c:"#22c55e"},{es:"amarillo",en:"yellow",c:"#eab308"},{es:"naranja",en:"orange",c:"#f97316"},{es:"violeta",en:"purple",c:"#a855f7"},{es:"rosa",en:"pink",c:"#ec4899"},{es:"negro",en:"black",c:"#111"},{es:"blanco",en:"white",c:"#fff"},{es:"marrón",en:"brown",c:"#92400e"}],
 cuerpo:[{es:"cabeza",en:"head",ico:"🗣️"},{es:"ojo",en:"eye",ico:"👁️"},{es:"nariz",en:"nose",ico:"👃"},{es:"boca",en:"mouth",ico:"👄"},{es:"oreja",en:"ear",ico:"👂"},{es:"mano",en:"hand",ico:"✋"},{es:"pie",en:"foot",ico:"🦶"},{es:"brazo",en:"arm",ico:"💪"},{es:"pierna",en:"leg",ico:"🦵"},{es:"diente",en:"tooth",ico:"🦷"}],
 familia:[{es:"mamá",en:"mom",ico:"👩"},{es:"papá",en:"dad",ico:"👨"},{es:"hermano",en:"brother",ico:"👦"},{es:"hermana",en:"sister",ico:"👧"},{es:"abuelo",en:"grandpa",ico:"👴"},{es:"abuela",en:"grandma",ico:"👵"},{es:"tío",en:"uncle",ico:"🧔"},{es:"tía",en:"aunt",ico:"👩‍🦰"},{es:"primo",en:"cousin",ico:"🧒"},{es:"bebé",en:"baby",ico:"👶"}],
-frases:[{es:"Hola",en:"Hello",ico:"👋"},{es:"Adiós",en:"Goodbye",ico:"👋"},{es:"Gracias",en:"Thank you",ico:"🙏"},{es:"Por favor",en:"Please",ico:"🤲"},{es:"Buenos días",en:"Good morning",ico:"🌅"},{es:"Buenas noches",en:"Good night",ico:"🌙"},{es:"Sí",en:"Yes",ico:"✅"},{es:"No",en:"No",ico:"❌"},{es:"¿Cómo estás?",en:"How are you?",ico:"🤔"},{es:"Me llamo...",en:"My name is...",ico:"🪪"}],
+frases:[{es:"Hola",en:"Hello",ico:"👋"},{es:"Adiós",en:"Goodbye",ico:"👋"},{es:"Gracias",en:"Thank you",ico:"🙏"},{es:"Por favor",en:"Please",ico:"🤲"},{es:"Buenos días",en:"Good morning",ico:"🌅"},{es:"Buenas noches",en:"Good night",ico:"🌙"},{es:"Sí",en:"Yes",ico:"✅"},{es:"No",en:"No",ico:"❌"},{es:"¿Cómo estás?",en:"How are you?",ico:"🤔"},{es:"Me llamo",en:"My name is",ico:"🪪"}],
 ropa:[{es:"remera",en:"t-shirt",ico:"👕"},{es:"pantalón",en:"pants",ico:"👖"},{es:"zapatos",en:"shoes",ico:"👟"},{es:"medias",en:"socks",ico:"🧦"},{es:"gorra",en:"hat",ico:"🧢"},{es:"campera",en:"jacket",ico:"🧥"},{es:"vestido",en:"dress",ico:"👗"},{es:"bufanda",en:"scarf",ico:"🧣"}]
 };
-const PALABRAS_SILABAS=["CASA","GATO","PERRO","SOL","LUNA","FLOR","PEZ","ÁRBOL","LIBRO","BOLA","COCHE","AVIÓN","MANZANA","BANANA","LECHE","PAN","PAPÁ","MAMÁ","AGUA","FUEGO"];
 const PALABRAS=["CASA","GATO","PERRO","SOL","LUNA","FLOR","PEZ","LIBRO","BOLA","COCHE","AVIÓN","MANZANA","BANANA","LECHE","PAN","AGUA","FUEGO","ÁRBOL","ESTRELLA","NUBE"];
-
-/* ============ 42 GENERADORES DE JUEGOS ============ */
 const GEN={
-/* ---- 🔢 MATEMÁTICA (10) ---- */
-g1:()=>{const a=ri(1,20),b=ri(1,20);return Object.assign({p:`🧮 ¿Cuánto es ${a} + ${b}?`},O(a+b,[a+b+1,a+b-1,a+b+2]));},
-g2:()=>{const a=ri(10,30),b=ri(1,9);return Object.assign({p:`➖ ¿Cuánto es ${a} - ${b}?`},O(a-b,[a-b+1,a-b-1,a-b+2]));},
-g3:()=>{const a=ri(2,9),b=ri(2,9);return Object.assign({p:`✖️ ¿Cuánto es ${a} × ${b}?`},O(a*b,[a*b+a,a*b-b,a*b+ri(2,9)]));},
-g4:()=>{const b=ri(2,9),r=ri(1,9),a=b*r;return Object.assign({p:`➗ ¿${a} ÷ ${b} = ?`},O(r,[r+1,r-1,r+2]));},
+g1:()=>{const a=ri(1,20),b=ri(1,20);const r=O(a+b,[a+b+1,a+b-1,a+b+2]);return{p:`🧮 ¿Cuánto es ${a} + ${b}?`,opts:r.opts,ok:r.ok};},
+g2:()=>{const a=ri(10,30),b=ri(1,9);const r=O(a-b,[a-b+1,a-b-1,a-b+2]);return{p:`➖ ¿Cuánto es ${a} - ${b}?`,opts:r.opts,ok:r.ok};},
+g3:()=>{const a=ri(2,9),b=ri(2,9);const r=O(a*b,[a*b+a,a*b-b,a*b+ri(2,9)]);return{p:`✖️ ¿Cuánto es ${a} × ${b}?`,opts:r.opts,ok:r.ok};},
+g4:()=>{const b=ri(2,9),r2=ri(1,9),a=b*r2;const r=O(r2,[r2+1,r2-1,r2+2]);return{p:`➗ ¿${a} ÷ ${b} = ?`,opts:r.opts,ok:r.ok};},
 g5:()=>{let a=ri(1,99),b=ri(1,99);while(a===b)b=ri(1,99);return{p:`⚖️ ¿Cuál es MÁS GRANDE?`,opts:[String(a),String(b)],ok:a>b?0:1};},
-g6:()=>{const inicio=ri(1,5),paso=rp([2,5,10]);const seq=[inicio,inicio+paso,inicio+paso*2,inicio+paso*3];const falta=inicio+paso*4;return Object.assign({p:`🔢 ${seq.join(', ')}, ? ¿Qué número sigue? (contando de ${paso} en ${paso})`},O(falta,[falta+paso,falta-paso,falta+ri(1,3)]));},
-g7:()=>{const a=ri(2,10);return Object.assign({p:`🔁 ¿Cuál es el DOBLE de ${a}?`},O(a*2,[a*2+1,a*2-2,a*3]));},
-g8:()=>{const a=ri(2,10)*2;return Object.assign({p:`✂️ ¿Cuál es la MITAD de ${a}?`},O(a/2,[a/2+1,Math.max(1,a/2-1),a/4]));},
-g9:()=>{const n=ri(1,20);return Object.assign({p:`🔘 El número ${n} es... ¿par o impar?`,opts:["Par","Impar"],ok:n%2===0?0:1});},
-g10:()=>{const n=ri(10,99);const dec=Math.floor(n/10),uni=n%10;return Object.assign({p:`🔢 En el número ${n}, ¿cuántas decenas hay?`},O(dec,[dec+1,dec-1,uni]));},
-/* ---- 🔤 LETRAS (8) ---- */
-g11:()=>{const l=rp("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(''));const idx="ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(l);const sig="ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.min(25,idx+1)];const err=mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(x=>x!==sig)).slice(0,3);return Object.assign({p:`🔤 ¿Qué letra viene DESPUÉS de la "${l}"?`},O(sig,err));},
-g12:()=>{const vocales=["A","E","I","O","U"];const l=rp(vocales);return {p:`🔤 ¿Cuál de estas es una VOCAL?`,opts:mezclar([l,...mezclar("BCDFGHJKLMNPQRSTVWXYZ".split('')).slice(0,3)]),ok:0};},
-g13:()=>{const p=rp(PALABRAS_SILABAS);const silabas=Math.ceil(p.replace(/[AEIOUÁÉÍÓÚ]/g,'v').match(/v+/g).length);const s=Math.max(1,silabas);return Object.assign({p:`✂️ ¿Cuántas sílabas tiene "${p}"?`},O(s,[s+1,Math.max(1,s-1),s+2]));},
-g14:()=>{const p=rp(PALABRAS);return {p:`🔤 ¿Con qué letra empieza "${p}"?`,opts:mezclar([p[0],...mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(x=>x!==p[0])).slice(0,3)]),ok:0};},
-g15:()=>{const p=rp(PALABRAS.filter(w=>w.length>2));const ultima=p[p.length-1];return {p:`🔤 ¿Con qué letra TERMINA "${p}"?`,opts:mezclar([ultima,...mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(x=>x!==ultima)).slice(0,3)]),ok:0};},
-g16:()=>{const pares=[["GATO","PATO"],["SOL","LUNA"],["FLOR","COLOR"],["CASA","MASA"],["PERRO","TIERRA"],["PEZ","TREZ"]];const par=rp(pares);return Object.assign({p:`🎵 ¿Con qué rima "${par[0]}"?`},O(par[1],[rp(PALABRAS.filter(w=>w!==par[0]&&w!==par[1])),rp(PALABRAS.filter(w=>w!==par[0]&&w!==par[1])),rp(PALABRAS.filter(w=>w!==par[0]&&w!==par[1]))]));},
-g17:()=>{const l=rp("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(''));const empiezan=PALABRAS.filter(w=>w[0]===l);const p=empiezan.length?rp(empiezan):"CASA";const letra=p?p[0]:l;return {p:`🔤 ¿Qué palabra empieza con la letra "${letra}"?`,opts:mezclar([p,...mezclar(PALABRAS.filter(w=>w[0]!==letra)).slice(0,3)]),ok:0};},
-g18:()=>{return{p:"AHORCADO",especial:"ahorcado"};},
-/* ---- 🧠 LÓGICA (8) ---- */
-g19:()=>{return{p:"MEMORIA",especial:"memoria"};},
-g20:()=>{return{p:"ROMPECABEZAS",especial:"rompe"};},
-g21:()=>{return{p:"SIMÓN DICE",especial:"simon"};},
-g22:()=>{const grupos=[["🍎","🍌","🍇","🐶"],["🐶","🐱","🐦","🚗"],["🔴","🔵","🟢","🍎"],["✈️","🚗","🚆","🐟"]];const g=rp(grupos);const intruso=g[3];return {p:`🕵️ ¿Cuál es el INTRUSO? (no pertenece al grupo)`,opts:mezclar(g),ok:0};},
-g23:()=>{const tipos=["🔴🔵🔴🔵","⭐🌙⭐🌙","🔺🔺🔵🔺🔺","🐶🐱🐶🐱"];const seq=rp(tipos);const sig=seq.split('').filter(c=>c.trim()).slice(-2).join('')==='🔴🔵'?'🔴':seq.includes('⭐')?'⭐':seq.includes('🔺')?'🔺':'🐶';return {p:`🔁 Patrón: ${seq} ? ¿Qué sigue?`,opts:mezclar([sig,...["🟢","🌞","❤️","🍎"].filter(x=>x!==sig).slice(0,3)]),ok:0};},
-g24:()=>{return{p:"ATRAPA ESTRELLAS",especial:"arcade"};},
-g25:()=>{const sombras=[["🐶","🐾"],["👤","👤"],["🌳","🌲"],["⭐","✨"]];const s=rp(sombras);return {p:`👤 ¿Qué sombra corresponde? ${s[0]} → ?`,opts:mezclar([s[1],...["🍎","🚗","🎈"].slice(0,3)]),ok:0};},
-g26:()=>{const a=ri(1,50);return Object.assign({p:`🔍 ¿Qué número viene ANTES de ${a}?`},O(a-1,[a+1,a+2,a-2]));},
-/* ---- 🎨 ARTE Y MÚSICA (6) ---- */
-g27:()=>{return{p:"PIZARRA MÁGICA",especial:"pizarra"};},
-g28:()=>{return{p:"PIANO ESPACIAL",especial:"piano"};},
-g29:()=>{const cols=["ROJO","AZUL","VERDE","AMARILLO","VIOLETA","NARANJA","ROSA","NEGRO","BLANCO","MARRÓN"];const hex=["#ef4444","#3b82f6","#22c55e","#eab308","#a855f7","#f97316","#ec4899","#111","#fff","#92400e"];const i=ri(0,9);return{p:`🎨 ¿Qué color es?`,opts:mezclar([cols[i],...mezclar(cols.filter((_,j)=>j!==i)).slice(0,3)]),ok:0,color:hex[i]};},
-g30:()=>{const inst=[["🎸","Guitarra"],["🥁","Batería"],["🎹","Piano"],["🎺","Trompeta"],["🎻","Violín"],["🪘","Maracas"]];const ins=rp(inst);return Object.assign({p:`🎵 ¿Qué instrumento es? ${ins[0]}`},O(ins[1],mezclar(inst.filter(x=>x[1]!==ins[1]).map(x=>x[1])).slice(0,3)));},
-g31:()=>{return Object.assign({p:`🎨 Si mezclás AMARILLO + AZUL, ¿qué color sale?`},O("VERDE",["ROJO","NARANJA","VIOLETA"]));},
-g32:()=>{return Object.assign({p:`🎨 Si mezclás ROJO + AMARILLO, ¿qué color sale?`},O("NARANJA",["VERDE","AZUL","ROSA"]));},
-/* ---- 🌍 INGLÉS (10) ---- */
-g33:()=>{const t=rp(['animales','comida','cuerpo','familia','ropa']);const c=rp(DIC[t]);const ops=mezclar([c,...mezclar(DIC[t].filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🔊 Tocá el altavoz y elegí la imagen correcta<br><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en};},
-g34:()=>{const c=rp(DIC.colores);const ops=mezclar([c,...mezclar(DIC.colores.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🎨 ¿Qué color es? (en inglés)<br><div class="w-24 h-24 rounded-full mx-auto my-3 border-4 border-white/40" style="background:${c.c}"></div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en.toUpperCase()),ok:ops.indexOf(c),en:c.en};},
-g35:()=>{const n=ri(1,10);const nums=["one","two","three","four","five","six","seven","eight","nine","ten"];const c=nums[n-1];const ops=mezclar([c,...mezclar(nums.filter(x=>x!==c)).slice(0,3)]);return{p:`🔢 ¿Cómo se dice el número ${n} en inglés?<br><button class="bocina" onclick="hablarIngles('${c}')">🔊</button>`,opts:ops,ok:ops.indexOf(c),en:c};},
-g36:()=>{const c=rp(DIC.comida);const ops=mezclar([c,...mezclar(DIC.comida.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🍎 ¿Qué comida es? (en inglés)<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en};},
-g37:()=>{const c=rp(DIC.animales);const ops=mezclar([c,...mezclar(DIC.animales.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🐶 ¿Qué animal es? (en inglés)<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en};},
-g38:()=>{const c=rp(DIC.cuerpo);const ops=mezclar([c,...mezclar(DIC.cuerpo.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🫀 ¿Qué parte del cuerpo es? (en inglés)<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en};},
-g39:()=>{const c=rp(DIC.familia);const ops=mezclar([c,...mezclar(DIC.familia.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`👨‍👩‍👧 ¿Quién es? (en inglés)<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en};},
-g40:()=>{const c=rp(DIC.frases);const ops=mezclar([c,...mezclar(DIC.frases.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`💬 ¿Cómo se dice en inglés?<br><div class="text-2xl font-black text-yellow-300 my-3">${c.ico} "${c.es}"</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en};},
-g41:()=>{const c=rp(DIC.ropa);const ops=mezclar([c,...mezclar(DIC.ropa.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`👕 ¿Qué prenda es? (en inglés)<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en};},
-g42:()=>{return{p:"SPELLING BEE",especial:"spelling"};}
+g6:()=>{const inicio=ri(1,5),paso=rp([2,5,10]);const seq=[inicio,inicio+paso,inicio+paso*2,inicio+paso*3];const falta=inicio+paso*4;const r=O(falta,[falta+paso,falta-paso,falta+ri(1,3)]);return{p:`🔢 ${seq.join(', ')}, ? ¿Qué número sigue?`,opts:r.opts,ok:r.ok};},
+g7:()=>{const a=ri(2,10);const r=O(a*2,[a*2+1,a*2-2,a*3]);return{p:`🔁 ¿Cuál es el DOBLE de ${a}?`,opts:r.opts,ok:r.ok};},
+g8:()=>{const a=ri(2,10)*2;const r=O(a/2,[a/2+1,Math.max(1,a/2-1),a/4]);return{p:`✂️ ¿Cuál es la MITAD de ${a}?`,opts:r.opts,ok:r.ok};},
+g9:()=>{const n=ri(1,20);return{p:`🔘 El número ${n} es... ¿par o impar?`,opts:["Par","Impar"],ok:n%2===0?0:1};},
+g10:()=>{const n=ri(10,99);const dec=Math.floor(n/10),uni=n%10;const r=O(dec,[dec+1,dec-1,uni]);return{p:`🔢 En el número ${n}, ¿cuántas decenas hay?`,opts:r.opts,ok:r.ok};},
+g11:()=>{const l=rp("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(''));const idx="ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(l);const sig="ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.min(25,idx+1)];const err=mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(x=>x!==sig)).slice(0,3);return{p:`🔤 ¿Qué letra viene DESPUÉS de la "${l}"?`,opts:mezclar([sig,...err]),ok:0};},
+g12:()=>{const vocales=["A","E","I","O","U"];const l=rp(vocales);return{p:`🔤 ¿Cuál de estas es una VOCAL?`,opts:mezclar([l,...mezclar("BCDFGHJKLMNPQRSTVWXYZ".split('')).slice(0,3)]),ok:0};},
+g13:()=>{const p=rp(PALABRAS);const s=Math.max(1,(p.match(/[AEIOUÁÉÍÓÚ]/g)||[]).length);const r=O(s,[s+1,Math.max(1,s-1),s+2]);return{p:`✂️ ¿Cuántas vocales tiene "${p}"?`,opts:r.opts,ok:r.ok};},
+g14:()=>{const p=rp(PALABRAS);return{p:`🔤 ¿Con qué letra empieza "${p}"?`,opts:mezclar([p[0],...mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(x=>x!==p[0])).slice(0,3)]),ok:0};},
+g15:()=>{const p=rp(PALABRAS.filter(w=>w.length>2));const ultima=p[p.length-1];return{p:`🔤 ¿Con qué letra TERMINA "${p}"?`,opts:mezclar([ultima,...mezclar("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(x=>x!==ultima)).slice(0,3)]),ok:0};},
+g16:()=>{const pares=[["GATO","PATO"],["SOL","COLOR"],["FLOR","OLOR"],["CASA","MASA"],["LUNA","CUNA"]];const par=rp(pares);return{p:`🎵 ¿Con qué rima "${par[0]}"?`,opts:mezclar([par[1],...mezclar(PALABRAS.filter(w=>w!==par[0]&&w!==par[1])).slice(0,3)]),ok:0};},
+g17:()=>{const l=rp("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(''));const empiezan=PALABRAS.filter(w=>w[0]===l);const p=empiezan.length?rp(empiezan):"CASA";return{p:`🔤 ¿Qué palabra empieza con "${p[0]}"?`,opts:mezclar([p,...mezclar(PALABRAS.filter(w=>w[0]!==p[0])).slice(0,3)]),ok:0};},
+g18:()=>{return{especial:"ahorcado"};},
+g19:()=>{return{especial:"memoria"};},
+g20:()=>{return{especial:"rompe"};},
+g21:()=>{return{especial:"simon"};},
+g22:()=>{const grupos=[["🍎","🍌","🍇","🐶"],["🐶","🐱","🐦","🚗"],["🔴","🔵","🟢","🍎"],["✈️","🚗","🚆","🐟"]];const g=rp(grupos);return{p:`🕵️ ¿Cuál es el INTRUSO?`,opts:mezclar(g),ok:0};},
+g23:()=>{const seq=rp(["🔴🔵🔴🔵","⭐🌙⭐🌙","🔺🔺🔵🔺🔺","🐶🐱🐶🐱"]);const sig=seq.includes('🔴')?'🔴':seq.includes('⭐')?'⭐':seq.includes('🔺')?'🔺':'🐶';return{p:`🔁 Patrón: ${seq} ? ¿Qué sigue?`,opts:mezclar([sig,...["🟢","🌞","❤️","🍎"].filter(x=>x!==sig).slice(0,3)]),ok:0};},
+g24:()=>{return{especial:"arcade"};},
+g25:()=>{const s=rp([["🐶","🐾"],["⭐","✨"],["🌳","🌲"],["👤","👤"]]);return{p:`👤 ¿Qué va con ${s[0]}?`,opts:mezclar([s[1],...["🍎","🚗","🎈"].slice(0,3)]),ok:0};},
+g26:()=>{const a=ri(2,50);const r=O(a-1,[a+1,a+2,a-2]);return{p:`🔍 ¿Qué número viene ANTES de ${a}?`,opts:r.opts,ok:r.ok};},
+g27:()=>{return{especial:"pizarra"};},
+g28:()=>{return{especial:"piano"};},
+g29:()=>{const cols=["ROJO","AZUL","VERDE","AMARILLO","VIOLETA","NARANJA","ROSA","NEGRO","BLANCO","MARRÓN"];const hex=["#ef4444","#3b82f6","#22c55e","#eab308","#a855f7","#f97316","#ec4899","#111","#fff","#92400e"];const i=ri(0,9);return{p:`🎨 ¿Qué color es?<br><div class="w-24 h-24 rounded-full mx-auto my-3 border-4 border-white/40" style="background:${hex[i]}"></div>`,opts:mezclar([cols[i],...mezclar(cols.filter((_,j)=>j!==i)).slice(0,3)]),ok:0};},
+g30:()=>{const inst=[["🎸","Guitarra"],["🥁","Batería"],["🎹","Piano"],["🎺","Trompeta"],["🎻","Violín"],["🪘","Maracas"]];const ins=rp(inst);const r=O(ins[1],mezclar(inst.filter(x=>x[1]!==ins[1]).map(x=>x[1])).slice(0,3));return{p:`🎵 ¿Qué instrumento es? ${ins[0]}`,opts:r.opts,ok:r.ok};},
+g31:()=>{const r=O("VERDE",["ROJO","NARANJA","VIOLETA"]);return{p:`🎨 AMARILLO + AZUL = ?`,opts:r.opts,ok:r.ok};},
+g32:()=>{const r=O("NARANJA",["VERDE","AZUL","ROSA"]);return{p:`🎨 ROJO + AMARILLO = ?`,opts:r.opts,ok:r.ok};},
+g33:()=>{const t=rp(['animales','comida','cuerpo','familia','ropa']);const c=rp(DIC[t]);const ops=mezclar([c,...mezclar(DIC[t].filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🔊 Woody pregunta: ¿Cómo se dice "${c.es}" en inglés?<br><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es};},
+g34:()=>{const c=rp(DIC.colores);const ops=mezclar([c,...mezclar(DIC.colores.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🎨 ¿Cómo se dice este color en inglés?<br><div class="w-24 h-24 rounded-full mx-auto my-3 border-4 border-white/40" style="background:${c.c}"></div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en.toUpperCase()),ok:ops.indexOf(c),en:c.en,es:c.es};},
+g35:()=>{const n=ri(1,10);const nums=["one","two","three","four","five","six","seven","eight","nine","ten"];const c=nums[n-1];const ops=mezclar([c,...mezclar(nums.filter(x=>x!==c)).slice(0,3)]);return{p:`🔢 ¿Cómo se dice el número ${n} en inglés?<br><button class="bocina" onclick="hablarIngles('${c}')">🔊</button>`,opts:ops,ok:ops.indexOf(c),en:c,es:String(n)};},
+g36:()=>{const c=rp(DIC.comida);const ops=mezclar([c,...mezclar(DIC.comida.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🍎 ¿Cómo se dice "${c.es}" en inglés?<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es};},
+g37:()=>{const c=rp(DIC.animales);const ops=mezclar([c,...mezclar(DIC.animales.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🐶 ¿Cómo se dice "${c.es}" en inglés?<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es};},
+g38:()=>{const c=rp(DIC.cuerpo);const ops=mezclar([c,...mezclar(DIC.cuerpo.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`🫀 ¿Cómo se dice "${c.es}" en inglés?<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es};},
+g39:()=>{const c=rp(DIC.familia);const ops=mezclar([c,...mezclar(DIC.familia.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`👨‍👩‍👧 ¿Cómo se dice "${c.es}" en inglés?<br><div class="text-2xl font-black text-yellow-300 my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en,es:c.es};},
+g40:()=>{const c=rp(DIC.frases);const ops=mezclar([c,...mezclar(DIC.frases.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`💬 ¿Cómo se dice "${c.es}" en inglés?<br><div class="text-2xl font-black text-yellow-300 my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ok:ops.indexOf(c),en:c.en,es:c.es};},
+g41:()=>{const c=rp(DIC.ropa);const ops=mezclar([c,...mezclar(DIC.ropa.filter(x=>x.en!==c.en)).slice(0,3)]);return{p:`👕 ¿Cómo se dice "${c.es}" en inglés?<br><div class="text-6xl my-3">${c.ico}</div><button class="bocina" onclick="hablarIngles('${c.en}')">🔊</button>`,opts:ops.map(o=>o.en),ico:ops.map(o=>o.ico),ok:ops.indexOf(c),en:c.en,es:c.es};},
+g42:()=>{return{especial:"spelling"};},
+g43:()=>{const dias=["lunes","martes","miércoles","jueves","viernes","sábado","domingo"];const diasEn=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];const i=ri(0,6);const ops=mezclar([diasEn[i],...mezclar(diasEn.filter((_,j)=>j!==i)).slice(0,3)]);return{p:`📅 ¿Cómo se dice "${dias[i]}" en inglés?<br><button class="bocina" onclick="hablarIngles('${diasEn[i]}')">🔊</button>`,opts:ops,ok:ops.indexOf(diasEn[i]),en:diasEn[i],es:dias[i]};},
+g44:()=>{const meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];const mesesEn=["January","February","March","April","May","June","July","August","September","October","November","December"];const i=ri(0,11);const ops=mezclar([mesesEn[i],...mezclar(mesesEn.filter((_,j)=>j!==i)).slice(0,3)]);return{p:`📆 ¿Cómo se dice "${meses[i]}" en inglés?<br><button class="bocina" onclick="hablarIngles('${mesesEn[i]}')">🔊</button>`,opts:ops,ok:ops.indexOf(mesesEn[i]),en:mesesEn[i],es:meses[i]};},
+g45:()=>{const a=ri(1,50),b=ri(1,50);const r=O(Math.min(a,b),[Math.max(a,b),Math.max(a,b)+1,Math.min(a,b)-1]);return{p:`⚖️ ¿Cuál es el MÁS CHICO entre ${a} y ${b}?`,opts:r.opts,ok:r.ok};},
+g46:()=>{const n=ri(1,100);const r=O(Math.round(n/10)*10,[n+5,n-5,n+10]);return{p:`🎯 ¿A qué decena se acerca el ${n}?`,opts:r.opts,ok:r.ok};},
+g47:()=>{const formas=[["Círculo","🔴"],["Cuadrado","🟦"],["Triángulo","🔺"],["Estrella","⭐"],["Corazón","❤️"],["Luna","🌙"]];const f=rp(formas);const ops=mezclar([f[0],...mezclar(formas.filter(x=>x[0]!==f[0]).map(x=>x[0])).slice(0,3)]);return{p:`🔷 ¿Qué forma es? ${f[1]}`,opts:ops,ok:ops.indexOf(f[0])};},
+g48:()=>{const op=[["El sol sale de día","☀️"],["La luna sale de noche","🌙"],["El fuego quema","🔥"],["El agua moja","💧"]];const o=rp(op);const r=O("Verdadero",["Falso","No sé","Tal vez"]);return{p:`🤔 ¿Verdadero o falso?<br><div class="text-5xl my-3">${o[1]}</div><div class="text-xl font-bold">"${o[0]}"</div>`,opts:r.opts,ok:r.ok};},
+g49:()=>{const r=O("INVIERNO",["VERANO","PRIMAVERA","OTOÑO"]);return{p:`❄️ ¿En qué estación hace frío y nieva?`,opts:r.opts,ok:r.ok};},
+g50:()=>{const r=O("ABEJA",["MOSCA","HORMIGA","ARAÑA"]);return{p:`🐝 ¿Qué insecto hace la miel?`,opts:r.opts,ok:r.ok};}
 };
-
-/* ============ JUEGOS ESPECIALES ============ */
 function jMemoria(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div class="text-center mb-3 font-bold text-lg">Aciertos: <span id="mPts">0</span>/8</div><div id="mGrilla" class="grid grid-cols-4 gap-2 max-w-sm mx-auto"></div><div class="text-center mt-4"><button class="btn" onclick="cargarJ()">🔄 Otra vez</button></div>`;const emojis=["🐶","🐱","🍎","🌟","🚀","🎈","🐟","🌸"];const arr=mezclar([...emojis,...emojis]);const gr=document.getElementById('mGrilla');let sel=[],pts=0;arr.forEach((ico,i)=>{const c=document.createElement('div');c.className='carta';c.innerHTML=`<div class="carta-inner"><div class="cara cf">?</div><div class="cara ca">${ico}</div></div>`;c.onclick=()=>{if(sel.length>=2||c.classList.contains('girada'))return;sonido.click();c.classList.add('girada');sel.push({c,ico});if(sel.length===2){if(sel[0].ico===sel[1].ico){sonido.ok();pts++;document.getElementById('mPts').textContent=pts;sel=[];ganarMonedas(2);if(pts===8){sonido.ganar();conf(50);hablarWoody("¡Memoria perfecta! ¡Sos genial! 🌟");ganarMonedas(10);}}else{sonido.no();setTimeout(()=>{sel[0].c.classList.remove('girada');sel[1].c.classList.remove('girada');sel=[];},800);}}};gr.appendChild(c);});}
 function jRompe(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div id="rGrilla" class="grid grid-cols-3 gap-2 max-w-[240px] mx-auto"></div><div class="text-center mt-4"><button class="btn" onclick="cargarJ()">🔄 Mezclar</button></div>`;let r=[1,2,3,4,5,6,7,8,0];for(let i=0;i<80;i++){let v=r.indexOf(0),vv=[];if(v%3)vv.push(v-1);if(v%3!==2)vv.push(v+1);if(v>=3)vv.push(v-3);if(v<6)vv.push(v+3);let a=vv[ri(0,vv.length-1)];[r[v],r[a]]=[r[a],r[v]];}const d=()=>{const g=document.getElementById('rGrilla');g.innerHTML='';r.forEach((n,i)=>{const c=document.createElement('div');c.className='aspect-square rounded-xl flex items-center justify-center font-black text-2xl cursor-pointer transition '+(n?'bg-gradient-to-br from-cyan-400 to-purple-500 border-2 border-white/30':'bg-black/30 border-2 border-dashed border-white/20');c.textContent=n||'';if(n)c.onclick=()=>{const v=r.indexOf(0),f=Math.floor(i/3),cc=i%3,fv=Math.floor(v/3),cv=v%3;if(Math.abs(f-fv)+Math.abs(cc-cv)===1){sonido.click();[r[i],r[v]]=[r[v],r[i]];d();if(r.join('')==='123456780'){sonido.ganar();conf(50);hablarWoody("¡Rompecabezas armado! ¡Sos un genio! 🧩");ganarMonedas(10);}}};g.appendChild(c);});};d();}
 function jSimon(){const gc=document.getElementById('gameContainer');const cols=[{c:'#ef4444',f:329.6},{c:'#22c55e',f:392.0},{c:'#3b82f6',f:440.0},{c:'#eab308',f:523.2}];let seq=[],user=0,escuchando=false;gc.innerHTML=`<div class="text-center mb-4 font-bold text-lg" id="simonTxt">Mirá la secuencia...</div><div class="grid grid-cols-2 gap-3 max-w-xs mx-auto" id="simonGrid"></div><div class="text-center mt-4"><button class="btn" onclick="cargarJ()">🔄 Reiniciar</button></div>`;const grid=document.getElementById('simonGrid');cols.forEach((col,i)=>{const b=document.createElement('div');b.className='simon-btn';b.style.background=col.c;b.style.color=col.c;b.onclick=()=>{if(!escuchando)return;sonido.tono(col.f,.3,'sine',.2);b.classList.add('activo');setTimeout(()=>b.classList.remove('activo'),300);if(i===seq[user]){user++;if(user>=seq.length){sonido.ok();ganarMonedas(2);setTimeout(nivel,800);}}else{sonido.no();hablarWoody(rp(WOODY.fallar));document.getElementById('simonTxt').textContent='¡Perdiste! Llegaste a '+(seq.length-1)+' niveles';escuchando=false;}};grid.appendChild(b);});const mostrar=async()=>{escuchando=false;document.getElementById('simonTxt').textContent='Mirá la secuencia...';await new Promise(r=>setTimeout(r,600));for(const i of seq){const b=grid.children[i];b.classList.add('activo');sonido.tono(cols[i].f,.35,'sine',.2);await new Promise(r=>setTimeout(r,450));b.classList.remove('activo');await new Promise(r=>setTimeout(r,200));}escuchando=true;user=0;document.getElementById('simonTxt').textContent='¡Ahora vos! Repetí la secuencia';};const nivel=()=>{seq.push(ri(0,3));mostrar();};setTimeout(nivel,500);}
 function jArcade(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div class="text-center font-bold text-xl mb-2">Atrapadas: <span id="aPts">0</span></div><div id="aArea" class="relative w-full max-w-lg h-[280px] bg-black/40 border-2 border-cyan-400/50 rounded-2xl overflow-hidden mx-auto"></div>`;const area=document.getElementById('aArea');let pts=0,activo=true;const spawn=()=>{if(!activo||!document.getElementById('aArea'))return;const e=document.createElement('div');e.textContent='⭐';e.className='absolute text-3xl';e.style.left=Math.random()*88+'%';e.style.top='-40px';area.appendChild(e);let pos=-40;const bajar=()=>{if(!activo||!e.parentNode)return;pos+=2.5;e.style.top=pos+'px';if(pos>280)e.remove();else requestAnimationFrame(bajar);};e.onmousedown=e.ontouchstart=(ev)=>{ev.preventDefault();if(!activo)return;sonido.moneda();e.remove();pts++;document.getElementById('aPts').textContent=pts;if(pts%5===0)ganarMonedas(2);};requestAnimationFrame(bajar);setTimeout(spawn,500+Math.random()*600);};spawn();}
 function jPizarra(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div class="flex gap-2 justify-center mb-3 flex-wrap"><button class="w-10 h-10 rounded-full bg-red-500 border-2 border-white/50" onclick="window._ctx.strokeStyle='red'"></button><button class="w-10 h-10 rounded-full bg-blue-500 border-2 border-white/50" onclick="window._ctx.strokeStyle='blue'"></button><button class="w-10 h-10 rounded-full bg-green-500 border-2 border-white/50" onclick="window._ctx.strokeStyle='green'"></button><button class="w-10 h-10 rounded-full bg-yellow-400 border-2 border-white/50" onclick="window._ctx.strokeStyle='yellow'"></button><button class="w-10 h-10 rounded-full bg-white border-2 border-white/50" onclick="window._ctx.strokeStyle='white'"></button><button class="btn ml-2 text-sm" onclick="window._ctx.clearRect(0,0,500,350)">🗑️ Borrar</button></div><canvas id="piz" width="500" height="350" class="bg-black/40 border-2 border-cyan-400/50 rounded-xl block mx-auto max-w-full touch-none"></canvas>`;const cvs=document.getElementById('piz');window._ctx=cvs.getContext('2d');window._ctx.lineWidth=6;window._ctx.lineCap='round';window._ctx.strokeStyle='white';let p=false;const gp=e=>{const r=cvs.getBoundingClientRect();return{x:(e.touches?e.touches[0].clientX:e.clientX)-r.left,y:(e.touches?e.touches[0].clientY:e.clientY)-r.top};};cvs.onmousedown=cvs.ontouchstart=e=>{p=true;const q=gp(e);window._ctx.beginPath();window._ctx.moveTo(q.x,q.y);};cvs.onmousemove=cvs.ontouchmove=e=>{if(!p)return;e.preventDefault();const q=gp(e);window._ctx.lineTo(q.x,q.y);window._ctx.stroke();};cvs.onmouseup=cvs.ontouchend=()=>p=false;}
 function jPiano(){const gc=document.getElementById('gameContainer');gc.innerHTML=`<div class="text-center mb-4 text-cyan-200 font-bold">Tocá las teclas 🎹</div><div class="flex justify-center relative w-full max-w-xl mx-auto h-[180px]" id="pianoC"></div>`;const pc=document.getElementById('pianoC');const nb=[{n:'C',f:261.6},{n:'D',f:293.6},{n:'E',f:329.6},{n:'F',f:349.2},{n:'G',f:392},{n:'A',f:440},{n:'B',f:493.8},{n:'C2',f:523.2}];const nn=[{n:'C#',f:277.1,pos:1},{n:'D#',f:311.1,pos:2},{n:'F#',f:369.9,pos:4},{n:'G#',f:415.3,pos:5},{n:'A#',f:466.1,pos:6}];nb.forEach(x=>{const b=document.createElement('div');b.className='tecla tecla-blanca';b.textContent=x.n;b.onmousedown=b.ontouchstart=e=>{e.preventDefault();b.classList.add('activa');sonido.tono(x.f,.5,'triangle',.15);};b.onmouseup=b.ontouchend=b.onmouseleave=()=>b.classList.remove('activa');pc.appendChild(b);});nn.forEach(x=>{const b=document.createElement('div');b.className='tecla tecla-negra absolute';b.style.left=`calc(${x.pos*12.5}% - 19px)`;b.textContent=x.n;b.onmousedown=b.ontouchstart=e=>{e.preventDefault();b.classList.add('activa');sonido.tono(x.f,.5,'square',.08);};b.onmouseup=b.ontouchend=b.onmouseleave=()=>b.classList.remove('activa');pc.appendChild(b);});}
-function jAhorcado(){const gc=document.getElementById('gameContainer');const word=rp(PALABRAS);let prog=Array(word.length).fill('_'),err=0,max=6,over=false;gc.innerHTML=`<div class="text-center text-4xl tracking-[0.4em] font-black mb-4" id="ahP">${prog.join('')}</div><div class="text-center text-3xl mb-4" id="ahV">❤️❤️❤️❤️❤️❤️</div><div id="ahT" class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto"></div>`;const dt=()=>{document.getElementById('ahP').textContent=prog.join('');document.getElementById('ahV').textContent='❤️'.repeat(Math.max(0,max-err))+'🖤'.repeat(err);};const tc=document.getElementById('ahT');"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split('').forEach(l=>{const b=document.createElement('button');b.className='letra w-10 h-10 text-lg';b.textContent=l;b.onclick=()=>{if(over||b.disabled)return;b.disabled=true;if(word.includes(l)){b.classList.add('!bg-green-500');sonido.click();word.split('').forEach((x,i)=>{if(x===l)prog[i]=l;});if(!prog.includes('_')){over=true;sonido.ganar();conf(40);hablarWoody("¡Adivinaste la palabra! ¡Sos un campeón! 🏆");ganarMonedas(8);setTimeout(cargarJ,2000);}}else{b.classList.add('!bg-red-500');sonido.no();err++;if(err>=max){over=true;document.getElementById('ahP').textContent=word;hablarWoody("¡Casi! La palabra era "+word+". ¡Otra vez!");setTimeout(cargarJ,2000);}}dt();};tc.appendChild(b);});}
-function jSpelling(){const gc=document.getElementById('gameContainer');const t=rp(['animales','comida','colores','cuerpo','familia','ropa']);const c=rp(DIC[t]);const letras=mezclar(c.en.toUpperCase().replace(/ /g,'').split(''));let el=[];const dib=()=>{gc.innerHTML=`<div class="text-center mb-4"><div class="text-6xl mb-2">${c.ico}</div><div class="text-lg text-cyan-200 font-bold">"${c.es.toUpperCase()}" en inglés se escribe...</div><button class="bocina mt-2" onclick="hablarIngles('${c.en}')">🔊</button></div><div class="text-center text-3xl font-black tracking-widest mb-5 min-h-[50px] text-yellow-300">${el.map(i=>letras[i]).join(' ')}</div><div id="spLetras" class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-4"></div><div class="text-center"><button class="btn mr-2" onclick="cargarJ()">🔄 Nueva</button><button class="btn" onclick="el=[];dib()">↩️ Borrar</button></div>`;const cont=document.getElementById('spLetras');letras.forEach((l,i)=>{if(el.includes(i))return;const b=document.createElement('button');b.className='letra-spelling';b.textContent=l;b.onclick=()=>{sonido.click();el.push(i);const arm=el.map(x=>letras[x]).join('');if(arm.length===c.en.replace(/ /g,'').length){if(arm===c.en.toUpperCase().replace(/ /g,'')){sonido.ganar();conf(40);ganarMonedas(6);hablarIngles(c.en);hablarWoody("¡Deletreaste perfecto! ¡Sos genial! 🐝");setTimeout(cargarJ,1800);}else{sonido.no();hablarWoody(rp(WOODY.fallar));setTimeout(()=>{el=[];dib();},900);return;}}dib();};cont.appendChild(b);});};dib();}
-
-/* ============ NAVEGACIÓN ============ */
-const CATS=["🔢 Matemática","🔤 Letras","🧠 Lógica","🎨 Arte y Música","🌍 Inglés"];
+function jAhorcado(){const gc=document.getElementById('gameContainer');const word=rp(PALABRAS);let prog=Array(word.length).fill('_'),err=0,max=6,over=false;gc.innerHTML=`<div class="text-center text-4xl tracking-[0.4em] font-black mb-4" id="ahP">${prog.join('')}</div><div class="text-center text-3xl mb-4" id="ahV">❤️❤️❤️❤️❤️❤️</div><div id="ahT" class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto"></div>`;const dt=()=>{document.getElementById('ahP').textContent=prog.join('');document.getElementById('ahV').textContent='❤️'.repeat(Math.max(0,max-err))+'🖤'.repeat(err);};const tc=document.getElementById('ahT');"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split('').forEach(l=>{const b=document.createElement('button');b.className='letra w-10 h-10 text-lg c'+ri(0,7);b.textContent=l;b.onclick=()=>{if(over||b.disabled)return;b.disabled=true;if(word.includes(l)){b.classList.add('!bg-green-500');sonido.click();word.split('').forEach((x,i)=>{if(x===l)prog[i]=l;});if(!prog.includes('_')){over=true;sonido.ganar();conf(40);hablarWoody("¡Adivinaste la palabra! ¡Sos un campeón! 🏆");ganarMonedas(8);setTimeout(cargarJ,2000);}}else{b.classList.add('!bg-red-500');sonido.no();err++;if(err>=max){over=true;document.getElementById('ahP').textContent=word;hablarWoody("¡Casi! La palabra era "+word+". ¡Otra vez!");setTimeout(cargarJ,2000);}}dt();};tc.appendChild(b);});}
+function jSpelling(){const gc=document.getElementById('gameContainer');const t=rp(['animales','comida','colores','cuerpo','familia','ropa']);const c=rp(DIC[t]);const letras=mezclar(c.en.toUpperCase().replace(/ /g,'').split(''));let el=[];const dib=()=>{gc.innerHTML=`<div class="text-center mb-4"><div class="text-6xl mb-2">${c.ico}</div><div class="text-lg text-cyan-200 font-bold">Woody dice: "${c.es.toUpperCase()}" en inglés se escribe...</div><button class="bocina mt-2" onclick="hablarIngles('${c.en}')">🔊</button></div><div class="text-center text-3xl font-black tracking-widest mb-5 min-h-[50px] text-yellow-300">${el.map(i=>letras[i]).join(' ')}</div><div id="spLetras" class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-4"></div><div class="text-center"><button class="btn mr-2" onclick="cargarJ()">🔄 Nueva</button><button class="btn" onclick="el=[];dib()">↩️ Borrar</button></div>`;hablarWoody("Deletreá \""+c.es+"\" en inglés. ¡Vos podés!");const cont=document.getElementById('spLetras');letras.forEach((l,i)=>{if(el.includes(i))return;const b=document.createElement('button');b.className='letra-spelling c'+ri(0,7);b.textContent=l;b.onclick=()=>{sonido.click();el.push(i);const arm=el.map(x=>letras[x]).join('');if(arm.length===c.en.replace(/ /g,'').length){if(arm===c.en.toUpperCase().replace(/ /g,'')){sonido.ganar();conf(40);ganarMonedas(6);hablarIngles(c.en);hablarWoody("¡Deletreaste perfecto! ¡Sos genial! 🐝");setTimeout(cargarJ,1800);}else{sonido.no();hablarWoody(rp(WOODY.fallar));setTimeout(()=>{el=[];dib();},900);return;}}dib();};cont.appendChild(b);});};dib();}
+const CATS=["🔢 Matemática","🔤 Letras","🧠 Lógica","🎨 Arte y Música","🌍 Inglés","🌟 Conocimiento"];
 const JUEGOS=[
 {c:0,n:"➕ Sumas",g:"g1"},{c:0,n:"➖ Restas",g:"g2"},{c:0,n:"✖️ Multiplicar",g:"g3"},{c:0,n:"➗ Dividir",g:"g4"},{c:0,n:"⚖️ Mayor/menor",g:"g5"},{c:0,n:"🔢 Secuencias",g:"g6"},{c:0,n:"🔁 Dobles",g:"g7"},{c:0,n:"✂️ Mitades",g:"g8"},{c:0,n:"🔘 Par/Impar",g:"g9"},{c:0,n:"🔟 Decenas",g:"g10"},
-{c:1,n:"🔤 Abecedario",g:"g11"},{c:1,n:"🔠 Vocales",g:"g12"},{c:1,n:"✂️ Sílabas",g:"g13"},{c:1,n:"🅰️ Letra inicial",g:"g14"},{c:1,n:"🆎 Letra final",g:"g15"},{c:1,n:"🎵 Rimas",g:"g16"},{c:1,n:"🔤 Palabra con...",g:"g17"},{c:1,n:"😵 Ahorcado",g:"g18"},
-{c:2,n:"🃏 Memoria",g:"g19"},{c:2,n:"🧩 Rompecabezas",g:"g20"},{c:2,n:"🎮 Simón dice",g:"g21"},{c:2,n:"🕵️ Intruso",g:"g22"},{c:2,n:"🔁 Patrones",g:"g23"},{c:2,n:"⭐ Atrapa estrellas",g:"g24"},{c:2,n:"👤 Sombras",g:"g25"},{c:2,n:"🔍 Antes de...",g:"g26"},
-{c:3,n:"🎨 Pizarra",g:"g27"},{c:3,n:"🎹 Piano",g:"g28"},{c:3,n:"🌈 Colores",g:"g29"},{c:3,n:"🎵 Instrumentos",g:"g30"},{c:3,n:"🎨 Mezclar colores 1",g:"g31"},{c:3,n:"🎨 Mezclar colores 2",g:"g32"},
-{c:4,n:"🔊 Escuchá y elegí",g:"g33"},{c:4,n:"🎨 Colores EN",g:"g34"},{c:4,n:"🔢 Números EN",g:"g35"},{c:4,n:"🍎 Comida EN",g:"g36"},{c:4,n:"🐶 Animales EN",g:"g37"},{c:4,n:"🫀 Cuerpo EN",g:"g38"},{c:4,n:"👨‍👩‍👧 Familia EN",g:"g39"},{c:4,n:"💬 Frases EN",g:"g40"},{c:4,n:"👕 Ropa EN",g:"g41"},{c:4,n:"🐝 Spelling Bee",g:"g42"}
+{c:1,n:"🔤 Abecedario",g:"g11"},{c:1,n:"🔠 Vocales",g:"g12"},{c:1,n:"✂️ Vocales en palabra",g:"g13"},{c:1,n:"🅰️ Letra inicial",g:"g14"},{c:1,n:"🆎 Letra final",g:"g15"},{c:1,n:"🎵 Rimas",g:"g16"},{c:1,n:"🔤 Palabra con...",g:"g17"},{c:1,n:"😵 Ahorcado",g:"g18"},
+{c:2,n:"🃏 Memoria",g:"g19"},{c:2,n:"🧩 Rompecabezas",g:"g20"},{c:2,n:"🎮 Simón dice",g:"g21"},{c:2,n:"🕵️ Intruso",g:"g22"},{c:2,n:"🔁 Patrones",g:"g23"},{c:2,n:"⭐ Atrapa estrellas",g:"g24"},{c:2,n:"👤 Asociar",g:"g25"},{c:2,n:"🔍 Antes de...",g:"g26"},
+{c:3,n:"🎨 Pizarra",g:"g27"},{c:3,n:"🎹 Piano",g:"g28"},{c:3,n:"🌈 Colores",g:"g29"},{c:3,n:"🎵 Instrumentos",g:"g30"},{c:3,n:"🎨 Mezclar 1",g:"g31"},{c:3,n:"🎨 Mezclar 2",g:"g32"},
+{c:4,n:"🔊 Escuchá y elegí",g:"g33"},{c:4,n:"🎨 Colores EN",g:"g34"},{c:4,n:"🔢 Números EN",g:"g35"},{c:4,n:"🍎 Comida EN",g:"g36"},{c:4,n:"🐶 Animales EN",g:"g37"},{c:4,n:"🫀 Cuerpo EN",g:"g38"},{c:4,n:"👨‍👩‍👧 Familia EN",g:"g39"},{c:4,n:"💬 Frases EN",g:"g40"},{c:4,n:"👕 Ropa EN",g:"g41"},{c:4,n:"🐝 Spelling Bee",g:"g42"},{c:4,n:"📅 Días EN",g:"g43"},{c:4,n:"📆 Meses EN",g:"g44"},
+{c:5,n:"⚖️ Más chico",g:"g45"},{c:5,n:"🎯 Redondear",g:"g46"},{c:5,n:"🔷 Formas",g:"g47"},{c:5,n:"🤔 V o F",g:"g48"},{c:5,n:"❄️ Estaciones",g:"g49"},{c:5,n:"🐝 Ciencia",g:"g50"}
 ];
 function dibCats(){document.getElementById('cats').innerHTML=CATS.map((n,i)=>`<button class="btn ${i===CA?'on':''}" data-c="${i}">${n}</button>`).join('');document.querySelectorAll('#cats button').forEach(b=>b.onclick=()=>{CA=+b.dataset.c;dibTabs();});}
-function dibTabs(){const js=JUEGOS.filter(j=>j.c===CA);J=JUEGOS.indexOf(js[0]);document.getElementById('tabs').innerHTML=js.map(x=>`<button class="pal !min-h-[56px] !text-base !py-2 ${JUEGOS.indexOf(x)===J?'!border-cyan-400 !text-cyan-300':''}" data-j="${JUEGOS.indexOf(x)}">${x.n}</button>`).join('');document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{J=+b.dataset.j;dibTabs();cargarJ();});cargarJ();}
+function dibTabs(){const js=JUEGOS.filter(j=>j.c===CA);J=JUEGOS.indexOf(js[0]);document.getElementById('tabs').innerHTML=js.map(x=>`<button class="pal !min-h-[56px] !text-base !py-2 ${JUEGOS.indexOf(x)===J?'!border-yellow-400 !text-yellow-300':''}" data-j="${JUEGOS.indexOf(x)}">${x.n}</button>`).join('');document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{J=+b.dataset.j;dibTabs();cargarJ();});cargarJ();}
 function cargarJ(){const j=JUEGOS[J];document.getElementById('juegos').innerHTML=`<h2 class="text-2xl md:text-3xl font-black text-cyan-300 mb-5 text-center">${j.n}</h2><div id="gameContainer"></div>`;
 const d=GEN[j.g]();
 if(d.especial){
-  if(d.especial==='memoria')jMemoria();else if(d.especial==='rompe')jRompe();else if(d.especial==='simon')jSimon();else if(d.especial==='arcade')jArcade();else if(d.especial==='pizarra')jPizarra();else if(d.especial==='piano')jPiano();else if(d.especial==='ahorcado')jAhorcado();else if(d.especial==='spelling')jSpelling();
-}else{
-  if(d.color){d.p+=`<div class="w-24 h-24 rounded-full mx-auto my-3 border-4 border-white/40" style="background:${d.color}"></div>`;}
-  quiz({p:d.p,opts:d.opts,ok:d.ok,en:d.en,next:cargarJ});
-}
-if(Math.random()<0.5)setTimeout(()=>hablarWoody(rp(WOODY.juego)),800);
-}
-
-/* ============ ARRANQUE ============ */
+if(d.especial==='memoria')jMemoria();else if(d.especial==='rompe')jRompe();else if(d.especial==='simon')jSimon();else if(d.especial==='arcade')jArcade();else if(d.especial==='pizarra')jPizarra();else if(d.especial==='piano')jPiano();else if(d.especial==='ahorcado')jAhorcado();else if(d.especial==='spelling')jSpelling();
+}else{quiz({p:d.p,opts:d.opts,ok:d.ok,en:d.en,ico:d.ico,es:d.es,next:cargarJ});}
+if(Math.random()<0.4)setTimeout(()=>hablarWoody(rp(WOODY.juego)),800);}
 window.onload=()=>{
 cargarPerfil();dibCats();dibTabs();
-setTimeout(()=>{document.getElementById('intro').style.opacity=0;document.getElementById('intro').style.pointerEvents='none';setTimeout(()=>document.getElementById('intro').remove(),1000);hablarWoody("¡Hola! Soy Woody, tu amigo astronauta. ¡Vamos a jugar! 🚀");},2000);
+setTimeout(()=>{document.getElementById('intro').style.opacity=0;document.getElementById('intro').style.pointerEvents='none';setTimeout(()=>document.getElementById('intro').remove(),1000);hablarWoody("¡Hola! Soy Woody, tu amigo astronauta. ¡Vamos a aprender inglés jugando! 🚀");},2000);
 setTimeout(()=>document.getElementById('barraCarga').style.width='100%',100);
 const e=document.getElementById('estrellas');for(let i=0;i<120;i++){const s=document.createElement('div');s.className='est';const t=1+Math.random()*3;s.style.width=t+'px';s.style.height=t+'px';s.style.left=Math.random()*100+'vw';s.style.animationDuration=(5+Math.random()*10)+'s';s.style.animationDelay=-Math.random()*12+'s';e.appendChild(s);}
 document.getElementById('prof').innerHTML=`<svg id="astroSVG" viewBox="0 0 140 190" xmlns="http://www.w3.org/2000/svg">
@@ -372,6 +349,5 @@ document.getElementById('prof').innerHTML=`<svg id="astroSVG" viewBox="0 0 140 1
 setInterval(()=>{if(Math.random()<0.6)volarWoody();},28000);
 };
 </script>
-<div id="mascotaFija" class="fixed bottom-3 left-3 z-50 text-4xl hidden" style="filter:drop-shadow(0 0 15px rgba(255,255,255,.5));animation:flot 4s ease-in-out infinite;"></div>
 </body>
 </html>
