@@ -3,418 +3,469 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Boogie Academy PRO — Inglés y Castellano</title>
+<title>Boogie Academy PRO Premium</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--ink:#2a1e4e;--soft:#6b5f96;--accent:#7c5cff;--accent2:#ff5fa8;--good:#22c58b;--bad:#ff7a6b;--font:'Baloo 2','Comic Sans MS',sans-serif}
-body{font-family:var(--font);color:var(--ink);min-height:100vh;overflow-x:hidden;position:relative;
-  background:linear-gradient(135deg,#ff2e9a 0%,#ffd166 18%,#c026d3 42%,#3b82f6 68%,#22d3ee 85%,#22c58b 100%);
-  background-attachment:fixed;-webkit-user-select:none;user-select:none;touch-action:manipulation}
-.orb{position:fixed;border-radius:50%;filter:blur(55px);opacity:.75;z-index:0;pointer-events:none;animation:floaty 9s ease-in-out infinite}
-.orb.o1{width:340px;height:340px;background:#ff2e9a;top:-70px;left:-90px}
-.orb.o2{width:380px;height:380px;background:#22d3ee;bottom:-90px;right:-100px;animation-delay:-3s}
-.orb.o3{width:280px;height:280px;background:#a3e635;top:38%;left:58%;animation-delay:-6s}
-@keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.1)}}
-#app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:14px 14px 110px}
-.glass{background:rgba(255,255,255,.6);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1.5px solid rgba(255,255,255,.75);border-radius:26px;box-shadow:0 12px 32px rgba(80,50,150,.22)}
-.view{display:none;animation:fade .35s ease}.view.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
-@keyframes pop{0%{transform:scale(.5)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
-.shake{animation:shake .4s ease}.pop{animation:pop .35s ease}
-h1{font-size:2.05rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3px 12px rgba(124,92,255,.55);letter-spacing:.5px}
-.sub{text-align:center;color:#fff;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.25);margin-bottom:8px;font-size:.92rem}
-.topbar{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.back{width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);font-size:1.25rem;cursor:pointer;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.topbar h2{flex:1;font-size:1.2rem;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.25)}
-.pill{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-radius:999px;padding:6px 12px;font-weight:800;font-size:.85rem;flex:none}
-.btn{border:none;cursor:pointer;font-family:var(--font);font-weight:800;border-radius:999px;padding:13px 22px;font-size:1.05rem;color:#fff;
-  background:linear-gradient(135deg,#7c5cff,#ff5fa8);box-shadow:0 6px 0 rgba(0,0,0,.15),0 10px 24px rgba(124,92,255,.4);transition:transform .1s}
-.btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.15)}
-.btn-green{background:linear-gradient(135deg,#22c58b,#6ee7b7)}.btn-blue{background:linear-gradient(135deg,#3b82f6,#60a5fa)}
-.btn-pink{background:linear-gradient(135deg,#ff5fa8,#ff9ecb)}.btn-yellow{background:linear-gradient(135deg,#fbbf24,#fde047);color:#7a5200}
-.btn-ghost{background:rgba(255,255,255,.75);color:var(--ink);box-shadow:0 4px 0 rgba(0,0,0,.1)}
-.btn.big{width:100%;font-size:1.25rem;padding:16px}.btn.small{padding:8px 14px;font-size:.85rem}
-.btn:disabled{opacity:.5;pointer-events:none}
-/* ---- Boogie flotante ---- */
-.boogie-wrap{display:flex;flex-direction:column;align-items:center;margin:6px 0}
-.boogie-float{position:relative;width:150px;height:150px;display:flex;align-items:center;justify-content:center;
-  animation:bob 3.5s ease-in-out infinite;filter:drop-shadow(0 18px 14px rgba(124,92,255,.45))}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(2deg)}}
-.boogie-float svg{width:140px;height:140px;overflow:visible}
-.boogie-float .shadow{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:90px;height:16px;border-radius:50%;
-  background:rgba(42,30,78,.28);filter:blur(4px);animation:shadowPulse 3.5s ease-in-out infinite}
-@keyframes shadowPulse{0%,100%{transform:translateX(-50%) scale(1);opacity:.3}50%{transform:translateX(-50%) scale(.7);opacity:.18}}
-.boogie-float .mouth{display:none}
-.boogie-float svg[data-mood="happy"] .m-happy,.boogie-float svg[data-mood="idle"] .m-smile,
-.boogie-float svg[data-mood="sad"] .m-sad,.boogie-float svg[data-mood="talk"] .m-open{display:inline}
-.boogie-float svg[data-mood="talk"] .m-open{transform-origin:center;transform-box:fill-box;animation:talk .28s infinite alternate}
-@keyframes talk{from{transform:scaleY(.35)}to{transform:scaleY(1.25)}}
-.boogie-float .blink{transform-origin:center;transform-box:fill-box;animation:blink 4.2s infinite}
-@keyframes blink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
-.bubble{background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:20px;padding:10px 16px;font-weight:700;box-shadow:0 8px 20px rgba(80,50,150,.2);max-width:94%;margin:6px auto 12px;text-align:center;position:relative;font-size:.98rem;animation:pop .3s ease;min-height:24px}
-.bubble::after{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);border:8px solid transparent;border-bottom-color:rgba(255,255,255,.9);border-top:0}
-.tabs{display:flex;gap:6px;background:rgba(255,255,255,.55);backdrop-filter:blur(14px);padding:5px;border-radius:999px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tabs button{flex:none;border:none;background:transparent;padding:9px 14px;border-radius:999px;font-family:var(--font);font-weight:800;color:var(--soft);cursor:pointer;font-size:.82rem;white-space:nowrap}
-.tabs button.active{background:linear-gradient(135deg,#7c5cff,#ff5fa8);color:#fff;box-shadow:0 4px 12px rgba(124,92,255,.4)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.gcard{background:rgba(255,255,255,.6);backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.75);border-radius:22px;padding:14px 8px;text-align:center;cursor:pointer;transition:transform .12s;box-shadow:0 8px 20px rgba(80,50,150,.18)}
-.gcard:active{transform:scale(.95)}
-.gcard .em{font-size:2.4rem;line-height:1}.gcard .nm{font-weight:800;font-size:.86rem;line-height:1.15;margin-top:5px}.gcard .st{font-size:.72rem;color:var(--soft);margin-top:2px}
-.gcard .stars{font-size:.7rem;margin-top:3px;letter-spacing:1px}
-.q-target{text-align:center;font-size:4rem;margin:6px 0;animation:pop .3s ease;min-height:64px}
-.q-word{text-align:center;font-weight:800;font-size:1.3rem;margin-bottom:4px;color:var(--accent)}
-.q-sub{text-align:center;font-size:.85rem;color:var(--soft);font-style:italic;margin-bottom:6px}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.opt{background:rgba(255,255,255,.78);backdrop-filter:blur(10px);border:none;border-radius:16px;padding:14px 8px;font-family:var(--font);font-weight:800;font-size:1.05rem;box-shadow:0 6px 16px rgba(80,50,150,.18);cursor:pointer;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px}
-.opt .em{font-size:2rem}.opt.ok{background:linear-gradient(135deg,#22c58b,#6ee7b7);color:#fff;animation:pop .35s}.opt.bad{background:linear-gradient(135deg,#ff7a6b,#ffb199);color:#fff;animation:shake .4s}.opt:disabled{pointer-events:none}
-.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;perspective:1000px}
-.mem{aspect-ratio:1;border-radius:14px;border:none;cursor:pointer;font-size:1.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#7c5cff,#ff5fa8);box-shadow:0 6px 14px rgba(124,92,255,.35);display:flex;align-items:center;justify-content:center;transition:transform .25s;position:relative;overflow:hidden;transform-style:preserve-3d}
-.mem .face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backface-visibility:hidden}
-.mem .back{background:#fff;color:var(--ink);transform:rotateY(180deg)}
-.mem.open{transform:rotateY(180deg)}.mem.done{opacity:.45;pointer-events:none}
-.letter{display:inline-block;margin:4px;padding:10px 14px;border-radius:14px;border:none;background:rgba(255,255,255,.85);font-family:var(--font);font-weight:800;font-size:1.25rem;cursor:pointer;color:var(--accent);box-shadow:0 4px 10px rgba(0,0,0,.12)}
-.letter.used{opacity:.25;pointer-events:none}
-.slots{display:flex;gap:6px;justify-content:center;margin:10px 0;flex-wrap:wrap;min-height:54px}
-.slot{width:38px;height:50px;border-bottom:4px solid var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.4rem;background:rgba(255,255,255,.7);border-radius:8px 8px 0 0}
-.simon{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:280px;margin:10px auto}
-.sbtn{aspect-ratio:1;border:none;border-radius:24px;cursor:pointer;opacity:.45;transition:opacity .15s,transform .15s}
-.sbtn.lit{opacity:1;transform:scale(1.06);box-shadow:0 0 30px currentColor}
-.sbtn:nth-child(1){background:#22c58b;color:#22c58b}.sbtn:nth-child(2){background:#ff5fa8;color:#ff5fa8}
-.sbtn:nth-child(3){background:#fbbf24;color:#fbbf24}.sbtn:nth-child(4){background:#3b82f6;color:#3b82f6}
-.dict-search{width:100%;border:2px solid rgba(255,255,255,.8);background:rgba(255,255,255,.65);backdrop-filter:blur(10px);border-radius:999px;padding:12px 18px;font-family:var(--font);font-size:1rem;outline:none;margin-bottom:10px}
-.dict-item{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-radius:14px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.dict-item .em{font-size:1.8rem;flex:none}.dict-item .en{font-weight:800;color:var(--accent)}.dict-item .ap{font-style:italic;color:var(--soft);font-size:.8rem}.dict-item .es{font-size:.88rem}
-.spk{border:none;background:#bae1ff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:.95rem;flex:none;display:flex;align-items:center;justify-content:center}
-.feedback{text-align:center;font-weight:800;min-height:28px;margin-top:10px;font-size:1.05rem}
-.center{text-align:center}.mt{margin-top:12px}.muted{color:var(--soft)}
-.pbar{height:18px;background:rgba(255,255,255,.5);border-radius:999px;overflow:hidden;margin:8px 0}
-.pbar>div{height:100%;background:linear-gradient(90deg,#fbbf24,#ff5fa8,#7c5cff);transition:width .5s;border-radius:999px}
-.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:560px;background:rgba(255,255,255,.7);backdrop-filter:blur(18px);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(80,50,150,.25);z-index:50;border-radius:22px 22px 0 0}
-.bottomnav button{background:none;border:none;cursor:pointer;font-family:var(--font);display:flex;flex-direction:column;align-items:center;font-weight:800;font-size:.68rem;color:var(--soft);padding:4px;min-width:60px}
-.bottomnav button .i{font-size:1.4rem}.bottomnav button.active{color:var(--accent)}
-.overlay{display:none;position:fixed;inset:0;background:rgba(42,30,78,.5);z-index:100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)}
-.overlay.show{display:flex}
-.overlay .glass{max-width:340px;width:100%;text-align:center;padding:22px}
-.stars-big{font-size:2.4rem;letter-spacing:3px}
-.mic-btn{width:74px;height:74px;border-radius:50%;border:none;cursor:pointer;font-size:2rem;color:#fff;background:linear-gradient(135deg,#ff5fa8,#7c5cff);box-shadow:0 8px 22px rgba(124,92,255,.5);display:flex;align-items:center;justify-content:center;margin:10px auto;transition:transform .1s}
-.mic-btn:active{transform:scale(.92)}
-.mic-btn.rec{animation:micPulse 1s infinite;background:linear-gradient(135deg,#ff7a6b,#ff5fa8)}
-@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,95,168,.6)}50%{box-shadow:0 0 0 18px rgba(255,95,168,0)}}
-.mic-status{text-align:center;font-weight:800;font-size:.9rem;min-height:22px;margin-bottom:6px}
-.fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fc{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-radius:18px;padding:14px 8px;text-align:center;cursor:pointer;position:relative;box-shadow:0 6px 16px rgba(80,50,150,.15)}
-.fc .em{font-size:2.6rem}.fc .wd{font-weight:800;font-size:1rem;margin-top:4px}.fc .ap{font-size:.72rem;color:var(--soft);font-style:italic}
-.read-word{text-align:center;font-size:2.4rem;font-weight:800;letter-spacing:6px;color:var(--accent);margin:8px 0}
-.read-emoji{text-align:center;font-size:4.5rem}
-.print-card{background:rgba(255,255,255,.9);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.15);border:3px dashed #d9c9ff}
-.print-card .em{font-size:2rem}.print-card .en{font-weight:800;color:#7c5cff;font-size:1.05rem}.print-card .ap{font-size:.72rem;color:#7a6fa0;font-style:italic}.print-card .es{font-size:.82rem}
-.print-card button{margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer}
-@media(max-width:360px){.fc .em{font-size:2.1rem}.gcard .em{font-size:2rem}}
-@media print{.bottomnav,.tabs,.btn,.back,.no-print{display:none!important}body{background:#fff}}
+/* =========================================
+ESTILOS PREMIUM Y TAMAÑOS MAXIMIZADOS
+========================================= */
+​{ box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+:root {
+--ink: #2a1e4e;
+--soft: #6b5f96;
+--accent: #7c5cff;
+--accent2: #ff5fa8;
+--good: #22c58b;
+--bad: #ff7a6b;
+--prem-gold: #ffd700;
+--prem-ruby: #e0115f;
+--prem-sapphire: #0f52ba;
+--bg-grad: linear-gradient(135deg, #ff2e9a 0%, #ffd166 18%, #c026d3 42%, #3b82f6 68%, #22d3ee 85%, #22c58b 100%);
+--font: 'Baloo 2', 'Comic Sans MS', sans-serif;
+}
+body {
+font-family: var(--font);
+color: var(--ink);
+min-height: 100vh;
+overflow-x: hidden;
+position: relative;
+background: var(--bg-grad);
+background-attachment: fixed;
+-webkit-user-select: none;
+user-select: none;
+touch-action: manipulation;
+font-size: 18px; /* TAMAÑO DE FUENTE BASE MÁS GRANDE /
+}
+.orb { position: fixed; border-radius: 50%; filter: blur(60px); opacity: 0.8; z-index: 0; pointer-events: none; animation: floaty 8s ease-in-out infinite; }
+.orb.o1 { width: 400px; height: 400px; background: #ff2e9a; top: -50px; left: -50px; }
+.orb.o2 { width: 450px; height: 450px; background: #22d3ee; bottom: -50px; right: -50px; animation-delay: -2s; }
+.orb.o3 { width: 350px; height: 350px; background: var(--prem-gold); top: 40%; left: 50%; animation-delay: -4s; }
+@keyframes floaty { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(40px, -50px) scale(1.15); } }
+#app { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 20px 20px 140px; }
+.glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 2px solid rgba(255, 255, 255, 0.9); border-radius: 30px; box-shadow: 0 15px 35px rgba(80, 50, 150, 0.3); }
+.view { display: none; animation: fade 0.4s ease; }
+.view.active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pop { 0% { transform: scale(0.5); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+.shake { animation: shake 0.5s ease; }
+.pop { animation: pop 0.4s ease; }
+h1 { font-size: 2.8rem; font-weight: 800; text-align: center; color: #fff; text-shadow: 0 4px 15px rgba(124, 92, 255, 0.8); letter-spacing: 1px; margin-bottom: 10px; }
+.sub { text-align: center; color: #fff; font-weight: 700; text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); margin-bottom: 15px; font-size: 1.2rem; }
+.topbar { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.back { width: 60px; height: 60px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); font-size: 1.8rem; cursor: pointer; flex: none; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); transition: transform 0.2s; }
+.back:active { transform: scale(0.9); }
+.topbar h2 { flex: 1; font-size: 1.8rem; font-weight: 800; color: #fff; text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); }
+.pill { background: linear-gradient(135deg, var(--prem-gold), #ff9ecb); color: var(--ink); border-radius: 999px; padding: 10px 20px; font-weight: 800; font-size: 1.1rem; flex: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+/ BOTONES MÁS GRANDES PARA CHICOS /
+.btn { border: none; cursor: pointer; font-family: var(--font); font-weight: 800; border-radius: 999px; padding: 18px 28px; font-size: 1.3rem; color: #fff; background: linear-gradient(135deg, #7c5cff, #ff5fa8); box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2), 0 12px 28px rgba(124, 92, 255, 0.5); transition: all 0.15s; }
+.btn:active { transform: translateY(6px); box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2); }
+.btn-green { background: linear-gradient(135deg, #22c58b, #6ee7b7); }
+.btn-blue { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+.btn-pink { background: linear-gradient(135deg, #ff5fa8, #ff9ecb); }
+.btn-gold { background: linear-gradient(135deg, var(--prem-gold), #ffae00); color: #5a3d00; }
+.btn-ghost { background: rgba(255, 255, 255, 0.9); color: var(--ink); box-shadow: 0 6px 0 rgba(0, 0, 0, 0.15); }
+.btn.big { width: 100%; font-size: 1.6rem; padding: 22px; }
+.btn.small { padding: 12px 20px; font-size: 1.1rem; }
+/ BOTÓN FLOTANTE PREMIUM /
+.fab-menu { position: fixed; bottom: 100px; right: 20px; z-index: 90; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.fab-btn { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--prem-gold), #ff5fa8); border: 3px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.3); font-size: 2rem; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; }
+.fab-btn:active { transform: scale(0.9); }
+/ BOOGIE FLOTANTE MAXIMIZADO */
+.boogie-wrap { display: flex; flex-direction: column; align-items: center; margin: 15px 0; }
+.boogie-float { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; animation: bob 3.5s ease-in-out infinite; filter: drop-shadow(0 20px 20px rgba(124, 92, 255, 0.6)); }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-25px) rotate(3deg); } }
+.boogie-float svg { width: 190px; height: 190px; overflow: visible; }
+.boogie-float .shadow { position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 120px; height: 20px; border-radius: 50%; background: rgba(42, 30, 78, 0.3); filter: blur(5px); animation: shadowPulse 3.5s ease-in-out infinite; }
+@keyframes shadowPulse { 0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.4; } 50% { transform: translateX(-50%) scale(0.6); opacity: 0.15; } }
+.boogie-float .mouth { display: none; }
+.boogie-float svg[data-mood="happy"] .m-happy, .boogie-float svg[data-mood="idle"] .m-smile, .boogie-float svg[data-mood="sad"] .m-sad, .boogie-float svg[data-mood="talk"] .m-open { display: inline; }
+.boogie-float svg[data-mood="talk"] .m-open { transform-origin: center; transform-box: fill-box; animation: talk 0.25s infinite alternate; }
+@keyframes talk { from { transform: scaleY(0.4); } to { transform: scaleY(1.3); } }
+.boogie-float .blink { transform-origin: center; transform-box: fill-box; animation: blink 4s infinite; }
+@keyframes blink { 0%, 93%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+.bubble { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); border-radius: 25px; padding: 15px 25px; font-weight: 800; box-shadow: 0 10px 25px rgba(80, 50, 150, 0.3); max-width: 90%; margin: 10px auto 20px; text-align: center; position: relative; font-size: 1.25rem; animation: pop 0.4s ease; min-height: 40px; border: 3px solid var(--accent); color: var(--ink); }
+.bubble::after { content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); border: 12px solid transparent; border-bottom-color: var(--accent); border-top: 0; }
+.tabs { display: flex; gap: 10px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(15px); padding: 8px; border-radius: 999px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button { flex: none; border: none; background: transparent; padding: 12px 20px; border-radius: 999px; font-family: var(--font); font-weight: 800; color: var(--ink); cursor: pointer; font-size: 1.1rem; white-space: nowrap; }
+.tabs button.active { background: linear-gradient(135deg, var(--prem-gold), var(--accent2)); color: #fff; box-shadow: 0 6px 15px rgba(255, 95, 168, 0.5); border: 2px solid #fff; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.gcard { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); border: 3px solid #fff; border-radius: 30px; padding: 25px 15px; text-align: center; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 10px 25px rgba(80, 50, 150, 0.2); }
+.gcard:active { transform: scale(0.92); box-shadow: 0 4px 10px rgba(80, 50, 150, 0.2); }
+.gcard .em { font-size: 3.5rem; line-height: 1; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2)); }
+.gcard .nm { font-weight: 800; font-size: 1.2rem; line-height: 1.2; margin-top: 10px; color: var(--ink); }
+.gcard .st { font-size: 0.9rem; color: var(--soft); margin-top: 5px; font-weight: 600; }
+.gcard .stars { font-size: 1rem; margin-top: 8px; letter-spacing: 2px; }
+.q-target { text-align: center; font-size: 5rem; margin: 15px 0; animation: pop 0.4s ease; min-height: 80px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.15)); }
+.q-word { text-align: center; font-weight: 900; font-size: 2rem; margin-bottom: 5px; color: var(--accent); text-transform: uppercase; }
+.q-sub { text-align: center; font-size: 1.1rem; color: var(--soft); font-style: italic; margin-bottom: 15px; font-weight: 600; }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+.opt { background: rgba(255, 255, 255, 0.9); border: 4px solid #e2d8ff; border-radius: 25px; padding: 25px 15px; font-family: var(--font); font-weight: 800; font-size: 1.4rem; box-shadow: 0 8px 20px rgba(80, 50, 150, 0.2); cursor: pointer; color: var(--ink); display: flex; flex-direction: column; align-items: center; gap: 8px; transition: all 0.2s; }
+.opt .em { font-size: 3rem; }
+.opt.ok { background: linear-gradient(135deg, #22c58b, #6ee7b7); color: #fff; border-color: #fff; animation: pop 0.4s; }
+.opt.bad { background: linear-gradient(135deg, #ff7a6b, #ffb199); color: #fff; border-color: #fff; animation: shake 0.5s; }
+.opt:disabled { pointer-events: none; }
+.mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; perspective: 1200px; }
+.mem { aspect-ratio: 1; border-radius: 20px; border: 3px solid #fff; cursor: pointer; font-size: 2.2rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow: 0 8px 20px rgba(124, 92, 255, 0.4); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; position: relative; overflow: hidden; transform-style: preserve-3d; }
+.mem .face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; backface-visibility: hidden; }
+.mem .back { background: #fff; color: var(--ink); transform: rotateY(180deg); font-size: 2.8rem; }
+.mem.open { transform: rotateY(180deg); }
+.mem.done { opacity: 0.3; pointer-events: none; }
+.letter { display: inline-block; margin: 6px; padding: 15px 22px; border-radius: 20px; border: 3px solid var(--accent); background: #fff; font-family: var(--font); font-weight: 900; font-size: 1.8rem; cursor: pointer; color: var(--accent); box-shadow: 0 6px 15px rgba(0,0,0,0.15); transition: transform 0.1s; }
+.letter:active { transform: scale(0.9); }
+.letter.used { opacity: 0.2; pointer-events: none; }
+.slots { display: flex; gap: 8px; justify-content: center; margin: 20px 0; flex-wrap: wrap; min-height: 70px; }
+.slot { width: 50px; height: 65px; border-bottom: 6px solid var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 2.2rem; background: rgba(255, 255, 255, 0.8); border-radius: 12px 12px 0 0; color: var(--ink); }
+.dict-search { width: 100%; border: 4px solid var(--accent); background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 999px; padding: 18px 25px; font-family: var(--font); font-size: 1.3rem; outline: none; margin-bottom: 15px; font-weight: 700; color: var(--ink); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.dict-item { background: rgba(255, 255, 255, 0.9); border-radius: 20px; padding: 15px 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); border: 2px solid #e2d8ff; }
+.dict-item .em { font-size: 2.5rem; flex: none; }
+.dict-item .en { font-weight: 900; color: var(--accent); font-size: 1.4rem; }
+.dict-item .ap { font-style: italic; color: var(--soft); font-size: 1rem; font-weight: 600; }
+.dict-item .es { font-size: 1.1rem; font-weight: 700; }
+.spk { border: none; background: linear-gradient(135deg, #bae1ff, #7c5cff); color: white; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; flex: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.15s; }
+.spk:active { transform: scale(0.85); }
+.bottomnav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 600px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); display: flex; justify-content: space-around; padding: 12px 10px calc(12px + env(safe-area-inset-bottom)); box-shadow: 0 -10px 30px rgba(80, 50, 150, 0.3); z-index: 50; border-radius: 30px 30px 0 0; border-top: 3px solid rgba(255,255,255,1); }
+.bottomnav button { background: none; border: none; cursor: pointer; font-family: var(--font); display: flex; flex-direction: column; align-items: center; font-weight: 800; font-size: 0.9rem; color: var(--soft); padding: 8px; min-width: 75px; transition: color 0.2s; }
+.bottomnav button .i { font-size: 1.8rem; margin-bottom: 4px; transition: transform 0.2s; }
+.bottomnav button.active { color: var(--accent); }
+.bottomnav button.active .i { transform: translateY(-5px) scale(1.1); }
+.overlay { display: none; position: fixed; inset: 0; background: rgba(42, 30, 78, 0.7); z-index: 100; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
+.overlay.show { display: flex; }
+.overlay .glass { max-width: 400px; width: 100%; text-align: center; padding: 30px; }
+.mic-btn { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #fff; cursor: pointer; font-size: 3rem; color: #fff; background: linear-gradient(135deg, #ff5fa8, #7c5cff); box-shadow: 0 10px 30px rgba(124, 92, 255, 0.6); display: flex; align-items: center; justify-content: center; margin: 20px auto; transition: transform 0.15s; }
+.mic-btn.rec { animation: micPulse 1s infinite; background: linear-gradient(135deg, #ff7a6b, var(--prem-gold)); }
+@keyframes micPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.8); } 50% { box-shadow: 0 0 0 25px rgba(255, 215, 0, 0); } }
 </style>
 </head>
 <body>
 <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 <div id="app">
-
+​<!-- MENÚ FLOTANTE PREMIUM -->
+<div class="fab-menu no-print">
+<button class="fab-btn" id="musicToggle" title="Música de fondo">🎵</button>
+<button class="fab-btn" id="themeToggle" title="Cambiar Tema">🎨</button>
+</div>
+​<!-- VISTA PRINCIPAL -->
 <section class="view active" id="view-home">
-  <div style="height:6px"></div>
-  <h1>🪩 BOOGIE ACADEMY PRO 🪩</h1>
-  <p class="sub">Boogie te habla en castellano, te escucha y te enseña inglés</p>
-  <div class="boogie-wrap">
-    <div class="boogie-float" id="boogieHome"><div class="shadow"></div></div>
-    <div class="bubble" id="homeBubble">¡Hola! Soy Boogie. Tocame y hablo. ¿Qué jugamos?</div>
-  </div>
-  <div class="glass center no-print" style="padding:10px 14px;margin-bottom:12px">
-    <div id="audioStatus" style="font-weight:800;font-size:.88rem;margin-bottom:6px">🔊 Comprobando audio...</div>
-    <button class="btn btn-blue small" id="testAudioBtn">🔊 Probar voz y micrófono</button>
-  </div>
-  <div class="glass center" style="padding:12px 16px;margin-bottom:12px">
-    <div style="font-weight:800;font-size:.95rem">⭐ <span id="homeStars">0</span> estrellas · <span id="homeDone">0</span>/<span id="homeTotal">0</span> juegos</div>
-    <div class="pbar"><div id="homeBar" style="width:0%"></div></div>
-  </div>
-  <div class="tabs" id="homeTabs">
-    <button class="active" data-cat="all">🌟 Todos</button>
-    <button data-cat="abc">🔤 ABC</button>
-    <button data-cat="leer">📖 Leer</button>
-    <button data-cat="mate">🔢 Mate</button>
-    <button data-cat="vocab">📚 Vocab</button>
-    <button data-cat="en">🗣️ Inglés</button>
-    <button data-cat="logic">🧠 Lógica</button>
-  </div>
-  <div class="grid" id="gameGrid"></div>
-  <p class="center mt" style="color:#fff;font-weight:700;font-size:.78rem;text-shadow:0 2px 6px rgba(0,0,0,.2)">Voz de Boogie · Micrófono · Progreso guardado · Diccionario con audio 💜</p>
+<div style="height:10px"></div>
+<h1>👑 BOOGIE ACADEMY PREMIUM 👑</h1>
+<p class="sub">Boogie te enseña, te escucha y jugamos a lo grande</p>
+<div class="boogie-wrap">
+<div class="boogie-float" id="boogieHome"><div class="shadow"></div></div>
+<div class="bubble" id="homeBubble">¡Hola! Soy Boogie. ¡Tocame y vamos a aprender jugando!</div>
+</div>
+<div class="glass center no-print" style="padding:15px 20px;margin-bottom:20px; border: 3px solid var(--prem-gold);">
+<div id="audioStatus" style="font-weight:800;font-size:1.1rem;margin-bottom:10px; color:var(--ink);">🔊 Comprobando sistema...</div>
+<button class="btn btn-gold big" id="testAudioBtn">🎙️ Activar Voz y Micrófono Mágico</button>
+</div>
+<div class="glass center" style="padding:15px 20px;margin-bottom:20px">
+<div style="font-weight:900;font-size:1.2rem; color:var(--accent);">⭐ <span id="homeStars">0</span> súper estrellas · <span id="homeDone">0</span>/<span id="homeTotal">0</span> niveles</div>
+<div style="height:25px; background:rgba(255,255,255,0.8); border-radius:999px; overflow:hidden; margin-top:10px; border:2px solid var(--accent);">
+<div id="homeBar" style="height:100%; background:linear-gradient(90deg, var(--prem-gold), #ff5fa8, #7c5cff); transition:width 0.5s; width:0%;"></div>
+</div>
+</div>
+<div class="tabs" id="homeTabs">
+<button class="active" data-cat="all">🌟 Todos</button>
+<button data-cat="abc">🔤 ABC</button>
+<button data-cat="leer">📖 Leer</button>
+<button data-cat="mate">🔢 Mate</button>
+<button data-cat="vocab">📚 Vocab</button>
+<button data-cat="en">🗣️ Inglés</button>
+<button data-cat="logic">🧠 Lógica</button>
+<button data-cat="art">🎨 Arte</button>
+</div>
+<div class="grid" id="gameGrid"></div>
 </section>
-
+​<!-- VISTA JUEGO -->
 <section class="view" id="view-game">
-  <div class="topbar">
-    <button class="back" data-goto="home">←</button>
-    <h2 id="gameTitle">Juego</h2>
-    <div class="pill">⭐ <span id="gameStars">0</span>/3</div>
-  </div>
-  <div class="boogie-wrap">
-    <div class="boogie-float" id="boogieGame"><div class="shadow"></div></div>
-    <div class="bubble" id="gameBubble">¡Vamos!</div>
-  </div>
-  <div id="gameArea"></div>
+<div class="topbar">
+<button class="back" data-goto="home">🏠</button>
+<h2 id="gameTitle">Juego</h2>
+<div class="pill">⭐ <span id="gameStars">0</span>/3</div>
+</div>
+<div class="boogie-wrap">
+<div class="boogie-float" id="boogieGame"><div class="shadow"></div></div>
+<div class="bubble" id="gameBubble">¡A jugar!</div>
+</div>
+<div id="gameArea"></div>
 </section>
-
+​<!-- VISTA DICCIONARIO -->
 <section class="view" id="view-dict">
-  <div class="topbar"><button class="back" data-goto="home">←</button><h2>📚 Diccionario</h2><div class="pill">🔊 audio</div></div>
-  <input class="dict-search" id="dictSearch" placeholder="Buscá una palabra en inglés o español...">
-  <div id="dictList"></div>
+<div class="topbar"><button class="back" data-goto="home">🏠</button><h2>📚 Súper Diccionario</h2><div class="pill">🔊 Tocar</div></div>
+<input class="dict-search" id="dictSearch" placeholder="🔍 Buscá una palabra mágica...">
+<div id="dictList"></div>
 </section>
-
+​<!-- VISTA PROGRESO -->
 <section class="view" id="view-prog">
-  <div class="topbar"><button class="back" data-goto="home">←</button><h2>⭐ Progreso</h2></div>
-  <div class="glass center" style="padding:18px"><div style="font-size:2.8rem">⭐</div><div style="font-size:2.2rem;font-weight:800" id="totStars">0</div><div class="muted">estrellas</div><div class="pbar mt"><div id="progBar" style="width:0%"></div></div><div class="muted mt" id="progPct">0%</div></div>
-  <div class="glass mt" id="progList" style="padding:14px;font-size:.88rem"></div>
-  <div class="center mt"><button class="btn btn-ghost small" id="resetBtn">🔄 Empezar de nuevo</button></div>
+<div class="topbar"><button class="back" data-goto="home">🏠</button><h2>🏆 Mis Trofeos</h2></div>
+<div class="glass center" style="padding:30px">
+<div style="font-size:4rem; filter:drop-shadow(0 5px 10px rgba(0,0,0,0.3));">🏆</div>
+<div style="font-size:3.5rem;font-weight:900; color:var(--prem-gold);" id="totStars">0</div>
+<div style="font-size:1.5rem; font-weight:bold; color:var(--soft);">Estrellas Premium</div>
+<div style="height:30px; background:rgba(255,255,255,0.8); border-radius:999px; overflow:hidden; margin-top:20px; border: 3px solid var(--accent);">
+<div id="progBar" style="height:100%; background:linear-gradient(90deg, #fbbf24, #ff5fa8, #7c5cff); transition:width 0.5s; width:0%;"></div>
+</div>
+<div style="font-size:1.2rem; font-weight:bold; margin-top:10px;" id="progPct">0%</div>
+</div>
+<div class="glass" id="progList" style="padding:20px;font-size:1.1rem; margin-top:20px; display:flex; flex-direction:column; gap:10px;"></div>
+<div class="center" style="margin-top:20px;"><button class="btn btn-ghost big" id="resetBtn">🔄 Reiniciar Aventura</button></div>
 </section>
-
-<section class="view" id="view-print">
-  <div class="topbar"><button class="back" data-goto="home">←</button><h2>🖨️ Tarjetas imprimibles</h2></div>
-  <p style="color:#fff;text-align:center;font-weight:700;font-size:.85rem;text-shadow:0 2px 6px rgba(0,0,0,.25)" class="no-print">Recortá estas tarjetas. Tocá 🔊 para escuchar cada palabra.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:12px" id="printGrid"></div>
-</section>
-
+​<!-- OVERLAY DE VICTORIA -->
 <div class="overlay" id="winOverlay">
-  <div class="glass">
-    <div class="boogie-wrap">
-      <div class="boogie-float" id="boogieWin"><div class="shadow"></div></div>
-    </div>
-    <div style="font-size:1.5rem;font-weight:800" id="winTitle">¡Muy bien!</div>
-    <div class="stars-big mt" id="winStars">⭐⭐⭐</div>
-    <p class="muted mt" id="winText">¡Ganaste estrellas!</p>
-    <div class="mt" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-ghost" id="againBtn">🔁 Otra vez</button>
-      <button class="btn" id="menuBtn">🏠 Menú</button>
-    </div>
-  </div>
+<div class="glass" style="border: 5px solid var(--prem-gold);">
+<div class="boogie-wrap">
+<div class="boogie-float" id="boogieWin"><div class="shadow"></div></div>
 </div>
-
+<div style="font-size:2.5rem;font-weight:900; color:var(--accent);" id="winTitle">¡Espectacular!</div>
+<div style="font-size:4rem; letter-spacing:5px; margin:15px 0; filter:drop-shadow(0 5px 10px rgba(0,0,0,0.3));" id="winStars">⭐⭐⭐</div>
+<p style="font-size:1.4rem; font-weight:700; color:var(--ink);" id="winText">¡Ganaste estrellas!</p>
+<div style="margin-top:25px; display:flex; flex-direction:column; gap:15px;">
+<button class="btn btn-pink big" id="againBtn">🔁 Jugar de nuevo</button>
+<button class="btn btn-blue big" id="menuBtn">🏠 Volver al menú</button>
 </div>
-
-<nav class="bottomnav">
-  <button data-goto="home" class="active"><span class="i">🏠</span>Inicio</button>
-  <button data-goto="dict"><span class="i">📚</span>Diccionario</button>
-  <button data-goto="print"><span class="i">🖨️</span>Tarjetas</button>
-  <button data-goto="prog"><span class="i">⭐</span>Progreso</button>
-</nav>
-
-<script>
+</div>
+</div>
+​</div>
+​<nav class="bottomnav">
+<button data-goto="home" class="active"><span class="i">🏰</span>Inicio</button>
+<button data-goto="dict"><span class="i">📖</span>Diccionario</button>
+<button data-goto="prog"><span class="i">🌟</span>Premios</button>
+</nav> 
+  <script>
 (function(){
 "use strict";
-/* ============================================================
-   BOOGIE ACADEMY PRO — motor completo reconstruido
-   Voz (speechSynthesis) + Micrófono (SpeechRecognition) + juegos
-   ============================================================ */
-
-/* ---------- datos de vocabulario ---------- */
+​/* ============================================================
+BOOGIE ACADEMY PRO PREMIUM — MOTOR JS EXPANDIDO
+============================================================ */
+​/* DICCIONARIO EXPANDIDO MASIVO (Para aprender muchísimo más) */
 var VOCAB = [
-  {em:"🐜",en:"Ant",es:"hormiga",ap:"ant"},
-  {em:"🐝",en:"Bee",es:"abeja",ap:"bi"},
-  {em:"🦋",en:"Butterfly",es:"mariposa",ap:"bérflai"},
-  {em:"🕷️",en:"Spider",es:"araña",ap:"spáider"},
-  {em:"🐍",en:"Snake",es:"serpiente",ap:"sneik"},
-  {em:"🐢",en:"Turtle",es:"tortuga",ap:"tértel"},
-  {em:"🐺",en:"Wolf",es:"lobo",ap:"wulf"},
-  {em:"🦊",en:"Fox",es:"zorro",ap:"foks"},
-  {em:"🦓",en:"Zebra",es:"cebra",ap:"zébra"},
-  {em:"🐼",en:"Panda",es:"panda",ap:"panda"},
-  {em:"🐧",en:"Penguin",es:"pingüino",ap:"pénguin"},
-  {em:"🦉",en:"Owl",es:"búho",ap:"aul"},
-  {em:"🦜",en:"Parrot",es:"loro",ap:"párot"},
-  {em:"🦈",en:"Shark",es:"tiburón",ap:"shark"},
-  {em:"🐋",en:"Whale",es:"ballena",ap:"uéil"},
-  {em:"🐙",en:"Octopus",es:"pulpo",ap:"óctopus"},
-  {em:"🦀",en:"Crab",es:"cangrejo",ap:"krab"},
-  {em:"🐌",en:"Snail",es:"caracol",ap:"sneil"},
-  {em:"🐭",en:"Mouse",es:"ratón",ap:"maus"},
-  {em:"🐰",en:"Rabbit",es:"conejo",ap:"rábit"},
-  {em:"🐬",en:"Dolphin",es:"delfín",ap:"dolfín"},
-  {em:"🦩",en:"Flamingo",es:"flamenco",ap:"flamíngou"},
-  {em:"🌈",en:"Rainbow",es:"arcoíris",ap:"réinbou"},
-  {em:"☀️",en:"Sun",es:"sol",ap:"san"},
-  {em:"🌙",en:"Moon",es:"luna",ap:"mun"},
-  {em:"☁️",en:"Cloud",es:"nube",ap:"klaud"},
-  {em:"🌧️",en:"Rain",es:"lluvia",ap:"rein"},
-  {em:"❄️",en:"Snow",es:"nieve",ap:"snou"},
-  {em:"💨",en:"Wind",es:"viento",ap:"uind"},
-  {em:"⚡",en:"Thunder",es:"trueno",ap:"zánder"}
+{em:"🐜",en:"Ant",es:"hormiga",ap:"ant"},
+{em:"🐝",en:"Bee",es:"abeja",ap:"bi"},
+{em:"🦋",en:"Butterfly",es:"mariposa",ap:"bérflai"},
+{em:"🕷️",en:"Spider",es:"araña",ap:"spáider"},
+{em:"🐍",en:"Snake",es:"serpiente",ap:"sneik"},
+{em:"🐢",en:"Turtle",es:"tortuga",ap:"tértel"},
+{em:"🐺",en:"Wolf",es:"lobo",ap:"wulf"},
+{em:"🦊",en:"Fox",es:"zorro",ap:"foks"},
+{em:"🦓",en:"Zebra",es:"cebra",ap:"zébra"},
+{em:"🐼",en:"Panda",es:"panda",ap:"panda"},
+{em:"🐧",en:"Penguin",es:"pingüino",ap:"pénguin"},
+{em:"🦉",en:"Owl",es:"búho",ap:"aul"},
+{em:"🦜",en:"Parrot",es:"loro",ap:"párot"},
+{em:"🦈",en:"Shark",es:"tiburón",ap:"shark"},
+{em:"🐋",en:"Whale",es:"ballena",ap:"uéil"},
+{em:"🐙",en:"Octopus",es:"pulpo",ap:"óctopus"},
+{em:"🦀",en:"Crab",es:"cangrejo",ap:"krab"},
+{em:"🐌",en:"Snail",es:"caracol",ap:"sneil"},
+{em:"🐭",en:"Mouse",es:"ratón",ap:"maus"},
+{em:"🐰",en:"Rabbit",es:"conejo",ap:"rábit"},
+{em:"🐬",en:"Dolphin",es:"delfín",ap:"dolfín"},
+{em:"🦩",en:"Flamingo",es:"flamenco",ap:"flamíngou"},
+{em:"🌈",en:"Rainbow",es:"arcoíris",ap:"réinbou"},
+{em:"☀️",en:"Sun",es:"sol",ap:"san"},
+{em:"🌙",en:"Moon",es:"luna",ap:"mun"},
+{em:"☁️",en:"Cloud",es:"nube",ap:"klaud"},
+{em:"🌧️",en:"Rain",es:"lluvia",ap:"rein"},
+{em:"❄️",en:"Snow",es:"nieve",ap:"snou"},
+{em:"💨",en:"Wind",es:"viento",ap:"uind"},
+{em:"⚡",en:"Thunder",es:"trueno",ap:"zánder"},
+{em:"🍎",en:"Apple",es:"manzana",ap:"ápel"},
+{em:"🍌",en:"Banana",es:"banana",ap:"banana"},
+{em:"🍇",en:"Grapes",es:"uvas",ap:"gréips"},
+{em:"🍓",en:"Strawberry",es:"frutilla",ap:"stróberi"},
+{em:"🍉",en:"Watermelon",es:"sandía",ap:"uótermelon"},
+{em:"🍒",en:"Cherry",es:"cereza",ap:"cheri"},
+{em:"🍑",en:"Peach",es:"durazno",ap:"pich"},
+{em:"🍍",en:"Pineapple",es:"ananá",ap:"páinapel"},
+{em:"🥥",en:"Coconut",es:"coco",ap:"cóconat"},
+{em:"🥝",en:"Kiwi",es:"kiwi",ap:"kiui"},
+{em:"🍅",en:"Tomato",es:"tomate",ap:"toméitou"},
+{em:"🥕",en:"Carrot",es:"zanahoria",ap:"cárrot"},
+{em:"🌽",en:"Corn",es:"choclo",ap:"corn"},
+{em:"🥦",en:"Broccoli",es:"brócoli",ap:"brócoli"},
+{em:"🧅",en:"Onion",es:"cebolla",ap:"ónion"},
+{em:"🍄",en:"Mushroom",es:"hongo",ap:"máshrum"},
+{em:"🥖",en:"Bread",es:"pan",ap:"bred"},
+{em:"🧀",en:"Cheese",es:"queso",ap:"chis"},
+{em:"🥚",en:"Egg",es:"huevo",ap:"eg"},
+{em:"🥞",en:"Pancakes",es:"panqueques",ap:"pánkeiks"},
+{em:"🍕",en:"Pizza",es:"pizza",ap:"piza"},
+{em:"🍔",en:"Burger",es:"hamburguesa",ap:"bérguer"},
+{em:"🍟",en:"Fries",es:"papas fritas",ap:"fráis"},
+{em:"🌭",en:"Hotdog",es:"pancho",ap:"jotdog"},
+{em:"🍿",en:"Popcorn",es:"pochoclo",ap:"pópcorn"},
+{em:"🍩",en:"Donut",es:"dona",ap:"dóunat"},
+{em:"🍪",en:"Cookie",es:"galleta",ap:"cúki"},
+{em:"🎂",en:"Cake",es:"torta",ap:"kéik"},
+{em:"🧁",en:"Cupcake",es:"magdalena",ap:"cápkeik"},
+{em:"🍫",en:"Chocolate",es:"chocolate",ap:"chócolet"},
+{em:"🍬",en:"Candy",es:"caramelo",ap:"cándi"},
+{em:"🍭",en:"Lollipop",es:"chupetín",ap:"lólipop"},
+{em:"🍯",en:"Honey",es:"miel",ap:"jáni"},
+{em:"🥛",en:"Milk",es:"leche",ap:"milk"},
+{em:"☕",en:"Coffee",es:"café",ap:"cófi"},
+{em:"🍵",en:"Tea",es:"té",ap:"ti"},
+{em:"🧃",en:"Juice",es:"jugo",ap:"yus"},
+{em:"🚗",en:"Car",es:"auto",ap:"car"},
+{em:"🚕",en:"Taxi",es:"taxi",ap:"táxi"},
+{em:"🚙",en:"Jeep",es:"camioneta",ap:"yip"},
+{em:"🚌",en:"Bus",es:"colectivo",ap:"bas"},
+{em:"🚓",en:"Police",es:"policía",ap:"polís"},
+{em:"🚑",en:"Ambulance",es:"ambulancia",ap:"ámbulans"},
+{em:"🚒",en:"Firetruck",es:"bomberos",ap:"fáiertrak"},
+{em:"🚜",en:"Tractor",es:"tractor",ap:"tráctor"},
+{em:"🚲",en:"Bicycle",es:"bicicleta",ap:"báicikel"},
+{em:"🛵",en:"Scooter",es:"moto",ap:"scúter"},
+{em:"🚂",en:"Train",es:"tren",ap:"tréin"},
+{em:"✈️",en:"Airplane",es:"avión",ap:"éirplein"},
+{em:"🚁",en:"Helicopter",es:"helicóptero",ap:"jelicópter"},
+{em:"🚀",en:"Rocket",es:"cohete",ap:"róket"},
+{em:"🛸",en:"UFO",es:"ovni",ap:"iúefou"},
+{em:"⛵",en:"Boat",es:"bote",ap:"bout"},
+{em:"🚢",en:"Ship",es:"barco",ap:"ship"},
+{em:"🏠",en:"House",es:"casa",ap:"jaus"},
+{em:"🏫",en:"School",es:"escuela",ap:"scul"},
+{em:"🏥",en:"Hospital",es:"hospital",ap:"jóspital"}
 ];
-
-var LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+​var LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var COLORS = [
-  {en:"Red",es:"rojo",hex:"#ef4444"},{en:"Blue",es:"azul",hex:"#3b82f6"},
-  {en:"Green",es:"verde",hex:"#22c58b"},{en:"Yellow",es:"amarillo",hex:"#fbbf24"},
-  {en:"Pink",es:"rosa",hex:"#ff5fa8"},{en:"Orange",es:"naranja",hex:"#f97316"},
-  {en:"Purple",es:"violeta",hex:"#7c5cff"},{en:"Black",es:"negro",hex:"#1f2937"}
+{en:"Red",es:"rojo",hex:"#ef4444"},
+{en:"Blue",es:"azul",hex:"#3b82f6"},
+{en:"Green",es:"verde",hex:"#22c58b"},
+{en:"Yellow",es:"amarillo",hex:"#fbbf24"},
+{en:"Pink",es:"rosa",hex:"#ff5fa8"},
+{en:"Orange",es:"naranja",hex:"#f97316"},
+{en:"Purple",es:"violeta",hex:"#7c5cff"},
+{en:"Black",es:"negro",hex:"#1f2937"},
+{en:"White",es:"blanco",hex:"#ffffff"},
+{en:"Brown",es:"marrón",hex:"#8b4513"}
 ];
-
-/* ---------- SVG de Boogie (personaje flotante) ---------- */
+​/* SVG de Boogie Premium */
 function boogieSVG(){
-  return '<svg viewBox="0 0 200 200" data-mood="idle" aria-label="Boogie">' +
-    '<defs><radialGradient id="boogBody" cx="35%" cy="30%" r="80%">' +
-    '<stop offset="0%" stop-color="#b79bff"/><stop offset="55%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#5b3fd6"/></radialGradient></defs>' +
-    /* cuerpecito */
-    '<ellipse cx="100" cy="112" rx="72" ry="66" fill="url(#boogBody)"/>' +
-    /* patitas */
-    '<ellipse cx="62" cy="172" rx="16" ry="10" fill="#5b3fd6"/>' +
-    '<ellipse cx="138" cy="172" rx="16" ry="10" fill="#5b3fd6"/>' +
-    /* bracitos */
-    '<ellipse cx="30" cy="118" rx="12" ry="20" fill="#6b4ce0" transform="rotate(-18 30 118)"/>' +
-    '<ellipse cx="170" cy="118" rx="12" ry="20" fill="#6b4ce0" transform="rotate(18 170 118)"/>' +
-    /* cachetes */
-    '<circle cx="58" cy="122" r="9" fill="#ff9ecb" opacity=".7"/>' +
-    '<circle cx="142" cy="122" r="9" fill="#ff9ecb" opacity=".7"/>' +
-    /* ojos (parpadean) */
-    '<g class="blink">' +
-      '<circle cx="76" cy="92" r="15" fill="#fff"/><circle cx="124" cy="92" r="15" fill="#fff"/>' +
-      '<circle cx="79" cy="95" r="7" fill="#2a1e4e"/><circle cx="127" cy="95" r="7" fill="#2a1e4e"/>' +
-      '<circle cx="81" cy="92" r="2.5" fill="#fff"/><circle cx="129" cy="92" r="2.5" fill="#fff"/>' +
-    '</g>' +
-    /* bocas (una visible según data-mood) */
-    '<path class="mouth m-smile" d="M78 128 Q100 148 122 128" stroke="#2a1e4e" stroke-width="5" fill="none" stroke-linecap="round"/>' +
-    '<path class="mouth m-happy" d="M72 124 Q100 160 128 124 Z" fill="#2a1e4e"/><path class="mouth m-happy" d="M82 138 Q100 152 118 138" fill="#ff5fa8"/>' +
-    '<path class="mouth m-sad" d="M78 142 Q100 124 122 142" stroke="#2a1e4e" stroke-width="5" fill="none" stroke-linecap="round"/>' +
-    '<ellipse class="mouth m-open" cx="100" cy="136" rx="16" ry="13" fill="#2a1e4e"/><ellipse class="mouth m-open" cx="100" cy="141" rx="9" ry="5" fill="#ff5fa8"/>' +
-    /* pelito/estrella en la cabeza */
-    '<path d="M100 30 l4 9 10 1 -7 7 2 10 -9 -5 -9 5 2 -10 -7 -7 10 -1 z" fill="#ffd166" transform="translate(0 6)"/>' +
-  '</svg>';
+return '<svg viewBox="0 0 200 200" data-mood="idle" aria-label="Boogie">' +
+'<defs><radialGradient id="boogBody" cx="35%" cy="30%" r="80%">' +
+'<stop offset="0%" stop-color="#b79bff"/><stop offset="55%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#5b3fd6"/></radialGradient></defs>' +
+'<ellipse cx="100" cy="112" rx="72" ry="66" fill="url(#boogBody)"/>' +
+'<ellipse cx="62" cy="172" rx="16" ry="10" fill="#5b3fd6"/>' +
+'<ellipse cx="138" cy="172" rx="16" ry="10" fill="#5b3fd6"/>' +
+'<ellipse cx="30" cy="118" rx="12" ry="20" fill="#6b4ce0" transform="rotate(-18 30 118)"/>' +
+'<ellipse cx="170" cy="118" rx="12" ry="20" fill="#6b4ce0" transform="rotate(18 170 118)"/>' +
+'<circle cx="58" cy="122" r="10" fill="#ff9ecb" opacity=".8"/>' +
+'<circle cx="142" cy="122" r="10" fill="#ff9ecb" opacity=".8"/>' +
+'<g class="blink">' +
+'<circle cx="76" cy="92" r="16" fill="#fff"/><circle cx="124" cy="92" r="16" fill="#fff"/>' +
+'<circle cx="79" cy="95" r="8" fill="#2a1e4e"/><circle cx="127" cy="95" r="8" fill="#2a1e4e"/>' +
+'<circle cx="81" cy="92" r="3" fill="#fff"/><circle cx="129" cy="92" r="3" fill="#fff"/>' +
+'</g>' +
+'<path class="mouth m-smile" d="M78 128 Q100 148 122 128" stroke="#2a1e4e" stroke-width="6" fill="none" stroke-linecap="round"/>' +
+'<path class="mouth m-happy" d="M72 124 Q100 165 128 124 Z" fill="#2a1e4e"/><path class="mouth m-happy" d="M82 138 Q100 152 118 138" fill="#ff5fa8"/>' +
+'<path class="mouth m-sad" d="M78 142 Q100 124 122 142" stroke="#2a1e4e" stroke-width="6" fill="none" stroke-linecap="round"/>' +
+'<ellipse class="mouth m-open" cx="100" cy="136" rx="18" ry="15" fill="#2a1e4e"/><ellipse class="mouth m-open" cx="100" cy="141" rx="10" ry="6" fill="#ff5fa8"/>' +
+'<path d="M100 25 l5 12 12 2 -9 9 3 12 -11 -6 -11 6 3 -12 -9 -9 12 -2 z" fill="#ffd700" transform="translate(0 5)"/>' +
+'</svg>';
 }
-
-/* inyectar Boogie en los tres contenedores */
-["boogieHome","boogieGame","boogieWin"].forEach(function(id){
-  var el = document.getElementById(id);
-  if(el) el.insertAdjacentHTML("afterbegin", boogieSVG());
+​["boogieHome","boogieGame","boogieWin"].forEach(function(id){
+var el = document.getElementById(id);
+if(el) el.insertAdjacentHTML("afterbegin", boogieSVG());
 });
-function setMood(mood){
-  document.querySelectorAll(".boogie-float svg").forEach(function(s){ s.setAttribute("data-mood", mood); });
+​function setMood(mood){
+document.querySelectorAll(".boogie-float svg").forEach(function(s){ s.setAttribute("data-mood", mood); });
 }
-
-/* ---------- MOTOR DE VOZ ---------- */
+​/* MOTOR DE VOZ MEJORADO */
 var voices = [];
 function loadVoices(){
-  if(!("speechSynthesis" in window)) return;
-  voices = window.speechSynthesis.getVoices() || [];
+if(!("speechSynthesis" in window)) return;
+voices = window.speechSynthesis.getVoices() || [];
 }
 if("speechSynthesis" in window){
-  loadVoices();
-  window.speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+window.speechSynthesis.onvoiceschanged = loadVoices;
 }
 function pickVoice(langPrefix){
-  for(var i=0;i<voices.length;i++){
-    if(voices[i].lang && voices[i].lang.toLowerCase().indexOf(langPrefix)===0) return voices[i];
-  }
-  return null;
+for(var i=0;i<voices.length;i++){
+if(voices[i].lang && voices[i].lang.toLowerCase().indexOf(langPrefix)===0) return voices[i];
+}
+return null;
 }
 var talkTimer = null;
 var voiceOK = ("speechSynthesis" in window);
-function speak(text, lang, rate, pitch){
-  if(!voiceOK){ setMood("idle"); return; }
-  if(!text){ setMood("idle"); return; }
-  if(talkTimer){ clearTimeout(talkTimer); talkTimer=null; }
-  function doSpeak(){
-    try{ window.speechSynthesis.cancel(); }catch(e){}
-    setTimeout(function(){
-      try{
-        if(window.speechSynthesis.resume){ try{ window.speechSynthesis.resume(); }catch(e){} }
-        var u = new SpeechSynthesisUtterance(text);
-        u.lang = lang || "es-AR";
-        u.rate = rate || 1;
-        u.pitch = pitch || 1.15;
-        u.volume = 1;
-        var v = pickVoice((lang||"es").slice(0,2));
-        if(v) u.voice = v;
-        setMood("talk");
-        u.onend = function(){ setMood("idle"); };
-        u.onerror = function(){ setMood("idle"); };
-        window.speechSynthesis.speak(u);
-        /* Chrome a veces se traba: segundo impulso si no habla */
-        setTimeout(function(){
-          try{
-            if(window.speechSynthesis.speaking===false && window.speechSynthesis.pending===false){
-              window.speechSynthesis.cancel();
-              var u2 = new SpeechSynthesisUtterance(text);
-              u2.lang = lang||"es-AR"; u2.rate=rate||1; u2.pitch=pitch||1.15;
-              var v2 = pickVoice((lang||"es").slice(0,2)); if(v2) u2.voice=v2;
-              u2.onend=function(){ setMood("idle"); }; u2.onerror=function(){ setMood("idle"); };
-              window.speechSynthesis.speak(u2);
-            }
-          }catch(e){}
-        }, 250);
-        var est = Math.max(1200, text.length * 95);
-        talkTimer = setTimeout(function(){ setMood("idle"); }, est + 1800);
-      }catch(e){ setMood("idle"); }
-    }, 70);
-  }
-  if(voices.length===0){
-    loadVoices();
-    setTimeout(doSpeak, 120);
-  } else {
-    doSpeak();
-  }
+​function speak(text, lang, rate, pitch){
+if(!voiceOK){ setMood("idle"); return; }
+if(!text){ setMood("idle"); return; }
+if(talkTimer){ clearTimeout(talkTimer); talkTimer=null; }
+function doSpeak(){
+try{ window.speechSynthesis.cancel(); }catch(e){}
+setTimeout(function(){
+try{
+var u = new SpeechSynthesisUtterance(text);
+u.lang = lang || "es-AR";
+u.rate = rate || 1;
+u.pitch = pitch || 1.15;
+u.volume = 1;
+var v = pickVoice((lang||"es").slice(0,2));
+if(v) u.voice = v;
+setMood("talk");
+u.onend = function(){ setMood("idle"); };
+u.onerror = function(){ setMood("idle"); };
+window.speechSynthesis.speak(u);
+var est = Math.max(1200, text.length * 95);
+talkTimer = setTimeout(function(){ setMood("idle"); }, est + 1800);
+}catch(e){ setMood("idle"); }
+}, 100);
 }
-/* Boogie habla en castellano (más agudo, infantil) */
-function boogieSay(text, bubbleEl){
-  if(bubbleEl) bubbleEl.textContent = text;
-  speak(text, "es-AR", 1.05, 1.3);
+if(voices.length===0){
+loadVoices(); setTimeout(doSpeak, 150);
+} else { doSpeak(); }
 }
-/* palabra en inglés */
-function speakWord(en){
-  speak(en, "en-US", 0.9, 1.1);
+​function boogieSay(text, bubbleEl){
+if(bubbleEl) bubbleEl.textContent = text;
+speak(text, "es-AR", 1.05, 1.3);
 }
-/* desbloqueo de audio en móvil: primer toque */
-var audioPrimed = false;
+function speakWord(en){ speak(en, "en-US", 0.9, 1.1); }
+​var audioPrimed = false;
 function primeAudio(){
-  if(audioPrimed) return;
-  audioPrimed = true;
-  if("speechSynthesis" in window){
-    try{
-      var u = new SpeechSynthesisUtterance("");
-      window.speechSynthesis.speak(u);
-      window.speechSynthesis.cancel();
-      if(window.speechSynthesis.resume) window.speechSynthesis.resume();
-    }catch(e){}
-  }
+if(audioPrimed) return;
+audioPrimed = true;
+if("speechSynthesis" in window){
+try{
+var u = new SpeechSynthesisUtterance("");
+window.speechSynthesis.speak(u);
+window.speechSynthesis.cancel();
+}catch(e){}
 }
-
-/* ---------- MOTOR DE MICRÓFONO ---------- */
+}
+​/* MOTOR DE MICRÓFONO */
 var SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 var micSupported = !!SR;
 function recognizeWord(targetWord, lang, cb){
-  if(!SR){ cb({ok:false, reason:"no-supported", transcript:""}); return; }
-  var rec;
-  try{ rec = new SR(); }catch(e){ cb({ok:false, reason:"error", transcript:""}); return; }
-  rec.lang = lang || "en-US";
-  rec.interimResults = false;
-  rec.maxAlternatives = 6;
-  var done = false;
-  function finish(res){ if(done) return; done=true; try{ rec.stop(); }catch(e){} cb(res); }
-  rec.onresult = function(ev){
-    var t = ev.results[0] || {};
-    var alts = [];
-    for(var i=0;i<t.length;i++){ alts.push((t[i].transcript||"").toLowerCase().trim()); }
-    var best = alts[0] || "";
-    var target = (targetWord||"").toLowerCase().trim();
-    var match = false;
-    for(var j=0;j<alts.length;j++){
-      if(alts[j]===target || alts[j].indexOf(target)>=0 || target.indexOf(alts[j])>=0){ match=true; break; }
-    }
-    finish({ok:match, reason: match?"ok":"no-match", transcript:best, alts:alts});
-  };
-  rec.onerror = function(ev){ finish({ok:false, reason: ev.error || "error", transcript:""}); };
-  rec.onend = function(){ finish({ok:false, reason:"ended", transcript:""}); };
-  try{ rec.start(); }catch(e){ finish({ok:false, reason:"error", transcript:""}); }
+if(!SR){ cb({ok:false, reason:"no-supported", transcript:""}); return; }
+var rec;
+try{ rec = new SR(); }catch(e){ cb({ok:false, reason:"error", transcript:""}); return; }
+rec.lang = lang || "en-US";
+rec.interimResults = false;
+rec.maxAlternatives = 5;
+var done = false;
+function finish(res){ if(done) return; done=true; try{ rec.stop(); }catch(e){} cb(res); }
+rec.onresult = function(ev){
+var t = ev.results[0] || {};
+var alts = [];
+for(var i=0;i<t.length;i++){ alts.push((t[i].transcript||"").toLowerCase().trim()); }
+var best = alts[0] || "";
+var target = (targetWord||"").toLowerCase().trim();
+var match = false;
+for(var j=0;j<alts.length;j++){
+if(alts[j]===target || alts[j].indexOf(target)>=0 || target.indexOf(alts[j])>=0){ match=true; break; }
 }
-
-/* ---------- PROGRESO (localStorage) ---------- */
-var STORE_KEY = "boogiePro_v1";
+finish({ok:match, reason: match?"ok":"no-match", transcript:best, alts:alts});
+};
+rec.onerror = function(ev){ finish({ok:false, reason: ev.error || "error", transcript:""}); };
+rec.onend = function(){ finish({ok:false, reason:"ended", transcript:""}); };
+try{ rec.start(); }catch(e){ finish({ok:false, reason:"error", transcript:""}); }
+}
+​/* SISTEMA DE PROGRESO PREMIUM */
+var STORE_KEY = "boogiePro_v2_Premium";
 var progress = {};
 try{ progress = JSON.parse(localStorage.getItem(STORE_KEY)||"{}") || {}; }catch(e){ progress={}; }
 function saveProgress(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(progress)); }catch(e){} }
@@ -422,690 +473,689 @@ function starsOf(id){ return progress[id] || 0; }
 function setStars(id, n){ var cur = starsOf(id); if(n>cur){ progress[id]=n; saveProgress(); } }
 function totalStars(){ var s=0; for(var k in progress) s+=progress[k]; return s; }
 function doneCount(){ var c=0; for(var k in progress) if(progress[k]>0) c++; return c; }
-
-/* ---------- CATÁLOGO DE JUEGOS ---------- */
+​/* NUEVOS JUEGOS AGREGADOS A LA LISTA */
 var GAMES = [
-  {id:"letters",  cat:"abc",   em:"🔤", nm:"Letras que hablan", st:"Boogie dice una letra"},
-  {id:"sounds",   cat:"abc",   em:"🎵", nm:"Sonido inicial",    st:"¿Con qué letra empieza?"},
-  {id:"sumar",    cat:"mate",  em:"➕", nm:"Sumas divertidas",  st:"Contá y elegí"},
-  {id:"contar",   cat:"mate",  em:"🔢", nm:"Contar en inglés",  st:"Numbers 1 a 10"},
-  {id:"animal",   cat:"vocab", em:"🐾", nm:"¿Qué animal es?",   st:"Emoji → nombre en inglés"},
-  {id:"flash",    cat:"vocab", em:"🃏", nm:"Tarjetas de vocab", st:"Tocá para escuchar"},
-  {id:"colores",  cat:"en",    em:"🎨", nm:"Colores en inglés", st:"Escuchá y elegí"},
-  {id:"pronuncia",cat:"en",    em:"🎤", nm:"Decilo en inglés",  st:"Usá el micrófono!"},
-  {id:"deletrear",cat:"leer",  em:"🔤", nm:"Deletrear palabras",st:"Ordená las letras"},
-  {id:"leer",     cat:"leer",  em:"📖", nm:"Leé la palabra",    st:"Unir palabra y dibujo"},
-  {id:"memory",   cat:"logic", em:"🧩", nm:"Memoria de emojis", st:"Encontrá los pares"},
-  {id:"simon",    cat:"logic", em:"🔴", nm:"Simón dice",        st:"Repetí la secuencia"}
+{id:"letters",  cat:"abc",   em:"🔤", nm:"Letras Mágicas", st:"Boogie dice una letra"},
+{id:"sounds",   cat:"abc",   em:"🎵", nm:"Sonido Inicial",    st:"¿Con qué letra empieza?"},
+{id:"sumar",    cat:"mate",  em:"➕", nm:"Súper Sumas",  st:"Contá y elegí el número"},
+{id:"restar",   cat:"mate",  em:"➖", nm:"Restas Fáciles",  st:"A quitar objetos"},
+{id:"contar",   cat:"mate",  em:"🔢", nm:"Contar (Inglés)",  st:"Numbers 1 to 10"},
+{id:"animal",   cat:"vocab", em:"🐾", nm:"Adivina Animal",   st:"Emoji → nombre en inglés"},
+{id:"comida",   cat:"vocab", em:"🍎", nm:"Comida Rica",   st:"Aprende foods en inglés"},
+{id:"flash",    cat:"vocab", em:"🃏", nm:"Súper Tarjetas", st:"Tocá para escuchar"},
+{id:"colores",  cat:"en",    em:"🎨", nm:"Colores (Inglés)", st:"Escuchá y elegí"},
+{id:"pronuncia",cat:"en",    em:"🎤", nm:"Decilo en Inglés",  st:"¡Usá el micrófono mágico!"},
+{id:"deletrear",cat:"leer",  em:"🔤", nm:"Constructor",st:"Ordená las letras locas"},
+{id:"leer",     cat:"leer",  em:"📖", nm:"Lector Veloz",    st:"Unir palabra y dibujo"},
+{id:"memory",   cat:"logic", em:"🧩", nm:"Mega Memoria", st:"Encontrá todos los pares"},
+{id:"simon",    cat:"logic", em:"🔴", nm:"Simón Dice",        st:"Repetí la secuencia de colores"},
+{id:"piano",    cat:"art",   em:"🎹", nm:"Piano Boogie",      st:"Tocá música divertida"}
 ];
-
-/* ---------- VISTAS / NAVEGACIÓN ---------- */
-function showView(name){
-  document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("active"); });
-  var el = document.getElementById("view-"+name);
-  if(el) el.classList.add("active");
-  document.querySelectorAll(".bottomnav button").forEach(function(b){
-    b.classList.toggle("active", b.getAttribute("data-goto")===name);
-  });
-  window.scrollTo(0,0);
+​function showView(name){
+document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("active"); });
+var el = document.getElementById("view-"+name);
+if(el) el.classList.add("active");
+document.querySelectorAll(".bottomnav button").forEach(function(b){
+b.classList.toggle("active", b.getAttribute("data-goto")===name);
+});
+window.scrollTo(0,0);
 }
-
-/* ---------- INICIO: grilla de juegos ---------- */
-function renderHome(cat){
-  var grid = document.getElementById("gameGrid");
-  grid.innerHTML = "";
-  GAMES.forEach(function(g){
-    if(cat!=="all" && g.cat!==cat) return;
-    var st = starsOf(g.id);
-    var starsTxt = st>0 ? "⭐".repeat(st) : "";
-    var div = document.createElement("div");
-    div.className = "gcard";
-    div.setAttribute("data-game", g.id);
-    div.innerHTML = '<div class="em">'+g.em+'</div><div class="nm">'+g.nm+'</div><div class="st">'+g.st+'</div><div class="stars">'+starsTxt+'</div>';
-    grid.appendChild(div);
-  });
-  document.getElementById("homeStars").textContent = totalStars();
-  document.getElementById("homeDone").textContent = doneCount();
-  document.getElementById("homeTotal").textContent = GAMES.length;
-  var pct = Math.round(totalStars()/(GAMES.length*3)*100);
-  document.getElementById("homeBar").style.width = Math.min(100,pct)+"%";
+​function renderHome(cat){
+var grid = document.getElementById("gameGrid");
+grid.innerHTML = "";
+GAMES.forEach(function(g){
+if(cat!=="all" && g.cat!==cat) return;
+var st = starsOf(g.id);
+var starsTxt = st>0 ? "⭐".repeat(st) : "";
+var div = document.createElement("div");
+div.className = "gcard";
+div.setAttribute("data-game", g.id);
+div.innerHTML = '<div class="em">'+g.em+'</div><div class="nm">'+g.nm+'</div><div class="st">'+g.st+'</div><div class="stars">'+starsTxt+'</div>';
+grid.appendChild(div);
+});
+document.getElementById("homeStars").textContent = totalStars();
+document.getElementById("homeDone").textContent = doneCount();
+document.getElementById("homeTotal").textContent = GAMES.length;
+var pct = Math.round(totalStars()/(GAMES.length*3)*100);
+document.getElementById("homeBar").style.width = Math.min(100,pct)+"%";
 }
-
-/* ---------- DICCIONARIO ---------- */
-function renderDict(filter){
-  var list = document.getElementById("dictList");
-  list.innerHTML = "";
-  var f = (filter||"").toLowerCase().trim();
-  VOCAB.forEach(function(v){
-    if(f && v.en.toLowerCase().indexOf(f)<0 && v.es.toLowerCase().indexOf(f)<0) return;
-    var d = document.createElement("div");
-    d.className = "dict-item";
-    d.innerHTML = '<div class="em">'+v.em+'</div><div style="flex:1"><div class="en">'+v.en+'</div><div class="ap">se dice: '+v.ap+'</div><div class="es">'+v.es+'</div></div>' +
-      '<button class="spk" data-say-en="'+v.en+'" title="Escuchar">🔊</button>';
-    list.appendChild(d);
-  });
+​function renderDict(filter){
+var list = document.getElementById("dictList");
+list.innerHTML = "";
+var f = (filter||"").toLowerCase().trim();
+VOCAB.forEach(function(v){
+if(f && v.en.toLowerCase().indexOf(f)<0 && v.es.toLowerCase().indexOf(f)<0) return;
+var d = document.createElement("div");
+d.className = "dict-item";
+d.innerHTML = '<div class="em">'+v.em+'</div><div style="flex:1"><div class="en">'+v.en+'</div><div class="ap">se dice: '+v.ap+'</div><div class="es">'+v.es+'</div></div>' +
+'<button class="spk" data-say-en="'+v.en+'" title="Escuchar">🔊</button>';
+list.appendChild(d);
+});
 }
-
-/* ---------- TARJETAS IMPRIMIBLES ---------- */
-function renderPrint(){
-  var g = document.getElementById("printGrid");
-  g.innerHTML = "";
-  VOCAB.slice(0,24).forEach(function(v){
-    var c = document.createElement("div");
-    c.className = "print-card";
-    c.innerHTML = '<div class="em">'+v.em+'</div><div class="en">'+v.en+'</div><div class="ap">se dice: '+v.ap+'</div><div class="es">'+v.es+'</div>' +
-      '<button data-say-en="'+v.en+'">🔊 escuchar</button>';
-    g.appendChild(c);
-  });
+​function renderProg(){
+document.getElementById("totStars").textContent = totalStars();
+var max = GAMES.length3;
+var pct = Math.round(totalStars()/max100);
+document.getElementById("progBar").style.width = Math.min(100,pct)+"%";
+document.getElementById("progPct").textContent = pct+"% de la aventura completada";
+var list = document.getElementById("progList");
+list.innerHTML = "";
+GAMES.forEach(function(g){
+var s = starsOf(g.id);
+var row = document.createElement("div");
+row.style.display="flex"; row.style.justifyContent="space-between"; row.style.padding="8px 0"; row.style.borderBottom="2px dashed rgba(124,92,255,0.3)";
+row.innerHTML = '<span>'+g.em+' <b>'+g.nm+'</b></span><span style="font-weight:900; font-size:1.2rem;">'+(s>0?"⭐".repeat(s):"❌")+'</span>';
+list.appendChild(row);
+});
 }
-
-/* ---------- PROGRESO ---------- */
-function renderProg(){
-  document.getElementById("totStars").textContent = totalStars();
-  var max = GAMES.length*3;
-  var pct = Math.round(totalStars()/max*100);
-  document.getElementById("progBar").style.width = Math.min(100,pct)+"%";
-  document.getElementById("progPct").textContent = pct+"% completado";
-  var list = document.getElementById("progList");
-  list.innerHTML = "";
-  GAMES.forEach(function(g){
-    var s = starsOf(g.id);
-    var row = document.createElement("div");
-    row.style.display="flex"; row.style.justifyContent="space-between"; row.style.padding="4px 0";
-    row.innerHTML = '<span>'+g.em+' '+g.nm+'</span><span style="font-weight:800">'+(s>0?"⭐".repeat(s):"—")+'</span>';
-    list.appendChild(row);
-  });
-}
-
-/* ---------- MOTOR DE JUEGO: quiz genérico ---------- */
+​/* GESTIÓN DE JUEGOS */
 var currentGame = null;
 var gameState = {};
-function startGame(id){
-  currentGame = id;
-  gameState = {round:0, correct:0, total:5, locked:false};
-  var g = GAMES.find(function(x){return x.id===id;});
-  document.getElementById("gameTitle").textContent = (g?g.em+" "+g.nm:"Juego");
-  document.getElementById("gameStars").textContent = starsOf(id);
-  showView("game");
-  if(id==="letters")   { gameState.total=5; qLetters(); }
-  else if(id==="sounds"){ gameState.total=5; qSounds(); }
-  else if(id==="sumar") { gameState.total=5; qSumar(); }
-  else if(id==="contar"){ gameState.total=5; qContar(); }
-  else if(id==="animal"){ gameState.total=5; qAnimal(); }
-  else if(id==="colores"){ gameState.total=5; qColores(); }
-  else if(id==="leer")  { gameState.total=5; qLeer(); }
-  else if(id==="flash") { gameFlash(); }
-  else if(id==="pronuncia"){ gameState.total=5; gamePronuncia(); }
-  else if(id==="deletrear"){ gameState.total=4; gameDeletrear(); }
-  else if(id==="memory"){ gameMemory(); }
-  else if(id==="simon"){ gameSimon(); }
+​function startGame(id){
+currentGame = id;
+gameState = {round:0, correct:0, total:5, locked:false};
+var g = GAMES.find(function(x){return x.id===id;});
+document.getElementById("gameTitle").textContent = (g?g.em+" "+g.nm:"Juego");
+document.getElementById("gameStars").textContent = starsOf(id);
+showView("game");
+​if(id==="letters")   { gameState.total=5; qLetters(); }
+else if(id==="sounds"){ gameState.total=5; qSounds(); }
+else if(id==="sumar") { gameState.total=5; qSumar(); }
+else if(id==="restar"){ gameState.total=5; qRestar(); }
+else if(id==="contar"){ gameState.total=5; qContar(); }
+else if(id==="animal"){ gameState.total=5; qAnimal(); }
+else if(id==="comida"){ gameState.total=5; qComida(); }
+else if(id==="colores"){ gameState.total=5; qColores(); }
+else if(id==="leer")  { gameState.total=5; qLeer(); }
+else if(id==="flash") { gameFlash(); }
+else if(id==="pronuncia"){ gameState.total=5; gamePronuncia(); }
+else if(id==="deletrear"){ gameState.total=5; gameDeletrear(); }
+else if(id==="memory"){ gameMemory(); }
+else if(id==="simon"){ gameSimon(); }
+else if(id==="piano"){ gamePiano(); }
 }
-
-function shuffle(arr){
-  var a = arr.slice();
-  for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
-  return a;
+​function shuffle(arr){
+var a = arr.slice();
+for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+return a;
 }
 function pickN(arr,n){ return shuffle(arr).slice(0,n); }
-
-function quizUI(opts){
-  /* opts: {targetEmoji, targetWord, sub, options:[{label,em?,ok}], askText, speakLang} */
-  var area = document.getElementById("gameArea");
-  var html = '<div class="glass center" style="padding:14px">Ronda '+(gameState.round+1)+' de '+gameState.total+' · Aciertos: '+gameState.correct+'</div>';
-  if(opts.targetEmoji) html += '<div class="q-target">'+opts.targetEmoji+'</div>';
-  if(opts.targetWord)  html += '<div class="q-word">'+opts.targetWord+'</div>';
-  if(opts.sub)         html += '<div class="q-sub">'+opts.sub+'</div>';
-  html += '<div class="opts">';
-  opts.options.forEach(function(o,i){
-    html += '<button class="opt" data-idx="'+i+'">'+(o.em?'<span class="em">'+o.em+'</span>':'')+'<span>'+o.label+'</span></button>';
-  });
-  html += '</div><div class="feedback" id="qFeedback"></div>';
-  if(opts.replayText){ html += '<div class="center mt"><button class="btn btn-blue small" id="replayBtn">🔊 Repetir</button></div>'; }
-  area.innerHTML = html;
-  gameState.correctIdx = opts.options.findIndex(function(o){return o.ok;});
-  if(opts.askText){
-    setTimeout(function(){ boogieSay(opts.askText, document.getElementById("gameBubble")); }, 350);
-  }
-  if(opts.replayText){
-    document.getElementById("replayBtn").addEventListener("click", function(){
-      if(opts.speakLang==="en") speakWord(opts.replayText); else speak(opts.replayText, opts.speakLang||"es-AR",1,1.2);
-    });
-  }
+​function quizUI(opts){
+var area = document.getElementById("gameArea");
+var html = '<div class="glass center" style="padding:15px; font-size:1.2rem; font-weight:bold; color:var(--ink); border:2px solid var(--accent)">Ronda '+(gameState.round+1)+' de '+gameState.total+' · Puntos: '+gameState.correct+'</div>';
+if(opts.targetEmoji) html += '<div class="q-target">'+opts.targetEmoji+'</div>';
+if(opts.targetWord)  html += '<div class="q-word">'+opts.targetWord+'</div>';
+if(opts.sub)         html += '<div class="q-sub">'+opts.sub+'</div>';
+html += '<div class="opts">';
+opts.options.forEach(function(o,i){
+html += '<button class="opt" data-idx="'+i+'">'+(o.em?'<span class="em">'+o.em+'</span>':'')+'<span>'+o.label+'</span></button>';
+});
+html += '</div><div style="text-align:center;font-weight:900;font-size:1.5rem;min-height:35px;margin-top:15px;" id="qFeedback"></div>';
+if(opts.replayText){ html += '<div class="center mt"><button class="btn btn-blue big" id="replayBtn">🔊 Escuchar otra vez</button></div>'; }
+area.innerHTML = html;
+gameState.correctIdx = opts.options.findIndex(function(o){return o.ok;});
+if(opts.askText){
+setTimeout(function(){ boogieSay(opts.askText, document.getElementById("gameBubble")); }, 350);
 }
-
-function handleQuizAnswer(idx){
-  if(gameState.locked) return;
-  var btns = document.querySelectorAll("#gameArea .opt");
-  var ok = idx === gameState.correctIdx;
-  gameState.locked = true;
-  btns.forEach(function(b,i){
-    b.disabled = true;
-    if(i===gameState.correctIdx) b.classList.add("ok");
-    else if(i===idx) b.classList.add("bad");
-  });
-  var fb = document.getElementById("qFeedback");
-  if(ok){
-    gameState.correct++;
-    fb.textContent = "¡Excelente! ✅";
-    fb.style.color = "#16a34a";
-    setMood("happy");
-    boogieSay("¡Muy bien! ¡Sos un campeón!", document.getElementById("gameBubble"));
-  } else {
-    fb.textContent = "Casi... era la opción verde ✨";
-    fb.style.color = "#dc2626";
-    setMood("sad");
-    boogieSay("¡Casi! La próxima lo lográs.", document.getElementById("gameBubble"));
-  }
-  setTimeout(function(){
-    gameState.round++;
-    gameState.locked = false;
-    if(gameState.round >= gameState.total){ endGame(); }
-    else { nextRound(); }
-  }, 2200);
+if(opts.replayText){
+document.getElementById("replayBtn").addEventListener("click", function(){
+if(opts.speakLang==="en") speakWord(opts.replayText); else speak(opts.replayText, opts.speakLang||"es-AR",1,1.2);
+});
 }
-
-function endGame(){
-  var c = gameState.correct, t = gameState.total;
-  var stars = c>=t?3 : c>=Math.ceil(t*0.6)?2 : c>0?1:0;
-  if(stars>0) setStars(currentGame, stars);
-  document.getElementById("winStars").textContent = stars>0 ? "⭐".repeat(stars) : "💪";
-  document.getElementById("winTitle").textContent = stars===3?"¡Increíble!":stars>0?"¡Muy bien!":"¡Seguí intentando!";
-  document.getElementById("winText").textContent = "Acertaste "+c+" de "+t+(stars>0?". Ganaste "+stars+" estrella"+(stars>1?"s":"")+"!":". ¡Volvé a intentarlo!");
-  document.getElementById("winOverlay").classList.add("show");
-  setMood("happy");
-  boogieSay(stars>0 ? "¡Felicitaciones! Ganaste estrellas." : "¡No te rindas! Intentá de nuevo.", document.getElementById("gameBubble"));
-  renderHome(document.querySelector("#homeTabs button.active").getAttribute("data-cat"));
 }
-
-function nextRound(){
-  var id = currentGame;
-  if(id==="letters") qLetters();
-  else if(id==="sounds") qSounds();
-  else if(id==="sumar") qSumar();
-  else if(id==="contar") qContar();
-  else if(id==="animal") qAnimal();
-  else if(id==="colores") qColores();
-  else if(id==="leer") qLeer();
+​function handleQuizAnswer(idx){
+if(gameState.locked) return;
+var btns = document.querySelectorAll("#gameArea .opt");
+var ok = idx === gameState.correctIdx;
+gameState.locked = true;
+btns.forEach(function(b,i){
+b.disabled = true;
+if(i=gameState.correctIdx) b.classList.add("ok");
+else if(i=idx) b.classList.add("bad");
+});
+var fb = document.getElementById("qFeedback");
+if(ok){
+gameState.correct++;
+fb.textContent = "¡GENIAL! ✅";
+fb.style.color = "#16a34a";
+setMood("happy");
+boogieSay("¡Muy bien! ¡Sos un genio!", document.getElementById("gameBubble"));
+} else {
+fb.textContent = "¡Uy! Casi... ✨";
+fb.style.color = "#dc2626";
+setMood("sad");
+boogieSay("¡Casi! Yo sé que podés hacerlo mejor.", document.getElementById("gameBubble"));
 }
-
-/* --- quizzes específicos --- */
+setTimeout(function(){
+gameState.round++;
+gameState.locked = false;
+if(gameState.round >= gameState.total){ endGame(); }
+else { nextRound(); }
+}, 2500);
+}
+​function endGame(){
+var c = gameState.correct, t = gameState.total;
+var stars = c>=t?3 : c>=Math.ceil(t*0.6)?2 : c>0?1:0;
+if(stars>0) setStars(currentGame, stars);
+document.getElementById("winStars").textContent = stars>0 ? "⭐".repeat(stars) : "💪";
+document.getElementById("winTitle").textContent = stars===3?"¡PERFECTO!":stars>0?"¡MUY BIEN!":"¡VAMOS OTRA VEZ!";
+document.getElementById("winText").textContent = "Lograste "+c+" de "+t+(stars>0?". ¡Te llevas "+stars+" súper estrella"+(stars>1?"s":"")+"!":". ¡No te rindas!");
+document.getElementById("winOverlay").classList.add("show");
+setMood("happy");
+boogieSay(stars>0 ? "¡Felicitaciones! Eres un ganador." : "¡No te rindas! Intentá de nuevo.", document.getElementById("gameBubble"));
+renderHome(document.querySelector("#homeTabs button.active").getAttribute("data-cat"));
+}
+​function nextRound(){
+var id = currentGame;
+if(id==="letters") qLetters();
+else if(id==="sounds") qSounds();
+else if(id==="sumar") qSumar();
+else if(id==="restar") qRestar();
+else if(id==="contar") qContar();
+else if(id==="animal") qAnimal();
+else if(id==="comida") qComida();
+else if(id==="colores") qColores();
+else if(id==="leer") qLeer();
+}
+​/* LÓGICA DE PREGUNTAS INDIVIDUALES */
 function qLetters(){
-  var target = LETTERS[Math.floor(Math.random()*26)];
-  var opts = pickN(LETTERS.filter(function(l){return l!==target;}),3).concat([target]);
-  quizUI({
-    targetWord: "🔤 ?",
-    sub: "Tocá la letra que dice Boogie",
-    options: shuffle(opts).map(function(l){return {label:l, ok:l===target};}),
-    askText: "Tocá la letra "+target,
-    replayText: target, speakLang:"en"
-  });
+var target = LETTERS[Math.floor(Math.random()*26)];
+var opts = pickN(LETTERS.filter(function(l){return l!target;}),3).concat([target]);
+quizUI({
+targetWord: "🔤 ?",
+sub: "Tocá la letra que dice Boogie",
+options: shuffle(opts).map(function(l){return {label:l, ok:l=target};}),
+askText: "Buscá la letra "+target,
+replayText: target, speakLang:"en"
+});
 }
-function qSounds(){
-  var v = pickN(VOCAB,1)[0];
-  var first = v.en[0].toUpperCase();
-  var others = pickN(LETTERS.filter(function(l){return l!==first;}),3);
-  var opts = others.concat([first]);
-  quizUI({
-    targetEmoji: v.em,
-    targetWord: v.en+" = "+v.es,
-    sub: "¿Con qué letra empieza?",
-    options: shuffle(opts).map(function(l){return {label:l, ok:l===first};}),
-    askText: "¿Con qué letra empieza "+v.en+"?",
-    replayText: v.en, speakLang:"en"
-  });
+​function qSounds(){
+var v = pickN(VOCAB,1)[0];
+var first = v.en[0].toUpperCase();
+var others = pickN(LETTERS.filter(function(l){return l!first;}),3);
+var opts = others.concat([first]);
+quizUI({
+targetEmoji: v.em,
+targetWord: v.en.toUpperCase() + " = " + v.es.toUpperCase(),
+sub: "¿Con qué letra empieza la palabra en inglés?",
+options: shuffle(opts).map(function(l){return {label:l, ok:l=first};}),
+askText: "¿Con qué letra empieza "+v.en+"?",
+replayText: v.en, speakLang:"en"
+});
 }
-function qSumar(){
-  var a = 1+Math.floor(Math.random()*9), b = 1+Math.floor(Math.random()*9);
-  var res = a+b;
-  var wrongs = pickN([res-2,res-1,res+1,res+2,res+3].filter(function(x){return x>0 && x!==res;}),3);
-  var opts = wrongs.concat([res]);
-  quizUI({
-    targetWord: a+" + "+b+" = ?",
-    sub: "¿Cuánto es?",
-    options: shuffle(opts).map(function(x){return {label:String(x), ok:x===res};}),
-    askText: "¿Cuánto es "+a+" más "+b+"?"
-  });
+​function qSumar(){
+var a = 1+Math.floor(Math.random()*5), b = 1+Math.floor(Math.random()*5);
+var res = a+b;
+var wrongs = pickN([res-2,res-1,res+1,res+2,res+3].filter(function(x){return x>0 && x!res;}),3);
+var opts = wrongs.concat([res]);
+quizUI({
+targetWord: a+" + "+b+" = ?",
+sub: "Suma los números",
+options: shuffle(opts).map(function(x){return {label:String(x), ok:x=res};}),
+askText: "¿Cuánto es "+a+" más "+b+"?"
+});
 }
-function qContar(){
-  var n = 1+Math.floor(Math.random()*10);
-  var numWords = ["One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten"];
-  var target = numWords[n-1];
-  var wrongs = pickN(numWords.filter(function(w){return w!==target;}),3);
-  var opts = wrongs.concat([target]);
-  quizUI({
-    targetEmoji: "🔢".repeat(Math.min(n,5)) + (n>5?" +"+(n-5):""),
-    targetWord: n+" ?",
-    sub: "¿Cómo se dice el número en inglés?",
-    options: shuffle(opts).map(function(w){return {label:w, ok:w===target};}),
-    askText: "¿Cómo se dice "+n+" en inglés?",
-    replayText: target, speakLang:"en"
-  });
+​function qRestar(){
+var a = 3+Math.floor(Math.random()7), b = 1+Math.floor(Math.random()(a-1));
+var res = a-b;
+var wrongs = pickN([res-2,res-1,res+1,res+2,res+3].filter(function(x){return x>0 && x!res;}),3);
+var opts = wrongs.concat([res]);
+quizUI({
+targetWord: a+" - "+b+" = ?",
+sub: "Resta los números",
+options: shuffle(opts).map(function(x){return {label:String(x), ok:x=res};}),
+askText: "Si tengo "+a+" y me quitan "+b+", ¿cuánto queda?"
+});
 }
-function qAnimal(){
-  var v = pickN(VOCAB,1)[0];
-  var wrongs = pickN(VOCAB.filter(function(x){return x.en!==v.en;}),3);
-  var opts = wrongs.concat([v]);
-  quizUI({
-    targetEmoji: v.em,
-    sub: "¿Cómo se dice en inglés?",
-    options: shuffle(opts).map(function(x){return {label:x.en, em:x.em, ok:x.en===v.en};}),
-    askText: "¿Cómo se dice "+v.es+" en inglés?",
-    replayText: v.en, speakLang:"en"
-  });
+​function qContar(){
+var n = 1+Math.floor(Math.random()*10);
+var numWords = ["One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten"];
+var target = numWords[n-1];
+var wrongs = pickN(numWords.filter(function(w){return w!target;}),3);
+var opts = wrongs.concat([target]);
+quizUI({
+targetEmoji: "🌟".repeat(Math.min(n,5)) + (n>5?"
+"+"🌟".repeat(n-5):""),
+targetWord: n+" ?",
+sub: "¿Cómo se dice este número en inglés?",
+options: shuffle(opts).map(function(w){return {label:w, ok:w=target};}),
+askText: "¿Cómo se dice "+n+" en inglés?",
+replayText: target, speakLang:"en"
+});
 }
-function qColores(){
-  var c = pickN(COLORS,1)[0];
-  var wrongs = pickN(COLORS.filter(function(x){return x.en!==c.en;}),3);
-  var opts = wrongs.concat([c]);
-  quizUI({
-    targetWord: '<span style="color:'+c.hex+'">●</span> ?',
-    sub: "¿Qué color es? (escuchá a Boogie)",
-    options: shuffle(opts).map(function(x){return {label:x.en, ok:x.en===c.en};}),
-    askText: "¿Qué color es? "+c.en,
-    replayText: c.en, speakLang:"en"
-  });
+​function qAnimal(){
+var subset = VOCAB.slice(0, 30); // Solo animales aprox
+var v = pickN(subset,1)[0];
+var wrongs = pickN(subset.filter(function(x){return x.en!v.en;}),3);
+var opts = wrongs.concat([v]);
+quizUI({
+targetEmoji: v.em,
+sub: "Elige el nombre correcto en inglés",
+options: shuffle(opts).map(function(x){return {label:x.en, em:x.em, ok:x.en=v.en};}),
+askText: "¿Cómo se dice "+v.es+" en inglés?",
+replayText: v.en, speakLang:"en"
+});
 }
-function qLeer(){
-  var v = pickN(VOCAB,1)[0];
-  var wrongs = pickN(VOCAB.filter(function(x){return x.en!==v.en;}),3);
-  var opts = wrongs.concat([v]);
-  quizUI({
-    targetWord: v.en.toUpperCase(),
-    sub: "¿Qué dibujo coincide con la palabra?",
-    options: shuffle(opts).map(function(x){return {label:x.es, em:x.em, ok:x.en===v.en};}),
-    askText: "Leé la palabra y elegí el dibujo correcto.",
-    replayText: v.en, speakLang:"en"
-  });
+​function qComida(){
+var subset = VOCAB.slice(30, 60); // Solo comidas aprox
+var v = pickN(subset,1)[0];
+var wrongs = pickN(subset.filter(function(x){return x.en!v.en;}),3);
+var opts = wrongs.concat([v]);
+quizUI({
+targetEmoji: v.em,
+sub: "¡Qué rico! ¿Cómo se dice en inglés?",
+options: shuffle(opts).map(function(x){return {label:x.en, em:x.em, ok:x.en=v.en};}),
+askText: "¿Cómo se dice "+v.es+" en inglés?",
+replayText: v.en, speakLang:"en"
+});
 }
-
-/* --- flashcards --- */
+​function qColores(){
+var c = pickN(COLORS,1)[0];
+var wrongs = pickN(COLORS.filter(function(x){return x.en!c.en;}),3);
+var opts = wrongs.concat([c]);
+quizUI({
+targetWord: '<div style="background:'+c.hex+'; width:120px; height:120px; border-radius:50%; margin:0 auto; border:4px solid #fff; box-shadow:0 5px 15px rgba(0,0,0,0.3)"></div>',
+sub: "¿Qué color es este? Escuchá a Boogie",
+options: shuffle(opts).map(function(x){return {label:x.en, ok:x.en=c.en};}),
+askText: "¿Qué color es? "+c.en,
+replayText: c.en, speakLang:"en"
+});
+}
+​function qLeer(){
+var v = pickN(VOCAB,1)[0];
+var wrongs = pickN(VOCAB.filter(function(x){return x.en!v.en;}),3);
+var opts = wrongs.concat([v]);
+quizUI({
+targetWord: v.en.toUpperCase(),
+sub: "¿Qué dibujo es esta palabra?",
+options: shuffle(opts).map(function(x){return {label:x.es, em:x.em, ok:x.en=v.en};}),
+askText: "Lee con cuidado. ¿A qué dibujo pertenece?",
+replayText: v.en, speakLang:"en"
+});
+}
+​/* JUEGOS ESPECIALES */
 function gameFlash(){
-  var area = document.getElementById("gameArea");
-  var cards = pickN(VOCAB, 8);
-  var html = '<div class="glass center" style="padding:10px;margin-bottom:10px">Tocá una tarjeta para escuchar la palabra en inglés 🔊</div><div class="fc-grid">';
-  cards.forEach(function(v){
-    html += '<div class="fc" data-say-en="'+v.en+'"><div class="em">'+v.em+'</div><div class="wd">'+v.en+'</div><div class="ap">'+v.ap+' · '+v.es+'</div></div>';
-  });
-  html += '</div><div class="center mt"><button class="btn btn-green big" id="flashDone">¡Terminé! ⭐</button></div>';
-  area.innerHTML = html;
-  boogieSay("Tocá las tarjetas para escuchar cómo se dicen en inglés.", document.getElementById("gameBubble"));
-  document.getElementById("flashDone").addEventListener("click", function(){
-    gameState.correct = gameState.total; endGame();
-  });
+var area = document.getElementById("gameArea");
+var cards = pickN(VOCAB, 6);
+var html = '<div class="glass center" style="padding:15px;margin-bottom:15px; font-weight:bold;">¡Toca una tarjeta para aprender su sonido! 🔊</div><div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">';
+cards.forEach(function(v){
+html += '<div class="gcard" style="padding:15px;" data-say-en="'+v.en+'"><div class="em" style="font-size:4rem">'+v.em+'</div><div class="nm" style="font-size:1.5rem; color:var(--accent);">'+v.en+'</div><div class="st" style="font-size:1rem; font-weight:bold;">'+v.es+'</div></div>';
+});
+html += '</div><div class="center mt"><button class="btn btn-green big" style="margin-top:20px;" id="flashDone">¡Ya las aprendí! ⭐</button></div>';
+area.innerHTML = html;
+boogieSay("Tocá los dibujos gigantes para escuchar su nombre en inglés.", document.getElementById("gameBubble"));
+document.getElementById("flashDone").addEventListener("click", function(){
+gameState.correct = gameState.total; endGame();
+});
 }
-
-/* --- juego de pronunciación con MICRÓFONO --- */
-function gamePronuncia(){
-  gameState.words = pickN(VOCAB, gameState.total);
-  pronunciaRound();
+​function gamePronuncia(){
+gameState.words = pickN(VOCAB, gameState.total);
+pronunciaRound();
 }
 function pronunciaRound(){
-  var v = gameState.words[gameState.round];
-  var area = document.getElementById("gameArea");
-  var html = '<div class="glass center" style="padding:14px">Ronda '+(gameState.round+1)+' de '+gameState.total+' · Aciertos: '+gameState.correct+'</div>';
-  html += '<div class="read-emoji">'+v.em+'</div>';
-  html += '<div class="read-word">'+v.en.toUpperCase()+'</div>';
-  html += '<div class="q-sub">se dice: '+v.ap+' · '+v.es+'</div>';
-  html += '<div class="center"><button class="btn btn-blue small" id="hearBtn">🔊 Escuchala</button></div>';
-  html += '<div class="mic-status" id="micStatus">'+(micSupported?'Tocá 🎤 y decí la palabra en inglés (si no funciona, usá los botones de abajo)':'Este navegador no soporta micrófono. Usá Chrome/Edge, o jugá con los botones de abajo.')+'</div>';
-  html += '<button class="mic-btn" id="micBtn" '+(micSupported?'':'disabled')+'>🎤</button>';
-  html += '<div class="feedback" id="micFeedback"></div>';
-  html += '<div class="center mt" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' +
-    '<button class="btn btn-green small" id="micSaid">✅ ¡Lo dije bien!</button>' +
-    '<button class="btn btn-ghost small" id="micSkip">⏭️ Saltar</button></div>';
-  area.innerHTML = html;
-  document.getElementById("hearBtn").addEventListener("click", function(){ speakWord(v.en); });
-  boogieSay("Ahora te toca a vos! Decí "+v.en+" en inglés.", document.getElementById("gameBubble"));
-  setTimeout(function(){ speakWord(v.en); }, 1600);
-  var micBtn = document.getElementById("micBtn");
-  if(micSupported){
-    micBtn.addEventListener("click", function(){
-      primeAudio();
-      micBtn.classList.add("rec");
-      document.getElementById("micStatus").textContent = "🎙️ Escuchando... decí la palabra!";
-      recognizeWord(v.en, "en-US", function(res){
-        micBtn.classList.remove("rec");
-        var fb = document.getElementById("micFeedback");
-        var st = document.getElementById("micStatus");
-        if(res.ok){
-          gameState.correct++;
-          st.textContent = "✅ ¡Perfecto! Se escuchó: \""+(res.transcript||v.en)+"\"";
-          st.style.color = "#16a34a";
-          fb.textContent = "¡Excelente pronunciación! ⭐";
-          fb.style.color = "#16a34a";
-          setMood("happy");
-          boogieSay("¡Wow! Lo dijiste perfecto.", document.getElementById("gameBubble"));
-        } else {
-          var reason = res.reason;
-          if(reason==="not-allowed"||reason==="service-not-allowed"||reason==="not-started"){
-            st.textContent = "⚠️ El micrófono está bloqueado. Tocá el candado 🔒 de la barra y permití el micrófono. Podés usar los botones de abajo igual.";
-          } else if(reason==="no-match"){
-            st.textContent = "Se escuchó: \""+(res.transcript||"...")+"\". Escuchá de nuevo y probá otra vez, o tocá \"¡Lo dije bien!\".";
-          } else {
-            st.textContent = "No se escuchó bien. Acercate el micrófono y probá de nuevo, o usá los botones de abajo.";
-          }
-          st.style.color = "#dc2626";
-          fb.textContent = "Escuchá de nuevo 🔊 y repetilo con el micrófono, o decí \"¡Lo dije bien!\"";
-          fb.style.color = "#dc2626";
-          setMood("sad");
-          speakWord(v.en);
-          return; /* no avanzar, dejar reintentar */
-        }
-        setTimeout(function(){
-          gameState.round++;
-          if(gameState.round >= gameState.total){ endGame(); }
-          else { pronunciaRound(); }
-        }, 2200);
-      });
-    });
-  }
-  /* botones manuales: SIEMPRE disponibles, aunque falle el micrófono */
-  function avanzarPronuncia(acierto){
-    if(acierto){
-      gameState.correct++;
-      boogieSay("¡Muy bien! Seguí así.", document.getElementById("gameBubble"));
-      setMood("happy");
-    }
-    gameState.round++;
-    if(gameState.round >= gameState.total){ endGame(); }
-    else { pronunciaRound(); }
-  }
-  document.getElementById("micSaid").addEventListener("click", function(){ avanzarPronuncia(true); });
-  document.getElementById("micSkip").addEventListener("click", function(){ avanzarPronuncia(false); });
+var v = gameState.words[gameState.round];
+var area = document.getElementById("gameArea");
+var html = '<div class="glass center" style="padding:15px; font-weight:bold; color:var(--ink);">Ronda '+(gameState.round+1)+' de '+gameState.total+'</div>';
+html += '<div style="text-align:center; font-size:6rem; filter:drop-shadow(0 5px 10px rgba(0,0,0,0.2)); margin:10px 0;">'+v.em+'</div>';
+html += '<div style="text-align:center; font-size:3rem; font-weight:900; color:var(--accent);">'+v.en.toUpperCase()+'</div>';
+html += '<div class="q-sub" style="font-size:1.3rem;">se dice: '+v.ap+'</div>';
+html += '<div class="center" style="margin:20px 0;"><button class="btn btn-blue big" id="hearBtn">🔊 Escuchar pronunciación</button></div>';
+html += '<div style="text-align:center; font-weight:800; font-size:1.1rem; color:var(--soft);" id="micStatus">'+(micSupported?'¡Toca el micrófono gigante y habla!':'Tu navegador no soporta micrófono. Toca el botón verde.')+'</div>';
+html += '<button class="mic-btn" id="micBtn" '+(micSupported?'':'disabled')+'>🎤</button>';
+html += '<div style="text-align:center; font-weight:900; font-size:1.3rem; margin-top:10px;" id="micFeedback"></div>';
+html += '<div class="center mt" style="display:flex;gap:15px;justify-content:center;flex-direction:column; margin-top:20px;">' +
+'<button class="btn btn-green big" id="micSaid">✅ ¡Ya lo dije bien!</button>' +
+'<button class="btn btn-ghost big" id="micSkip">⏭️ Siguiente palabra</button></div>';
+area.innerHTML = html;
+document.getElementById("hearBtn").addEventListener("click", function(){ speakWord(v.en); });
+boogieSay("¡Tu turno! Hablá fuerte y claro.", document.getElementById("gameBubble"));
+var micBtn = document.getElementById("micBtn");
+if(micSupported){
+micBtn.addEventListener("click", function(){
+primeAudio();
+micBtn.classList.add("rec");
+document.getElementById("micStatus").textContent = "🎙️ ¡TE ESTOY ESCUCHANDO!...";
+recognizeWord(v.en, "en-US", function(res){
+micBtn.classList.remove("rec");
+var fb = document.getElementById("micFeedback");
+var st = document.getElementById("micStatus");
+if(res.ok){
+gameState.correct++;
+st.textContent = "✅ ¡PERFECTO! Escuché: ""+(res.transcript||v.en)+""";
+st.style.color = "#16a34a";
+fb.textContent = "¡Súper Estrella! ⭐";
+fb.style.color = "#16a34a";
+setMood("happy");
+boogieSay("¡Espectacular! Tienes acento perfecto.", document.getElementById("gameBubble"));
+} else {
+st.textContent = "Escuché: ""+(res.transcript||"...")+"". ¡No te preocupes, inténtalo de nuevo!";
+st.style.color = "#dc2626";
+fb.textContent = "Tocá 🔊 para escuchar y probá otra vez.";
+fb.style.color = "#dc2626";
+setMood("sad");
+return;
 }
-
-/* --- deletrear --- */
-function gameDeletrear(){
-  gameState.words = pickN(VOCAB.filter(function(v){return v.en.length<=7;}), gameState.total);
-  deletrearRound();
+setTimeout(function(){
+gameState.round++;
+if(gameState.round >= gameState.total){ endGame(); }
+else { pronunciaRound(); }
+}, 2500);
+});
+});
+}
+function avanzarPronuncia(acierto){
+if(acierto){ gameState.correct++; boogieSay("¡Súper!", document.getElementById("gameBubble")); setMood("happy"); }
+gameState.round++;
+if(gameState.round >= gameState.total){ endGame(); } else { pronunciaRound(); }
+}
+document.getElementById("micSaid").addEventListener("click", function(){ avanzarPronuncia(true); });
+document.getElementById("micSkip").addEventListener("click", function(){ avanzarPronuncia(false); });
+}
+​function gameDeletrear(){
+gameState.words = pickN(VOCAB.filter(function(v){return v.en.length<=6;}), gameState.total);
+deletrearRound();
 }
 function deletrearRound(){
-  var v = gameState.words[gameState.round];
-  var word = v.en.toUpperCase();
-  var letters = shuffle(word.split(""));
-  gameState.spellTarget = word;
-  gameState.spellCurrent = [];
-  var area = document.getElementById("gameArea");
-  var html = '<div class="glass center" style="padding:14px">Ronda '+(gameState.round+1)+' de '+gameState.total+'</div>';
-  html += '<div class="read-emoji">'+v.em+'</div>';
-  html += '<div class="q-sub">'+v.es+' · se dice: '+v.ap+'</div>';
-  html += '<div class="slots" id="spellSlots">';
-  for(var i=0;i<word.length;i++){ html += '<div class="slot" data-pos="'+i+'"></div>'; }
-  html += '</div>';
-  html += '<div class="center" id="spellLetters">';
-  letters.forEach(function(l,i){ html += '<button class="letter" data-letter="'+l+'" data-li="'+i+'">'+l+'</button>'; });
-  html += '</div>';
-  html += '<div class="center mt"><button class="btn btn-blue small" id="spellHear">🔊 Escuchar palabra</button> <button class="btn btn-ghost small" id="spellClear">↩️ Borrar</button></div>';
-  html += '<div class="feedback" id="spellFeedback"></div>';
-  area.innerHTML = html;
-  boogieSay("Ordená las letras para escribir "+v.es+" en inglés.", document.getElementById("gameBubble"));
-  setTimeout(function(){ speakWord(v.en); }, 1500);
-  document.getElementById("spellHear").addEventListener("click", function(){ speakWord(v.en); });
-  document.getElementById("spellClear").addEventListener("click", function(){
-    gameState.spellCurrent = [];
-    document.querySelectorAll("#spellSlots .slot").forEach(function(s){ s.textContent=""; });
-    document.querySelectorAll("#spellLetters .letter").forEach(function(l){ l.classList.remove("used"); });
-  });
-  document.querySelectorAll("#spellLetters .letter").forEach(function(btn){
-    btn.addEventListener("click", function(){
-      if(btn.classList.contains("used")) return;
-      if(gameState.spellCurrent.length >= word.length) return;
-      var pos = gameState.spellCurrent.length;
-      gameState.spellCurrent.push(btn.getAttribute("data-letter"));
-      document.querySelector('#spellSlots .slot[data-pos="'+pos+'"]').textContent = btn.getAttribute("data-letter");
-      btn.classList.add("used");
-      if(gameState.spellCurrent.length === word.length){
-        var typed = gameState.spellCurrent.join("");
-        var fb = document.getElementById("spellFeedback");
-        if(typed === word){
-          gameState.correct++;
-          fb.textContent = "¡Correcto! ✅ "+word;
-          fb.style.color="#16a34a";
-          setMood("happy");
-          boogieSay("¡Lo escribiste perfecto!", document.getElementById("gameBubble"));
-          setTimeout(function(){
-            gameState.round++;
-            if(gameState.round>=gameState.total){ endGame(); } else { deletrearRound(); }
-          }, 2000);
-        } else {
-          fb.textContent = "Casi... era "+word+". ¡Probá de nuevo!";
-          fb.style.color="#dc2626";
-          setMood("sad");
-          setTimeout(function(){
-            gameState.spellCurrent=[];
-            document.querySelectorAll("#spellSlots .slot").forEach(function(s){s.textContent="";});
-            document.querySelectorAll("#spellLetters .letter").forEach(function(l){l.classList.remove("used");});
-            fb.textContent="";
-          }, 1800);
-        }
-      }
-    });
-  });
-}
-
-/* --- memoria --- */
-function gameMemory(){
-  var area = document.getElementById("gameArea");
-  var pairs = pickN(VOCAB, 6);
-  var cards = shuffle(pairs.concat(pairs).map(function(v,i){ return {em:v.em, key:v.en, id:i}; }));
-  gameState.mem = {first:null, matched:0, total:6, locked:false};
-  var html = '<div class="glass center" style="padding:10px;margin-bottom:10px">Encontrá los 6 pares. Tocá una carta para darla vuelta.</div>';
-  html += '<div class="mem-grid" id="memGrid">';
-  cards.forEach(function(c,i){
-    html += '<button class="mem" data-key="'+c.key+'" data-id="'+i+'"><span class="face front">❓</span><span class="face back">'+c.em+'</span></button>';
-  });
-  html += '</div><div class="feedback" id="memFeedback">Pares: 0/6</div>';
-  area.innerHTML = html;
-  boogieSay("Encontrá todos los pares iguales!", document.getElementById("gameBubble"));
-  document.querySelectorAll(".mem").forEach(function(card){
-    card.addEventListener("click", function(){
-      if(gameState.mem.locked) return;
-      if(card.classList.contains("open")||card.classList.contains("done")) return;
-      card.classList.add("open");
-      if(!gameState.mem.first){
-        gameState.mem.first = card; return;
-      }
-      var first = gameState.mem.first;
-      if(first.getAttribute("data-key") === card.getAttribute("data-key")){
-        first.classList.add("done"); card.classList.add("done");
-        gameState.mem.matched++;
-        document.getElementById("memFeedback").textContent = "Pares: "+gameState.mem.matched+"/6 ✨";
-        gameState.mem.first = null;
-        if(gameState.mem.matched >= 6){
-          gameState.correct = gameState.total;
-          setTimeout(function(){ endGame(); }, 900);
-        }
-      } else {
-        gameState.mem.locked = true;
-        setTimeout(function(){
-          first.classList.remove("open"); card.classList.remove("open");
-          gameState.mem.first = null;
-          gameState.mem.locked = false;
-        }, 900);
-      }
-    });
-  });
-}
-
-/* --- simon --- */
-function gameSimon(){
-  var area = document.getElementById("gameArea");
-  area.innerHTML = '<div class="glass center" style="padding:10px;margin-bottom:10px">Mirá la secuencia y repetila. Nivel <span id="simonLevel">1</span></div>' +
-    '<div class="simon" id="simonBoard">' +
-    '<button class="sbtn" data-s="0"></button><button class="sbtn" data-s="1"></button>' +
-    '<button class="sbtn" data-s="2"></button><button class="sbtn" data-s="3"></button></div>' +
-    '<div class="feedback" id="simonFeedback">Preparate...</div>' +
-    '<div class="center mt"><button class="btn btn-blue small" id="simonStart">▶️ Empezar</button></div>';
-  gameState.simon = {seq:[], user:0, level:0, playing:false, timers:[]};
-  boogieSay("Simon dice! Mirá la secuencia y repetila.", document.getElementById("gameBubble"));
-  document.getElementById("simonStart").addEventListener("click", function(){
-    simonNextRound();
-  });
-  document.querySelectorAll(".sbtn").forEach(function(b){
-    b.addEventListener("click", function(){
-      var st = gameState.simon;
-      if(!st.playing) return;
-      var s = parseInt(b.getAttribute("data-s"),10);
-      simonLight(b);
-      if(s === st.seq[st.user]){
-        st.user++;
-        if(st.user >= st.seq.length){
-          st.playing = false;
-          document.getElementById("simonFeedback").textContent = "¡Bien! Nivel "+(st.level+1)+" ✅";
-          setTimeout(simonNextRound, 1200);
-        }
-      } else {
-        st.playing = false;
-        document.getElementById("simonFeedback").textContent = "¡Ups! Llegaste al nivel "+st.level;
-        setMood("sad");
-        gameState.correct = Math.min(gameState.total, st.level);
-        setTimeout(function(){ endGame(); }, 1500);
-      }
-    });
-  });
-}
-function simonLight(btn){
-  btn.classList.add("lit");
-  setTimeout(function(){ btn.classList.remove("lit"); }, 400);
-}
-function simonNextRound(){
-  var st = gameState.simon;
-  st.level++;
-  st.user = 0;
-  st.seq.push(Math.floor(Math.random()*4));
-  document.getElementById("simonLevel").textContent = st.level;
-  document.getElementById("simonFeedback").textContent = "Mirá... 👀";
-  var btns = document.querySelectorAll(".sbtn");
-  var i = 0;
-  function step(){
-    if(i >= st.seq.length){
-      document.getElementById("simonFeedback").textContent = "¡Ahora vos! 🎯";
-      st.playing = true;
-      return;
-    }
-    var b = btns[st.seq[i]];
-    simonLight(b);
-    i++;
-    var t = setTimeout(step, 650);
-    st.timers.push(t);
-  }
-  var t0 = setTimeout(step, 600);
-  st.timers.push(t0);
-}
-
-/* ============================================================
-   EVENTOS GLOBALES (delegación) — todos los botones funcionan
-   ============================================================ */
-document.addEventListener("click", function(ev){
-  primeAudio();
-  var t = ev.target;
-  /* botón de hablar inglés (diccionario / tarjetas / flashcards) */
-  var sayEn = t.closest("[data-say-en]");
-  if(sayEn){ speakWord(sayEn.getAttribute("data-say-en")); return; }
-  /* navegación */
-  var goto = t.closest("[data-goto]");
-  if(goto){
-    var dest = goto.getAttribute("data-goto");
-    if(dest==="home"){ renderHome(document.querySelector("#homeTabs button.active").getAttribute("data-cat")); }
-    if(dest==="dict") renderDict("");
-    if(dest==="prog") renderProg();
-    if(dest==="print") renderPrint();
-    showView(dest);
-    return;
-  }
-  /* tabs de inicio */
-  var tab = t.closest("#homeTabs button");
-  if(tab){
-    document.querySelectorAll("#homeTabs button").forEach(function(b){ b.classList.remove("active"); });
-    tab.classList.add("active");
-    renderHome(tab.getAttribute("data-cat"));
-    return;
-  }
-  /* carta de juego */
-  var gcard = t.closest(".gcard");
-  if(gcard){ startGame(gcard.getAttribute("data-game")); return; }
-  /* opción de quiz */
-  var opt = t.closest("#gameArea .opt");
-  if(opt){ handleQuizAnswer(parseInt(opt.getAttribute("data-idx"),10)); return; }
-  /* tocar a Boogie en inicio → habla */
-  if(t.closest("#boogieHome")){
-    var frases = ["¡Hola! Soy Boogie. ¿Jugamos?","¡Tocá un juego y empezá!","¡Yo te hablo y te escucho!","¡Vamos a aprender inglés juntos!","¡Qué bueno verte! ¿Qué querés jugar?"];
-    boogieSay(frases[Math.floor(Math.random()*frases.length)], document.getElementById("homeBubble"));
-    return;
-  }
-  if(t.closest("#boogieGame")){
-    boogieSay("¡Vamos que se puede!", document.getElementById("gameBubble"));
-    return;
-  }
+var v = gameState.words[gameState.round];
+var word = v.en.toUpperCase();
+var letters = shuffle(word.split(""));
+gameState.spellTarget = word;
+gameState.spellCurrent = [];
+var area = document.getElementById("gameArea");
+var html = '<div class="glass center" style="padding:15px; font-weight:bold;">Armando Palabra '+(gameState.round+1)+' de '+gameState.total+'</div>';
+html += '<div style="text-align:center; font-size:5rem; filter:drop-shadow(0 5px 10px rgba(0,0,0,0.2)); margin:10px 0;">'+v.em+'</div>';
+html += '<div class="q-sub" style="font-size:1.3rem;">'+v.es.toUpperCase()+'</div>';
+html += '<div class="slots" id="spellSlots">';
+for(var i=0;i<word.length;i++){ html += '<div class="slot" data-pos="'+i+'"></div>'; }
+html += '</div>';
+html += '<div class="center" id="spellLetters" style="display:flex; flex-wrap:wrap; justify-content:center;">';
+letters.forEach(function(l,i){ html += '<button class="letter" data-letter="'+l+'" data-li="'+i+'">'+l+'</button>'; });
+html += '</div>';
+html += '<div class="center mt" style="display:flex; gap:10px; justify-content:center; margin-top:25px;"><button class="btn btn-blue big" id="spellHear">🔊 Palabra</button> <button class="btn btn-ghost big" id="spellClear">↩️ Borrar Todo</button></div>';
+html += '<div style="text-align:center;font-weight:900;font-size:1.5rem;min-height:35px;margin-top:15px;" id="spellFeedback"></div>';
+area.innerHTML = html;
+boogieSay("Ordená los bloques para escribir la palabra.", document.getElementById("gameBubble"));
+document.getElementById("spellHear").addEventListener("click", function(){ speakWord(v.en); });
+document.getElementById("spellClear").addEventListener("click", function(){
+gameState.spellCurrent = [];
+document.querySelectorAll("#spellSlots .slot").forEach(function(s){ s.textContent=""; });
+document.querySelectorAll("#spellLetters .letter").forEach(function(l){ l.classList.remove("used"); });
 });
-
-/* botones estáticos */
+document.querySelectorAll("#spellLetters .letter").forEach(function(btn){
+btn.addEventListener("click", function(){
+if(btn.classList.contains("used")) return;
+if(gameState.spellCurrent.length >= word.length) return;
+var pos = gameState.spellCurrent.length;
+gameState.spellCurrent.push(btn.getAttribute("data-letter"));
+document.querySelector('#spellSlots .slot[data-pos="'+pos+'"]').textContent = btn.getAttribute("data-letter");
+btn.classList.add("used");
+if(gameState.spellCurrent.length === word.length){
+var typed = gameState.spellCurrent.join("");
+var fb = document.getElementById("spellFeedback");
+if(typed === word){
+gameState.correct++;
+fb.textContent = "¡CORRECTO! ✅";
+fb.style.color="#16a34a";
+setMood("happy");
+boogieSay("¡Sos un constructor experto!", document.getElementById("gameBubble"));
+setTimeout(function(){
+gameState.round++;
+if(gameState.round>=gameState.total){ endGame(); } else { deletrearRound(); }
+}, 2500);
+} else {
+fb.textContent = "¡Uy! Intentemos de nuevo.";
+fb.style.color="#dc2626";
+setMood("sad");
+setTimeout(function(){
+gameState.spellCurrent=[];
+document.querySelectorAll("#spellSlots .slot").forEach(function(s){s.textContent="";});
+document.querySelectorAll("#spellLetters .letter").forEach(function(l){l.classList.remove("used");});
+fb.textContent="";
+}, 2000);
+}
+}
+});
+});
+}
+​function gameMemory(){
+var area = document.getElementById("gameArea");
+var pairs = pickN(VOCAB, 6);
+var cards = shuffle(pairs.concat(pairs).map(function(v,i){ return {em:v.em, key:v.en, id:i}; }));
+gameState.mem = {first:null, matched:0, total:6, locked:false};
+var html = '<div class="glass center" style="padding:15px;margin-bottom:15px;font-weight:bold;font-size:1.2rem;">Mega Memoria: Encuentra las 6 parejas 🧠</div>';
+html += '<div class="mem-grid" id="memGrid">';
+cards.forEach(function(c,i){
+html += '<button class="mem" data-key="'+c.key+'" data-id="'+i+'"><span class="face front">❓</span><span class="face back">'+c.em+'</span></button>';
+});
+html += '</div><div style="text-align:center;font-weight:900;font-size:1.6rem;margin-top:20px;" id="memFeedback">Pares encontrados: 0/6</div>';
+area.innerHTML = html;
+boogieSay("¡Usa tu súper memoria para encontrar las parejas!", document.getElementById("gameBubble"));
+document.querySelectorAll(".mem").forEach(function(card){
+card.addEventListener("click", function(){
+if(gameState.mem.locked) return;
+if(card.classList.contains("open")||card.classList.contains("done")) return;
+card.classList.add("open");
+if(!gameState.mem.first){ gameState.mem.first = card; return; }
+var first = gameState.mem.first;
+if(first.getAttribute("data-key") === card.getAttribute("data-key")){
+first.classList.add("done"); card.classList.add("done");
+gameState.mem.matched++;
+document.getElementById("memFeedback").textContent = "Pares encontrados: "+gameState.mem.matched+"/6 ✨";
+gameState.mem.first = null;
+if(gameState.mem.matched >= 6){
+gameState.correct = gameState.total;
+setTimeout(function(){ endGame(); }, 1200);
+}
+} else {
+gameState.mem.locked = true;
+setTimeout(function(){
+first.classList.remove("open"); card.classList.remove("open");
+gameState.mem.first = null;
+gameState.mem.locked = false;
+}, 1000);
+}
+});
+});
+}
+​function gameSimon(){
+var area = document.getElementById("gameArea");
+area.innerHTML = '<div class="glass center" style="padding:15px;margin-bottom:20px;font-weight:bold;font-size:1.3rem;">Simón Dice - Nivel <span id="simonLevel" style="color:var(--accent);font-size:1.8rem;">1</span></div>' +
+'<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:320px;margin:0 auto;" id="simonBoard">' +
+'<button class="sbtn" data-s="0" style="aspect-ratio:1;border-radius:30px;background:#ef4444;border:none;box-shadow:inset 0 -10px 0 rgba(0,0,0,0.2)"></button>' +
+'<button class="sbtn" data-s="1" style="aspect-ratio:1;border-radius:30px;background:#3b82f6;border:none;box-shadow:inset 0 -10px 0 rgba(0,0,0,0.2)"></button>' +
+'<button class="sbtn" data-s="2" style="aspect-ratio:1;border-radius:30px;background:#fbbf24;border:none;box-shadow:inset 0 -10px 0 rgba(0,0,0,0.2)"></button>' +
+'<button class="sbtn" data-s="3" style="aspect-ratio:1;border-radius:30px;background:#22c58b;border:none;box-shadow:inset 0 -10px 0 rgba(0,0,0,0.2)"></button></div>' +
+'<div style="text-align:center;font-weight:900;font-size:1.8rem;margin-top:25px;" id="simonFeedback">¡Preparate!</div>' +
+'<div class="center mt"><button class="btn btn-gold big" style="margin-top:20px;" id="simonStart">▶️ Toca para Empezar</button></div>';
+gameState.simon = {seq:[], user:0, level:0, playing:false, timers:[]};
+boogieSay("¡Presta mucha atención a las luces!", document.getElementById("gameBubble"));
+document.getElementById("simonStart").addEventListener("click", function(){
+this.style.display = "none";
+simonNextRound();
+});
+document.querySelectorAll(".sbtn").forEach(function(b){
+b.addEventListener("click", function(){
+var st = gameState.simon;
+if(!st.playing) return;
+var s = parseInt(b.getAttribute("data-s"),10);
+b.style.opacity = "1";
+b.style.transform = "scale(1.1)";
+setTimeout(function(){ b.style.opacity = "0.6"; b.style.transform = "scale(1)"; }, 300);
+if(s === st.seq[st.user]){
+st.user++;
+if(st.user >= st.seq.length){
+st.playing = false;
+document.getElementById("simonFeedback").textContent = "¡EXCELENTE! ✅";
+setTimeout(simonNextRound, 1200);
+}
+} else {
+st.playing = false;
+document.getElementById("simonFeedback").textContent = "¡UPS! Llegaste al nivel "+st.level;
+setMood("sad");
+gameState.correct = Math.min(gameState.total, st.level);
+setTimeout(function(){ endGame(); }, 2000);
+}
+});
+});
+}
+​function simonNextRound(){
+var st = gameState.simon;
+st.level++;
+st.user = 0;
+st.seq.push(Math.floor(Math.random()*4));
+document.getElementById("simonLevel").textContent = st.level;
+document.getElementById("simonFeedback").textContent = "Mirá y escuchá... 👀";
+document.querySelectorAll(".sbtn").forEach(function(b){b.style.opacity="0.6";});
+var btns = document.querySelectorAll(".sbtn");
+var i = 0;
+function step(){
+if(i >= st.seq.length){
+document.getElementById("simonFeedback").textContent = "¡TU TURNO! 🎯";
+st.playing = true;
+return;
+}
+var b = btns[st.seq[i]];
+b.style.opacity = "1";
+b.style.transform = "scale(1.1)";
+setTimeout(function(){ b.style.opacity = "0.6"; b.style.transform = "scale(1)"; }, 400);
+i++;
+st.timers.push(setTimeout(step, 800));
+}
+st.timers.push(setTimeout(step, 1000));
+}
+​function gamePiano(){
+var area = document.getElementById("gameArea");
+area.innerHTML = '<div class="glass center" style="padding:15px;margin-bottom:20px;font-weight:bold;font-size:1.3rem;">¡Crea tu propia música! 🎶</div>' +
+'<div style="display:flex; justify-content:center; gap:5px; margin:20px 0;">' +
+'<button class="piano-key" style="width:60px; height:200px; background:white; border:2px solid black; border-radius:0 0 10px 10px; cursor:pointer;" data-note="C"></button>' +
+'<button class="piano-key" style="width:60px; height:200px; background:white; border:2px solid black; border-radius:0 0 10px 10px; cursor:pointer;" data-note="D"></button>' +
+'<button class="piano-key" style="width:60px; height:200px; background:white; border:2px solid black; border-radius:0 0 10px 10px; cursor:pointer;" data-note="E"></button>' +
+'<button class="piano-key" style="width:60px; height:200px; background:white; border:2px solid black; border-radius:0 0 10px 10px; cursor:pointer;" data-note="F"></button>' +
+'<button class="piano-key" style="width:60px; height:200px; background:white; border:2px solid black; border-radius:0 0 10px 10px; cursor:pointer;" data-note="G"></button>' +
+'</div>' +
+'<div class="center"><button class="btn btn-pink big" id="pianoDone">Terminé de tocar ⭐</button></div>';
+boogieSay("Toca las teclas del piano para hacer música.", document.getElementById("gameBubble"));
+document.querySelectorAll(".piano-key").forEach(function(key){
+key.addEventListener("click", function(){
+var note = key.getAttribute("data-note");
+key.style.background = "#e2d8ff";
+setTimeout(function(){ key.style.background = "white"; }, 200);
+try{
+var ctx = new (window.AudioContext || window.webkitAudioContext)();
+var osc = ctx.createOscillator();
+var freqs = {C:261.6, D:293.6, E:329.6, F:349.2, G:392.0};
+osc.frequency.value = freqs[note];
+osc.connect(ctx.destination);
+osc.start();
+setTimeout(function(){ osc.stop(); }, 300);
+}catch(e){}
+});
+});
+document.getElementById("pianoDone").addEventListener("click", function(){
+gameState.correct = gameState.total; endGame();
+});
+}
+​/* EVENTOS GLOBALES DE LA APLICACIÓN */
+document.addEventListener("click", function(ev){
+primeAudio();
+var t = ev.target;
+var sayEn = t.closest("[data-say-en]");
+if(sayEn){ speakWord(sayEn.getAttribute("data-say-en")); return; }
+var goto = t.closest("[data-goto]");
+if(goto){
+var dest = goto.getAttribute("data-goto");
+if(dest==="home"){ renderHome(document.querySelector("#homeTabs button.active").getAttribute("data-cat")); }
+if(dest==="dict") renderDict("");
+if(dest==="prog") renderProg();
+showView(dest);
+return;
+}
+var tab = t.closest("#homeTabs button");
+if(tab){
+document.querySelectorAll("#homeTabs button").forEach(function(b){ b.classList.remove("active"); });
+tab.classList.add("active");
+renderHome(tab.getAttribute("data-cat"));
+return;
+}
+var gcard = t.closest(".gcard");
+if(gcard && document.getElementById("view-home").classList.contains("active")){
+startGame(gcard.getAttribute("data-game")); return;
+}
+var opt = t.closest("#gameArea .opt");
+if(opt){ handleQuizAnswer(parseInt(opt.getAttribute("data-idx"),10)); return; }
+​if(t.closest("#boogieHome")){
+var frases = ["¡Hola hola! ¿Listo para la aventura?","¡Toca un juego gigante y empecemos!","¡Yo te enseño y vos te divertís!","¡El inglés es súper fácil!","¡Vamos a ganar muchas estrellas premium!"];
+boogieSay(frases[Math.floor(Math.random()*frases.length)], document.getElementById("homeBubble"));
+return;
+}
+if(t.closest("#boogieGame")){
+boogieSay("¡Concentración total! Tú puedes.", document.getElementById("gameBubble"));
+return;
+}
+});
+​/* BOTONES ESTÁTICOS Y FAB MENU */
 document.getElementById("againBtn").addEventListener("click", function(){
-  document.getElementById("winOverlay").classList.remove("show");
-  startGame(currentGame);
+document.getElementById("winOverlay").classList.remove("show");
+startGame(currentGame);
 });
 document.getElementById("menuBtn").addEventListener("click", function(){
-  document.getElementById("winOverlay").classList.remove("show");
-  renderHome("all");
-  document.querySelectorAll("#homeTabs button").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-cat")==="all"); });
-  showView("home");
+document.getElementById("winOverlay").classList.remove("show");
+renderHome("all");
+document.querySelectorAll("#homeTabs button").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-cat")==="all"); });
+showView("home");
 });
 document.getElementById("resetBtn").addEventListener("click", function(){
-  if(confirm("¿Borrar todo el progreso?")){
-    progress = {}; saveProgress(); renderProg(); renderHome("all");
-    boogieSay("Listo, empezamos de cero!", document.getElementById("homeBubble"));
-    showView("home");
-  }
+if(confirm("¿Estás seguro de borrar todos tus trofeos y estrellas?")){
+progress = {}; saveProgress(); renderProg(); renderHome("all");
+boogieSay("¡Magia! Empezamos una nueva aventura de cero.", document.getElementById("homeBubble"));
+showView("home");
+}
 });
 document.getElementById("dictSearch").addEventListener("input", function(ev){
-  renderDict(ev.target.value);
+renderDict(ev.target.value);
 });
-
-/* ---------- estado de audio + botón de prueba ---------- */
-function updateAudioStatus(){
-  var el = document.getElementById("audioStatus");
-  if(!el) return;
-  var voz = voiceOK ? "✅ Voz: lista" : "❌ Voz: no disponible en este navegador";
-  var mic = micSupported ? "✅ Micrófono: disponible (Chrome/Edge/Safari)" : "⚠️ Micrófono: no disponible (usá Chrome y permití el acceso)";
-  el.innerHTML = voz + "<br>" + mic;
+​/* TEMAS MÁGICOS Y MÚSICA */
+var currentTheme = 0;
+var themes = [
+"linear-gradient(135deg, #ff2e9a 0%, #ffd166 18%, #c026d3 42%, #3b82f6 68%, #22d3ee 85%, #22c58b 100%)", // Def
+"linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)", // Noche/Espacio
+"linear-gradient(135deg, #fceabb 0%, #f8b500 100%)", // Oro/Sol
+"linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%)" // Dulce
+];
+document.getElementById("themeToggle").addEventListener("click", function(){
+currentTheme = (currentTheme + 1) % themes.length;
+document.body.style.background = themes[currentTheme];
+boogieSay("¡Cambio de colores mágicos!", document.getElementById("homeBubble"));
+});
+​document.getElementById("musicToggle").addEventListener("click", function(){
+boogieSay("¡La música se agregará muy pronto en la próxima actualización!", document.getElementById("homeBubble"));
+});
+​function updateAudioStatus(){
+var el = document.getElementById("audioStatus");
+if(!el) return;
+var voz = voiceOK ? "✅ Voz: Súper Lista" : "❌ Voz: Necesitas otro navegador";
+var mic = micSupported ? "✅ Micrófono: Mágico y conectado" : "⚠️ Micrófono: Usa Google Chrome por favor";
+el.innerHTML = voz + "
+" + mic;
 }
-document.getElementById("testAudioBtn").addEventListener("click", function(){
-  primeAudio();
-  updateAudioStatus();
-  boogieSay("¡Prueba de voz! Si me escuchás, la voz funciona perfecto. Ahora vamos a probar el micrófono: tocá el botón grande y decí hola.", document.getElementById("homeBubble"));
-  /* probar micrófono también */
-  if(micSupported){
-    setTimeout(function(){
-      recognizeWord("hola", "es-AR", function(res){
-        var el = document.getElementById("audioStatus");
-        if(res.ok){
-          el.innerHTML = "✅ Voz: funciona<br>✅ Micrófono: funciona (se escuchó: \""+(res.transcript||"hola")+"\")";
-          el.style.color = "#16a34a";
-        } else {
-          el.innerHTML = "✅ Voz: funciona<br>⚠️ Micrófono: no se escuchó bien. Asegurate de permitir el micrófono 🔒 y hablar cerca. Podés jugar igual con los botones.";
-          el.style.color = "#b45309";
-        }
-      });
-    }, 3500);
-  }
+​document.getElementById("testAudioBtn").addEventListener("click", function(){
+primeAudio();
+updateAudioStatus();
+boogieSay("¡HOLA! Si me escuchas, mis parlantes funcionan de maravilla. ¡A jugar!", document.getElementById("homeBubble"));
 });
-
-/* ---------- arranque ---------- */
+​/* INICIO Y CONFIGURACIÓN INICIAL */
 renderHome("all");
 renderDict("");
-renderPrint();
 updateAudioStatus();
 setTimeout(updateAudioStatus, 1500);
-/* saludo inicial de Boogie (tras primer toque, por políticas de audio) */
-var firstTap = false;
+​var firstTap = false;
 document.addEventListener("click", function once(){
-  if(firstTap) return; firstTap = true;
-  setTimeout(function(){
-    boogieSay("¡Hola! Soy Boogie. Tocame y hablo. Elegí un juego para empezar.", document.getElementById("homeBubble"));
-  }, 400);
+if(firstTap) return; firstTap = true;
+setTimeout(function(){
+boogieSay("¡Bienvenido a Boogie Premium! Tócame para escucharme.", document.getElementById("homeBubble"));
+}, 400);
 }, {once:true});
-
-})();
+​})();
 </script>
 </body>
 </html>
