@@ -84,7 +84,7 @@ body{background:#000; background-attachment: fixed;}
 /* ==========================================================================
    PERSONAJE ASTRONAUTA ANIMADO (SVG) · flota, parpadea, habla, vuela como Woody
    ========================================================================== */
-.prof{position:fixed; bottom:15px; right:15px; z-index:60; cursor:pointer; width:150px; height:190px;
+.prof{position:fixed; bottom:10px; right:10px; z-index:60; cursor:pointer; width:110px; height:145px;
     animation:flot 3s ease-in-out infinite; filter:drop-shadow(0 0 35px rgba(34,211,238,.8)) drop-shadow(0 10px 25px rgba(0,0,0,.5));
     transition:transform .3s;}
 .prof:hover{transform:scale(1.12) rotate(-5deg);}
@@ -150,7 +150,7 @@ body{background:#000; background-attachment: fixed;}
    ========================================================================== */
 .ad-slot{
     width:100%;
-    min-height:100px;
+    min-height:60px;
     margin:12px auto;
     display:flex;
     align-items:center;
@@ -254,8 +254,7 @@ body{background:#000; background-attachment: fixed;}
      GOOGLE ADSENSE · BANNER SUPERIOR (728x90 / responsive)
      Pegá acá tu código de AdSense. El alto está reservado.
      ============================================================ -->
-<div class="fixed top-0 left-0 right-0 z-[79000] pointer-events-none">
-    <div class="max-w-5xl mx-auto px-4 pointer-events-auto">
+<div class="relative z-10 max-w-5xl mx-auto px-2 pt-2">
         <!-- GOOGLE ADSENSE SLOT: banner superior responsive (ca-pub + ad-slot)
         <ins class="adsbygoogle ad-banner"
              style="display:block"
@@ -266,11 +265,10 @@ body{background:#000; background-attachment: fixed;}
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         -->
         <div class="ad-slot ad-banner">📢 PUBLICIDAD GOOGLE (banner superior) · espacio reservado</div>
-    </div>
 </div>
 
 <!-- BARRA DE NAVEGACION FLOTANTE SUPERIOR -->
-<div class="fixed left-0 right-0 p-4 z-[80000] flex justify-between items-center pointer-events-none" style="top:120px;">
+<div class="max-w-5xl mx-auto px-2 py-2 flex justify-between items-center gap-2 flex-wrap">
     <div class="vidrio-fino p-2 px-4 pointer-events-auto flex items-center gap-3 cursor-pointer hover:bg-white/10 transition" onclick="mostrarPerfil()">
         <div id="avatarPerfil" class="text-3xl">👦</div>
         <div>
@@ -288,7 +286,7 @@ body{background:#000; background-attachment: fixed;}
 </div>
 
 <!-- CONTENEDOR PRINCIPAL -->
-<div class="max-w-7xl mx-auto px-4 pt-56 pb-32 relative z-10">
+<div class="max-w-7xl mx-auto px-4 pt-4 pb-56 relative z-10">
     <h1 class="tit-neon text-center text-4xl md:text-6xl leading-tight mb-2">🚀 ESPACIO PREMIUM ULTIMATE 🌟</h1>
     <p class="text-center text-lg md:text-xl text-cyan-200 font-bold mb-4">¡Aprende inglés, juega y colecciona mascotas! · 27 juegos 100% GRATIS</p>
 
