@@ -2,366 +2,803 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🚀 Woody Planet · Aprende Jugando (Gratis)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🚀 Zeta Planet · Ultimate Premium Academy</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
-/* CSS SUPER PREMIUM INFANTIL - COLORES VIBRANTES Y 3D */
+/* ==========================================================================
+   VARIABLES GLOBALES Y TEMA SUPER PREMIUM
+   ========================================================================== */
 :root {
-  --bg-space: #0b0914;
-  --c-cyan: #00e5ff; --c-cyan-s: #009eb3;
-  --c-pink: #ff007f; --c-pink-s: #b30059;
-  --c-yellow: #ffea00; --c-yellow-s: #b3a400;
-  --c-green: #00e676; --c-green-s: #00a152;
-  --c-purple: #d500f9; --c-purple-s: #9500ae;
+  --bg-deep: #0a051c;
+  --bg-stars: #160a3a;
+  
+  /* Paleta Candy Neon */
+  --c-cyan: #00e5ff; --c-cyan-d: #009eb3; --c-cyan-glow: rgba(0, 229, 255, 0.6);
+  --c-pink: #ff007f; --c-pink-d: #b30059; --c-pink-glow: rgba(255, 0, 127, 0.6);
+  --c-yellow: #ffea00; --c-yellow-d: #ccbb00; --c-yellow-glow: rgba(255, 234, 0, 0.6);
+  --c-green: #00e676; --c-green-d: #00a152; --c-green-glow: rgba(0, 230, 118, 0.6);
+  --c-purple: #9d00ff; --c-purple-d: #5e0099; --c-purple-glow: rgba(157, 0, 255, 0.6);
+  --c-orange: #ff6a00; --c-orange-d: #b34a00; --c-orange-glow: rgba(255, 106, 0, 0.6);
+  
+  /* Sombras y Cristal */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --shadow-3d: 0 15px 0 rgba(0,0,0,0.3);
 }
 
+/* Reset y Bloqueo de Scroll */
 * { font-family: 'Nunito', sans-serif; box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-html, body { margin: 0; padding: 0; min-height: 100vh; color: #fff; overflow-x: hidden; scroll-behavior: smooth; cursor: default; background: var(--bg-space); }
+html, body { margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden; background: var(--bg-deep); color: #fff; cursor: default; }
 
-/* Vuelo Infinito (Parallax Estrellas) */
-body::before, body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; }
-body::before {
-  background: radial-gradient(circle at 50% 50%, rgba(213, 0, 249, 0.15), transparent 70%),
-              radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.15), transparent 50%);
-}
-.estrellas { position: fixed; top: -100vh; left: 0; width: 100vw; height: 200vh; background-image: radial-gradient(#fff 2px, transparent 2px), radial-gradient(#fff 1px, transparent 1px); background-size: 80px 80px, 40px 40px; background-position: 0 0, 20px 20px; animation: vueloInfinito 20s linear infinite; z-index: -1; opacity: 0.4; }
-@keyframes vueloInfinito { 0% { transform: translateY(0); } 100% { transform: translateY(100vh); } }
+/* ==========================================================================
+   EFECTOS DE FONDO Y ANIMACIONES BASE
+   ========================================================================== */
+#galaxy-bg { position: fixed; inset: 0; z-index: -3; background: radial-gradient(circle at 30% 70%, var(--bg-stars), var(--bg-deep)); }
+.star-layer-1 { position: fixed; width: 200vw; height: 200vh; top: -50vh; left: -50vw; background-image: radial-gradient(#fff 2px, transparent 2px); background-size: 150px 150px; opacity: 0.3; animation: rotarLento 150s linear infinite; z-index: -2; }
+.star-layer-2 { position: fixed; width: 200vw; height: 200vh; top: -50vh; left: -50vw; background-image: radial-gradient(#fff 1.5px, transparent 1.5px); background-size: 100px 100px; opacity: 0.2; animation: rotarLento 100s linear infinite reverse; z-index: -2; }
+@keyframes rotarLento { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* Títulos Gorditos (Estilo Cartoon) */
-.tit-cartoon { font-family: 'Fredoka One', cursive; font-size: clamp(2rem, 6vw, 5rem); color: #fff; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 8px 0 var(--c-purple-s), 0 0 20px var(--c-purple); animation: flotar 3s ease-in-out infinite alternate; }
+/* Títulos con Relieve Mágico */
+.tit-magico { font-family: 'Fredoka One', cursive; text-transform: uppercase; text-shadow: 0 8px 0 rgba(0,0,0,0.4), 0 0 30px rgba(255,255,255,0.4); letter-spacing: 3px; }
 
-/* Contenedores Gigantes (Ocupan toda la pantalla) */
-.caja-gigante { width: 95vw; max-width: 1600px; margin: 0 auto; }
-.vidrio { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 50px; padding: 50px 30px; border: 6px solid rgba(255,255,255,0.2); box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+/* ==========================================================================
+   LAYOUT PRINCIPAL (SINGLE PAGE)
+   ========================================================================== */
+#app-container { display: flex; flex-direction: column; width: 100vw; height: 100vh; position: relative; z-index: 10; }
 
-/* BOTONES FLOTANTES DE COLORES 3D (Burbujas) */
-.btn-3d {
-  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-  padding: 15px 35px; border-radius: 100px; font-family: 'Fredoka One', cursive; font-size: 1.5rem;
-  color: #fff; cursor: pointer; user-select: none; transition: all 0.15s; border: 4px solid rgba(255,255,255,0.4);
-  animation: flotarBtn 4s ease-in-out infinite; text-transform: uppercase; letter-spacing: 1px;
-}
-@keyframes flotarBtn { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+/* Barra Superior de Estado (HUD) */
+#top-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: rgba(0,0,0,0.3); backdrop-filter: blur(25px); border-bottom: 5px solid rgba(255,255,255,0.15); box-shadow: 0 15px 40px rgba(0,0,0,0.6); z-index: 50; }
+.hud-item { display: flex; align-items: center; gap: 15px; }
 
-.btn-cyan { background: var(--c-cyan); box-shadow: 0 10px 0 var(--c-cyan-s), 0 15px 20px rgba(0,0,0,0.4); text-shadow: 0 3px 0 var(--c-cyan-s); }
-.btn-cyan:active { transform: translateY(10px) !important; box-shadow: 0 0 0 var(--c-cyan-s), 0 5px 10px rgba(0,0,0,0.4); }
+.level-badge { background: linear-gradient(135deg, var(--c-yellow), var(--c-orange)); color: #331a00; font-family: 'Fredoka One'; padding: 12px 30px; border-radius: 40px; font-size: 2rem; border: 5px solid #fff; box-shadow: 0 8px 0 var(--c-orange-d), 0 0 25px var(--c-yellow-glow); transition: 0.3s; }
+.level-badge:hover { transform: scale(1.05); }
 
-.btn-pink { background: var(--c-pink); box-shadow: 0 10px 0 var(--c-pink-s), 0 15px 20px rgba(0,0,0,0.4); text-shadow: 0 3px 0 var(--c-pink-s); animation-delay: 0.5s; }
-.btn-pink:active { transform: translateY(10px) !important; box-shadow: 0 0 0 var(--c-pink-s), 0 5px 10px rgba(0,0,0,0.4); }
+/* Barra de Progreso XP */
+.xp-wrapper { flex-grow: 1; max-width: 600px; margin: 0 30px; position: relative; }
+.xp-bar-container { height: 35px; background: rgba(0,0,0,0.6); border-radius: 30px; border: 4px solid rgba(255,255,255,0.4); overflow: hidden; box-shadow: inset 0 5px 15px rgba(0,0,0,0.8); }
+.xp-bar-fill { height: 100%; background: linear-gradient(90deg, var(--c-cyan), var(--c-purple), var(--c-pink)); width: 0%; transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 8px 10px rgba(255,255,255,0.5); position: relative; }
+.xp-bar-fill::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: xpShine 2s infinite; }
+@keyframes xpShine { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-.btn-yellow { background: var(--c-yellow); color: #5a4200; box-shadow: 0 10px 0 var(--c-yellow-s), 0 15px 20px rgba(0,0,0,0.4); text-shadow: 0 2px 0 rgba(255,255,255,0.5); animation-delay: 1s; }
-.btn-yellow:active { transform: translateY(10px) !important; box-shadow: 0 0 0 var(--c-yellow-s), 0 5px 10px rgba(0,0,0,0.4); }
+.coins-badge { background: linear-gradient(135deg, var(--c-purple), var(--c-pink)); color: #fff; padding: 12px 30px; border-radius: 40px; font-size: 2rem; font-family: 'Fredoka One'; border: 5px solid #fff; box-shadow: 0 8px 0 var(--c-purple-d), 0 0 25px var(--c-pink-glow); }
 
-/* Opciones de Juego - Cajas de Colores Mágicas */
-.pal {
-  padding: 40px 20px; border-radius: 40px; font-size: 2.8rem; font-weight: 900; font-family: 'Fredoka One', cursive;
-  cursor: pointer; user-select: none; transition: all 0.15s; background: rgba(255,255,255,0.15);
-  border: 6px solid #fff; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 20px; min-height: 220px; text-align: center; line-height: 1.2;
-  box-shadow: 0 15px 0 rgba(0,0,0,0.3), 0 20px 30px rgba(0,0,0,0.5); position: relative; overflow: hidden;
-}
-.pal::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%); opacity: 0; transition: 0.3s; }
-.pal:hover::before { opacity: 1; transform: scale(1.2); }
-.pal .ico { font-size: 7rem; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.4)); transition: transform 0.2s; }
-.pal:hover { transform: translateY(-5px); background: rgba(255,255,255,0.25); border-color: var(--c-yellow); }
-.pal:hover .ico { transform: scale(1.15) rotate(5deg); }
-.pal:active { transform: translateY(15px); box-shadow: 0 0 0 rgba(0,0,0,0.3), 0 5px 10px rgba(0,0,0,0.5); }
+/* Contenedores de Vistas Dinámicas */
+#main-view { flex-grow: 1; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; width: 100%; }
+.view-section { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.7s; padding: 20px; }
+.view-hidden-left { transform: translateX(-150%) scale(0.7) rotateY(-30deg); opacity: 0; pointer-events: none; }
+.view-hidden-right { transform: translateX(150%) scale(0.7) rotateY(30deg); opacity: 0; pointer-events: none; }
+.view-active { transform: translateX(0) scale(1) rotateY(0deg); opacity: 1; pointer-events: auto; }
 
-/* Feedback Educativo Animado */
-.ok { background: var(--c-green) !important; border-color: #fff !important; box-shadow: 0 15px 0 var(--c-green-s), 0 0 50px var(--c-green) !important; animation: winPop 0.6s !important; }
-.no { background: var(--c-pink) !important; border-color: #fff !important; box-shadow: 0 15px 0 var(--c-pink-s), 0 0 50px var(--c-pink) !important; animation: errorShake 0.5s !important; }
-@keyframes winPop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1) translateY(-20px) rotate(5deg); } }
-@keyframes errorShake { 10%, 90% { transform: translateX(-5px); } 20%, 80% { transform: translateX(10px); } 30%, 50%, 70% { transform: translateX(-20px); } 40%, 60% { transform: translateX(20px); } }
+/* ==========================================================================
+   CARRUSEL 3D DE MUNDOS Y NIVELES
+   ========================================================================== */
+.carousel-wrapper { width: 100%; max-width: 1600px; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.carousel-track { display: flex; gap: 40px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 40px 60px; width: 100%; -webkit-overflow-scrolling: touch; scrollbar-width: none; perspective: 1000px; }
+.carousel-track::-webkit-scrollbar { display: none; }
 
-/* Botón Altavoz (Para Inglés) */
-.bocina { background: var(--c-purple); color: #fff; border: 6px solid #fff; border-radius: 50%; width: 120px; height: 120px; font-size: 5rem; cursor: pointer; box-shadow: 0 12px 0 var(--c-purple-s); transition: all 0.15s; display: flex; align-items: center; justify-content: center; margin: 0 auto; z-index: 10; animation: flotar 3s infinite alternate; }
-.bocina:hover { transform: scale(1.1); }
-.bocina:active { transform: translateY(12px); box-shadow: 0 0 0 var(--c-purple-s); }
+.card-mundo { scroll-snap-align: center; flex: 0 0 auto; width: 340px; height: 450px; border-radius: 50px; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; cursor: pointer; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: 8px solid #fff; background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); backdrop-filter: blur(20px); box-shadow: 0 20px 0 rgba(0,0,0,0.3), 0 30px 60px rgba(0,0,0,0.6); position: relative; overflow: hidden; transform-style: preserve-3d; }
+.card-mundo::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.4) 0%, transparent 70%); opacity: 0; transition: 0.4s; }
+.card-mundo:hover { transform: translateY(-25px) scale(1.08) rotateX(10deg); z-index: 10; }
+.card-mundo:hover::before { opacity: 1; }
+.card-mundo:active { transform: translateY(10px) scale(0.95); box-shadow: 0 5px 0 rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.5); }
 
-/* Profe Astronauta (Woody) */
-.prof-container { position: fixed; bottom: 40px; right: 40px; z-index: 55; cursor: pointer; }
-.prof { font-size: 10rem; filter: drop-shadow(0 20px 30px rgba(0,229,255,0.6)); animation: floatAstronaut 6s ease-in-out infinite; transform-origin: center; }
-.prof-container:hover .prof { animation: hyperSpace 0.5s forwards; }
-@keyframes floatAstronaut { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
-@keyframes hyperSpace { to { transform: scale(1.4) translateY(-60px) rotate(-15deg); filter: drop-shadow(0 40px 50px rgba(255,0,127,1)); } }
+.mundo-ico { font-size: 8rem; filter: drop-shadow(0 15px 20px rgba(0,0,0,0.5)); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); transform: translateZ(50px); }
+.card-mundo:hover .mundo-ico { transform: translateZ(80px) scale(1.2) rotate(15deg); }
+.mundo-tit { font-family: 'Fredoka One'; font-size: 2.8rem; text-align: center; text-shadow: 0 5px 0 rgba(0,0,0,0.5); transform: translateZ(30px); line-height: 1.1; }
+.mundo-desc { font-size: 1.2rem; font-weight: 800; opacity: 0.8; text-align: center; margin-top: 10px; }
 
-/* Globo de Texto GIGANTE y AMIGABLE */
-.globo { position: fixed; bottom: 250px; right: 180px; z-index: 54; max-width: 500px; background: #fff; color: #1e1b4b; padding: 35px 45px; border-radius: 50px 50px 10px 50px; font-weight: 900; font-size: 2.2rem; line-height: 1.3; font-family: 'Fredoka One', cursive; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 8px solid var(--c-cyan); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.globo::after { content: ""; position: absolute; bottom: -28px; right: 50px; border: 28px solid transparent; border-top-color: var(--c-cyan); }
-.globo::before { content: ""; position: absolute; bottom: -18px; right: 56px; border: 18px solid transparent; border-top-color: #fff; z-index: 1; }
-@keyframes popIn { from { opacity: 0; transform: translateY(50px) scale(0.5) rotate(10deg); } }
-
-/* Fuegos Artificiales (Partículas) */
-.fw-particle { position: fixed; border-radius: 50%; pointer-events: none; z-index: 99999; box-shadow: 0 0 20px currentColor; animation: fwAnim 1.2s ease-out forwards; }
-@keyframes fwAnim { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; } }
-
-/* Modales */
-.modal-overlay { position: fixed; inset: 0; background: rgba(11,9,20,0.95); backdrop-filter: blur(25px); z-index: 99000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 20px; }
-.modal-overlay.activo { opacity: 1; pointer-events: auto; }
-
-/* Pestañas / Categorías */
-.tabs-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-bottom: 40px; }
-.tab-btn { padding: 20px 40px; border-radius: 30px; font-family: 'Fredoka One', cursive; font-size: 1.5rem; background: rgba(0,0,0,0.5); border: 4px solid rgba(255,255,255,0.2); color: #fff; cursor: pointer; transition: 0.2s; box-shadow: 0 8px 0 rgba(0,0,0,0.4); }
-.tab-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-5px); box-shadow: 0 13px 0 rgba(0,0,0,0.4); }
+/* Botones de Categoría (Pestañas Inferiores) */
+.cat-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; background: rgba(0,0,0,0.4); padding: 20px 40px; border-radius: 50px; border: 4px solid rgba(255,255,255,0.1); }
+.tab-btn { padding: 15px 35px; border-radius: 40px; font-family: 'Fredoka One'; font-size: 1.6rem; color: #fff; border: 4px solid rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; box-shadow: 0 8px 0 rgba(0,0,0,0.4); text-transform: uppercase; }
+.tab-btn:hover { transform: translateY(-5px); box-shadow: 0 13px 0 rgba(0,0,0,0.4), 0 10px 20px rgba(255,255,255,0.2); }
 .tab-btn:active { transform: translateY(8px); box-shadow: 0 0 0 rgba(0,0,0,0.4); }
-.tab-btn.active { background: var(--c-yellow); color: #5a4200; border-color: #fff; box-shadow: 0 8px 0 var(--c-yellow-s); }
 
+/* ==========================================================================
+   ESTILOS DE JUEGO Y BOTONES GIGANTES 3D
+   ========================================================================== */
+.juego-tit { font-size: clamp(3rem, 6vw, 6rem); text-align: center; margin-bottom: 50px; padding: 0 30px; text-shadow: 0 8px 20px rgba(0,0,0,0.6); max-width: 1400px; line-height: 1.2; }
+.grid-opciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 95%; max-width: 1400px; margin: 0 auto; }
+
+.btn-opcion { background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); border: 8px solid #fff; border-radius: 50px; padding: 40px; font-family: 'Fredoka One'; font-size: 4rem; color: #fff; cursor: pointer; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 20px 0 rgba(0,0,0,0.3), 0 30px 50px rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-height: 250px; position: relative; overflow: hidden; }
+.btn-opcion::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%); opacity: 0; transition: 0.3s; }
+.btn-opcion:hover { transform: translateY(-15px) scale(1.02); background: rgba(255,255,255,0.25); box-shadow: 0 35px 0 rgba(0,0,0,0.4), 0 40px 60px rgba(0,0,0,0.7); }
+.btn-opcion:hover::before { opacity: 1; }
+.btn-opcion:active { transform: translateY(15px); box-shadow: 0 5px 0 rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.5); }
+.btn-opcion .ico { font-size: 8rem; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.5)); transition: 0.3s; }
+.btn-opcion:hover .ico { transform: scale(1.15) rotate(5deg); }
+
+/* Feedback Educativo Fuerte */
+.correct-btn { background: var(--c-green) !important; box-shadow: 0 20px 0 var(--c-green-d), 0 0 80px var(--c-green-glow) !important; animation: popWin 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important; border-color: #fff !important; z-index: 10; }
+.wrong-btn { background: var(--c-pink) !important; box-shadow: 0 10px 0 var(--c-pink-d), 0 0 50px var(--c-pink-glow) !important; opacity: 0.6; transform: scale(0.9) translateY(10px) !important; pointer-events: none; border-color: rgba(255,255,255,0.5) !important; animation: shakeErr 0.5s !important; }
+@keyframes popWin { 0% { transform: scale(1); } 40% { transform: scale(1.2) translateY(-30px) rotate(-3deg); } 100% { transform: scale(1.1) translateY(-15px); } }
+@keyframes shakeErr { 10%, 90% { transform: translateX(-5px) scale(0.9); } 20%, 80% { transform: translateX(10px) scale(0.9); } 30%, 50%, 70% { transform: translateX(-20px) scale(0.9); } 40%, 60% { transform: translateX(20px) scale(0.9); } }
+
+/* Botones de Navegación de Juego */
+.action-bar { position: absolute; top: 30px; left: 30px; right: 30px; display: flex; justify-content: space-between; z-index: 40; pointer-events: none; }
+.btn-volver { pointer-events: auto; background: var(--c-yellow); color: #4a2500; border: 6px solid #fff; border-radius: 60px; padding: 20px 40px; font-family: 'Fredoka One'; font-size: 2.2rem; cursor: pointer; box-shadow: 0 12px 0 var(--c-yellow-d), 0 10px 30px rgba(0,0,0,0.5); transition: 0.2s; display: flex; align-items: center; gap: 15px; }
+.btn-volver:hover { transform: translateY(-5px); box-shadow: 0 17px 0 var(--c-yellow-d), 0 20px 40px rgba(0,0,0,0.6); }
+.btn-volver:active { transform: translateY(12px); box-shadow: 0 0 0 var(--c-yellow-d); }
+
+.bocina-btn { pointer-events: auto; background: var(--c-cyan); color: #fff; box-shadow: 0 12px 0 var(--c-cyan-d), 0 10px 30px rgba(0,0,0,0.5); padding: 20px; border-radius: 50%; width: 100px; height: 100px; display: flex; justify-content: center; align-items: center; font-size: 3.5rem; border: 6px solid #fff; cursor: pointer; transition: 0.2s; animation: pulseGlow 2s infinite; }
+.bocina-btn:hover { transform: scale(1.1) rotate(-10deg); }
+.bocina-btn:active { transform: translateY(12px) scale(0.9); box-shadow: 0 0 0 var(--c-cyan-d); }
+@keyframes pulseGlow { 0%, 100% { box-shadow: 0 12px 0 var(--c-cyan-d), 0 0 20px var(--c-cyan-glow); } 50% { box-shadow: 0 12px 0 var(--c-cyan-d), 0 0 50px var(--c-cyan); } }
+
+/* ==========================================================================
+   MASCOTA ZETA EL ZORRO (SVG) Y GLOBO DE DIÁLOGO
+   ========================================================================== */
+#mascot-container { position: fixed; bottom: 40px; right: 40px; z-index: 100; cursor: pointer; animation: floatMascot 4s ease-in-out infinite; filter: drop-shadow(0 25px 30px rgba(0,0,0,0.7)); }
+@keyframes floatMascot { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-30px) rotate(3deg); } }
+.fire-thrust { transform-origin: top center; animation: thrustAnim 0.05s infinite alternate; }
+@keyframes thrustAnim { from { transform: scaleY(0.7); } to { transform: scaleY(1.4); } }
+
+.zeta-bubble { position: fixed; bottom: 260px; right: 180px; max-width: 550px; background: rgba(255,255,255,0.98); padding: 35px 45px; border-radius: 50px 50px 10px 50px; border: 8px solid var(--c-cyan); font-family: 'Fredoka One'; font-size: 2.2rem; color: #1a0b2e; box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 40px var(--c-cyan-glow); z-index: 99; transform-origin: bottom right; animation: bubblePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); line-height: 1.3; }
+.zeta-bubble::after { content: ''; position: absolute; bottom: -30px; right: 40px; border: 30px solid transparent; border-top-color: var(--c-cyan); border-right-color: var(--c-cyan); }
+.zeta-bubble::before { content: ''; position: absolute; bottom: -15px; right: 48px; border: 18px solid transparent; border-top-color: #fff; border-right-color: #fff; z-index: 1; }
+@keyframes bubblePop { 0% { transform: scale(0) rotate(20deg); opacity: 0; } 100% { transform: scale(1) rotate(0); opacity: 1; } }
+
+/* Efectos de Partículas (Clicks, Fuegos Artificiales) */
+.sparkle { position: absolute; border-radius: 50%; pointer-events: none; animation: sparkAnim 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards; box-shadow: 0 0 15px currentColor; z-index: 99999; }
+@keyframes sparkAnim { 0% { transform: translate(0,0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(720deg); opacity: 0; } }
+
+/* ==========================================================================
+   MODALES PREMIUM (Tienda, Perfil, Premios)
+   ========================================================================== */
+.modal-overlay { position: fixed; inset: 0; background: rgba(5,2,15,0.95); backdrop-filter: blur(30px); z-index: 99000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 20px; }
+.modal-overlay.activo { opacity: 1; pointer-events: auto; }
+.modal-box { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)); border: 6px solid rgba(255,255,255,0.2); border-radius: 60px; padding: 60px; box-shadow: 0 30px 80px rgba(0,0,0,0.8), inset 0 2px 0 rgba(255,255,255,0.3); width: 100%; max-width: 1200px; max-height: 90vh; overflow-y: auto; position: relative; }
+.modal-box::-webkit-scrollbar { width: 15px; } .modal-box::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 10px; } .modal-box::-webkit-scrollbar-thumb { background: var(--c-cyan); border-radius: 10px; }
+
+/* Botones Auxiliares 3D */
+.btn-3d { display: inline-flex; align-items: center; justify-content: center; gap: 15px; padding: 20px 40px; border-radius: 100px; font-family: 'Fredoka One'; font-size: 2.2rem; color: #fff; cursor: pointer; transition: 0.2s; border: 6px solid rgba(255,255,255,0.4); text-transform: uppercase; }
+.btn-pink { background: var(--c-pink); box-shadow: 0 12px 0 var(--c-pink-d), 0 15px 30px rgba(0,0,0,0.5); text-shadow: 0 3px 0 var(--c-pink-d); }
+.btn-pink:active { transform: translateY(12px); box-shadow: 0 0 0 var(--c-pink-d); }
+.btn-cyan { background: var(--c-cyan); box-shadow: 0 12px 0 var(--c-cyan-d), 0 15px 30px rgba(0,0,0,0.5); text-shadow: 0 3px 0 var(--c-cyan-d); }
+.btn-cyan:active { transform: translateY(12px); box-shadow: 0 0 0 var(--c-cyan-d); }
+.btn-yellow { background: var(--c-yellow); color: #4a2500; box-shadow: 0 12px 0 var(--c-yellow-d), 0 15px 30px rgba(0,0,0,0.5); text-shadow: 0 2px 0 rgba(255,255,255,0.5); }
+.btn-yellow:active { transform: translateY(12px); box-shadow: 0 0 0 var(--c-yellow-d); }
+.btn-close { position: absolute; top: 30px; right: 30px; width: 80px; height: 80px; border-radius: 50%; background: #ef4444; border: 6px solid #b91c1c; color: white; font-size: 3rem; font-weight: black; cursor: pointer; box-shadow: 0 8px 0 #991b1b; transition: 0.2s; display: flex; align-items: center; justify-content: center; z-index: 10; }
+.btn-close:active { transform: translateY(8px); box-shadow: 0 0 0 #991b1b; }
+
+/* Media Queries Responsivos */
+@media (max-width: 1024px) {
+  #top-bar { padding: 15px 20px; } .level-badge, .coins-badge { padding: 10px 20px; font-size: 1.5rem; }
+  .card-mundo { width: 300px; height: 400px; padding: 20px; } .mundo-ico { font-size: 6rem; } .mundo-tit { font-size: 2.2rem; }
+  .juego-tit { font-size: 3.5rem; } .btn-opcion { padding: 30px; font-size: 2.8rem; min-height: 200px; } .btn-opcion .ico { font-size: 6rem; }
+  #mascot-container { right: 20px; bottom: 20px; transform: scale(0.8); } .zeta-bubble { right: 120px; bottom: 180px; font-size: 1.6rem; max-width: 400px; padding: 25px; }
+}
 @media (max-width: 768px) {
-  .prof { font-size: 7rem; } .globo { right: 50px; bottom: 180px; font-size: 1.5rem; max-width: 300px; padding: 25px; }
-  .pal { font-size: 1.8rem; min-height: 150px; padding: 20px; border-width: 4px; } .pal .ico { font-size: 5rem; }
-  .btn-3d { font-size: 1.2rem; padding: 12px 25px; } .tit-cartoon { font-size: 2.5rem; }
-  .vidrio { padding: 30px 15px; border-radius: 30px; }
+  .btn-opcion { padding: 20px; font-size: 2rem; min-height: 150px; border-width: 5px; } .btn-opcion .ico { font-size: 4rem; }
+  .action-bar { top: 15px; left: 15px; right: 15px; } .btn-volver { padding: 12px 25px; font-size: 1.5rem; border-width: 4px; } .bocina-btn { width: 70px; height: 70px; font-size: 2.5rem; border-width: 4px; }
+  #mascot-container { transform: scale(0.6); right: 0; bottom: 0; } .zeta-bubble { right: 60px; bottom: 140px; font-size: 1.3rem; max-width: 300px; padding: 15px 20px; }
+  .modal-box { padding: 30px; border-radius: 40px; } .btn-close { width: 60px; height: 60px; font-size: 2rem; top: 15px; right: 15px; }
 }
 </style>
 </head>
 <body>
 
-<div class="estrellas"></div>
+<!-- Fondos Mágicos -->
+<div id="galaxy-bg"></div>
+<div class="star-layer-1"></div>
+<div class="star-layer-2"></div>
 
-<!-- INTRO MAGICO -->
-<div id="intro" class="fixed inset-0 bg-[#0b0914] z-[100000] flex items-center justify-center flex-col transition-opacity duration-1000">
-  <div class="text-[150px] mb-10 drop-shadow-[0_0_60px_rgba(0,229,255,1)] animate-bounce">🚀</div>
-  <div class="tit-cartoon text-center">WOODY PLANET</div>
-  <div class="text-yellow-300 mt-8 font-black text-4xl tracking-widest uppercase drop-shadow-lg font-['Fredoka_One']">Educación Premium Gratis</div>
-  <div class="w-[500px] max-w-[90vw] h-8 bg-white/20 rounded-full mt-16 border-4 border-white/40 p-1"><div class="h-full rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 w-0 transition-all duration-1000 shadow-[0_0_20px_rgba(255,0,127,1)]" id="barraCarga"></div></div>
+<!-- INTRO DE CARGA -->
+<div id="intro" class="fixed inset-0 bg-black z-[100000] flex items-center justify-center flex-col transition-opacity duration-1000">
+  <div class="text-[180px] mb-10 drop-shadow-[0_0_80px_rgba(0,229,255,1)] animate-bounce">🚀</div>
+  <div class="tit-magico text-6xl md:text-9xl text-center text-white">ZETA PLANET</div>
+  <div class="text-yellow-300 mt-8 font-black text-3xl md:text-5xl tracking-[0.3em] uppercase drop-shadow-lg font-['Fredoka_One']">Ultimate Edition</div>
+  <div class="w-[80vw] max-w-[600px] h-10 bg-white/10 rounded-full mt-20 border-6 border-white/40 p-2"><div class="h-full rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 w-0 transition-all duration-[1500ms] shadow-[0_0_30px_rgba(255,0,127,1)]" id="barraCarga"></div></div>
 </div>
 
-<!-- CABECERA GIGANTE -->
-<div class="caja-gigante px-4 py-8 flex justify-between items-center gap-6 flex-wrap relative z-10">
-  <div class="bg-white/10 backdrop-blur-md p-4 px-8 rounded-full border-4 border-white/30 flex items-center gap-6 cursor-pointer shadow-xl hover:bg-white/20 transition-all" onclick="mostrarPerfil()">
-    <div id="avatarPerfil" class="text-7xl bg-white/20 rounded-full w-24 h-24 flex items-center justify-center border-4 border-white/50 shadow-[0_0_25px_rgba(255,255,255,0.5)]">👦</div>
-    <div>
-      <div id="nomP" class="font-black text-white text-3xl font-['Fredoka_One'] tracking-wide">Amigo</div>
-      <div class="text-2xl font-black text-yellow-400 drop-shadow-md mt-1">🪙 <span id="monedasTot">0</span></div>
+<!-- APLICACIÓN PRINCIPAL (SINGLE PAGE) -->
+<div id="app-container">
+  
+  <!-- BARRA DE ESTADO (HUD) -->
+  <div id="top-bar">
+    <div class="hud-item cursor-pointer hover:scale-105 transition-transform" onclick="mostrarPerfil()">
+      <div id="avatarPerfil" class="text-5xl bg-white/20 rounded-full w-20 h-20 flex items-center justify-center border-4 border-white shadow-[0_0_20px_rgba(255,255,255,0.5)]">👦</div>
+      <div class="level-badge" id="lvl-txt">Lvl 1</div>
+    </div>
+    <div class="xp-wrapper">
+      <div class="xp-bar-container"><div class="xp-bar-fill" id="xp-bar"></div></div>
+    </div>
+    <div class="hud-item">
+      <div class="coins-badge">🪙 <span id="coin-txt">0</span></div>
+      <button class="bocina-btn !static !w-16 !h-16 !text-2xl" style="animation:none; pointer-events:auto;" onclick="abrirTienda()">🏪</button>
     </div>
   </div>
-  <div class="flex gap-6 flex-wrap">
-    <button class="btn-3d btn-pink" onclick="verAnuncio()">🎬 +50 Monedas</button>
-    <button class="btn-3d btn-cyan" onclick="abrirTienda()">🏪 Tienda</button>
-    <button class="btn-3d btn-purple" onclick="sonido.toggleMusica()" id="btnMus" style="background:var(--c-purple);box-shadow:0 10px 0 var(--c-purple-s)">🔇 Música</button>
+
+  <!-- ZONA DE VISTAS DINÁMICAS -->
+  <div id="main-view">
+    
+    <!-- VISTA 1: CARRUSEL DE MUNDOS -->
+    <div id="view-menu" class="view-section view-active">
+      <div class="cat-tabs mb-10" id="tabs-categorias">
+        <!-- Pestañas generadas por JS -->
+      </div>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="mundos-carrusel">
+          <!-- Tarjetas generadas por JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- VISTA 2: EL JUEGO -->
+    <div id="view-game" class="view-section view-hidden-right">
+      <div class="action-bar">
+        <button class="btn-volver" onclick="volverMenu()">🔙 Salir</button>
+        <button class="bocina-btn" id="btn-audio-repeat" style="display:none;">🔊</button>
+      </div>
+      <div class="juego-tit tit-magico" id="juego-pregunta"></div>
+      <div class="grid-opciones" id="juego-opciones"></div>
+    </div>
+
   </div>
 </div>
 
-<!-- CONTENEDOR PRINCIPAL JUEGOS (ANCHO COMPLETO) -->
-<div class="caja-gigante px-4 pt-8 pb-56 relative z-10">
-  <div class="tabs-container bg-black/40 p-6 rounded-[40px] border-4 border-white/20 backdrop-blur-xl shadow-2xl" id="cats"></div>
-  <div class="tabs-container mb-16" id="tabs"></div>
-  <div id="juegos" class="vidrio min-h-[700px]"></div>
+<!-- MASCOTA: ZETA EL ZORRO (SVG PURO) -->
+<div id="mascot-container" onclick="zetaSaluda()">
+  <svg width="220" height="280" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+    <g class="fire-thrust">
+      <path d="M70,180 Q100,280 130,180 Z" fill="#ffea00" filter="drop-shadow(0 0 10px #ffea00)"/>
+      <path d="M85,180 Q100,240 115,180 Z" fill="#ff007f"/>
+    </g>
+    <path d="M40,140 Q100,210 160,140 L150,180 Q100,220 50,180 Z" fill="#00e5ff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M50,140 Q100,190 150,140" fill="none" stroke="#fff" stroke-width="6"/>
+    <circle cx="100" cy="160" r="18" fill="#ff007f" stroke="#fff" stroke-width="6"/>
+    <path d="M35,150 L10,200 L50,175 Z" fill="#ff007f" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M165,150 L190,200 L150,175 Z" fill="#ff007f" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+    <g id="zeta-fox">
+      <polygon points="65,70 45,25 85,55" fill="#ff8c00" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+      <polygon points="135,70 155,25 115,55" fill="#ff8c00" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+      <ellipse cx="100" cy="85" rx="50" ry="40" fill="#ff8c00" stroke="#fff" stroke-width="6"/>
+      <path d="M55,85 Q100,130 145,85 Q145,115 100,120 Q55,115 55,85 Z" fill="#fff"/>
+      <circle cx="75" cy="80" r="10" fill="#1a0b2e"/> <circle cx="78" cy="77" r="4" fill="#fff"/>
+      <circle cx="125" cy="80" r="10" fill="#1a0b2e"/> <circle cx="122" cy="77" r="4" fill="#fff"/>
+      <ellipse cx="100" cy="98" rx="6" ry="4" fill="#1a0b2e"/>
+      <!-- Sonrisa -->
+      <path d="M90,105 Q100,112 110,105" fill="none" stroke="#1a0b2e" stroke-width="3" stroke-linecap="round"/>
+      <!-- Casco -->
+      <circle cx="100" cy="80" r="70" fill="rgba(0, 229, 255, 0.2)" stroke="#fff" stroke-width="8"/>
+      <path d="M45,55 Q80,15 130,30" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+    </g>
+  </svg>
+</div>
+<div id="zeta-globo" class="zeta-bubble hidden"></div>
+
+<!-- MODALES -->
+<div id="perfilModal" class="modal-overlay">
+  <div class="modal-box text-center">
+    <button class="btn-close" onclick="cerrarModal('perfilModal')">✕</button>
+    <h2 class="tit-magico text-7xl mb-12">Tu Piloto</h2>
+    <input id="nomPerfil" placeholder="Tu nombre" class="w-full p-8 rounded-[40px] bg-black/60 border-8 border-white/40 text-white text-center text-5xl mb-12 outline-none focus:border-cyan-400 focus:shadow-[0_0_50px_rgba(0,229,255,0.8)] transition-all font-['Fredoka_One']">
+    <div id="avatares" class="grid grid-cols-3 gap-8 mb-14"></div>
+    <button class="btn-3d btn-yellow w-full text-5xl py-8" onclick="guardarPerfil()">✅ Guardar Piloto</button>
+  </div>
 </div>
 
-<!-- PROFE WOODY -->
-<div class="prof-container" onclick="hablarWoody('¡Acá estoy para ayudarte! Toca cualquier juego para empezar.')">
-  <div class="prof" id="prof">👨‍🚀</div>
+<div id="tiendaModal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="btn-close" onclick="cerrarModal('tiendaModal')">✕</button>
+    <h2 class="tit-magico text-7xl mb-12 text-center">🏪 Tienda Mágica</h2>
+    <div class="text-center mb-16 text-5xl font-black text-yellow-400 bg-yellow-400/20 py-8 rounded-[50px] border-8 border-yellow-400/50 shadow-inner font-['Fredoka_One']">Monedas: 🪙 <span id="tiendaMonedas">0</span></div>
+    <h3 class="tit-magico text-5xl text-pink-400 mb-10 text-center">🐾 Mascotas</h3>
+    <div id="tiendaMascotas" class="grid grid-cols-2 lg:grid-cols-4 gap-10 mb-16"></div>
+    <h3 class="tit-magico text-5xl text-cyan-400 mb-10 text-center">👑 Estilo</h3>
+    <div id="tiendaAccesorios" class="grid grid-cols-2 lg:grid-cols-4 gap-10"></div>
+  </div>
 </div>
-<div id="globo" class="globo hidden"></div>
 
-<!-- MODALES PREMIUM -->
-<div id="perfilModal" class="modal-overlay"><div class="vidrio max-w-2xl w-full p-16 text-center"><h2 class="tit-cartoon mb-12">Tu Perfil</h2><input id="nomPerfil" placeholder="Tu nombre" class="w-full p-8 rounded-[40px] bg-black/50 border-8 border-white/30 text-white text-center text-5xl mb-12 outline-none focus:border-cyan-400 focus:shadow-[0_0_40px_rgba(0,229,255,0.6)] transition-all font-['Fredoka_One']"><div id="avatares" class="grid grid-cols-3 gap-8 mb-14"></div><button class="btn-3d btn-green w-full text-5xl py-8" style="background:var(--c-green);box-shadow:0 12px 0 var(--c-green-s)" onclick="guardarPerfil()">✅ Guardar</button></div></div>
-<div id="tiendaModal" class="modal-overlay"><div class="vidrio max-w-6xl w-full p-14 max-h-[90vh] overflow-y-auto"><div class="flex justify-between items-center mb-14"><h2 class="tit-cartoon">🏪 Tienda Mágica</h2><button class="w-20 h-20 rounded-full bg-red-500 text-white hover:bg-red-400 transition-all text-5xl font-black border-8 border-red-700 flex items-center justify-center shadow-[0_8px_0_#991b1b] active:translate-y-2 active:shadow-none" onclick="cerrarModal('tiendaModal')">✕</button></div><div class="text-center mb-16 text-6xl font-black text-yellow-400 bg-yellow-400/20 py-8 rounded-[50px] border-8 border-yellow-400/50 shadow-inner font-['Fredoka_One']">Tus Monedas: 🪙 <span id="tiendaMonedas">0</span></div><div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16"></div><div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-4 gap-10"></div></div></div>
-<div id="premioModal" class="modal-overlay z-[99999]"><div class="vidrio max-w-2xl w-full p-20 text-center"><div id="premioIcono" class="text-[200px] mb-12 drop-shadow-[0_0_60px_rgba(255,255,255,1)] animate-bounce">🎁</div><h2 id="premioTexto" class="tit-cartoon text-yellow-400 mb-16 drop-shadow-xl">¡GANASTE!</h2><button class="btn-3d btn-yellow w-full text-5xl py-8" onclick="cerrarModal('premioModal')">¡Súper!</button></div></div>
+<div id="premioModal" class="modal-overlay z-[99999]">
+  <div class="modal-box text-center !max-w-3xl">
+    <div id="premioIcono" class="text-[250px] mb-12 drop-shadow-[0_0_80px_rgba(255,255,255,1)] animate-bounce">🎁</div>
+    <h2 id="premioTexto" class="tit-magico text-yellow-400 text-7xl mb-16 drop-shadow-xl">¡GANASTE!</h2>
+    <button class="btn-3d btn-cyan w-full text-5xl py-8" onclick="cerrarModal('premioModal')">¡Genial!</button>
+  </div>
+</div>
 
+<!-- ELEMENTO PARA INIT AUDIO -->
+<button id="audio-init" style="display:none;"></button>
 <script>
-// ==========================================
-// CORE: AUDIO, FUEGOS ARTIFICIALES Y VOZ
-// ==========================================
-let runId = 0; 
-const sonido = (() => { let ctx; const ini = () => { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); }; const tono = (f = 440, d = 0.2, t = 'sine', v = 0.1) => { ini(); const o = ctx.createOscillator(), g = ctx.createGain(); o.type = t; o.frequency.value = f; g.gain.value = v; g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + d); o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + d); }; const mel = arr => arr.forEach(([f, d], n) => setTimeout(() => tono(f, d), n * 140)); return { ini, tono, click: () => tono(600, 0.05, 'square', 0.05), ok: () => mel([[523, 0.1], [659, 0.1], [784, 0.15]]), no: () => mel([[300, 0.15], [200, 0.2]]), ganar: () => mel([[523, 0.1], [659, 0.1], [784, 0.1], [1047, 0.3]]), moneda: () => tono(1200, 0.1, 'sine', 0.05), toggleMusica() { ini(); this._m = !this._m; document.getElementById('btnMus').textContent = this._m ? '🔊 Música' : '🔇 Música'; if (this._m) { const n = [261, 329, 392, 523]; let i = 0; const lp = () => { if (!this._m) return; tono(n[i % 4], 0.2, 'triangle', 0.02); i++; this._t = setTimeout(lp, 600); }; lp(); } else clearTimeout(this._t); } }; })(); 
+// ==========================================================================
+// MOTOR DE SISTEMA: AUDIO, VOZ, EFECTOS Y ESTADO
+// ==========================================================================
 
-// Fuegos Artificiales 
+let runId = 0; // Evita fugas de memoria y cruce de callbacks
+
+// Efectos de Partículas (Clicks)
+function crearChispas(x, y, color = '#00e5ff') {
+  for(let i=0; i<20; i++) {
+    const p = document.createElement('div'); p.className = 'sparkle';
+    p.style.left = x + 'px'; p.style.top = y + 'px';
+    p.style.background = color; p.style.width = (Math.random()*15+5)+'px'; p.style.height = p.style.width;
+    const angle = Math.random() * Math.PI * 2; const dist = Math.random() * 200 + 50;
+    p.style.setProperty('--tx', Math.cos(angle)*dist+'px'); p.style.setProperty('--ty', Math.sin(angle)*dist+'px');
+    document.body.appendChild(p); setTimeout(()=>p.remove(), 1200);
+  }
+}
+document.addEventListener('click', (e) => { if(e.isTrusted) crearChispas(e.clientX, e.clientY, '#ffea00'); });
+
+// Fuegos Artificiales para Victorias
 function fuegosArtificiales(x, y) {
-  const colors = ['#00e5ff', '#ff007f', '#ffea00', '#00e676', '#d500f9'];
+  const colors = ['#00e5ff', '#ff007f', '#ffea00', '#00e676', '#9d00ff'];
   const centerX = x || window.innerWidth / 2; const centerY = y || window.innerHeight / 2;
-  for (let i = 0; i < 80; i++) {
-    const p = document.createElement('div'); p.className = 'fw-particle';
-    const size = Math.random() * 20 + 10; p.style.width = size + 'px'; p.style.height = size + 'px';
+  for (let i = 0; i < 100; i++) {
+    const p = document.createElement('div'); p.className = 'sparkle';
+    const size = Math.random() * 25 + 10; p.style.width = size + 'px'; p.style.height = size + 'px';
     p.style.color = colors[Math.floor(Math.random() * colors.length)]; p.style.background = p.style.color;
     p.style.left = centerX + 'px'; p.style.top = centerY + 'px';
-    const angle = Math.random() * Math.PI * 2; const velocity = Math.random() * 400 + 100;
-    p.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
-    p.style.setProperty('--ty', (Math.sin(angle) * velocity + 200) + 'px'); // Gravedad
-    document.body.appendChild(p); setTimeout(() => p.remove(), 1200);
+    const angle = Math.random() * Math.PI * 2; const velocity = Math.random() * 600 + 100;
+    p.style.setProperty('--tx', Math.cos(angle) * velocity + 'px'); p.style.setProperty('--ty', (Math.sin(angle) * velocity + 300) + 'px'); 
+    p.style.animation = 'sparkAnim 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards';
+    document.body.appendChild(p); setTimeout(() => p.remove(), 1500);
   }
 }
 
-document.addEventListener('click', (e) => { sonido.ini(); });
+// Audio Sintetizado
+const AudioSys = (() => {
+  let ctx; let enabled = true;
+  const init = () => { if(!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); };
+  const play = (f, d, t, v) => { if(!enabled) return; init(); const o = ctx.createOscillator(), g = ctx.createGain(); o.type = t; o.frequency.value = f; g.gain.setValueAtTime(v, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + d); o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + d); };
+  return {
+    init,
+    click: () => play(800, 0.05, 'sine', 0.1),
+    win: () => { play(523.2, 0.1, 'triangle', 0.1); setTimeout(()=>play(659.2, 0.1, 'triangle', 0.1), 100); setTimeout(()=>play(1046.5, 0.4, 'triangle', 0.15), 200); },
+    lose: () => { play(300, 0.2, 'sawtooth', 0.1); setTimeout(()=>play(200, 0.4, 'sawtooth', 0.1), 150); },
+    coin: () => play(1200, 0.1, 'sine', 0.05),
+    toggle: () => { enabled = !enabled; return enabled; }
+  };
+})();
+document.body.addEventListener('click', AudioSys.init, {once:true});
 
-// Profesor Woody: Voz y Enseñanza
-function hablarIngles(texto) { try { if (!('speechSynthesis' in window)) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(texto); u.lang = 'en-US'; u.rate = 0.85; u.pitch = 1.1; const v = speechSynthesis.getVoices().find(x => x.lang.startsWith('en')); if (v) u.voice = v; speechSynthesis.speak(u); } catch (e) {} }
-
-function hablarWoody(texto, esIngles = false) { 
-  const g = document.getElementById('globo'); g.textContent = texto; g.classList.remove('hidden'); 
-  clearTimeout(g._t); g._t = setTimeout(() => g.classList.add('hidden'), 5000); 
-  try { 
-    if ('speechSynthesis' in window) { 
-      speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(texto); 
-      if(esIngles) { u.lang = 'en-US'; u.rate = 0.85; u.pitch = 1.1; const v = speechSynthesis.getVoices().find(x => x.lang.startsWith('en')); if (v) u.voice = v; } 
-      else { u.lang = 'es-AR'; u.pitch = 1.3; u.rate = 0.95; }
-      speechSynthesis.speak(u); 
-    } 
-  } catch (e) {} 
+// Voz Empática (Text-To-Speech)
+function hablar(texto, lang = 'es-AR') {
+  try {
+    if(!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(texto);
+    u.lang = lang; u.pitch = 1.4; u.rate = 0.95; // Voz aguda infantil
+    // Intentar buscar voz nativa buena
+    const voices = speechSynthesis.getVoices();
+    if(lang === 'en-US') { const v = voices.find(x => x.lang.startsWith('en') && x.name.includes('Google')); if(v) u.voice = v; }
+    speechSynthesis.speak(u);
+  } catch(e) {}
 }
 
-// Perfil y Tienda
-let PERFIL = { n: "Amigo", a: "👦", p: 0, monedas: 100, inv: [], eqMascota: null, eqAcc: null }; let CA = 0, J = 0;
-const TIENDA = { mascotas: [ { id: 'm1', ico: '🐉', nom: 'Dragón', p: 500 }, { id: 'm2', ico: '🦄', nom: 'Unicornio', p: 800 }, { id: 'm3', ico: '🤖', nom: 'Robot', p: 1200 }, { id: 'm4', ico: '👽', nom: 'Marciano', p: 2000 } ], accesorios: [ { id: 'a1', ico: '👑', nom: 'Corona', p: 300 }, { id: 'a2', ico: '🕶️', nom: 'Gafas', p: 400 }, { id: 'a3', ico: '🎩', nom: 'Galera', p: 500 }, { id: 'a4', ico: '🎓', nom: 'Graduado', p: 600 } ] };
-function guardarPerfil() { const v = document.getElementById('nomPerfil').value.trim(); if (v) PERFIL.n = v; localStorage.setItem('woodyKids', JSON.stringify(PERFIL)); actualizarCabecera(); cerrarModal('perfilModal'); sonido.ok(); } function cargarPerfil() { const s = localStorage.getItem('woodyKids'); if (s) PERFIL = { ...PERFIL, ...JSON.parse(s) }; actualizarCabecera(); } function actualizarCabecera() { document.getElementById('nomP').textContent = PERFIL.n; document.getElementById('monedasTot').textContent = PERFIL.monedas; document.getElementById('avatarPerfil').textContent = PERFIL.a; } function ganarMonedas(c) { PERFIL.monedas += c; localStorage.setItem('woodyKids', JSON.stringify(PERFIL)); actualizarCabecera(); sonido.moneda(); } function mostrarPremio(ico, txt) { document.getElementById('premioIcono').textContent = ico; document.getElementById('premioTexto').textContent = txt; abrirModal('premioModal'); } function abrirModal(id) { document.getElementById(id).classList.add('activo'); sonido.click(); } function cerrarModal(id) { document.getElementById(id).classList.remove('activo'); sonido.click(); } function verAnuncio() { ganarMonedas(50); mostrarPremio('🎬', '¡Genial! +50 Monedas'); }
-function mostrarPerfil() { document.getElementById('nomPerfil').value = PERFIL.n; const avs = ["👦", "👧", "🧑‍🚀", "👽", "🦊", "🐯"]; document.getElementById('avatares').innerHTML = avs.map(a => `<button class="text-[100px] hover:scale-110 transition-transform ${a === PERFIL.a ? 'ring-8 ring-cyan-400 bg-white/20 rounded-[50px]' : ''} p-6" onclick="PERFIL.a='${a}';mostrarPerfil()">${a}</button>`).join(''); abrirModal('perfilModal'); }
-function abrirTienda() { document.getElementById('tiendaMonedas').textContent = PERFIL.monedas; document.getElementById('tiendaMascotas').innerHTML = TIENDA.mascotas.map(m => `<div class="bg-white/10 p-8 rounded-[40px] border-4 border-white/20 text-center"><div class="text-[100px] mb-6">${m.ico}</div><div class="font-['Fredoka_One'] text-3xl text-cyan-300 mb-6">${m.nom}</div><button class="btn-3d btn-yellow w-full text-3xl" onclick="comprar('${m.id}',${m.p})">🪙 ${m.p}</button></div>`).join(''); document.getElementById('tiendaAccesorios').innerHTML = TIENDA.accesorios.map(a => `<div class="bg-white/10 p-8 rounded-[40px] border-4 border-white/20 text-center"><div class="text-[100px] mb-6">${a.ico}</div><div class="font-['Fredoka_One'] text-3xl text-pink-300 mb-6">${a.nom}</div><button class="btn-3d btn-yellow w-full text-3xl" onclick="comprar('${a.id}',${a.p})">🪙 ${a.p}</button></div>`).join(''); abrirModal('tiendaModal'); }
-function comprar(id, p) { if (PERFIL.monedas >= p) { PERFIL.monedas -= p; PERFIL.inv.push(id); localStorage.setItem('woodyKids', JSON.stringify(PERFIL)); actualizarCabecera(); sonido.ganar(); abrirTienda(); mostrarPremio('🛍️', "¡Comprado!"); } else { sonido.no(); hablarWoody("¡Necesitas más monedas! Vamos a jugar para ganar más."); } }
-
-// Utilidades Lógicas
-const mezclar = a => [...a].sort(() => Math.random() - 0.5); 
-const rp = a => a[Math.floor(Math.random() * a.length)]; 
-const ri = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
-function O(correcto, erroneas) { const arr = mezclar([correcto, ...erroneas]); return { opts: arr.map(String), ok: arr.indexOf(String(correcto)) }; }
-
-// ==========================================
-// EL MOTOR DE APRENDIZAJE EMPÁTICO
-// ==========================================
-function quiz({ p, opts, ok, en, ico, pregunta, respuesta, next }) {
-  const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div class="text-center mb-16 text-6xl md:text-8xl font-black font-['Fredoka_One'] leading-tight tracking-wide text-white drop-shadow-[0_10px_0_rgba(0,0,0,0.5)]">${p}</div><div id="qOps" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 w-full mx-auto"></div>`;
-  const c = document.getElementById('qOps'); const myRun = runId;
-  opts.forEach((o, i) => {
-    const b = document.createElement('button'); b.className = 'pal';
-    const icono = ico ? ico[i] : ''; b.innerHTML = (icono ? `<span class="ico">${icono}</span>` : '') + `<span>${o}</span>`;
-    b.onclick = () => {
-      if (myRun !== runId) return; 
-      if (i === ok) { 
-        b.classList.add('ok'); sonido.ok(); fuegosArtificiales(); ganarMonedas(5); 
-        hablarWoody(rp(["¡Bien! ¡Lo lograste!", "¡Excelente, eres genial!", "¡Perfecto! Sigue así."])); 
-        if (en) setTimeout(() => { if (myRun === runId) hablarIngles(en); }, 1500); 
-        setTimeout(() => { if (myRun === runId && next) next(); }, 4000); 
-      }
-      else { 
-        b.classList.add('no'); sonido.no(); 
-        // CORRECCIÓN EMPÁTICA Y EDUCATIVA
-        hablarWoody(`No, vamos, que tú puedes. Yo te ayudo. ${pregunta} es ${respuesta}.`); 
-      }
-    }; c.appendChild(b);
-  });
-  if(pregunta) setTimeout(() => hablarWoody(pregunta), 800);
+let timeoutGlobo;
+function zetaHabla(texto) {
+  const g = document.getElementById('zeta-globo');
+  g.textContent = texto; g.classList.remove('hidden');
+  hablar(texto, 'es-AR');
+  clearTimeout(timeoutGlobo);
+  timeoutGlobo = setTimeout(() => g.classList.add('hidden'), 5000);
 }
-// ==========================================
-// JUEGOS INTERACTIVOS INFANTILES (A PANTALLA COMPLETA)
-// ==========================================
+function zetaSaluda() { AudioSys.click(); crearChispas(window.innerWidth-100, window.innerHeight-100, '#ff007f'); zetaHabla("¡Hola! Soy Zeta, tu piloto espacial. Elige una misión."); }
 
-function jMemoria() {
-  const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div class="text-center mb-14 font-black text-6xl text-cyan-300 font-['Fredoka_One'] drop-shadow-[0_5px_0_rgba(0,0,0,0.5)]">Aciertos: <span id="mPts" class="text-white">0</span> / 6</div><div id="mGrilla" class="grid grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-[1200px] mx-auto"></div><div class="text-center mt-20"><button class="btn-3d btn-yellow text-4xl" onclick="cargarJ()">🔄 Reiniciar Juego</button></div>`;
-  const emojis = ["🚀", "🐶", "🌍", "🍕", "🛸", "👾"]; const arr = mezclar([...emojis, ...emojis]);
-  const gr = document.getElementById('mGrilla'); let sel = [], pts = 0; const myRun = runId;
+// Sistema de Progresión Perfil y Tienda
+let PERFIL = { n: "Amigo", a: "👦", p: 0, monedas: 100, nivel: 1, xp: 0, inv: [], eqMascota: null, eqAcc: null };
+const TIENDA = {
+  mascotas: [ { id: 'm1', ico: '🐉', nom: 'Dragón', p: 500 }, { id: 'm2', ico: '🦄', nom: 'Unicornio', p: 800 }, { id: 'm3', ico: '🤖', nom: 'Robot', p: 1200 }, { id: 'm4', ico: '👽', nom: 'Marciano', p: 2000 } ],
+  accesorios: [ { id: 'a1', ico: '👑', nom: 'Corona', p: 300 }, { id: 'a2', ico: '🕶️', nom: 'Gafas', p: 400 }, { id: 'a3', ico: '🎩', nom: 'Galera', p: 500 }, { id: 'a4', ico: '🎓', nom: 'Graduado', p: 600 } ]
+};
+
+function guardarPerfil() { const v = document.getElementById('nomPerfil').value.trim(); if(v) PERFIL.n = v; localStorage.setItem('zetaPlanet', JSON.stringify(PERFIL)); updateUI(); cerrarModal('perfilModal'); AudioSys.win(); }
+function cargarPerfil() { const s = localStorage.getItem('zetaPlanet'); if(s) PERFIL = { ...PERFIL, ...JSON.parse(s) }; updateUI(); }
+function updateUI() {
+  document.getElementById('nomP').textContent = PERFIL.n;
+  document.getElementById('coin-txt').textContent = PERFIL.monedas;
+  document.getElementById('lvl-txt').textContent = `Lvl ${PERFIL.nivel}`;
+  document.getElementById('avatarPerfil').textContent = PERFIL.a;
   
-  hablarWoody("Encuentra las cartas que son iguales. ¡Concéntrate!");
+  const targetXp = PERFIL.nivel * 50;
+  const pct = Math.min(100, (PERFIL.xp / targetXp) * 100);
+  document.getElementById('xp-bar').style.width = pct + '%';
+}
+function ganarPremio() {
+  PERFIL.monedas += 10; PERFIL.xp += 15; AudioSys.coin();
+  if(PERFIL.xp >= PERFIL.nivel * 50) {
+    PERFIL.nivel++; PERFIL.xp = 0;
+    setTimeout(() => { zetaHabla(`¡SÚPER! Subiste al nivel ${PERFIL.nivel}. ¡Eres una estrella fugaz!`); fuegosArtificiales(); AudioSys.win(); }, 2000);
+  }
+  localStorage.setItem('zetaPlanet', JSON.stringify(PERFIL)); updateUI();
+}
+
+// Funciones UI Generales
+function mostrarPerfil() { document.getElementById('nomPerfil').value = PERFIL.n; const avs = ["👦", "👧", "🧑‍🚀", "👽", "🦊", "🐯"]; document.getElementById('avatares').innerHTML = avs.map(a => `<button class="text-[80px] hover:scale-110 transition-transform ${a === PERFIL.a ? 'ring-8 ring-cyan-400 bg-white/20 rounded-[40px]' : ''} p-6" onclick="PERFIL.a='${a}';mostrarPerfil()">${a}</button>`).join(''); abrirModal('perfilModal'); }
+function abrirTienda() { document.getElementById('tiendaMonedas').textContent = PERFIL.monedas; const renderItem = (i, t) => { const has = PERFIL.inv.includes(i.id); const eq = (t==='m'?PERFIL.eqMascota:PERFIL.eqAcc) === i.id; return `<div class="bg-white/10 p-8 rounded-[40px] border-4 border-white/20 text-center flex flex-col items-center"><div class="text-[100px] mb-6 drop-shadow-xl">${i.ico}</div><div class="tit-magico text-3xl mb-8">${i.nom}</div>${has ? `<button class="btn-3d ${eq?'btn-cyan':'btn-pink'} w-full text-3xl" onclick="equipar('${i.id}','${t}')">${eq?'Puesto':'Equipar'}</button>` : `<button class="btn-3d btn-yellow w-full text-3xl" onclick="comprar('${i.id}',${i.p})">🪙 ${i.p}</button>`}</div>`; }; document.getElementById('tiendaMascotas').innerHTML = TIENDA.mascotas.map(m => renderItem(m,'m')).join(''); document.getElementById('tiendaAccesorios').innerHTML = TIENDA.accesorios.map(a => renderItem(a,'a')).join(''); abrirModal('tiendaModal'); }
+function comprar(id, p) { if(PERFIL.monedas >= p) { PERFIL.monedas -= p; PERFIL.inv.push(id); localStorage.setItem('zetaPlanet', JSON.stringify(PERFIL)); updateUI(); AudioSys.win(); abrirTienda(); zetaHabla("¡Excelente compra!"); } else { AudioSys.lose(); zetaHabla("No tienes suficientes monedas. ¡Juega más!"); } }
+function equipar(id, t) { if(t==='m') PERFIL.eqMascota = PERFIL.eqMascota===id?null:id; else PERFIL.eqAcc = PERFIL.eqAcc===id?null:id; localStorage.setItem('zetaPlanet', JSON.stringify(PERFIL)); updateUI(); AudioSys.click(); abrirTienda(); }
+function abrirModal(id) { document.getElementById(id).classList.add('activo'); AudioSys.click(); }
+function cerrarModal(id) { document.getElementById(id).classList.remove('activo'); AudioSys.click(); }
+
+// ==========================================================================
+// DICCIONARIOS MASIVOS DE APRENDIZAJE
+// ==========================================================================
+const EN_DICT = {
+  animales: [
+    {es:"Perro",en:"Dog",ico:"🐶"},{es:"Gato",en:"Cat",ico:"🐱"},{es:"Pájaro",en:"Bird",ico:"🐦"},{es:"Pez",en:"Fish",ico:"🐟"},
+    {es:"Caballo",en:"Horse",ico:"🐴"},{es:"Vaca",en:"Cow",ico:"🐮"},{es:"León",en:"Lion",ico:"🦁"},{es:"Mono",en:"Monkey",ico:"🐵"},
+    {es:"Elefante",en:"Elephant",ico:"🐘"},{en:"Rabbit",es:"Conejo",ico:"🐰"},{en:"Pig",es:"Cerdo",ico:"🐷"},{en:"Tiger",es:"Tigre",ico:"🐯"},
+    {en:"Bear",es:"Oso",ico:"🐻"},{en:"Frog",es:"Rana",ico:"🐸"},{en:"Duck",es:"Pato",ico:"🦆"},{en:"Turtle",es:"Tortuga",ico:"🐢"}
+  ],
+  comida: [
+    {es:"Manzana",en:"Apple",ico:"🍎"},{es:"Banana",en:"Banana",ico:"🍌"},{es:"Naranja",en:"Orange",ico:"🍊"},{es:"Uva",en:"Grape",ico:"🍇"},
+    {es:"Pan",en:"Bread",ico:"🍞"},{es:"Leche",en:"Milk",ico:"🥛"},{es:"Queso",en:"Cheese",ico:"🧀"},{es:"Pizza",en:"Pizza",ico:"🍕"},
+    {es:"Helado",en:"Ice cream",ico:"🍦"},{es:"Galleta",en:"Cookie",ico:"🍪"},{es:"Huevo",en:"Egg",ico:"🥚"},{es:"Carne",en:"Meat",ico:"🥩"}
+  ],
+  colores: [
+    {es:"Rojo",en:"Red",c:"#ff0000"},{es:"Azul",en:"Blue",c:"#0000ff"},{es:"Verde",en:"Green",c:"#00ff00"},{es:"Amarillo",en:"Yellow",c:"#ffff00"},
+    {es:"Naranja",en:"Orange",c:"#ffa500"},{es:"Violeta",en:"Purple",c:"#800080"},{es:"Rosa",en:"Pink",c:"#ffc0cb"},{es:"Negro",en:"Black",c:"#000000"},
+    {es:"Blanco",en:"White",c:"#ffffff"},{es:"Marrón",en:"Brown",c:"#8b4513"}
+  ],
+  cuerpo: [
+    {es:"Cabeza",en:"Head",ico:"🗣️"},{es:"Ojo",en:"Eye",ico:"👁️"},{es:"Nariz",en:"Nose",ico:"👃"},{es:"Boca",en:"Mouth",ico:"👄"},
+    {es:"Oreja",en:"Ear",ico:"👂"},{es:"Mano",en:"Hand",ico:"✋"},{es:"Pie",en:"Foot",ico:"🦶"},{es:"Brazo",en:"Arm",ico:"💪"}
+  ],
+  numeros: ["Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen"]
+};
+
+// ==========================================================================
+// GENERADORES DE JUEGOS Y LÓGICA EDUCATIVA
+// ==========================================================================
+const utils = {
+  mix: a => [...a].sort(() => Math.random() - 0.5),
+  rp: a => a[Math.floor(Math.random() * a.length)],
+  ri: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+};
+
+// O(correcto, array_erroneas) -> Devuelve opciones mezcladas y el índice de la correcta
+function O(correcta, erroneas) {
+  const mezcladas = utils.mix([correcta, ...erroneas]);
+  return { opts: mezcladas.map(String), okIdx: mezcladas.indexOf(String(correcta)) };
+}
+
+// Objeto contenedor de todas las funciones generadoras de lógica
+const G = {
+  // MATEMÁTICAS
+  sum_facil: () => { 
+    const a = utils.ri(1,5), b = utils.ri(1,5), r = a+b; 
+    const o = O(r, [r+1, Math.max(0,r-1), r+2, r+3].slice(0,3));
+    return { tit: `¿Cuánto es ${a} + ${b}?`, opts: o.opts, ok: o.okIdx, vz: `¿Cuánto es ${a} más ${b}?`, ez: `Te ayudo. Si tienes ${a} y sumas ${b}, son ${r}.` }; 
+  },
+  sum_dificil: () => { 
+    const a = utils.ri(10,30), b = utils.ri(5,20), r = a+b; 
+    const o = O(r, [r+1, r-1, r+10, r-10].slice(0,3));
+    return { tit: `¿Cuánto es ${a} + ${b}?`, opts: o.opts, ok: o.okIdx, vz: `¿Cuánto es ${a} más ${b}?`, ez: `¡Casi! ${a} más ${b} es igual a ${r}.` }; 
+  },
+  rest_facil: () => { 
+    const a = utils.ri(5,10), b = utils.ri(1,4), r = a-b; 
+    const o = O(r, [r+1, r-1, r+2, r+3].slice(0,3));
+    return { tit: `¿Cuánto es ${a} - ${b}?`, opts: o.opts, ok: o.okIdx, vz: `¿Cuánto es ${a} menos ${b}?`, ez: `Si a ${a} le quitas ${b}, te quedan ${r}.` }; 
+  },
+  multiplicar: () => { 
+    const a = utils.ri(2,5), b = utils.ri(2,5), r = a*b; 
+    const o = O(r, [r+a, r-b, r+1, r-1].slice(0,3));
+    return { tit: `¿Cuánto es ${a} × ${b}?`, opts: o.opts, ok: o.okIdx, vz: `¿Cuánto es ${a} por ${b}?`, ez: `Es multiplicar. ${a} por ${b} es ${r}.` }; 
+  },
+  mayor_menor: () => {
+    let a = utils.ri(10,99), b = utils.ri(10,99); while(a===b) b=utils.ri(10,99);
+    const o = O(Math.max(a,b), [Math.min(a,b)]);
+    return { tit: `¿Cuál es el número más GRANDE?`, opts: o.opts, ok: o.okIdx, vz: `¿Cuál es el número más grande, ${a} o ${b}?`, ez: `El más grande es ${Math.max(a,b)}.` };
+  },
+  
+  // INGLÉS
+  en_anim_es: () => {
+    const item = utils.rp(EN_DICT.animales); const errs = utils.mix(EN_DICT.animales.filter(x => x.en !== item.en)).slice(0,3);
+    const o = O(item.en, errs.map(x=>x.en));
+    return { tit: `¿Cómo se dice "${item.es}"?<br><div class="mt-8 text-[150px] drop-shadow-xl">${item.ico}</div>`, opts: o.opts, ok: o.okIdx, vz: `¿Cómo se dice ${item.es} en inglés?`, ez: `Yo te enseño. ${item.es} se dice ${item.en}.`, aud: item.en };
+  },
+  en_comida_es: () => {
+    const item = utils.rp(EN_DICT.comida); const errs = utils.mix(EN_DICT.comida.filter(x => x.en !== item.en)).slice(0,3);
+    const o = O(item.en, errs.map(x=>x.en));
+    return { tit: `¿Cómo se dice "${item.es}"?<br><div class="mt-8 text-[150px] drop-shadow-xl">${item.ico}</div>`, opts: o.opts, ok: o.okIdx, vz: `¿Cómo se dice ${item.es} en inglés?`, ez: `Es muy rico. ${item.es} se dice ${item.en}.`, aud: item.en };
+  },
+  en_color: () => {
+    const item = utils.rp(EN_DICT.colores); const errs = utils.mix(EN_DICT.colores.filter(x => x.en !== item.en)).slice(0,3);
+    const o = O(item.en, errs.map(x=>x.en));
+    return { tit: `El color "${item.es}" en Inglés es...<br><div class="w-48 h-48 rounded-full mx-auto my-10 border-[10px] border-white shadow-2xl" style="background:${item.c}"></div>`, opts: o.opts, ok: o.okIdx, vz: `¿Cómo se dice el color ${item.es} en inglés?`, ez: `El color ${item.es} se dice ${item.en}.`, aud: item.en };
+  },
+  en_numeros: () => {
+    const n = utils.ri(1, 10); const enWord = EN_DICT.numeros[n]; const errs = utils.mix(EN_DICT.numeros.filter(x => x !== enWord && x !== "Zero")).slice(0,3);
+    const o = O(enWord, errs);
+    return { tit: `El número <span class="text-yellow-400 text-[120px]">${n}</span> en inglés es...`, opts: o.opts, ok: o.okIdx, vz: `¿Cómo se dice el número ${n} en inglés?`, ez: `El número ${n} se dice ${enWord}.`, aud: enWord };
+  },
+  en_listen: () => {
+    const item = utils.rp(EN_DICT.animales); const errs = utils.mix(EN_DICT.animales.filter(x => x.en !== item.en)).slice(0,3);
+    const o = O(item.ico, errs.map(x=>x.ico));
+    return { tit: `Toca el botón para escuchar...<br><button class="bocina-btn !w-40 !h-40 !text-7xl !mx-auto mt-10" onclick="hablar('${item.en}', 'en-US')">🔊</button>`, opts: o.opts, ok: o.okIdx, vz: `Escucha con atención y elige el dibujo correcto.`, ez: `Era el ${item.es}. Escucha de nuevo cómo suena.`, aud: item.en, grandes: true };
+  }
+};
+
+// ==========================================================================
+// ESTRUCTURACIÓN DE LOS 60 NIVELES (CATEGORÍAS Y MUNDOS)
+// ==========================================================================
+
+const CATS = [
+  { id: 0, n: "🔢 Mates" }, { id: 1, n: "🌍 Inglés" }, { id: 2, n: "🧠 Lógica" }, { id: 3, n: "🌟 Mix Total" }
+];
+
+// Generamos 60 niveles inyectando la lógica de los generadores
+const NIVELES = [
+  // Categoria 0: Matematicas
+  { c: 0, id: 'n1', nom: "Sumas Iniciales", ico: "➕", color: "var(--c-cyan)", logic: G.sum_facil },
+  { c: 0, id: 'n2', nom: "Restas Básicas", ico: "➖", color: "var(--c-pink)", logic: G.rest_facil },
+  { c: 0, id: 'n3', nom: "Sumas Grandes", ico: "🚀", color: "var(--c-yellow)", logic: G.sum_dificil },
+  { c: 0, id: 'n4', nom: "Multiplicar", ico: "✖️", color: "var(--c-purple)", logic: G.multiplicar },
+  { c: 0, id: 'n5', nom: "Mayor Menor", ico: "⚖️", color: "var(--c-green)", logic: G.mayor_menor },
+  ...Array.from({length:10}, (_,i)=>({c:0, id:`nm${i}`, nom:`Misión Math ${i+1}`, ico:"🔢", color:"var(--c-cyan)", logic: utils.rp([G.sum_facil, G.rest_facil, G.sum_dificil, G.multiplicar, G.mayor_menor])})),
+
+  // Categoria 1: Ingles
+  { c: 1, id: 'n6', nom: "Animales", ico: "🐶", color: "var(--c-orange)", logic: G.en_anim_es },
+  { c: 1, id: 'n7', nom: "Colores", ico: "🎨", color: "var(--c-purple)", logic: G.en_color },
+  { c: 1, id: 'n8', nom: "Números", ico: "1️⃣", color: "var(--c-cyan)", logic: G.en_numeros },
+  { c: 1, id: 'n9', nom: "Comidas", ico: "🍎", color: "var(--c-green)", logic: G.en_comida_es },
+  { c: 1, id: 'n10', nom: "Listening", ico: "👂", color: "var(--c-yellow)", logic: G.en_listen },
+  ...Array.from({length:10}, (_,i)=>({c:1, id:`ne${i}`, nom:`English Class ${i+1}`, ico:"🌍", color:"var(--c-pink)", logic: utils.rp([G.en_anim_es, G.en_color, G.en_numeros, G.en_comida_es, G.en_listen])})),
+
+  // Categoria 2: Logica e interactivos (Estos usan HTML especial en lugar del generador normal)
+  { c: 2, id: 'n11', nom: "Memoria 3D", ico: "🃏", color: "var(--c-cyan)", esp: "memoria" },
+  { c: 2, id: 'n12', nom: "Rompecabezas", ico: "🧩", color: "var(--c-pink)", esp: "rompe" },
+  { c: 2, id: 'n13', nom: "Simón Espacial", ico: "🎮", color: "var(--c-yellow)", esp: "simon" },
+  { c: 2, id: 'n14', nom: "Lluvia Estelar", ico: "⭐", color: "var(--c-purple)", esp: "arcade" },
+  { c: 2, id: 'n15', nom: "Pizarra Libre", ico: "🖌️", color: "var(--c-green)", esp: "pizarra" },
+  ...Array.from({length:10}, (_,i)=>({c:2, id:`nl${i}`, nom:`Desafío ${i+1}`, ico:"🧠", color:"var(--c-orange)", esp: utils.rp(["memoria","rompe","simon","arcade","pizarra"])})),
+
+  // Categoria 3: Mix (Relleno hasta llegar a 60 niveles reales)
+  ...Array.from({length:15}, (_,i)=>({c:3, id:`nmix${i}`, nom:`Nivel Mixto ${i+1}`, ico:"🌟", color:"var(--c-cyan)", logic: utils.rp([G.sum_facil, G.en_anim_es, G.en_color, G.rest_facil, G.mayor_menor])}))
+];
+
+// ==========================================================================
+// CONTROLADOR DE VISTAS Y MOTOR PRINCIPAL DEL JUEGO
+// ==========================================================================
+const viewMenu = document.getElementById('view-menu');
+const viewGame = document.getElementById('view-game');
+let CA_ACTUAL = 0;
+let nivelActual = null;
+
+function renderTabs() {
+  const t = document.getElementById('tabs-categorias');
+  t.innerHTML = CATS.map(c => `<button class="tab-btn ${c.id === CA_ACTUAL ? 'active' : ''}" onclick="cambiarCat(${c.id})">${c.n}</button>`).join('');
+}
+
+function cambiarCat(id) {
+  AudioSys.click(); CA_ACTUAL = id; renderTabs(); renderMundos();
+}
+
+function renderMundos() {
+  const c = document.getElementById('mundos-carrusel');
+  const nivs = NIVELES.filter(n => n.c === CA_ACTUAL);
+  c.innerHTML = nivs.map(n => `
+    <div class="card-mundo" style="border-color:${n.color}; box-shadow: 0 15px 0 ${n.color}, 0 25px 50px rgba(0,0,0,0.6)" onclick="abrirNivel('${n.id}')">
+      <div class="mundo-ico">${n.ico}</div>
+      <div class="mundo-tit" style="color:${n.color}">${n.nom}</div>
+      <div class="mt-6 text-2xl font-black bg-black/40 px-6 py-2 rounded-full text-white">JUGAR ▶</div>
+    </div>
+  `).join('');
+}
+
+function abrirNivel(id) {
+  AudioSys.click(); nivelActual = NIVELES.find(x => x.id === id);
+  viewMenu.classList.remove('view-active'); viewMenu.classList.add('view-hidden-left');
+  viewGame.classList.remove('view-hidden-right'); viewGame.classList.add('view-active');
+  cargarJuego();
+}
+
+function volverMenu() {
+  AudioSys.click(); runId++; // Bloquea asíncronos pendientes
+  viewGame.classList.remove('view-active'); viewGame.classList.add('view-hidden-right');
+  viewMenu.classList.remove('view-hidden-left'); viewMenu.classList.add('view-active');
+  zetaHabla(utils.rp(["¡De vuelta a la base! ¿Qué jugamos ahora?", "¡Esa misión estuvo genial! Elige otra."]));
+}
+
+// Carga el juego dependiendo si es un Generador Lógico o Especial Interactivo
+function cargarJuego() {
+  runId++; const myRun = runId;
+  
+  if(nivelActual.esp) {
+    if(nivelActual.esp === 'memoria') renderMemoria(myRun);
+    else if(nivelActual.esp === 'rompe') renderRompecabezas(myRun);
+    else if(nivelActual.esp === 'simon') renderSimon(myRun);
+    else if(nivelActual.esp === 'arcade') renderArcade(myRun);
+    else if(nivelActual.esp === 'pizarra') renderPizarra(myRun);
+  } else {
+    renderLogica(myRun);
+  }
+}
+
+// Renderizado de Lógica Estándar (Pregunta y 4 Opciones)
+function renderLogica(myRun) {
+  const d = nivelActual.logic();
+  
+  document.getElementById('juego-pregunta').innerHTML = d.tit;
+  const cont = document.getElementById('juego-opciones');
+  cont.className = 'grid-opciones'; // reset class
+  cont.innerHTML = '';
+  
+  // Botón de audio para repasar inglés
+  const btnAud = document.getElementById('btn-audio-repeat');
+  if(d.aud) { btnAud.style.display = 'flex'; btnAud.onclick = () => hablar(d.aud, 'en-US'); } else { btnAud.style.display = 'none'; }
+
+  d.opts.forEach((opText, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-opcion';
+    if(d.grandes) btn.classList.add('!text-[120px]');
+    
+    const cols = ['var(--c-cyan)','var(--c-pink)','var(--c-yellow)','var(--c-purple)'];
+    btn.style.borderColor = cols[i % cols.length];
+    btn.innerHTML = opText;
+    
+    btn.onclick = (e) => {
+      if(myRun !== runId) return; 
+      runId++; // Bloquea clics futuros en esta pantalla hasta que recargue
+      
+      const rect = btn.getBoundingClientRect();
+      const cx = rect.left + rect.width/2; const cy = rect.top + rect.height/2;
+
+      if(i === d.ok) {
+        btn.classList.add('correct-btn'); AudioSys.win(); crearChispas(cx, cy, '#00e676'); ganarPremio();
+        zetaHabla(utils.rp(["¡Muy bien! Lo lograste.", "¡Eres súper inteligente!", "¡Perfecto, astronauta!"]));
+        if(d.aud) setTimeout(()=>hablar(d.aud, 'en-US'), 1500);
+        setTimeout(() => { if(viewGame.classList.contains('view-active')) cargarJuego(); }, 4000);
+      } else {
+        btn.classList.add('wrong-btn'); AudioSys.lose();
+        cont.children[d.ok].classList.add('correct-btn'); // Muestra correcta
+        zetaHabla(d.ez);
+        if(d.aud) setTimeout(()=>hablar(d.aud, 'en-US'), 3000);
+        setTimeout(() => { if(viewGame.classList.contains('view-active')) cargarJuego(); }, 6000);
+      }
+    };
+    cont.appendChild(btn);
+  });
+
+  setTimeout(() => zetaHabla(d.vz), 500);
+}
+
+// ==========================================================================
+// JUEGOS ESPECIALES INTERACTIVOS
+// ==========================================================================
+
+function renderMemoria(myRun) {
+  document.getElementById('btn-audio-repeat').style.display = 'none';
+  document.getElementById('juego-pregunta').innerHTML = `Encuentra las parejas <br><span class="text-yellow-400 text-5xl">Aciertos: <span id="mPts">0</span>/6</span>`;
+  const cont = document.getElementById('juego-opciones');
+  cont.className = 'grid grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-[1000px] mx-auto';
+  cont.innerHTML = '';
+
+  const emojis = ["🚀", "🐶", "🌍", "🍕", "🛸", "👾"]; const arr = utils.mix([...emojis, ...emojis]);
+  let sel = [], pts = 0;
+  
+  zetaHabla("Encuentra las cartas que son iguales. ¡Concéntrate!");
   
   arr.forEach((ico) => {
-    const c = document.createElement('div'); c.className = 'carta relative aspect-square cursor-pointer';
-    c.innerHTML = `<div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-900 border-8 border-cyan-400 rounded-[40px] shadow-[0_15px_0_rgba(0,229,255,0.4)] flex items-center justify-center text-7xl transition-all duration-300 transform preserve-3d" id="inner-${Math.random()}"><span class="opacity-50 text-white font-black">?</span></div>`;
+    const c = document.createElement('div'); c.className = 'relative aspect-square cursor-pointer transition-transform duration-300';
+    c.innerHTML = `<div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-900 border-8 border-cyan-400 rounded-[40px] shadow-[0_15px_0_rgba(0,229,255,0.4)] flex items-center justify-center text-7xl font-black text-white/50 transition-all duration-500 transform preserve-3d">?</div>`;
     
     let isFlipped = false;
     c.onclick = () => {
       if (myRun !== runId || sel.length >= 2 || isFlipped) return;
-      isFlipped = true; sonido.click(); 
-      c.firstChild.innerHTML = `<span class="text-[100px] drop-shadow-lg">${ico}</span>`;
-      c.firstChild.className = "absolute inset-0 bg-yellow-400 border-8 border-white rounded-[40px] shadow-[0_15px_0_rgba(255,255,255,0.4)] flex items-center justify-center transition-all duration-300 transform scale-105";
+      isFlipped = true; AudioSys.click(); c.style.transform = 'scale(1.05)';
+      c.firstChild.innerHTML = `<span class="text-[90px] drop-shadow-xl">${ico}</span>`;
+      c.firstChild.className = "absolute inset-0 bg-yellow-400 border-8 border-white rounded-[40px] shadow-[0_15px_0_rgba(255,255,255,0.4)] flex items-center justify-center transition-all duration-500 transform rotateY-180";
       sel.push({ c, ico, setFlip: (val) => isFlipped = val });
       
       if (sel.length === 2) {
         if (sel[0].ico === sel[1].ico) {
-          sonido.ok(); pts++; document.getElementById('mPts').textContent = pts; sel = []; ganarMonedas(3);
-          hablarWoody("¡Súper! Encontraste una pareja.");
-          if (pts === 6) { sonido.ganar(); fuegosArtificiales(); fuegosArtificiales(window.innerWidth/3, window.innerHeight/3); hablarWoody("¡Memoria perfecta, astronauta! Eres brillante. 🏆"); setTimeout(() => { if(myRun === runId) cargarJ(); }, 6000); }
+          AudioSys.win(); pts++; document.getElementById('mPts').textContent = pts; sel = []; ganarPremio();
+          zetaHabla("¡Súper! Encontraste una pareja.");
+          if (pts === 6) { 
+            fuegosArtificiales(); fuegosArtificiales(window.innerWidth/3, window.innerHeight/3); 
+            zetaHabla("¡Memoria perfecta, astronauta! Eres brillante. 🏆"); 
+            setTimeout(() => { if(myRun === runId) cargarJuego(); }, 5000); 
+          }
         } else { 
-          sonido.no(); hablarWoody("Ups, esas no son iguales.");
+          AudioSys.lose(); zetaHabla("Ups, esas no son iguales.");
           setTimeout(() => { 
             if (myRun === runId) { 
               sel.forEach(s => { 
-                s.setFlip(false); 
-                s.c.firstChild.innerHTML = `<span class="opacity-50 text-white font-black">?</span>`;
-                s.c.firstChild.className = "absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-900 border-8 border-cyan-400 rounded-[40px] shadow-[0_15px_0_rgba(0,229,255,0.4)] flex items-center justify-center text-7xl transition-all duration-300 transform";
+                s.setFlip(false); s.c.style.transform = 'scale(1)';
+                s.c.firstChild.innerHTML = `?`;
+                s.c.firstChild.className = "absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-900 border-8 border-cyan-400 rounded-[40px] shadow-[0_15px_0_rgba(0,229,255,0.4)] flex items-center justify-center text-7xl font-black text-white/50 transition-all duration-500 transform";
               }); sel = []; 
             } 
           }, 1500); 
         }
       }
-    }; gr.appendChild(c);
+    }; cont.appendChild(c);
   });
 }
 
-function jRompe() {
-  const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div id="rGrilla" class="grid grid-cols-3 gap-4 w-full max-w-[700px] mx-auto bg-white/10 p-8 rounded-[50px] border-8 border-white/30 shadow-[0_30px_60px_rgba(0,0,0,0.6)]"></div><div class="text-center mt-16"><button class="btn-3d btn-pink text-4xl" onclick="cargarJ()">🔄 Mezclar</button></div>`;
+function renderRompecabezas(myRun) {
+  document.getElementById('btn-audio-repeat').style.display = 'none';
+  document.getElementById('juego-pregunta').innerHTML = `Ordena la galaxia`;
+  const cont = document.getElementById('juego-opciones');
+  cont.className = 'w-full max-w-[600px] mx-auto bg-white/10 p-8 rounded-[50px] border-8 border-white/30 shadow-[0_30px_60px_rgba(0,0,0,0.6)]';
+  
+  const grid = document.createElement('div'); grid.className = 'grid grid-cols-3 gap-4';
+  cont.innerHTML = ''; cont.appendChild(grid);
+
   let r = [1, 2, 3, 4, 5, 6, 7, 8, 0];
   for (let i = 0; i < 150; i++) {
     let v = r.indexOf(0), vv = [];
     if (v % 3) vv.push(v - 1); if (v % 3 !== 2) vv.push(v + 1); if (v >= 3) vv.push(v - 3); if (v < 6) vv.push(v + 3);
-    let a = vv[ri(0, vv.length - 1)]; [r[v], r[a]] = [r[a], r[v]];
+    let a = vv[utils.ri(0, vv.length - 1)]; [r[v], r[a]] = [r[a], r[v]];
   }
-  const myRun = runId;
   
-  hablarWoody("Ordena las figuras moviendo las piezas hacia el hueco vacío.");
+  zetaHabla("Ordena los planetas moviendo las piezas hacia el espacio vacío.");
   
   const d = () => {
     if (myRun !== runId) return;
-    const g = document.getElementById('rGrilla'); g.innerHTML = '';
+    grid.innerHTML = '';
     r.forEach((n, i) => {
       const c = document.createElement('div');
-      c.className = 'aspect-square rounded-[30px] flex items-center justify-center text-[100px] font-black cursor-pointer transition-all duration-200 ' + (n ? 'bg-gradient-to-br from-cyan-400 to-blue-600 border-8 border-white shadow-[0_15px_0_rgba(0,0,0,0.3)] hover:scale-105 hover:z-10' : 'bg-black/40 border-8 border-dashed border-white/30');
-      c.textContent = n ? ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼"][n-1] : '';
+      c.className = 'aspect-square rounded-[30px] flex items-center justify-center text-[80px] font-black cursor-pointer transition-all duration-200 ' + (n ? 'bg-gradient-to-br from-cyan-400 to-blue-600 border-8 border-white shadow-[0_15px_0_rgba(0,0,0,0.3)] hover:scale-105 hover:z-10' : 'bg-black/40 border-8 border-dashed border-white/30');
+      c.textContent = n ? ["🪐","🌍","🌕","🌞","🛸","☄️","🚀","🛰️"][n-1] : '';
       if (n) c.onclick = () => {
         if (myRun !== runId) return;
         const v = r.indexOf(0), f = Math.floor(i / 3), cc = i % 3, fv = Math.floor(v / 3), cv = v % 3;
         if (Math.abs(f - fv) + Math.abs(cc - cv) === 1) {
-          sonido.click(); [r[i], r[v]] = [r[v], r[i]]; d();
-          if (r.join('') === '123456780') { sonido.ganar(); fuegosArtificiales(); hablarWoody("¡Rompecabezas armado! Súper inteligencia activada. 🧩"); ganarMonedas(15); setTimeout(() => { if(myRun === runId) cargarJ(); }, 5000); }
+          AudioSys.click(); [r[i], r[v]] = [r[v], r[i]]; d();
+          if (r.join('') === '123456780') { AudioSys.win(); fuegosArtificiales(); zetaHabla("¡Rompecabezas armado! Súper inteligencia activada. 🧩"); ganarPremio(); setTimeout(() => { if(myRun === runId) cargarJuego(); }, 5000); }
         }
-      }; g.appendChild(c);
+      }; grid.appendChild(c);
     });
   }; d();
 }
 
-function jArcade() {
-  const gc = document.getElementById('gameContainer'); const myRun = runId;
-  gc.innerHTML = `<div class="text-center font-black text-6xl mb-10 font-['Fredoka_One'] text-yellow-400 drop-shadow-[0_5px_0_rgba(0,0,0,0.5)]">Estrellas: <span id="aPts" class="text-white">0</span> ⭐</div><div id="aArea" class="relative w-full h-[600px] bg-black/60 border-8 border-cyan-400 rounded-[60px] overflow-hidden shadow-[inset_0_0_80px_rgba(0,0,0,0.9)] cursor-crosshair"></div>`;
-  const area = document.getElementById('aArea'); let pts = 0;
+function renderArcade(myRun) {
+  document.getElementById('btn-audio-repeat').style.display = 'none';
+  document.getElementById('juego-pregunta').innerHTML = `Estrellas: <span id="aPts" class="text-yellow-400">0</span> ⭐`;
+  const cont = document.getElementById('juego-opciones');
+  cont.className = 'w-full';
+  cont.innerHTML = `<div id="aArea" class="relative w-full h-[600px] bg-black/60 border-8 border-cyan-400 rounded-[60px] overflow-hidden shadow-[inset_0_0_80px_rgba(0,0,0,0.9)] cursor-crosshair"></div>`;
   
-  hablarWoody("¡Toca las estrellas fugaces, pero no toques los meteoritos de fuego!");
+  const area = document.getElementById('aArea'); let pts = 0;
+  zetaHabla("¡Atrapa todas las estrellas, pero no toques los meteoritos de fuego!");
 
   const spawn = () => {
     if (myRun !== runId || !document.getElementById('aArea')) return;
     const isBad = Math.random() < 0.25; 
     const e = document.createElement('div'); 
     e.textContent = isBad ? '☄️' : '⭐'; 
-    e.className = 'absolute text-[120px] transition-transform ' + (isBad ? 'drop-shadow-[0_0_30px_rgba(255,0,0,1)]' : 'drop-shadow-[0_0_30px_rgba(250,204,21,1)] animate-pulse');
+    e.className = 'absolute text-[100px] transition-transform ' + (isBad ? 'drop-shadow-[0_0_30px_rgba(255,0,0,1)]' : 'drop-shadow-[0_0_30px_rgba(250,204,21,1)] animate-pulse');
     e.style.left = Math.random() * 80 + '%'; e.style.top = '-150px'; area.appendChild(e);
-    let pos = -150, speed = isBad ? 7 : 4 + Math.random() * 4;
+    
+    let pos = -150, speed = isBad ? 8 : 4 + Math.random() * 5;
     const bajar = () => {
       if (myRun !== runId || !e.parentNode) return;
       pos += speed; e.style.top = pos + 'px';
       if (pos > 600) e.remove(); else requestAnimationFrame(bajar);
     };
+    
     e.onmousedown = e.ontouchstart = (ev) => {
       ev.preventDefault(); if (myRun !== runId) return;
-      if (isBad) { sonido.no(); e.style.transform = "scale(2.5)"; e.textContent="💥"; setTimeout(()=>e.remove(),200); pts = Math.max(0, pts-2); document.getElementById('aPts').textContent = pts; hablarWoody("¡Ay! Ese meteorito quema."); }
-      else { sonido.moneda(); e.style.transform = "scale(3)"; e.style.opacity = "0"; setTimeout(()=>e.remove(),200); pts++; document.getElementById('aPts').textContent = pts; if (pts % 10 === 0) { ganarMonedas(10); fuegosArtificiales(); hablarWoody("¡Racha de estrellas! Sigue así."); } }
+      if (isBad) { AudioSys.lose(); e.style.transform = "scale(2.5)"; e.textContent="💥"; setTimeout(()=>e.remove(),200); pts = Math.max(0, pts-2); document.getElementById('aPts').textContent = pts; zetaHabla("¡Ay! Ese meteorito quema."); }
+      else { AudioSys.coin(); e.style.transform = "scale(3)"; e.style.opacity = "0"; setTimeout(()=>e.remove(),200); pts++; document.getElementById('aPts').textContent = pts; if (pts % 10 === 0) { ganarPremio(); fuegosArtificiales(); zetaHabla("¡Racha de estrellas! Sigue así."); } }
     };
     requestAnimationFrame(bajar);
     setTimeout(spawn, 700 + Math.random() * 800);
   }; spawn();
 }
 
-function jPizarra() {
-  const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div class="flex gap-6 justify-center mb-12 flex-wrap bg-white/20 p-6 rounded-[50px] max-w-fit mx-auto border-4 border-white/40 backdrop-blur-2xl shadow-2xl">
-    ${['#ef4444','#3b82f6','#22c55e','#facc15','#ff007f','#00e5ff','#ffffff'].map(c=>`<button class="w-20 h-20 rounded-full hover:scale-125 transition-transform border-4 border-white" style="background:${c};box-shadow:0 10px 0 rgba(0,0,0,0.3)" onclick="window._ctx.strokeStyle='${c}'"></button>`).join('')}
-    <button class="btn-3d btn-pink text-3xl ml-10" onclick="window._ctx.clearRect(0,0,1400,700)">🗑 Borrar</button>
-  </div><canvas id="piz" width="1400" height="700" class="bg-black/80 border-8 border-white rounded-[60px] block w-full touch-none shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-crosshair"></canvas>`;
+function renderPizarra(myRun) {
+  document.getElementById('btn-audio-repeat').style.display = 'none';
+  document.getElementById('juego-pregunta').innerHTML = `Pizarra Libre`;
+  const cont = document.getElementById('juego-opciones');
+  cont.className = 'w-full';
+  
+  cont.innerHTML = `
+    <div class="flex gap-6 justify-center mb-8 flex-wrap bg-white/20 p-6 rounded-[50px] max-w-fit mx-auto border-4 border-white/40 backdrop-blur-2xl shadow-2xl">
+      ${['#ef4444','#3b82f6','#22c55e','#facc15','#ff007f','#00e5ff','#ffffff'].map(c=>`<button class="w-16 h-16 rounded-full hover:scale-125 transition-transform border-4 border-white" style="background:${c};box-shadow:0 10px 0 rgba(0,0,0,0.3)" onclick="window._ctx.strokeStyle='${c}'"></button>`).join('')}
+      <button class="btn-3d btn-pink text-2xl ml-8" onclick="window._ctx.clearRect(0,0,1200,600)">🗑 Borrar</button>
+    </div>
+    <canvas id="piz" width="1200" height="600" class="bg-black/80 border-8 border-white rounded-[60px] block w-full touch-none shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-crosshair"></canvas>
+  `;
+  
   const cvs = document.getElementById('piz'); window._ctx = cvs.getContext('2d');
   window._ctx.lineWidth = 20; window._ctx.lineCap = 'round'; window._ctx.lineJoin = 'round'; window._ctx.strokeStyle = '#00e5ff'; let p = false;
-  
-  hablarWoody("Dibuja una obra de arte espacial.");
+  zetaHabla("Dibuja una obra de arte espacial. Usa todos los colores.");
   
   const gp = e => { const r = cvs.getBoundingClientRect(); const scaleX = cvs.width / r.width; const scaleY = cvs.height / r.height; return { x: ((e.touches ? e.touches[0].clientX : e.clientX) - r.left) * scaleX, y: ((e.touches ? e.touches[0].clientY : e.clientY) - r.top) * scaleY }; };
   cvs.onmousedown = cvs.ontouchstart = e => { e.preventDefault(); p = true; const q = gp(e); window._ctx.beginPath(); window._ctx.moveTo(q.x, q.y); };
@@ -369,88 +806,70 @@ function jPizarra() {
   cvs.onmouseup = cvs.ontouchend = cvs.onmouseleave = () => p = false;
 }
 
-// ==========================================
-// PREGUNTAS: MATEMÁTICAS, INGLÉS Y LÓGICA
-// ==========================================
-const D = {
-  animals: [{en:"Dog",es:"Perro",ico:"🐶"},{en:"Cat",es:"Gato",ico:"🐱"},{en:"Bird",es:"Pájaro",ico:"🐦"},{en:"Fish",es:"Pez",ico:"🐟"},{en:"Pig",es:"Cerdo",ico:"🐷"}],
-  colors: [{en:"Red",es:"Rojo",c:"#ef4444"},{en:"Blue",es:"Azul",c:"#3b82f6"},{en:"Green",es:"Verde",c:"#22c55e"},{en:"Yellow",es:"Amarillo",c:"#facc15"}]
-};
-
-const GEN = {};
-
-// MATEMÁTICAS (CORRECCIÓN INTELIGENTE)
-GEN.g1 = () => { 
-  const a=ri(1,5), b=ri(1,5); 
-  return { p: `¿Cuánto es <span class="text-yellow-400">${a} + ${b}</span>?`, opts: O(a+b, [a+b+1, a+b-1, a+b+2]).opts, ok: O(a+b, [a+b+1, a+b-1, a+b+2]).ok, pregunta: `¿Cuánto es ${a} más ${b}?`, respuesta: `${a+b}` }; 
-};
-GEN.g2 = () => { 
-  const a=ri(5,10), b=ri(1,4); 
-  return { p: `¿Cuánto es <span class="text-pink-400">${a} - ${b}</span>?`, opts: O(a-b, [a-b+1, a-b-1, a-b+2]).opts, ok: O(a-b, [a-b+1, a-b-1, a-b+2]).ok, pregunta: `¿Cuánto es ${a} menos ${b}?`, respuesta: `${a-b}` }; 
-};
-
-// INGLÉS
-GEN.g10= () => { 
-  const item = rp(D.animals); const arrErr = mezclar(D.animals.filter(x => x.en !== item.en)).slice(0, 3); const r = O(item.en, arrErr.map(x=>x.en));
-  return { p: `¿Cómo se dice <span class="text-yellow-400">"${item.es}"</span> en Inglés?<br><div class="text-[150px] mt-10 drop-shadow-[0_20px_0_rgba(0,0,0,0.3)]">${item.ico}</div>`, opts: r.opts, ok: r.ok, en: item.en, pregunta: `¿Cómo se dice ${item.es} en inglés?`, respuesta: `se dice ${item.en}` }; 
-};
-
-GEN.g11= () => { 
-  const item = rp(D.colors); const arrErr = mezclar(D.colors.filter(x => x.en !== item.en)).slice(0, 3); const r = O(item.en, arrErr.map(x=>x.en));
-  return { p: `El color <span class="text-pink-400">"${item.es}"</span> en Inglés es...<br><div class="w-48 h-48 rounded-full mx-auto my-12 border-[12px] border-white shadow-[0_20px_0_rgba(0,0,0,0.3)]" style="background:${item.c}"></div>`, opts: r.opts, ok: r.ok, en: item.en, pregunta: `¿Cómo se dice el color ${item.es} en inglés?`, respuesta: `se dice ${item.en}` }; 
-};
-
-// Asignar Juegos
-GEN.g20 = () => ({ especial: 'memoria' });
-GEN.g21 = () => ({ especial: 'rompe' });
-GEN.g22 = () => ({ especial: 'arcade' });
-GEN.g23 = () => ({ especial: 'pizarra' });
-
-// Autocompletar los 60 juegos
-for(let i=3; i<=60; i++) {
-  if(!GEN[`g${i}`]) { GEN[`g${i}`] = () => rp([GEN.g1, GEN.g2, GEN.g10, GEN.g11])(); }
+function renderSimon(myRun) {
+  document.getElementById('btn-audio-repeat').style.display = 'none';
+  document.getElementById('juego-pregunta').innerHTML = `Repite los colores`;
+  const cont = document.getElementById('juego-opciones');
+  cont.className = 'w-full';
+  
+  const cols = [{ c: '#ff007f', f: 329.6 }, { c: '#00f0ff', f: 392.0 }, { c: '#8a2be2', f: 440.0 }, { c: '#facc15', f: 523.2 }];
+  let seq = [], user = 0, escuchando = false;
+  
+  cont.innerHTML = `
+    <div class="grid grid-cols-2 gap-8 max-w-[500px] mx-auto aspect-square bg-white/5 p-8 rounded-full border-8 border-white/30 shadow-[0_0_60px_rgba(255,255,255,0.1)]" id="simonGrid"></div>
+    <div class="text-center mt-12"><button class="btn-3d btn-cyan text-3xl" onclick="cargarJuego()">🔄 Reiniciar</button></div>
+  `;
+  
+  const grid = document.getElementById('simonGrid');
+  cols.forEach((col, i) => {
+    const b = document.createElement('div'); b.style.background = col.c; b.style.color = col.c;
+    b.className = 'rounded-[50px] cursor-pointer opacity-40 transition-all duration-150 border-8 border-white/20 shadow-[inset_0_0_40px_rgba(0,0,0,0.8)]';
+    if (i===0) b.style.borderRadius = "100% 40px 40px 40px"; if (i===1) b.style.borderRadius = "40px 100% 40px 40px";
+    if (i===2) b.style.borderRadius = "40px 40px 40px 100%"; if (i===3) b.style.borderRadius = "40px 40px 100% 40px";
+    
+    b.onclick = () => {
+      if (!escuchando || myRun !== runId) return;
+      AudioSys.click(); b.style.opacity = '1'; b.style.transform = 'scale(1.1)'; b.style.boxShadow = `0 0 80px ${col.c}, inset 0 0 50px #fff`; b.style.borderColor = '#fff'; b.style.zIndex = '10';
+      setTimeout(() => { b.style.opacity = '0.4'; b.style.transform = 'scale(1)'; b.style.boxShadow = 'inset 0 0 40px rgba(0,0,0,0.8)'; b.style.borderColor = 'rgba(255,255,255,0.2)'; b.style.zIndex = '1'; }, 300);
+      
+      if (i === seq[user]) {
+        user++; if (user >= seq.length) { AudioSys.win(); ganarPremio(); zetaHabla("¡Bien hecho! Siguiente nivel."); setTimeout(nivel, 1500); }
+      } else { AudioSys.lose(); zetaHabla("¡Uy! Te equivocaste, pero llegaste al nivel " + (seq.length - 1) + ". ¡Inténtalo otra vez!"); escuchando = false; }
+    }; grid.appendChild(b);
+  });
+  
+  const mostrar = async () => {
+    if (myRun !== runId) return;
+    escuchando = false; 
+    if(seq.length === 1) zetaHabla("Observa la secuencia de colores y repítela.");
+    await new Promise(r => setTimeout(r, 1000));
+    for (const i of seq) {
+      if (myRun !== runId) return;
+      const b = grid.children[i]; 
+      b.style.opacity = '1'; b.style.transform = 'scale(1.1)'; b.style.boxShadow = `0 0 80px ${cols[i].c}, inset 0 0 50px #fff`; b.style.borderColor = '#fff';
+      AudioSys.click();
+      await new Promise(r => setTimeout(r, 600)); 
+      b.style.opacity = '0.4'; b.style.transform = 'scale(1)'; b.style.boxShadow = 'inset 0 0 40px rgba(0,0,0,0.8)'; b.style.borderColor = 'rgba(255,255,255,0.2)';
+      await new Promise(r => setTimeout(r, 300));
+    }
+    if (myRun === runId) { escuchando = true; user = 0; }
+  };
+  const nivel = () => { if (myRun === runId) { seq.push(utils.ri(0, 3)); mostrar(); } };
+  setTimeout(nivel, 1500);
 }
 
-const CATS = ["🔢 Matemáticas", "🧠 Memoria", "🎨 Arte y Arcade", "🔤 Inglés Mágico", "🚀 Desafíos", "🌟 Explorador"];
-const JUEGOS = [
-  {c:0, n:"➕ Sumas Mágicas", g:"g1"}, {c:0, n:"➖ Restas Divertidas", g:"g2"}, 
-  ...Array.from({length:8}, (_,i)=>({c:0, n:`Misión Math ${i+1}`, g:`g${3+i}`})),
-  {c:1, n:"🃏 Memoria 3D", g:"g20"}, {c:1, n:"🧩 Rompecabezas", g:"g21"}, 
-  ...Array.from({length:8}, (_,i)=>({c:1, n:`Lógica Nivel ${i+1}`, g:`g${24+i}`})),
-  {c:2, n:"⭐ Atrapa Estrellas", g:"g22"}, {c:2, n:"🎨 Pizarra Libre", g:"g23"},
-  ...Array.from({length:8}, (_,i)=>({c:2, n:`Arte Misión ${i+1}`, g:`g${32+i}`})),
-  {c:3, n:"🐶 Animales Inglés", g:"g10"}, {c:3, n:"🎨 Colores Inglés", g:"g11"},
-  ...Array.from({length:8}, (_,i)=>({c:3, n:`English Nivel ${i+1}`, g:`g${40+i}`})),
-  ...Array.from({length:10}, (_,i)=>({c:4, n:`Cohete ${i+1}`, g:`g${48+i}`})),
-  ...Array.from({length:10}, (_,i)=>({c:5, n:`Galaxia ${i+1}`, g:`g${51+i}`}))
-];
-
-function dibCats() {
-  document.getElementById('cats').innerHTML = CATS.map((n, i) => `<button class="btn-3d ${i === CA ? 'btn-yellow' : 'btn-cyan'}" data-c="${i}">${n}</button>`).join('');
-  document.querySelectorAll('#cats button').forEach(b => b.onclick = () => { sonido.click(); CA = +b.dataset.c; dibTabs(); });
-}
-function dibTabs() {
-  const js = JUEGOS.filter(j => j.c === CA); if(js.length > 0) J = JUEGOS.indexOf(js[0]);
-  document.getElementById('tabs').innerHTML = js.map(x => `<button class="tab-btn ${JUEGOS.indexOf(x) === J ? 'active' : ''}" data-j="${JUEGOS.indexOf(x)}">${x.n}</button>`).join('');
-  document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => { sonido.click(); J = +b.dataset.j; document.querySelectorAll('#tabs button').forEach(tb => tb.classList.remove('active')); b.classList.add('active'); cargarJ(); }); 
-  cargarJ();
-}
-function cargarJ() {
-  runId++; const j = JUEGOS[J];
-  document.getElementById('juegos').innerHTML = `<h2 class="tit-cartoon text-center mb-16">${j.n}</h2><div id="gameContainer"></div>`;
-  const d = GEN[j.g]();
-  if (d && d.especial) {
-    if (d.especial === 'memoria') jMemoria(); else if (d.especial === 'rompe') jRompe(); else if (d.especial === 'arcade') jArcade(); else if (d.especial === 'pizarra') jPizarra();
-  } else {
-    quiz({ p: d.p, opts: d.opts, ok: d.ok, en: d.en, ico: d.ico, pregunta: d.pregunta, respuesta: d.respuesta, next: cargarJ });
-  }
-}
-
+// ==========================================================================
+// INICIALIZACIÓN DE LA APP
+// ==========================================================================
 window.onload = () => {
-  cargarPerfil(); dibCats(); dibTabs();
-  setTimeout(() => { document.getElementById('intro').style.opacity = 0; setTimeout(() => document.getElementById('intro').remove(), 1000); hablarWoody("¡Hola! Soy Woody. ¡Vamos a aprender y jugar juntos!"); }, 2500);
+  cargarPerfil(); renderTabs(); renderMundos();
+  setTimeout(() => {
+    document.getElementById('intro').style.opacity = '0';
+    setTimeout(() => { document.getElementById('intro').remove(); zetaSaluda(); }, 1000);
+  }, 3000);
   setTimeout(() => document.getElementById('barraCarga').style.width = '100%', 200);
 };
+
 </script>
 </body>
 </html>
