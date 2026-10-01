@@ -3,226 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🚀 Woody Planet · Experiencia Educativa Premium</title>
+<title>🚀 Woody Planet · Aprende Jugando (Gratis)</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
-/* CSS SUPER PREMIUM - DEEP SPACE & MAGIC */
+/* CSS SUPER PREMIUM INFANTIL - COLORES VIBRANTES Y 3D */
 :root {
-  --bg-dark: #03000a;
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --glass-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.6);
-  --neon-cyan: #00f0ff;
-  --neon-pink: #ff007f;
-  --neon-purple: #8a2be2;
+  --bg-space: #0b0914;
+  --c-cyan: #00e5ff; --c-cyan-s: #009eb3;
+  --c-pink: #ff007f; --c-pink-s: #b30059;
+  --c-yellow: #ffea00; --c-yellow-s: #b3a400;
+  --c-green: #00e676; --c-green-s: #00a152;
+  --c-purple: #d500f9; --c-purple-s: #9500ae;
 }
 
 * { font-family: 'Nunito', sans-serif; box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-html, body { margin: 0; padding: 0; min-height: 100vh; color: #fff; overflow-x: hidden; scroll-behavior: smooth; cursor: default; }
-body { background: var(--bg-dark); }
+html, body { margin: 0; padding: 0; min-height: 100vh; color: #fff; overflow-x: hidden; scroll-behavior: smooth; cursor: default; background: var(--bg-space); }
 
-/* Fondo Mágico Espacial */
+/* Vuelo Infinito (Parallax Estrellas) */
 body::before, body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; }
 body::before {
-  background: radial-gradient(circle at 15% 30%, rgba(138, 43, 226, 0.25), transparent 50%),
-              radial-gradient(circle at 85% 70%, rgba(0, 240, 255, 0.25), transparent 50%),
-              radial-gradient(circle at 50% 100%, rgba(255, 0, 127, 0.2), transparent 50%);
-  animation: cosmicPulse 15s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 50% 50%, rgba(213, 0, 249, 0.15), transparent 70%),
+              radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.15), transparent 50%);
 }
-body::after {
-  background-image: radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
-  background-size: 50px 50px; opacity: 0.15; transform: perspective(600px) rotateX(15deg) translateY(-20px);
+.estrellas { position: fixed; top: -100vh; left: 0; width: 100vw; height: 200vh; background-image: radial-gradient(#fff 2px, transparent 2px), radial-gradient(#fff 1px, transparent 1px); background-size: 80px 80px, 40px 40px; background-position: 0 0, 20px 20px; animation: vueloInfinito 20s linear infinite; z-index: -1; opacity: 0.4; }
+@keyframes vueloInfinito { 0% { transform: translateY(0); } 100% { transform: translateY(100vh); } }
+
+/* Títulos Gorditos (Estilo Cartoon) */
+.tit-cartoon { font-family: 'Fredoka One', cursive; font-size: clamp(2rem, 6vw, 5rem); color: #fff; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 8px 0 var(--c-purple-s), 0 0 20px var(--c-purple); animation: flotar 3s ease-in-out infinite alternate; }
+
+/* Contenedores Gigantes (Ocupan toda la pantalla) */
+.caja-gigante { width: 95vw; max-width: 1600px; margin: 0 auto; }
+.vidrio { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 50px; padding: 50px 30px; border: 6px solid rgba(255,255,255,0.2); box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+
+/* BOTONES FLOTANTES DE COLORES 3D (Burbujas) */
+.btn-3d {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 15px 35px; border-radius: 100px; font-family: 'Fredoka One', cursive; font-size: 1.5rem;
+  color: #fff; cursor: pointer; user-select: none; transition: all 0.15s; border: 4px solid rgba(255,255,255,0.4);
+  animation: flotarBtn 4s ease-in-out infinite; text-transform: uppercase; letter-spacing: 1px;
 }
-@keyframes cosmicPulse { 0% { transform: scale(1); } 100% { transform: scale(1.08) rotate(1deg); } }
+@keyframes flotarBtn { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-/* Chispas Mágicas */
-.click-spark { position: fixed; width: 12px; height: 12px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 99999; box-shadow: 0 0 15px #fff, 0 0 30px var(--neon-cyan); animation: sparkAnim 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-@keyframes sparkAnim { 0% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0); opacity: 0; } }
+.btn-cyan { background: var(--c-cyan); box-shadow: 0 10px 0 var(--c-cyan-s), 0 15px 20px rgba(0,0,0,0.4); text-shadow: 0 3px 0 var(--c-cyan-s); }
+.btn-cyan:active { transform: translateY(10px) !important; box-shadow: 0 0 0 var(--c-cyan-s), 0 5px 10px rgba(0,0,0,0.4); }
 
-/* Cajas Premium */
-.vidrio {
-  position: relative; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-  backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-  border-radius: 50px; padding: 50px 30px; border: 2px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), inset 0 2px 0 rgba(255,255,255,0.15);
-}
-.vidrio-fino {
-  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
-  backdrop-filter: blur(15px); border: 2px solid rgba(255,255,255,0.2); border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 2px 0 rgba(255,255,255,0.2); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.vidrio-fino:hover { transform: translateY(-8px) scale(1.03); background: rgba(255,255,255,0.18); box-shadow: 0 20px 50px rgba(0,240,255,0.3); border-color: rgba(0,240,255,0.5); }
+.btn-pink { background: var(--c-pink); box-shadow: 0 10px 0 var(--c-pink-s), 0 15px 20px rgba(0,0,0,0.4); text-shadow: 0 3px 0 var(--c-pink-s); animation-delay: 0.5s; }
+.btn-pink:active { transform: translateY(10px) !important; box-shadow: 0 0 0 var(--c-pink-s), 0 5px 10px rgba(0,0,0,0.4); }
 
-/* Neón Animado */
-.tit-neon {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 2px;
-  background: linear-gradient(90deg, #00f0ff, #8a2be2, #ff007f, #fde047, #00f0ff);
-  background-size: 300% 100%; -webkit-background-clip: text; color: transparent;
-  animation: bgGlow 6s linear infinite; filter: drop-shadow(0 0 25px rgba(138,43,226,0.7));
-}
-@keyframes bgGlow { to { background-position: 300% } }
+.btn-yellow { background: var(--c-yellow); color: #5a4200; box-shadow: 0 10px 0 var(--c-yellow-s), 0 15px 20px rgba(0,0,0,0.4); text-shadow: 0 2px 0 rgba(255,255,255,0.5); animation-delay: 1s; }
+.btn-yellow:active { transform: translateY(10px) !important; box-shadow: 0 0 0 var(--c-yellow-s), 0 5px 10px rgba(0,0,0,0.4); }
 
-/* Botones Grandes */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 65px; padding: 15px 35px; border-radius: 100px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
-  border: 2px solid rgba(255,255,255,0.25); color: #fff; font-weight: 900; font-size: 1.3rem;
-  cursor: pointer; user-select: none; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 2px 0 rgba(255,255,255,0.2);
-}
-.btn:hover { background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.1)); transform: translateY(-6px); box-shadow: 0 15px 40px rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.5); }
-.btn:active { transform: scale(0.92) !important; }
-
-.btn.on { background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); border-color: #fff; box-shadow: 0 10px 40px rgba(138, 43, 226, 0.9), inset 0 2px 5px rgba(255,255,255,0.5); text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-.tab-btn { padding: 15px 30px; border-radius: 20px; font-size: 1.2rem; font-weight: 800; background: rgba(0,0,0,0.6); border: 2px solid rgba(255,255,255,0.15); color: #cbd5e1; cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.tab-btn:hover { background: rgba(255,255,255,0.2); color: #fff; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(255,255,255,0.15); }
-.tab-btn.active { background: linear-gradient(135deg, #facc15, #f59e0b); color: #451a03; border-color: #fff; box-shadow: 0 10px 30px rgba(250, 204, 21, 0.7); }
-
-/* Opciones de Juego - Enormes para Niños */
+/* Opciones de Juego - Cajas de Colores Mágicas */
 .pal {
-  padding: 35px 25px; border-radius: 40px; font-size: 2.2rem; font-weight: 900;
-  cursor: pointer; user-select: none; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
-  border: 3px solid rgba(255,255,255,0.2); color: #fff;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 20px; min-height: 180px; text-align: center; line-height: 1.3;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 2px 0 rgba(255,255,255,0.15);
+  padding: 40px 20px; border-radius: 40px; font-size: 2.8rem; font-weight: 900; font-family: 'Fredoka One', cursive;
+  cursor: pointer; user-select: none; transition: all 0.15s; background: rgba(255,255,255,0.15);
+  border: 6px solid #fff; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px; min-height: 220px; text-align: center; line-height: 1.2;
+  box-shadow: 0 15px 0 rgba(0,0,0,0.3), 0 20px 30px rgba(0,0,0,0.5); position: relative; overflow: hidden;
 }
-.pal .ico { font-size: 6rem; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6)); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.pal:hover { transform: translateY(-12px) scale(1.05); background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); border-color: rgba(0,240,255,0.6); box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 30px rgba(0,240,255,0.3); }
-.pal:hover .ico { transform: scale(1.15) translateY(-5px); }
-.pal:active { transform: scale(0.95); }
+.pal::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%); opacity: 0; transition: 0.3s; }
+.pal:hover::before { opacity: 1; transform: scale(1.2); }
+.pal .ico { font-size: 7rem; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.4)); transition: transform 0.2s; }
+.pal:hover { transform: translateY(-5px); background: rgba(255,255,255,0.25); border-color: var(--c-yellow); }
+.pal:hover .ico { transform: scale(1.15) rotate(5deg); }
+.pal:active { transform: translateY(15px); box-shadow: 0 0 0 rgba(0,0,0,0.3), 0 5px 10px rgba(0,0,0,0.5); }
 
-/* Feedback Educativo */
-.ok { background: linear-gradient(135deg, #10b981, #059669) !important; border-color: #fff !important; color: #fff !important; box-shadow: 0 0 60px rgba(16, 185, 129, 1) !important; animation: correctBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important; }
-.no { background: linear-gradient(135deg, #ef4444, #b91c1c) !important; border-color: #fecaca !important; color: #fff !important; box-shadow: 0 0 50px rgba(239, 68, 68, 0.9) !important; animation: errorShake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important; }
-@keyframes correctBounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1) translateY(-15px); } }
-@keyframes errorShake { 10%, 90% { transform: translate3d(-3px, 0, 0); } 20%, 80% { transform: translate3d(6px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-12px, 0, 0); } 40%, 60% { transform: translate3d(12px, 0, 0); } }
+/* Feedback Educativo Animado */
+.ok { background: var(--c-green) !important; border-color: #fff !important; box-shadow: 0 15px 0 var(--c-green-s), 0 0 50px var(--c-green) !important; animation: winPop 0.6s !important; }
+.no { background: var(--c-pink) !important; border-color: #fff !important; box-shadow: 0 15px 0 var(--c-pink-s), 0 0 50px var(--c-pink) !important; animation: errorShake 0.5s !important; }
+@keyframes winPop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1) translateY(-20px) rotate(5deg); } }
+@keyframes errorShake { 10%, 90% { transform: translateX(-5px); } 20%, 80% { transform: translateX(10px); } 30%, 50%, 70% { transform: translateX(-20px); } 40%, 60% { transform: translateX(20px); } }
 
-/* Elementos Especiales */
-.btn-oro { background: linear-gradient(135deg, #fbbf24, #d97706); color: #fff; border: 3px solid #fef08a; box-shadow: 0 12px 35px rgba(217,119,6,0.8); text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-.bocina { background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); color: #fff; border: 4px solid #fff; border-radius: 50%; width: 100px; height: 100px; font-size: 4rem; cursor: pointer; box-shadow: 0 15px 40px rgba(0,240,255,0.7); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); display: flex; align-items: center; justify-content: center; margin: 0 auto; z-index: 10; }
-.bocina:hover { transform: scale(1.15) rotate(-15deg); box-shadow: 0 25px 60px rgba(0,240,255,1); }
-.bocina:active { transform: scale(0.9); }
+/* Botón Altavoz (Para Inglés) */
+.bocina { background: var(--c-purple); color: #fff; border: 6px solid #fff; border-radius: 50%; width: 120px; height: 120px; font-size: 5rem; cursor: pointer; box-shadow: 0 12px 0 var(--c-purple-s); transition: all 0.15s; display: flex; align-items: center; justify-content: center; margin: 0 auto; z-index: 10; animation: flotar 3s infinite alternate; }
+.bocina:hover { transform: scale(1.1); }
+.bocina:active { transform: translateY(12px); box-shadow: 0 0 0 var(--c-purple-s); }
 
-/* Profe Astronauta */
-.prof-container { position: fixed; bottom: 30px; right: 30px; z-index: 55; cursor: pointer; transition: transform 0.3s; }
-.prof { font-size: 7rem; filter: drop-shadow(0 20px 30px rgba(0,240,255,0.8)); animation: floatAstronaut 5s ease-in-out infinite; transform-origin: center; }
-.prof-container:hover .prof { animation: hyperSpace 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-@keyframes floatAstronaut { 0%, 100% { transform: translateY(0) rotate(0deg); } 25% { transform: translateY(-25px) rotate(-10deg); } 75% { transform: translateY(-20px) rotate(10deg); } }
-@keyframes hyperSpace { 0% { transform: scale(1); } 50% { transform: scale(1.5) translateY(-50px) rotate(-25deg); filter: drop-shadow(0 40px 60px rgba(255,0,127,1)); } 100% { transform: scale(1.3) translateY(-30px) rotate(-15deg); filter: drop-shadow(0 30px 40px rgba(255,0,127,0.9)); } }
+/* Profe Astronauta (Woody) */
+.prof-container { position: fixed; bottom: 40px; right: 40px; z-index: 55; cursor: pointer; }
+.prof { font-size: 10rem; filter: drop-shadow(0 20px 30px rgba(0,229,255,0.6)); animation: floatAstronaut 6s ease-in-out infinite; transform-origin: center; }
+.prof-container:hover .prof { animation: hyperSpace 0.5s forwards; }
+@keyframes floatAstronaut { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
+@keyframes hyperSpace { to { transform: scale(1.4) translateY(-60px) rotate(-15deg); filter: drop-shadow(0 40px 50px rgba(255,0,127,1)); } }
 
-/* Globo de Texto GIGANTE */
-.globo { position: fixed; bottom: 180px; right: 140px; z-index: 54; max-width: 400px; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); color: #0f172a; padding: 30px 35px; border-radius: 40px 40px 8px 40px; font-weight: 900; font-size: 1.6rem; line-height: 1.4; box-shadow: 0 25px 60px rgba(0,0,0,0.8); border: 4px solid var(--neon-cyan); animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.globo::after { content: ""; position: absolute; bottom: -20px; right: 40px; border: 20px solid transparent; border-top-color: var(--neon-cyan); }
-.globo::before { content: ""; position: absolute; bottom: -14px; right: 44px; border: 14px solid transparent; border-top-color: #fff; z-index: 1; }
-@keyframes popIn { from { opacity: 0; transform: translateY(40px) scale(0.6) rotate(8deg); } }
+/* Globo de Texto GIGANTE y AMIGABLE */
+.globo { position: fixed; bottom: 250px; right: 180px; z-index: 54; max-width: 500px; background: #fff; color: #1e1b4b; padding: 35px 45px; border-radius: 50px 50px 10px 50px; font-weight: 900; font-size: 2.2rem; line-height: 1.3; font-family: 'Fredoka One', cursive; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 8px solid var(--c-cyan); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.globo::after { content: ""; position: absolute; bottom: -28px; right: 50px; border: 28px solid transparent; border-top-color: var(--c-cyan); }
+.globo::before { content: ""; position: absolute; bottom: -18px; right: 56px; border: 18px solid transparent; border-top-color: #fff; z-index: 1; }
+@keyframes popIn { from { opacity: 0; transform: translateY(50px) scale(0.5) rotate(10deg); } }
+
+/* Fuegos Artificiales (Partículas) */
+.fw-particle { position: fixed; border-radius: 50%; pointer-events: none; z-index: 99999; box-shadow: 0 0 20px currentColor; animation: fwAnim 1.2s ease-out forwards; }
+@keyframes fwAnim { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; } }
 
 /* Modales */
-.modal-overlay { position: fixed; inset: 0; background: rgba(3,0,10,0.92); backdrop-filter: blur(20px); z-index: 99000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 20px; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(11,9,20,0.95); backdrop-filter: blur(25px); z-index: 99000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 20px; }
 .modal-overlay.activo { opacity: 1; pointer-events: auto; }
-.particula { position: fixed; width: 18px; height: 18px; border-radius: 50%; pointer-events: none; z-index: 99998; animation: confeti 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; box-shadow: 0 0 20px currentColor; }
-@keyframes confeti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(1080deg); opacity: 0; } }
 
-/* =========================================
-   ESTILOS PREMIUM PARA JUEGOS INTERACTIVOS 
-   ========================================= */
+/* Pestañas / Categorías */
+.tabs-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-bottom: 40px; }
+.tab-btn { padding: 20px 40px; border-radius: 30px; font-family: 'Fredoka One', cursive; font-size: 1.5rem; background: rgba(0,0,0,0.5); border: 4px solid rgba(255,255,255,0.2); color: #fff; cursor: pointer; transition: 0.2s; box-shadow: 0 8px 0 rgba(0,0,0,0.4); }
+.tab-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-5px); box-shadow: 0 13px 0 rgba(0,0,0,0.4); }
+.tab-btn:active { transform: translateY(8px); box-shadow: 0 0 0 rgba(0,0,0,0.4); }
+.tab-btn.active { background: var(--c-yellow); color: #5a4200; border-color: #fff; box-shadow: 0 8px 0 var(--c-yellow-s); }
 
-/* MEMORIA 3D GIGANTE */
-.carta { aspect-ratio: 1/1; cursor: pointer; perspective: 1200px; user-select: none; }
-.carta-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.carta.girada .carta-inner { transform: rotateY(180deg) scale(1.05); }
-.cara { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 5.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
-.cf { background: linear-gradient(135deg, #1e293b, #0f172a); color: #38bdf8; border: 3px solid rgba(56,189,248,0.4); font-family: 'Orbitron'; font-weight: 900; }
-.cf::after { content: "★"; font-size: 3rem; opacity: 0.6; position: absolute; }
-.ca { transform: rotateY(180deg); background: linear-gradient(135deg, #fef08a, #f59e0b); border: 3px solid #fff; }
-
-/* ROMPECABEZAS */
-.rompe-ficha { aspect-ratio: 1/1; border-radius: 25px; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; font-weight: 900; cursor: pointer; transition: all 0.2s; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-.rompe-llena { background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); color: #fff; border: 3px solid rgba(255,255,255,0.6); text-shadow: 0 3px 6px rgba(0,0,0,0.6); }
-.rompe-llena:hover { transform: scale(1.08); z-index: 10; box-shadow: 0 15px 40px rgba(0,240,255,0.7); }
-.rompe-vacia { background: rgba(0,0,0,0.5); border: 3px dashed rgba(255,255,255,0.3); }
-
-/* SIMON DICE NEON */
-.simon-btn { border-radius: 40px; cursor: pointer; opacity: 0.35; transition: all 0.15s; border: 8px solid rgba(255,255,255,0.15); box-shadow: inset 0 0 30px rgba(0,0,0,0.6); }
-.simon-btn.activo { opacity: 1; transform: scale(1.1); box-shadow: 0 0 70px currentColor, inset 0 0 40px #fff; border-color: #fff; z-index: 10; }
-
-/* TECLADO PIANO */
-.tecla { flex: 1; margin: 0 4px; border-radius: 0 0 25px 25px; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 25px; font-weight: 900; transition: all 0.1s; user-select: none; font-size: 1.5rem; }
-.tecla-blanca { background: linear-gradient(180deg, #ffffff, #e2e8f0); height: 280px; z-index: 1; border: 2px solid #cbd5e1; color: #0f172a; box-shadow: 0 12px 25px rgba(0,0,0,0.5), inset 0 -6px 15px rgba(0,0,0,0.15); }
-.tecla-blanca.activa { background: #cbd5e1; transform: translateY(8px); box-shadow: 0 3px 8px rgba(0,0,0,0.5); color: var(--neon-pink); }
-.tecla-negra { background: linear-gradient(180deg, #1e293b, #020617); height: 160px; width: 60px; margin-left: -30px; margin-right: -30px; z-index: 2; color: #38bdf8; box-shadow: 0 12px 30px rgba(0,0,0,0.8), inset 0 -4px 10px rgba(255,255,255,0.3); border-radius: 0 0 15px 15px; }
-.tecla-negra.activa { background: #334155; transform: translateY(8px); color: var(--neon-cyan); }
-
-@media (max-width: 640px) {
-  .prof-container { right: 10px; bottom: 10px; } .prof { font-size: 5rem; }
-  .globo { right: 100px; bottom: 140px; font-size: 1.2rem; max-width: 260px; padding: 20px; }
-  .pal { min-height: 140px; padding: 20px; font-size: 1.6rem; } .pal .ico { font-size: 4.5rem; }
-  .btn { min-height: 55px; padding: 12px 25px; font-size: 1.1rem; }
+@media (max-width: 768px) {
+  .prof { font-size: 7rem; } .globo { right: 50px; bottom: 180px; font-size: 1.5rem; max-width: 300px; padding: 25px; }
+  .pal { font-size: 1.8rem; min-height: 150px; padding: 20px; border-width: 4px; } .pal .ico { font-size: 5rem; }
+  .btn-3d { font-size: 1.2rem; padding: 12px 25px; } .tit-cartoon { font-size: 2.5rem; }
+  .vidrio { padding: 30px 15px; border-radius: 30px; }
 }
 </style>
 </head>
 <body>
 
-<div id="intro" class="fixed inset-0 bg-[#03000a] z-[100000] flex items-center justify-center flex-col transition-opacity duration-700">
-  <div class="text-[120px] mb-8 drop-shadow-[0_0_50px_rgba(0,240,255,1)] animate-bounce">🚀</div>
-  <div class="tit-neon text-5xl md:text-8xl text-center">WOODY PLANET</div>
-  <div class="text-cyan-300 mt-6 font-black text-3xl tracking-[0.3em] uppercase drop-shadow-lg">Ultimate Educativo</div>
-  <div class="w-[400px] h-6 bg-white/15 rounded-full mt-14 overflow-hidden border-2 border-white/30 p-1"><div class="h-full rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 w-0 transition-all duration-1000 shadow-[0_0_20px_rgba(255,0,127,1)]" id="barraCarga"></div></div>
+<div class="estrellas"></div>
+
+<!-- INTRO MAGICO -->
+<div id="intro" class="fixed inset-0 bg-[#0b0914] z-[100000] flex items-center justify-center flex-col transition-opacity duration-1000">
+  <div class="text-[150px] mb-10 drop-shadow-[0_0_60px_rgba(0,229,255,1)] animate-bounce">🚀</div>
+  <div class="tit-cartoon text-center">WOODY PLANET</div>
+  <div class="text-yellow-300 mt-8 font-black text-4xl tracking-widest uppercase drop-shadow-lg font-['Fredoka_One']">Educación Premium Gratis</div>
+  <div class="w-[500px] max-w-[90vw] h-8 bg-white/20 rounded-full mt-16 border-4 border-white/40 p-1"><div class="h-full rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 w-0 transition-all duration-1000 shadow-[0_0_20px_rgba(255,0,127,1)]" id="barraCarga"></div></div>
 </div>
 
-<div class="max-w-[1400px] mx-auto px-6 py-8 flex justify-between items-center gap-5 flex-wrap relative z-10">
-  <div class="vidrio-fino p-4 px-8 flex items-center gap-6 cursor-pointer" onclick="mostrarPerfil()">
-    <div id="avatarPerfil" class="text-6xl bg-white/10 rounded-full w-20 h-20 flex items-center justify-center border-2 border-white/30 shadow-[0_0_25px_rgba(255,255,255,0.4)]">👦</div>
+<!-- CABECERA GIGANTE -->
+<div class="caja-gigante px-4 py-8 flex justify-between items-center gap-6 flex-wrap relative z-10">
+  <div class="bg-white/10 backdrop-blur-md p-4 px-8 rounded-full border-4 border-white/30 flex items-center gap-6 cursor-pointer shadow-xl hover:bg-white/20 transition-all" onclick="mostrarPerfil()">
+    <div id="avatarPerfil" class="text-7xl bg-white/20 rounded-full w-24 h-24 flex items-center justify-center border-4 border-white/50 shadow-[0_0_25px_rgba(255,255,255,0.5)]">👦</div>
     <div>
-      <div id="nomP" class="font-black text-white text-2xl tracking-wider">Jugador</div>
-      <div class="text-xl font-bold text-yellow-400 drop-shadow-md">🪙 <span id="monedasTot">0</span></div>
+      <div id="nomP" class="font-black text-white text-3xl font-['Fredoka_One'] tracking-wide">Amigo</div>
+      <div class="text-2xl font-black text-yellow-400 drop-shadow-md mt-1">🪙 <span id="monedasTot">0</span></div>
     </div>
   </div>
-  <div class="flex gap-5 flex-wrap">
-    <button class="btn border-pink-500 hover:border-pink-400 shadow-[0_0_25px_rgba(255,0,127,0.5)]" onclick="verAnuncio()">🎬 +50 Monedas</button>
-    <button class="btn" onclick="abrirTienda()">🏪 Tienda</button>
-    <button class="btn" onclick="sonido.toggleMusica()" id="btnMus">🔇 Música</button>
+  <div class="flex gap-6 flex-wrap">
+    <button class="btn-3d btn-pink" onclick="verAnuncio()">🎬 +50 Monedas</button>
+    <button class="btn-3d btn-cyan" onclick="abrirTienda()">🏪 Tienda</button>
+    <button class="btn-3d btn-purple" onclick="sonido.toggleMusica()" id="btnMus" style="background:var(--c-purple);box-shadow:0 10px 0 var(--c-purple-s)">🔇 Música</button>
   </div>
 </div>
 
-<div class="max-w-[1200px] mx-auto px-6 pt-8 pb-48 relative z-10">
-  <div class="flex flex-wrap gap-5 justify-center mb-10 bg-black/40 p-6 rounded-[50px] border-2 border-white/15 backdrop-blur-xl shadow-2xl" id="cats"></div>
-  <div class="flex flex-wrap gap-4 justify-center mb-14" id="tabs"></div>
-  <div id="juegos" class="vidrio min-h-[600px]"></div>
+<!-- CONTENEDOR PRINCIPAL JUEGOS (ANCHO COMPLETO) -->
+<div class="caja-gigante px-4 pt-8 pb-56 relative z-10">
+  <div class="tabs-container bg-black/40 p-6 rounded-[40px] border-4 border-white/20 backdrop-blur-xl shadow-2xl" id="cats"></div>
+  <div class="tabs-container mb-16" id="tabs"></div>
+  <div id="juegos" class="vidrio min-h-[700px]"></div>
 </div>
 
-<div class="prof-container" onclick="hablarWoody('¡Acá estoy para ayudarte!')">
+<!-- PROFE WOODY -->
+<div class="prof-container" onclick="hablarWoody('¡Acá estoy para ayudarte! Toca cualquier juego para empezar.')">
   <div class="prof" id="prof">👨‍🚀</div>
 </div>
 <div id="globo" class="globo hidden"></div>
-<div id="mascotaFija" class="fixed bottom-10 left-10 z-50 text-[100px] hidden drop-shadow-[0_0_40px_rgba(255,255,255,0.8)] animate-bounce"></div>
 
-<!-- MODALES PREMIUM GIGANTES -->
-<div id="perfilModal" class="modal-overlay"><div class="vidrio max-w-xl w-full p-14 text-center"><h2 class="tit-neon text-6xl mb-12">Tu Perfil</h2><input id="nomPerfil" placeholder="Tu nombre" class="w-full p-6 rounded-3xl bg-black/50 border-4 border-white/20 text-white text-center text-4xl mb-12 outline-none focus:border-cyan-400 focus:shadow-[0_0_35px_rgba(0,240,255,0.6)] transition-all font-black"><div id="avatares" class="grid grid-cols-3 gap-6 mb-12"></div><button class="btn btn-oro w-full text-4xl py-6" onclick="guardarPerfil()">✅ Guardar</button></div></div>
-<div id="tiendaModal" class="modal-overlay"><div class="vidrio max-w-5xl w-full p-12 max-h-[90vh] overflow-y-auto"><div class="flex justify-between items-center mb-12"><h2 class="tit-neon text-6xl">🏪 Tienda Premium</h2><button class="w-16 h-16 rounded-full bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white transition-all text-4xl font-black border-4 border-red-500/50 flex items-center justify-center" onclick="cerrarModal('tiendaModal')">✕</button></div><div class="text-center mb-14 text-5xl font-black text-yellow-400 bg-yellow-400/10 py-8 rounded-[50px] border-4 border-yellow-400/40 shadow-inner">Monedas: 🪙 <span id="tiendaMonedas">0</span></div><h3 class="text-4xl font-black text-pink-400 mb-10 tracking-[0.2em] uppercase text-center drop-shadow-md">🐾 Mascotas Espaciales</h3><div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14"></div><h3 class="text-4xl font-black text-cyan-400 mb-10 tracking-[0.2em] uppercase text-center drop-shadow-md">👑 Equipamiento</h3><div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-4 gap-10"></div></div></div>
-<div id="premioModal" class="modal-overlay z-[99999]"><div class="vidrio max-w-lg w-full p-16 text-center"><div id="premioIcono" class="text-[180px] mb-10 drop-shadow-[0_0_50px_rgba(255,255,255,1)] animate-bounce">🎁</div><h2 id="premioTexto" class="text-6xl font-black text-yellow-400 mb-14 tracking-wider drop-shadow-xl">¡GANASTE!</h2><button class="btn btn-oro px-14 py-6 text-4xl w-full" onclick="cerrarModal('premioModal')">¡Increíble!</button></div></div>
+<!-- MODALES PREMIUM -->
+<div id="perfilModal" class="modal-overlay"><div class="vidrio max-w-2xl w-full p-16 text-center"><h2 class="tit-cartoon mb-12">Tu Perfil</h2><input id="nomPerfil" placeholder="Tu nombre" class="w-full p-8 rounded-[40px] bg-black/50 border-8 border-white/30 text-white text-center text-5xl mb-12 outline-none focus:border-cyan-400 focus:shadow-[0_0_40px_rgba(0,229,255,0.6)] transition-all font-['Fredoka_One']"><div id="avatares" class="grid grid-cols-3 gap-8 mb-14"></div><button class="btn-3d btn-green w-full text-5xl py-8" style="background:var(--c-green);box-shadow:0 12px 0 var(--c-green-s)" onclick="guardarPerfil()">✅ Guardar</button></div></div>
+<div id="tiendaModal" class="modal-overlay"><div class="vidrio max-w-6xl w-full p-14 max-h-[90vh] overflow-y-auto"><div class="flex justify-between items-center mb-14"><h2 class="tit-cartoon">🏪 Tienda Mágica</h2><button class="w-20 h-20 rounded-full bg-red-500 text-white hover:bg-red-400 transition-all text-5xl font-black border-8 border-red-700 flex items-center justify-center shadow-[0_8px_0_#991b1b] active:translate-y-2 active:shadow-none" onclick="cerrarModal('tiendaModal')">✕</button></div><div class="text-center mb-16 text-6xl font-black text-yellow-400 bg-yellow-400/20 py-8 rounded-[50px] border-8 border-yellow-400/50 shadow-inner font-['Fredoka_One']">Tus Monedas: 🪙 <span id="tiendaMonedas">0</span></div><div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16"></div><div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-4 gap-10"></div></div></div>
+<div id="premioModal" class="modal-overlay z-[99999]"><div class="vidrio max-w-2xl w-full p-20 text-center"><div id="premioIcono" class="text-[200px] mb-12 drop-shadow-[0_0_60px_rgba(255,255,255,1)] animate-bounce">🎁</div><h2 id="premioTexto" class="tit-cartoon text-yellow-400 mb-16 drop-shadow-xl">¡GANASTE!</h2><button class="btn-3d btn-yellow w-full text-5xl py-8" onclick="cerrarModal('premioModal')">¡Súper!</button></div></div>
 
 <script>
 // ==========================================
-// SISTEMA CORE, AUDIO Y EFECTOS
+// CORE: AUDIO, FUEGOS ARTIFICIALES Y VOZ
 // ==========================================
 let runId = 0; 
 const sonido = (() => { let ctx; const ini = () => { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); }; const tono = (f = 440, d = 0.2, t = 'sine', v = 0.1) => { ini(); const o = ctx.createOscillator(), g = ctx.createGain(); o.type = t; o.frequency.value = f; g.gain.value = v; g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + d); o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + d); }; const mel = arr => arr.forEach(([f, d], n) => setTimeout(() => tono(f, d), n * 140)); return { ini, tono, click: () => tono(600, 0.05, 'square', 0.05), ok: () => mel([[523, 0.1], [659, 0.1], [784, 0.15]]), no: () => mel([[300, 0.15], [200, 0.2]]), ganar: () => mel([[523, 0.1], [659, 0.1], [784, 0.1], [1047, 0.3]]), moneda: () => tono(1200, 0.1, 'sine', 0.05), toggleMusica() { ini(); this._m = !this._m; document.getElementById('btnMus').textContent = this._m ? '🔊 Música' : '🔇 Música'; if (this._m) { const n = [261, 329, 392, 523]; let i = 0; const lp = () => { if (!this._m) return; tono(n[i % 4], 0.2, 'triangle', 0.02); i++; this._t = setTimeout(lp, 600); }; lp(); } else clearTimeout(this._t); } }; })(); 
 
-// Efecto de chispas en toda la pantalla
-document.addEventListener('click', (e) => {
-  sonido.ini();
-  const spark = document.createElement('div'); spark.className = 'click-spark';
-  spark.style.left = e.clientX + 'px'; spark.style.top = e.clientY + 'px';
-  spark.style.setProperty('--tx', (Math.random() - 0.5) * 120 + 'px');
-  spark.style.setProperty('--ty', (Math.random() - 0.5) * 120 + 'px');
-  document.body.appendChild(spark); setTimeout(() => spark.remove(), 800);
-});
+// Fuegos Artificiales 
+function fuegosArtificiales(x, y) {
+  const colors = ['#00e5ff', '#ff007f', '#ffea00', '#00e676', '#d500f9'];
+  const centerX = x || window.innerWidth / 2; const centerY = y || window.innerHeight / 2;
+  for (let i = 0; i < 80; i++) {
+    const p = document.createElement('div'); p.className = 'fw-particle';
+    const size = Math.random() * 20 + 10; p.style.width = size + 'px'; p.style.height = size + 'px';
+    p.style.color = colors[Math.floor(Math.random() * colors.length)]; p.style.background = p.style.color;
+    p.style.left = centerX + 'px'; p.style.top = centerY + 'px';
+    const angle = Math.random() * Math.PI * 2; const velocity = Math.random() * 400 + 100;
+    p.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+    p.style.setProperty('--ty', (Math.sin(angle) * velocity + 200) + 'px'); // Gravedad
+    document.body.appendChild(p); setTimeout(() => p.remove(), 1200);
+  }
+}
 
-// MOTOR DE VOZ
+document.addEventListener('click', (e) => { sonido.ini(); });
+
+// Profesor Woody: Voz y Enseñanza
 function hablarIngles(texto) { try { if (!('speechSynthesis' in window)) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(texto); u.lang = 'en-US'; u.rate = 0.85; u.pitch = 1.1; const v = speechSynthesis.getVoices().find(x => x.lang.startsWith('en')); if (v) u.voice = v; speechSynthesis.speak(u); } catch (e) {} }
 
 function hablarWoody(texto, esIngles = false) { 
@@ -231,37 +196,33 @@ function hablarWoody(texto, esIngles = false) {
   try { 
     if ('speechSynthesis' in window) { 
       speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(texto); 
-      if(esIngles) {
-        u.lang = 'en-US'; u.rate = 0.85; u.pitch = 1.1; const v = speechSynthesis.getVoices().find(x => x.lang.startsWith('en')); if (v) u.voice = v;
-      } else {
-        u.lang = 'es-AR'; u.pitch = 1.3; u.rate = 0.95; 
-      }
+      if(esIngles) { u.lang = 'en-US'; u.rate = 0.85; u.pitch = 1.1; const v = speechSynthesis.getVoices().find(x => x.lang.startsWith('en')); if (v) u.voice = v; } 
+      else { u.lang = 'es-AR'; u.pitch = 1.3; u.rate = 0.95; }
       speechSynthesis.speak(u); 
     } 
   } catch (e) {} 
 }
 
-// PERFIL Y TIENDA
-let PERFIL = { n: "Jugador", a: "👦", p: 0, monedas: 100, inv: [], eqMascota: null, eqAcc: null }; let CA = 0, J = 0;
+// Perfil y Tienda
+let PERFIL = { n: "Amigo", a: "👦", p: 0, monedas: 100, inv: [], eqMascota: null, eqAcc: null }; let CA = 0, J = 0;
 const TIENDA = { mascotas: [ { id: 'm1', ico: '🐉', nom: 'Dragón', p: 500 }, { id: 'm2', ico: '🦄', nom: 'Unicornio', p: 800 }, { id: 'm3', ico: '🤖', nom: 'Robot', p: 1200 }, { id: 'm4', ico: '👽', nom: 'Marciano', p: 2000 } ], accesorios: [ { id: 'a1', ico: '👑', nom: 'Corona', p: 300 }, { id: 'a2', ico: '🕶️', nom: 'Gafas', p: 400 }, { id: 'a3', ico: '🎩', nom: 'Galera', p: 500 }, { id: 'a4', ico: '🎓', nom: 'Graduado', p: 600 } ] };
-function guardarPerfil() { const v = document.getElementById('nomPerfil').value.trim(); if (v) PERFIL.n = v; localStorage.setItem('woodyUltimate', JSON.stringify(PERFIL)); actualizarCabecera(); cerrarModal('perfilModal'); sonido.ok(); } function cargarPerfil() { const s = localStorage.getItem('woodyUltimate'); if (s) PERFIL = { ...PERFIL, ...JSON.parse(s) }; actualizarCabecera(); } function actualizarCabecera() { document.getElementById('nomP').textContent = PERFIL.n; document.getElementById('monedasTot').textContent = PERFIL.monedas; let av = PERFIL.a; if (PERFIL.eqAcc) av += TIENDA.accesorios.find(x => x.id === PERFIL.eqAcc).ico; document.getElementById('avatarPerfil').textContent = av; const m = document.getElementById('mascotaFija'); if (PERFIL.eqMascota) { m.textContent = TIENDA.mascotas.find(x => x.id === PERFIL.eqMascota).ico; m.classList.remove('hidden'); } else m.classList.add('hidden'); } function ganarMonedas(c) { PERFIL.monedas += c; localStorage.setItem('woodyUltimate', JSON.stringify(PERFIL)); actualizarCabecera(); sonido.moneda(); } function mostrarPremio(ico, txt) { document.getElementById('premioIcono').textContent = ico; document.getElementById('premioTexto').textContent = txt; abrirModal('premioModal'); } function abrirModal(id) { document.getElementById(id).classList.add('activo'); sonido.click(); } function cerrarModal(id) { document.getElementById(id).classList.remove('activo'); sonido.click(); } function verAnuncio() { ganarMonedas(50); mostrarPremio('🎬', '¡Gracias! +50 Monedas'); }
-function mostrarPerfil() { document.getElementById('nomPerfil').value = PERFIL.n; const avs = ["👦", "👧", "🧑‍🚀", "👽", "🦊", "🐯"]; document.getElementById('avatares').innerHTML = avs.map(a => `<button class="text-[80px] hover:scale-110 transition-transform ${a === PERFIL.a ? 'ring-8 ring-cyan-400 bg-white/20 rounded-[40px]' : ''} p-5" onclick="PERFIL.a='${a}';mostrarPerfil()">${a}</button>`).join(''); abrirModal('perfilModal'); }
-function abrirTienda() { document.getElementById('tiendaMonedas').textContent = PERFIL.monedas; document.getElementById('tiendaMascotas').innerHTML = TIENDA.mascotas.map(m => { const t = PERFIL.inv.includes(m.id), e = PERFIL.eqMascota === m.id; return `<div class="vidrio-fino p-8 text-center"><div class="text-[90px] mb-6 drop-shadow-lg">${m.ico}</div><div class="font-black text-3xl mb-6 text-cyan-200">${m.nom}</div>${t ? `<button class="btn w-full text-2xl ${e ? '!bg-green-500' : ''}" onclick="equipar('${m.id}','m')">${e ? 'Puesta' : 'Equipar'}</button>` : `<button class="btn btn-oro w-full text-2xl" onclick="comprar('${m.id}',${m.p})">🪙 ${m.p}</button>`}</div>`; }).join(''); document.getElementById('tiendaAccesorios').innerHTML = TIENDA.accesorios.map(a => { const t = PERFIL.inv.includes(a.id), e = PERFIL.eqAcc === a.id; return `<div class="vidrio-fino p-8 text-center"><div class="text-[90px] mb-6 drop-shadow-lg">${a.ico}</div><div class="font-black text-3xl mb-6 text-pink-200">${a.nom}</div>${t ? `<button class="btn w-full text-2xl ${e ? '!bg-green-500' : ''}" onclick="equipar('${a.id}','a')">${e ? 'Puesto' : 'Equipar'}</button>` : `<button class="btn btn-oro w-full text-2xl" onclick="comprar('${a.id}',${a.p})">🪙 ${a.p}</button>`}</div>`; }).join(''); abrirModal('tiendaModal'); }
-function comprar(id, p) { if (PERFIL.monedas >= p) { PERFIL.monedas -= p; PERFIL.inv.push(id); localStorage.setItem('woodyUltimate', JSON.stringify(PERFIL)); actualizarCabecera(); sonido.ganar(); abrirTienda(); mostrarPremio(id.startsWith('m') ? TIENDA.mascotas.find(x => x.id === id).ico : TIENDA.accesorios.find(x => x.id === id).ico, "¡Comprado!"); } else { sonido.no(); hablarWoody("¡Necesitás más monedas! Jugá para ganar."); } } function equipar(id, t) { if (t === 'm') PERFIL.eqMascota = PERFIL.eqMascota === id ? null : id; else PERFIL.eqAcc = PERFIL.eqAcc === id ? null : id; localStorage.setItem('woodyUltimate', JSON.stringify(PERFIL)); actualizarCabecera(); sonido.click(); abrirTienda(); }
+function guardarPerfil() { const v = document.getElementById('nomPerfil').value.trim(); if (v) PERFIL.n = v; localStorage.setItem('woodyKids', JSON.stringify(PERFIL)); actualizarCabecera(); cerrarModal('perfilModal'); sonido.ok(); } function cargarPerfil() { const s = localStorage.getItem('woodyKids'); if (s) PERFIL = { ...PERFIL, ...JSON.parse(s) }; actualizarCabecera(); } function actualizarCabecera() { document.getElementById('nomP').textContent = PERFIL.n; document.getElementById('monedasTot').textContent = PERFIL.monedas; document.getElementById('avatarPerfil').textContent = PERFIL.a; } function ganarMonedas(c) { PERFIL.monedas += c; localStorage.setItem('woodyKids', JSON.stringify(PERFIL)); actualizarCabecera(); sonido.moneda(); } function mostrarPremio(ico, txt) { document.getElementById('premioIcono').textContent = ico; document.getElementById('premioTexto').textContent = txt; abrirModal('premioModal'); } function abrirModal(id) { document.getElementById(id).classList.add('activo'); sonido.click(); } function cerrarModal(id) { document.getElementById(id).classList.remove('activo'); sonido.click(); } function verAnuncio() { ganarMonedas(50); mostrarPremio('🎬', '¡Genial! +50 Monedas'); }
+function mostrarPerfil() { document.getElementById('nomPerfil').value = PERFIL.n; const avs = ["👦", "👧", "🧑‍🚀", "👽", "🦊", "🐯"]; document.getElementById('avatares').innerHTML = avs.map(a => `<button class="text-[100px] hover:scale-110 transition-transform ${a === PERFIL.a ? 'ring-8 ring-cyan-400 bg-white/20 rounded-[50px]' : ''} p-6" onclick="PERFIL.a='${a}';mostrarPerfil()">${a}</button>`).join(''); abrirModal('perfilModal'); }
+function abrirTienda() { document.getElementById('tiendaMonedas').textContent = PERFIL.monedas; document.getElementById('tiendaMascotas').innerHTML = TIENDA.mascotas.map(m => `<div class="bg-white/10 p-8 rounded-[40px] border-4 border-white/20 text-center"><div class="text-[100px] mb-6">${m.ico}</div><div class="font-['Fredoka_One'] text-3xl text-cyan-300 mb-6">${m.nom}</div><button class="btn-3d btn-yellow w-full text-3xl" onclick="comprar('${m.id}',${m.p})">🪙 ${m.p}</button></div>`).join(''); document.getElementById('tiendaAccesorios').innerHTML = TIENDA.accesorios.map(a => `<div class="bg-white/10 p-8 rounded-[40px] border-4 border-white/20 text-center"><div class="text-[100px] mb-6">${a.ico}</div><div class="font-['Fredoka_One'] text-3xl text-pink-300 mb-6">${a.nom}</div><button class="btn-3d btn-yellow w-full text-3xl" onclick="comprar('${a.id}',${a.p})">🪙 ${a.p}</button></div>`).join(''); abrirModal('tiendaModal'); }
+function comprar(id, p) { if (PERFIL.monedas >= p) { PERFIL.monedas -= p; PERFIL.inv.push(id); localStorage.setItem('woodyKids', JSON.stringify(PERFIL)); actualizarCabecera(); sonido.ganar(); abrirTienda(); mostrarPremio('🛍️', "¡Comprado!"); } else { sonido.no(); hablarWoody("¡Necesitas más monedas! Vamos a jugar para ganar más."); } }
 
-// UTILIDADES MATEMÁTICAS CLAVES
+// Utilidades Lógicas
 const mezclar = a => [...a].sort(() => Math.random() - 0.5); 
 const rp = a => a[Math.floor(Math.random() * a.length)]; 
 const ri = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
-const conf = (n = 60) => { const cols = ['#00f0ff', '#ff007f', '#8a2be2', '#facc15', '#22c55e']; for (let i = 0; i < n; i++) { const c = document.createElement('div'); c.className = 'particula'; c.style.color = cols[i % cols.length]; c.style.left = Math.random() * 100 + 'vw'; c.style.top = '-20px'; c.style.setProperty('--tx', (Math.random() - 0.5) * 500 + 'px'); c.style.setProperty('--ty', Math.random() * 1000 + 'px'); document.body.appendChild(c); setTimeout(() => c.remove(), 1800); } };
 function O(correcto, erroneas) { const arr = mezclar([correcto, ...erroneas]); return { opts: arr.map(String), ok: arr.indexOf(String(correcto)) }; }
 
 // ==========================================
-// MOTOR PRINCIPAL DEL QUIZ EDUCATIVO (WOODY HABLA Y CORRIGE)
+// EL MOTOR DE APRENDIZAJE EMPÁTICO
 // ==========================================
 function quiz({ p, opts, ok, en, ico, pregunta, respuesta, next }) {
   const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div class="text-center mb-16 text-5xl md:text-7xl font-black leading-tight tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] text-white">${p}</div><div id="qOps" class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto"></div>`;
+  gc.innerHTML = `<div class="text-center mb-16 text-6xl md:text-8xl font-black font-['Fredoka_One'] leading-tight tracking-wide text-white drop-shadow-[0_10px_0_rgba(0,0,0,0.5)]">${p}</div><div id="qOps" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 w-full mx-auto"></div>`;
   const c = document.getElementById('qOps'); const myRun = runId;
   opts.forEach((o, i) => {
     const b = document.createElement('button'); b.className = 'pal';
@@ -269,49 +230,60 @@ function quiz({ p, opts, ok, en, ico, pregunta, respuesta, next }) {
     b.onclick = () => {
       if (myRun !== runId) return; 
       if (i === ok) { 
-        b.classList.add('ok'); sonido.ok(); conf(60); ganarMonedas(5); 
-        hablarWoody(rp(["¡Muy bien! ¡Lo lograste!", "¡Excelente! Eres súper inteligente.", "¡Genial, respuesta correcta!"])); 
+        b.classList.add('ok'); sonido.ok(); fuegosArtificiales(); ganarMonedas(5); 
+        hablarWoody(rp(["¡Bien! ¡Lo lograste!", "¡Excelente, eres genial!", "¡Perfecto! Sigue así."])); 
         if (en) setTimeout(() => { if (myRun === runId) hablarIngles(en); }, 1500); 
         setTimeout(() => { if (myRun === runId && next) next(); }, 4000); 
       }
       else { 
         b.classList.add('no'); sonido.no(); 
-        // WOODY CORRIGE DE FORMA AMABLE
-        hablarWoody(`No, vamos que tú puedes. Yo te ayudo. ${pregunta} es ${respuesta}.`); 
+        // CORRECCIÓN EMPÁTICA Y EDUCATIVA
+        hablarWoody(`No, vamos, que tú puedes. Yo te ayudo. ${pregunta} es ${respuesta}.`); 
       }
     }; c.appendChild(b);
   });
-
-  // Woody lee la pregunta en voz alta al entrar al nivel
   if(pregunta) setTimeout(() => hablarWoody(pregunta), 800);
 }
 // ==========================================
-// JUEGOS INTERACTIVOS INFANTILES (PREMIUM GIGANTE)
+// JUEGOS INTERACTIVOS INFANTILES (A PANTALLA COMPLETA)
 // ==========================================
 
 function jMemoria() {
   const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div class="text-center mb-12 font-black text-5xl text-cyan-300 drop-shadow-lg">Aciertos: <span id="mPts" class="text-white">0</span> / 6</div><div id="mGrilla" class="grid grid-cols-3 md:grid-cols-4 gap-8 max-w-4xl mx-auto"></div><div class="text-center mt-16"><button class="btn btn-oro" onclick="cargarJ()">🔄 Reiniciar Misión</button></div>`;
-  const emojis = ["🚀", "👽", "🌍", "⭐", "🛸", "👾"]; const arr = mezclar([...emojis, ...emojis]);
+  gc.innerHTML = `<div class="text-center mb-14 font-black text-6xl text-cyan-300 font-['Fredoka_One'] drop-shadow-[0_5px_0_rgba(0,0,0,0.5)]">Aciertos: <span id="mPts" class="text-white">0</span> / 6</div><div id="mGrilla" class="grid grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-[1200px] mx-auto"></div><div class="text-center mt-20"><button class="btn-3d btn-yellow text-4xl" onclick="cargarJ()">🔄 Reiniciar Juego</button></div>`;
+  const emojis = ["🚀", "🐶", "🌍", "🍕", "🛸", "👾"]; const arr = mezclar([...emojis, ...emojis]);
   const gr = document.getElementById('mGrilla'); let sel = [], pts = 0; const myRun = runId;
   
-  hablarWoody("Encuentra las parejas de cartas iguales. ¡Tú puedes!");
+  hablarWoody("Encuentra las cartas que son iguales. ¡Concéntrate!");
   
   arr.forEach((ico) => {
-    const c = document.createElement('div'); c.className = 'carta';
-    c.innerHTML = `<div class="carta-inner"><div class="cara cf"></div><div class="cara ca">${ico}</div></div>`;
+    const c = document.createElement('div'); c.className = 'carta relative aspect-square cursor-pointer';
+    c.innerHTML = `<div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-900 border-8 border-cyan-400 rounded-[40px] shadow-[0_15px_0_rgba(0,229,255,0.4)] flex items-center justify-center text-7xl transition-all duration-300 transform preserve-3d" id="inner-${Math.random()}"><span class="opacity-50 text-white font-black">?</span></div>`;
+    
+    let isFlipped = false;
     c.onclick = () => {
-      if (myRun !== runId || sel.length >= 2 || c.classList.contains('girada')) return;
-      sonido.click(); c.classList.add('girada'); sel.push({ c, ico });
+      if (myRun !== runId || sel.length >= 2 || isFlipped) return;
+      isFlipped = true; sonido.click(); 
+      c.firstChild.innerHTML = `<span class="text-[100px] drop-shadow-lg">${ico}</span>`;
+      c.firstChild.className = "absolute inset-0 bg-yellow-400 border-8 border-white rounded-[40px] shadow-[0_15px_0_rgba(255,255,255,0.4)] flex items-center justify-center transition-all duration-300 transform scale-105";
+      sel.push({ c, ico, setFlip: (val) => isFlipped = val });
+      
       if (sel.length === 2) {
         if (sel[0].ico === sel[1].ico) {
           sonido.ok(); pts++; document.getElementById('mPts').textContent = pts; sel = []; ganarMonedas(3);
-          hablarWoody("¡Bien! Encontraste una pareja.");
-          if (pts === 6) { sonido.ganar(); conf(100); hablarWoody("¡Memoria perfecta, astronauta! Eres increíble. 🏆"); setTimeout(() => { if(myRun === runId) cargarJ(); }, 5000); }
+          hablarWoody("¡Súper! Encontraste una pareja.");
+          if (pts === 6) { sonido.ganar(); fuegosArtificiales(); fuegosArtificiales(window.innerWidth/3, window.innerHeight/3); hablarWoody("¡Memoria perfecta, astronauta! Eres brillante. 🏆"); setTimeout(() => { if(myRun === runId) cargarJ(); }, 6000); }
         } else { 
-          sonido.no(); 
-          hablarWoody("Ups, esas no son iguales. Observa bien.");
-          setTimeout(() => { if (myRun === runId) { sel[0].c.classList.remove('girada'); sel[1].c.classList.remove('girada'); sel = []; } }, 1500); 
+          sonido.no(); hablarWoody("Ups, esas no son iguales.");
+          setTimeout(() => { 
+            if (myRun === runId) { 
+              sel.forEach(s => { 
+                s.setFlip(false); 
+                s.c.firstChild.innerHTML = `<span class="opacity-50 text-white font-black">?</span>`;
+                s.c.firstChild.className = "absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-900 border-8 border-cyan-400 rounded-[40px] shadow-[0_15px_0_rgba(0,229,255,0.4)] flex items-center justify-center text-7xl transition-all duration-300 transform";
+              }); sel = []; 
+            } 
+          }, 1500); 
         }
       }
     }; gr.appendChild(c);
@@ -320,7 +292,7 @@ function jMemoria() {
 
 function jRompe() {
   const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div id="rGrilla" class="grid grid-cols-3 gap-4 max-w-[500px] mx-auto bg-white/5 p-6 rounded-[40px] border-2 border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.6)]"></div><div class="text-center mt-14"><button class="btn btn-oro" onclick="cargarJ()">🔄 Mezclar Piezas</button></div>`;
+  gc.innerHTML = `<div id="rGrilla" class="grid grid-cols-3 gap-4 w-full max-w-[700px] mx-auto bg-white/10 p-8 rounded-[50px] border-8 border-white/30 shadow-[0_30px_60px_rgba(0,0,0,0.6)]"></div><div class="text-center mt-16"><button class="btn-3d btn-pink text-4xl" onclick="cargarJ()">🔄 Mezclar</button></div>`;
   let r = [1, 2, 3, 4, 5, 6, 7, 8, 0];
   for (let i = 0; i < 150; i++) {
     let v = r.indexOf(0), vv = [];
@@ -329,87 +301,51 @@ function jRompe() {
   }
   const myRun = runId;
   
-  hablarWoody("Ordena los planetas moviendo las piezas hacia el espacio vacío.");
+  hablarWoody("Ordena las figuras moviendo las piezas hacia el hueco vacío.");
   
   const d = () => {
     if (myRun !== runId) return;
     const g = document.getElementById('rGrilla'); g.innerHTML = '';
     r.forEach((n, i) => {
       const c = document.createElement('div');
-      c.className = 'rompe-ficha ' + (n ? 'rompe-llena' : 'rompe-vacia');
-      c.textContent = n ? ["🪐","🌍","🌕","🌞","🛸","☄️","🚀","🛰️"][n-1] : '';
+      c.className = 'aspect-square rounded-[30px] flex items-center justify-center text-[100px] font-black cursor-pointer transition-all duration-200 ' + (n ? 'bg-gradient-to-br from-cyan-400 to-blue-600 border-8 border-white shadow-[0_15px_0_rgba(0,0,0,0.3)] hover:scale-105 hover:z-10' : 'bg-black/40 border-8 border-dashed border-white/30');
+      c.textContent = n ? ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼"][n-1] : '';
       if (n) c.onclick = () => {
         if (myRun !== runId) return;
         const v = r.indexOf(0), f = Math.floor(i / 3), cc = i % 3, fv = Math.floor(v / 3), cv = v % 3;
         if (Math.abs(f - fv) + Math.abs(cc - cv) === 1) {
           sonido.click(); [r[i], r[v]] = [r[v], r[i]]; d();
-          if (r.join('') === '123456780') { sonido.ganar(); conf(100); hablarWoody("¡Rompecabezas armado! Eres súper inteligente. 🧩"); ganarMonedas(15); setTimeout(() => { if(myRun === runId) cargarJ(); }, 5000); }
+          if (r.join('') === '123456780') { sonido.ganar(); fuegosArtificiales(); hablarWoody("¡Rompecabezas armado! Súper inteligencia activada. 🧩"); ganarMonedas(15); setTimeout(() => { if(myRun === runId) cargarJ(); }, 5000); }
         }
       }; g.appendChild(c);
     });
   }; d();
 }
 
-function jSimon() {
-  const gc = document.getElementById('gameContainer');
-  const cols = [{ c: '#ff007f', f: 329.6 }, { c: '#00f0ff', f: 392.0 }, { c: '#8a2be2', f: 440.0 }, { c: '#facc15', f: 523.2 }];
-  let seq = [], user = 0, escuchando = false; const myRun = runId;
-  gc.innerHTML = `<div class="text-center mb-12 font-black text-5xl text-cyan-200 drop-shadow-lg" id="simonTxt">Preparando sistema...</div><div class="grid grid-cols-2 gap-8 max-w-[500px] mx-auto aspect-square bg-white/5 p-8 rounded-full border-4 border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.1)]" id="simonGrid"></div><div class="text-center mt-16"><button class="btn btn-oro" onclick="cargarJ()">🔄 Reiniciar Secuencia</button></div>`;
-  const grid = document.getElementById('simonGrid');
-  
-  cols.forEach((col, i) => {
-    const b = document.createElement('div'); b.className = 'simon-btn aspect-square'; b.style.background = col.c; b.style.color = col.c;
-    if (i===0) b.style.borderRadius = "100% 40px 40px 40px"; if (i===1) b.style.borderRadius = "40px 100% 40px 40px";
-    if (i===2) b.style.borderRadius = "40px 40px 40px 100%"; if (i===3) b.style.borderRadius = "40px 40px 100% 40px";
-    b.onclick = () => {
-      if (!escuchando || myRun !== runId) return;
-      sonido.tono(col.f, 0.4, 'sine', 0.2); b.classList.add('activo'); setTimeout(() => b.classList.remove('activo'), 300);
-      if (i === seq[user]) {
-        user++; if (user >= seq.length) { sonido.ok(); ganarMonedas(3); hablarWoody("¡Bien hecho! Siguiente nivel."); setTimeout(nivel, 1500); }
-      } else { sonido.no(); hablarWoody("¡Uy! Te equivocaste, pero llegaste al nivel " + (seq.length - 1) + ". ¡Sigue intentando!"); document.getElementById('simonTxt').textContent = '¡Fin del juego!'; escuchando = false; }
-    }; grid.appendChild(b);
-  });
-  const mostrar = async () => {
-    if (myRun !== runId) return;
-    escuchando = false; document.getElementById('simonTxt').textContent = 'Observa los colores...';
-    if(seq.length === 1) hablarWoody("Observa la secuencia de colores y repítela.");
-    await new Promise(r => setTimeout(r, 1000));
-    for (const i of seq) {
-      if (myRun !== runId) return;
-      const b = grid.children[i]; b.classList.add('activo'); sonido.tono(cols[i].f, 0.4, 'sine', 0.2);
-      await new Promise(r => setTimeout(r, 600)); b.classList.remove('activo');
-      await new Promise(r => setTimeout(r, 300));
-    }
-    if (myRun === runId) { escuchando = true; user = 0; document.getElementById('simonTxt').textContent = '¡Ahora es tu turno!'; }
-  };
-  const nivel = () => { if (myRun === runId) { seq.push(ri(0, 3)); mostrar(); } };
-  setTimeout(nivel, 1500);
-}
-
 function jArcade() {
   const gc = document.getElementById('gameContainer'); const myRun = runId;
-  gc.innerHTML = `<div class="text-center font-black text-5xl mb-8 text-yellow-400 tracking-wider drop-shadow-lg">Estrellas: <span id="aPts" class="text-white">0</span> ⭐</div><div id="aArea" class="relative w-full max-w-5xl h-[550px] bg-black/70 border-4 border-cyan-400/80 rounded-[50px] overflow-hidden mx-auto shadow-[inset_0_0_60px_rgba(0,0,0,0.9)] cursor-crosshair"></div>`;
+  gc.innerHTML = `<div class="text-center font-black text-6xl mb-10 font-['Fredoka_One'] text-yellow-400 drop-shadow-[0_5px_0_rgba(0,0,0,0.5)]">Estrellas: <span id="aPts" class="text-white">0</span> ⭐</div><div id="aArea" class="relative w-full h-[600px] bg-black/60 border-8 border-cyan-400 rounded-[60px] overflow-hidden shadow-[inset_0_0_80px_rgba(0,0,0,0.9)] cursor-crosshair"></div>`;
   const area = document.getElementById('aArea'); let pts = 0;
   
-  hablarWoody("¡Atrapa todas las estrellas pero cuidado con los meteoritos de fuego!");
+  hablarWoody("¡Toca las estrellas fugaces, pero no toques los meteoritos de fuego!");
 
   const spawn = () => {
     if (myRun !== runId || !document.getElementById('aArea')) return;
-    const isBad = Math.random() < 0.2; 
+    const isBad = Math.random() < 0.25; 
     const e = document.createElement('div'); 
     e.textContent = isBad ? '☄️' : '⭐'; 
-    e.className = 'absolute text-[80px] transition-transform ' + (isBad ? 'drop-shadow-[0_0_20px_rgba(255,0,0,0.9)]' : 'drop-shadow-[0_0_20px_rgba(250,204,21,1)] animate-pulse');
-    e.style.left = Math.random() * 80 + '%'; e.style.top = '-100px'; area.appendChild(e);
-    let pos = -100, speed = isBad ? 6 : 4 + Math.random() * 3;
+    e.className = 'absolute text-[120px] transition-transform ' + (isBad ? 'drop-shadow-[0_0_30px_rgba(255,0,0,1)]' : 'drop-shadow-[0_0_30px_rgba(250,204,21,1)] animate-pulse');
+    e.style.left = Math.random() * 80 + '%'; e.style.top = '-150px'; area.appendChild(e);
+    let pos = -150, speed = isBad ? 7 : 4 + Math.random() * 4;
     const bajar = () => {
       if (myRun !== runId || !e.parentNode) return;
       pos += speed; e.style.top = pos + 'px';
-      if (pos > 550) e.remove(); else requestAnimationFrame(bajar);
+      if (pos > 600) e.remove(); else requestAnimationFrame(bajar);
     };
     e.onmousedown = e.ontouchstart = (ev) => {
       ev.preventDefault(); if (myRun !== runId) return;
-      if (isBad) { sonido.no(); e.style.transform = "scale(2)"; e.textContent="💥"; setTimeout(()=>e.remove(),200); pts = Math.max(0, pts-2); document.getElementById('aPts').textContent = pts; hablarWoody("¡Ay! Quemaste la nave con el meteorito."); }
-      else { sonido.moneda(); e.style.transform = "scale(2.5)"; e.style.opacity = "0"; setTimeout(()=>e.remove(),200); pts++; document.getElementById('aPts').textContent = pts; if (pts % 10 === 0) { ganarMonedas(5); conf(40); hablarWoody("¡Excelente! Estás sumando muchas estrellas."); } }
+      if (isBad) { sonido.no(); e.style.transform = "scale(2.5)"; e.textContent="💥"; setTimeout(()=>e.remove(),200); pts = Math.max(0, pts-2); document.getElementById('aPts').textContent = pts; hablarWoody("¡Ay! Ese meteorito quema."); }
+      else { sonido.moneda(); e.style.transform = "scale(3)"; e.style.opacity = "0"; setTimeout(()=>e.remove(),200); pts++; document.getElementById('aPts').textContent = pts; if (pts % 10 === 0) { ganarMonedas(10); fuegosArtificiales(); hablarWoody("¡Racha de estrellas! Sigue así."); } }
     };
     requestAnimationFrame(bajar);
     setTimeout(spawn, 700 + Math.random() * 800);
@@ -418,14 +354,14 @@ function jArcade() {
 
 function jPizarra() {
   const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div class="flex gap-5 justify-center mb-10 flex-wrap bg-white/10 p-5 rounded-[40px] max-w-fit mx-auto border-2 border-white/20 backdrop-blur-xl shadow-2xl">
-    ${['#ef4444','#3b82f6','#22c55e','#facc15','#ff007f','#00f0ff','#ffffff'].map(c=>`<button class="w-16 h-16 rounded-full hover:scale-125 transition-transform" style="background:${c};box-shadow:0 0 20px ${c}" onclick="window._ctx.strokeStyle='${c}'"></button>`).join('')}
-    <button class="btn text-2xl ml-8" onclick="window._ctx.clearRect(0,0,1000,600)">🗑 Borrar</button>
-  </div><canvas id="piz" width="1000" height="600" class="bg-black/70 border-4 border-white/30 rounded-[50px] block mx-auto max-w-full touch-none shadow-[0_0_50px_rgba(255,255,255,0.15)] cursor-crosshair"></canvas>`;
+  gc.innerHTML = `<div class="flex gap-6 justify-center mb-12 flex-wrap bg-white/20 p-6 rounded-[50px] max-w-fit mx-auto border-4 border-white/40 backdrop-blur-2xl shadow-2xl">
+    ${['#ef4444','#3b82f6','#22c55e','#facc15','#ff007f','#00e5ff','#ffffff'].map(c=>`<button class="w-20 h-20 rounded-full hover:scale-125 transition-transform border-4 border-white" style="background:${c};box-shadow:0 10px 0 rgba(0,0,0,0.3)" onclick="window._ctx.strokeStyle='${c}'"></button>`).join('')}
+    <button class="btn-3d btn-pink text-3xl ml-10" onclick="window._ctx.clearRect(0,0,1400,700)">🗑 Borrar</button>
+  </div><canvas id="piz" width="1400" height="700" class="bg-black/80 border-8 border-white rounded-[60px] block w-full touch-none shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-crosshair"></canvas>`;
   const cvs = document.getElementById('piz'); window._ctx = cvs.getContext('2d');
-  window._ctx.lineWidth = 15; window._ctx.lineCap = 'round'; window._ctx.lineJoin = 'round'; window._ctx.strokeStyle = '#00f0ff'; let p = false;
+  window._ctx.lineWidth = 20; window._ctx.lineCap = 'round'; window._ctx.lineJoin = 'round'; window._ctx.strokeStyle = '#00e5ff'; let p = false;
   
-  hablarWoody("Dibuja lo que quieras en esta pizarra espacial.");
+  hablarWoody("Dibuja una obra de arte espacial.");
   
   const gp = e => { const r = cvs.getBoundingClientRect(); const scaleX = cvs.width / r.width; const scaleY = cvs.height / r.height; return { x: ((e.touches ? e.touches[0].clientX : e.clientX) - r.left) * scaleX, y: ((e.touches ? e.touches[0].clientY : e.clientY) - r.top) * scaleY }; };
   cvs.onmousedown = cvs.ontouchstart = e => { e.preventDefault(); p = true; const q = gp(e); window._ctx.beginPath(); window._ctx.moveTo(q.x, q.y); };
@@ -433,146 +369,86 @@ function jPizarra() {
   cvs.onmouseup = cvs.ontouchend = cvs.onmouseleave = () => p = false;
 }
 
-function jPiano() {
-  const gc = document.getElementById('gameContainer');
-  gc.innerHTML = `<div class="text-center mb-16 text-cyan-200 font-black text-5xl drop-shadow-lg">¡Toca música espacial! 🎹</div><div class="flex justify-center relative w-full max-w-5xl mx-auto h-[320px] p-3 bg-white/5 rounded-t-[40px] border-t-2 border-white/20" id="pianoC"></div>`;
-  const pc = document.getElementById('pianoC');
-  const nb = [{n:'Do',f:261.6},{n:'Re',f:293.6},{n:'Mi',f:329.6},{n:'Fa',f:349.2},{n:'Sol',f:392},{n:'La',f:440},{n:'Si',f:493.8},{n:'Do',f:523.2}];
-  const nn = [{pos:1,f:277.1},{pos:2,f:311.1},{pos:4,f:369.9},{pos:5,f:415.3},{pos:6,f:466.1}];
-  
-  hablarWoody("Toca las teclas para crear tu propia melodía.");
-
-  nb.forEach(x => { const b = document.createElement('div'); b.className = 'tecla tecla-blanca'; b.textContent = x.n; b.onmousedown = b.ontouchstart = e => { e.preventDefault(); b.classList.add('activa'); sonido.tono(x.f, 0.6, 'triangle', 0.2); }; b.onmouseup = b.ontouchend = b.onmouseleave = () => b.classList.remove('activa'); pc.appendChild(b); });
-  nn.forEach(x => { const b = document.createElement('div'); b.className = 'tecla tecla-negra absolute'; b.style.left = `calc(${x.pos * 12.5}% - 30px)`; b.onmousedown = b.ontouchstart = e => { e.preventDefault(); b.classList.add('activa'); sonido.tono(x.f, 0.6, 'square', 0.1); }; b.onmouseup = b.ontouchend = b.onmouseleave = () => b.classList.remove('activa'); pc.appendChild(b); });
-}
-
 // ==========================================
-// DICCIONARIOS Y LOGICA DE PREGUNTAS (ESPECIAL CON VOZ)
+// PREGUNTAS: MATEMÁTICAS, INGLÉS Y LÓGICA
 // ==========================================
 const D = {
-  animals: [{en:"Dog",es:"Perro",ico:"🐶"},{en:"Cat",es:"Gato",ico:"🐱"},{en:"Bird",es:"Pájaro",ico:"🐦"},{en:"Fish",es:"Pez",ico:"🐟"}],
-  colors: [{en:"Red",es:"Rojo",c:"#ef4444"},{en:"Blue",es:"Azul",c:"#3b82f6"},{en:"Green",es:"Verde",c:"#22c55e"}]
+  animals: [{en:"Dog",es:"Perro",ico:"🐶"},{en:"Cat",es:"Gato",ico:"🐱"},{en:"Bird",es:"Pájaro",ico:"🐦"},{en:"Fish",es:"Pez",ico:"🐟"},{en:"Pig",es:"Cerdo",ico:"🐷"}],
+  colors: [{en:"Red",es:"Rojo",c:"#ef4444"},{en:"Blue",es:"Azul",c:"#3b82f6"},{en:"Green",es:"Verde",c:"#22c55e"},{en:"Yellow",es:"Amarillo",c:"#facc15"}]
 };
 
 const GEN = {};
 
-// MATEMÁTICAS CON VOZ COMPLETA
+// MATEMÁTICAS (CORRECCIÓN INTELIGENTE)
 GEN.g1 = () => { 
-  const a=ri(1,10), b=ri(1,10); 
-  return { 
-    p: `¿Cuánto es <span class="text-yellow-400">${a} + ${b}</span>?`, 
-    opts: O(a+b, [a+b+1, a+b-1, a+b+2]).opts, ok: O(a+b, [a+b+1, a+b-1, a+b+2]).ok,
-    pregunta: `¿Cuánto es ${a} más ${b}?`,
-    respuesta: `${a+b}`
-  }; 
+  const a=ri(1,5), b=ri(1,5); 
+  return { p: `¿Cuánto es <span class="text-yellow-400">${a} + ${b}</span>?`, opts: O(a+b, [a+b+1, a+b-1, a+b+2]).opts, ok: O(a+b, [a+b+1, a+b-1, a+b+2]).ok, pregunta: `¿Cuánto es ${a} más ${b}?`, respuesta: `${a+b}` }; 
 };
 GEN.g2 = () => { 
-  const a=ri(10,20), b=ri(1,9); 
-  return { 
-    p: `¿Cuánto es <span class="text-pink-400">${a} - ${b}</span>?`, 
-    opts: O(a-b, [a-b+1, a-b-1, a-b+2]).opts, ok: O(a-b, [a-b+1, a-b-1, a-b+2]).ok,
-    pregunta: `¿Cuánto es ${a} menos ${b}?`,
-    respuesta: `${a-b}`
-  }; 
+  const a=ri(5,10), b=ri(1,4); 
+  return { p: `¿Cuánto es <span class="text-pink-400">${a} - ${b}</span>?`, opts: O(a-b, [a-b+1, a-b-1, a-b+2]).opts, ok: O(a-b, [a-b+1, a-b-1, a-b+2]).ok, pregunta: `¿Cuánto es ${a} menos ${b}?`, respuesta: `${a-b}` }; 
 };
 
-// INGLÉS CON VOZ Y CORRECCIÓN
+// INGLÉS
 GEN.g10= () => { 
-  const item = rp(D.animals);
-  const arrErr = mezclar(D.animals.filter(x => x.en !== item.en)).slice(0, 3);
-  const r = O(item.en, arrErr.map(x=>x.en));
-  return { 
-    p: `¿Cómo se dice <span class="text-yellow-400">"${item.es}"</span> en Inglés?<br><div class="text-[120px] mt-6 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">${item.ico}</div>`, 
-    opts: r.opts, ok: r.ok, en: item.en,
-    pregunta: `¿Cómo se dice ${item.es} en inglés?`,
-    respuesta: `se dice ${item.en} en inglés`
-  }; 
-};
-GEN.g19= () => { 
-  const item = rp(D.colors);
-  const arrErr = mezclar(D.colors.filter(x => x.en !== item.en)).slice(0, 3);
-  const r = O(item.en, arrErr.map(x=>x.en));
-  return { 
-    p: `El color <span class="text-pink-400">"${item.es}"</span> en Inglés es...<br><div class="w-40 h-40 rounded-full mx-auto my-8 border-8 border-white shadow-[0_0_40px_${item.c}]" style="background:${item.c}"></div>`, 
-    opts: r.opts, ok: r.ok, en: item.en,
-    pregunta: `¿Cómo se dice el color ${item.es} en inglés?`,
-    respuesta: `se dice ${item.en}`
-  }; 
+  const item = rp(D.animals); const arrErr = mezclar(D.animals.filter(x => x.en !== item.en)).slice(0, 3); const r = O(item.en, arrErr.map(x=>x.en));
+  return { p: `¿Cómo se dice <span class="text-yellow-400">"${item.es}"</span> en Inglés?<br><div class="text-[150px] mt-10 drop-shadow-[0_20px_0_rgba(0,0,0,0.3)]">${item.ico}</div>`, opts: r.opts, ok: r.ok, en: item.en, pregunta: `¿Cómo se dice ${item.es} en inglés?`, respuesta: `se dice ${item.en}` }; 
 };
 
-// Asignar los juegos interactivos
-GEN.g11 = () => ({ especial: 'memoria' });
-GEN.g12 = () => ({ especial: 'rompe' });
-GEN.g13 = () => ({ especial: 'simon' });
-GEN.g14 = () => ({ especial: 'arcade' });
-GEN.g15 = () => ({ especial: 'pizarra' });
-GEN.g16 = () => ({ especial: 'piano' });
+GEN.g11= () => { 
+  const item = rp(D.colors); const arrErr = mezclar(D.colors.filter(x => x.en !== item.en)).slice(0, 3); const r = O(item.en, arrErr.map(x=>x.en));
+  return { p: `El color <span class="text-pink-400">"${item.es}"</span> en Inglés es...<br><div class="w-48 h-48 rounded-full mx-auto my-12 border-[12px] border-white shadow-[0_20px_0_rgba(0,0,0,0.3)]" style="background:${item.c}"></div>`, opts: r.opts, ok: r.ok, en: item.en, pregunta: `¿Cómo se dice el color ${item.es} en inglés?`, respuesta: `se dice ${item.en}` }; 
+};
 
-// Para rellenar los 60 juegos, intercalamos las preguntas matemáticas e inglés.
+// Asignar Juegos
+GEN.g20 = () => ({ especial: 'memoria' });
+GEN.g21 = () => ({ especial: 'rompe' });
+GEN.g22 = () => ({ especial: 'arcade' });
+GEN.g23 = () => ({ especial: 'pizarra' });
+
+// Autocompletar los 60 juegos
 for(let i=3; i<=60; i++) {
-  if(!GEN[`g${i}`]) {
-    GEN[`g${i}`] = () => {
-      const tipos = [GEN.g1, GEN.g2, GEN.g10, GEN.g19]; // Sumas, Restas, Animales, Colores (dinámicos)
-      return rp(tipos)(); 
-    };
-  }
+  if(!GEN[`g${i}`]) { GEN[`g${i}`] = () => rp([GEN.g1, GEN.g2, GEN.g10, GEN.g11])(); }
 }
 
-// ESTRUCTURA DE LOS 60 NIVELES
-const CATS = ["🔢 Matemáticas", "🧠 Memoria y Lógica", "🎨 Arte y Arcade", "🔤 Inglés y Letras", "🚀 Desafíos", "🌟 Explorador"];
+const CATS = ["🔢 Matemáticas", "🧠 Memoria", "🎨 Arte y Arcade", "🔤 Inglés Mágico", "🚀 Desafíos", "🌟 Explorador"];
 const JUEGOS = [
-  {c:0, n:"➕ Sumas Mágicas", g:"g1"}, {c:0, n:"➖ Restas", g:"g2"}, {c:0, n:"➕ Sumas 2", g:"g3"}, {c:0, n:"➖ Restas 2", g:"g4"},
-  ...Array.from({length:6}, (_,i)=>({c:0, n:`Misión Math ${i+1}`, g:`g${5+i}`})),
-  
-  {c:1, n:"🃏 Memoria 3D", g:"g11"}, {c:1, n:"🧩 Rompecabezas", g:"g12"}, {c:1, n:"🎮 Simón Dice", g:"g13"},
-  ...Array.from({length:7}, (_,i)=>({c:1, n:`Lógica Nivel ${i+1}`, g:`g${24+i}`})),
-
-  {c:2, n:"⭐ Atrapa Estrellas", g:"g14"}, {c:2, n:"🎨 Pizarra Mágica", g:"g15"}, {c:2, n:"🎹 Piano Galáctico", g:"g16"},
-  ...Array.from({length:7}, (_,i)=>({c:2, n:`Arte Misión ${i+1}`, g:`g${29+i}`})),
-
-  {c:3, n:"🐶 Animales en Inglés", g:"g10"}, {c:3, n:"🎨 Colores en Inglés", g:"g19"},
-  ...Array.from({length:8}, (_,i)=>({c:3, n:`English Nivel ${i+1}`, g:`g${35+i}`})),
-
-  ...Array.from({length:10}, (_,i)=>({c:4, n:`Cohete ${i+1}`, g:`g${43+i}`})),
+  {c:0, n:"➕ Sumas Mágicas", g:"g1"}, {c:0, n:"➖ Restas Divertidas", g:"g2"}, 
+  ...Array.from({length:8}, (_,i)=>({c:0, n:`Misión Math ${i+1}`, g:`g${3+i}`})),
+  {c:1, n:"🃏 Memoria 3D", g:"g20"}, {c:1, n:"🧩 Rompecabezas", g:"g21"}, 
+  ...Array.from({length:8}, (_,i)=>({c:1, n:`Lógica Nivel ${i+1}`, g:`g${24+i}`})),
+  {c:2, n:"⭐ Atrapa Estrellas", g:"g22"}, {c:2, n:"🎨 Pizarra Libre", g:"g23"},
+  ...Array.from({length:8}, (_,i)=>({c:2, n:`Arte Misión ${i+1}`, g:`g${32+i}`})),
+  {c:3, n:"🐶 Animales Inglés", g:"g10"}, {c:3, n:"🎨 Colores Inglés", g:"g11"},
+  ...Array.from({length:8}, (_,i)=>({c:3, n:`English Nivel ${i+1}`, g:`g${40+i}`})),
+  ...Array.from({length:10}, (_,i)=>({c:4, n:`Cohete ${i+1}`, g:`g${48+i}`})),
   ...Array.from({length:10}, (_,i)=>({c:5, n:`Galaxia ${i+1}`, g:`g${51+i}`}))
 ];
 
 function dibCats() {
-  document.getElementById('cats').innerHTML = CATS.map((n, i) => `<button class="btn ${i === CA ? 'on' : 'border-white/25'}" data-c="${i}">${n}</button>`).join('');
+  document.getElementById('cats').innerHTML = CATS.map((n, i) => `<button class="btn-3d ${i === CA ? 'btn-yellow' : 'btn-cyan'}" data-c="${i}">${n}</button>`).join('');
   document.querySelectorAll('#cats button').forEach(b => b.onclick = () => { sonido.click(); CA = +b.dataset.c; dibTabs(); });
 }
 function dibTabs() {
   const js = JUEGOS.filter(j => j.c === CA); if(js.length > 0) J = JUEGOS.indexOf(js[0]);
   document.getElementById('tabs').innerHTML = js.map(x => `<button class="tab-btn ${JUEGOS.indexOf(x) === J ? 'active' : ''}" data-j="${JUEGOS.indexOf(x)}">${x.n}</button>`).join('');
-  document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => { 
-    sonido.click(); J = +b.dataset.j; 
-    document.querySelectorAll('#tabs button').forEach(tb => tb.classList.remove('active')); 
-    b.classList.add('active'); cargarJ(); 
-  }); 
+  document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => { sonido.click(); J = +b.dataset.j; document.querySelectorAll('#tabs button').forEach(tb => tb.classList.remove('active')); b.classList.add('active'); cargarJ(); }); 
   cargarJ();
 }
 function cargarJ() {
-  runId++; 
-  const j = JUEGOS[J];
-  document.getElementById('juegos').innerHTML = `<h2 class="text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 mb-14 text-center tracking-tight drop-shadow-lg uppercase">${j.n}</h2><div id="gameContainer" class="animate-[popIn_0.5s_cubic-bezier(0.34,1.56,0.64,1)]"></div>`;
+  runId++; const j = JUEGOS[J];
+  document.getElementById('juegos').innerHTML = `<h2 class="tit-cartoon text-center mb-16">${j.n}</h2><div id="gameContainer"></div>`;
   const d = GEN[j.g]();
-  
   if (d && d.especial) {
-    if (d.especial === 'memoria') jMemoria();
-    else if (d.especial === 'rompe') jRompe();
-    else if (d.especial === 'simon') jSimon();
-    else if (d.especial === 'arcade') jArcade();
-    else if (d.especial === 'pizarra') jPizarra();
-    else if (d.especial === 'piano') jPiano();
+    if (d.especial === 'memoria') jMemoria(); else if (d.especial === 'rompe') jRompe(); else if (d.especial === 'arcade') jArcade(); else if (d.especial === 'pizarra') jPizarra();
   } else {
-    // LLAMA A LA FUNCION PRINCIPAL CON LA CORRECCIÓN VERBAL
     quiz({ p: d.p, opts: d.opts, ok: d.ok, en: d.en, ico: d.ico, pregunta: d.pregunta, respuesta: d.respuesta, next: cargarJ });
   }
 }
 
 window.onload = () => {
   cargarPerfil(); dibCats(); dibTabs();
-  setTimeout(() => { document.getElementById('intro').style.opacity = 0; setTimeout(() => document.getElementById('intro').remove(), 1000); hablarWoody("¡Hola! Soy Woody. ¡Vamos a aprender y divertirnos juntos!"); }, 2500);
+  setTimeout(() => { document.getElementById('intro').style.opacity = 0; setTimeout(() => document.getElementById('intro').remove(), 1000); hablarWoody("¡Hola! Soy Woody. ¡Vamos a aprender y jugar juntos!"); }, 2500);
   setTimeout(() => document.getElementById('barraCarga').style.width = '100%', 200);
 };
 </script>
