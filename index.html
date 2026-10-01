@@ -3,177 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#ffd6e7">
-<title>ARCOÍRIS KIDS · Aprendé Inglés Jugando</title>
+<meta name="theme-color" content="#05010f">
+<title>NEON KIDS · Universo de Inglés · Super Premium</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@500;600;700&family=Rubik:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@500;600;700&family=Rubik:wght@700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   ARCOÍRIS KIDS v1.0 — Diseño NUEVO completo (no es la app anterior)
-   Paleta moderna para niños: pastel arcoíris + acentos vibrantes
-   El profesor astronauta HABLA solo: dice la palabra en español
-   y luego en inglés, enseñando a pronunciar.
+   NEON KIDS SUPER PREMIUM v2.0
+   Fondo oscuro + colores neón vibrantes · Glassmorphism premium
+   Personajes flotando y hablando ES + EN · Scroll premium
    ============================================================ */
 :root{
-  --rosa:#ff6b9d; --amarillo:#ffc93c; --verde:#6bcb77; --azul:#4d96ff;
-  --violeta:#9b72ff; --naranja:#ff8c42; --turquesa:#3ecfb0;
-  --bg1:#ffe5ec; --bg2:#e0f4ff; --bg3:#e8ffe8; --bg4:#fff3c4;
-  --texto:#3d2c5e; --card:#ffffff;
+  --bg0:#05010f; --bg1:#0d0524; --bg2:#1a0b3d; --bg3:#2a1055;
+  --cyan:#00f5ff; --pink:#ff2bd6; --lime:#a3ff12; --gold:#ffd700;
+  --purple:#b026ff; --orange:#ff6b35; --blue:#3d7bff; --red:#ff3d5a;
+  --texto:#f0e9ff; --texto2:#b8a9e0;
+  --card:rgba(255,255,255,.055); --card-borde:rgba(255,255,255,.14);
 }
 *{font-family:'Baloo 2','Fredoka',sans-serif; box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
-html,body{margin:0;padding:0;min-height:100vh;color:var(--texto);overflow-x:hidden;}
+html,body{margin:0;padding:0;color:var(--texto);overflow-x:hidden;}
 body{
+  min-height:100vh;
   background:
-    radial-gradient(circle at 10% 10%, rgba(255,107,157,.25), transparent 40%),
-    radial-gradient(circle at 90% 20%, rgba(77,150,255,.22), transparent 40%),
-    radial-gradient(circle at 20% 90%, rgba(107,203,119,.22), transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(155,114,255,.22), transparent 40%),
-    linear-gradient(160deg, var(--bg1), var(--bg2) 35%, var(--bg3) 70%, var(--bg4));
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(176,38,255,.25), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 20%, rgba(0,245,255,.18), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255,43,214,.2), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1) 40%, var(--bg2) 80%, var(--bg0));
   background-attachment:fixed;
   touch-action:manipulation;
   overscroll-behavior-y:contain;
 }
-::-webkit-scrollbar{width:12px;}
-::-webkit-scrollbar-track{background:rgba(255,255,255,.4);}
-::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--rosa),var(--violeta));border-radius:99px;border:3px solid var(--bg1);}
+/* Scrollbar premium neón */
+::-webkit-scrollbar{width:14px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.04); border-radius:99px;}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cyan),var(--pink),var(--purple)); border-radius:99px; border:3px solid var(--bg0); box-shadow:0 0 12px var(--cyan);}
+::-webkit-scrollbar-thumb:hover{box-shadow:0 0 20px var(--pink);}
 button{touch-action:manipulation; user-select:none; -webkit-user-select:none; cursor:pointer; font-family:'Baloo 2',sans-serif;}
-button:active{transform:scale(.93);}
-img{user-select:none;-webkit-user-select:none;}
+button:active{transform:scale(.94);}
+img{user-select:none;-webkit-user-select:none; pointer-events:none;}
 
-/* ---------- Nubes y formas flotando (fondo) ---------- */
-.nube{position:fixed; background:#fff; border-radius:999px; opacity:.55; z-index:0; pointer-events:none; filter:blur(1px); animation:nubeFlotar linear infinite;}
-@keyframes nubeFlotar{from{transform:translateX(-30vw);}to{transform:translateX(130vw);}}
-.blob{position:fixed; border-radius:50%; z-index:0; pointer-events:none; opacity:.35; filter:blur(30px); animation:blobMover 12s ease-in-out infinite alternate;}
-@keyframes blobMover{from{transform:translate(0,0) scale(1);}to{transform:translate(40px,-30px) scale(1.15);}}
+/* ---------- Estrellas de fondo (parallax) ---------- */
+.estrella{position:fixed; background:#fff; border-radius:50%; z-index:0; pointer-events:none; animation:brillar 3s ease-in-out infinite;}
+@keyframes brillar{0%,100%{opacity:.2; transform:scale(1);}50%{opacity:1; transform:scale(1.4);}}
+.planeta{position:fixed; border-radius:50%; z-index:0; pointer-events:none; filter:blur(1px); opacity:.5; animation:planetaFlotar 14s ease-in-out infinite alternate;}
+@keyframes planetaFlotar{from{transform:translate(0,0) rotate(0deg);}to{transform:translate(30px,-40px) rotate(20deg);}}
+.cometa{position:fixed; width:3px; height:3px; background:#fff; border-radius:50%; z-index:0; pointer-events:none; box-shadow:0 0 8px 2px var(--cyan); animation:cometa 6s linear infinite;}
+.cometa::after{content:""; position:absolute; top:0; left:0; width:80px; height:1px; background:linear-gradient(90deg,var(--cyan),transparent); transform:rotate(-35deg); transform-origin:left;}
+@keyframes cometa{from{transform:translate(110vw,-10vh);}to{transform:translate(-20vw,60vh);}}
 .confeti{position:fixed; width:10px; height:10px; pointer-events:none; z-index:99998; animation:caerConf 1.2s ease-out forwards;}
 @keyframes caerConf{to{transform:translate(var(--tx),var(--ty)) rotate(360deg) scale(0); opacity:0;}}
 
-/* ---------- Tarjetas (nuevo diseño: blancas, redondas, coloridas) ---------- */
-.tarjeta{
-  background:var(--card); border-radius:28px; padding:26px; position:relative;
-  box-shadow:0 12px 0 rgba(61,44,94,.08), 0 20px 50px -12px rgba(61,44,94,.25);
-  border:3px solid #fff;
+/* ---------- Cajas SUPER PREMIUM (glassmorphism + borde neón animado) ---------- */
+.caja-premium{
+  position:relative; background:var(--card); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-radius:30px; padding:28px; border:1px solid var(--card-borde);
+  box-shadow:0 25px 60px -15px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.12), 0 0 40px rgba(176,38,255,.15);
+  overflow:hidden;
 }
-.tarjeta-borde{position:absolute; inset:-3px; border-radius:30px; padding:3px; background:linear-gradient(135deg,var(--rosa),var(--amarillo),var(--verde),var(--azul),var(--violeta)); background-size:300% 300%; animation:arcoiris 6s linear infinite; -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; z-index:-1;}
-@keyframes arcoiris{0%{background-position:0% 50%}100%{background-position:300% 50%}}
-.chip{background:#fff; border-radius:999px; padding:8px 16px; font-weight:800; box-shadow:0 4px 0 rgba(61,44,94,.1); border:2px solid rgba(61,44,94,.08); color:var(--texto);}
+.caja-premium::before{
+  content:""; position:absolute; inset:0; border-radius:30px; padding:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--pink),var(--gold),var(--lime),var(--purple),var(--cyan));
+  background-size:400% 400%; animation:neonBorde 6s linear infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;
+  pointer-events:none; z-index:1;
+}
+.caja-premium::after{
+  content:""; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+  background:conic-gradient(from 0deg, transparent, rgba(0,245,255,.08), transparent 30%);
+  animation:brilloGiro 8s linear infinite; pointer-events:none; z-index:0;
+}
+@keyframes neonBorde{0%{background-position:0% 50%}100%{background-position:400% 50%}}
+@keyframes brilloGiro{to{transform:rotate(360deg);}}
+.caja-premium > *{position:relative; z-index:2;}
+.caja-chica{background:rgba(255,255,255,.06); border:1px solid var(--card-borde); border-radius:20px; padding:16px; backdrop-filter:blur(10px);}
 
-/* ---------- Título arcoíris ---------- */
-.tit-arcoiris{font-family:'Rubik',sans-serif; font-weight:900;
-  background:linear-gradient(90deg,var(--rosa),var(--naranja),var(--amarillo),var(--verde),var(--azul),var(--violeta),var(--rosa));
+/* ---------- Título neón ---------- */
+.tit-neon{font-family:'Orbitron','Rubik',sans-serif; font-weight:900; letter-spacing:1px;
+  background:linear-gradient(90deg,var(--cyan),var(--pink),var(--gold),var(--lime),var(--cyan));
   background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
-  animation:arcoiris 5s linear infinite; filter:drop-shadow(0 4px 0 rgba(255,255,255,.8));}
+  animation:neonBorde 4s linear infinite; filter:drop-shadow(0 0 18px rgba(0,245,255,.5));}
+.tit-arcoiris{font-family:'Orbitron','Rubik',sans-serif; font-weight:900;
+  background:linear-gradient(90deg,var(--cyan),var(--pink),var(--gold),var(--lime),var(--purple),var(--cyan));
+  background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:neonBorde 5s linear infinite;}
 
-/* ---------- Botones grandes 3D (táctiles, no se traban) ---------- */
+/* ---------- Botones SUPER PREMIUM (grandes, táctiles, con brillo) ---------- */
 .boton{
-  border:none; border-radius:22px; padding:14px 24px; font-weight:800; font-size:1rem; color:#fff;
-  box-shadow:0 6px 0 rgba(0,0,0,.18); transition:transform .1s, box-shadow .1s; touch-action:manipulation;
-  display:inline-flex; align-items:center; gap:8px; justify-content:center; line-height:1.1;
+  border:none; border-radius:20px; padding:14px 22px; font-weight:800; font-size:1rem; color:#fff;
+  box-shadow:0 6px 0 rgba(0,0,0,.4), 0 0 20px rgba(0,245,255,.3); transition:transform .1s, box-shadow .15s, filter .15s;
+  touch-action:manipulation; display:inline-flex; align-items:center; gap:8px; justify-content:center; line-height:1.1;
+  position:relative; overflow:hidden; min-height:48px;
 }
-.boton:active{transform:translateY(4px); box-shadow:0 2px 0 rgba(0,0,0,.18);}
-.b-rosa{background:linear-gradient(180deg,#ff8ab5,var(--rosa));}
-.b-azul{background:linear-gradient(180deg,#73b0ff,var(--azul));}
-.b-verde{background:linear-gradient(180deg,#8fdc99,var(--verde));}
-.b-amarillo{background:linear-gradient(180deg,#ffdd70,var(--amarillo)); color:#7a5200;}
-.b-violeta{background:linear-gradient(180deg,#b799ff,var(--violeta));}
-.b-naranja{background:linear-gradient(180deg,#ffa870,var(--naranja));}
-.b-turquesa{background:linear-gradient(180deg,#6fe3cc,var(--turquesa));}
-.boton.on{outline:4px solid #fff; outline-offset:2px; transform:scale(1.05);}
+.boton::after{content:""; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent); transform:skewX(-20deg); transition:left .5s;}
+.boton:hover::after{left:130%;}
+.boton:active{transform:translateY(4px) scale(.97); box-shadow:0 2px 0 rgba(0,0,0,.4), 0 0 10px rgba(0,245,255,.2);}
+.boton.on{outline:3px solid #fff; outline-offset:2px; filter:brightness(1.2);}
+.b-cyan{background:linear-gradient(180deg,#33f7ff,var(--cyan)); color:#003338; box-shadow:0 6px 0 #0099a3, 0 0 24px rgba(0,245,255,.5);}
+.b-pink{background:linear-gradient(180deg,#ff5ce0,var(--pink)); box-shadow:0 6px 0 #b30096, 0 0 24px rgba(255,43,214,.5);}
+.b-lime{background:linear-gradient(180deg,#b8ff3d,var(--lime)); color:#2d4000; box-shadow:0 6px 0 #6d9900, 0 0 24px rgba(163,255,18,.5);}
+.b-gold{background:linear-gradient(180deg,#ffe44d,var(--gold)); color:#5c4a00; box-shadow:0 6px 0 #b39700, 0 0 24px rgba(255,215,0,.5);}
+.b-purple{background:linear-gradient(180deg,#c45cff,var(--purple)); box-shadow:0 6px 0 #7a00cc, 0 0 24px rgba(176,38,255,.5);}
+.b-orange{background:linear-gradient(180deg,#ff8c5c,var(--orange)); box-shadow:0 6px 0 #b33d00, 0 0 24px rgba(255,107,53,.5);}
+.b-blue{background:linear-gradient(180deg,#6699ff,var(--blue)); box-shadow:0 6px 0 #1a3d99, 0 0 24px rgba(61,123,255,.5);}
+.b-red{background:linear-gradient(180deg,#ff6b80,var(--red)); box-shadow:0 6px 0 #99001a, 0 0 24px rgba(255,61,90,.5);}
+/* alias de colores anteriores (los usan los juegos) */
+.b-rosa{background:linear-gradient(180deg,#ff5ce0,var(--pink)); box-shadow:0 6px 0 #b30096, 0 0 24px rgba(255,43,214,.5);}
+.b-azul{background:linear-gradient(180deg,#6699ff,var(--blue)); box-shadow:0 6px 0 #1a3d99, 0 0 24px rgba(61,123,255,.5);}
+.b-verde{background:linear-gradient(180deg,#b8ff3d,var(--lime)); color:#2d4000; box-shadow:0 6px 0 #6d9900, 0 0 24px rgba(163,255,18,.5);}
+.b-amarillo{background:linear-gradient(180deg,#ffe44d,var(--gold)); color:#5c4a00; box-shadow:0 6px 0 #b39700, 0 0 24px rgba(255,215,0,.5);}
+.b-violeta{background:linear-gradient(180deg,#c45cff,var(--purple)); box-shadow:0 6px 0 #7a00cc, 0 0 24px rgba(176,38,255,.5);}
+.b-naranja{background:linear-gradient(180deg,#ff8c5c,var(--orange)); box-shadow:0 6px 0 #b33d00, 0 0 24px rgba(255,107,53,.5);}
+.b-turquesa{background:linear-gradient(180deg,#33f7ff,var(--cyan)); color:#003338; box-shadow:0 6px 0 #0099a3, 0 0 24px rgba(0,245,255,.5);}
 
-/* Botón de mundo (categoría) */
+/* Chip de perfil */
+.chip{background:rgba(255,255,255,.08); backdrop-filter:blur(10px); border-radius:999px; padding:8px 16px; font-weight:800; box-shadow:0 4px 0 rgba(0,0,0,.3); border:1px solid var(--card-borde); color:var(--texto);}
+
+/* Mundos (categorías) — botones grandes premium */
 .mundo{
-  border-radius:24px; padding:14px 18px; font-weight:800; font-size:1rem; color:#fff; border:3px solid #fff;
-  box-shadow:0 6px 0 rgba(0,0,0,.15); transition:.15s; touch-action:manipulation; text-align:left; min-width:130px;
+  border-radius:22px; padding:14px 18px; font-weight:800; font-size:1rem; color:#fff; border:2px solid rgba(255,255,255,.3);
+  box-shadow:0 6px 0 rgba(0,0,0,.4), 0 0 20px rgba(255,255,255,.1); transition:.15s; touch-action:manipulation; text-align:left; min-width:130px; min-height:56px;
 }
-.mundo:active{transform:translateY(4px); box-shadow:0 2px 0 rgba(0,0,0,.15);}
-.mundo.on{outline:4px solid var(--texto); outline-offset:2px; transform:scale(1.04);}
-.m1{background:linear-gradient(135deg,var(--rosa),var(--naranja));}
-.m2{background:linear-gradient(135deg,var(--azul),var(--turquesa));}
-.m3{background:linear-gradient(135deg,var(--violeta),var(--rosa));}
-.m4{background:linear-gradient(135deg,var(--verde),var(--turquesa));}
-.m5{background:linear-gradient(135deg,var(--amarillo),var(--naranja)); color:#5a3d00;}
-.m6{background:linear-gradient(135deg,#7c8db5,#4a5578);}
+.mundo:active{transform:translateY(4px); box-shadow:0 2px 0 rgba(0,0,0,.4);}
+.mundo.on{outline:3px solid #fff; outline-offset:2px; transform:scale(1.05); filter:brightness(1.25);}
+.m1{background:linear-gradient(135deg,var(--pink),var(--purple)); box-shadow:0 6px 0 #7a0099, 0 0 24px rgba(255,43,214,.5);}
+.m2{background:linear-gradient(135deg,var(--blue),var(--cyan)); box-shadow:0 6px 0 #003d80, 0 0 24px rgba(0,245,255,.5);}
+.m3{background:linear-gradient(135deg,var(--purple),var(--pink)); box-shadow:0 6px 0 #5c0099, 0 0 24px rgba(176,38,255,.5);}
+.m4{background:linear-gradient(135deg,var(--lime),var(--cyan)); color:#0d2600; box-shadow:0 6px 0 #4d7300, 0 0 24px rgba(163,255,18,.5);}
+.m5{background:linear-gradient(135deg,var(--gold),var(--orange)); color:#4d2e00; box-shadow:0 6px 0 #996b00, 0 0 24px rgba(255,215,0,.5);}
+.m6{background:linear-gradient(135deg,#4a5578,#1a1f3d); box-shadow:0 6px 0 #0a0d1f, 0 0 24px rgba(74,85,120,.5);}
 
-/* Pestaña de juego */
+/* Pestañas de juego */
 .game-tab{
-  background:#fff; border-radius:18px; padding:10px 14px; font-weight:800; font-size:.88rem;
-  color:var(--texto); border:3px solid transparent; box-shadow:0 4px 0 rgba(61,44,94,.1);
-  transition:.15s; touch-action:manipulation; cursor:pointer;
+  background:rgba(255,255,255,.08); backdrop-filter:blur(8px); border-radius:18px; padding:10px 14px; font-weight:800; font-size:.88rem;
+  color:var(--texto); border:2px solid transparent; box-shadow:0 4px 0 rgba(0,0,0,.3); transition:.15s; touch-action:manipulation; cursor:pointer; min-height:52px;
 }
-.game-tab:hover{transform:translateY(-2px);}
-.game-tab.on{border-color:var(--rosa); background:linear-gradient(135deg,#fff0f5,#ffe5ec); color:#c2185b; transform:scale(1.05);}
-.estrellitas{color:var(--amarillo); font-size:.8rem; letter-spacing:1px; text-shadow:0 1px 0 rgba(0,0,0,.15);}
+.game-tab:hover{transform:translateY(-2px); border-color:var(--cyan);}
+.game-tab.on{border-color:var(--pink); background:rgba(255,43,214,.18); color:#ff9ce8; transform:scale(1.06); box-shadow:0 0 20px rgba(255,43,214,.5);}
+.estrellitas{color:var(--gold); font-size:.8rem; letter-spacing:1px; text-shadow:0 0 8px var(--gold);}
 
 /* ---------- Opciones de juego ---------- */
 .opcion{
   padding:16px; border-radius:20px; font-size:1.15rem; font-weight:800; cursor:pointer; transition:.15s;
-  background:#fff; border:4px solid #f0e6ff; color:var(--texto); text-align:center;
-  box-shadow:0 5px 0 rgba(61,44,94,.1); touch-action:manipulation;
+  background:rgba(255,255,255,.08); backdrop-filter:blur(8px); border:3px solid rgba(0,245,255,.25); color:var(--texto); text-align:center;
+  box-shadow:0 5px 0 rgba(0,0,0,.4); touch-action:manipulation; min-height:56px;
 }
-.opcion:hover{transform:translateY(-3px); border-color:var(--azul);}
+.opcion:hover{transform:translateY(-3px); border-color:var(--cyan); box-shadow:0 5px 0 rgba(0,0,0,.4), 0 0 20px rgba(0,245,255,.4);}
 .opcion:active{transform:scale(.95);}
-.opcion.ok{background:linear-gradient(135deg,#8fdc99,var(--verde)); color:#0d3b14; border-color:#fff; box-shadow:0 0 30px rgba(107,203,119,.7); animation:pop .5s;}
-.opcion.no{background:linear-gradient(135deg,#ff8a8a,#ff5252); color:#fff; border-color:#fff; animation:sac .45s;}
+.opcion.ok{background:linear-gradient(135deg,rgba(163,255,18,.3),rgba(0,245,255,.3)); color:var(--lime); border-color:var(--lime); box-shadow:0 0 35px rgba(163,255,18,.7); animation:pop .5s;}
+.opcion.no{background:rgba(255,61,90,.3); color:#ff8a9e; border-color:var(--red); animation:sac .45s;}
 @keyframes pop{50%{transform:scale(1.15) rotate(-4deg);}}
 @keyframes sac{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
 
-/* Teclado abecedario (MEJORADO) */
+/* Teclado abecedario */
 .tecla-abc{
   aspect-ratio:1/1; border-radius:16px; display:flex; align-items:center; justify-content:center;
   font-size:clamp(1.1rem,5vw,1.7rem); font-weight:900; cursor:pointer; transition:.12s;
-  background:linear-gradient(180deg,#fff,#f0e6ff); border:3px solid #e0d0ff; color:var(--violeta);
-  box-shadow:0 4px 0 #c9b3f0; touch-action:manipulation; min-height:46px;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(176,38,255,.15)); border:3px solid rgba(176,38,255,.4); color:var(--cyan);
+  box-shadow:0 4px 0 rgba(0,0,0,.5), 0 0 12px rgba(176,38,255,.3); touch-action:manipulation; min-height:46px;
 }
-.tecla-abc:hover{transform:scale(1.06);}
-.tecla-abc:active{transform:translateY(3px); box-shadow:0 1px 0 #c9b3f0;}
-.tecla-abc.ok{background:linear-gradient(180deg,#8fdc99,var(--verde)); color:#0d3b14; border-color:#fff;}
-.tecla-abc.no{background:#e0e0e0; color:#999; box-shadow:0 2px 0 #bbb; opacity:.5;}
+.tecla-abc:hover{transform:scale(1.06); box-shadow:0 4px 0 rgba(0,0,0,.5), 0 0 20px rgba(0,245,255,.5);}
+.tecla-abc:active{transform:translateY(3px); box-shadow:0 1px 0 rgba(0,0,0,.5);}
+.tecla-abc.ok{background:linear-gradient(180deg,rgba(163,255,18,.4),var(--lime)); color:#0d2600; border-color:#fff; box-shadow:0 0 25px var(--lime);}
+.tecla-abc.no{background:rgba(255,255,255,.03); color:#555; box-shadow:0 2px 0 rgba(0,0,0,.5); opacity:.4;}
 .teclado-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:7px; max-width:560px; margin:0 auto;}
 @media (max-width:480px){.teclado-grid{grid-template-columns:repeat(6,1fr); gap:5px;}}
 
 /* Letras spelling */
 .letra-sp{
   width:56px; height:56px; border-radius:16px; display:inline-flex; align-items:center; justify-content:center;
-  font-size:1.9rem; font-weight:900; background:linear-gradient(180deg,#fff,#ffe5ec); border:4px solid #ffc2d9;
-  color:var(--rosa); margin:4px; cursor:pointer; transition:.15s; touch-action:manipulation;
-  box-shadow:0 4px 0 #ff9ec0;
+  font-size:1.9rem; font-weight:900; background:linear-gradient(180deg,rgba(255,43,214,.25),rgba(176,38,255,.25)); border:4px solid var(--pink);
+  color:var(--pink); margin:4px; cursor:pointer; transition:.15s; touch-action:manipulation;
+  box-shadow:0 4px 0 rgba(0,0,0,.5), 0 0 15px rgba(255,43,214,.4);
 }
-.letra-sp:hover{transform:scale(1.1) rotate(-4deg);}
-.letra-sp:active{transform:translateY(3px); box-shadow:0 1px 0 #ff9ec0;}
-.hueco{display:inline-block; width:48px; height:60px; border-bottom:6px solid var(--violeta); margin:0 5px; vertical-align:bottom; font-size:2.5rem; font-weight:900; color:var(--violeta); text-align:center; line-height:60px;}
+.letra-sp:hover{transform:scale(1.1) rotate(-4deg); box-shadow:0 4px 0 rgba(0,0,0,.5), 0 0 25px var(--pink);}
+.letra-sp:active{transform:translateY(3px); box-shadow:0 1px 0 rgba(0,0,0,.5);}
+.letra-sp.ok{background:linear-gradient(180deg,rgba(163,255,18,.4),var(--lime)); color:#0d2600; border-color:#fff;}
+.hueco{display:inline-block; width:48px; height:60px; border-bottom:6px solid var(--cyan); margin:0 5px; vertical-align:bottom; font-size:2.5rem; font-weight:900; color:var(--cyan); text-align:center; line-height:60px;}
 
-/* Botón bocina (escuchar pronunciación) */
+/* Bocina */
 .bocina{
-  background:linear-gradient(180deg,#ffdd70,var(--amarillo)); color:#7a5200; border:4px solid #fff;
+  background:linear-gradient(180deg,#ffe44d,var(--gold)); color:#5c4a00; border:4px solid #fff;
   border-radius:50%; width:64px; height:64px; font-size:1.8rem; cursor:pointer; font-weight:900;
-  box-shadow:0 5px 0 #d4a017; transition:.15s; touch-action:manipulation; vertical-align:middle;
-  animation:pulsoB 2s ease-in-out infinite;
+  box-shadow:0 5px 0 #b39700, 0 0 25px rgba(255,215,0,.6); transition:.15s; touch-action:manipulation; vertical-align:middle;
+  animation:pulsoB 2s ease-in-out infinite; min-width:64px;
 }
-@keyframes pulsoB{0%,100%{box-shadow:0 5px 0 #d4a017, 0 0 0 0 rgba(255,201,60,.6);}50%{box-shadow:0 5px 0 #d4a017, 0 0 0 14px rgba(255,201,60,0);}}
-.bocina:active{transform:translateY(3px); box-shadow:0 2px 0 #d4a017;}
+@keyframes pulsoB{0%,100%{box-shadow:0 5px 0 #b39700, 0 0 0 0 rgba(255,215,0,.6);}50%{box-shadow:0 5px 0 #b39700, 0 0 0 16px rgba(255,215,0,0);}}
+.bocina:active{transform:translateY(3px); box-shadow:0 2px 0 #b39700;}
 
 /* Cartas memoria */
 .carta{aspect-ratio:3/4; cursor:pointer; perspective:1000px; touch-action:manipulation;}
 .carta-inner{position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:.55s;}
 .carta.girada .carta-inner{transform:rotateY(180deg);}
-.cara{position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-weight:900; border:3px solid #fff; box-shadow:0 5px 0 rgba(61,44,94,.15);}
-.cf{background:linear-gradient(135deg,var(--azul),var(--violeta)); color:#fff;}
-.ca{transform:rotateY(180deg); background:linear-gradient(135deg,#fff,#ffe5ec);}
+.cara{position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-weight:900; border:3px solid rgba(255,255,255,.3); box-shadow:0 5px 0 rgba(0,0,0,.4);}
+.cf{background:linear-gradient(135deg,var(--purple),var(--cyan)); color:#fff; box-shadow:0 5px 0 rgba(0,0,0,.4), 0 0 15px rgba(0,245,255,.4);}
+.ca{transform:rotateY(180deg); background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,43,214,.15));}
 
 /* Piano */
 .piano-wrap{position:relative; display:flex; justify-content:center; width:100%; max-width:680px; margin:0 auto; height:210px;}
 .tc{cursor:pointer; display:flex; align-items:flex-end; justify-content:center; padding-bottom:12px; font-weight:900; transition:transform .08s, background .08s; touch-action:manipulation; user-select:none;}
-.t-blanca{flex:1; background:linear-gradient(180deg,#fff,#f0f0f0); height:100%; border:2px solid #d0c8e8; border-radius:0 0 12px 12px; color:var(--texto); z-index:1; margin:0 2px; box-shadow:0 5px 0 #c8bfe0;}
-.t-blanca.activa{background:linear-gradient(180deg,#b3e5fc,#4fc3f7); transform:translateY(3px); box-shadow:0 2px 0 #c8bfe0;}
-.t-negra{position:absolute; top:0; width:8%; height:60%; background:linear-gradient(180deg,#4a3b6b,#2a1f45); z-index:2; color:#ffd6e7; border-radius:0 0 8px 8px; font-size:.75rem; box-shadow:0 5px 0 #1a1230;}
-.t-negra.activa{background:linear-gradient(180deg,var(--violeta),#6a4bc4); transform:translateY(3px); box-shadow:0 2px 0 #1a1230;}
+.t-blanca{flex:1; background:linear-gradient(180deg,#f0e9ff,#c8bfe0); height:100%; border:2px solid rgba(0,0,0,.3); border-radius:0 0 12px 12px; color:var(--bg0); z-index:1; margin:0 2px; box-shadow:0 5px 0 rgba(0,0,0,.5);}
+.t-blanca.activa{background:linear-gradient(180deg,var(--cyan),#0099a3); transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,.5), 0 0 25px var(--cyan);}
+.t-negra{position:absolute; top:0; width:8%; height:60%; background:linear-gradient(180deg,#3d2c5e,#1a0b2e); z-index:2; color:var(--cyan); border-radius:0 0 8px 8px; font-size:.75rem; box-shadow:0 5px 0 #000;}
+.t-negra.activa{background:linear-gradient(180deg,var(--pink),#b30096); transform:translateY(3px); box-shadow:0 2px 0 #000, 0 0 25px var(--pink);}
 
-/* ---------- Profesor astronauta (habla, enseña) ---------- */
-.prof{position:fixed; bottom:14px; right:14px; z-index:60; cursor:pointer; width:130px; height:170px;
-  animation:flotar 3s ease-in-out infinite; filter:drop-shadow(0 8px 20px rgba(61,44,94,.35));
-  transition:transform .25s; touch-action:manipulation;}
-.prof:hover{transform:scale(1.08) rotate(-4deg);}
+/* ---------- Personajes flotando (hablan con los niños) ---------- */
+.personaje-flotante{position:fixed; z-index:55; cursor:pointer; transition:transform .2s; touch-action:manipulation; filter:drop-shadow(0 0 20px rgba(0,245,255,.5)); animation:flotar 4s ease-in-out infinite;}
+.personaje-flotante:hover{transform:scale(1.15) rotate(5deg);}
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+#prof{position:fixed; bottom:16px; right:16px; z-index:60; cursor:pointer; width:130px; height:170px; animation:flotar 3s ease-in-out infinite; filter:drop-shadow(0 0 25px rgba(0,245,255,.6)); transition:transform .25s; touch-action:manipulation;}
+#prof:hover{transform:scale(1.1) rotate(-5deg);}
 #astroSVG{width:100%; height:100%; overflow:visible;}
 .ojo{transform-origin:center; animation:parpadeo 4s infinite;}
 @keyframes parpadeo{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
@@ -182,80 +221,103 @@ img{user-select:none;-webkit-user-select:none;}
 #astroSVG.hablando #bocaCerrada{opacity:0;}
 @keyframes bocaHabla{0%{transform:scaleY(.4)}100%{transform:scaleY(1.3)}}
 .luzAnt{animation:luzAnt 1s ease-in-out infinite alternate;}
-@keyframes luzAnt{0%{fill:var(--amarillo);}100%{fill:var(--rosa);}}
+@keyframes luzAnt{0%{fill:var(--gold);}100%{fill:var(--pink);}}
 .llama{transform-origin:70px 178px; animation:llama .18s ease-in-out infinite alternate;}
 @keyframes llama{0%{transform:scaleY(.85)}100%{transform:scaleY(1.35)}}
 .brazoDer{transform-origin:105px 110px; animation:saludar 2.5s ease-in-out infinite;}
 @keyframes saludar{0%,100%{transform:rotate(0)}50%{transform:rotate(-20deg)}}
-@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.mascota{position:fixed; bottom:26px; left:18px; z-index:50; font-size:3.5rem; animation:flotar 4s ease-in-out infinite; filter:drop-shadow(0 6px 15px rgba(61,44,94,.3));}
+.mascota{position:fixed; bottom:30px; left:20px; z-index:50; font-size:3.5rem; animation:flotar 4s ease-in-out infinite; filter:drop-shadow(0 0 15px var(--gold));}
 .globo{
   position:fixed; bottom:170px; right:130px; z-index:59; max-width:300px; min-width:180px;
-  background:#fff; color:var(--texto); padding:14px 18px; border-radius:22px 22px 6px 22px;
-  font-weight:800; font-size:1rem; box-shadow:0 12px 30px -8px rgba(61,44,94,.4); border:3px solid var(--rosa);
+  background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(240,233,255,.95)); color:var(--bg0); padding:14px 18px; border-radius:22px 22px 6px 22px;
+  font-weight:800; font-size:1rem; box-shadow:0 12px 40px rgba(0,245,255,.4); border:3px solid var(--cyan);
   animation:apaGlobo .35s cubic-bezier(.34,1.56,.64,1);
 }
-.globo::after{content:""; position:absolute; bottom:-14px; right:24px; border:14px solid transparent; border-top-color:#fff;}
+.globo::after{content:""; position:absolute; bottom:-14px; right:24px; border:14px solid transparent; border-top-color:rgba(255,255,255,.95);}
 .globo .bandera{font-size:1.3rem; margin-right:4px;}
 @keyframes apaGlobo{from{opacity:0; transform:translateY(12px) scale(.85);}to{opacity:1; transform:translateY(0) scale(1);}}
+.globo-izq{right:auto; left:130px; bottom:120px; border-radius:22px 22px 22px 6px; border-color:var(--lime); box-shadow:0 12px 40px rgba(163,255,18,.4);}
+.globo-izq::after{right:auto; left:24px; border-top-color:rgba(255,255,255,.95);}
 
-/* ---------- Modales ---------- */
-.modal-fondo{position:fixed; inset:0; background:rgba(61,44,94,.55); z-index:99000; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:.25s; padding:16px;}
+/* ---------- Modales premium ---------- */
+.modal-fondo{position:fixed; inset:0; background:rgba(5,1,15,.75); z-index:99000; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(10px); opacity:0; pointer-events:none; transition:.25s; padding:16px;}
 .modal-fondo.activo{opacity:1; pointer-events:auto;}
-.modal-cuerpo{max-height:92vh; overflow-y:auto; width:100%; background:linear-gradient(160deg,#fff,#fff5fa); border-radius:28px; padding:26px; border:4px solid #fff; box-shadow:0 20px 60px rgba(61,44,94,.4);}
-.toast{position:fixed; top:18px; left:50%; transform:translateX(-50%) translateY(-120px); z-index:99999; background:linear-gradient(135deg,var(--amarillo),var(--naranja)); color:#5a3d00; font-weight:900; padding:14px 26px; border-radius:999px; box-shadow:0 12px 30px rgba(0,0,0,.3); transition:transform .4s cubic-bezier(.34,1.56,.64,1); font-size:1.05rem; border:3px solid #fff; max-width:90vw; text-align:center;}
+.modal-cuerpo{max-height:92vh; overflow-y:auto; width:100%; background:linear-gradient(160deg,rgba(26,11,61,.98),rgba(13,5,36,.98)); border-radius:28px; padding:26px; border:2px solid var(--card-borde); box-shadow:0 25px 80px rgba(0,0,0,.8), 0 0 60px rgba(176,38,255,.3); position:relative;}
+.modal-cuerpo::before{content:""; position:absolute; inset:0; border-radius:28px; padding:2px; background:linear-gradient(135deg,var(--cyan),var(--pink),var(--gold)); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;}
+.toast{position:fixed; top:18px; left:50%; transform:translateX(-50%) translateY(-120px); z-index:99999; background:linear-gradient(135deg,var(--gold),var(--orange)); color:#3d2400; font-weight:900; padding:14px 26px; border-radius:999px; box-shadow:0 12px 40px rgba(0,0,0,.5), 0 0 30px rgba(255,215,0,.5); transition:transform .4s cubic-bezier(.34,1.56,.64,1); font-size:1.05rem; border:3px solid #fff; max-width:90vw; text-align:center;}
 .toast.visible{transform:translateX(-50%) translateY(0);}
 
-/* Intro / pantalla de inicio */
+/* Intro */
 #intro{position:fixed; inset:0; z-index:100000; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;
-  background:linear-gradient(160deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4)); transition:opacity .6s;}
+  background:radial-gradient(ellipse at center, var(--bg2), var(--bg0)); transition:opacity .6s;}
 #intro.fuera{opacity:0; pointer-events:none;}
-.cohete-intro{font-size:5rem; animation:flotar 2s ease-in-out infinite; display:inline-block;}
+.cohete-intro{font-size:5rem; animation:flotar 2s ease-in-out infinite; display:inline-block; filter:drop-shadow(0 0 30px var(--cyan));}
 .btn-empezar{font-size:1.6rem; padding:18px 44px; border-radius:999px; animation:pop 1.4s ease-in-out infinite;}
 
-/* Simon dice */
-.simon-btn{width:45%; aspect-ratio:1/1; border-radius:24px; border:5px solid #fff; cursor:pointer; transition:.15s; box-shadow:0 8px 0 rgba(0,0,0,.2); touch-action:manipulation; opacity:.55;}
+/* Simon */
+.simon-btn{width:45%; aspect-ratio:1/1; border-radius:24px; border:5px solid rgba(255,255,255,.3); cursor:pointer; transition:.15s; box-shadow:0 8px 0 rgba(0,0,0,.5); touch-action:manipulation; opacity:.5;}
 .simon-btn.activa{opacity:1; transform:scale(1.06); box-shadow:0 0 40px currentColor;}
-.sb-verde{background:var(--verde); color:var(--verde);}
-.sb-rojo{background:var(--rosa); color:var(--rosa);}
-.sb-amarillo{background:var(--amarillo); color:var(--amarillo);}
-.sb-azul{background:var(--azul); color:var(--azul);}
+.sb-verde{background:var(--lime); color:var(--lime);}
+.sb-rojo{background:var(--red); color:var(--red);}
+.sb-amarillo{background:var(--gold); color:var(--gold);}
+.sb-azul{background:var(--blue); color:var(--blue);}
 
-/* Barra de progreso / nivel */
-.barra-progreso{height:14px; background:#fff; border-radius:99px; overflow:hidden; border:2px solid #e0d0ff;}
-.barra-progreso>div{height:100%; background:linear-gradient(90deg,var(--verde),var(--turquesa)); border-radius:99px; transition:width .5s;}
+/* Barra progreso / XP */
+.barra-progreso{height:14px; background:rgba(255,255,255,.08); border-radius:99px; overflow:hidden; border:2px solid rgba(0,245,255,.3);}
+.barra-progreso>div{height:100%; background:linear-gradient(90deg,var(--lime),var(--cyan),var(--pink)); border-radius:99px; transition:width .5s; box-shadow:0 0 12px var(--cyan);}
 
-.medalla{width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; background:linear-gradient(135deg,#ffdd70,#d4a017); border:4px solid #fff; box-shadow:0 4px 0 #a07c00; margin:0 auto;}
-.medalla.bloqueada{background:#e0e0e0; filter:grayscale(1); opacity:.5;}
-
-.tienda-item{background:#fff; border-radius:20px; padding:14px; text-align:center; border:3px solid #f0e6ff; box-shadow:0 5px 0 rgba(61,44,94,.1);}
+.medalla{width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; background:linear-gradient(135deg,#ffe44d,#b39700); border:4px solid #fff; box-shadow:0 4px 0 #6b5a00, 0 0 20px var(--gold); margin:0 auto;}
+.medalla.bloqueada{background:#333; filter:grayscale(1); opacity:.4; box-shadow:none;}
+.tienda-item{background:rgba(255,255,255,.07); backdrop-filter:blur(8px); border-radius:20px; padding:14px; text-align:center; border:2px solid var(--card-borde); box-shadow:0 5px 0 rgba(0,0,0,.3);}
 .tienda-item .ico{font-size:2.8rem;}
-
-.ad-slot{width:100%; min-height:50px; margin:10px auto; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(155,114,255,.4); border-radius:14px; background:rgba(155,114,255,.06); color:rgba(155,114,255,.6); font-weight:800; font-size:.8rem; position:relative; z-index:5;}
+.ad-slot{width:100%; min-height:50px; margin:10px auto; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(0,245,255,.3); border-radius:14px; background:rgba(0,245,255,.05); color:rgba(0,245,255,.6); font-weight:800; font-size:.8rem; position:relative; z-index:5;}
 .ad-banner{max-width:728px; min-height:80px;}
+.palabra-grande{font-family:'Orbitron',sans-serif; font-weight:900; font-size:clamp(2rem,7vw,3.2rem); color:var(--cyan); text-shadow:0 0 20px var(--cyan);}
 
-.palabra-grande{font-family:'Rubik',sans-serif; font-weight:900; font-size:clamp(2rem,7vw,3.2rem); color:var(--violeta); text-shadow:2px 2px 0 #fff;}
+/* Misiones diarias */
+.mision{display:flex; align-items:center; gap:12px; padding:12px; border-radius:16px; background:rgba(255,255,255,.06); border:2px solid var(--card-borde); margin-bottom:8px;}
+.mision.hecha{border-color:var(--lime); background:rgba(163,255,18,.1);}
+.mision .check{width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; background:rgba(255,255,255,.1); flex-shrink:0;}
+.mision.hecha .check{background:var(--lime); color:#0d2600;}
+
+/* Personajes seleccionables */
+.pj-card{background:rgba(255,255,255,.07); border-radius:20px; padding:16px; text-align:center; cursor:pointer; transition:.2s; border:3px solid transparent;}
+.pj-card:hover{transform:translateY(-4px);}
+.pj-card.on{border-color:var(--gold); box-shadow:0 0 25px rgba(255,215,0,.5); background:rgba(255,215,0,.1);}
+/* Blobs/nubes del fondo (compatibilidad con script de arranque) */
+.blob{position:fixed; border-radius:50%; z-index:0; pointer-events:none; opacity:.25; filter:blur(40px); animation:blobMover 12s ease-in-out infinite alternate;}
+@keyframes blobMover{from{transform:translate(0,0) scale(1);}to{transform:translate(40px,-30px) scale(1.15);}}
+.nube{position:fixed; background:rgba(255,255,255,.15); border-radius:999px; opacity:.4; z-index:0; pointer-events:none; animation:nubeFlotar linear infinite;}
+@keyframes nubeFlotar{from{transform:translateX(-30vw);}to{transform:translateX(130vw);}}
 </style>
 </head>
 <body>
 
-<!-- Fondo: nubes y blobs -->
+<!-- Fondo: estrellas, planetas, cometas -->
 <div id="fondoDecor"></div>
+
+<!-- Personajes flotantes extra (hablan con los niños) -->
+<div class="personaje-flotante" id="pjHada" style="top:18%; left:10px; font-size:3.2rem;" onclick="personajeHablar('hada')">🧚</div>
+<div class="personaje-flotante" id="pjAlien" style="top:55%; left:8px; font-size:3rem; animation-delay:1s;" onclick="personajeHablar('alien')">👽</div>
+<div class="personaje-flotante" id="pjRobot" style="top:25%; right:8px; font-size:3rem; animation-delay:.5s;" onclick="personajeHablar('robot')">🤖</div>
+
+<!-- Globos de diálogo de personajes -->
+<div id="globoPersonaje" class="globo globo-izq hidden"></div>
 
 <!-- Toast -->
 <div id="toast" class="toast"></div>
 
-<!-- INTRO (se cierra sola a los 4s o al tocar Empezar) -->
+<!-- INTRO (se cierra sola a los 4s) -->
 <div id="intro">
   <div class="cohete-intro">🚀</div>
-  <h1 class="tit-arcoiris text-4xl md:text-6xl mb-2 px-2">ARCOÍRIS KIDS</h1>
-  <p class="font-bold text-lg md:text-xl mb-6" style="color:var(--texto);" id="introSub">¡Aprendé inglés hablando, jugando y divirtiéndote!</p>
-  <button class="boton b-rosa btn-empezar" id="btnEmpezar">▶ ¡EMPEZAR A JUGAR!</button>
-  <p class="text-sm mt-4 font-bold opacity-60" id="introAuto">La pantalla se abre sola en unos segundos...</p>
-  <div class="w-56 h-3 bg-white/60 rounded-full mt-6 overflow-hidden border-2 border-white"><div class="h-full bg-gradient-to-r from-pink-400 via-yellow-300 to-blue-400 transition-all duration-[3500ms]" id="barraCarga" style="width:0%"></div></div>
+  <h1 class="tit-neon text-4xl md:text-6xl mb-2 px-2">NEON KIDS</h1>
+  <p class="font-bold text-lg md:text-xl mb-6" id="introSub" style="color:var(--cyan);">¡Aprendé inglés en el UNIVERSO NEÓN! 🌌</p>
+  <button class="boton b-cyan btn-empezar" id="btnEmpezar">▶ ¡EMPEZAR A JUGAR!</button>
+  <p class="text-sm mt-4 font-bold opacity-60" id="introAuto" style="color:var(--texto2);">Se abre sola en unos segundos...</p>
+  <div class="w-56 h-3 bg-white/10 rounded-full mt-6 overflow-hidden border-2 border-white/20"><div class="h-full bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 transition-all duration-[3500ms]" id="barraCarga" style="width:0%"></div></div>
 </div>
 
-<!-- Banner publicidad -->
+<!-- Banner -->
 <div class="relative z-10 max-w-5xl mx-auto px-2 pt-2"><div class="ad-slot ad-banner">📢 PUBLICIDAD (espacio reservado)</div></div>
 
 <!-- BARRA SUPERIOR -->
@@ -263,100 +325,102 @@ img{user-select:none;-webkit-user-select:none;}
   <div class="chip flex items-center gap-2 cursor-pointer hover:scale-105 transition" onclick="mostrarPerfil()" style="touch-action:manipulation;">
     <span id="avatarPerfil" class="text-2xl">👦</span>
     <span class="text-left leading-tight">
-      <span class="block font-black"><span id="nivelBadge" class="text-[10px] px-2 py-0.5 rounded-full text-white mr-1" style="background:linear-gradient(135deg,#9b72ff,#4d96ff);">Nv 1</span><span id="nomP">Jugador</span></span>
-      <span class="block text-xs font-bold" style="color:var(--naranja);">🪙 <span id="monedasTot">0</span> · 💎 <span id="gemasTot">0</span> · 🎁 <span id="cofresTot">0</span> · 👑 <span id="coronasTot">0</span> · 🔥 <span id="rachaTot">0</span></span>
+      <span class="block font-black"><span id="nivelBadge" class="text-[10px] px-2 py-0.5 rounded-full text-white mr-1" style="background:linear-gradient(135deg,var(--purple),var(--cyan)); color:#fff;">Nv 1</span><span id="nomP">Jugador</span></span>
+      <span class="block text-xs font-bold" style="color:var(--gold);">🪙 <span id="monedasTot">0</span> · 💎 <span id="gemasTot">0</span> · 🎁 <span id="cofresTot">0</span> · 👑 <span id="coronasTot">0</span> · 🔥 <span id="rachaTot">0</span></span>
     </span>
   </div>
   <div class="flex gap-2 flex-wrap items-center">
-    <button class="boton b-violeta" onclick="cambiarIdioma()" id="btnIdioma">🌐 ES</button>
-    <button class="boton b-amarillo" onclick="regaloDiario()">🎁 <span data-t="regalo">Regalo</span></button>
-    <button class="boton b-violeta" onclick="abrirCofre()">🎁 <span id="cofresBtn">0</span></button>
+    <button class="boton b-cyan" onclick="cambiarIdioma()" id="btnIdioma">🌐 ES</button>
+    <button class="boton b-gold" onclick="regaloDiario()">🎁 <span data-t="regalo">Regalo</span></button>
+    <button class="boton b-purple" onclick="abrirCofre()">🎁 <span id="cofresBtn">0</span></button>
+    <button class="boton b-lime" onclick="abrirMisiones()">📋 Misiones</button>
+    <button class="boton b-pink" onclick="abrirPersonajes()">🧑‍🚀 Personajes</button>
     <button class="boton b-turquesa" onclick="abrirTienda()">🏪 <span data-t="tienda">Tienda</span></button>
-    <button class="boton b-verde" onclick="abrirLogros()">🏆</button>
-    <button class="boton b-azul" onclick="abrirAjustes()">⚙️</button>
-    <button class="boton b-naranja" onclick="sonido.toggleMusica()" id="btnMus">🔇</button>
-    <button class="boton b-rosa" onclick="abrirModal('ayudaModal')">❓</button>
+    <button class="boton b-gold" onclick="abrirLogros()">🏆</button>
+    <button class="boton b-blue" onclick="abrirAjustes()">⚙️</button>
+    <button class="boton b-orange" onclick="sonido.toggleMusica()" id="btnMus">🔇</button>
+    <button class="boton b-red" onclick="abrirModal('ayudaModal')">❓</button>
   </div>
 </div>
 
-<!-- Barra de XP / Nivel (premium) -->
+<!-- Barra XP -->
 <div class="max-w-6xl mx-auto px-3 relative z-10">
   <div class="flex items-center gap-3 mb-1">
     <span class="text-2xl">⭐</span>
-    <div class="barra-progreso flex-1"><div id="xpBar" style="width:0%; background:linear-gradient(90deg,#ffc93c,#ff8c42,#ff6b9d);"></div></div>
-    <span class="text-sm font-black" id="xpTexto" style="color:#9b72ff;">0 / 100 XP</span>
+    <div class="barra-progreso flex-1"><div id="xpBar" style="width:0%;"></div></div>
+    <span class="text-sm font-black" id="xpTexto" style="color:var(--cyan);">0 / 100 XP</span>
   </div>
 </div>
+
 <!-- CONTENEDOR -->
-<div class="max-w-6xl mx-auto px-3 pt-2 pb-44 relative z-10">
-  <h1 class="tit-arcoiris text-center text-3xl md:text-5xl mb-1">🌈 ARCOÍRIS KIDS 🌟</h1>
-  <p class="text-center font-bold mb-3" style="color:var(--texto);" id="subtitulo">El astronauta Capi te enseña a hablar inglés · 35 juegos</p>
+<div class="max-w-6xl mx-auto px-3 pt-2 pb-48 relative z-10" id="contenidoPrincipal">
+  <h1 class="tit-neon text-center text-3xl md:text-5xl mb-1">🌌 NEON KIDS UNIVERSE 🌟</h1>
+  <p class="text-center font-bold mb-3" id="subtitulo" style="color:var(--texto2);">Los personajes hablan en castellano e inglés · 45 juegos</p>
 
   <div class="ad-slot ad-banner">📢 PUBLICIDAD (espacio reservado)</div>
 
-  <!-- Mundos (categorías) -->
+  <!-- Mundos -->
   <div class="flex flex-wrap gap-2 justify-center mb-3" id="mundos"></div>
-  <!-- Juegos del mundo -->
+  <!-- Juegos -->
   <div class="flex flex-wrap gap-2 justify-center mb-5" id="tabsJuegos"></div>
 
-  <!-- Zona de juego -->
+  <!-- Zona de juego (caja super premium) -->
   <div class="max-w-5xl mx-auto">
-    <div class="tarjeta">
-      <div class="tarjeta-borde"></div>
+    <div class="caja-premium">
       <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
-        <h2 class="text-2xl md:text-3xl font-black" id="titJuego" style="color:var(--violeta);"></h2>
+        <h2 class="text-2xl md:text-3xl font-black" id="titJuego" style="color:var(--cyan); text-shadow:0 0 15px var(--cyan);"></h2>
         <div class="flex gap-2 items-center">
-          <button class="boton b-amarillo" onclick="repetirPalabra()" title="Repetir pronunciación">🔁 <span data-t="repetir">Repetir</span></button>
-          <button class="boton b-azul text-sm" onclick="hablarProfesorAleatorio()">🧑‍🚀</button>
+          <button class="boton b-gold" onclick="repetirPalabra()">🔁 <span data-t="repetir">Repetir</span></button>
+          <button class="boton b-cyan text-sm" onclick="hablarProfesorAleatorio()">🧑‍🚀</button>
         </div>
       </div>
-      <!-- Globo de enseñanza (dentro de la tarjeta, siempre visible) -->
-      <div id="globoEnsenanza" class="mb-4 p-4 rounded-2xl font-bold text-base md:text-lg" style="background:linear-gradient(135deg,#fff0f5,#e0f4ff); border:3px solid var(--rosa); color:var(--texto); min-height:60px; display:flex; align-items:center; gap:10px;">
+      <!-- Globo de enseñanza -->
+      <div id="globoEnsenanza" class="mb-4 p-4 rounded-2xl font-bold text-base md:text-lg" style="background:linear-gradient(135deg,rgba(0,245,255,.12),rgba(255,43,214,.12)); border:2px solid var(--cyan); color:var(--texto); min-height:60px; display:flex; align-items:center; gap:10px; box-shadow:0 0 20px rgba(0,245,255,.2);">
         <span class="text-3xl">🧑‍🚀</span>
-        <span id="textoEnsenanza">¡Hola! Soy Capi. Tocá un juego y te enseño inglés 😊</span>
+        <span id="textoEnsenanza">¡Hola! Soy Capi. Elegí un juego y te enseño inglés 😊</span>
       </div>
       <div id="gameContainer"></div>
     </div>
   </div>
 
   <div class="ad-slot ad-banner mt-6">📢 PUBLICIDAD (espacio reservado)</div>
-  <p class="text-center text-xs mt-6 mb-2 font-bold opacity-50" style="color:var(--texto);">Arcoíris Kids v1.0 · Gratis para niños · Sin ruleta ni azar · Hecho con ❤️</p>
+  <p class="text-center text-xs mt-6 mb-2 font-bold opacity-50" style="color:var(--texto2);">NEON KIDS v2.0 Super Premium · Gratis para niños · Sin ruleta · Hecho con 💜 en el espacio</p>
 </div>
 
-<!-- Profesor y mascota -->
-<div id="prof" class="prof" onclick="hablarProfesorAleatorio()"></div>
+<!-- Profesor astronauta + mascota -->
+<div id="prof" onclick="hablarProfesorAleatorio()"></div>
 <div id="globoFlotante" class="globo hidden"></div>
 <div id="mascotaContainer" class="mascota hidden"></div>
 
 <!-- MODAL: PERFIL -->
 <div id="perfilModal" class="modal-fondo"><div class="modal-cuerpo max-w-md w-full text-center">
-  <h2 class="tit-arcoiris text-3xl mb-5">👦 <span data-t="perfil">Tu Perfil</span></h2>
-  <input id="nomPerfil" placeholder="Tu nombre" class="w-full p-3 rounded-2xl bg-white border-4 border-purple-200 text-center text-xl mb-4 outline-none font-bold" style="color:var(--texto);">
-  <div class="text-sm font-bold mb-2" style="color:var(--violeta);" data-t="avatar">Elegí tu avatar</div>
+  <h2 class="tit-neon text-3xl mb-5">👦 <span data-t="perfil">Tu Perfil</span></h2>
+  <input id="nomPerfil" placeholder="Tu nombre" class="w-full p-3 rounded-2xl bg-white/10 border-4 border-purple-500/50 text-center text-xl mb-4 outline-none font-bold text-white placeholder-white/40">
+  <div class="text-sm font-bold mb-2" style="color:var(--cyan);" data-t="avatar">Elegí tu avatar</div>
   <div id="avatares" class="grid grid-cols-6 gap-2 mb-5"></div>
-  <div class="text-sm font-bold mb-2" style="color:var(--violeta);" data-t="profesor">Elegí tu profesor</div>
+  <div class="text-sm font-bold mb-2" style="color:var(--cyan);" data-t="profesor">Elegí tu profesor</div>
   <div id="profesores" class="grid grid-cols-3 gap-2 mb-6"></div>
-  <button class="boton b-verde text-xl px-8 w-full py-3" onclick="guardarPerfil()">✅ <span data-t="guardar">GUARDAR</span></button>
+  <button class="boton b-lime text-xl px-8 w-full py-3" onclick="guardarPerfil()">✅ <span data-t="guardar">GUARDAR</span></button>
 </div></div>
 
 <!-- MODAL: TIENDA -->
 <div id="tiendaModal" class="modal-fondo"><div class="modal-cuerpo max-w-3xl w-full">
   <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
-    <h2 class="tit-arcoiris text-3xl">🏪 <span data-t="tienda">Tienda</span></h2>
-    <button class="boton b-rosa" onclick="cerrarModal('tiendaModal')">✕</button>
+    <h2 class="tit-neon text-3xl">🏪 <span data-t="tienda">Tienda</span></h2>
+    <button class="boton b-red" onclick="cerrarModal('tiendaModal')">✕</button>
   </div>
-  <div class="text-center mb-4 text-2xl font-black" style="color:var(--naranja);">🪙 <span id="tiendaMonedas">0</span></div>
-  <h3 class="text-xl font-black mb-3" style="color:var(--rosa);">🐾 <span data-t="mascotas">Mascotas</span></h3>
+  <div class="text-center mb-4 text-2xl font-black" style="color:var(--gold);">🪙 <span id="tiendaMonedas">0</span></div>
+  <h3 class="text-xl font-black mb-3" style="color:var(--pink);">🐾 <span data-t="mascotas">Mascotas</span></h3>
   <div id="tiendaMascotas" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"></div>
-  <h3 class="text-xl font-black mb-3" style="color:var(--azul);">👑 <span data-t="accesorios">Accesorios</span></h3>
+  <h3 class="text-xl font-black mb-3" style="color:var(--cyan);">👑 <span data-t="accesorios">Accesorios</span></h3>
   <div id="tiendaAccesorios" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
 </div></div>
 
 <!-- MODAL: LOGROS -->
 <div id="logrosModal" class="modal-fondo"><div class="modal-cuerpo max-w-2xl w-full">
   <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-arcoiris text-3xl">🏆 <span data-t="logros">Logros</span></h2>
-    <button class="boton b-rosa" onclick="cerrarModal('logrosModal')">✕</button>
+    <h2 class="tit-neon text-3xl">🏆 <span data-t="logros">Logros</span></h2>
+    <button class="boton b-red" onclick="cerrarModal('logrosModal')">✕</button>
   </div>
   <div id="listaLogros" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
 </div></div>
@@ -364,63 +428,83 @@ img{user-select:none;-webkit-user-select:none;}
 <!-- MODAL: AJUSTES -->
 <div id="ajustesModal" class="modal-fondo"><div class="modal-cuerpo max-w-md w-full">
   <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-arcoiris text-3xl">⚙️ <span data-t="ajustes">Ajustes</span></h2>
-    <button class="boton b-rosa" onclick="cerrarModal('ajustesModal')">✕</button>
+    <h2 class="tit-neon text-3xl">⚙️ <span data-t="ajustes">Ajustes</span></h2>
+    <button class="boton b-red" onclick="cerrarModal('ajustesModal')">✕</button>
   </div>
   <div class="space-y-5">
     <div>
-      <div class="font-black mb-2" style="color:var(--violeta);">🔊 <span data-t="velVoz">Velocidad de la voz</span></div>
+      <div class="font-black mb-2" style="color:var(--cyan);">🔊 <span data-t="velVoz">Velocidad de la voz</span></div>
       <div class="flex gap-2">
-        <button class="boton b-azul flex-1" onclick="setVel(0.7)" id="velLenta">🐢 Lenta</button>
-        <button class="boton b-azul flex-1" onclick="setVel(0.85)" id="velNormal">🙂 Normal</button>
-        <button class="boton b-azul flex-1" onclick="setVel(1.0)" id="velRapida">⚡ Rápida</button>
+        <button class="boton b-blue flex-1" onclick="setVel(0.7)" id="velLenta">🐢 Lenta</button>
+        <button class="boton b-blue flex-1" onclick="setVel(0.85)" id="velNormal">🙂 Normal</button>
+        <button class="boton b-blue flex-1" onclick="setVel(1.0)" id="velRapida">⚡ Rápida</button>
       </div>
     </div>
     <div>
-      <div class="font-black mb-2" style="color:var(--violeta);">🗣️ <span data-t="acento">Acento de inglés</span></div>
+      <div class="font-black mb-2" style="color:var(--cyan);">🗣️ <span data-t="acento">Acento de inglés</span></div>
       <div class="flex gap-2">
-        <button class="boton b-violeta flex-1" onclick="setAcento('en-US')" id="acUS">🇺🇸 USA</button>
-        <button class="boton b-violeta flex-1" onclick="setAcento('en-GB')" id="acGB">🇬🇧 UK</button>
+        <button class="boton b-purple flex-1" onclick="setAcento('en-US')" id="acUS">🇺🇸 USA</button>
+        <button class="boton b-purple flex-1" onclick="setAcento('en-GB')" id="acGB">🇬🇧 UK</button>
       </div>
     </div>
-    <button class="boton b-naranja w-full py-3" onclick="borrarProgreso()">🗑️ <span data-t="borrar">Borrar progreso</span></button>
+    <button class="boton b-red w-full py-3" onclick="borrarProgreso()">🗑️ <span data-t="borrar">Borrar progreso</span></button>
   </div>
 </div></div>
 
 <!-- MODAL: PREMIO -->
 <div id="premioModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
   <div id="premioIcono" class="text-7xl mb-3" style="animation:pop 1s ease-in-out infinite;">🎁</div>
-  <h2 id="premioTexto" class="text-2xl font-black mb-5" style="color:var(--rosa);">¡GANASTE!</h2>
-  <button class="boton b-verde px-8 py-3 text-lg" onclick="cerrarModal('premioModal')">¡GENIAL!</button>
+  <h2 id="premioTexto" class="text-2xl font-black mb-5" style="color:var(--pink);">¡GANASTE!</h2>
+  <button class="boton b-lime px-8 py-3 text-lg" onclick="cerrarModal('premioModal')">¡GENIAL!</button>
 </div></div>
 
-<!-- MODAL: AYUDA -->
-<!-- MODAL: SUBIDA DE NIVEL (premium) -->
+<!-- MODAL: NIVEL -->
 <div id="nivelModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
   <div class="text-7xl mb-2" style="animation:pop 1s ease-in-out infinite;">🎉</div>
-  <h2 class="tit-arcoiris text-3xl mb-1" id="nivelTitulo">¡SUBISTE DE NIVEL!</h2>
-  <div class="text-5xl font-black mb-3" style="color:#9b72ff;" id="nivelNum">Nv 2</div>
-  <p class="font-bold mb-2" id="nivelRango" style="color:#ff6b9d;">¡Ahora sos Explorador Arcoíris!</p>
-  <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl p-3 mb-4 font-black text-lg" id="nivelRecompensa">+50 🪙 +2 💎 +1 🎁</div>
-  <button class="boton b-verde px-8 py-3 text-lg" onclick="cerrarModal('nivelModal')">¡SIII! 🚀</button>
+  <h2 class="tit-neon text-3xl mb-1" id="nivelTitulo">¡SUBISTE DE NIVEL!</h2>
+  <div class="text-5xl font-black mb-3" style="color:var(--cyan); text-shadow:0 0 20px var(--cyan);" id="nivelNum">Nv 2</div>
+  <p class="font-bold mb-2" style="color:var(--lime);" id="nivelRango">¡Ahora sos Explorador!</p>
+  <div class="caja-chica p-3 mb-4 font-black text-lg" id="nivelRecompensa" style="color:var(--gold);">+50 🪙 +2 💎 +1 🎁</div>
+  <button class="boton b-lime px-8 py-3 text-lg" onclick="cerrarModal('nivelModal')">¡SIII! 🚀</button>
 </div></div>
 
-<!-- MODAL: COFRE DEL TESORO (premium) -->
+<!-- MODAL: COFRE -->
 <div id="cofreModal" class="modal-fondo z-[99999]"><div class="modal-cuerpo max-w-sm w-full text-center">
-  <h2 class="tit-arcoiris text-3xl mb-4">🎁 <span id="cofreTitulo">Cofre del Tesoro</span></h2>
+  <h2 class="tit-neon text-3xl mb-4">🎁 <span id="cofreTitulo">Cofre del Tesoro</span></h2>
   <div id="cofreCerrado" class="text-8xl mb-4 cursor-pointer select-none" style="animation:flotar 2s ease-in-out infinite;" onclick="abrirCofreClick()">📦</div>
   <div id="cofrePremio" class="hidden mb-4">
     <div class="text-7xl mb-2" id="cofreIcono">💎</div>
-    <div class="text-2xl font-black mb-1" id="cofreTexto" style="color:#9b72ff;">¡Ganaste 3 gemas!</div>
+    <div class="text-2xl font-black mb-1" id="cofreTexto" style="color:var(--cyan);">¡Ganaste 3 gemas!</div>
   </div>
-  <p class="font-bold mb-4 opacity-70" id="cofreHint">Tocá el cofre para abrirlo ✨</p>
-  <button class="boton b-rosa px-8 py-3" onclick="cerrarModal('cofreModal')">✕</button>
+  <p class="font-bold mb-4 opacity-70" id="cofreHint" style="color:var(--texto2);">Tocá el cofre para abrirlo ✨</p>
+  <button class="boton b-red px-8 py-3" onclick="cerrarModal('cofreModal')">✕</button>
 </div></div>
 
+<!-- MODAL: MISIONES DIARIAS -->
+<div id="misionesModal" class="modal-fondo"><div class="modal-cuerpo max-w-md w-full">
+  <div class="flex justify-between items-center mb-5">
+    <h2 class="tit-neon text-3xl">📋 Misiones Diarias</h2>
+    <button class="boton b-red" onclick="cerrarModal('misionesModal')">✕</button>
+  </div>
+  <div id="listaMisiones"></div>
+  <p class="text-center text-sm mt-4 opacity-60" style="color:var(--texto2);">Completá misiones para ganar 💎 gemas extra</p>
+</div></div>
+
+<!-- MODAL: PERSONAJES -->
+<div id="personajesModal" class="modal-fondo"><div class="modal-cuerpo max-w-lg w-full">
+  <div class="flex justify-between items-center mb-5">
+    <h2 class="tit-neon text-3xl">🧑‍🚀 Tus Personajes</h2>
+    <button class="boton b-red" onclick="cerrarModal('personajesModal')">✕</button>
+  </div>
+  <p class="text-center mb-4 font-bold" style="color:var(--texto2);">Tocá un personaje para que te hable y te anime</p>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="listaPersonajes"></div>
+</div></div>
+
+<!-- MODAL: AYUDA -->
 <div id="ayudaModal" class="modal-fondo"><div class="modal-cuerpo max-w-lg w-full">
   <div class="flex justify-between items-center mb-5">
-    <h2 class="tit-arcoiris text-3xl">❓ <span data-t="ayuda">Ayuda</span></h2>
-    <button class="boton b-rosa" onclick="cerrarModal('ayudaModal')">✕</button>
+    <h2 class="tit-neon text-3xl">❓ <span data-t="ayuda">Ayuda</span></h2>
+    <button class="boton b-red" onclick="cerrarModal('ayudaModal')">✕</button>
   </div>
   <div class="space-y-3 text-sm font-semibold" id="ayudaContenido" style="color:var(--texto);"></div>
 </div></div>
@@ -528,7 +612,6 @@ const IDIOMAS = {
         <div class="bg-white p-3 rounded-2xl border-2 border-orange-200"><b style="color:#ff8c42">🌐 Language</b><br>Tap 🌐 to switch the whole app to English or Spanish.</div>`}
 };
 </script>
-
 <script>
 /* ============================================================
    BLOQUE 2 · AUDIO + MOTOR DE ENSEÑANZA (Capi habla ES→EN)
@@ -612,7 +695,6 @@ function hablarProfesorAleatorio(){
 }
 if('speechSynthesis' in window){ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }
 </script>
-
 <script>
 /* ============================================================
    BLOQUE 3 · ESTADO: perfil, monedas, tienda, logros, ajustes, idioma
@@ -715,7 +797,6 @@ function aplicarIdioma(){
 }
 function cambiarIdioma(){ UI=UI==='es'?'en':'es'; aplicarIdioma(); dibujarMundos(); sonido.click(); toast(UI==='es'?'¡Español! 🇦🇷':'English! 🇬🇧'); }
 </script>
-
 <script>
 /* ============================================================
    BLOQUE 4 · MOTOR DE NAVEGACIÓN (mundos + juegos + quiz helper)
@@ -1401,5 +1482,150 @@ JUEGOS.push(
 );
 try{ actualizarCabecera(); dibujarMundos(); }catch(e){ console.error(e); }
 </script>
+
+<script>
+/* ============================================================
+   BLOQUE 8 · Personajes que hablan (ES+EN) + Misiones diarias
+   + Fondo estrellado neón
+   ============================================================ */
+const PJ_DATOS = {
+  capi:  {ico:'🧑‍🚀', nom:'Capi Astronauta', pitch:1.05, rate:0.95},
+  hada:  {ico:'🧚', nom:'Hada Lila', pitch:1.5, rate:1.0},
+  alien: {ico:'👽', nom:'Zorg el Alien', pitch:0.8, rate:0.85},
+  robot: {ico:'🤖', nom:'Robot X-2000', pitch:0.6, rate:0.9}
+};
+const FRASES_PJ = {
+  es:["¡Hola! ¿Listo para aprender inglés hoy? 🚀","¡Vos podés! ¡Sos muy inteligente! 💪","¡Repetí las palabras en voz alta! 🗣️","¡Cada acierto te hace más fuerte! ⭐","¡El inglés es un superpoder! 🦸","¡No te rindas! ¡Yo creo en vos! ✨","¡Ganaste monedas! ¡Comprá algo lindo! 🪙","¡Tocame cuando quieras charlar! 😊","¡El universo del inglés te espera! 🌌","¡Muy bien! ¡Sigue así! 🏆"],
+  en:["Hi! Ready to learn English today? 🚀","You can do it! You're so smart! 💪","Repeat the words out loud! 🗣️","Every win makes you stronger! ⭐","English is a superpower! 🦸","Don't give up! I believe in you! ✨","You earned coins! Buy something nice! 🪙","Tap me anytime to chat! 😊","The English universe awaits! 🌌","Great job! Keep going! 🏆"]
+};
+function personajeHablar(tipo){
+  const pj = PJ_DATOS[tipo] || PJ_DATOS.capi;
+  const frases = UI==='es' ? FRASES_PJ.es : FRASES_PJ.en;
+  const f = frases[Math.floor(Math.random()*frases.length)];
+  const globo = document.getElementById('globoPersonaje');
+  if(globo){ globo.innerHTML='<span class="bandera">'+pj.ico+'</span>'+f; globo.classList.remove('hidden'); clearTimeout(globo._t); globo._t=setTimeout(()=>globo.classList.add('hidden'),5000); }
+  hablar(f, UI==='es'?'es-AR':'en-US', pj.rate, pj.pitch);
+  sonido.click();
+  const el = document.getElementById('pj'+tipo.charAt(0).toUpperCase()+tipo.slice(1));
+  if(el){ el.style.transform='scale(1.3) rotate(10deg)'; setTimeout(()=>el.style.transform='',300); }
+}
+function abrirPersonajes(){
+  const lista = document.getElementById('listaPersonajes');
+  if(lista){
+    lista.innerHTML = Object.entries(PJ_DATOS).map(([k,p])=>`<div class="pj-card" onclick="personajeHablar('${k}'); abrirPersonajes();"><div class="text-5xl mb-2">${p.ico}</div><div class="font-black text-sm">${p.nom}</div><div class="text-xs opacity-60 mt-1">${UI==='es'?'Tocame para hablar':'Tap to talk'}</div></div>`).join('');
+  }
+  abrirModal('personajesModal');
+}
+/* Misiones diarias */
+function misionesHoy(){
+  const hoy = new Date().toISOString().slice(0,10);
+  if(!PERFIL.misiones || PERFIL.misiones.fecha!==hoy){ PERFIL.misiones = {fecha:hoy, ganadas:0, ingles:0, reclamadas:[]}; }
+  return PERFIL.misiones;
+}
+const LISTA_MISIONES = [
+  {id:'m1', ico:'🎮', nomEs:'Ganá 5 juegos', nomEn:'Win 5 games', meta:5, campo:'ganadas', premio:50, tipo:'monedas'},
+  {id:'m2', ico:'🇬🇧', nomEs:'Jugá 3 juegos de inglés', nomEn:'Play 3 English games', meta:3, campo:'ingles', premio:3, tipo:'gemas'},
+  {id:'m3', ico:'🪙', nomEs:'Ganá 100 monedas', nomEn:'Earn 100 coins', meta:100, campo:'monedasDia', premio:2, tipo:'gemas'},
+  {id:'m4', ico:'🔥', nomEs:'Lográ una racha de 5', nomEn:'Get a 5-streak', meta:5, campo:'rachaMax', premio:1, tipo:'cofre'}
+];
+function abrirMisiones(){
+  const m = misionesHoy();
+  if(!PERFIL._monedasInicio) PERFIL._monedasInicio = PERFIL.monedas;
+  m.monedasDia = Math.max(0, PERFIL.monedas - (PERFIL._monedasInicio||PERFIL.monedas));
+  m.rachaMax = Math.max(m.rachaMax||0, PERFIL.racha||0);
+  const lista = document.getElementById('listaMisiones');
+  if(lista){
+    lista.innerHTML = LISTA_MISIONES.map(ms=>{
+      const prog = Math.min(m[ms.campo]||0, ms.meta);
+      const pct = Math.round(prog/ms.meta*100);
+      const hecha = prog>=ms.meta;
+      const reclamada = (m.reclamadas||[]).includes(ms.id);
+      return `<div class="mision ${hecha?'hecha':''}">
+        <div class="check">${reclamada?'✅':(hecha?'🎁':'⏳')}</div>
+        <div class="flex-1">
+          <div class="font-black text-sm">${ms.ico} ${UI==='es'?ms.nomEs:ms.nomEn}</div>
+          <div class="barra-progreso mt-1" style="height:8px;"><div style="width:${pct}%;"></div></div>
+          <div class="text-xs opacity-70 mt-1">${prog}/${ms.meta} · Premio: +${ms.premio} ${ms.tipo==='monedas'?'🪙':ms.tipo==='gemas'?'💎':'🎁'}</div>
+        </div>
+        ${hecha && !reclamada ? `<button class="boton b-gold text-xs py-2 px-3" onclick="reclamarMision('${ms.id}')">${UI==='es'?'RECLAMAR':'CLAIM'}</button>` : ''}
+      </div>`;
+    }).join('');
+  }
+  guardarPerfil();
+  abrirModal('misionesModal');
+}
+function reclamarMision(id){
+  const m = misionesHoy();
+  const ms = LISTA_MISIONES.find(x=>x.id===id);
+  if(!ms || (m.reclamadas||[]).includes(id)) return;
+  m.reclamadas = (m.reclamadas||[]); m.reclamadas.push(id);
+  if(ms.tipo==='monedas') PERFIL.monedas+=ms.premio;
+  if(ms.tipo==='gemas') PERFIL.gemas=(PERFIL.gemas||0)+ms.premio;
+  if(ms.tipo==='cofre') PERFIL.cofres=(PERFIL.cofres||0)+1;
+  guardarPerfil(); actualizarCabecera(); sonido.ganar(); confeti(40);
+  abrirMisiones();
+}
+// Patch ganarMonedas para trackear misiones
+const _gmMision = ganarMonedas;
+ganarMonedas = function(cant, esIngles){
+  _gmMision(cant, esIngles);
+  const m = misionesHoy();
+  m.ganadas = (m.ganadas||0)+1;
+  if(esIngles) m.ingles = (m.ingles||0)+1;
+  guardarPerfil();
+};
+// Fondo estrellado neón (estrellas + planetas + cometas)
+(function(){
+  const fd = document.getElementById('fondoDecor');
+  if(!fd) return;
+  for(let i=0;i<60;i++){
+    const e=document.createElement('div'); e.className='estrella';
+    const tam=1+Math.random()*3; e.style.width=tam+'px'; e.style.height=tam+'px';
+    e.style.left=(Math.random()*100)+'%'; e.style.top=(Math.random()*100)+'%';
+    e.style.animationDelay=(Math.random()*3)+'s'; fd.appendChild(e);
+  }
+  const cols=['#b026ff','#00f5ff','#ff2bd6','#ffd700'];
+  for(let i=0;i<3;i++){
+    const p=document.createElement('div'); p.className='planeta';
+    const tam=80+Math.random()*120; p.style.width=tam+'px'; p.style.height=tam+'px';
+    p.style.background=`radial-gradient(circle at 30% 30%, ${cols[i]}, #05010f)`;
+    p.style.left=(10+Math.random()*70)+'%'; p.style.top=(10+Math.random()*60)+'%';
+    p.style.animationDelay=(Math.random()*5)+'s'; fd.appendChild(p);
+  }
+  for(let i=0;i<2;i++){
+    const c=document.createElement('div'); c.className='cometa';
+    c.style.top=(Math.random()*40)+'%'; c.style.animationDelay=(i*4)+'s'; c.style.animationDuration=(5+Math.random()*4)+'s';
+    fd.appendChild(c);
+  }
+})();
+try{ actualizarCabecera(); }catch(e){}
+</script>
+
+<script>
+/* BLOQUE 9 · EXPANSION MASIVA: mas vocabulario, trivia, tienda, logros, frases, 6 juegos nuevos, libro */
+DICCIONARIO.opuestos=[{es:"grande",en:"big",ico:"🐘"},{es:"chico",en:"small",ico:"🐜"},{es:"alto",en:"tall",ico:"🦒"},{es:"bajo",en:"short",ico:"🐶"},{es:"feliz",en:"happy",ico:"😊"},{es:"triste",en:"sad",ico:"😢"},{es:"caliente",en:"hot",ico:"🔥"},{es:"frio",en:"cold",ico:"❄️"},{es:"rapido",en:"fast",ico:"⚡"},{es:"lento",en:"slow",ico:"🐢"},{es:"nuevo",en:"new",ico:"✨"},{es:"viejo",en:"old",ico:"⏳"},{es:"fuerte",en:"strong",ico:"💪"},{es:"debil",en:"weak",ico:"🪶"},{es:"limpio",en:"clean",ico:"🧼"},{es:"sucio",en:"dirty",ico:"🗑️"},{es:"abierto",en:"open",ico:"📖"},{es:"cerrado",en:"closed",ico:"🔒"}];
+DICCIONARIO.casa=[{es:"cocina",en:"kitchen",ico:"🍳"},{es:"bano",en:"bathroom",ico:"🚿"},{es:"dormitorio",en:"bedroom",ico:"🛏️"},{es:"sala",en:"living room",ico:"🛋️"},{es:"jardin",en:"garden",ico:"🌷"},{es:"patio",en:"yard",ico:"🏡"},{es:"puerta",en:"door",ico:"🚪"},{es:"ventana",en:"window",ico:"🪟"},{es:"techo",en:"roof",ico:"🏠"},{es:"piso",en:"floor",ico:"🟫"},{es:"pared",en:"wall",ico:"🧱"},{es:"escalera",en:"stairs",ico:"🪜"}];
+DICCIONARIO.clima=[{es:"soleado",en:"sunny",ico:"☀️"},{es:"lluvioso",en:"rainy",ico:"🌧️"},{es:"nublado",en:"cloudy",ico:"☁️"},{es:"nevado",en:"snowy",ico:"❄️"},{es:"viento",en:"windy",ico:"💨"},{es:"tormenta",en:"storm",ico:"⛈️"},{es:"arcoiris",en:"rainbow",ico:"🌈"},{es:"trueno",en:"thunder",ico:"⚡"},{es:"lluvia",en:"rain",ico:"🌦️"},{es:"nieve",en:"snow",ico:"⛄"}];
+DICCIONARIO.profesiones=[{es:"doctor",en:"doctor",ico:"👨‍⚕️"},{es:"maestro",en:"teacher",ico:"👨‍🏫"},{es:"bombero",en:"firefighter",ico:"👨‍🚒"},{es:"policia",en:"police officer",ico:"👮"},{es:"chef",en:"chef",ico:"👨‍🍳"},{es:"artista",en:"artist",ico:"👨‍🎨"},{es:"cientifico",en:"scientist",ico:"👨‍🔬"},{es:"astronauta",en:"astronaut",ico:"🧑‍🚀"},{es:"musico",en:"musician",ico:"👨‍🎤"},{es:"piloto",en:"pilot",ico:"👨‍✈️"},{es:"granjero",en:"farmer",ico:"👨‍🌾"},{es:"mecanico",en:"mechanic",ico:"👨‍🔧"}];
+DICCIONARIO.deportes=[{es:"futbol",en:"soccer",ico:"⚽"},{es:"basquet",en:"basketball",ico:"🏀"},{es:"tenis",en:"tennis",ico:"🎾"},{es:"natacion",en:"swimming",ico:"🏊"},{es:"ciclismo",en:"cycling",ico:"🚴"},{es:"correr",en:"running",ico:"🏃"},{es:"voley",en:"volleyball",ico:"🏐"},{es:"golf",en:"golf",ico:"⛳"}];
+TRIVIA.push({p:"Cuantas patas tiene una arana?",r:"8",o:["6","7","8","10"]},{p:"De que color es la banana madura?",r:"AMARILLA",o:["ROJA","VERDE","AMARILLA","AZUL"]},{p:"Que animal tiene trompa?",r:"ELEFANTE",o:["LEON","ELEFANTE","MONO","CABALLO"]},{p:"Cuanto es 9 + 9?",r:"18",o:["16","17","18","19"]},{p:"Que planeta es rojo?",r:"MARTE",o:["TIERRA","MARTE","JUPITER","SATURNO"]},{p:"Que fruta es amarilla y larga?",r:"BANANA",o:["MANZANA","BANANA","UVA","NARANJA"]},{p:"Cuantos lados tiene un triangulo?",r:"3",o:["2","3","4","5"]},{p:"Que bebida toman los bebes?",r:"LECHE",o:["CAFE","JUGO","LECHE","GASEOSA"]},{p:"Que sale de un volcan?",r:"LAVA",o:["AGUA","LAVA","NIEVE","ARENA"]},{p:"Cuantas orejas tiene un conejo?",r:"2",o:["1","2","3","4"]},{p:"Que usamos para ver?",r:"OJOS",o:["OIDOS","NARIZ","OJOS","MANOS"]},{p:"Que animal hace miau?",r:"GATO",o:["PERRO","GATO","VACA","CABALLO"]},{p:"Cuanto es 20 - 8?",r:"12",o:["10","11","12","13"]},{p:"Que hay en el cielo de noche?",r:"ESTRELLAS",o:["SOL","NUBES","ESTRELLAS","ARCOIRIS"]},{p:"Que animal vive en el mar y tiene 8 tentaculos?",r:"PULPO",o:["PEZ","PULPO","TIBURON","CANGREJO"]},{p:"Cuantos minutos tiene una hora?",r:"60",o:["30","60","100","12"]},{p:"Que usamos para escribir?",r:"LAPIZ",o:["CUCHARA","LAPIZ","PEINE","LLAVE"]},{p:"Que hace una abeja?",r:"MIEL",o:["LECHE","MIEL","HUEVOS","LANA"]},{p:"Cual es el animal mas grande?",r:"BALLENA",o:["ELEFANTE","BALLENA","TIBURON","JIRAFA"]},{p:"Que da la vaca?",r:"LECHE",o:["HUEVOS","LECHE","MIEL","LANA"]});
+TIENDA.mascotas.push({id:"m9",ico:"🦄",nom:"Unicornio Real",p:800},{id:"m10",ico:"🐲",nom:"Dragon de Fuego",p:1000},{id:"m11",ico:"🦜",nom:"Loro Parlante",p:350},{id:"m12",ico:"🐙",nom:"Pulpo Rosa",p:450});
+TIENDA.accesorios.push({id:"a7",ico:"🥇",nom:"Medalla de Oro",p:400},{id:"a8",ico:"💎",nom:"Collar de Gemas",p:500},{id:"a9",ico:"🪄",nom:"Varita Magica",p:350});
+LOGROS.push({id:"l10",ico:"🎮",nom:"Gamer",desc:"Juga 50 veces",check:p=>p.jugadas>=50},{id:"l11",ico:"💎",nom:"Coleccionista",desc:"Junta 20 gemas",check:p=>(p.gemas||0)>=20},{id:"l12",ico:"📚",nom:"Nivel 10",desc:"Alcanza nivel 10",check:p=>(p.nivel||1)>=10},{id:"l13",ico:"🌐",nom:"Bilingue",desc:"Acerta 100 de ingles",check:p=>(p.ingles||0)>=100},{id:"l14",ico:"👑",nom:"Rey del Arcoiris",desc:"Consegui 5 coronas",check:p=>(p.coronas||0)>=5});
+FRASES_PROF.es.push("Cada palabra es un nuevo superpoder!","El ingles te lleva al mundo!","Escucha, repeti y aprende!","Vamos por mas estrellas!","Tu cerebro crece con cada juego!");
+FRASES_PROF.en.push("Every word is a superpower!","English takes you worldwide!","Listen, repeat and learn!","Let's get more stars!","Your brain grows each game!");
+FRASES_PJ.es.push("Hola amigo! Todo bien?","Que alegria verte!","Vamos a jugar!","Aprender es divertido!","Brillas como una estrella!","No te olvides de sonreir!");
+FRASES_PJ.en.push("Hi friend! All good?","So happy to see you!","Let's play!","Learning is fun!","You shine like a star!","Don't forget to smile!");
+function jOpuestos(){ vocabGame("opuestos","Cual es el opuesto?","What is the opposite?"); }
+function jCasa(){ vocabGame("casa","Que lugar de la casa es?","What room is it?"); }
+function jClima(){ vocabGame("clima","Que clima es?","What weather is it?"); }
+function jProfesiones(){ vocabGame("profesiones","Que profesion es?","What profession is it?"); }
+function jDeportes(){ vocabGame("deportes","Que deporte es?","What sport is it?"); }
+const HISTORIA=[{t:"Capi viaja a la Luna",q:"A donde viaja Capi?",r:"A la Luna",o:["A la Luna","Al Sol","A Marte","Al mar"]},{t:"Capi conoce un marciano verde",q:"De que color es el marciano?",r:"Verde",o:["Azul","Verde","Rosa","Amarillo"]},{t:"Comen helado de vainilla",q:"Que sabor de helado comen?",r:"Vainilla",o:["Chocolate","Vainilla","Frutilla","Limon"]},{t:"Juegan futbol en las estrellas",q:"Que deporte juegan?",r:"Futbol",o:["Tenis","Futbol","Golf","Basquet"]},{t:"Capi regresa a la Tierra",q:"A donde regresa Capi?",r:"A la Tierra",o:["A la Luna","A la Tierra","A Marte","A Jupiter"]}];
+function jHistoria(){ const cap=rp(HISTORIA); quizUI({pregunta:'<div class="text-lg font-black mb-3" style="color:var(--gold);">📖 '+cap.t+'</div><div class="text-xl font-black mb-3" style="color:var(--cyan);">'+cap.q+'</div>', opciones:cap.o, correcta:cap.r, esIngles:false, alAcertar:()=>_st(jHistoria,1400)}); }
+JUEGOS.push({c:3,n:"⚖️ Opuestos",f:jOpuestos,esIngles:true},{c:3,n:"🏠 La Casa",f:jCasa,esIngles:true},{c:3,n:"🌦️ El Clima",f:jClima,esIngles:true},{c:3,n:"👨‍⚕️ Profesiones",f:jProfesiones,esIngles:true},{c:3,n:"⚽ Deportes",f:jDeportes,esIngles:true},{c:4,n:"📖 Historia de Capi",f:jHistoria,esIngles:false});
+try{ dibujarMundos(); actualizarCabecera(); }catch(e){ console.error(e); }
+</script>
+
 </body>
 </html>
