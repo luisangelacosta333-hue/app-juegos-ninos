@@ -1,379 +1,477 @@
-================================================================================
-          45 JUEGOS PARA APRENDER INGLÉS JUGANDO
-          Para niños y niñas · Explicado en castellano
-          Incluye: palabras en inglés + cómo pronunciarlas + qué aprendés
-================================================================================
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Buddy Academy — App Educativa 100% Gratis</title>
+<meta name="description" content="40 juegos interactivos para niños: abecedario, sumas, restas, vocabulario, inglés con pronunciación, memoria, rompecabezas y diccionario. 100% gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#3a2e5c; --soft:#7a6fa0; --card:#fff; --accent:#7c5cff; --accent2:#ff7ab8;
+  --good:#3ecf8e; --bad:#ff9a8b; --radius:24px; --shadow:0 10px 26px rgba(90,70,160,.18);
+  --font:'Baloo 2','Comic Sans MS',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--font);color:var(--ink);min-height:100vh;overflow-x:hidden;
+  background:linear-gradient(160deg,#cfe8ff,#e3d6ff 35%,#ffd9ee 70%,#fff3c9);background-attachment:fixed;
+  -webkit-user-select:none;user-select:none}
+#app{max-width:520px;margin:0 auto;padding:14px 14px 90px;position:relative}
+.view{display:none;animation:fade .3s ease}.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.shake{animation:shake .4s ease}.pop{animation:pop .35s ease}
+h1{font-size:2rem;font-weight:800;text-align:center;background:linear-gradient(90deg,#5b8cff,#a06bff,#ff7ab8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{text-align:center;color:var(--soft);font-weight:600;margin-bottom:8px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.back{width:46px;height:46px;border-radius:50%;border:none;background:#fff;font-size:1.3rem;box-shadow:var(--shadow);cursor:pointer;flex:none}
+.topbar h2{flex:1;font-size:1.35rem;font-weight:800}
+.pill{background:#fff;border-radius:999px;padding:7px 13px;font-weight:800;box-shadow:var(--shadow);font-size:.95rem;flex:none}
+.btn{border:none;cursor:pointer;font-family:var(--font);font-weight:700;border-radius:999px;padding:13px 22px;font-size:1.05rem;color:#fff;background:linear-gradient(135deg,#7c5cff,#a06bff);box-shadow:0 5px 0 rgba(0,0,0,.12),var(--shadow);transition:transform .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.btn-pink{background:linear-gradient(135deg,#ff7ab8,#ff9ecb)}.btn-green{background:linear-gradient(135deg,#3ecf8e,#6ee7b7)}
+.btn-blue{background:linear-gradient(135deg,#5b8cff,#7ab8ff)}.btn-yellow{background:linear-gradient(135deg,#ffc93c,#ffe08a);color:#7a5a00}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:0 3px 0 rgba(0,0,0,.08),var(--shadow)}
+.btn.big{width:100%;font-size:1.3rem;padding:16px}
+.btn.small{padding:8px 14px;font-size:.88rem}
+.buddy-wrap{display:flex;justify-content:center;margin:6px 0}
+.buddy{width:130px;height:auto;filter:drop-shadow(0 8px 12px rgba(90,70,160,.25))}
+.buddy .blink{transform-origin:center;animation:blink 4s infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.buddy .mouth{display:none}
+.buddy[data-mood="idle"] .m-smile,.buddy[data-mood="happy"] .m-happy,.buddy[data-mood="sad"] .m-sad,.buddy[data-mood="cheer"] .m-happy,.buddy[data-mood="talk"] .m-open{display:inline}
+.buddy[data-mood="talk"] .m-open{transform-origin:center;transform-box:fill-box;animation:talkM .3s infinite alternate}
+@keyframes talkM{from{transform:scaleY(.5)}to{transform:scaleY(1.3)}}
+.buddy[data-mood="cheer"]{animation:wiggle .5s infinite}
+.bubble{background:#fff;border-radius:20px;padding:11px 16px;font-weight:700;box-shadow:var(--shadow);max-width:90%;margin:6px auto 12px;text-align:center;position:relative;font-size:1rem;animation:pop .3s ease}
+.bubble::after{content:'';position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);border:9px solid transparent;border-top-color:#fff;border-bottom:0}
+.cat-title{font-weight:800;margin:16px 0 8px;font-size:1.05rem;color:var(--accent);display:flex;align-items:center;gap:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gcard{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:12px 8px;text-align:center;cursor:pointer;transition:transform .12s;border-top:5px solid var(--accent)}
+.gcard:active{transform:scale(.95)}
+.gcard .em{font-size:2rem}.gcard .nm{font-weight:800;font-size:.88rem;line-height:1.15;margin-top:4px}
+.gcard .st{font-size:.75rem;color:var(--soft);margin-top:2px}
+.tabs{display:flex;gap:6px;background:#fff;padding:5px;border-radius:999px;box-shadow:var(--shadow);margin-bottom:12px}
+.tabs button{flex:1;border:none;background:transparent;padding:10px 4px;border-radius:999px;font-family:var(--font);font-weight:800;color:var(--soft);cursor:pointer;font-size:.85rem}
+.tabs button.active{background:linear-gradient(135deg,#7c5cff,#a06bff);color:#fff}
+.fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fc{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:14px 8px;text-align:center;cursor:pointer;position:relative}
+.fc .em{font-size:2.6rem}.fc .wd{font-weight:800;font-size:1rem;margin-top:4px}.fc .ap{font-size:.75rem;color:var(--soft);font-style:italic}
+.fc .sp{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:50%;border:none;background:#bae1ff;font-size:.85rem;cursor:pointer}
+.q-target{text-align:center;font-size:4.5rem;margin:8px 0;animation:pop .3s ease;min-height:70px}
+.q-word{text-align:center;font-weight:800;font-size:1.4rem;margin-bottom:6px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.opt{background:#fff;border:none;border-radius:16px;padding:14px 8px;font-family:var(--font);font-weight:800;font-size:1.05rem;box-shadow:var(--shadow);cursor:pointer;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px}
+.opt .em{font-size:2rem}.opt.ok{background:var(--good);color:#fff;animation:pop .35s}.opt.bad{background:var(--bad);color:#fff;animation:shake .4s}.opt:disabled{pointer-events:none}
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mem{aspect-ratio:1;border-radius:14px;border:none;cursor:pointer;font-size:1.8rem;background:linear-gradient(135deg,#7c5cff,#a06bff);color:#fff;font-weight:800;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.mem.open{background:#fff;color:var(--ink);transform:rotateY(180deg)}.mem.done{background:#baffc9;opacity:.7}
+.puz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:300px;margin:0 auto}
+.puz{aspect-ratio:1;border:none;border-radius:12px;font-size:2rem;font-weight:800;font-family:var(--font);cursor:pointer;background:#fff;box-shadow:var(--shadow);color:var(--accent)}
+.puz.empty{background:transparent;box-shadow:none;cursor:default}
+.letter{display:inline-block;margin:4px;padding:10px 14px;border-radius:14px;border:none;background:#fff;box-shadow:var(--shadow);font-family:var(--font);font-weight:800;font-size:1.3rem;cursor:pointer;color:var(--accent)}
+.letter.used{opacity:.3;pointer-events:none}
+.slots{display:flex;gap:6px;justify-content:center;margin:10px 0;flex-wrap:wrap}
+.slot{width:40px;height:52px;border-bottom:4px solid var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.5rem;background:#fff;border-radius:8px 8px 0 0}
+.simon{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:280px;margin:10px auto}
+.sbtn{aspect-ratio:1;border:none;border-radius:24px;cursor:pointer;opacity:.55;transition:opacity .15s,transform .1s}
+.sbtn.lit{opacity:1;transform:scale(1.05)}
+.sbtn:nth-child(1){background:#3ecf8e}.sbtn:nth-child(2){background:#ff7ab8}.sbtn:nth-child(3){background:#ffc93c}.sbtn:nth-child(4){background:#5b8cff}
+.dict-search{width:100%;border:2px solid #e6e0f5;border-radius:999px;padding:12px 18px;font-family:var(--font);font-size:1rem;outline:none;margin-bottom:10px}
+.dict-item{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.dict-item .en{font-weight:800;color:var(--accent)}.dict-item .ap{font-style:italic;color:var(--soft);font-size:.8rem}.dict-item .es{font-size:.9rem}
+.spk{border:none;background:#bae1ff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.9rem;flex:none}
+.feedback{text-align:center;font-weight:800;min-height:26px;margin-top:10px;font-size:1.1rem}
+.center{text-align:center}.mt{margin-top:12px}.muted{color:var(--soft)}
+.burst{position:fixed;pointer-events:none;z-index:200;font-size:1.3rem;animation:burst .9s ease-out forwards}
+@keyframes burst{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.2) rotate(360deg);opacity:0}}
+.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -4px 18px rgba(90,70,160,.15);z-index:50;border-radius:20px 20px 0 0}
+.bottomnav button{background:none;border:none;cursor:pointer;font-family:var(--font);display:flex;flex-direction:column;align-items:center;font-weight:700;font-size:.7rem;color:var(--soft);padding:4px;min-width:60px}
+.bottomnav button .i{font-size:1.4rem}.bottomnav button.active{color:var(--accent)}
+.pbar{height:20px;background:#f0ecff;border-radius:999px;overflow:hidden;margin:8px 0}
+.pbar>div{height:100%;background:linear-gradient(90deg,#ffc93c,#ff7ab8,#7c5cff);transition:width .5s;border-radius:999px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(58,46,92,.55);z-index:100;align-items:center;justify-content:center;padding:20px}
+.overlay.show{display:flex}
+.overlay .card{max-width:340px;width:100%;text-align:center;animation:pop .35s}
+.stars-big{font-size:2.4rem;letter-spacing:3px}
+@media(max-width:360px){.grid{grid-template-columns:1fr 1fr}.fc .em{font-size:2rem}}
+</style>
+</head>
+<body>
+<div id="app">
 
-Cómo usar este archivo:
-- Cada juego tiene: qué necesitás, cómo se juega y las palabras en inglés
-  con su pronunciación aproximada (escrita como si se leyera en castellano).
-- Lo ideal es repetir las palabras en voz alta varias veces.
-- ¡No importa equivocarse! Lo importante es divertirse y practicar.
+<!-- HOME -->
+<section class="view active" id="view-home">
+  <div style="height:8px"></div>
+  <h1>🤖 BUDDY ACADEMY</h1>
+  <p class="sub">40 juegos para aprender jugando · 100% gratis · sin anuncios</p>
+  <div class="buddy-wrap"><div id="buddyHome"></div></div>
+  <div class="bubble" id="homeBubble">¡Hola! Soy Buddy, tu amigo robot. ¿Qué querés aprender hoy?</div>
+  <div class="card center" style="margin-bottom:12px">
+    <div style="font-weight:800">⭐ Mis estrellas: <span id="homeStars">0</span> · Juegos completados: <span id="homeDone">0</span>/40</div>
+    <div class="pbar"><div id="homeBar" style="width:0%"></div></div>
+  </div>
+  <div class="tabs" id="homeTabs">
+    <button class="active" data-cat="all">🌟 Todos</button>
+    <button data-cat="abc">🔤 ABC</button>
+    <button data-cat="mate">🔢 Mate</button>
+    <button data-cat="vocab">📚 Vocab</button>
+    <button data-cat="en">🗣️ Inglés</button>
+    <button data-cat="logic">🧠 Lógica</button>
+  </div>
+  <div class="grid" id="gameGrid"></div>
+  <p class="muted center mt" style="font-size:.8rem">Funciones premium desbloqueadas: voz, progreso, diccionario y todos los juegos. ¡Gratis para siempre! 💜</p>
+</section>
 
-Guía rápida de pronunciación:
-- La "th" se dice con la lengua entre los dientes (ej: three = "zrí").
-- La "r" en inglés es suave, no se golpea como en castellano.
-- Las vocales suelen ser cortas: cat = "ket", dog = "dóg".
+<!-- GAME -->
+<section class="view" id="view-game">
+  <div class="topbar">
+    <button class="back" id="backHome">←</button>
+    <h2 id="gameTitle">Juego</h2>
+    <div class="pill">⭐ <span id="gameStars">0</span>/3</div>
+  </div>
+  <div class="buddy-wrap" style="margin:0"><div id="buddyGame" style="transform:scale(.8)"></div></div>
+  <div class="bubble" id="gameBubble">¡Vamos a jugar!</div>
+  <div id="gameArea"></div>
+</section>
 
-================================================================================
-                      BLOQUE 1: ANIMALES (Animals)
-================================================================================
+<!-- DICCIONARIO -->
+<section class="view" id="view-dict">
+  <div class="topbar"><button class="back" data-goto="home">←</button><h2>📚 Diccionario</h2><div class="pill">🔊 audio</div></div>
+  <input class="dict-search" id="dictSearch" placeholder="Buscá una palabra en inglés o español...">
+  <div id="dictList"></div>
+</section>
 
-1) Juego: "El zoológico parlante" (The Talking Zoo)
-   Qué necesitás: juguetes o dibujos de animales.
-   Cómo se juega: Cada animal tiene un nombre en inglés. Cuando pasás por su
-   "jaula", tenés que decir su nombre en inglés y hacer su sonido.
-   Aprendés: dog (dóg) = perro, cat (ket) = gato, lion (láion) = león,
-   elephant (élefant) = elefante, monkey (mánki) = mono, tiger (táiger) = tigre,
-   rabbit (rábit) = conejo, cow (cau) = vaca.
+<!-- PROGRESO -->
+<section class="view" id="view-prog">
+  <div class="topbar"><button class="back" data-goto="home">←</button><h2>⭐ Progreso</h2></div>
+  <div class="card center"><div style="font-size:3rem">⭐</div><div style="font-size:2.4rem;font-weight:800" id="totStars">0</div><div class="muted">estrellas</div>
+  <div class="pbar mt"><div id="progBar" style="width:0%"></div></div>
+  <div class="muted mt" id="progPct">0%</div></div>
+  <div class="card mt" id="progList" style="font-size:.9rem"></div>
+  <div class="center mt"><button class="btn btn-ghost small" id="resetBtn">🔄 Empezar de nuevo</button></div>
+</section>
 
-2) Juego: "¿Qué animal soy?" (What animal am I?)
-   Qué necesitás: nada.
-   Cómo se juega: Un jugador hace mímica y sonido de un animal, los demás
-   adivinan diciendo el nombre en inglés.
-   Aprendés: pig (pig) = cerdo, duck (dák) = pato, horse (jors) = caballo,
-   sheep (chíp) = oveja, frog (frog) = rana, bird (berd) = pájaro, fish (fish) = pez.
+<div class="overlay" id="winOverlay">
+  <div class="card">
+    <div class="buddy-wrap"><div id="buddyWin"></div></div>
+    <div style="font-size:1.6rem;font-weight:800" id="winTitle">¡Muy bien!</div>
+    <div class="stars-big mt" id="winStars">⭐⭐⭐</div>
+    <p class="muted mt" id="winText">¡Ganaste estrellas!</p>
+    <div class="mt" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-ghost" id="againBtn">🔁 Otra vez</button>
+      <button class="btn btn-primary" id="menuBtn">🏠 Menú</button>
+    </div>
+  </div>
+</div>
 
-3) Juego: "La memoria de animales" (Animal Memory)
-   Qué necesitás: cartas con dibujos de animales por parejas.
-   Cómo se juega: El juego de memoria tradicional, pero al levantar una carta
-   hay que decir el animal en inglés. Si no lo decís, no vale.
-   Aprendés: bear (ber) = oso, fox (foks) = zorro, mouse (maus) = ratón,
-   bird (berd) = pájaro, snake (sneik) = serpiente, bee (bi) = abeja.
+</div>
 
-4) Juego: "Simón dice animal" (Simon says animal)
-   Qué necesitás: nada.
-   Cómo se juega: El que dirige dice "Simon says: be a cat!" (Simón dice: sé
-   un gato) y todos imitan al gato. Si no dijo "Simon says", quien se mueve
-   pierde un punto.
-   Aprendés: comandos + animales: be a dog (bi a dóg), be a frog, be a bird.
+<nav class="bottomnav">
+  <button data-goto="home" class="active"><span class="i">🎮</span>Juegos</button>
+  <button data-goto="dict"><span class="i">📚</span>Diccionario</button>
+  <button data-goto="prog"><span class="i">⭐</span>Progreso</button>
+</nav>
 
-5) Juego: "El sonido del animal" (Animal sound)
-   Qué necesitás: nada.
-   Cómo se juega: Un jugador hace el sonido del animal (en inglés, como lo
-   dirían ellos: el perro dice "woof woof"), los demás adivinan el animal.
-   Aprendés: woof (wuf) = guau, meow (miáu) = miau, moo (muu) = mu,
-   quack (kuak) = cuac, oink (oink) = oink.
-
-================================================================================
-                    BLOQUE 2: COLORES (Colors)
-================================================================================
-
-6) Juego: "Busca el color" (Find the color)
-   Qué necesitás: una habitación con cosas de colores.
-   Cómo se juega: Alguien dice un color en inglés, por ejemplo "Blue!" (azul),
-   y todos corren a tocar algo de ese color. El último en tocar pierde.
-   Aprendés: red (red) = rojo, blue (blú) = azul, green (grín) = verde,
-   yellow (yélou) = amarillo, pink (pink) = rosa, purple (pérpol) = violeta,
-   orange (órinch) = naranja, black (blak) = negro, white (juait) = blanco.
-
-7) Juego: "La bolsa de colores" (Color bag)
-   Qué necesitás: una bolsa y objetos de distintos colores.
-   Cómo se juega: Sacás un objeto de la bolsa sin mirar y tenés que decir su
-   color en inglés. Si acertás, te quedás el objeto.
-   Aprendés: It's red! (its red) = ¡Es rojo! It's blue! = ¡Es azul!
-
-8) Juego: "Twister de colores" (Color twister)
-   Qué necesitás: círculos de papel de colores en el piso.
-   Cómo se juega: Se dice "Put your hand on yellow!" (Pon tu mano en amarillo)
-   y el jugador lo hace. Con dos jugadores se enredan y se ríen mucho.
-   Aprendés: hand (jand) = mano, foot (fut) = pie, + colores.
-
-9) Juego: "Mezcla y adivina" (Mix and guess)
-   Qué necesitás: pinturas o marcadores.
-   Cómo se juega: Mezclás dos colores y decís en inglés qué color nuevo aparece.
-   Ejemplo: red + yellow = orange! (rojo + amarillo = naranja).
-   Aprendés: red + blue = purple (pérpol), blue + yellow = green (grín).
-
-10) Juego: "El semáforo en inglés" (Traffic lights)
-    Qué necesitás: nada.
-    Cómo se juega: Uno dirige y dice "Green light!" (luz verde) = todos corren,
-    "Yellow light!" (luz amarilla) = caminan lento, "Red light!" (luz roja) =
-    se quedan quietos. Quien se mueve en rojo sale.
-    Aprendés: green light (grín lait), yellow light, red light, stop (stop) = pará.
-
-================================================================================
-                   BLOQUE 3: NÚMEROS (Numbers)
-================================================================================
-
-11) Juego: "Contar saltando" (Jump counting)
-    Qué necesitás: una soga o tiza en el piso.
-    Cómo se juega: Por cada salto decís un número en inglés, del 1 al 10.
-    Quien se equivoque empieza de nuevo.
-    Aprendés: one (uán) = 1, two (tú) = 2, three (zrí) = 3, four (for) = 4,
-    five (faiv) = 5, six (siks) = 6, seven (séven) = 7, eight (éit) = 8,
-    nine (náin) = 9, ten (ten) = 10.
-
-12) Juego: "Piedra, papel o tijera con números" (Rock paper scissors numbers)
-    Qué necesitás: nada.
-    Cómo se juega: Como el juego normal, pero el ganador dice un número en
-    inglés y el otro tiene que decir el que sigue. Si se equivoca, pierde.
-    Aprendés: eleven (ileven) = 11, twelve (tuelv) = 12, thirteen (zértín) = 13,
-    twenty (túenti) = 20.
-
-13) Juego: "La memoria de números" (Number memory)
-    Qué necesitás: tarjetas con números del 1 al 20.
-    Cómo se juega: Se muestran 5 tarjetas durante 10 segundos, se tapan y el
-    niño tiene que decir la lista en inglés en orden.
-    Aprendés: números del 1 al 20.
-
-14) Juego: "¿Cuántos hay?" (How many?)
-    Qué necesitás: juguetes, frutas o lápices.
-    Cómo se juega: Ponés una cantidad de objetos sobre la mesa y preguntás
-    "How many?" (¿Cuántos hay?). El niño cuenta en inglés y responde
-    "Five pencils!" (¡Cinco lápices!).
-    Aprendés: How many? (jai méni) = ¿Cuántos?, pencil (pénsil) = lápiz.
-
-15) Juego: "Bingo de números" (Number bingo)
-    Qué necesitás: cartones con números y fichas.
-    Cómo se juega: El que canta dice números en inglés, los jugadores marcan
-    en su cartón. El primero en completar una línea grita "Bingo!".
-    Aprendés: escuchar y reconocer números del 1 al 30.
-
-================================================================================
-                    BLOQUE 4: COMIDA (Food)
-================================================================================
-
-16) Juego: "El restaurante" (The restaurant)
-    Qué necesitás: juguetes de comida o dibujos.
-    Cómo se juega: Un jugador es el mozo y toma pedidos en inglés: "What do
-    you want?" (¿Qué querés?). El cliente pide: "I want an apple, please"
-    (Quiero una manzana, por favor).
-    Aprendés: apple (ápol) = manzana, banana (banána) = banana, orange (órinch)
-    = naranja, bread (bred) = pan, milk (milk) = leche, water (uóter) = agua,
-    juice (yus) = jugo, cake (keik) = torta, pizza (pitsa) = pizza.
-
-17) Juego: "¿Qué hay en la canasta?" (What's in the basket?)
-    Qué necesitás: una canasta con comidas de juguete.
-    Cómo se juega: Sin mirar, sacás un objeto y decís su nombre en inglés.
-    Luego lo ponés en un grupo: fruta (fruit) o no fruta.
-    Aprendés: fruit (frut) = fruta, strawberry (stróberi) = frutilla,
-    grapes (greips) = uvas, watermelon (uátermelon) = sandía.
-
-18) Juego: "La pizza de las palabras" (Word pizza)
-    Qué necesitás: una pizza de cartón dividida en trozos.
-    Cómo se juega: Cada trozo tiene un ingrediente en inglés. Para armar la
-    pizza tenés que nombrar cada ingrediente en voz alta.
-    Aprendés: cheese (chís) = queso, egg (eg) = huevo, rice (rais) = arroz,
-    tomato (tamáteu) = tomate.
-
-19) Juego: "¿Te gusta?" (Do you like?)
-    Qué necesitás: tarjetas de comida.
-    Cómo se juega: Mostrás una tarjeta y preguntás "Do you like...?" (¿Te
-    gusta...?). El niño responde "Yes, I like it!" (Sí, me gusta) o
-    "No, I don't like it" (No, no me gusta) y pone cara de gusto o disgusto.
-    Aprendés: Do you like? (du iu laik), Yes / No (yes / no).
-
-20) Juego: "El picnic sorpresa" (Surprise picnic)
-    Qué necesitás: una mantita y comida de verdad o de juguete.
-    Cómo se juega: Cada uno trae algo al picnic y lo presenta en inglés:
-    "I brought cookies!" (¡Traje galletitas!). Los demás repiten la palabra.
-    Aprendés: cookie (kúki) = galletita, sandwich (sánduch) = sándwich,
-    candy (kéndi) = caramelo.
-
-================================================================================
-                   BLOQUE 5: EL CUERPO (Body)
-================================================================================
-
-21) Juego: "Simón dice toca..." (Simon says touch)
-    Qué necesitás: nada.
-    Cómo se juega: "Simon says: touch your nose!" (Simón dice: tocate la nariz).
-    Quien se equivoca de parte del cuerpo o se mueve sin "Simon says" pierde.
-    Aprendés: head (jed) = cabeza, eyes (áis) = ojos, nose (nous) = nariz,
-    mouth (máuz) = boca, ears (íars) = orejas, hands (jands) = manos,
-    feet (fit) = pies, hair (jer) = pelo.
-
-22) Juego: "Dibujar al monstruo" (Draw the monster)
-    Qué necesitás: papel y lápices.
-    Cómo se juega: Un jugador da órdenes en inglés: "Draw three eyes!" (Dibujá
-    tres ojos), "Draw a big mouth!" (Dibujá una boca grande). El otro dibuja
-    un monstruo muy loco.
-    Aprendés: three eyes (zrí áis), big mouth (big máuz), small (smol) = chico,
-    big (big) = grande.
-
-23) Juego: "La canción de la cabeza" (Head shoulders song)
-    Qué necesitás: nada.
-    Cómo se juega: Se canta y se tocan las partes: "Head, shoulders, knees and
-    toes" (Cabeza, hombros, rodillas y pies). Cada vez se canta más rápido.
-    Aprendés: head (jed), shoulders (chóulders) = hombros, knees (nis) = rodillas,
-    toes (tous) = dedos del pie.
-
-24) Juego: "¿Qué parte falta?" (What's missing?)
-    Qué necesitás: un dibujo de una persona incompleta.
-    Cómo se juega: Mostrás un dibujo al que le falta una parte del cuerpo. El
-    niño tiene que decir en inglés qué falta: "An ear!" (¡Una oreja!).
-    Aprendés: arm (arm) = brazo, leg (leg) = pierna, finger (fínger) = dedo.
-
-25) Juego: "El espejo loco" (Crazy mirror)
-    Qué necesitás: un espejo.
-    Cómo se juega: De frente al espejo, tocá una parte de tu cuerpo y decila en
-    inglés. Luego hacé una mueca y decí una emoción: "I am happy!" (¡Estoy feliz!).
-    Aprendés: happy (jápi) = feliz, sad (sad) = triste, tired (táierd) = cansado.
-
-================================================================================
-                  BLOQUE 6: LA CASA Y LA ROPA
-================================================================================
-
-26) Juego: "La búsqueda del tesoro en casa" (House scavenger hunt)
-    Qué necesitás: una lista con dibujos.
-    Cómo se juega: Buscá objetos por la casa y decí su nombre en inglés cuando
-    los encontrás: chair (silla), table (mesa), bed (cama), door (puerta).
-    Aprendés: chair (cher), table (téibel), bed (bed), door (dor), window (uíndou),
-    lamp (lamp), book (buk), cup (kap).
-
-27) Juego: "Ordenar la habitación" (Tidy your room)
-    Qué necesitás: la habitación desordenada.
-    Cómo se juega: Por cada objeto que guardás, decís su nombre en inglés.
-    "Toy!" (juguete), "Book!" (libro), "Shoe!" (zapato). ¡Así se ordena y aprende!
-    Aprendés: toy (toi), book (buk), shoe (shu) = zapato, sock (sok) = media.
-
-28) Juego: "La muñeca se viste" (Dress the doll)
-    Qué necesitás: una muñeca o peluche con ropa de juguete.
-    Cómo se juega: Vestís al muñeco y nombrás cada prenda en inglés: "Put on
-    the hat!" (Poné el sombrero), "Put on the shoes!" (Poné los zapatos).
-    Aprendés: hat (jat) = sombrero, t-shirt (tí shert) = remera, pants (pants) =
-    pantalón, dress (dres) = vestido, coat (kout) = campera, socks (soks) = medias.
-
-29) Juego: "¿Qué clima hace?" (What's the weather?)
-    Qué necesitás: tarjetas de clima y ropa.
-    Cómo se juega: Sacás una tarjeta de clima: "It's rainy!" (¡Está lloviendo!).
-    El niño elige la ropa adecuada en inglés: "I need a coat!" (¡Necesito campera!).
-    Aprendés: sunny (sáni) = soleado, rainy (réini) = lluvioso, hot (jot) = calor,
-    cold (kould) = frío.
-
-30) Juego: "El desfile de modas" (Fashion show)
-    Qué necesitás: ropa de verdad para jugar.
-    Cómo se juega: Hacés un desfile y cada modelo presenta su ropa en inglés:
-    "Look! A pink dress!" (¡Mirá! ¡Un vestido rosa!). Combina colores y ropa.
-    Aprendés: look! (luk) = mirá, pink dress (pink dres), blue shoes (blú shus).
-
-================================================================================
-              BLOQUE 7: PRONUNCIACIÓN Y ESCUCHA (Speaking & Listening)
-================================================================================
-
-31) Juego: "El teléfono descompuesto en inglés" (Broken telephone)
-    Qué necesitás: 3 o más jugadores.
-    Cómo se juega: Se susurra una palabra en inglés al oído del compañero y
-    pasa de boca en boca. El último la dice en voz alta. ¡A ver si llega bien!
-    Aprendés: pronunciar bien palabras cortas: sun (san) = sol, moon (mun) = luna,
-    star (star) = estrella.
-
-32) Juego: "¿Qué escuchás?" (What do you hear?)
-    Qué necesitás: una grabación o sonidos de la casa.
-    Cómo se juega: Hacés un sonido (tocás la puerta, aplaudís, cantás) y el niño
-    adivina en inglés: "A door!" (¡Una puerta!), "A clap!" (¡Un aplauso!).
-    Aprendés: I hear... (ai jiér) = yo escucho..., sound (saund) = sonido.
-
-33) Juego: "El loro inglés" (The English parrot)
-    Qué necesitás: nada.
-    Cómo se juega: Un jugador es el loro y repite TODO lo que se dice, pero
-    solo en inglés. Si alguien habla en castellano, el loro no se mueve.
-    Aprendés: repetir frases: Hello! (jeló) = ¡Hola!, Thank you! (zank yu) = ¡Gracias!,
-    Please (plís) = por favor, Sorry (sóri) = perdón.
-
-34) Juego: "Trabalenguas cortos" (Tongue twisters)
-    Qué necesitás: nada.
-    Cómo se juega: Decir frases cortas en inglés lo más rápido posible:
-    "She sells seashells" (Ella vende conchas marinas) o "Red lorry, yellow lorry".
-    Aprendés: la "s" y la "sh", y las vocales cortas.
-
-35) Juego: "Adivinanzas con pistas" (Riddles)
-    Qué necesitás: nada.
-    Cómo se juega: Das pistas en inglés sencillo: "It's yellow. It's long.
-    Monkeys love it." (Es amarillo, es largo, los monos lo aman). El niño adivina:
-    "A banana!" (¡Una banana!).
-    Aprendés: escuchar frases completas y vocabulario de frutas y animales.
-
-================================================================================
-              BLOQUE 8: ACCIONES Y MOVIMIENTO (Actions)
-================================================================================
-
-36) Juego: "Baile de las acciones" (Action dance)
-    Qué necesitás: música.
-    Cómo se juega: Cuando suena la música, alguien grita una acción en inglés y
-    todos la hacen hasta la siguiente: "Jump!" (saltá), "Run!" (corré),
-    "Stop!" (pará), "Clap!" (aplaudí), "Dance!" (bailá).
-    Aprendés: jump (yamp), run (ran), stop (stop), clap (klap), dance (dans),
-    sing (sing) = cantar, sit (sit) = sentarte, stand (stand) = pararte.
-
-37) Juego: "Mímica de verbos" (Verb charades)
-    Qué necesitás: tarjetas con acciones dibujadas.
-    Cómo se juega: Un jugador hace mímica de una acción, los demás adivinan en
-    inglés: "Eating!" (¡Comer!), "Sleeping!" (¡Dormir!), "Swimming!" (¡Nadar!).
-    Aprendés: eat (it) = comer, drink (drink) = beber, sleep (slip) = dormir,
-    swim (suim) = nadar, read (rid) = leer, play (plei) = jugar.
-
-38) Juego: "Freeze dance" (Baile congelado)
-    Qué necesitás: música.
-    Cómo se juega: Se baila mientras suena la música. Cuando se corta, todos
-    se quedan congelados y el que se mueve debe decir una palabra en inglés.
-    Aprendés: freeze (frís) = congelate, dance (dans), song (song) = canción.
-
-39) Juego: "Sigue al líder" (Follow the leader)
-    Qué necesitás: nada.
-    Cómo se juega: El líder hace una acción y la dice en inglés: "I am jumping!"
-    (¡Estoy saltando!). Los demás lo imitan y repiten la frase.
-    Aprendés: I am... (ai am) = yo estoy..., + acciones.
-
-================================================================================
-                 BLOQUE 9: JUEGOS DE MESA Y CARTAS
-================================================================================
-
-40) Juego: "El ahorcado en inglés" (English hangman)
-    Qué necesitás: papel y lápiz.
-    Cómo se juega: El ahorcado de siempre, pero con palabras en inglés cortas
-    (cat, dog, sun, book). Cada letra se dice en inglés: "Letter B!" (Letra B).
-    Aprendés: el abecedario en inglés: A (éi), B (bi), C (si), D (di), E (í), etc.
-
-41) Juego: "Pictionary inglés" (English Pictionary)
-    Qué necesitás: papel y lápiz.
-    Cómo se juega: Un jugador dibuja una palabra en inglés (sin hablar) y los
-    demás adivinan diciendo la palabra en inglés. ¡No vale decirla en castellano!
-    Aprendés: vocabulario de casa, animales, comida y objetos.
-
-42) Juego: "Domi-inglés" (English dominoes)
-    Qué necesitás: cartas con dibujo por un lado y palabra en inglés por el otro.
-    Cómo se juega: Como el dominó: unís el dibujo con su palabra en inglés.
-    Para colocar una carta hay que decir la palabra en voz alta.
-    Aprendés: asociar imagen con palabra y pronunciación.
-
-43) Juego: "Yo spy" (I spy)
-    Qué necesitás: nada, en cualquier lugar.
-    Cómo se juega: Uno mira un objeto y dice: "I spy with my little eye,
-    something blue!" (Yo espío con mi ojito algo azul). Los demás adivinan
-    objetos azules hasta dar con el correcto.
-    Aprendés: I spy (ai spái), colores, objetos de la casa o la calle.
-
-44) Juego: "La cadena de palabras" (Word chain)
-    Qué necesitás: nada.
-    Cómo se juega: Uno dice una palabra en inglés, el siguiente debe decir otra
-    que empiece con la última letra de la anterior. Ejemplo: cat → tree → egg.
-    Aprendés: vocabulario variado y las letras del abecedario.
-
-45) Juego: "El cuento loco" (The silly story)
-    Qué necesitás: papel y lápiz, o hablar en ronda.
-    Cómo se juega: Arman un cuento entre todos, cada uno agrega una palabra en
-    inglés. Ejemplo: "A big dog..." (Un perro grande...) "eats pizza..." (come pizza...)
-    "on the moon!" (¡en la luna!). El cuento termina muy loco y todos se ríen.
-    Aprendés: armar frases: a (a), big (big) = grande, dog (dóg), on (on) = sobre,
-    the (de) = el/la, moon (mun) = luna.
-
-================================================================================
-                          PALABRAS MÁGICAS EN INGLÉS
-================================================================================
-Usalas siempre en todos los juegos:
-- Hello! (jeló) = ¡Hola!
-- Goodbye! (gudbái) = ¡Adiós!
-- Please (plís) = Por favor
-- Thank you! (zank yu) = ¡Gracias!
-- Sorry (sóri) = Perdón
-- Yes (yes) = Sí
-- No (nou) = No
-- I don't know (ai dont nou) = No sé
-- Can you help me? (ken iu jelp mi) = ¿Me ayudás?
-
-================================================================================
-¡Felicitaciones! Con estos 45 juegos ya tenés más de 200 palabras en inglés
-para practicar. Lo más importante: jugá, reíte y hablá en voz alta.
-¡You can do it! (Yu can du it) = ¡Podés hacerlo! 🌟
-================================================================================
+<script>
+(function(){
+'use strict';
+/* ============ BUDDY SVG ============ */
+var BUDDY='<svg class="buddy" data-mood="idle" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ab8ff"/><stop offset="1" stop-color="#a06bff"/></linearGradient><radialGradient id="cc" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff9ecb" stop-opacity=".9"/><stop offset="1" stop-color="#ff9ecb" stop-opacity="0"/></radialGradient></defs><line x1="100" y1="46" x2="100" y2="22" stroke="#8a7ad0" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="16" r="9" fill="#ffe066" stroke="#fff" stroke-width="3"/><ellipse cx="46" cy="92" rx="14" ry="20" fill="url(#bb)"/><ellipse cx="154" cy="92" rx="14" ry="20" fill="url(#bb)"/><rect x="38" y="46" width="124" height="108" rx="46" fill="url(#bb)" stroke="#fff" stroke-width="4"/><ellipse cx="100" cy="130" rx="42" ry="30" fill="#eef4ff" opacity=".85"/><circle cx="76" cy="128" r="16" fill="url(#cc)"/><circle cx="124" cy="128" r="16" fill="url(#cc)"/><g class="blink"><ellipse cx="78" cy="92" rx="15" ry="17" fill="#fff"/><ellipse cx="122" cy="92" rx="15" ry="17" fill="#fff"/><circle cx="80" cy="95" r="7.5" fill="#3a2e5c"/><circle cx="124" cy="95" r="7.5" fill="#3a2e5c"/><circle cx="83" cy="92" r="2.5" fill="#fff"/><circle cx="127" cy="92" r="2.5" fill="#fff"/></g><path class="mouth m-smile" d="M84 118 Q100 132 116 118" stroke="#3a2e5c" stroke-width="4.5" fill="none" stroke-linecap="round"/><path class="mouth m-happy" d="M80 114 Q100 140 120 114 Q100 126 80 114 Z" fill="#3a2e5c"/><ellipse class="mouth m-open" cx="100" cy="122" rx="11" ry="13" fill="#3a2e5c"/><path class="mouth m-sad" d="M84 128 Q100 116 116 128" stroke="#3a2e5c" stroke-width="4.5" fill="none" stroke-linecap="round"/><rect x="60" y="152" width="80" height="46" rx="22" fill="url(#bb)" stroke="#fff" stroke-width="4"/><circle cx="100" cy="175" r="12" fill="#ffe066"/><ellipse cx="74" cy="208" rx="16" ry="9" fill="#5b8cff"/><ellipse cx="126" cy="208" rx="16" ry="9" fill="#a06bff"/></svg>';
+function buddyIn(el,mood){el.innerHTML=BUDDY;var s=el.querySelector('.buddy');if(s&&mood)s.setAttribute('data-mood',mood);return el.querySelector('.buddy');}
+function mood(el,m){var s=el.querySelector('.buddy');if(s)s.setAttribute('data-mood',m);}
+/* ============ AUDIO ============ */
+var AC=null;function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC;}
+function tone(f,d,t,v,dl){var c=ac();if(!c)return;var t0=c.currentTime+(dl||0),o=c.createOscillator(),g=c.createGain();o.type=t||'sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(v||.15,t0+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+.05);}
+function sOk(){tone(523,.15,'sine',.18,0);tone(659,.15,'sine',.18,.12);tone(784,.25,'sine',.2,.24);}
+function sNo(){tone(220,.2,'sine',.12,0);tone(180,.25,'sine',.1,.15);}
+function sTap(){tone(660,.1,'triangle',.1);}
+function sCheer(){[523,659,784,1047].forEach(function(f,i){tone(f,.18,'triangle',.15,i*.1);});}
+function speak(text,lang,onend){if(!('speechSynthesis' in window)){if(onend)setTimeout(onend,300);return;}try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-AR';u.rate=.9;u.pitch=1.15;var vs=speechSynthesis.getVoices(),v=vs.filter(function(x){return x.lang.indexOf(lang||'es')===0;})[0]||vs[0];if(v)u.voice=v;if(onend){u.onend=onend;u.onerror=onend;}speechSynthesis.speak(u);}catch(e){if(onend)onend();}}
+function buddySay(el,bubble,text,mood,lang){mood(el,mood||'talk');bubble.textContent=text;speak(text,lang,function(){setTimeout(function(){mood(el,'idle');},900);});}
+/* ============ DATOS ============ */
+var ABC=[['A','Apple','🍎','ápol','manzana'],['B','Ball','⚽','bol','pelota'],['C','Cat','🐱','ket','gato'],['D','Dog','🐶','dóg','perro'],['E','Elephant','🐘','élefant','elefante'],['F','Fish','🐟','fish','pez'],['G','Giraffe','🦒','yiráf','jirafa'],['H','House','🏠','jaus','casa'],['I','Ice cream','🍦','ais críim','helado'],['J','Juice','🧃','yus','jugo'],['K','Kite','🪁','kait','barrilete'],['L','Lion','🦁','láion','león'],['M','Monkey','🐵','mánki','mono'],['N','Nose','👃','nous','nariz'],['O','Orange','🍊','órinch','naranja'],['P','Pig','🐷','pig','cerdo'],['Q','Queen','👸','kuín','reina'],['R','Rainbow','🌈','réinbou','arcoíris'],['S','Sun','☀️','san','sol'],['T','Tiger','🐯','táiger','tigre'],['U','Umbrella','☂️','ambréla','paraguas'],['V','Violin','🎻','vaiolín','violín'],['W','Water','💧','uóter','agua'],['X','Xylophone','🎹','sáilofoun','xilófono'],['Y','Yogurt','🍦','ióguert','yogur'],['Z','Zebra','🦓','zébra','cebra']];
+var ANI=[['Dog','🐶','dóg','perro'],['Cat','🐱','ket','gato'],['Lion','🦁','láion','león'],['Elephant','🐘','élefant','elefante'],['Monkey','🐵','mánki','mono'],['Tiger','🐯','táiger','tigre'],['Rabbit','🐰','rábit','conejo'],['Cow','🐮','cau','vaca'],['Duck','🦆','dák','pato'],['Frog','🐸','frog','rana'],['Bear','🐻','ber','oso'],['Fish','🐟','fish','pez']];
+var COL=[['Red','🔴','red','rojo'],['Blue','🔵','blú','azul'],['Green','🟢','grín','verde'],['Yellow','🟡','yélou','amarillo'],['Orange','🟠','órinch','naranja'],['Purple','🟣','pérpol','violeta'],['Pink','🌸','pink','rosa'],['Brown','🟤','braun','marrón']];
+var FOO=[['Apple','🍎','ápol','manzana'],['Banana','🍌','banána','banana'],['Orange','🍊','órinch','naranja'],['Bread','🍞','bred','pan'],['Milk','🥛','milk','leche'],['Egg','🥚','eg','huevo'],['Cheese','🧀','chís','queso'],['Water','💧','uóter','agua'],['Juice','🧃','yus','jugo'],['Cake','🎂','keik','torta'],['Cookie','🍪','kúki','galletita'],['Pizza','🍕','pitsa','pizza']];
+var SPELL=[['Dog','🐶'],['Cat','🐱'],['Sun','☀️'],['Moon','🌙'],['Fish','🐟'],['Book','📕'],['Ball','⚽'],['Tree','🌳'],['Cake','🎂'],['Frog','🐸']];
+var PHRASES=[['Hello!','¡Hola!','jeló'],['Thank you!','¡Gracias!','zank yu'],['Please','Por favor','plís'],['Sorry','Perdón','sóri'],['Goodbye!','¡Adiós!','gudbái'],['Yes','Sí','yes'],['No','No','nou'],['I love you','Te quiero','ai lav yu'],['How are you?','¿Cómo estás?','jau ar yu'],['I am happy','Estoy feliz','ai am jápi']];
+/* 40 juegos: id, nombre, emoji, cat, motor, config */
+var GAMES=[
+{id:1,n:'Tarjetas del ABC',e:'🔤',c:'abc',engine:'flash',cfg:{title:'Abecedario',set:ABC.map(function(x){return {w:x[1],em:x[2],ap:x[3],es:x[4],extra:x[0]};})}},
+{id:2,n:'Escuchá la letra',e:'👂',c:'abc',engine:'quiz',cfg:{mode:'letter',q:'¿Qué letra escuchaste?',set:ABC}},
+{id:3,n:'Encontrá la letra',e:'🔍',c:'abc',engine:'quiz',cfg:{mode:'letterFind',set:ABC}},
+{id:4,n:'Mayúscula ↔ minúscula',e:'🔡',c:'abc',engine:'match',cfg:{pairs:ABC.slice(0,8).map(function(x){return [x[0],x[0].toLowerCase()];})}},
+{id:5,n:'Deletreá la palabra',e:'🔤',c:'abc',engine:'spell',cfg:{set:SPELL}},
+{id:6,n:'Letra que falta',e:'❓',c:'abc',engine:'quiz',cfg:{mode:'missingLetter',set:SPELL}},
+{id:7,n:'Sumar hasta 10',e:'➕',c:'mate',engine:'math',cfg:{op:'+',max:10}},
+{id:8,n:'Sumar hasta 20',e:'➕',c:'mate',engine:'math',cfg:{op:'+',max:20}},
+{id:9,n:'Restar hasta 10',e:'➖',c:'mate',engine:'math',cfg:{op:'-',max:10}},
+{id:10,n:'Restar hasta 20',e:'➖',c:'mate',engine:'math',cfg:{op:'-',max:20}},
+{id:11,n:'Contar objetos',e:'🔢',c:'mate',engine:'quiz',cfg:{mode:'count'}},
+{id:12,n:'¿Mayor o menor?',e:'⚖️',c:'mate',engine:'quiz',cfg:{mode:'compare'}},
+{id:13,n:'¿Qué número sigue?',e:'🔢',c:'mate',engine:'quiz',cfg:{mode:'sequence'}},
+{id:14,n:'Tarjetas de animales',e:'🦁',c:'vocab',engine:'flash',cfg:{title:'Animales',set:ANI.map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:15,n:'Tarjetas de colores',e:'🎨',c:'vocab',engine:'flash',cfg:{title:'Colores',set:COL.map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:16,n:'Tarjetas de comida',e:'🍎',c:'vocab',engine:'flash',cfg:{title:'Comida',set:FOO.map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:17,n:'Tarjetas de números',e:'🔢',c:'vocab',engine:'flash',cfg:{title:'Números',set:[['One','1️⃣','uán','uno'],['Two','2️⃣','tú','dos'],['Three','3️⃣','zrí','tres'],['Four','4️⃣','for','cuatro'],['Five','5️⃣','faiv','cinco'],['Six','6️⃣','siks','seis'],['Seven','7️⃣','séven','siete'],['Eight','8️⃣','éit','ocho'],['Nine','9️⃣','náin','nueve'],['Ten','🔟','ten','diez']].map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:18,n:'Partes del cuerpo',e:'🙋',c:'vocab',engine:'flash',cfg:{title:'Cuerpo',set:[['Head','🙂','jed','cabeza'],['Eye','👁️','ai','ojo'],['Nose','👃','nous','nariz'],['Mouth','👄','máuz','boca'],['Ear','👂','iar','oreja'],['Hand','✋','jand','mano'],['Foot','🦶','fut','pie'],['Arm','💪','arm','brazo']].map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:19,n:'La casa',e:'🏠',c:'vocab',engine:'flash',cfg:{title:'Casa',set:[['House','🏠','jaus','casa'],['Door','🚪','dor','puerta'],['Window','🪟','uíndou','ventana'],['Bed','🛏️','bed','cama'],['Table','🪑','téibel','mesa'],['Chair','🪑','cher','silla'],['Lamp','💡','lamp','lámpara'],['Book','📕','buk','libro']].map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:20,n:'La ropa',e:'👕',c:'vocab',engine:'flash',cfg:{title:'Ropa',set:[['Hat','🎩','jat','sombrero'],['Shoes','👟','shus','zapatos'],['Dress','👗','dres','vestido'],['Socks','🧦','soks','medias'],['Coat','🧥','kout','campera'],['Shirt','👕','shert','remera'],['Pants','👖','pants','pantalón'],['Gloves','🧤','glávs','guantes']].map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:21,n:'Escuchá y elegí la imagen',e:'👂🖼️',c:'en',engine:'quiz',cfg:{mode:'listenPic',set:ANI}},
+{id:22,n:'Colores en inglés',e:'🎨',c:'en',engine:'quiz',cfg:{mode:'listenPic',set:COL}},
+{id:23,n:'Números en inglés',e:'🔢',c:'en',engine:'quiz',cfg:{mode:'listenNum'}},
+{id:24,n:'Comida en inglés',e:'🍎',c:'en',engine:'quiz',cfg:{mode:'listenPic',set:FOO}},
+{id:25,n:'Frases mágicas',e:'✨',c:'en',engine:'flash',cfg:{title:'Frases',set:PHRASES.map(function(x){return {w:x[0],em:'💬',ap:x[2],es:x[1]};})}},
+{id:26,n:'Repetí la palabra',e:'🎤',c:'en',engine:'repeat',cfg:{set:ANI.concat(COL).concat(FOO)}},
+{id:27,n:'Memoria de animales',e:'🦁',c:'logic',engine:'memory',cfg:{set:ANI.slice(0,6).map(function(x){return x[1];})}},
+{id:28,n:'Memoria de colores',e:'🎨',c:'logic',engine:'memory',cfg:{set:COL.slice(0,6).map(function(x){return x[1];})}},
+{id:29,n:'Memoria de números',e:'🔢',c:'logic',engine:'memory',cfg:{set:['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣']}},
+{id:30,n:'Memoria de palabras',e:'📝',c:'logic',engine:'memory',cfg:{set:ANI.slice(0,6).map(function(x){return x[0].slice(0,3);})}},
+{id:31,n:'Rompecabezas 3×3',e:'🧩',c:'logic',engine:'puzzle',cfg:{size:3}},
+{id:32,n:'Rompecabezas 4×4',e:'🧩',c:'logic',engine:'puzzle',cfg:{size:4}},
+{id:33,n:'Unir parejas',e:'🤝',c:'logic',engine:'match',cfg:{pairs:[['🐶','Dog'],['🐱','Cat'],['🦁','Lion'],['🐘','Elephant'],['🐵','Monkey'],['🐯','Tiger']]}},
+{id:34,n:'Simon dice colores',e:'🎵',c:'logic',engine:'simon',cfg:{}},
+{id:35,n:'Encontrá el intruso',e:'🕵️',c:'logic',engine:'quiz',cfg:{mode:'intruder'}},
+{id:36,n:'¿Qué animal es?',e:'❓',c:'logic',engine:'quiz',cfg:{mode:'riddle',set:ANI}},
+{id:37,n:'Formas geométricas',e:'🔷',c:'vocab',engine:'flash',cfg:{title:'Formas',set:[['Circle','🔴','sérkol','círculo'],['Square','🟦','skuér','cuadrado'],['Triangle','🔺','tráiángel','triángulo'],['Star','⭐','star','estrella'],['Heart','❤️','jart','corazón'],['Oval','🥚','óuval','óvalo'],['Diamond','💎','dáimond','rombo'],['Rectangle','▭','réktanguel','rectángulo']].map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:38,n:'Días y meses',e:'📅',c:'vocab',engine:'flash',cfg:{title:'Tiempo',set:[['Monday','📅','mándei','lunes'],['Tuesday','📅','tiúsdei','martes'],['Sunday','☀️','sándei','domingo'],['January','📅','yánuery','enero'],['June','☀️','yun','junio'],['December','🎄','disémber','diciembre'],['Morning','🌅','mórning','mañana'],['Night','🌙','nait','noche']].map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:39,n:'Transportes',e:'🚗',c:'vocab',engine:'flash',cfg:{title:'Transportes',set:[['Car','🚗','kar','auto'],['Bus','🚌','bas','colectivo'],['Train','🚂','trén','tren'],['Plane','✈️','pléin','avión'],['Boat','⛵','bout','barco'],['Bike','🚲','baik','bicicleta'],['Truck','🚚','trak','camión'],['Rocket','🚀','róket','cohete']].map(function(x){return {w:x[0],em:x[1],ap:x[2],es:x[3]};})}},
+{id:40,n:'Quiz gigante',e:'🏆',c:'logic',engine:'quiz',cfg:{mode:'mega'}}
+];
+/* ============ PROGRESO ============ */
+var KEY='buddyAcademyV1', prog=load();
+function load(){try{var r=localStorage.getItem(KEY);if(r)return JSON.parse(r);}catch(e){}return{stars:{},done:{}};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(prog));}catch(e){}}
+function stats(){var t=0,d=0;for(var k in prog.stars){t+=prog.stars[k]||0;if(prog.done[k])d++;}return{t:t,d:d};}
+function updateHome(){var s=stats();$('homeStars').textContent=s.t;$('homeDone').textContent=s.d;var p=Math.round(s.d/40*100);$('homeBar').style.width=p+'%';}
+function $(id){return document.getElementById(id);}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function burst(x,y){var em=['⭐','🌟','✨','💫'];for(var i=0;i<10;i++){var s=document.createElement('span');s.className='burst';s.textContent=em[i%4];s.style.left=x+'px';s.style.top=y+'px';var an=Math.PI*2*i/10,di=60+Math.random()*50;s.style.setProperty('--dx',Math.cos(an)*di+'px');s.style.setProperty('--dy',Math.sin(an)*di+'px');document.body.appendChild(s);(function(el){setTimeout(function(){el.remove();},950);})(s);}}
+/* ============ NAV ============ */
+function show(v){document.querySelectorAll('.view').forEach(function(x){x.classList.remove('active');});$('view-'+v).classList.add('active');window.scrollTo(0,0);if(v==='prog')renderProg();if(v==='dict')renderDict('');}
+document.querySelectorAll('[data-goto]').forEach(function(b){b.addEventListener('click',function(){sTap();show(b.dataset.goto);});});
+document.querySelectorAll('.bottomnav button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.bottomnav button').forEach(function(x){x.classList.remove('active');});b.classList.add('active');});});
+$('backHome').addEventListener('click',function(){sTap();show('home');});
+/* ============ HOME GRID ============ */
+var curCat='all';
+$('homeTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;curCat=b.dataset.cat;document.querySelectorAll('#homeTabs button').forEach(function(x){x.classList.toggle('active',x===b);});renderGrid();});
+function renderGrid(){var g=$('gameGrid');g.innerHTML='';GAMES.forEach(function(gm){if(curCat!=='all'&&gm.c!==curCat)return;var d=document.createElement('div');d.className='gcard';var colors={abc:'#ffb3ba',mate:'#bae1ff',vocab:'#baffc9',en:'#ffc6e5',logic:'#ffe9a8'};d.style.borderTopColor=colors[gm.c]||'#7c5cff';var st=prog.stars[gm.id]||0;d.innerHTML='<div class="em">'+gm.e+'</div><div class="nm">'+gm.n+'</div><div class="st">'+(st?'⭐'.repeat(st):'¡Jugá!')+'</div>';d.addEventListener('click',function(){sTap();openGame(gm);});g.appendChild(d);});}
+/* ============ ABRIR JUEGO ============ */
+var curGame=null, mistakes=0, quizState=null;
+function openGame(gm){curGame=gm;mistakes=0;$('gameTitle').textContent=gm.e+' '+gm.n;$('gameStars').textContent=prog.stars[gm.id]||0;buddyIn($('buddyGame'),'happy');buddySay($('buddyGame'),$('gameBubble'),'¡Hola! Vamos a jugar a '+gm.n+'. ¡Vos podés!','talk');var area=$('gameArea');area.innerHTML='';
+  if(gm.engine==='flash')engineFlash(area,gm.cfg);
+  else if(gm.engine==='quiz'){engineQuiz(area,gm.cfg);}
+  else if(gm.engine==='math'){engineMath(area,gm.cfg);}
+  else if(gm.engine==='memory'){engineMemory(area,gm.cfg);}
+  else if(gm.engine==='puzzle'){enginePuzzle(area,gm.cfg);}
+  else if(gm.engine==='match'){engineMatch(area,gm.cfg);}
+  else if(gm.engine==='spell'){engineSpell(area,gm.cfg);}
+  else if(gm.engine==='simon'){engineSimon(area,gm.cfg);}
+  else if(gm.engine==='repeat'){engineRepeat(area,gm.cfg);}
+  show('game');
+}
+function winGame(){var stars=mistakes===0?3:(mistakes<=2?2:1);var prev=prog.stars[curGame.id]||0;if(stars>prev)prog.stars[curGame.id]=stars;prog.done[curGame.id]=true;save();updateHome();sCheer();buddyIn($('buddyWin'),'cheer');$('winStars').textContent='⭐'.repeat(stars)+'☆'.repeat(3-stars);$('winTitle').textContent=stars===3?'¡Perfecto! 🌟':(stars===2?'¡Muy bien!':'¡Bien hecho!');$('winText').textContent='Ganaste '+stars+' estrellas. ¡Seguí así!';$('winOverlay').classList.add('show');speak($('winTitle').textContent,'es-AR');}
+$('againBtn').addEventListener('click',function(){sTap();$('winOverlay').classList.remove('show');openGame(curGame);});
+$('menuBtn').addEventListener('click',function(){sTap();$('winOverlay').classList.remove('show');show('home');});
+/* ============ MOTOR FLASHCARDS ============ */
+function engineFlash(area,cfg){var h='<p class="muted center">Tocá una tarjeta o el 🔊 para escuchar la palabra en inglés</p><div class="fc-grid">';
+ cfg.set.forEach(function(it){h+='<div class="fc" data-w="'+it.w+'"><button class="sp">🔊</button><div class="em">'+it.em+'</div><div class="wd">'+it.w+(it.extra?' <span style="color:var(--soft);font-size:.8rem">('+it.extra+')</span>':'')+'</div><div class="ap">se dice: '+it.ap+' · '+it.es+'</div></div>';});
+ h+='</div><div class="center mt"><button class="btn btn-green" id="flashDone">✅ ¡Las aprendí todas!</button></div>';
+ area.innerHTML=h;
+ area.querySelectorAll('.fc').forEach(function(c){c.addEventListener('click',function(e){if(e.target.classList.contains('sp')){e.stopPropagation();}sTap();speak(c.dataset.w,'en-US');});});
+ area.querySelectorAll('.sp').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();sTap();speak(b.parentNode.dataset.w,'en-US');});});
+ $('flashDone').addEventListener('click',function(){sTap();winGame();});
+}
+/* ============ MOTOR QUIZ ============ */
+function genQuestion(mode,cfg){
+ if(mode==='letter'){var t=ABC[Math.floor(Math.random()*ABC.length)];return{q:'Escuchá...',say:t[0],target:t[0],opts:shuffle(ABC).slice(0,4).map(function(x){return x[0];}).concat([t[0]]).filter(function(v,i,a){return a.indexOf(v)===i;}).slice(0,4),display:t[0]};}
+ if(mode==='letterFind'){var t=ABC[Math.floor(Math.random()*ABC.length)];return{q:'Tocá la letra '+t[0],say:'Touch the letter '+t[0],target:t[0],opts:shuffle(ABC).slice(0,4).map(function(x){return x[0];}).concat([t[0]]).filter(function(v,i,a){return a.indexOf(v)===i;}).slice(0,4),display:t[0]};}
+ if(mode==='listenPic'){var s=shuffle(cfg.set).slice(0,4);var t=s[0];return{q:'Escuchá y tocá la imagen correcta',say:t[0],target:t[0],opts:shuffle(s).map(function(x){return x[0];}),display:t[1],optEm:cfg.set.reduce(function(m,x){m[x[0]]=x[1];return m;},{})};}
+ if(mode==='listenNum'){var n=1+Math.floor(Math.random()*10);var names=['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];var emojis=['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];var opts=shuffle([0,1,2,3,4,5,6,7,8,9]).slice(0,4).concat([n-1]).filter(function(v,i,a){return a.indexOf(v)===i;}).slice(0,4);return{q:'Escuchá el número',say:names[n-1],target:names[n-1],opts:opts.map(function(i){return names[i];}),display:emojis[n-1],optEm:names.reduce(function(m,x,i){m[x]=emojis[i];return m;},{})};}
+ if(mode==='count'){var n=1+Math.floor(Math.random()*9);var em=['🍎','⭐','🎈','🐶'][Math.floor(Math.random()*4)];return{q:'¿Cuántos hay? Contá en voz alta',say:'How many?',target:String(n),opts:shuffle([1,2,3,4,5,6,7,8,9].filter(function(x){return x!==n;})).slice(0,3).concat([n]).map(String),display:em.repeat(n),big:true};}
+ if(mode==='compare'){var a=1+Math.floor(Math.random()*20),b=1+Math.floor(Math.random()*20);while(b===a)b=1+Math.floor(Math.random()*20);var big=Math.max(a,b);return{q:'¿Cuál número es más grande?',say:'Which number is bigger?',target:String(big),opts:shuffle([a,b,Math.floor(Math.random()*20)+1]).filter(function(v,i,arr){return arr.indexOf(v)===i;}).slice(0,3).concat([big]).filter(function(v,i,arr){return arr.indexOf(v)===i;}).slice(0,4).map(String),display:a+' ? '+b};}
+ if(mode==='sequence'){var st=1+Math.floor(Math.random()*5);var seq=[st,st+1,st+2,st+3];var miss=seq[3];return{q:'¿Qué número sigue? '+seq.slice(0,3).join(', ')+', ?',say:'What number comes next?',target:String(miss),opts:shuffle([miss+1,miss-1,miss+2,miss]).filter(function(v,i,a){return a.indexOf(v)===i;}).slice(0,4).map(String),display:seq.slice(0,3).join(' · ')+' · ?'};}
+ if(mode==='missingLetter'){var w=SPELL[Math.floor(Math.random()*SPELL.length)];var pos=Math.floor(Math.random()*w[0].length);var miss=w[0][pos];var shown=w[0].split('').map(function(c,i){return i===pos?'_':c;}).join(' ');return{q:'¿Qué letra falta? '+shown,say:'Which letter is missing?',target:miss.toUpperCase(),opts:shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter(function(x){return x!==miss.toUpperCase();})).slice(0,3).concat([miss.toUpperCase()]).slice(0,4),display:w[1]+' '+shown};}
+ if(mode==='intruder'){var themes=[['🐶','🐱','🐰','🍎'],['🔴','🔵','🟢','🚗'],['🍎','🍌','🍇','👟'],['✈️','🚗','🚂','🐱']];var th=themes[Math.floor(Math.random()*themes.length)];var intr=th[3];return{q:'¿Cuál no pertenece al grupo?',say:'Which one does not belong?',target:intr,opts:shuffle(th),display:th.join(' '),big:true};}
+ if(mode==='riddle'){var s=shuffle(cfg.set).slice(0,4);var t=s[0];var clues={Dog:'Ladra y es el mejor amigo del hombre',Cat:'Maulla y le gusta la leche',Lion:'Es el rey de la selva',Elephant:'Es muy grande y tiene trompa',Monkey:'Come bananas y trepa árboles',Tiger:'Rayado y feroz',Rabbit:'Come zanahorias y salta',Cow:'Da la leche',Duck:'Hace cuac y nada',Frog:'Verde y salta',Bear:'Grande y le gusta la miel',Fish:'Vive en el agua'};return{q:clues[t[0]]||'¿Qué animal es?',say:clues[t[0]]||'What animal is it?',target:t[0],opts:shuffle(s).map(function(x){return x[0];}),display:'❓',optEm:cfg.set.reduce(function(m,x){m[x[0]]=x[1];return m;},{})};}
+ if(mode==='mega'){var modes=['listenPic','count','riddle','letter','compare'];var m=modes[Math.floor(Math.random()*modes.length)];var c2={set:m==='riddle'?ANI:ANI};return genQuestion(m,m==='listenPic'?{set:ANI}:c2);}
+ return null;
+}
+function engineQuiz(area,cfg){
+ var total=5, idx=0;
+ function round(){
+  if(idx>=total){winGame();return;}
+  var q=genQuestion(cfg.mode,cfg);if(!q){winGame();return;}
+  quizState=q;
+  var h='<div class="q-word">Pregunta '+(idx+1)+' de '+total+'</div>';
+  h+='<div class="q-target" style="font-size:'+(q.big?'2rem':'4.5rem')+'">'+q.display+'</div>';
+  h+='<div class="center muted">'+q.q+'</div>';
+  h+='<div class="center mt"><button class="btn btn-blue small" id="hearAgain">🔊 Escuchar de nuevo</button></div>';
+  h+='<div class="opts" id="qOpts">';
+  q.opts.forEach(function(o){h+='<button class="opt" data-o="'+o+'">'+(q.optEm?'<span class="em">'+(q.optEm[o]||'❓')+'</span>':'')+o+'</button>';});
+  h+='</div><div class="feedback" id="qFb"></div>';
+  area.innerHTML=h;
+  speak(q.say,'en-US');
+  $('hearAgain').addEventListener('click',function(){sTap();speak(q.say,'en-US');});
+  area.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){
+    if(b.disabled)return;
+    if(b.dataset.o===q.target){sOk();b.classList.add('ok');burst(b.getBoundingClientRect().left+b.offsetWidth/2,b.getBoundingClientRect().top);$('qFb').innerHTML='<span style="color:var(--good)">¡Muy bien! ⭐</span>';speak('Very good!','en-US');setTimeout(function(){idx++;round();},1300);}
+    else{mistakes++;sNo();b.classList.add('bad');b.disabled=true;$('qFb').innerHTML='<span style="color:var(--bad)">¡Casi! Probá otra vez</span>';speak('Try again','en-US');setTimeout(function(){b.classList.remove('bad');},500);}
+  });});
+ }
+ round();
+}
+/* ============ MOTOR MATH ============ */
+function engineMath(area,cfg){
+ var total=5,idx=0;
+ function round(){
+  if(idx>=total){winGame();return;}
+  var a,b,ans;
+  if(cfg.op==='+'){a=1+Math.floor(Math.random()*(cfg.max-1));b=1+Math.floor(Math.random()*(cfg.max-a));ans=a+b;}
+  else{a=2+Math.floor(Math.random()*(cfg.max-1));b=1+Math.floor(Math.random()*a);ans=a-b;}
+  var opts=shuffle([ans+1,ans-1,ans+2,ans].filter(function(v,i,arr){return v>=0&&arr.indexOf(v)===i;})).slice(0,4);
+  if(opts.indexOf(ans)<0)opts[0]=ans;
+  var dots='🍎'.repeat(Math.min(a,10))+(cfg.op==='+'?' ➕ ':' ➖ ')+'🍎'.repeat(Math.min(b,10));
+  area.innerHTML='<div class="q-word">Cuenta '+ (idx+1)+' de '+total+'</div><div class="q-target" style="font-size:2.6rem">'+a+' '+cfg.op+' '+b+' = ?</div><div class="center" style="font-size:1.4rem">'+dots+'</div><div class="opts">'+opts.map(function(o){return '<button class="opt" data-o="'+o+'">'+o+'</button>';}).join('')+'</div><div class="feedback" id="mFb"></div>';
+  speak(a+' '+ (cfg.op==='+'?'plus':'minus')+' '+b,'en-US');
+  area.querySelectorAll('.opt').forEach(function(bt){bt.addEventListener('click',function(){
+    if(bt.disabled)return;
+    if(Number(bt.dataset.o)===ans){sOk();bt.classList.add('ok');burst(bt.getBoundingClientRect().left+bt.offsetWidth/2,bt.getBoundingClientRect().top);$('mFb').innerHTML='<span style="color:var(--good)">¡Correcto! ⭐</span>';speak('Correct!','en-US');setTimeout(function(){idx++;round();},1300);}
+    else{mistakes++;sNo();bt.classList.add('bad');bt.disabled=true;$('mFb').innerHTML='<span style="color:var(--bad)">Probá de nuevo 💪</span>';setTimeout(function(){bt.classList.remove('bad');},500);}
+  });});
+ }
+ round();
+}
+/* ============ MOTOR MEMORY ============ */
+function engineMemory(area,cfg){
+ var pairs=shuffle(cfg.set).slice(0,6);var cards=shuffle(pairs.concat(pairs));var open=[],found=0,moves=0;
+ area.innerHTML='<p class="muted center">Encontrá las 6 parejas</p><div class="mem-grid" id="memGrid">'+cards.map(function(c,i){return '<button class="mem" data-i="'+i+'" data-v="'+c+'">?</button>';}).join('')+'</div><div class="feedback" id="memFb">Parejas: 0/6</div>';
+ area.querySelectorAll('.mem').forEach(function(b){b.addEventListener('click',function(){
+  if(b.classList.contains('open')||b.classList.contains('done')||open.length>=2)return;
+  sTap();b.classList.add('open');b.textContent=b.dataset.v;open.push(b);
+  if(open.length===2){moves++;
+   if(open[0].dataset.v===open[1].dataset.v){sOk();open.forEach(function(x){x.classList.add('done');});found++;open=[];$('memFb').textContent='Parejas: '+found+'/6';if(found===6){if(moves<=10)mistakes=0;else if(moves<=16)mistakes=1;else mistakes=2;setTimeout(winGame,800);}}
+   else{sNo();setTimeout(function(){open.forEach(function(x){x.classList.remove('open');x.textContent='?';});open=[];},800);}
+  }
+ });});
+}
+/* ============ MOTOR PUZZLE (sliding) ============ */
+function enginePuzzle(area,cfg){
+ var n=cfg.size,total=n*n,board=[];for(var i=1;i<total;i++)board.push(i);board.push(0);
+ // shuffle con movimientos válidos para que tenga solución
+ var empty=total-1;
+ for(var s=0;s<60;s++){var nb=[];var er=Math.floor(empty/n),ec=empty%n;if(er>0)nb.push(empty-n);if(er<n-1)nb.push(empty+n);if(ec>0)nb.push(empty-1);if(ec<n-1)nb.push(empty+1);var r=nb[Math.floor(Math.random()*nb.length)];board[empty]=board[r];board[r]=0;empty=r;}
+ var emojis=['🌟','🎈','🍎','🐶','🌈','🎨','⚽','🚀','🌸','🎵','🍕','🦋','🌙','❤️','🎁','🐱'];
+ function render(){area.innerHTML='<p class="muted center">Ordená los números del 1 al '+(total-1)+'</p><div class="puz-grid" style="grid-template-columns:repeat('+n+',1fr);max-width:'+(n*100)+'px">'+board.map(function(v,i){return v===0?'<button class="puz empty"></button>':'<button class="puz" data-i="'+i+'">'+(emojis[(v-1)%emojis.length]+'<br><span style="font-size:1rem">'+v+'</span>')+'</button>';}).join('')+'</div><div class="center mt"><button class="btn btn-ghost small" id="puzShuffle">🔀 Mezclar</button></div>';
+  area.querySelectorAll('.puz:not(.empty)').forEach(function(b){b.addEventListener('click',function(){
+   var i=Number(b.dataset.i),ei=board.indexOf(0);
+   var ir=Math.floor(i/n),ic=i%n,er=Math.floor(ei/n),ec=ei%n;
+   if((ir===er&&Math.abs(ic-ec)===1)||(ic===ec&&Math.abs(ir-er)===1)){sTap();board[ei]=board[i];board[i]=0;render();
+    var won=board.every(function(v,idx){return idx===total-1?v===0:v===idx+1;});
+    if(won){sCheer();setTimeout(winGame,500);}}
+   else{sNo();b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');},400);}
+  });});
+  if($('puzShuffle'))$('puzShuffle').addEventListener('click',function(){sTap();enginePuzzle(area,cfg);});
+ }
+ render();
+}
+/* ============ MOTOR MATCH (unir parejas) ============ */
+function engineMatch(area,cfg){
+ var left=shuffle(cfg.pairs.map(function(p){return p[0];}));var right=shuffle(cfg.pairs.map(function(p){return p[1];}));
+ var sel=null,found=0;
+ function render(){
+  area.innerHTML='<p class="muted center">Tocá uno de cada columna que vayan juntos</p><div style="display:flex;gap:14px;justify-content:center"><div class="opts" style="grid-template-columns:1fr;flex:1" id="mL">'+left.map(function(x){return '<button class="opt" data-v="'+x+'">'+x+'</button>';}).join('')+'</div><div class="opts" style="grid-template-columns:1fr;flex:1" id="mR">'+right.map(function(x){return '<button class="opt" data-v="'+x+'">'+x+'</button>';}).join('')+'</div></div><div class="feedback" id="mFb">Parejas: 0/'+cfg.pairs.length+'</div>';
+  area.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){
+   if(b.classList.contains('ok'))return;sTap();
+   if(!sel){sel=b;b.style.outline='4px solid var(--accent)';}
+   else if(sel===b){sel.style.outline='';sel=null;}
+   else{
+    var pair=cfg.pairs.find(function(p){return (p[0]===sel.dataset.v&&p[1]===b.dataset.v)||(p[1]===sel.dataset.v&&p[0]===b.dataset.v);});
+    if(pair){sOk();sel.classList.add('ok');b.classList.add('ok');sel.disabled=b.disabled=true;found++;$('mFb').textContent='Parejas: '+found+'/'+cfg.pairs.length;if(found===cfg.pairs.length)setTimeout(winGame,700);}
+    else{mistakes++;sNo();sel.classList.add('shake');b.classList.add('shake');setTimeout(function(){sel.classList.remove('shake');b.classList.remove('shake');sel.style.outline='';},500);}
+    sel=null;
+   }
+  });});
+ }
+ render();
+}
+/* ============ MOTOR SPELL (deletrear) ============ */
+function engineSpell(area,cfg){
+ var total=5,idx=0;
+ function round(){
+  if(idx>=total){winGame();return;}
+  var w=cfg.set[Math.floor(Math.random()*cfg.set.length)];var letters=shuffle(w[0].split(''));var picked=[];
+  function renderS(){
+   area.innerHTML='<div class="q-target">'+w[1]+'</div><div class="q-word">Deletreá: '+w[0].length+' letras</div><div class="slots">'+w[0].split('').map(function(_,i){return '<div class="slot">'+(picked[i]||'')+'</div>';}).join('')+'</div><div style="text-align:center">'+letters.map(function(l,i){return '<button class="letter '+(picked.indexOf(i)>=0?'used':'')+'" data-i="'+i+'">'+l+'</button>';}).join('')+'</div><div class="center mt"><button class="btn btn-ghost small" id="spellHint">💡 Escuchar palabra</button> <button class="btn btn-pink small" id="spellClear">↺ Borrar</button></div><div class="feedback" id="spFb"></div>';
+   area.querySelectorAll('.letter').forEach(function(b){b.addEventListener('click',function(){
+    if(b.classList.contains('used'))return;sTap();picked.push(Number(b.dataset.i));renderS();
+    if(picked.length===w[0].length){
+     var word=picked.map(function(i){return letters[i];}).join('');
+     if(word.toUpperCase()===w[0].toUpperCase()){sOk();$('spFb').innerHTML='<span style="color:var(--good)">¡Perfecto! '+w[0]+' ⭐</span>';speak(w[0],'en-US');setTimeout(function(){idx++;round();},1400);}
+     else{mistakes++;sNo();$('spFb').innerHTML='<span style="color:var(--bad)">¡Casi! La palabra es '+w[0]+'</span>';speak(w[0],'en-US');setTimeout(function(){picked=[];renderS();},1500);}
+    }
+   });});
+   if($('spellHint'))$('spellHint').addEventListener('click',function(){sTap();speak(w[0],'en-US');});
+   if($('spellClear'))$('spellClear').addEventListener('click',function(){sTap();picked=[];renderS();});
+  }
+  renderS();speak('Spell '+w[0],'en-US');
+ }
+ round();
+}
+/* ============ MOTOR SIMON ============ */
+function engineSimon(area,cfg){
+ var seq=[],userIdx=0,playing=false;
+ area.innerHTML='<p class="muted center">Mirá la secuencia y repetila tocando los colores</p><div class="simon">'+[0,1,2,3].map(function(i){return '<button class="sbtn" data-i="'+i+'"></button>';}).join('')+'</div><div class="center mt"><button class="btn btn-green" id="simonStart">▶ Empezar</button></div><div class="feedback" id="siFb">Nivel 1</div>';
+ var btns=area.querySelectorAll('.sbtn');
+ function playSeq(){playing=true;$('siFb').textContent='Mirá...';var i=0;function step(){if(i>=seq.length){playing=false;$('siFb').textContent='¡A vos! Turno '+seq.length;userIdx=0;return;}var b=btns[seq[i]];tone([523,659,784,1047][seq[i]],.3,'sine',.2);b.classList.add('lit');setTimeout(function(){b.classList.remove('lit');i++;setTimeout(step,250);},450);}setTimeout(step,600);}
+ function next(){seq.push(Math.floor(Math.random()*4));playSeq();}
+ $('simonStart').addEventListener('click',function(){sTap();seq=[];mistakes=0;next();});
+ btns.forEach(function(b){b.addEventListener('click',function(){
+  if(playing)return;var i=Number(b.dataset.i);tone([523,659,784,1047][i],.25,'sine',.2);b.classList.add('lit');setTimeout(function(){b.classList.remove('lit');},250);
+  if(i===seq[userIdx]){userIdx++;if(userIdx>=seq.length){sOk();$('siFb').textContent='¡Muy bien! Nivel '+(seq.length+1);if(seq.length>=5){setTimeout(winGame,800);}else setTimeout(next,900);}}
+  else{mistakes++;sNo();$('siFb').textContent='¡Ups! Era otro color. Probá de nuevo';setTimeout(function(){seq=[];next();},1200);}
+ });});
+}
+/* ============ MOTOR REPEAT (pronunciación) ============ */
+function engineRepeat(area,cfg){
+ var item=cfg.set[Math.floor(Math.random()*cfg.set.length)];
+ area.innerHTML='<div class="q-target">'+item[1]+'</div><div class="q-word">'+item[0]+'</div><p class="muted center">Se dice: <b>'+item[2]+'</b> · '+item[3]+'</p><div class="center mt"><button class="btn btn-blue" id="repHear">🔊 Escuchá la palabra</button></div><p class="muted center mt" style="font-size:.85rem">Repetí la palabra en voz alta. Cuando la hayas practicado, tocá "¡La dije!".</p><div class="center mt"><button class="btn btn-green" id="repDone">✅ ¡La dije!</button> <button class="btn btn-pink" id="repNext">➡ Otra palabra</button></div>';
+ speak(item[0],'en-US');
+ $('repHear').addEventListener('click',function(){sTap();speak(item[0],'en-US');});
+ $('repDone').addEventListener('click',function(){sTap();winGame();});
+ $('repNext').addEventListener('click',function(){sTap();engineRepeat(area,cfg);});
+}
+/* ============ DICCIONARIO ============ */
+var DICT=[];
+[ANI,COL,FOO].forEach(function(s){s.forEach(function(x){DICT.push({en:x[0],ap:x[2],es:x[3]});});});
+ABC.forEach(function(x){DICT.push({en:x[1],ap:x[3],es:x[4]});});
+PHRASES.forEach(function(x){DICT.push({en:x[0],ap:x[2],es:x[1]});});
+DICT=DICT.filter(function(v,i,a){return a.findIndex(function(x){return x.en===v.en;})===i;});
+function renderDict(q){q=(q||'').toLowerCase();var list=$('dictList');list.innerHTML='';var n=0;
+ DICT.forEach(function(w){if(q&&w.en.toLowerCase().indexOf(q)<0&&w.es.toLowerCase().indexOf(q)<0)return;n++;
+  var d=document.createElement('div');d.className='dict-item';
+  d.innerHTML='<button class="spk">🔊</button><div><span class="en">'+w.en+'</span> <span class="ap">('+w.ap+')</span><br><span class="es">'+w.es+'</span></div>';
+  d.querySelector('.spk').addEventListener('click',function(){sTap();speak(w.en,'en-US');});
+  list.appendChild(d);
+ });
+ if(n===0)list.innerHTML='<p class="muted center">No encontramos esa palabra. Probá con otra 😊</p>';
+}
+$('dictSearch').addEventListener('input',function(e){renderDict(e.target.value);});
+/* ============ PROGRESO ============ */
+function renderProg(){var s=stats();$('totStars').textContent=s.t;var p=Math.round(s.d/40*100);$('progBar').style.width=p+'%';$('progPct').textContent=p+'% · '+s.d+' de 40 juegos completados';var h='';GAMES.forEach(function(g){var st=prog.stars[g.id]||0;h+='<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #eee"><span>'+g.e+'</span><span style="flex:1;font-weight:700">'+g.n+'</span><span>'+(st?'⭐'.repeat(st):'☆☆☆')+'</span></div>';});$('progList').innerHTML=h;}
+$('resetBtn').addEventListener('click',function(){if(confirm('¿Borrar todo el progreso?')){prog={stars:{},done:{}};save();updateHome();renderProg();}});
+/* ============ INICIO ============ */
+buddyIn($('buddyHome'),'happy');
+var greetings=['¡Hola! Soy Buddy, tu amigo robot 🤖','¿Listo para aprender y jugar? 🌟','¡Qué alegría verte! ¿Qué jugamos hoy? 💜'];
+$('homeBubble').textContent=greetings[Math.floor(Math.random()*greetings.length)];
+renderGrid();updateHome();
+})();
+</script>
+</body>
+</html>
