@@ -1,4 +1,10 @@
-
+<!-- ============================================================
+  BUGGY SUPER APP v3 · 55 JUEGOS EDUCATIVOS · LISTA PARA PRODUCCION
+  Layout a pantalla completa (Buggy + enseñanza entran perfectos).
+  Secciones: Vocabulario, Matematica, Lengua, Juegos.
+  Buggy habla en castellano. Palabras SOLO en ingles. Microfono.
+  Espacio Google AdMob incluido. Guardar como index.html en GitHub.
+============================================================ -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -227,6 +233,7 @@
               <div id="spellTiles" class="flex gap-2 flex-wrap justify-center"></div>
             </div>
             <div id="storyRow" style="display:none;margin-top:10px;"></div>
+            <div id="customRow" style="display:none;margin-top:10px;"></div>
             <div id="feedback2" style="min-height:22px;margin-top:8px;text-align:center;font-size:14px;font-weight:600;"></div>
             <div style="text-align:center;margin-top:4px;">
               <button id="replayBtn" class="btn rounded-xl px-4 py-2" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:13px;">Oír de nuevo</button>
@@ -443,13 +450,60 @@ mcqL("Sustantivos, verbos y adjetivos","#a78bfa","◆",[
   2:{t:"Al llegar a casa, Buggy se acordó de la caja y volvió. ¡Encontró el libro mágico! ¿Lo abrís?",o:[{l:"Sí, lo abro",n:3},{l:"No, mejor no",n:3}]},
   3:{t:"¡Felicidades! Completaste la aventura de Buggy y el libro mágico. ¡Sos un gran lector!",o:[],end:true}
 }},
+/* ---- JUEGOS DE INTELIGENCIA (11) ---- */
+{id:"imem",name:"Memoria de parejas",section:"Juegos de inteligencia",type:"memory",color:"#a78bfa",icon:"▦",sym:"shapes",intro:"En el juego de memoria tenés que encontrar dos tarjetas iguales. Tocá dos tarjetas: si son iguales quedan boca arriba. Encontrá todos los pares!"},
+{id:"iserie",name:"Series numéricas",section:"Juegos de inteligencia",type:"mcq",color:"#22d3ee",icon:"123",intro:"Una serie numérica es una fila de números que siguen una regla, por ejemplo ir sumando de a dos. Tenés que descubrir qué número sigue.",q:[
+ ["2, 4, 6, ?",["7","8","9","10"],1,"Dos, cuatro, seis. Qué número sigue?"],
+ ["1, 3, 5, ?",["6","7","8","9"],1,"Uno, tres, cinco. Qué sigue?"],
+ ["10, 20, 30, ?",["35","40","45","50"],1,"Diez, veinte, treinta. Qué sigue?"],
+ ["1, 2, 4, 8, ?",["12","14","16","10"],2,"Uno, dos, cuatro, ocho. Cada vez se duplica. Qué sigue?"],
+ ["9, 8, 7, ?",["5","6","4","10"],1,"Nueve, ocho, siete. Va bajando de a uno. Qué sigue?"],
+ ["2, 5, 8, ?",["10","11","12","13"],1,"Dos, cinco, ocho. Suman de a tres. Qué sigue?"]
+]},
+{id:"ipatron",name:"Completar patrones",section:"Juegos de inteligencia",type:"mcq",color:"#f472b6",icon:"▨",intro:"Un patrón es una secuencia que se repite, como círculo, triángulo, círculo, triángulo. Tenés que encontrar qué figura sigue.",q:[
+ ["● ▲ ● ▲ ● ?",["●","▲","■","★"],1,"Círculo, triángulo, círculo, triángulo. Qué sigue?"],
+ ["■ ■ ▲ ■ ■ ?",["■","▲","●","★"],1,"Dos cuadrados y un triángulo se repiten. Qué sigue?"],
+ ["★ ★ ★ ● ★ ★ ?",["★","●","▲","■"],1,"Tres estrellas y un círculo se repiten. Qué sigue?"],
+ ["● ● ▲ ▲ ● ?",["▲","●","■","★"],0,"Dos círculos y dos triángulos se repiten. Qué sigue?"],
+ ["1 2 1 2 1 ?",["1","2","3","4"],1,"Uno, dos, uno, dos. Qué sigue?"],
+ ["▲ ● ■ ▲ ● ?",["▲","●","■","★"],2,"Triángulo, círculo, cuadrado se repiten. Qué sigue?"]
+]},
+{id:"ilogica",name:"Lógica",section:"Juegos de inteligencia",type:"mcq",color:"#fb923c",icon:"?",intro:"Los juegos de lógica te hacen pensar para encontrar la respuesta correcta. Leé bien la pregunta y pensá un poquito.",q:[
+ ["¿Qué pesa más: un kilo de plumas o un kilo de hierro?",["plumas","hierro","pesan igual","no se sabe"],2,"Qué pesa más: un kilo de plumas o un kilo de hierro?"],
+ ["Si tengo 3 manzanas y me como una, ¿cuántas me quedan?",["1","2","3","4"],1,"Si tengo 3 manzanas y me como una, cuántas me quedan?"],
+ ["¿Qué tiene cuello pero no cabeza?",["perro","botella","árbol","zapato"],1,"Qué tiene cuello pero no cabeza? Es una botella."],
+ ["Juan es más alto que Pedro. Pedro es más alto que Luis. ¿Quién es el más bajo?",["Juan","Pedro","Luis","todos iguales"],2,"Juan es más alto que Pedro. Pedro es más alto que Luis. Quién es el más bajo?"],
+ ["¿Cuántos meses tienen 28 días?",["1","2","ninguno","todos"],3,"Cuántos meses tienen 28 días? Todos tienen al menos 28."],
+ ["Si un gallo pone un huevo en la punta del techo, ¿para dónde cae?",["izquierda","derecha","los gallos no ponen huevos","abajo"],2,"Si un gallo pone un huevo en la punta del techo, para dónde cae? Los gallos no ponen huevos!"]
+]},
+{id:"iveloc",name:"Velocidad mental",section:"Juegos de inteligencia",type:"mcq",color:"#f87171",icon:"⚡".replace("⚡","↯"),timed:true,intro:"Este juego es contra reloj: tenés solo 15 segundos por pregunta. Pensá rápido y tocá la respuesta correcta antes de que se acabe el tiempo!",q:[
+ ["3 + 4 =",["6","7","8","9"],1,"Tres más cuatro?"],
+ ["9 - 5 =",["3","4","5","6"],1,"Nueve menos cinco?"],
+ ["2 × 4 =",["6","7","8","9"],2,"Dos por cuatro?"],
+ ["10 + 10 =",["15","20","25","30"],1,"Diez más diez?"],
+ ["7 - 3 =",["3","4","5","6"],1,"Siete menos tres?"],
+ ["5 + 6 =",["10","11","12","13"],1,"Cinco más seis?"]
+]},
+{id:"iatenc",name:"Atención y concentración",section:"Juegos de inteligencia",type:"mcq",color:"#4ade80",icon:"◎",intro:"Aquí tenés que mirar con atención y encontrar cuál es el elemento distinto o cuál no pertenece al grupo. Concentrate!",q:[
+ ["¿Cuál no pertenece? Manzana, Banana, Zanahoria, Uva",["Manzana","Banana","Zanahoria","Uva"],2,"Cuál no pertenece? Manzana, banana, zanahoria, uva. La zanahoria es verdura!"],
+ ["¿Cuál es diferente? ● ● ▲ ●",["●","▲","son iguales","ninguno"],1,"Cuál es diferente? Hay un triángulo entre círculos."],
+ ["¿Cuál no pertenece? Perro, Gato, Árbol, Vaca",["Perro","Gato","Árbol","Vaca"],2,"Cuál no pertenece? Perro, gato, árbol, vaca. El árbol no es animal!"],
+ ["¿Cuál es diferente? 2 4 6 7",["2","4","6","7"],3,"Cuál es diferente? Dos, cuatro, seis, siete. El siete es impar!"],
+ ["¿Cuál no pertenece? Rojo, Azul, Verde, Camión",["Rojo","Azul","Verde","Camión"],3,"Cuál no pertenece? Rojo, azul, verde, camión. El camión no es color!"],
+ ["¿Cuál es diferente? ★ ★ ☆ ★",["★","☆","iguales","ninguno"],1,"Cuál es diferente? Hay una estrella vacía entre estrellas llenas."]
+]},
+{id:"ipuzzle",name:"Rompecabezas",section:"Juegos de inteligencia",type:"puzzle",color:"#a78bfa",icon:"▦",intro:"Un rompecabezas o puzzle es un juego donde las piezas están desordenadas y tenés que ordenarlas. Tocá un número al lado del espacio vacío para moverlo. Ordená del 1 al 8!"},
+{id:"isudoku",name:"Sudoku infantil",section:"Juegos de inteligencia",type:"sudoku",color:"#22d3ee",icon:"#",intro:"El sudoku es un juego de números: en cada fila y cada columna tienen que estar los números 1, 2, 3 y 4 sin repetirse. Tocá una casilla vacía para cambiar el número. Completá todo bien!"},
+{id:"ilaber",name:"Laberintos",section:"Juegos de inteligencia",type:"maze",color:"#4ade80",icon:"⌘",intro:"Un laberinto es un camino con paredes donde tenés que encontrar la salida. Usá las flechas para mover a Buggy hasta la estrella. ¡Cuidado con las paredes!"},
+{id:"iasoc",name:"Asociar imágenes",section:"Juegos de inteligencia",type:"match",color:"#facc15",icon:"⇄",intro:"Asociar significa unir dos cosas que van juntas. Tocá primero una figura de la izquierda y luego su nombre de la derecha. Si coinciden, quedan unidas!"},
+{id:"idiff",name:"Encontrar diferencias",section:"Juegos de inteligencia",type:"diff",color:"#f472b6",icon:"✕",intro:"Encontrar diferencias significa mirar dos grupos y descubrir qué cambió. Arriba está el modelo, abajo una casilla es distinta. Tocá la casilla distinta de abajo!"},
 /* ---- JUEGOS (memoria) ---- */
 {id:"ml",name:"Memoria con letras",section:"Juegos",type:"memory",color:"#a78bfa",icon:"▦",sym:"letters"},
 {id:"mn",name:"Memoria con números",section:"Juegos",type:"memory",color:"#22d3ee",icon:"▦",sym:"numbers"},
 {id:"mc",name:"Memoria de colores",section:"Juegos",type:"memory",color:"#f472b6",icon:"▦",sym:"colors"}
 ];
 function mcqL(name,color,icon,qs){var c=mcq(name,color,icon,qs);c.section="Lengua";return c;}
-var SECTIONS=["Vocabulario","Matemática","Lengua","Juegos"];
+var SECTIONS=["Vocabulario","Matemática","Lengua","Juegos de inteligencia","Juegos"];
 var TROPHY_NEED=[10,25,45];
 
 /* ==================== STATE ==================== */
@@ -457,7 +511,35 @@ var save=loadSave();
 var curCat=0,idx=0,score=save.score||0,streak=0,earned=0,firstTry=0,attempts=0,correctSet={};
 var mouthTimer=null,speechQ=[],speakingNow=false;
 var recognition=null,recogSupported=false,recognizing=false;
-var enVoice=null,esVoice=null,timerInt=null;
+var enVoice=null,esVoice=null,timerInt=null,introPlaying=false;
+var INTROS={
+  sf:"Vamos a jugar a las sumas. Sumar es juntar dos cantidades. Por ejemplo 2 manzanas más 3 manzanas son 5. Elegí la respuesta correcta.",
+  sd:"Vamos con sumas difíciles, con números más grandes. Sumá con calma y elegí la respuesta correcta.",
+  rf:"Vamos a jugar a las restas. Restar es quitar una cantidad. Por ejemplo si tenés 5 y te quitan 2, te quedan 3.",
+  rd:"Vamos con restas difíciles. Pensá bien cuánto te queda después de quitar.",
+  mul:"Vamos a multiplicar. Multiplicar es sumar varias veces lo mismo. Por ejemplo 2 por 3 es 2 más 2 más 2, es decir 6.",
+  crono:"Este es un desafío contra reloj: tenés 15 segundos por cuenta. Pensá rápido y respondé antes de que se acabe el tiempo!",
+  sinonimos:"Un sinónimo es una palabra que significa lo mismo que otra. Por ejemplo feliz y contento son sinónimos. Elegí la palabra que significa lo mismo.",
+  "sinonimos-antonimos":"Un sinónimo significa lo mismo (feliz = contento). Un antónimo significa lo contrario (grande es lo contrario de chico). Prestá atención a lo que pide la pregunta.",
+  clasificacion:"Un sustantivo es un nombre (casa, perro). Un verbo es una acción (correr, comer). Un adjetivo describe (rojo, grande). ¿De qué tipo es la palabra?",
+  ortografia:"Ortografía es escribir las palabras bien, sin errores. Entre las opciones, una está escrita correctamente y las otras tienen errores. Encontrá la bien escrita.",
+  lectura:"Vamos a leer. Te muestro una frase corta y después tenés que responder una pregunta sobre lo que dice. Leé con atención.",
+  comprension:"Vamos a leer un cuento corto y después respondemos una pregunta para ver si entendiste. Prestá mucha atención a la historia.",
+  escritura:"Vamos a escribir en inglés. Yo digo una palabra en inglés y vos la escribís con el teclado. Fijate en cada letra!",
+  dictados:"Vamos a hacer un dictado en castellano. Yo digo una palabra y vos la escribís bien. Escuchá con atención.",
+  ordenar:"Vamos a ordenar letras para formar palabras. Yo digo una palabra en inglés y las letras están mezcladas. Tocá las letras en el orden correcto.",
+  oraciones:"Vamos a armar oraciones en inglés. Las palabras están desordenadas. Tocá las palabras en orden para formar la oración que yo digo.",
+  cuento:"Vamos a leer un cuento interactivo. En cada parte podés elegir qué pasa. Leé con atención y elegí tu aventura.",
+  abc:"Vamos a aprender el abecedario. Cada letra tiene su nombre y su sonido. Repetí conmigo en inglés.",
+  fracciones:"Una fracción es una parte de un entero. Por ejemplo si cortamos una torta en dos partes iguales, cada una es la mitad, es decir un medio.",
+  decimales:"Los decimales son números con coma, como cero coma cinco. Sirven para representar partes de un entero.",
+  porcentajes:"Un porcentaje es una parte de cada cien. Por ejemplo el cincuenta por ciento es la mitad de algo.",
+  geometria:"Geometría es el estudio de las formas: cuántos lados tienen, cómo se llaman. Vamos a aprender sobre círculos, triángulos y cuadrados.",
+  medidas:"Medir es saber cuánto mide o pesa algo. Un kilo tiene mil gramos, un metro tiene cien centímetros. Vamos a practicar.",
+  perimetros:"El perímetro es la suma de todos los lados de una figura. El área es el espacio que ocupa adentro. Vamos a calcularlos.",
+  dinero:"Vamos a aprender a contar dinero. Sumá los pesos de las monedas y los billetes para saber cuánto hay.",
+  hora:"Vamos a aprender la hora y el calendario: días de la semana, meses, cuántos minutos tiene una hora. Prestá atención."
+};
 var $=function(id){return document.getElementById(id);};
 function loadSave(){try{var raw=localStorage.getItem("buggyV3");if(raw){var o=JSON.parse(raw);if(o&&o.stars)return o;}}catch(e){}return {stars:CAT.map(function(){return 0;}),score:0};}
 function persist(){try{localStorage.setItem("buggyV3",JSON.stringify(save));}catch(e){}}
@@ -494,7 +576,7 @@ function pump(){
 }
 function stopSpeak(){speechQ=[];if(window.speechSynthesis)speechSynthesis.cancel();speakingNow=false;stopMouthTalk();}
 function teachCard(){
-  stopSpeak();var c=CAT[curCat].cards[idx];
+  if(!introPlaying) stopSpeak();var c=CAT[curCat].cards[idx];
   say("Mira. En castellano: "+c.es,"es-AR");
   say("En inglés se dice:","es-AR");
   say(c.en,"en-US");
@@ -616,7 +698,7 @@ function buildOptions(opts,answer,speakText,lang){
     grid.appendChild(btn);
   });
   $("feedback2").textContent="";$("feedback2").style.color="";
-  setTimeout(function(){stopSpeak();say(speakText,lang);},400);
+  setTimeout(function(){if(!introPlaying) stopSpeak();say(speakText,lang);},400);
 }
 
 /* ==================== TYPE (escritura / dictados) ==================== */
@@ -631,7 +713,7 @@ function renderType(){
   $("mcqQuestion").style.fontSize="16px";
   $("typeInput").value="";$("typeInput").focus();
   $("feedback2").textContent="";$("feedback2").style.color="";
-  setTimeout(function(){stopSpeak();say(typeWord,cat.lang==="en"?"en-US":"es-AR");},400);
+  setTimeout(function(){if(!introPlaying) stopSpeak();say(typeWord,cat.lang==="en"?"en-US":"es-AR");},400);
 }
 function checkType(){
   attempts++;
@@ -679,7 +761,7 @@ function renderSpell(){
     tiles.appendChild(b);
   });
   $("spellAnswer").innerHTML="";$("feedback2").textContent="";$("feedback2").style.color="";
-  setTimeout(function(){stopSpeak();say(spellWord,"en-US");},400);
+  setTimeout(function(){if(!introPlaying) stopSpeak();say(spellWord,"en-US");},400);
 }
 
 /* ==================== SENTENCE (armado de oraciones) ==================== */
@@ -713,7 +795,7 @@ function renderSentence(){
     tiles.appendChild(b);
   });
   $("spellAnswer").innerHTML="";$("feedback2").textContent="";$("feedback2").style.color="";
-  setTimeout(function(){stopSpeak();say(sentenceTarget.join(" "),"en-US");},400);
+  setTimeout(function(){if(!introPlaying) stopSpeak();say(sentenceTarget.join(" "),"en-US");},400);
 }
 
 /* ==================== STORY (cuento interactivo) ==================== */
@@ -743,15 +825,168 @@ function renderStory(){
     b.addEventListener("click",function(){sndClick();storyNode=cat.story[opt.n];renderStory();});
     row.appendChild(b);
   });
-  stopSpeak();say(node.t,"es-AR");
+  if(!introPlaying) stopSpeak();say(node.t,"es-AR");
 }
 
+/* ==================== JUEGOS DE INTELIGENCIA (motores) ==================== */
+function showCustom(){
+  $("mcqQuestion").style.display="none";$("mcqOptions").style.display="none";
+  $("typeRow").style.display="none";$("spellRow").style.display="none";$("storyRow").style.display="none";
+  $("customRow").style.display="block";$("feedback2").textContent="";$("feedback2").style.color="";
+}
+function winGame(){
+  earned=6;firstTry=6;streak++;score+=60;save.score=score;persist();updateHUD();sndFanfare();celebrate();
+  say("¡Increíble! Lo resolviste perfecto.","es-AR");
+  setTimeout(showComplete,1600);
+}
+/* --- Rompecabezas deslizante 3x3 --- */
+function renderPuzzle(){
+  showCustom();attempts=0;
+  var p=[1,2,3,4,5,6,7,8,0];
+  for(var m=0;m<40;m++){var e=p.indexOf(0);var nb=[];if(e%3>0)nb.push(e-1);if(e%3<2)nb.push(e+1);if(e>=3)nb.push(e-3);if(e<6)nb.push(e+3);var r=nb[Math.floor(Math.random()*nb.length)];p[e]=p[r];p[r]=0;}
+  var row=$("customRow");row.innerHTML='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:240px;margin:0 auto;" id="pzGrid"></div><p style="text-align:center;font-size:12px;color:var(--muted);margin:8px 0 0;">Tocá un número al lado del espacio vacío para moverlo</p>';
+  function draw(){
+    var g=$("pzGrid");g.innerHTML="";
+    p.forEach(function(v,i){
+      var b=document.createElement("button");
+      b.className="btn rounded-xl";b.style.aspectRatio="1";b.style.fontSize="24px";b.style.fontWeight="700";
+      if(v===0){b.style.background="rgba(139,147,194,.15)";b.textContent="";}
+      else{b.style.background="linear-gradient(135deg,var(--accent),#0ea5e9)";b.style.color="#0b1026";b.textContent=v;}
+      b.addEventListener("click",function(){
+        var e=p.indexOf(0);var adj=(Math.abs(i-e)===1&&Math.floor(i/3)===Math.floor(e/3))||Math.abs(i-e)===3;
+        if(v!==0&&adj){p[e]=v;p[i]=0;sndClick();draw();
+          if(p.join(",")==="1,2,3,4,5,6,7,8,0"){winGame();}
+        } else if(v!==0){sndWrong();}
+      });
+      g.appendChild(b);
+    });
+  }
+  draw();
+}
+/* --- Sudoku infantil 4x4 --- */
+function renderSudoku(){
+  showCustom();attempts=0;
+  var sol=[[1,2,3,4],[3,4,1,2],[2,1,4,3],[4,3,2,1]];
+  var given=[[1,0,0,4],[0,4,0,0],[0,0,4,0],[4,0,0,1]];
+  var gv=JSON.parse(JSON.stringify(given));
+  var row=$("customRow");row.innerHTML='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;max-width:260px;margin:0 auto;" id="sdGrid"></div><button id="sdCheck" class="btn rounded-xl px-5 py-2.5 mt-3 w-full" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">Comprobar</button><p style="text-align:center;font-size:12px;color:var(--muted);margin:8px 0 0;">Tocá las casillas vacías para poner 1, 2, 3 o 4 sin repetir en filas ni columnas</p>';
+  function draw(){
+    var g=$("sdGrid");g.innerHTML="";
+    for(var r=0;r<4;r++)for(var c=0;c<4;c++){
+      var b=document.createElement("button");
+      b.className="btn rounded-lg";b.style.aspectRatio="1";b.style.fontSize="18px";b.style.fontWeight="700";
+      if(given[r][c]!==0){b.style.background="var(--card)";b.style.color="var(--accent)";b.textContent=given[r][c];b.style.border="2px solid var(--border)";}
+      else{b.style.background="rgba(34,211,238,.15)";b.style.color="var(--text)";b.style.border="2px solid var(--accent)";b.textContent=gv[r][c]||"?";
+        b.addEventListener("click",(function(rr,cc){return function(){gv[rr][cc]=(gv[rr][cc]%4)+1;sndClick();draw();};})(r,c));}
+      g.appendChild(b);
+    }
+  }
+  draw();
+  $("sdCheck").addEventListener("click",function(){
+    var ok=true;
+    for(var r=0;r<4;r++)for(var c=0;c<4;c++){if(gv[r][c]!==sol[r][c])ok=false;}
+    if(ok){winGame();}else{attempts++;onWrong();$("feedback2").textContent="Casi! Revisá las casillas y probá de nuevo.";$("feedback2").style.color="#f87171";say("Casi. Revisá las casillas y probá de nuevo.","es-AR");}
+  });
+}
+/* --- Laberinto 5x5 --- */
+function renderMaze(){
+  showCustom();attempts=0;
+  var walls={"1,1":1,"2,2":1,"3,3":1,"1,3":1,"3,1":1};
+  var pos={r:0,c:0};var goal={r:4,c:4};
+  var row=$("customRow");
+  row.innerHTML='<div id="mzGrid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;max-width:260px;margin:0 auto;"></div><div style="display:flex;gap:6px;justify-content:center;margin-top:10px;"><button data-d="u" class="btn mzBtn rounded-lg px-4 py-2" style="background:var(--card);border:1px solid var(--accent);color:var(--text);font-weight:700;">▲</button></div><div style="display:flex;gap:6px;justify-content:center;margin-top:4px;"><button data-d="l" class="btn mzBtn rounded-lg px-4 py-2" style="background:var(--card);border:1px solid var(--accent);color:var(--text);font-weight:700;">◀</button><button data-d="d" class="btn mzBtn rounded-lg px-4 py-2" style="background:var(--card);border:1px solid var(--accent);color:var(--text);font-weight:700;">▼</button><button data-d="r" class="btn mzBtn rounded-lg px-4 py-2" style="background:var(--card);border:1px solid var(--accent);color:var(--text);font-weight:700;">▶</button></div><p style="text-align:center;font-size:12px;color:var(--muted);margin:8px 0 0;">Llevá a Buggy hasta la estrella ★</p>';
+  function draw(){
+    var g=$("mzGrid");g.innerHTML="";
+    for(var r=0;r<5;r++)for(var c=0;c<5;c++){
+      var d=document.createElement("div");d.style.aspectRatio="1";d.style.borderRadius="6px";d.style.display="flex";d.style.alignItems="center";d.style.justifyContent="center";d.style.fontWeight="700";d.style.fontSize="14px";
+      if(walls[r+","+c]){d.style.background="#1e293b";}
+      else if(pos.r===r&&pos.c===c){d.style.background="var(--accent)";d.style.color="#0b1026";d.textContent="B";}
+      else if(goal.r===r&&goal.c===c){d.style.background="var(--gold)";d.style.color="#7c2d12";d.textContent="★";}
+      else{d.style.background="rgba(139,147,194,.12)";}
+      g.appendChild(d);
+    }
+  }
+  draw();
+  Array.prototype.forEach.call(row.querySelectorAll(".mzBtn"),function(b){
+    b.addEventListener("click",function(){
+      var dr=0,dc=0;var d=b.dataset.d;
+      if(d==="u")dr=-1;if(d==="d")dr=1;if(d==="l")dc=-1;if(d==="r")dc=1;
+      var nr=pos.r+dr,nc=pos.c+dc;
+      if(nr>=0&&nr<5&&nc>=0&&nc<5&&!walls[nr+","+nc]){pos.r=nr;pos.c=nc;sndClick();draw();
+        if(pos.r===goal.r&&pos.c===goal.c){winGame();}
+      } else {sndWrong();$("feedback2").textContent="¡Ahí hay una pared!";$("feedback2").style.color="#f87171";setTimeout(function(){$("feedback2").textContent="";},800);}
+    });
+  });
+}
+/* --- Asociar imágenes (match) --- */
+function renderMatch(){
+  showCustom();attempts=0;
+  var pairs=[["●","Círculo"],["▲","Triángulo"],["■","Cuadrado"],["★","Estrella"]];
+  var right=pairs.map(function(p){return p[1];});shuffle(right);
+  var selLeft=null,matched=0;
+  var row=$("customRow");
+  row.innerHTML='<div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;"><div id="mtLeft" style="display:flex;flex-direction:column;gap:8px;"></div><div id="mtRight" style="display:flex;flex-direction:column;gap:8px;"></div></div><p style="text-align:center;font-size:12px;color:var(--muted);margin:8px 0 0;">Tocá una figura y luego su nombre</p>';
+  var L=$("mtLeft"),R=$("mtRight");
+  pairs.forEach(function(p){
+    var b=document.createElement("button");b.className="btn rounded-xl px-5 py-3";b.style.fontSize="22px";b.style.fontWeight="700";b.style.background="var(--card)";b.style.border="2px solid var(--accent)";b.style.color="var(--text)";b.textContent=p[0];b.dataset.sym=p[0];b.dataset.name=p[1];
+    b.addEventListener("click",function(){if(b.classList.contains("matched"))return;Array.prototype.forEach.call(L.children,function(x){x.style.borderColor="var(--accent)";});b.style.borderColor="var(--gold)";selLeft=b;sndClick();});
+    L.appendChild(b);
+  });
+  right.forEach(function(name){
+    var b=document.createElement("button");b.className="btn rounded-xl px-4 py-3";b.style.fontSize="14px";b.style.fontWeight="600";b.style.background="var(--card)";b.style.border="2px solid var(--border)";b.style.color="var(--text)";b.textContent=name;b.dataset.name=name;
+    b.addEventListener("click",function(){
+      if(b.classList.contains("matched")||!selLeft)return;
+      if(selLeft.dataset.name===name){
+        selLeft.classList.add("matched");b.classList.add("matched");
+        selLeft.style.borderColor="var(--green)";selLeft.style.background="rgba(74,222,128,.2)";
+        b.style.borderColor="var(--green)";b.style.background="rgba(74,222,128,.2)";
+        selLeft=null;matched++;sndCorrect();say("¡Muy bien!","es-AR");
+        if(matched>=4){winGame();}
+      } else {
+        onWrong();b.classList.add("shake");setTimeout(function(){b.classList.remove("shake");},500);selLeft.style.borderColor="var(--accent)";selLeft=null;
+      }
+    });
+    R.appendChild(b);
+  });
+}
+/* --- Encontrar diferencias (6 rondas) --- */
+var diffRound=0;
+function renderDiff(){
+  showCustom();attempts=0;diffRound=0;diffNext();
+}
+function diffNext(){
+  var sets=[["A","B","C","D"],["1","2","3","4"],["●","▲","■","★"],["R","A","V","Y"],["+","−","×","÷"],["♠","♣","♥","♦"]];
+  var base=sets[diffRound%sets.length].slice();
+  var bottom=base.slice();
+  var di=Math.floor(Math.random()*4);
+  var alt=base[(di+1+Math.floor(Math.random()*3))%4];
+  bottom[di]=alt;
+  var row=$("customRow");
+  row.innerHTML='<div style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:6px;">Modelo (arriba)</div><div id="dfTop" style="display:flex;gap:8px;justify-content:center;margin-bottom:12px;"></div><div style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:6px;">Tocá la que es distinta (abajo)</div><div id="dfBottom" style="display:flex;gap:8px;justify-content:center;"></div>';
+  var T=$("dfTop"),B=$("dfBottom");
+  base.forEach(function(s){var d=document.createElement("div");d.className="tile";d.style.width="46px";d.style.height="46px";d.style.fontSize="20px";d.style.background="var(--card)";d.style.border="2px solid var(--border)";d.style.color="var(--accent)";d.textContent=s;T.appendChild(d);});
+  bottom.forEach(function(s,i){
+    var b=document.createElement("button");b.className="btn tile";b.style.width="46px";b.style.height="46px";b.style.fontSize="20px";b.style.background="var(--card)";b.style.border="2px solid var(--accent)";b.style.color="var(--text)";b.textContent=s;
+    b.addEventListener("click",function(){
+      attempts++;
+      if(i===di){
+        attempts++;earned++;streak++;score+=10+(streak>=3?5:0);save.score=score;persist();updateHUD();sndCorrect();diffRound++;
+        $("feedback2").textContent="¡Correcto! Encontraste la diferencia.";$("feedback2").style.color="var(--green)";
+        if(diffRound>=6){firstTry=diffRound;setTimeout(showComplete,1400);}else{setTimeout(diffNext,1100);}
+      } else {
+        onWrong();b.classList.add("shake");setTimeout(function(){b.classList.remove("shake");},500);
+        $("feedback2").textContent="No, esa es igual. Mirá de nuevo.";$("feedback2").style.color="#f87171";
+      }
+    });
+    B.appendChild(b);
+  });
+}
 /* ==================== MEMORY ==================== */
 var memFirst=null,memLock=false,memMoves=0,memPairs=0;
 function renderMemory(){
   memFirst=null;memLock=false;memMoves=0;memPairs=0;earned=0;updateHUD();
   $("memMoves").textContent="0";$("memPairs").textContent="0";
-  var cat=CAT[curCat];var syms=cat.sym==="numbers"?["1","2","3","4","5","6"]:(cat.sym==="colors"?["R","A","V","Y","N","M"]:["A","B","C","D","E","F"]);
+  var cat=CAT[curCat];var syms=cat.sym==="numbers"?["1","2","3","4","5","6"]:(cat.sym==="colors"?["R","A","V","Y","N","M"]:(cat.sym==="shapes"?["●","▲","■","★","♥","◆"]:["A","B","C","D","E","F"]));
   var colMap={R:"#ef4444",A:"#3b82f6",V:"#22c55e",Y:"#eab308",N:"#f97316",M:"#ec4899"};
   var deck=syms.concat(syms);shuffle(deck);
   var grid=$("memGrid");grid.innerHTML="";
@@ -831,9 +1066,11 @@ function startCategory(i){
   var cat=CAT[i];
   $("levelTitle").textContent=cat.name;$("levelTitle").style.color=cat.color;
   $("homeScreen").classList.add("hidden-screen");$("gameScreen").classList.remove("hidden-screen");
-  $("levelOverlay").style.display="none";stopSpeak();stopTimer();
+  $("levelOverlay").style.display="none";stopSpeak();stopTimer();introPlaying=false;
+  var introText=cat.intro||INTROS[cat.id]||"";
+  if(introText){introPlaying=true;say(introText,"es-AR",function(){introPlaying=false;});}
   $("flashPanel").style.display=cat.type==="flash"?"":"none";
-  $("mcqPanel").style.display=(cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story")?"":"none";
+  $("mcqPanel").style.display=(cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story"||cat.type==="puzzle"||cat.type==="sudoku"||cat.type==="maze"||cat.type==="match"||cat.type==="diff")?"":"none";
   $("memPanel").style.display=cat.type==="memory"?"":"none";
   updateHUD();
   if(cat.type==="flash"){renderFlash();setTimeout(teachCard,500);}
@@ -842,6 +1079,11 @@ function startCategory(i){
   else if(cat.type==="spell"){renderSpell();}
   else if(cat.type==="sentence"){renderSentence();}
   else if(cat.type==="story"){renderStory();}
+  else if(cat.type==="puzzle"){renderPuzzle();}
+  else if(cat.type==="sudoku"){renderSudoku();}
+  else if(cat.type==="maze"){renderMaze();}
+  else if(cat.type==="match"){renderMatch();}
+  else if(cat.type==="diff"){renderDiff();}
   else {renderMCQ();}
   sndClick();window.scrollTo({top:0,behavior:"smooth"});
 }
