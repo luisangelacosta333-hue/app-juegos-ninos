@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Boogie Buggy — Inglés para chicos</title>
+<title>Boogie — Inglés para chicos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -21,7 +21,7 @@ body{font-family:var(--font);color:var(--ink);min-height:100vh;overflow-x:hidden
 .orb.o3{width:260px;height:260px;background:#db2777;top:40%;left:60%;animation-delay:-7s}
 @keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.1)}}
 #app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:14px 14px 110px}
-.glass{background:rgba(255,255,255,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1.5px solid rgba(255,255,255,.8);border-radius:26px;box-shadow:0 12px 32px rgba(0,0,40,.3)}
+.glass{background:rgba(255,255,255,.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1.5px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:0 16px 44px rgba(30,20,80,.4), inset 0 1px 0 rgba(255,255,255,.7)}
 .view{display:none;animation:fade .35s ease}.view.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
 @keyframes pop{0%{transform:scale(.5)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
@@ -165,8 +165,8 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;letter-spacing:.5px;margin
 
 <section class="view active" id="view-home">
   <div style="height:6px"></div>
-  <h1>🚀 BOOGIE BUGGY 🚀</h1>
-  <p class="sub">El astronauta Astro te habla, te explica cada palabra y te enseña inglés</p>
+  <h1>🚀 BOOGIE 🚀</h1>
+  <p class="sub">El astronauta que te enseña inglés · hablá con él y aprendé jugando</p>
   <div class="astro-wrap">
     <div class="astro-float" id="astroHome"></div>
     <div class="bubble" id="homeBubble">¡Hola! Soy Boogie Buggy, el astronauta. Vuelo por el espacio y te enseño inglés. Tocame y hablo.</div>
@@ -649,7 +649,8 @@ var GAMES=[
  {id:"abecedario",cat:"abc",   em:"🔡", nm:"Abecedario completo", st:"A a la Z · inglés y español"},
  {id:"numeros",   cat:"mate",  em:"🔢", nm:"Números 1 al 100",    st:"Inglés y castellano"},
  {id:"oraciones", cat:"leer",  em:"📖", nm:"Oraciones para leer", st:"Aprendé a leer y traducir"},
- {id:"dias",      cat:"vocab", em:"📅", nm:"Días de la semana",  st:"Lunes a domingo en inglés"}
+ {id:"dias",      cat:"vocab", em:"📅", nm:"Días de la semana",  st:"Lunes a domingo en inglés"},
+ {id:"meses",     cat:"vocab", em:"📆", nm:"Meses del año",      st:"Enero a diciembre en inglés"}
 ];
 
 /* ---------- utilidades ---------- */
@@ -775,6 +776,7 @@ function startGame(id){
   else if(id==="numeros"){ gameNumeros(); }
   else if(id==="oraciones"){ gameOraciones(); }
   else if(id==="dias"){ gameDias(); }
+  else if(id==="meses"){ gameMeses(); }
 }
 
 /* ===== QUIZ GENÉRICO DE VOCABULARIO (siempre explica la palabra) ===== */
@@ -906,12 +908,12 @@ function qSound(){
 function qMayus(){
   var t=LETTERS[Math.floor(Math.random()*26)];
   var opts=pickN(LETTERS.filter(function(l){return l!==t;}),3).concat([t]);
-  quizUI({targetWord:"Letra grande: "+t, sub:"¿Cuál es la letra chiquita igual?", options:shuffle(opts).map(function(l){return {label:l.toLowerCase(),ok:l===t};}), askText:"La letra grande es "+t+". ¿Cuál es su letra chiquita?"});
+  quizUI({targetWord:"Letra grande: "+t, sub:"¿Cuál es la letra chiquita igual?", options:shuffle(opts).map(function(l){return {label:l.toLowerCase(),ok:l===t};}), askText:"La letra grande es "+t+". ¿Cuál es su letra chiquita?", replayText:t, speakLang:"en-US", teach:{em:"🔠",en:t,es:(LETRA_ES&&LETRA_ES[t])?LETRA_ES[t]:t,ap:"letra mayúscula y minúscula"}});
 }
 function qAbc(){
   var i=Math.floor(Math.random()*24); var t=LETTERS[i+1];
   var opts=pickN(LETTERS.filter(function(l){return l!==t;}),3).concat([t]);
-  quizUI({targetWord:LETTERS[i]+" → ?", sub:"¿Qué letra sigue en el abecedario?", options:shuffle(opts).map(function(l){return {label:l,ok:l===t};}), askText:"Después de la letra "+LETTERS[i]+", ¿qué letra sigue?"});
+  quizUI({targetWord:LETTERS[i]+" → ?", sub:"¿Qué letra sigue en el abecedario?", options:shuffle(opts).map(function(l){return {label:l,ok:l===t};}), askText:"Después de la letra "+LETTERS[i]+", ¿qué letra sigue?", replayText:t, speakLang:"en-US", teach:{em:"🔤",en:t,es:(LETRA_ES&&LETRA_ES[t])?LETRA_ES[t]:t,ap:"letra del abecedario"}});
 }
 function qMath(op){
   var a=1+Math.floor(Math.random()*9), b=1+Math.floor(Math.random()*9);
@@ -1451,6 +1453,39 @@ function gameDias(){
     });
   });
   $("diasDone").addEventListener("click", function(){ gameState.correct=gameState.total; endGame(); });
+}
+
+/* ===== MESES DEL AÑO ===== */
+var MESES=[
+ {es:"enero",en:"January",em:"❄️"},{es:"febrero",en:"February",em:"💝"},
+ {es:"marzo",en:"March",em:"🌸"},{es:"abril",en:"April",em:"🌧️"},
+ {es:"mayo",en:"May",em:"🌷"},{es:"junio",en:"June",em:"☀️"},
+ {es:"julio",en:"July",em:"🏖️"},{es:"agosto",en:"August",em:"🌻"},
+ {es:"septiembre",en:"September",em:"🍂"},{es:"octubre",en:"October",em:"🎃"},
+ {es:"noviembre",en:"November",em:"🦃"},{es:"diciembre",en:"December",em:"🎄"}
+];
+function gameMeses(){
+  gameState.total=1;
+  var html='<div class="glass center" style="padding:10px;margin-bottom:12px">Los 12 meses del año · tocá para escuchar en inglés 🇬🇧 y castellano 🇦🇷</div>';
+  html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:420px;overflow-y:auto;padding:4px">';
+  MESES.forEach(function(m,i){
+    html+='<button class="mes-btn" data-i="'+i+'" style="border:none;border-radius:14px;padding:12px;font-family:var(--font);font-weight:700;cursor:pointer;color:var(--ink);background:rgba(255,255,255,.92);box-shadow:0 4px 12px rgba(30,20,80,.2);text-align:left;font-size:.9rem">'+
+      '<span style="font-size:1.3rem">'+m.em+'</span> <b style="color:#6366f1">'+m.en+'</b><br><span style="font-size:.78rem;color:var(--soft)">'+m.es+'</span></button>';
+  });
+  html+='</div><div class="center mt"><button class="btn btn-green big" id="mesesDone">¡Terminé! ⭐</button></div>';
+  $("gameArea").innerHTML=html;
+  astroSay("Estos son los meses del año. Tocá uno y lo escuchás en inglés y en castellano.", $("gameBubble"));
+  document.querySelectorAll(".mes-btn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var m=MESES[parseInt(b.getAttribute("data-i"),10)];
+      saySequence([
+        {text:"En castellano: "+m.es+".", lang:"es-AR"},
+        {text:"En inglés se dice: "+m.en+".", lang:"es-AR"},
+        {text:m.en, lang:"en-US", rate:0.8}
+      ]);
+    });
+  });
+  $("mesesDone").addEventListener("click", function(){ gameState.correct=gameState.total; endGame(); });
 }
 
 /* ===== fin de juego ===== */
