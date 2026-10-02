@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Boogie — Inglés para chicos</title>
+<title>Buggy — Inglés para chicos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -165,11 +165,11 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;letter-spacing:.5px;margin
 
 <section class="view active" id="view-home">
   <div style="height:6px"></div>
-  <h1>🚀 BOOGIE 🚀</h1>
+  <h1>🚀 BUGGY 🚀</h1>
   <p class="sub">El astronauta que te enseña inglés · hablá con él y aprendé jugando</p>
   <div class="astro-wrap">
     <div class="astro-float" id="astroHome"></div>
-    <div class="bubble" id="homeBubble">¡Hola! Soy Boogie Buggy, el astronauta. Vuelo por el espacio y te enseño inglés. Tocame y hablo.</div>
+    <div class="bubble" id="homeBubble">¡Hola! Soy Buggy, el astronauta. Vuelo por el espacio y te enseño inglés. Tocame y hablo.</div>
   </div>
   <div class="glass center no-print" style="padding:10px 14px;margin-bottom:10px">
     <div id="audioStatus" style="font-weight:800;font-size:.85rem;margin-bottom:6px">🔊 Comprobando audio...</div>
@@ -272,7 +272,12 @@ frutas:[
  {em:"🥭",en:"Mango",es:"mango",ap:"mán-gou"},
  {em:"🥝",en:"Kiwi",es:"kiwi",ap:"quí-ui"},
  {em:"🥥",en:"Coconut",es:"coco",ap:"có-conat"},
- {em:"🫐",en:"Blueberry",es:"arándano",ap:"blú-beri"}
+ {em:"🫐",en:"Blueberry",es:"arándano",ap:"blú-beri"},
+ {em:"🍈",en:"Melon",es:"melón",ap:"mé-lon"},
+ {em:"🍅",en:"Tomato",es:"tomate",ap:"to-méi-tou"},
+ {em:"🥑",en:"Avocado",es:"palta",ap:"á-va-ca-dou"},
+ {em:"🍇",en:"Grapes",es:"uvas",ap:"greips"},
+ {em:"🌽",en:"Corn",es:"maíz",ap:"corn"}
 ],
 animales:[
  {em:"🐜",en:"Ant",es:"hormiga",ap:"ant"},
@@ -551,16 +556,17 @@ function saySequence(arr){
 var OPENERS=["Atención! ","Escuchá bien! ","Vamos a aprender juntos! ","Mirá qué palabra! ","Aprendemos algo nuevo! ","Poné atención! ","Ahora vamos con: "];
 function teachWord(v, bubbleEl){
   var opener = OPENERS[Math.floor(Math.random()*OPENERS.length)];
+  var enSay = (v.en && v.en.length===1 && LETRA_EN[v.en]) ? LETRA_EN[v.en] : v.en;
   if(bubbleEl){
     bubbleEl.innerHTML = v.em+' <b>'+opener+'</b><br>En castellano es: <b>'+v.es+'</b><br>Ahora en inglés se dice: <b style="color:#4f7cff">'+v.en+'</b><br>Se pronuncia: <i>'+v.ap+'</i><br>👉 Ahora repetí vos! Tocá 🎤 y decilo.';
   }
   saySequence([
     {text:opener+" En castellano, esto es: "+v.es+".", lang:"es-AR"},
     {text:"Ahora en inglés se dice: "+v.en+".", lang:"es-AR"},
-    {text:v.en, lang:"en-US", rate:0.8},
+    {text:enSay, lang:"en-US", rate:0.8},
     {text:"Se pronuncia: "+v.ap+".", lang:"es-AR"},
     {text:"Ahora repetí vos: "+v.en+"! Tocá el botón del micrófono y decilo.", lang:"es-AR"},
-    {text:v.en, lang:"en-US", rate:0.8}
+    {text:enSay, lang:"en-US", rate:0.8}
   ]);
 }
 function astroSay(text, bubbleEl){
@@ -897,7 +903,7 @@ function quizUI(opts){
 function qLetters(){
   var t=LETTERS[Math.floor(Math.random()*26)];
   var opts=pickN(LETTERS.filter(function(l){return l!==t;}),3).concat([t]);
-  quizUI({targetWord:"🔤 ?", sub:"Tocá la letra que dice Astro", options:shuffle(opts).map(function(l){return {label:l,ok:l===t};}), askText:"Tocá la letra "+t, replayText:t, speakLang:"en-US", teach:{em:"🔤",en:t,es:(LETRA_ES&&LETRA_ES[t])?LETRA_ES[t]:t,ap:"letra del abecedario"}});
+  quizUI({targetWord:"🔤 ?", sub:"Tocá la letra que dice Buggy", options:shuffle(opts).map(function(l){return {label:l,ok:l===t};}), askText:"Tocá la letra "+t, replayText:(LETRA_EN[t]||t), speakLang:"en-US", teach:{em:"🔤",en:t,es:(LETRA_ES&&LETRA_ES[t])?LETRA_ES[t]:t,ap:"letra del abecedario"}});
 }
 function qSound(){
   var v=pickN(ALLVOCAB.filter(function(x){return x.en.length>2;}),1)[0];
@@ -908,12 +914,12 @@ function qSound(){
 function qMayus(){
   var t=LETTERS[Math.floor(Math.random()*26)];
   var opts=pickN(LETTERS.filter(function(l){return l!==t;}),3).concat([t]);
-  quizUI({targetWord:"Letra grande: "+t, sub:"¿Cuál es la letra chiquita igual?", options:shuffle(opts).map(function(l){return {label:l.toLowerCase(),ok:l===t};}), askText:"La letra grande es "+t+". ¿Cuál es su letra chiquita?", replayText:t, speakLang:"en-US", teach:{em:"🔠",en:t,es:(LETRA_ES&&LETRA_ES[t])?LETRA_ES[t]:t,ap:"letra mayúscula y minúscula"}});
+  quizUI({targetWord:"Letra grande: "+t, sub:"¿Cuál es la letra chiquita igual?", options:shuffle(opts).map(function(l){return {label:l.toLowerCase(),ok:l===t};}), askText:"La letra grande es "+t+". ¿Cuál es su letra chiquita?", replayText:(LETRA_EN[t]||t), speakLang:"en-US", teach:{em:"🔠",en:t,es:(LETRA_ES&&LETRA_ES[t])?LETRA_ES[t]:t,ap:"letra mayúscula y minúscula"}});
 }
 function qAbc(){
   var i=Math.floor(Math.random()*24); var t=LETTERS[i+1];
   var opts=pickN(LETTERS.filter(function(l){return l!==t;}),3).concat([t]);
-  quizUI({targetWord:LETTERS[i]+" → ?", sub:"¿Qué letra sigue en el abecedario?", options:shuffle(opts).map(function(l){return {label:l,ok:l===t};}), askText:"Después de la letra "+LETTERS[i]+", ¿qué letra sigue?", replayText:t, speakLang:"en-US", teach:{em:"🔤",en:t,es:(LETRA_ES&&LETRA_ES[t])?LETRA_ES[t]:t,ap:"letra del abecedario"}});
+  quizUI({targetWord:LETTERS[i]+" → ?", sub:"¿Qué letra sigue en el abecedario?", options:shuffle(opts).map(function(l){return {label:l,ok:l===t};}), askText:"Después de la letra "+LETTERS[i]+", ¿qué letra sigue?", replayText:(LETRA_EN[t]||t), speakLang:"en-US", teach:{em:"🔤",en:t,es:(LETRA_ES&&LETRA_ES[t])?LETRA_ES[t]:t,ap:"letra del abecedario"}});
 }
 function qMath(op){
   var a=1+Math.floor(Math.random()*9), b=1+Math.floor(Math.random()*9);
@@ -1332,6 +1338,8 @@ function qSecuencia(){
 
 /* ===== ABECEDARIO COMPLETO (A-Z, inglés y español) ===== */
 var LETRA_ES={A:"a",B:"be",C:"ce",D:"de",E:"e",F:"efe",G:"ge",H:"hache",I:"i",J:"jota",K:"ka",L:"ele",M:"eme",N:"ene",O:"o",P:"pe",Q:"ku",R:"ere",S:"ese",T:"te",U:"u",V:"uve",W:"doble uve",X:"ekis",Y:"i griega",Z:"zeta"};
+/* pronunciación fonética inglesa de cada letra (para que suene bien en cualquier dispositivo) */
+var LETRA_EN={A:"ei",B:"bi",C:"si",D:"di",E:"i",F:"ef",G:"yi",H:"eich",I:"ai",J:"yei",K:"kei",L:"el",M:"em",N:"en",O:"ou",P:"pi",Q:"kiu",R:"ar",S:"es",T:"ti",U:"iu",V:"vi",W:"dabl iu",X:"ex",Y:"uai",Z:"zi"};
 function gameAbecedario(){
   gameState.total=1;
   var html='<div class="glass center" style="padding:10px;margin-bottom:12px">Tocá cada letra para escucharla en inglés y en español 🎧</div>';
@@ -1350,7 +1358,7 @@ function gameAbecedario(){
       saySequence([
         {text:"La letra "+L+". En castellano se dice: "+(LETRA_ES[L]||L)+".", lang:"es-AR"},
         {text:"Ahora en inglés se pronuncia diferente, escuchá:", lang:"es-AR"},
-        {text:L, lang:"en-US", rate:0.75},
+        {text:LETRA_EN[L]||L, lang:"en-US", rate:0.75},
         {text:"¿Escuchaste? Es distinto a como se dice en castellano.", lang:"es-AR"}
       ]);
     });
@@ -1601,7 +1609,7 @@ document.addEventListener("click", function(ev){
   if(t.closest("#astroHome")){
     var aw=document.querySelector("#astroHome");
     if(aw){ aw.classList.add("spin"); setTimeout(function(){aw.classList.remove("spin");},900); }
-    var frases=["¡Hola! Soy Boogie Buggy, el astronauta. ¿Jugamos?","¡Tocá un juego y empezá a aprender inglés!","¡Yo te hablo, te explico cada palabra y te escucho!","¡Vamos al espacio del inglés juntos!","¡Qué bueno verte! ¿Qué querés aprender hoy?"];
+    var frases=["¡Hola! Soy Buggy, el astronauta. ¿Jugamos?","¡Tocá un juego y empezá a aprender inglés!","¡Yo te hablo, te explico cada palabra y te escucho!","¡Vamos al espacio del inglés juntos!","¡Qué bueno verte! ¿Qué querés aprender hoy?"];
     astroSay(frases[Math.floor(Math.random()*frases.length)], $("homeBubble")); return;
   }
   if(t.closest("#astroGame")){ astroSay("¡Vamos que se puede, astronauta!", $("gameBubble")); return; }
@@ -1623,7 +1631,7 @@ setTimeout(updateAudioStatus, 1500);
 var firstTap=false;
 document.addEventListener("click", function(){
   if(firstTap) return; firstTap=true;
-  setTimeout(function(){ astroSay("¡Hola! Soy Boogie Buggy, el astronauta. Vuelo por el espacio y te enseño inglés. Tocá un juego para empezar!", $("homeBubble")); }, 400);
+  setTimeout(function(){ astroSay("¡Hola! Soy Buggy, el astronauta. Vuelo por el espacio y te enseño inglés. Tocá un juego para empezar!", $("homeBubble")); }, 400);
 }, {once:true});
 
 })();
