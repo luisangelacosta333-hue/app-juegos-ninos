@@ -1,16 +1,10 @@
-<!-- ============================================================
-  BUGGY - SUPER APP EDUCATIVA · 41 JUEGOS · LISTA PARA PRODUCCION
-  Personaje: Buggy. Habla en castellano explicando todo.
-  Las palabras se pronuncian SOLO en ingles. Microfono para que
-  el nino repita. 100% gratuita. Espacio Google AdMob incluido.
-  Guardar como index.html en GitHub (GitHub Pages).
-============================================================ -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buggy - Aprendé Inglés Jugando · 41 Juegos Educativos</title>
+<title>Buggy Aprende · 55 Juegos Educativos</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -20,9 +14,9 @@
   .starfield{position:absolute;inset:0;overflow:hidden;pointer-events:none;border-radius:inherit}
   .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 3s ease-in-out infinite}
   @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
-  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   #astroWrap{animation:floaty 4s ease-in-out infinite;transform-origin:center bottom}
-  @keyframes celebrateJump{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-26px) rotate(-4deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-20px) rotate(4deg)}}
+  @keyframes celebrateJump{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-22px) rotate(-4deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-16px) rotate(4deg)}}
   #astroWrap.celebrate{animation:celebrateJump .7s ease-in-out 3}
   @keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
   .eyes{animation:blink 4.5s infinite;transform-origin:center}
@@ -31,18 +25,18 @@
   .btn:active{transform:scale(.94)}
   .btn:hover{filter:brightness(1.1)}
   .pulse-ring{animation:pulseRing 1.6s ease-out infinite}
-  @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(34,211,238,.5)}70%{box-shadow:0 0 0 18px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+  @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(34,211,238,.5)}70%{box-shadow:0 0 0 16px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
   .listening{animation:pulseRing 1.2s ease-out infinite}
   .word-letter{display:inline-block;animation:letterPop .5s ease backwards}
-  @keyframes letterPop{0%{opacity:0;transform:translateY(18px) scale(.6)}100%{opacity:1;transform:translateY(0) scale(1)}}
-  @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+  @keyframes letterPop{0%{opacity:0;transform:translateY(14px) scale(.6)}100%{opacity:1;transform:translateY(0) scale(1)}}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
   .shake{animation:shake .45s ease}
   .progress-fill{transition:width .6s cubic-bezier(.22,1,.36,1)}
   .glass{background:rgba(20,26,56,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--border)}
   .fade-in{animation:fadeIn .4s ease forwards}
   @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
   .bubble{position:relative}
-  .bubble::after{content:'';position:absolute;left:36px;bottom:-12px;width:0;height:0;border-left:14px solid transparent;border-right:6px solid transparent;border-top:14px solid var(--card)}
+  .bubble::after{content:'';position:absolute;left:30px;bottom:-10px;width:0;height:0;border-left:12px solid transparent;border-right:5px solid transparent;border-top:12px solid var(--card)}
   .mic-wave{display:inline-block;width:4px;height:14px;margin:0 2px;background:var(--accent);border-radius:2px;animation:micWave 1s ease-in-out infinite;vertical-align:middle}
   .mic-wave:nth-child(2){animation-delay:.15s}.mic-wave:nth-child(3){animation-delay:.3s}.mic-wave:nth-child(4){animation-delay:.45s}
   @keyframes micWave{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.3)}}
@@ -51,7 +45,7 @@
   .cat-card{transition:transform .2s ease,box-shadow .2s ease}
   .cat-card:hover{transform:translateY(-4px)}
   .option-card{transition:transform .15s ease,border-color .2s,background .2s}
-  .option-card:hover{transform:translateY(-3px)}
+  .option-card:hover{transform:translateY(-2px)}
   .option-card.correct{border-color:var(--green)!important;background:rgba(74,222,128,.18)!important;animation:badgePop .4s ease}
   .option-card.wrong{border-color:#f87171!important;background:rgba(248,113,113,.15)!important;animation:shake .45s ease}
   .trophy{transition:all .3s}
@@ -60,87 +54,88 @@
   .big-3d{text-shadow:0 4px 0 rgba(0,0,0,.3),0 8px 24px rgba(34,211,238,.4)}
   .mem-card{position:relative;cursor:pointer;transition:transform .4s;transform-style:preserve-3d;aspect-ratio:1/1;}
   .mem-card.flipped{transform:rotateY(180deg)}
-  .mem-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:700;}
-  .mem-back{background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-size:28px;box-shadow:0 4px 14px rgba(34,211,238,.3);}
-  .mem-front{background:var(--card);border:2px solid var(--border);transform:rotateY(180deg);font-size:22px;}
+  .mem-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;}
+  .mem-back{background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-size:22px;box-shadow:0 4px 14px rgba(34,211,238,.3);}
+  .mem-front{background:var(--card);border:2px solid var(--border);transform:rotateY(180deg);font-size:18px;}
   .mem-card.matched{opacity:.5;pointer-events:none;}
-  .tile{border-radius:18px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.3);box-shadow:0 6px 20px rgba(0,0,0,.3);}
-  .section-label{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:18px 4px 10px;display:flex;align-items:center;gap:10px;}
+  .tile{border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.3);box-shadow:0 6px 20px rgba(0,0,0,.3);}
+  .section-label{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:16px 4px 8px;display:flex;align-items:center;gap:10px;}
   .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
-  .dot{width:14px;height:14px;border-radius:50%;background:var(--accent);display:inline-block;margin:2px;}
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);display:inline-block;margin:2px;}
+  .spell-tile{cursor:pointer;transition:all .15s;}
+  .spell-tile:hover{transform:translateY(-3px)}
+  .spell-tile.used{opacity:.25;pointer-events:none;}
+  .timer-bar{height:8px;background:rgba(139,147,194,.2);border-radius:99px;overflow:hidden;margin-top:8px;}
+  .timer-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold),#f87171);border-radius:99px;transition:width .2s linear;}
 </style>
 </head>
 <body>
-<div class="max-w-4xl mx-auto px-4 py-6 sm:px-6">
+<div class="max-w-5xl mx-auto px-3 py-4 sm:px-5">
 
-  <!-- ================= HOME / LIBRARY ================= -->
+  <!-- ================= HOME ================= -->
   <div id="homeScreen">
-    <div class="text-center mb-5 fade-in">
-      <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:6px;">
-        <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--accent2),#ea580c);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(251,146,60,.45);">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0b1026" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+    <div class="text-center mb-4 fade-in">
+      <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:4px;">
+        <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--accent2),#ea580c);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(251,146,60,.45);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0b1026" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
         </div>
-        <h1 class="big-3d" style="font-size:38px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">Buggy Aprende</h1>
+        <h1 class="big-3d" style="font-size:32px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">Buggy Aprende</h1>
       </div>
-      <p style="color:var(--muted);margin:0;font-size:14px;">41 juegos educativos · Buggy te explica en castellano y pronunciás en inglés</p>
+      <p style="color:var(--muted);margin:0;font-size:13px;">55 juegos educativos · Buggy te explica en castellano</p>
     </div>
-
-    <div class="glass rounded-2xl px-4 py-3 mb-4 flex items-center justify-between flex-wrap gap-3 fade-in">
+    <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
       <div class="flex items-center gap-2">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--gold)" stroke="var(--gold)" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
-        <span style="font-weight:700;font-size:18px;" id="totalStars">0</span><span style="color:var(--muted);font-size:13px;">estrellas</span>
-        <span style="color:var(--muted);font-size:13px;margin-left:10px;">Nivel <strong id="xpLevel" style="color:var(--accent);">1</strong></span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--gold)" stroke="var(--gold)" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+        <span style="font-weight:700;font-size:16px;" id="totalStars">0</span><span style="color:var(--muted);font-size:12px;">estrellas</span>
+        <span style="color:var(--muted);font-size:12px;margin-left:8px;">Nivel <strong id="xpLevel" style="color:var(--accent);">1</strong></span>
       </div>
-      <div class="flex items-center gap-3" id="trophyRow">
-        <div class="trophy" title="Explorador"><svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 5H4a2 2 0 0 0 0 4h3M17 5h3a2 2 0 0 1 0 4h-3"/></svg></div>
-        <div class="trophy" title="Aventurero"><svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 5H4a2 2 0 0 0 0 4h3M17 5h3a2 2 0 0 1 0 4h-3"/></svg></div>
-        <div class="trophy" title="Maestro"><svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 5H4a2 2 0 0 0 0 4h3M17 5h3a2 2 0 0 1 0 4h-3"/></svg></div>
+      <div class="flex items-center gap-2" id="trophyRow">
+        <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
+        <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
+        <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
       </div>
     </div>
-
     <div id="catSections"></div>
-    <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:18px;">Toca un juego para empezar · 100% gratuito · Progresión guardada</p>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:14px;">Toca un juego para empezar · 100% gratuito</p>
   </div>
 
-  <!-- ================= GAME SCREEN ================= -->
+  <!-- ================= GAME SCREEN (layout compacto fullscreen) ================= -->
   <div id="gameScreen" class="hidden-screen">
-    <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
-      <button id="homeBtn" class="btn glass rounded-xl px-4 py-2 flex items-center gap-2" style="color:var(--text);font-weight:600;font-size:14px;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-        Menú
+    <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+      <button id="homeBtn" class="btn glass rounded-xl px-3 py-1.5 flex items-center gap-1.5" style="color:var(--text);font-weight:600;font-size:13px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Menú
       </button>
-      <h2 id="levelTitle" style="font-size:19px;font-weight:700;margin:0;"></h2>
+      <h2 id="levelTitle" style="font-size:17px;font-weight:700;margin:0;"></h2>
       <div class="flex items-center gap-2">
-        <div class="glass rounded-xl px-3 py-2 flex items-center gap-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--gold)" stroke="var(--gold)" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
-          <span id="scoreNum" style="font-weight:700;font-size:15px;">0</span>
+        <div class="glass rounded-xl px-2.5 py-1.5 flex items-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--gold)" stroke="var(--gold)" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <span id="scoreNum" style="font-weight:700;font-size:14px;">0</span>
         </div>
-        <div class="glass rounded-xl px-3 py-2 flex items-center gap-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2.2" stroke-linecap="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg>
-          <span id="streakNum" style="font-weight:700;font-size:15px;">0</span>
+        <div class="glass rounded-xl px-2.5 py-1.5 flex items-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2.2" stroke-linecap="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg>
+          <span id="streakNum" style="font-weight:700;font-size:14px;">0</span>
         </div>
       </div>
     </div>
-
-    <div class="glass rounded-2xl px-4 py-3 mb-4">
-      <div class="flex items-center justify-between mb-2">
-        <span style="font-size:13px;color:var(--muted);font-weight:500;" id="progressLabel">Progreso</span>
-        <span id="progressText" style="font-size:13px;font-weight:600;color:var(--accent);">0 / 0</span>
+    <div class="glass rounded-2xl px-3 py-2 mb-3">
+      <div class="flex items-center justify-between mb-1.5">
+        <span style="font-size:12px;color:var(--muted);font-weight:500;" id="progressLabel">Progreso</span>
+        <span id="progressText" style="font-size:12px;font-weight:600;color:var(--accent);">0 / 0</span>
       </div>
-      <div style="height:10px;background:rgba(139,147,194,.18);border-radius:99px;overflow:hidden;">
+      <div style="height:8px;background:rgba(139,147,194,.18);border-radius:99px;overflow:hidden;">
         <div id="progressFill" class="progress-fill" style="height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:99px;"></div>
       </div>
+      <div id="timerBar" class="timer-bar" style="display:none;"><div id="timerFill" class="timer-fill" style="width:100%;"></div></div>
     </div>
 
-    <div id="gameArea" class="relative rounded-3xl glass overflow-hidden" style="padding:24px 20px 28px;box-shadow:0 20px 60px rgba(0,0,0,.4);">
+    <div id="gameArea" class="relative rounded-3xl glass overflow-hidden" style="padding:16px 14px 20px;box-shadow:0 20px 60px rgba(0,0,0,.4);">
       <div class="starfield" id="starfield"></div>
       <canvas id="confettiCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:20;"></canvas>
-
-      <div class="relative flex flex-col md:flex-row items-center gap-6" style="z-index:5;">
-        <!-- BUGGY (astronauta) -->
-        <div style="flex:0 0 auto;position:relative;">
-          <div id="astroWrap" style="width:160px;height:200px;">
-            <svg viewBox="0 0 240 300" width="160" height="200" xmlns="http://www.w3.org/2000/svg">
+      <div class="relative flex flex-col md:flex-row items-center gap-4" style="z-index:5;">
+        <!-- BUGGY compacto -->
+        <div style="flex:0 0 auto;position:relative;width:120px;">
+          <div id="astroWrap" style="width:120px;height:150px;margin:0 auto;">
+            <svg viewBox="0 0 240 300" width="120" height="150" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <radialGradient id="glassGrad" cx="38%" cy="32%" r="75%"><stop offset="0%" stop-color="#bff0ff" stop-opacity=".95"/><stop offset="45%" stop-color="#7dd3fc" stop-opacity=".55"/><stop offset="100%" stop-color="#38bdf8" stop-opacity=".28"/></radialGradient>
                 <linearGradient id="suitGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#dbe4f5"/></linearGradient>
@@ -149,133 +144,139 @@
               </defs>
               <ellipse cx="120" cy="288" rx="52" ry="7" fill="#000" opacity=".35"/>
               <rect x="58" y="150" width="124" height="78" rx="22" fill="#94a3b8"/><rect x="66" y="158" width="108" height="62" rx="16" fill="#cbd5e1"/>
-              <g><rect x="42" y="168" width="30" height="72" rx="15" fill="url(#suitGrad)" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="57" cy="244" r="17" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="57" cy="244" r="10" fill="#fb923c"/></g>
-              <rect x="86" y="222" width="26" height="46" rx="12" fill="url(#suitGrad)" stroke="#cbd5e1" stroke-width="1.5"/><rect x="128" y="222" width="26" height="46" rx="12" fill="url(#suitGrad)" stroke="#cbd5e1" stroke-width="1.5"/>
+              <rect x="42" y="168" width="30" height="72" rx="15" fill="url(#suitGrad)" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="57" cy="244" r="17" fill="#f1f5f9"/><circle cx="57" cy="244" r="10" fill="#fb923c"/>
+              <rect x="86" y="222" width="26" height="46" rx="12" fill="url(#suitGrad)"/><rect x="128" y="222" width="26" height="46" rx="12" fill="url(#suitGrad)"/>
               <rect x="80" y="260" width="38" height="22" rx="10" fill="url(#bootGrad)"/><rect x="122" y="260" width="38" height="22" rx="10" fill="url(#bootGrad)"/>
               <path d="M70 160 Q70 148 84 146 L156 146 Q170 148 170 160 L170 228 Q170 240 156 240 L84 240 Q70 240 70 228 Z" fill="url(#suitGrad)" stroke="#cbd5e1" stroke-width="1.5"/>
-              <rect x="96" y="172" width="48" height="34" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+              <rect x="96" y="172" width="48" height="34" rx="8" fill="#1e293b"/>
               <circle cx="106" cy="182" r="4" fill="#4ade80"/><circle cx="120" cy="182" r="4" fill="#facc15"/><circle cx="134" cy="182" r="4" fill="#f87171"/>
               <rect x="104" y="192" width="32" height="6" rx="3" fill="#22d3ee"/>
               <rect x="70" y="196" width="100" height="6" fill="#fb923c" opacity=".85"/>
               <ellipse cx="120" cy="148" rx="34" ry="9" fill="#64748b"/><ellipse cx="120" cy="146" rx="34" ry="9" fill="#94a3b8"/>
               <g id="rightArm" style="transform-origin:183px 175px;transition:transform .4s ease;">
-                <rect x="168" y="168" width="30" height="72" rx="15" fill="url(#suitGrad)" stroke="#cbd5e1" stroke-width="1.5"/>
-                <circle cx="183" cy="244" r="17" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="183" cy="244" r="10" fill="#fb923c"/>
+                <rect x="168" y="168" width="30" height="72" rx="15" fill="url(#suitGrad)"/><circle cx="183" cy="244" r="17" fill="#f1f5f9"/><circle cx="183" cy="244" r="10" fill="#fb923c"/>
               </g>
               <circle cx="120" cy="92" r="66" fill="url(#rimGrad)"/>
               <circle cx="120" cy="92" r="58" fill="url(#glassGrad)"/>
-              <path d="M82 62 Q95 46 118 44 Q100 52 92 70 Q86 80 82 62 Z" fill="#ffffff" opacity=".55"/>
-              <ellipse cx="148" cy="118" rx="14" ry="6" fill="#ffffff" opacity=".25" transform="rotate(-20 148 118)"/>
-              <g>
-                <ellipse cx="120" cy="96" rx="38" ry="36" fill="#ffd9b3"/>
-                <circle cx="96" cy="106" r="6" fill="#ffb3a7" opacity=".7"/><circle cx="144" cy="106" r="6" fill="#ffb3a7" opacity=".7"/>
-                <g class="eyes">
-                  <ellipse cx="106" cy="90" rx="5.5" ry="7" fill="#1e293b"/><ellipse cx="134" cy="90" rx="5.5" ry="7" fill="#1e293b"/>
-                  <circle cx="108" cy="87" r="2" fill="#fff"/><circle cx="136" cy="87" r="2" fill="#fff"/>
-                </g>
-                <path d="M98 78 Q106 74 114 78" stroke="#8b5a2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <path d="M126 78 Q134 74 142 78" stroke="#8b5a2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <path id="mouthClosed" d="M108 112 Q120 124 132 112" stroke="#7c2d12" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                <g id="mouthOpen" class="mouthOpen"><ellipse cx="120" cy="116" rx="11" ry="9" fill="#7c2d12"/><ellipse cx="120" cy="120" rx="6" ry="3.5" fill="#fb7185"/></g>
+              <path d="M82 62 Q95 46 118 44 Q100 52 92 70 Q86 80 82 62 Z" fill="#fff" opacity=".55"/>
+              <ellipse cx="120" cy="96" rx="38" ry="36" fill="#ffd9b3"/>
+              <circle cx="96" cy="106" r="6" fill="#ffb3a7" opacity=".7"/><circle cx="144" cy="106" r="6" fill="#ffb3a7" opacity=".7"/>
+              <g class="eyes">
+                <ellipse cx="106" cy="90" rx="5.5" ry="7" fill="#1e293b"/><ellipse cx="134" cy="90" rx="5.5" ry="7" fill="#1e293b"/>
+                <circle cx="108" cy="87" r="2" fill="#fff"/><circle cx="136" cy="87" r="2" fill="#fff"/>
               </g>
+              <path d="M98 78 Q106 74 114 78" stroke="#8b5a2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M126 78 Q134 74 142 78" stroke="#8b5a2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path id="mouthClosed" d="M108 112 Q120 124 132 112" stroke="#7c2d12" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <g id="mouthOpen" class="mouthOpen"><ellipse cx="120" cy="116" rx="11" ry="9" fill="#7c2d12"/><ellipse cx="120" cy="120" rx="6" ry="3.5" fill="#fb7185"/></g>
               <line x1="120" y1="26" x2="120" y2="12" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
               <circle cx="120" cy="10" r="5" fill="#facc15"><animate attributeName="opacity" values="1;.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
             </svg>
           </div>
-          <div class="glass rounded-full px-3 py-1 text-center mt-1" style="font-size:12px;font-weight:600;color:var(--accent2);">Buggy · tu maestro</div>
+          <div class="glass rounded-full px-2 py-0.5 text-center" style="font-size:11px;font-weight:600;color:var(--accent2);">Buggy</div>
         </div>
 
-        <!-- RIGHT PANEL -->
+        <!-- PANEL DE ENSEÑANZA (ocupa el resto) -->
         <div style="flex:1;min-width:0;width:100%;">
-          <div class="bubble glass rounded-2xl p-4 mb-4" style="background:var(--card);">
-            <p id="astroMessage" style="margin:0;font-size:15px;line-height:1.5;color:var(--text);"></p>
+          <div class="bubble glass rounded-xl px-3 py-2 mb-3" style="background:var(--card);">
+            <p id="astroMessage" style="margin:0;font-size:13px;line-height:1.45;color:var(--text);"></p>
           </div>
 
-          <!-- FLASHCARD PANEL -->
+          <!-- FLASH (vocabulario con microfono) -->
           <div id="flashPanel">
-            <div id="wordCard" class="rounded-2xl p-5 text-center" style="background:linear-gradient(145deg,rgba(34,211,238,.12),rgba(251,146,60,.10));border:1px solid var(--border);">
-              <div id="wordTile" class="tile mx-auto" style="width:80px;height:80px;font-size:38px;margin-bottom:10px;"></div>
-              <div style="font-size:13px;color:var(--muted);font-weight:500;">En castellano</div>
-              <div id="wordEs" style="font-size:24px;font-weight:700;color:var(--text);margin-bottom:6px;"></div>
-              <div style="font-size:13px;color:var(--muted);font-weight:500;">En inglés <strong style="color:var(--accent)">(solo en inglés)</strong></div>
-              <div id="wordEn" style="font-size:30px;font-weight:700;letter-spacing:1px;margin:2px 0;"></div>
+            <div id="wordCard" class="rounded-2xl p-3 text-center" style="background:linear-gradient(145deg,rgba(34,211,238,.12),rgba(251,146,60,.10));border:1px solid var(--border);">
+              <div class="flex items-center justify-center gap-3 flex-wrap">
+                <div id="wordTile" class="tile" style="width:64px;height:64px;font-size:30px;flex-shrink:0;"></div>
+                <div style="text-align:left;">
+                  <div style="font-size:11px;color:var(--muted);font-weight:500;">Castellano</div>
+                  <div id="wordEs" style="font-size:19px;font-weight:700;color:var(--text);line-height:1.2;"></div>
+                  <div style="font-size:11px;color:var(--muted);font-weight:500;margin-top:3px;">Inglés <strong style="color:var(--accent)">(solo inglés)</strong></div>
+                  <div id="wordEn" style="font-size:24px;font-weight:700;letter-spacing:.5px;line-height:1.2;"></div>
+                </div>
+              </div>
             </div>
-            <div id="feedback" style="min-height:26px;margin-top:8px;text-align:center;font-size:15px;font-weight:600;"></div>
+            <div id="feedback" style="min-height:22px;margin-top:6px;text-align:center;font-size:14px;font-weight:600;"></div>
             <div class="flex flex-wrap gap-2 justify-center mt-1">
-              <button id="teachBtn" class="btn rounded-2xl px-3.5 py-2.5 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--purple),#7c3aed);color:#fff;font-weight:700;font-size:13px;box-shadow:0 6px 18px rgba(167,139,250,.35);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2z"/></svg>
-                Buggy explica
+              <button id="teachBtn" class="btn rounded-xl px-3 py-2 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--purple),#7c3aed);color:#fff;font-weight:700;font-size:12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2z"/></svg>Buggy explica
               </button>
-              <button id="listenBtn" class="btn rounded-2xl px-3.5 py-2.5 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:13px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
-                Oír inglés
+              <button id="listenBtn" class="btn rounded-xl px-3 py-2 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg>Oír inglés
               </button>
-              <button id="micBtn" class="btn rounded-2xl px-3.5 py-2.5 flex items-center gap-1.5" style="background:var(--card);color:var(--text);font-weight:700;font-size:13px;border:1px solid var(--accent);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3"/></svg>
-                <span id="micLabel">Repetir</span>
+              <button id="micBtn" class="btn rounded-xl px-3 py-2 flex items-center gap-1.5" style="background:var(--card);color:var(--text);font-weight:700;font-size:12px;border:1px solid var(--accent);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3"/></svg><span id="micLabel">Repetir</span>
               </button>
-              <button id="prevBtn" class="btn rounded-2xl px-3 py-2.5" style="background:var(--card);color:var(--muted);font-weight:700;font-size:14px;border:1px solid var(--border);">◀</button>
-              <button id="nextBtn" class="btn rounded-2xl px-3 py-2.5" style="background:var(--card);color:var(--muted);font-weight:700;font-size:14px;border:1px solid var(--border);">▶</button>
+              <button id="prevBtn" class="btn rounded-xl px-2.5 py-2" style="background:var(--card);color:var(--muted);font-weight:700;font-size:13px;border:1px solid var(--border);">◀</button>
+              <button id="nextBtn" class="btn rounded-xl px-2.5 py-2" style="background:var(--card);color:var(--muted);font-weight:700;font-size:13px;border:1px solid var(--border);">▶</button>
             </div>
-            <div id="manualRow" style="display:none;text-align:center;margin-top:8px;">
-              <button id="manualDoneBtn" class="btn rounded-xl px-4 py-2" style="background:rgba(251,146,60,.16);color:var(--accent2);border:1px solid var(--accent2);font-weight:600;font-size:13px;">¡Ya la repetí en inglés!</button>
+            <div id="manualRow" style="display:none;text-align:center;margin-top:6px;">
+              <button id="manualDoneBtn" class="btn rounded-lg px-3 py-1.5" style="background:rgba(251,146,60,.16);color:var(--accent2);border:1px solid var(--accent2);font-weight:600;font-size:12px;">¡Ya la repetí en inglés!</button>
             </div>
           </div>
 
-          <!-- MATH / QUIZ PANEL -->
-          <div id="mathPanel" style="display:none;">
-            <div id="mathProblem" class="rounded-2xl p-5 text-center" style="background:linear-gradient(145deg,rgba(74,222,128,.12),rgba(34,211,238,.10));border:1px solid var(--border);font-size:44px;font-weight:700;letter-spacing:2px;margin-bottom:12px;min-height:80px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;"></div>
-            <div id="mathOptions" class="grid grid-cols-2 gap-3"></div>
-            <div id="feedback2" style="min-height:26px;margin-top:8px;text-align:center;font-size:15px;font-weight:600;"></div>
-            <div style="text-align:center;margin-top:6px;">
-              <button id="replayMathBtn" class="btn rounded-2xl px-4 py-2.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:14px;">Oír de nuevo</button>
+          <!-- MCQ / MATH / TYPE / SPELL / SENTENCE / STORY -->
+          <div id="mcqPanel" style="display:none;">
+            <div id="mcqQuestion" class="rounded-2xl p-3 text-center" style="background:linear-gradient(145deg,rgba(74,222,128,.12),rgba(34,211,238,.10));border:1px solid var(--border);font-size:18px;font-weight:600;margin-bottom:10px;min-height:60px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;"></div>
+            <div id="mcqOptions" class="grid grid-cols-2 gap-2"></div>
+            <div id="typeRow" style="display:none;margin-top:10px;">
+              <input id="typeInput" type="text" autocomplete="off" style="width:100%;padding:12px;border-radius:12px;border:2px solid var(--accent);background:var(--card);color:var(--text);font-size:18px;font-weight:600;text-align:center;font-family:'Fredoka',sans-serif;" placeholder="Escribí la palabra..."/>
+              <button id="typeCheck" class="btn rounded-xl px-5 py-2.5 mt-2 w-full" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">Comprobar</button>
+            </div>
+            <div id="spellRow" style="display:none;margin-top:10px;">
+              <div id="spellAnswer" class="rounded-xl p-2.5 mb-2" style="min-height:48px;background:var(--card);border:2px dashed var(--accent);display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:center;"></div>
+              <div id="spellTiles" class="flex gap-2 flex-wrap justify-center"></div>
+            </div>
+            <div id="storyRow" style="display:none;margin-top:10px;"></div>
+            <div id="feedback2" style="min-height:22px;margin-top:8px;text-align:center;font-size:14px;font-weight:600;"></div>
+            <div style="text-align:center;margin-top:4px;">
+              <button id="replayBtn" class="btn rounded-xl px-4 py-2" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:13px;">Oír de nuevo</button>
             </div>
           </div>
 
-          <!-- MEMORY PANEL -->
+          <!-- MEMORY -->
           <div id="memPanel" style="display:none;">
-            <div class="flex justify-between items-center mb-3" style="font-size:14px;color:var(--muted);">
+            <div class="flex justify-between items-center mb-2" style="font-size:12px;color:var(--muted);">
               <span>Movimientos: <strong id="memMoves" style="color:var(--accent);">0</strong></span>
               <span>Pares: <strong id="memPairs" style="color:var(--green);">0</strong> / 6</span>
             </div>
-            <div id="memGrid" class="grid grid-cols-4 gap-2.5"></div>
-            <div id="feedback3" style="min-height:26px;margin-top:8px;text-align:center;font-size:15px;font-weight:600;"></div>
+            <div id="memGrid" class="grid grid-cols-4 gap-2"></div>
+            <div id="feedback3" style="min-height:22px;margin-top:8px;text-align:center;font-size:14px;font-weight:600;"></div>
           </div>
         </div>
       </div>
 
       <!-- COMPLETE OVERLAY -->
-      <div id="levelOverlay" style="display:none;position:absolute;inset:0;z-index:30;background:rgba(11,16,38,.92);backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;padding:24px;text-align:center;">
-        <div class="reward-badge" style="width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#f59e0b);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(250,204,21,.6);margin-bottom:14px;">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="#7c2d12" stroke="#7c2d12" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+      <div id="levelOverlay" style="display:none;position:absolute;inset:0;z-index:30;background:rgba(11,16,38,.92);backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;padding:20px;text-align:center;">
+        <div class="reward-badge" style="width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#f59e0b);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(250,204,21,.6);margin-bottom:12px;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#7c2d12" stroke="#7c2d12" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
         </div>
-        <h2 style="font-size:26px;font-weight:700;margin:0 0 6px;background:linear-gradient(90deg,var(--gold),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;">¡Juego Completado!</h2>
-        <div id="overlayStars" class="flex gap-2 justify-center my-3"></div>
-        <p id="overlayMsg" style="color:var(--muted);margin:0 0 18px;font-size:14px;"></p>
-        <button id="overlayHomeBtn" class="btn rounded-2xl px-6 py-3" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:16px;">Volver al menú</button>
+        <h2 style="font-size:24px;font-weight:700;margin:0 0 4px;background:linear-gradient(90deg,var(--gold),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;">¡Juego Completado!</h2>
+        <div id="overlayStars" class="flex gap-2 justify-center my-2"></div>
+        <p id="overlayMsg" style="color:var(--muted);margin:0 0 14px;font-size:13px;"></p>
+        <button id="overlayHomeBtn" class="btn rounded-2xl px-6 py-2.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">Volver al menú</button>
       </div>
     </div>
-    <p style="text-align:center;font-size:11px;color:var(--muted);margin:12px 0 4px;">Buggy Aprende · 41 juegos · 100% gratuito · Micrófono y audio para experiencia completa</p>
+    <p style="text-align:center;font-size:10px;color:var(--muted);margin:10px 0 2px;">Buggy Aprende · 55 juegos · 100% gratuito</p>
   </div>
 
-  <!-- ================= GOOGLE ADS BANNER ================= -->
-  <div id="adBanner" style="margin-top:16px;height:64px;border:2px dashed rgba(139,147,194,.35);border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8;background:rgba(20,26,56,.4);">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
-    <span style="font-size:12px;color:var(--muted);font-weight:500;">Espacio publicidad · Google AdMob / AdSense — pega aquí tu código</span>
+  <!-- GOOGLE ADS -->
+  <div id="adBanner" style="margin-top:14px;height:60px;border:2px dashed rgba(139,147,194,.35);border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8;background:rgba(20,26,56,.4);">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+    <span style="font-size:11px;color:var(--muted);font-weight:500;">Espacio publicidad · Google AdMob / AdSense — pega aquí tu código</span>
   </div>
 </div>
 
 <script>
 (function(){
 "use strict";
-/* ==================== DATOS: 41 JUEGOS ==================== */
+/* ==================== DATOS ==================== */
 function numEs(n){var w=["cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","once","doce","trece","catorce","quince","dieciséis","diecisiete","dieciocho","diecinueve","veinte","veintiuno","veintidós","veintitrés","veinticuatro","veinticinco","veintiséis","veintisiete","veintiocho","veintinueve","treinta"];return w[n]||String(n);}
-function genAbc(){var a=[];for(var i=0;i<26;i++){var L=String.fromCharCode(65+i);a.push({es:"letra "+L,en:L,tile:L});}return a;}
 function genNums(lo,hi){var a=[];for(var n=lo;n<=hi;n++)a.push({es:numEs(n),en:String(n),tile:String(n)});return a;}
 function fc(arr){return arr.map(function(p){return {es:p[0],en:p[1],tile:p[1].charAt(0).toUpperCase()};});}
+/* MCQ helper: [preguntaHTML, [opciones], indiceCorrecto, textoParaHablar] */
+function mcq(name,color,icon,qs){return {name:name,section:"Matemática",type:"mcq",color:color,icon:icon,q:qs,total:qs.length};}
 var CAT=[
 /* ---- VOCABULARIO (flash con microfono) ---- */
-{id:"abc",name:"Abecedario A-Z",section:"Vocabulario",type:"flash",color:"#22d3ee",icon:"A",cards:genAbc()},
 {id:"n1",name:"Números 1-10",section:"Vocabulario",type:"flash",color:"#4ade80",icon:"1",cards:genNums(1,10)},
 {id:"n2",name:"Números 11-20",section:"Vocabulario",type:"flash",color:"#34d399",icon:"#",cards:genNums(11,20)},
 {id:"col",name:"Colores",section:"Vocabulario",type:"flash",color:"#f472b6",icon:"◐",cards:fc([["rojo","Red"],["azul","Blue"],["verde","Green"],["amarillo","Yellow"],["naranja","Orange"],["rosa","Pink"],["morado","Purple"],["negro","Black"],["blanco","White"],["marrón","Brown"]])},
@@ -303,40 +304,165 @@ var CAT=[
 {id:"ciud",name:"Lugares de la ciudad",section:"Vocabulario",type:"flash",color:"#22d3ee",icon:"⌖",cards:fc([["escuela","School"],["hospital","Hospital"],["parque","Park"],["tienda","Shop"],["biblioteca","Library"],["museo","Museum"],["cine","Cinema"],["iglesia","Church"]])},
 {id:"nat",name:"Naturaleza",section:"Vocabulario",type:"flash",color:"#22c55e",icon:"❀",cards:fc([["árbol","Tree"],["flor","Flower"],["pasto","Grass"],["sol","Sun"],["luna","Moon"],["estrella","Star"],["río","River"],["montaña","Mountain"]])},
 {id:"rut",name:"Rutina diaria",section:"Vocabulario",type:"flash",color:"#facc15",icon:"◷",cards:fc([["despertar","Wake up"],["desayunar","Breakfast"],["ir al colegio","Go to school"],["almorzar","Lunch"],["jugar","Play"],["cenar","Dinner"],["bañarse","Bath"],["dormir","Sleep"]])},
-/* ---- MATEMATICA ---- */
-{id:"sf",name:"Sumas fácil (1-10)",section:"Matemática",type:"math",color:"#4ade80",icon:"+",op:"+",max:10},
-{id:"sd",name:"Sumas difícil (hasta 30)",section:"Matemática",type:"math",color:"#22c55e",icon:"+",op:"+",max:30},
+/* ---- MATEMATICA (5 existentes + 10 nuevos = 15) ---- */
+{id:"sf",name:"Sumas fácil",section:"Matemática",type:"math",color:"#4ade80",icon:"+",op:"+",max:10},
+{id:"sd",name:"Sumas difícil",section:"Matemática",type:"math",color:"#22c55e",icon:"+",op:"+",max:30},
 {id:"rf",name:"Restas fácil",section:"Matemática",type:"math",color:"#fb923c",icon:"−",op:"-",max:10},
-{id:"rd",name:"Restas difícil (hasta 30)",section:"Matemática",type:"math",color:"#f59e0b",icon:"−",op:"-",max:30},
-{id:"mul",name:"Multiplicación (tablas 1-5)",section:"Matemática",type:"math",color:"#f472b6",icon:"×",op:"*",max:5},
-/* ---- JUEGOS ---- */
+{id:"rd",name:"Restas difícil",section:"Matemática",type:"math",color:"#f59e0b",icon:"−",op:"-",max:30},
+{id:"mul",name:"Multiplicación",section:"Matemática",type:"math",color:"#f472b6",icon:"×",op:"*",max:5},
+mcq("Problemas matemáticos","#22d3ee","?",[
+ ["Si tenés 3 manzanas y te dan 2 más, ¿cuántas tenés?",["4","5","6","3"],1,"Si tenés 3 manzanas y te dan 2 más, cuántas tenés?"],
+ ["Un pan vale $5. ¿Cuánto valen 3 panes?",["$12","$10","$15","$8"],2,"Un pan vale 5 pesos. Cuánto valen 3 panes?"],
+ ["Tenés 10 caramelos y te comés 4. ¿Cuántos te quedan?",["7","5","6","8"],2,"Tenés 10 caramelos y te comés 4. Cuántos te quedan?"],
+ ["Cada caja tiene 6 lápices. ¿Cuántos hay en 2 cajas?",["10","12","14","8"],1,"Cada caja tiene 6 lápices. Cuántos hay en 2 cajas?"],
+ ["Ana tiene 8 muñecas y Lucía 5. ¿Cuántas tienen entre las dos?",["12","13","14","11"],1,"Ana tiene 8 muñecas y Lucía 5. Cuántas tienen entre las dos?"],
+ ["Hay 20 alumnos y se van 7. ¿Cuántos quedan?",["12","13","14","15"],1,"Hay 20 alumnos y se van 7. Cuántos quedan?"]
+]),
+mcq("Fracciones","#a78bfa","½",[
+ ["¿Cómo se escribe la mitad?",["1/3","1/2","1/4","2/3"],1,"Cómo se escribe la mitad?"],
+ ["¿Cuánto es 1/2 + 1/2?",["1","1/2","2","1/4"],0,"Cuánto es un medio más un medio?"],
+ ["Un cuarto se escribe:",["1/2","1/3","1/4","1/5"],2,"Un cuarto se escribe?"],
+ ["¿Qué fracción es mayor?",["1/2","1/4","1/3","1/8"],0,"Qué fracción es mayor: un medio, un cuarto, un tercio o un octavo?"],
+ ["¿Cuántos octavos forman un entero?",["4","6","8","10"],2,"Cuántos octavos forman un entero?"],
+ ["3/4 se lee:",["tres cuartos","tres cuatro","tercer cuarto","tres enteros"],0,"Tres cuartos se lee?"]
+]),
+mcq("Decimales","#38bdf8",".",[
+ ["0,5 equivale a:",["1/4","1/2","1/5","1/10"],1,"Cero coma cinco equivale a?"],
+ ["0,25 equivale a:",["1/2","1/3","1/4","1/5"],2,"Cero coma veinticinco equivale a?"],
+ ["¿Cuál es mayor?",["0,1","0,5","0,3","0,2"],1,"Cuál es mayor?"],
+ ["1 entero y medio =",["1,2","1,5","1,05","15"],1,"Un entero y medio es?"],
+ ["0,1 + 0,2 =",["0,3","0,12","0,03","3"],0,"Cero coma uno más cero coma dos?"],
+ ["¿Cuánto vale 0,75?",["3/4","1/2","1/4","2/3"],0,"Cuánto vale cero coma setenta y cinco?"]
+]),
+mcq("Porcentajes","#f472b6","%",[
+ ["50% de 20 =",["5","10","15","8"],1,"Cincuenta por ciento de veinte?"],
+ ["10% de 100 =",["1","5","10","20"],2,"Diez por ciento de cien?"],
+ ["25% de 40 =",["5","10","15","20"],1,"Veinticinco por ciento de cuarenta?"],
+ ["¿Qué porcentaje es la mitad?",["25%","50%","75%","100%"],1,"Qué porcentaje es la mitad?"],
+ ["100% de 8 =",["4","8","16","80"],1,"Cien por ciento de ocho?"],
+ ["20% de 50 =",["5","10","15","20"],1,"Veinte por ciento de cincuenta?"]
+]),
+mcq("Geometría","#fb923c","▲",[
+ ["¿Cuántos lados tiene un triángulo?",["2","3","4","5"],1,"Cuántos lados tiene un triángulo?"],
+ ["¿Cuántos lados tiene un cuadrado?",["3","4","5","6"],1,"Cuántos lados tiene un cuadrado?"],
+ ["Figura con 5 lados:",["triángulo","cuadrado","pentágono","círculo"],2,"Figura con cinco lados?"],
+ ["El círculo tiene:",["4 lados","0 lados, es redondo","3 lados","6 lados"],1,"El círculo tiene?"],
+ ["¿Cuántos lados tiene un hexágono?",["5","6","7","8"],1,"Cuántos lados tiene un hexágono?"],
+ ["Figura con forma de balón:",["cubo","esfera","círculo","cono"],1,"Figura con forma de balón?"]
+]),
+mcq("Medidas","#4ade80","📏".replace("📏","⇔"),[
+ ["1 kilogramo = ? gramos",["100","500","1000","10000"],2,"Un kilogramo cuántos gramos?"],
+ ["1 metro = ? centímetros",["10","50","100","1000"],2,"Un metro cuántos centímetros?"],
+ ["1 litro = ? mililitros",["100","500","1000","100"],2,"Un litro cuántos mililitros?"],
+ ["1 hora = ? minutos",["30","60","100","24"],1,"Una hora cuántos minutos?"],
+ ["1 kilómetro = ? metros",["100","500","1000","10000"],2,"Un kilómetro cuántos metros?"],
+ ["¿Qué se mide en litros?",["longitud","peso","líquidos","tiempo"],2,"Qué se mide en litros?"]
+]),
+mcq("Perímetros y áreas","#facc15","▭",[
+ ["Cuadrado de lado 4, perímetro =",["8","12","16","20"],2,"Cuadrado de lado 4, perímetro?"],
+ ["Cuadrado de lado 3, área =",["6","9","12","15"],1,"Cuadrado de lado 3, área?"],
+ ["Rectángulo 4×2, perímetro =",["6","10","12","8"],2,"Rectángulo de 4 por 2, perímetro?"],
+ ["Triángulo lados 2,3,4 perímetro =",["7","8","9","10"],2,"Triángulo de lados 2, 3 y 4, perímetro?"],
+ ["Área de rectángulo 5×2 =",["7","10","14","15"],1,"Área de rectángulo 5 por 2?"],
+ ["El perímetro es:",["el espacio dentro","la suma de los lados","el color","el nombre"],1,"El perímetro es?"]
+]),
+mcq("Dinero","#22c55e","$",[
+ ["2 monedas de $10 + 1 de $5 =",["$20","$25","$15","$30"],1,"Dos monedas de 10 más una de 5?"],
+ ["$50 + $25 =",["$65","$75","$85","$70"],1,"Cincuenta más veinticinco?"],
+ ["Tenés $100 y gastás $40. ¿Cuánto te queda?",["$50","$60","$70","$40"],1,"Tenés cien pesos y gastás cuarenta. Cuánto te queda?"],
+ ["¿Cuántos billetes de $10 suman $50?",["3","4","5","6"],2,"Cuántos billetes de 10 suman 50?"],
+ ["Un juguete de $30, pagás con $50. ¿Vuelto?",["$10","$20","$30","$15"],1,"Un juguete de 30, pagás con 50. Cuánto de vuelto?"],
+ ["4 monedas de $5 =",["$15","$20","$25","$10"],1,"Cuatro monedas de 5?"]
+]),
+mcq("Hora y calendario","#22d3ee","◷",[
+ ["¿Qué día sigue al lunes?",["domingo","martes","miércoles","sábado"],1,"Qué día sigue al lunes?"],
+ ["¿Cuántos días tiene la semana?",["5","6","7","8"],2,"Cuántos días tiene la semana?"],
+ ["¿Cuántos meses tiene el año?",["10","11","12","13"],2,"Cuántos meses tiene el año?"],
+ ["Si son las 3 y pasan 2 horas, ¿qué hora es?",["1","5","4","6"],1,"Si son las 3 y pasan 2 horas, qué hora es?"],
+ ["¿Cuántos minutos tiene media hora?",["15","20","30","45"],2,"Cuántos minutos tiene media hora?"],
+ ["¿Qué mes viene después de junio?",["mayo","julio","agosto","abril"],1,"Qué mes viene después de junio?"]
+]),
+{id:"crono",name:"Desafío contra reloj",section:"Matemática",type:"mcq",color:"#f87171",icon:"⏱".replace("⏱","◷"),timed:true,q:[
+ ["2 + 3 =",["4","5","6","7"],1,"Dos más tres?"],
+ ["10 - 4 =",["5","6","7","8"],1,"Diez menos cuatro?"],
+ ["3 × 3 =",["6","8","9","12"],2,"Tres por tres?"],
+ ["7 + 6 =",["12","13","14","15"],1,"Siete más seis?"],
+ ["8 × 2 =",["14","15","16","18"],2,"Ocho por dos?"],
+ ["15 - 7 =",["7","8","9","10"],1,"Quince menos siete?"]
+]},
+/* ---- LENGUA (11 juegos) ---- */
+{id:"abc",name:"Abecedario A-Z",section:"Lengua",type:"flash",color:"#22d3ee",icon:"A",cards:(function(){var a=[];for(var i=0;i<26;i++){var L=String.fromCharCode(65+i);a.push({es:"letra "+L,en:L,tile:L});}return a;})()},
+mcqL("Lectura","#a78bfa","📖".replace("📖","❝"),[
+ ["Frase: 'El gato duerme en el sofá'. ¿Qué hace el gato?",["come","duerme","corre","salta"],1,"El gato duerme en el sofá. Qué hace el gato?"],
+ ["Frase: 'María come una manzana roja'. ¿De qué color es la manzana?",["verde","azul","roja","amarilla"],2,"María come una manzana roja. De qué color es?"],
+ ["Frase: 'El perro corre en el parque'. ¿Dónde está el perro?",["casa","parque","escuela","auto"],1,"El perro corre en el parque. Dónde está?"],
+ ["Frase: 'Los niños juegan al fútbol'. ¿Qué juegan?",["tenis","fútbol","básquet","vóley"],1,"Los niños juegan al fútbol. Qué juegan?"],
+ ["Frase: 'Mamá cocina pasta para cenar'. ¿Qué cocina?",["sopa","pasta","carne","pescado"],1,"Mamá cocina pasta para cenar. Qué cocina?"],
+ ["Frase: 'El sol brilla en el cielo'. ¿Qué brilla?",["luna","sol","estrella","foco"],1,"El sol brilla en el cielo. Qué brilla?"]
+]),
+mcqL("Comprensión de textos","#fb923c","❞",[
+ ["Historia: 'Lucas fue al parque con su pelota. Jugó con su perro y comió un helado de vainilla'. ¿Qué comió Lucas?",["pizza","helado","manzana","pancho"],1,"Lucas fue al parque con su pelota. Jugó con su perro y comió un helado de vainilla. Qué comió Lucas?"],
+ ["Historia: 'Sara tiene un gato negro llamado Mishi. Mishi duerme todo el día en la cama'. ¿Cómo se llama el gato?",["Tom","Mishi","Felix","Simba"],1,"Sara tiene un gato negro llamado Mishi. Cómo se llama el gato?"],
+ ["Historia: 'En la granja hay 5 vacas, 3 cerdos y 10 gallinas'. ¿Cuántas gallinas hay?",["3","5","10","15"],2,"En la granja hay 5 vacas, 3 cerdos y 10 gallinas. Cuántas gallinas hay?"],
+ ["Historia: 'Pedro se levanta a las 7, desayuna leche con galletas y va al colegio'. ¿Qué desayuna Pedro?",["huevos","leche con galletas","tostadas","yogur"],1,"Pedro se levanta a las 7, desayuna leche con galletas y va al colegio. Qué desayuna?"],
+ ["Historia: 'El libro de Ana es azul y tiene 50 páginas. Lo lee cada noche'. ¿De qué color es el libro?",["rojo","verde","azul","amarillo"],2,"El libro de Ana es azul y tiene 50 páginas. De qué color es el libro?"],
+ ["Historia: 'Un día lluvioso, Tomás usó su paraguas rojo para no mojarse'. ¿De qué color es el paraguas?",["azul","verde","rojo","negro"],2,"Tomás usó su paraguas rojo. De qué color es?"]
+]),
+{id:"escritura",name:"Escritura (inglés)",section:"Lengua",type:"type",color:"#4ade80",icon:"✎",lang:"en",words:["cat","dog","sun","moon","book","apple"]},
+mcqL("Ortografía","#facc15","✓",[
+ ["¿Cuál está bien escrito?",["casa","caza","kasa","cassa"],0,"Cuál está bien escrito?"],
+ ["¿Cuál está bien escrito?",["perro","pero","perroo","perrro"],0,"Cuál está bien escrito?"],
+ ["¿Cuál está bien escrito?",["esuela","escuela","escuela","esquela"],1,"Cuál está bien escrito?"],
+ ["¿Cuál está bien escrito?",["libro","libro","livro","lybro"],0,"Cuál está bien escrito?"],
+ ["¿Cuál está bien escrito?",["familia","família","famillia","famylia"],0,"Cuál está bien escrito?"],
+ ["¿Cuál está bien escrito?",["amigo","amigo","amigo","amigo"],0,"Cuál está bien escrito?"]
+]),
+mcqL("Sinónimos y antónimos","#f472b6","⇄",[
+ ["Sinónimo de 'feliz':",["triste","contento","enojado","cansado"],1,"Sinónimo de feliz?"],
+ ["Antónimo de 'grande':",["enorme","chico","alto","largo"],1,"Antónimo de grande?"],
+ ["Sinónimo de 'rápido':",["lento","veloz","tarde","parado"],1,"Sinónimo de rápido?"],
+ ["Antónimo de 'frío':",["helado","caliente","tibio","nieve"],1,"Antónimo de frío?"],
+ ["Sinónimo de 'bonito':",["feo","lindo","grande","chico"],1,"Sinónimo de bonito?"],
+ ["Antónimo de 'claro':",["brillante","oscuro","luz","día"],1,"Antónimo de claro?"]
+]),
+mcqL("Sustantivos, verbos y adjetivos","#a78bfa","◆",[
+ ["'Correr' es un:",["sustantivo","verbo","adjetivo","nombre"],1,"Correr es un?"],
+ ["'Casa' es un:",["verbo","sustantivo","adjetivo","acción"],1,"Casa es un?"],
+ ["'Rojo' es un:",["verbo","sustantivo","adjetivo","acción"],2,"Rojo es un?"],
+ ["'Saltar' es un:",["sustantivo","adjetivo","verbo","color"],2,"Saltar es un?"],
+ ["'Grande' es un:",["verbo","adjetivo","sustantivo","número"],1,"Grande es un?"],
+ ["'Perro' es un:",["adjetivo","verbo","sustantivo","acción"],2,"Perro es un?"]
+]),
+{id:"oraciones",name:"Armado de oraciones",section:"Lengua",type:"sentence",color:"#22d3ee",icon:"▤",sentences:[["I","like","apples"],["The","dog","runs"],["We","play","soccer"],["She","reads","a","book"],["He","eats","bread"],["You","are","my","friend"]]},
+{id:"ordenar",name:"Ordenar palabras",section:"Lengua",type:"spell",color:"#fb923c",icon:"↕",words:["CAT","DOG","SUN","BOOK","STAR","MOON"]},
+{id:"dictados",name:"Dictados (castellano)",section:"Lengua",type:"type",color:"#f472b6",icon:"✎",lang:"es",words:["casa","perro","escuela","libro","familia","amigo"]},
+{id:"cuento",name:"Cuento interactivo",section:"Lengua",type:"story",color:"#a78bfa",icon:"❝",story:{
+  t:"Un día, Buggy encontró una caja misteriosa en el parque. ¿Qué hace?",
+  o:[{l:"La abre",n:1},{l:"Se va a casa",n:2}],
+  1:{t:"¡Dentro había un libro mágico! De repente, apareció un dragón amigable. ¿Qué le das de comer?",o:[{l:"Una manzana",n:3},{l:"Un helado",n:3}]},
+  2:{t:"Al llegar a casa, Buggy se acordó de la caja y volvió. ¡Encontró el libro mágico! ¿Lo abrís?",o:[{l:"Sí, lo abro",n:3},{l:"No, mejor no",n:3}]},
+  3:{t:"¡Felicidades! Completaste la aventura de Buggy y el libro mágico. ¡Sos un gran lector!",o:[],end:true}
+}},
+/* ---- JUEGOS (memoria) ---- */
 {id:"ml",name:"Memoria con letras",section:"Juegos",type:"memory",color:"#a78bfa",icon:"▦",sym:"letters"},
 {id:"mn",name:"Memoria con números",section:"Juegos",type:"memory",color:"#22d3ee",icon:"▦",sym:"numbers"},
-{id:"mc",name:"Memoria de colores",section:"Juegos",type:"memory",color:"#f472b6",icon:"▦",sym:"colors"},
-/* ---- QUIZZES ---- */
-{id:"q1",name:"Quiz: escuchá y elegí",section:"Quizzes",type:"quiz",color:"#facc15",icon:"?",quiz:"listen"},
-{id:"q2",name:"Quiz: letra inicial",section:"Quizzes",type:"quiz",color:"#fb923c",icon:"A",quiz:"initial"},
-{id:"q3",name:"Quiz: contá los puntos",section:"Quizzes",type:"quiz",color:"#4ade80",icon:"●",quiz:"count"},
-{id:"q4",name:"Quiz: opuestos",section:"Quizzes",type:"quiz",color:"#a78bfa",icon:"⇄",quiz:"opposite"},
-{id:"q5",name:"Quiz: colores en inglés",section:"Quizzes",type:"quiz",color:"#f472b6",icon:"◐",quiz:"colors"}
+{id:"mc",name:"Memoria de colores",section:"Juegos",type:"memory",color:"#f472b6",icon:"▦",sym:"colors"}
 ];
-var SECTIONS=["Vocabulario","Matemática","Juegos","Quizzes"];
-var TROPHY_NEED=[8,20,35];
+function mcqL(name,color,icon,qs){var c=mcq(name,color,icon,qs);c.section="Lengua";return c;}
+var SECTIONS=["Vocabulario","Matemática","Lengua","Juegos"];
+var TROPHY_NEED=[10,25,45];
 
 /* ==================== STATE ==================== */
 var save=loadSave();
 var curCat=0,idx=0,score=save.score||0,streak=0,earned=0,firstTry=0,attempts=0,correctSet={};
 var mouthTimer=null,speechQ=[],speakingNow=false;
 var recognition=null,recogSupported=false,recognizing=false;
-var enVoice=null,esVoice=null;
+var enVoice=null,esVoice=null,timerInt=null;
 var $=function(id){return document.getElementById(id);};
-
-function loadSave(){try{var raw=localStorage.getItem("buggySuperApp");if(raw){var o=JSON.parse(raw);if(o&&o.stars)return o;}}catch(e){}return {stars:CAT.map(function(){return 0;}),score:0};}
-function persist(){try{localStorage.setItem("buggySuperApp",JSON.stringify(save));}catch(e){}}
+function loadSave(){try{var raw=localStorage.getItem("buggyV3");if(raw){var o=JSON.parse(raw);if(o&&o.stars)return o;}}catch(e){}return {stars:CAT.map(function(){return 0;}),score:0};}
+function persist(){try{localStorage.setItem("buggyV3",JSON.stringify(save));}catch(e){}}
 function totalStars(){return save.stars.reduce(function(a,b){return a+b;},0);}
-
-/* starfield */
-(function(){var sf=$("starfield");for(var i=0;i<40;i++){var st=document.createElement("div");st.className="star";var sz=Math.random()*2.5+1;st.style.width=sz+"px";st.style.height=sz+"px";st.style.left=Math.random()*100+"%";st.style.top=Math.random()*100+"%";st.style.animationDelay=(Math.random()*3)+"s";sf.appendChild(st);}})();
+(function(){var sf=$("starfield");for(var i=0;i<35;i++){var st=document.createElement("div");st.className="star";var sz=Math.random()*2.5+1;st.style.width=sz+"px";st.style.height=sz+"px";st.style.left=Math.random()*100+"%";st.style.top=Math.random()*100+"%";st.style.animationDelay=(Math.random()*3)+"s";sf.appendChild(st);}})();
 
 /* ==================== AUDIO ==================== */
 var actx=null;
@@ -346,8 +472,9 @@ function sndClick(){ensureAudio();tone(660,.12,0,"triangle",.18);}
 function sndCorrect(){ensureAudio();[523,659,784,1047].forEach(function(f,i){tone(f,.15,i*.11,"triangle",.22);});}
 function sndWrong(){ensureAudio();tone(220,.25,0,"sawtooth",.15);tone(180,.3,.12,"sawtooth",.12);}
 function sndFanfare(){ensureAudio();[523,659,784,1047,784,1047,1319].forEach(function(f,i){tone(f,.18,i*.13,"triangle",.22);});}
+function sndTick(){ensureAudio();tone(880,.06,0,"square",.08);}
 
-/* ==================== VOZ BILINGUE (Buggy explica) ==================== */
+/* ==================== VOZ BILINGUE ==================== */
 function pickVoices(){if(!window.speechSynthesis)return;var vs=speechSynthesis.getVoices();for(var i=0;i<vs.length;i++){var v=vs[i];if(!enVoice&&/en[-_](US|GB)/i.test(v.lang)&&/female|samantha|google|zira|aria|jenny|susan/i.test(v.name))enVoice=v;if(!esVoice&&/^es/i.test(v.lang)&&/female|google|elena|paulina|monica|carla|lucia|sabina/i.test(v.name))esVoice=v;}if(!enVoice)for(var j=0;j<vs.length;j++){if(/^en/i.test(vs[j].lang)){enVoice=vs[j];break;}}if(!esVoice)for(var k=0;k<vs.length;k++){if(/^es/i.test(vs[k].lang)){esVoice=vs[k];break;}}}
 if(window.speechSynthesis){pickVoices();speechSynthesis.onvoiceschanged=pickVoices;}
 var mouthClosed=$("mouthClosed"),mouthOpen=$("mouthOpen"),astroWrap=$("astroWrap"),rightArm=$("rightArm");
@@ -371,12 +498,12 @@ function teachCard(){
   say("Mira. En castellano: "+c.es,"es-AR");
   say("En inglés se dice:","es-AR");
   say(c.en,"en-US");
-  say("Ahora repetí vos en inglés: "+c.en+". Tocá el micrófono.","es-AR");
+  say("Ahora repetí vos en inglés. Tocá el micrófono.","es-AR");
   sndClick();
 }
 function sayEnglishOnly(){stopSpeak();say(CAT[curCat].cards[idx].en,"en-US");sndClick();}
 
-/* ==================== MICROFONO (repetir en ingles) ==================== */
+/* ==================== MICROFONO ==================== */
 var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(SR){recogSupported=true;recognition=new SR();recognition.lang="en-US";recognition.interimResults=false;recognition.maxAlternatives=3;
 recognition.onresult=function(e){var target=CAT[curCat].cards[idx].en.toLowerCase();var got=false,tr="";for(var i=0;i<e.results[0].length;i++){var t=e.results[0][i].transcript.trim().toLowerCase();tr=tr||t;if(t===target||t.indexOf(target)>=0||(target.indexOf(t)>=0&&t.length>=2)){got=true;break;}}handleRepeatResult(got,tr);};
@@ -392,104 +519,93 @@ function handleRepeatResult(correct,tr){stopListeningUI();attempts++;if(correct)
 function onCorrect(kind){
   if(!correctSet[idx]){correctSet[idx]=true;earned++;if(attempts<=1)firstTry++;streak++;score+=10+(streak>=3?5:0);}else score+=2;
   save.score=score;persist();updateHUD();sndCorrect();celebrate();
-  if(kind==="flash"&&earned>=CAT[curCat].cards.length)setTimeout(showComplete,1600);
-  if(kind==="math"&&earned>=10)setTimeout(showComplete,1400);
+  var cat=CAT[curCat];
+  var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?6:6);
+  if(kind!=="memory"&&earned>=total)setTimeout(showComplete,1500);
 }
 function onWrong(){streak=0;updateHUD();sndWrong();var wc=$("wordCard");if(wc){wc.classList.add("shake");setTimeout(function(){wc.classList.remove("shake");},500);}}
 
 /* ==================== HUD ==================== */
 function updateHUD(){
   $("scoreNum").textContent=score;$("streakNum").textContent=streak;
-  var cat=CAT[curCat];var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?6:10);
+  var cat=CAT[curCat];var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?6:6);
   $("progressText").textContent=earned+" / "+total;
   $("progressFill").style.width=(earned/total*100)+"%";
-  $("progressLabel").textContent=cat.type==="math"||cat.type==="quiz"?"Aciertos":(cat.type==="memory"?"Pares encontrados":"Progreso");
+  $("progressLabel").textContent=cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story"?"Aciertos":(cat.type==="memory"?"Pares":"Progreso");
 }
 
 /* ==================== CONFETTI ==================== */
 var canvas=$("confettiCanvas"),ctx=canvas.getContext("2d"),particles=[],confettiRunning=false;
-function celebrate(){astroWrap.classList.remove("celebrate");void astroWrap.offsetWidth;astroWrap.classList.add("celebrate");rightArm.style.transform="rotate(-70deg)";setTimeout(function(){rightArm.style.transform="rotate(0deg)";},2100);burstConfetti(90);}
+function celebrate(){astroWrap.classList.remove("celebrate");void astroWrap.offsetWidth;astroWrap.classList.add("celebrate");rightArm.style.transform="rotate(-70deg)";setTimeout(function(){rightArm.style.transform="rotate(0deg)";},2100);burstConfetti(80);}
 function resizeCanvas(){var r=canvas.getBoundingClientRect();if(canvas.width!==r.width||canvas.height!==r.height){canvas.width=r.width;canvas.height=r.height;}}
 function burstConfetti(n){resizeCanvas();var cols=["#22d3ee","#fb923c","#facc15","#4ade80","#f472b6","#a78bfa"];for(var i=0;i<n;i++)particles.push({x:canvas.width/2+(Math.random()-.5)*120,y:canvas.height*.35,vx:(Math.random()-.5)*9,vy:-Math.random()*9-3,size:Math.random()*7+4,color:cols[Math.floor(Math.random()*cols.length)],rot:Math.random()*6.28,vr:(Math.random()-.5)*.3,life:1});if(!confettiRunning)runConfetti();}
 function runConfetti(){confettiRunning=true;resizeCanvas();ctx.clearRect(0,0,canvas.width,canvas.height);var alive=[];for(var i=0;i<particles.length;i++){var p=particles[i];p.vy+=.25;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.life-=.008;if(p.y<canvas.height+20&&p.life>0){alive.push(p);ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.6);ctx.restore();}}particles=alive;if(particles.length>0)requestAnimationFrame(runConfetti);else{ctx.clearRect(0,0,canvas.width,canvas.height);confettiRunning=false;}}
 
-/* ==================== FLASHCARD ==================== */
+/* ==================== FLASH ==================== */
 function renderFlash(){
   var c=CAT[curCat].cards[idx];var tile=$("wordTile");
   tile.textContent=c.tile;tile.style.background="linear-gradient(135deg,"+CAT[curCat].color+","+CAT[curCat].color+"88)";
   $("wordEs").textContent=c.es;
   $("wordEn").innerHTML="";
-  for(var i=0;i<c.en.length;i++){var sp=document.createElement("span");sp.className="word-letter";sp.textContent=c.en[i];sp.style.animationDelay=(i*.07)+"s";sp.style.color=(i===0)?"var(--accent2)":"var(--text)";sp.style.fontSize=(i===0)?"38px":"30px";$("wordEn").appendChild(sp);}
+  for(var i=0;i<c.en.length;i++){var sp=document.createElement("span");sp.className="word-letter";sp.textContent=c.en[i];sp.style.animationDelay=(i*.07)+"s";sp.style.color=(i===0)?"var(--accent2)":"var(--text)";sp.style.fontSize=(i===0)?"30px":"24px";$("wordEn").appendChild(sp);}
   setFeedback("","");
-  $("astroMessage").innerHTML='Tocá <strong style="color:var(--purple)">Buggy explica</strong> y te enseño en castellano. Después repetí la palabra en inglés.';
+  $("astroMessage").innerHTML='Tocá <strong style="color:var(--purple)">Buggy explica</strong> y te enseño. Después repetí en inglés.';
 }
 
-/* todas las palabras de vocabulario (para quizzes) */
-function allVocab(){var all=[];CAT.forEach(function(c){if(c.type==="flash"&&c.cards)c.cards.forEach(function(w){all.push(w);});});return all;}
-
-/* ==================== MATH / QUIZ ENGINE ==================== */
-var mathAnswer=0, quizData=null;
-function renderMath(){
-  var cat=CAT[curCat];attempts=0;
-  var probEl=$("mathProblem"), grid=$("mathOptions");
-  var opts=[], answer=0, speakText="";
+/* ==================== MATH / MCQ ENGINE ==================== */
+var mcqAnswer=null,typeWord=null,spellWord=null,sentenceTarget=null,storyNode=null;
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function stopTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}$("timerBar").style.display="none";}
+function startTimer(){
+  var cat=CAT[curCat];if(!cat.timed){stopTimer();return;}
+  $("timerBar").style.display="block";var fill=$("timerFill");var total=15,left=total;
+  fill.style.width="100%";
+  if(timerInt)clearInterval(timerInt);
+  timerInt=setInterval(function(){
+    left-=0.2;fill.style.width=(left/total*100)+"%";
+    if(left<=5&&left>4.8)sndTick();
+    if(left<=0){clearInterval(timerInt);timerInt=null;onWrong();$("feedback2").textContent="¡Se acabó el tiempo!";$("feedback2").style.color="#f87171";say("Se acabó el tiempo.","es-AR");setTimeout(renderMCQ,1200);}
+  },200);
+}
+function renderMCQ(){
+  stopTimer();attempts=0;
+  var cat=CAT[curCat];
+  $("typeRow").style.display="none";$("spellRow").style.display="none";$("storyRow").style.display="none";
+  $("mcqQuestion").style.display="flex";$("mcqOptions").style.display="grid";
   if(cat.type==="math"){
     var max=cat.max||10;var a=Math.floor(Math.random()*(max-1))+1,b=Math.floor(Math.random()*(max-1))+1;
     if(cat.op==="*"){a=Math.floor(Math.random()*5)+1;b=Math.floor(Math.random()*5)+1;}
     if(cat.op==="-"&&b>a){var t=a;a=b;b=t;}
-    answer=cat.op==="+"?a+b:(cat.op==="-"?a-b:a*b);
+    mcqAnswer=cat.op==="+"?a+b:(cat.op==="-"?a-b:a*b);
     var opSym=cat.op==="*"?"×":cat.op;var opTxt=cat.op==="+"?"más":(cat.op==="-"?"menos":"por");
-    probEl.textContent=a+" "+opSym+" "+b+" = ?";probEl.style.color=cat.color;probEl.style.fontSize="44px";
-    speakText="¿Cuánto es "+numEs(a)+" "+opTxt+" "+numEs(b)+"?";
-    opts=[answer];while(opts.length<4){var w=answer+(Math.floor(Math.random()*9)-4);if(w>=0&&opts.indexOf(w)<0)opts.push(w);}
-  } else {
-    /* QUIZ */
-    var vocab=allVocab();
-    if(cat.quiz==="listen"){
-      var pick=vocab[Math.floor(Math.random()*vocab.length)];answer=pick.en;
-      probEl.innerHTML='<div style="font-size:18px;color:var(--muted);font-weight:500;">Buggy dijo una palabra. ¿Qué significa?</div>';
-      speakText=pick.en;
-      opts=[pick.es];while(opts.length<4){var r=vocab[Math.floor(Math.random()*vocab.length)];if(opts.indexOf(r.es)<0&&r.es!==pick.es)opts.push(r.es);}
-    } else if(cat.quiz==="initial"){
-      var p2=vocab[Math.floor(Math.random()*vocab.length)];answer=p2.en.charAt(0).toUpperCase();
-      probEl.innerHTML='<div style="font-size:22px;font-weight:700;color:var(--text);">'+p2.en+'</div><div style="font-size:14px;color:var(--muted);margin-top:4px;">¿Con qué letra empieza?</div>';
-      speakText="¿Con qué letra empieza "+p2.en+"?";
-      opts=[answer];while(opts.length<4){var L=String.fromCharCode(65+Math.floor(Math.random()*26));if(opts.indexOf(L)<0)opts.push(L);}
-    } else if(cat.quiz==="count"){
-      var n=Math.floor(Math.random()*9)+1;answer=n;
-      var dots="";for(var d=0;d<n;d++)dots+='<span class="dot"></span>';
-      probEl.innerHTML='<div style="line-height:1.4;">'+dots+'</div>';
-      speakText="Contá los puntos. ¿Cuántos hay?";
-      opts=[n];while(opts.length<4){var wn=Math.floor(Math.random()*12)+1;if(opts.indexOf(wn)<0)opts.push(wn);}
-    } else if(cat.quiz==="opposite"){
-      var pairs=[["grande","Big","chico","Small"],["caliente","Hot","frío","Cold"],["rápido","Fast","lento","Slow"],["alto","Tall","bajo","Short"],["feliz","Happy","triste","Sad"],["claro","Light","oscuro","Dark"]];
-      var pr=pairs[Math.floor(Math.random()*pairs.length)];answer=pr[3];
-      probEl.innerHTML='<div style="font-size:14px;color:var(--muted);">Opuesto de</div><div style="font-size:28px;font-weight:700;color:var(--text);">'+pr[1]+' ('+pr[0]+')</div>';
-      speakText="¿Cuál es el opuesto de "+pr[1]+"?";
-      opts=[pr[3]];while(opts.length<4){var rp=pairs[Math.floor(Math.random()*pairs.length)];if(opts.indexOf(rp[3])<0&&rp[3]!==pr[3])opts.push(rp[3]);}
-    } else { /* colors */
-      var cols=[["rojo","Red","#ef4444"],["azul","Blue","#3b82f6"],["verde","Green","#22c55e"],["amarillo","Yellow","#eab308"],["naranja","Orange","#f97316"],["rosa","Pink","#ec4899"],["morado","Purple","#a855f7"],["negro","Black","#1f2937"]];
-      var cc=cols[Math.floor(Math.random()*cols.length)];answer=cc[1];
-      probEl.innerHTML='<div class="tile mx-auto" style="width:60px;height:60px;background:'+cc[2]+';"></div>';
-      speakText="¿De qué color es? Decilo en inglés.";
-      opts=[cc[1]];while(opts.length<4){var rc=cols[Math.floor(Math.random()*cols.length)];if(opts.indexOf(rc[1])<0&&rc[1]!==cc[1])opts.push(rc[1]);}
-    }
+    $("mcqQuestion").textContent=a+" "+opSym+" "+b+" = ?";$("mcqQuestion").style.color=cat.color;$("mcqQuestion").style.fontSize="36px";
+    var opts=[mcqAnswer];while(opts.length<4){var w=mcqAnswer+(Math.floor(Math.random()*9)-4);if(w>=0&&opts.indexOf(w)<0)opts.push(w);}
+    var speakText="¿Cuánto es "+numEs(a)+" "+opTxt+" "+numEs(b)+"?";
+    buildOptions(opts,String(mcqAnswer),speakText,"es-AR");
+  } else if(cat.type==="mcq"){
+    var q=cat.q[idx%cat.q.length];
+    mcqAnswer=q[1][q[2]];
+    $("mcqQuestion").innerHTML=q[0];$("mcqQuestion").style.color="var(--text)";$("mcqQuestion").style.fontSize="17px";
+    buildOptions(q[1].slice(),String(mcqAnswer),q[3],"es-AR");
+    startTimer();
   }
-  for(var i=opts.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=opts[i];opts[i]=opts[j];opts[j]=tmp;}
-  grid.innerHTML="";
+}
+function buildOptions(opts,answer,speakText,lang){
+  shuffle(opts);
+  var grid=$("mcqOptions");grid.innerHTML="";
   opts.forEach(function(val){
     var btn=document.createElement("button");
-    btn.className="option-card btn rounded-2xl py-3.5 text-xl font-bold";
+    btn.className="option-card btn rounded-xl py-3 text-lg font-bold";
     btn.style.background="var(--card)";btn.style.border="2px solid var(--border)";btn.style.color="var(--text)";
     btn.textContent=val;
     btn.addEventListener("click",function(){
       attempts++;
       if(String(val)===String(answer)){
-        btn.classList.add("correct");onCorrect("math");
+        stopTimer();btn.classList.add("correct");onCorrect("mcq");
         $("feedback2").textContent="¡Correcto!";$("feedback2").style.color="var(--green)";
         say("¡Muy bien! Es "+answer,"es-AR");
         Array.prototype.forEach.call(grid.children,function(c){c.style.pointerEvents="none";});
-        if(earned<10)setTimeout(renderMath,1300);
+        idx++;if(earned<6)setTimeout(renderMCQ,1300);
       } else {
         btn.classList.add("wrong");onWrong();
         $("feedback2").textContent="No es ese. Intentá de nuevo.";$("feedback2").style.color="#f87171";
@@ -500,9 +616,135 @@ function renderMath(){
     grid.appendChild(btn);
   });
   $("feedback2").textContent="";$("feedback2").style.color="";
-  setTimeout(function(){stopSpeak();if(cat.type==="quiz"&&cat.quiz==="listen"){say(speakText,"en-US");}else say(speakText,"es-AR");},400);
+  setTimeout(function(){stopSpeak();say(speakText,lang);},400);
 }
-$("replayMathBtn").addEventListener("click",function(){var cat=CAT[curCat];sndClick();});
+
+/* ==================== TYPE (escritura / dictados) ==================== */
+function renderType(){
+  stopTimer();attempts=0;
+  var cat=CAT[curCat];
+  $("mcqQuestion").style.display="flex";$("mcqOptions").style.display="none";
+  $("typeRow").style.display="block";$("spellRow").style.display="none";$("storyRow").style.display="none";
+  typeWord=cat.words[idx%cat.words.length];
+  var langName=cat.lang==="en"?"inglés":"castellano";
+  $("mcqQuestion").innerHTML='<div style="font-size:14px;color:var(--muted);font-weight:500;">Buggy dice una palabra en '+langName+'. Escribila bien.</div>';
+  $("mcqQuestion").style.fontSize="16px";
+  $("typeInput").value="";$("typeInput").focus();
+  $("feedback2").textContent="";$("feedback2").style.color="";
+  setTimeout(function(){stopSpeak();say(typeWord,cat.lang==="en"?"en-US":"es-AR");},400);
+}
+function checkType(){
+  attempts++;
+  var val=$("typeInput").value.trim().toLowerCase();
+  if(val===typeWord.toLowerCase()){
+    onCorrect("type");$("feedback2").textContent="¡Perfecto! Se escribe: "+typeWord;$("feedback2").style.color="var(--green)";
+    say("¡Muy bien! Lo escribiste perfecto.","es-AR");
+    idx++;if(earned<6)setTimeout(renderType,1400);
+  } else {
+    onWrong();$("feedback2").textContent="Casi! Era: "+typeWord+". Escuchá de nuevo.";$("feedback2").style.color="#f87171";
+    say("Casi. Era "+typeWord+". Escuchá de nuevo.","es-AR");
+    $("typeInput").value="";setTimeout(function(){stopSpeak();say(typeWord,CAT[curCat].lang==="en"?"en-US":"es-AR");},800);
+  }
+}
+
+/* ==================== SPELL (ordenar palabras) ==================== */
+function renderSpell(){
+  stopTimer();attempts=0;
+  var cat=CAT[curCat];
+  $("mcqQuestion").style.display="flex";$("mcqOptions").style.display="none";
+  $("typeRow").style.display="none";$("spellRow").style.display="block";$("storyRow").style.display="none";
+  spellWord=cat.words[idx%cat.words.length];
+  $("mcqQuestion").innerHTML='<div style="font-size:14px;color:var(--muted);font-weight:500;">Tocá las letras en orden para formar la palabra que dice Buggy.</div>';
+  $("mcqQuestion").style.fontSize="16px";
+  var letters=spellWord.split("");shuffle(letters);
+  var tiles=$("spellTiles");tiles.innerHTML="";
+  letters.forEach(function(L,i){
+    var b=document.createElement("button");
+    b.className="spell-tile btn tile";b.style.width="42px";b.style.height="42px";b.style.fontSize="20px";
+    b.style.background="linear-gradient(135deg,"+cat.color+","+cat.color+"88)";
+    b.textContent=L;b.dataset.letter=L;b.dataset.idx=i;
+    b.addEventListener("click",function(){
+      b.classList.add("used");
+      var ans=$("spellAnswer");
+      var sp=document.createElement("span");sp.className="tile";sp.style.width="36px";sp.style.height="36px";sp.style.fontSize="18px";sp.style.background="var(--accent)";sp.textContent=L;
+      sp.addEventListener("click",function(){sp.remove();b.classList.remove("used");});
+      ans.appendChild(sp);
+      sndClick();
+      if(ans.children.length===spellWord.length){
+        var built="";for(var k=0;k<ans.children.length;k++)built+=ans.children[k].textContent;
+        if(built===spellWord){attempts++;onCorrect("spell");$("feedback2").textContent="¡Correcto! "+spellWord;$("feedback2").style.color="var(--green)";say("¡Muy bien!","es-AR");idx++;if(earned<6)setTimeout(renderSpell,1400);}
+        else{attempts++;onWrong();$("feedback2").textContent="No es. Volvé a intentar.";$("feedback2").style.color="#f87171";say("No es. Volvé a intentar.","es-AR");setTimeout(function(){ans.innerHTML="";Array.prototype.forEach.call(tiles.children,function(c){c.classList.remove("used");});},800);}
+      }
+    });
+    tiles.appendChild(b);
+  });
+  $("spellAnswer").innerHTML="";$("feedback2").textContent="";$("feedback2").style.color="";
+  setTimeout(function(){stopSpeak();say(spellWord,"en-US");},400);
+}
+
+/* ==================== SENTENCE (armado de oraciones) ==================== */
+function renderSentence(){
+  stopTimer();attempts=0;
+  var cat=CAT[curCat];
+  $("mcqQuestion").style.display="flex";$("mcqOptions").style.display="none";
+  $("typeRow").style.display="none";$("spellRow").style.display="block";$("storyRow").style.display="none";
+  sentenceTarget=cat.sentences[idx%cat.sentences.length];
+  $("mcqQuestion").innerHTML='<div style="font-size:14px;color:var(--muted);font-weight:500;">Buggy dice una oración. Tocá las palabras en orden.</div>';
+  $("mcqQuestion").style.fontSize="16px";
+  var words=sentenceTarget.slice();shuffle(words);
+  var tiles=$("spellTiles");tiles.innerHTML="";
+  words.forEach(function(w,i){
+    var b=document.createElement("button");
+    b.className="spell-tile btn rounded-xl px-3 py-2";b.style.fontSize="15px";b.style.fontWeight="700";
+    b.style.background="var(--card)";b.style.border="2px solid "+cat.color;b.style.color="var(--text)";
+    b.textContent=w;b.dataset.word=w;
+    b.addEventListener("click",function(){
+      b.classList.add("used");
+      var ans=$("spellAnswer");
+      var sp=document.createElement("span");sp.style.padding="6px 12px";sp.style.borderRadius="10px";sp.style.background=cat.color;sp.style.color="#0b1026";sp.style.fontWeight="700";sp.style.fontSize="15px";sp.textContent=w;sp.style.cursor="pointer";
+      sp.addEventListener("click",function(){sp.remove();b.classList.remove("used");});
+      ans.appendChild(sp);sndClick();
+      if(ans.children.length===sentenceTarget.length){
+        var built=[];for(var k=0;k<ans.children.length;k++)built.push(ans.children[k].textContent);
+        if(built.join(" ")===sentenceTarget.join(" ")){attempts++;onCorrect("sentence");$("feedback2").textContent="¡Correcto! "+sentenceTarget.join(" ");$("feedback2").style.color="var(--green)";say("¡Muy bien!","es-AR");idx++;if(earned<6)setTimeout(renderSentence,1400);}
+        else{attempts++;onWrong();$("feedback2").textContent="No es. Volvé a intentar.";$("feedback2").style.color="#f87171";say("No es. Volvé a intentar.","es-AR");setTimeout(function(){ans.innerHTML="";Array.prototype.forEach.call(tiles.children,function(c){c.classList.remove("used");});},800);}
+      }
+    });
+    tiles.appendChild(b);
+  });
+  $("spellAnswer").innerHTML="";$("feedback2").textContent="";$("feedback2").style.color="";
+  setTimeout(function(){stopSpeak();say(sentenceTarget.join(" "),"en-US");},400);
+}
+
+/* ==================== STORY (cuento interactivo) ==================== */
+function renderStory(){
+  stopTimer();
+  var cat=CAT[curCat];
+  $("mcqQuestion").style.display="none";$("mcqOptions").style.display="none";
+  $("typeRow").style.display="none";$("spellRow").style.display="none";$("storyRow").style.display="block";
+  if(!storyNode)storyNode=cat.story;
+  var node=storyNode;
+  var row=$("storyRow");row.innerHTML="";
+  var box=document.createElement("div");
+  box.className="rounded-2xl p-4";box.style.background="linear-gradient(145deg,rgba(167,139,250,.15),rgba(34,211,238,.1))";box.style.border="1px solid var(--border)";
+  box.style.fontSize="15px";box.style.lineHeight="1.6";box.style.color="var(--text)";box.style.marginBottom="10px";
+  box.textContent=node.t;row.appendChild(box);
+  if(node.end){
+    correctSet["story"]=true;earned=6;firstTry=6;updateHUD();sndFanfare();burstConfetti(120);
+    say("¡Felicidades! Completaste el cuento.","es-AR");
+    setTimeout(showComplete,1500);
+    return;
+  }
+  node.o.forEach(function(opt){
+    var b=document.createElement("button");
+    b.className="btn rounded-xl px-4 py-2.5 mb-2 w-full text-left";
+    b.style.background="var(--card)";b.style.border="2px solid "+cat.color;b.style.color="var(--text)";b.style.fontWeight="600";b.style.fontSize="14px";
+    b.textContent="→ "+opt.l;
+    b.addEventListener("click",function(){sndClick();storyNode=cat.story[opt.n];renderStory();});
+    row.appendChild(b);
+  });
+  stopSpeak();say(node.t,"es-AR");
+}
 
 /* ==================== MEMORY ==================== */
 var memFirst=null,memLock=false,memMoves=0,memPairs=0;
@@ -511,8 +753,7 @@ function renderMemory(){
   $("memMoves").textContent="0";$("memPairs").textContent="0";
   var cat=CAT[curCat];var syms=cat.sym==="numbers"?["1","2","3","4","5","6"]:(cat.sym==="colors"?["R","A","V","Y","N","M"]:["A","B","C","D","E","F"]);
   var colMap={R:"#ef4444",A:"#3b82f6",V:"#22c55e",Y:"#eab308",N:"#f97316",M:"#ec4899"};
-  var deck=syms.concat(syms);
-  for(var i=deck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=deck[i];deck[i]=deck[j];deck[j]=tmp;}
+  var deck=syms.concat(syms);shuffle(deck);
   var grid=$("memGrid");grid.innerHTML="";
   deck.forEach(function(sym){
     var card=document.createElement("div");card.className="mem-card";
@@ -528,7 +769,7 @@ function renderMemory(){
         first.classList.add("matched");card.classList.add("matched");
         memPairs++;earned=memPairs;$("memPairs").textContent=memPairs;updateHUD();sndCorrect();
         say("¡Muy bien! Encontraste un par.","es-AR");
-        if(memPairs>=6){correctSet["mem"]=true;firstTry=memMoves<=12?6:3;onCorrect("mem");setTimeout(showComplete,1200);}
+        if(memPairs>=6){correctSet["mem"]=true;firstTry=memMoves<=12?6:3;onCorrect("memory");setTimeout(showComplete,1200);}
       } else {memLock=true;onWrong();setTimeout(function(){first.classList.remove("flipped");card.classList.remove("flipped");memLock=false;},900);}
     });
     grid.appendChild(card);
@@ -539,17 +780,18 @@ function renderMemory(){
 
 /* ==================== COMPLETE ==================== */
 function showComplete(){
+  stopTimer();
   var cat=CAT[curCat];
-  var total=cat.type==="flash"?cat.cards.length:10;
+  var total=cat.type==="flash"?cat.cards.length:6;
   var starsEarned=(firstTry>=total)?3:(firstTry>=Math.ceil(total*.6))?2:1;
   if(cat.type==="memory")starsEarned=(memMoves<=12)?3:(memMoves<=18?2:1);
   if(starsEarned>save.stars[curCat])save.stars[curCat]=starsEarned;persist();
   var ov=$("overlayStars");ov.innerHTML="";
-  for(var i=0;i<3;i++){var sp=document.createElementNS("http://www.w3.org/2000/svg","svg");sp.setAttribute("width","34");sp.setAttribute("height","34");sp.setAttribute("viewBox","0 0 24 24");var fill=(i<starsEarned)?"var(--gold)":"rgba(139,147,194,.25)";sp.innerHTML='<path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z" fill="'+fill+'" stroke="'+fill+'" stroke-width="1"/>';sp.style.animation="badgePop .5s "+(i*.15)+"s cubic-bezier(.34,1.56,.64,1) backwards";ov.appendChild(sp);}
+  for(var i=0;i<3;i++){var sp=document.createElementNS("http://www.w3.org/2000/svg","svg");sp.setAttribute("width","30");sp.setAttribute("height","30");sp.setAttribute("viewBox","0 0 24 24");var fill=(i<starsEarned)?"var(--gold)":"rgba(139,147,194,.25)";sp.innerHTML='<path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z" fill="'+fill+'" stroke="'+fill+'" stroke-width="1"/>';sp.style.animation="badgePop .5s "+(i*.15)+"s cubic-bezier(.34,1.56,.64,1) backwards";ov.appendChild(sp);}
   var msgs=["¡Bien! Completaste el juego.","¡Muy bien! Casi todo a la primera.","¡INCREÍBLE! Todo perfecto."];
   $("overlayMsg").textContent=msgs[Math.min(starsEarned,3)-1]+" · +"+score+" puntos";
   $("levelOverlay").style.display="flex";$("levelOverlay").classList.add("fade-in");
-  sndFanfare();burstConfetti(160);setTimeout(function(){burstConfetti(120);},600);
+  sndFanfare();burstConfetti(140);setTimeout(function(){burstConfetti(100);},600);
   say("¡Felicitaciones! Completaste "+cat.name+".","es-AR");
 }
 
@@ -559,19 +801,20 @@ function renderHome(){
   $("xpLevel").textContent=Math.floor(totalStars()/5)+1;
   var cont=$("catSections");cont.innerHTML="";
   SECTIONS.forEach(function(sec){
-    var label=document.createElement("div");label.className="section-label";label.style.color=CAT.find(function(c){return c.section===sec;}).color;
+    var label=document.createElement("div");label.className="section-label";
+    var first=CAT.find(function(c){return c.section===sec;});label.style.color=first.color;
     label.textContent=sec;cont.appendChild(label);
-    var grid=document.createElement("div");grid.className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5";
+    var grid=document.createElement("div");grid.className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2";
     CAT.forEach(function(cat,i){
       if(cat.section!==sec)return;
       var card=document.createElement("div");
-      card.className="cat-card glass rounded-2xl p-3 fade-in text-center";
+      card.className="cat-card glass rounded-xl p-2.5 fade-in text-center";
       card.style.cursor="pointer";card.style.borderTop="3px solid "+cat.color;
-      var sh="";for(var s=0;s<3;s++){var fl=(s<save.stars[i])?cat.color:"rgba(139,147,194,.3)";sh+='<svg width="12" height="12" viewBox="0 0 24 24" fill="'+fl+'" stroke="'+fl+'" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>';}
-      var count=cat.type==="flash"?cat.cards.length+" palabras":(cat.type==="math"?"10 problemas":(cat.type==="memory"?"6 pares":"10 preguntas"));
-      card.innerHTML='<div class="tile mx-auto" style="width:40px;height:40px;font-size:18px;margin-bottom:6px;background:linear-gradient(135deg,'+cat.color+','+cat.color+'88);">'+cat.icon+'</div>'+
-        '<h3 style="margin:0 0 2px;font-size:13px;font-weight:700;line-height:1.2;">'+cat.name+'</h3>'+
-        '<p style="margin:0 0 6px;font-size:10px;color:var(--muted);">'+count+'</p>'+
+      var sh="";for(var s=0;s<3;s++){var fl=(s<save.stars[i])?cat.color:"rgba(139,147,194,.3)";sh+='<svg width="10" height="10" viewBox="0 0 24 24" fill="'+fl+'" stroke="'+fl+'" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>';}
+      var count=cat.type==="flash"?cat.cards.length+" pal":(cat.type==="math"||cat.type==="mcq"?"6 preg":(cat.type==="memory"?"6 pares":(cat.type==="story"?"1 cuento":"6 act")));
+      card.innerHTML='<div class="tile mx-auto" style="width:34px;height:34px;font-size:16px;margin-bottom:4px;background:linear-gradient(135deg,'+cat.color+','+cat.color+'88);">'+cat.icon+'</div>'+
+        '<h3 style="margin:0 0 1px;font-size:11px;font-weight:700;line-height:1.2;">'+cat.name+'</h3>'+
+        '<p style="margin:0 0 4px;font-size:9px;color:var(--muted);">'+count+'</p>'+
         '<div class="flex gap-0.5 justify-center">'+sh+'</div>';
       card.addEventListener("click",function(){startCategory(i);});
       grid.appendChild(card);
@@ -584,21 +827,25 @@ function renderHome(){
 
 /* ==================== NAV ==================== */
 function startCategory(i){
-  curCat=i;idx=0;earned=0;firstTry=0;attempts=0;streak=0;correctSet={};
+  curCat=i;idx=0;earned=0;firstTry=0;attempts=0;streak=0;correctSet={};storyNode=null;
   var cat=CAT[i];
   $("levelTitle").textContent=cat.name;$("levelTitle").style.color=cat.color;
   $("homeScreen").classList.add("hidden-screen");$("gameScreen").classList.remove("hidden-screen");
-  $("levelOverlay").style.display="none";stopSpeak();
+  $("levelOverlay").style.display="none";stopSpeak();stopTimer();
   $("flashPanel").style.display=cat.type==="flash"?"":"none";
-  $("mathPanel").style.display=(cat.type==="math"||cat.type==="quiz")?"":"none";
+  $("mcqPanel").style.display=(cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story")?"":"none";
   $("memPanel").style.display=cat.type==="memory"?"":"none";
   updateHUD();
   if(cat.type==="flash"){renderFlash();setTimeout(teachCard,500);}
   else if(cat.type==="memory"){renderMemory();}
-  else{renderMath();}
+  else if(cat.type==="type"){renderType();}
+  else if(cat.type==="spell"){renderSpell();}
+  else if(cat.type==="sentence"){renderSentence();}
+  else if(cat.type==="story"){renderStory();}
+  else {renderMCQ();}
   sndClick();window.scrollTo({top:0,behavior:"smooth"});
 }
-function goHome(){stopSpeak();$("gameScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();sndClick();}
+function goHome(){stopSpeak();stopTimer();$("gameScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();sndClick();}
 
 /* ==================== EVENTS ==================== */
 $("teachBtn").addEventListener("click",teachCard);
@@ -606,6 +853,15 @@ $("listenBtn").addEventListener("click",sayEnglishOnly);
 $("micBtn").addEventListener("click",startListening);
 $("prevBtn").addEventListener("click",function(){attempts=0;idx=(idx-1+CAT[curCat].cards.length)%CAT[curCat].cards.length;renderFlash();sndClick();});
 $("nextBtn").addEventListener("click",function(){attempts=0;idx=(idx+1)%CAT[curCat].cards.length;renderFlash();sndClick();});
+$("typeCheck").addEventListener("click",checkType);
+$("typeInput").addEventListener("keydown",function(e){if(e.key==="Enter")checkType();});
+$("replayBtn").addEventListener("click",function(){
+  var cat=CAT[curCat];sndClick();
+  if(cat.type==="type"){stopSpeak();say(typeWord,cat.lang==="en"?"en-US":"es-AR");}
+  else if(cat.type==="spell"){stopSpeak();say(spellWord,"en-US");}
+  else if(cat.type==="sentence"){stopSpeak();say(sentenceTarget.join(" "),"en-US");}
+  else if(cat.type==="story"){stopSpeak();say(storyNode?storyNode.t:"","es-AR");}
+});
 $("homeBtn").addEventListener("click",goHome);
 $("overlayHomeBtn").addEventListener("click",goHome);
 if(!recogSupported){$("manualDoneBtn").addEventListener("click",function(){attempts++;handleRepeatResult(true,"manual");});}
