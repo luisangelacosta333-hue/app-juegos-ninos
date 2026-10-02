@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buggy Aprende · 55 Juegos Educativos</title>
+<title>Buggy Aprende · 70 Juegos Educativos</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -100,7 +100,7 @@
         </div>
         <h1 class="big-3d" style="font-size:32px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">Buggy Aprende</h1>
       </div>
-      <p style="color:var(--muted);margin:0;font-size:13px;">55 juegos educativos · Buggy te explica en castellano</p>
+      <p style="color:var(--muted);margin:0;font-size:13px;">70 juegos educativos · Buggy te explica en castellano</p>
     </div>
     <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
       <div class="flex items-center gap-2">
@@ -577,14 +577,39 @@ mcqL("Sustantivos, verbos y adjetivos","#a78bfa","◆",[
 /* ---- JUEGOS (memoria) ---- */
 {id:"ml",name:"Memoria con letras",section:"Juegos",type:"memory",color:"#a78bfa",icon:"▦",sym:"letters"},
 {id:"mn",name:"Memoria con números",section:"Juegos",type:"memory",color:"#22d3ee",icon:"▦",sym:"numbers"},
-{id:"mc",name:"Memoria de colores",section:"Juegos",type:"memory",color:"#f472b6",icon:"▦",sym:"colors"}
+{id:"mc",name:"Memoria de colores",section:"Juegos",type:"memory",color:"#f472b6",icon:"▦",sym:"colors"},
+/* ---- AVENTURAS / PREMIUM: 15 minijuegos nuevos ---- */
+{id:"av_puzzle",name:"Rompecabezas de imágenes",section:"Aventuras",type:"jigsaw",color:"#a78bfa",icon:"▦",premium:true,intro:"En el rompecabezas las piezas están mezcladas. Tocá una pieza y luego otra para intercambiarlas. ¡Ordená la imagen colorida! Elegí la dificultad: 3x3, 4x4 o 5x5."},
+{id:"av_mem",name:"Memoria de animales",section:"Aventuras",type:"memory",color:"#fb923c",icon:"♞",sym:"animals",premium:true,intro:"Encontrá las parejas de animales iguales. Tocá dos tarjetas: si son iguales quedan boca arriba. ¡Encontrá todos los pares!"},
+{id:"av_laber",name:"Laberinto de la mascota",section:"Aventuras",type:"maze",color:"#4ade80",icon:"⌘",premium:true,intro:"Ayudá a la mascota a salir del laberinto. Usá las flechas para moverla hasta la estrella. ¡Cuidado con las paredes!"},
+{id:"av_globos",name:"Reventar globos",section:"Aventuras",type:"balloons",color:"#f472b6",icon:"◉",premium:true,intro:"Volan muchos globos de colores. Tenés que reventar solo los globos ROJOS. Si reventás uno de otro color perdés una vida. ¡Reventá 5 globos rojos!"},
+{id:"av_blanco",name:"Tiro al blanco",section:"Aventuras",type:"target",color:"#f87171",icon:"◎",premium:true,intro:"Aparecen blancos en la pantalla y desaparecen rápido. Apuntá con el dedo y tocá el blanco antes de que se escape. ¡Acertá 6!"},
+{id:"av_runner",name:"Carrera de obstáculos",section:"Aventuras",type:"runner",color:"#22d3ee",icon:"➤",premium:true,intro:"Tu personaje corre solo. Tocá el botón SALTAR para saltar los obstáculos. Si chocás perdés una vida. ¡Llegá a la meta después de 8 obstáculos!"},
+{id:"av_detec",name:"Detective: buscar pistas",section:"Aventuras",type:"detective",color:"#a78bfa",icon:"✦",premium:true,intro:"Sos detective en una escena misteriosa. Encontrá los objetos escondidos que pide la lista. Tocá cada objeto para encontrarlo. ¡Encontrálos todos!"},
+{id:"av_pesca",name:"Pesca divertida",section:"Aventuras",type:"fishing",color:"#38bdf8",icon:"≈",premium:true,intro:"Los peces nadan en el río. Pescá solo los peces DORADos. Cuidado con las botas viejas, si las agarrás perdés una vida. ¡Pescá 5 peces dorados!"},
+{id:"av_bloques",name:"Construcción con bloques",section:"Aventuras",type:"blocks",color:"#fb923c",icon:"▥",premium:true,intro:"Tenés que construir una torre igual al modelo. Tocá los bloques de colores en el orden correcto para armarla. ¡Construí 3 torres!"},
+{id:"av_tren",name:"Armar la vía del tren",section:"Aventuras",type:"train",color:"#4ade80",icon:"🚂".replace("🚂","≡"),premium:true,intro:"Las vías del tren están desordenadas. Colocá las piezas en orden del 1 al 4 para que el tren llegue a destino. ¡Tocá una pieza y luego su lugar!"},
+{id:"av_colfor",name:"Colores y formas",section:"Aventuras",type:"colorshapes",color:"#facc15",icon:"◐",premium:true,intro:"Cada figura tiene un color. Tocá una figura y luego su lugar correcto según el color. ¡Uní las 4 figuras!"},
+{id:"av_sec",name:"Completar la secuencia",section:"Aventuras",type:"mcq",color:"#22d3ee",icon:"123",premium:true,intro:"Mirá la serie de números o figuras y descubrí qué elemento sigue. Pensá la regla y elegí la respuesta correcta.",q:[
+ ["2, 4, 6, 8, ¿qué sigue?",["9","10","12","7"],1,"Serie sumando de a dos: 2,4,6,8,10."],
+ ["1, 3, 5, 7, ¿qué sigue?",["8","9","10","11"],1,"Números impares: 1,3,5,7,9."],
+ ["5, 10, 15, 20, ¿qué sigue?",["25","22","30","21"],0,"Sumando de a cinco: 5,10,15,20,25."],
+ ["A, B, C, D, ¿qué letra sigue?",["F","E","G","H"],1,"Abecedario: A,B,C,D,E."],
+ ["1, 2, 4, 8, ¿qué sigue?",["10","12","16","14"],2,"Duplicando: 1,2,4,8,16."],
+ ["● ▲ ● ▲ ● ¿qué sigue?",["●","▲","■","★"],1,"Se repite círculo, triángulo."]
+]},
+{id:"av_diff",name:"Encuentra las diferencias",section:"Aventuras",type:"diff2",color:"#f472b6",icon:"✕",premium:true,intro:"Hay dos escenas casi iguales, pero en una cambió una cosa. Mirá con atención y tocá la casilla distinta de la escena de la derecha. ¡Encontrá 4 diferencias!"},
+{id:"av_plat",name:"Salto de plataformas",section:"Aventuras",type:"platformer",color:"#4ade80",icon:"▲",premium:true,intro:"Tu personaje salta de plataforma en plataforma. Tocá SALTAR justo cuando la barra esté en la zona verde. ¡Llegá a la plataforma más alta!"},
+{id:"av_tesoro",name:"Búsqueda del tesoro",section:"Aventuras",type:"treasure",color:"#facc15",icon:"◆",premium:true,intro:"Recorré el mapa de las islas. En cada isla hay una pregunta matemática: respondé bien para avanzar. ¡Llegá hasta el tesoro final!"}
+
 ];
 function mcqL(name,color,icon,qs){var c=mcq(name,color,icon,qs);c.section="Lengua";return c;}
-var SECTIONS=["Vocabulario","Matemática","Lengua","Juegos de inteligencia","Juegos"];
+var SECTIONS=["Vocabulario","Matemática","Lengua","Juegos de inteligencia","Juegos","Aventuras"];
 var TROPHY_NEED=[10,25,45];
 
 /* ==================== STATE ==================== */
 var save=loadSave();
+checkDaily();
 var curCat=0,idx=0,score=save.score||0,streak=0,earned=0,firstTry=0,attempts=0,correctSet={};
 var mouthTimer=null,speechQ=[],speakingNow=false;
 var recognition=null,recogSupported=false,recognizing=false;
@@ -618,7 +643,8 @@ var INTROS={
   hora:"Vamos a aprender la hora y el calendario: días de la semana, meses, cuántos minutos tiene una hora. Prestá atención."
 };
 var $=function(id){return document.getElementById(id);};
-function loadSave(){try{var raw=localStorage.getItem("buggyV3");if(raw){var o=JSON.parse(raw);if(o&&o.stars)return o;}}catch(e){}return {stars:CAT.map(function(){return 0;}),score:0};}
+function loadSave(){try{var raw=localStorage.getItem("buggyV3");if(raw){var o=JSON.parse(raw);if(o&&o.stars){while(o.stars.length<CAT.length)o.stars.push(0);return o;}}}catch(e){}return {stars:CAT.map(function(){return 0;}),score:0};}
+function checkDaily(){petInit();var today=new Date().toISOString().slice(0,10);if(save.lastDay===today)return;var y=new Date(Date.now()-86400000).toISOString().slice(0,10);save.streak=(save.lastDay===y)?(save.streak||0)+1:1;save.lastDay=today;var bonus=10+save.streak*3;save.pet.coins+=bonus;persist();setTimeout(function(){var m=document.createElement("div");m.className="modal-bg";m.innerHTML='<div class="glass rounded-2xl p-5 text-center" style="max-width:320px;"><div style="font-size:40px;margin-bottom:6px;">★</div><h3 style="margin:0 0 6px;color:var(--gold);">¡Recompensa diaria!</h3><p style="margin:0 0 4px;font-size:14px;">Día seguido: <strong>'+save.streak+'</strong></p><p style="margin:0 0 12px;font-size:14px;">Ganaste <strong style="color:var(--gold);">● '+bonus+' monedas</strong> para tu mascota.</p><button class="btn rounded-xl px-5 py-2" style="background:linear-gradient(135deg,var(--gold),#f59e0b);color:#7c2d12;font-weight:700;" onclick="this.parentElement.parentElement.remove();">¡Genial!</button></div>';document.body.appendChild(m);sndFanfare();},800);}
 function persist(){try{localStorage.setItem("buggyV3",JSON.stringify(save));}catch(e){}}
 function totalStars(){return save.stars.reduce(function(a,b){return a+b;},0);}
 (function(){var sf=$("starfield");for(var i=0;i<35;i++){var st=document.createElement("div");st.className="star";var sz=Math.random()*2.5+1;st.style.width=sz+"px";st.style.height=sz+"px";st.style.left=Math.random()*100+"%";st.style.top=Math.random()*100+"%";st.style.animationDelay=(Math.random()*3)+"s";sf.appendChild(st);}})();
@@ -690,7 +716,7 @@ function updateHUD(){
   var cat=CAT[curCat];var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?6:6);
   $("progressText").textContent=earned+" / "+total;
   $("progressFill").style.width=(earned/total*100)+"%";
-  $("progressLabel").textContent=cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story"?"Aciertos":(cat.type==="memory"?"Pares":"Progreso");
+  $("progressLabel").textContent=(cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story"||ARCADE_TYPES.indexOf(cat.type)>=0)?"Aciertos":(cat.type==="memory"?"Pares":"Progreso");
 }
 
 /* ==================== CONFETTI ==================== */
@@ -906,6 +932,319 @@ function renderStory(){
 }
 
 /* ==================== JUEGOS DE INTELIGENCIA (motores) ==================== */
+var ARCADE_TYPES=["jigsaw","balloons","target","runner","detective","fishing","blocks","train","colorshapes","diff2","platformer","treasure"];
+function arcadeMsg(t,c){var f=$("feedback2");if(f){f.textContent=t;f.style.color=c||"";}}
+function arcadeStopTimers(){if(window._arcInt){clearInterval(window._arcInt);window._arcInt=null;}if(window._arcTo){clearTimeout(window._arcTo);window._arcTo=null;}}
+function renderArcade(){
+  showCustom();arcadeStopTimers();attempts=0;earned=0;
+  var cat=CAT[curCat],row=$("customRow"),T=cat.type;
+  arcadeMsg("","");
+  var PALETTE=["#f472b6","#a78bfa","#22d3ee","#4ade80","#facc15","#fb923c","#f87171","#38bdf8"];
+  var SYMS=["●","▲","■","★","♥","◆","✦","◉"];
+  function shuffleA(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+  /* ---------- JIGSAW (rompecabezas por imágenes, 3 niveles) ---------- */
+  if(T==="jigsaw"){
+    var size=3,sel=null,hits=0;
+    row.innerHTML='<div style="text-align:center;margin-bottom:8px;"><span style="font-size:12px;color:var(--muted);">Dificultad: </span>'+
+      '<button class="btn rounded-lg px-2.5 py-1 jz-diff" data-s="3" style="background:var(--accent);color:#0b1026;font-weight:700;font-size:11px;margin:0 2px;">3x3</button>'+
+      '<button class="btn rounded-lg px-2.5 py-1 jz-diff" data-s="4" style="background:var(--card);color:var(--text);font-weight:700;font-size:11px;margin:0 2px;border:1px solid var(--border);">4x4</button>'+
+      '<button class="btn rounded-lg px-2.5 py-1 jz-diff" data-s="5" style="background:var(--card);color:var(--text);font-weight:700;font-size:11px;margin:0 2px;border:1px solid var(--border);">5x5</button></div>'+
+      '<div style="display:flex;gap:12px;align-items:flex-start;justify-content:center;flex-wrap:wrap;">'+
+      '<div id="jzGrid" style="display:grid;gap:3px;background:rgba(0,0,0,.3);padding:3px;border-radius:10px;"></div>'+
+      '<div><div style="font-size:10px;color:var(--muted);text-align:center;margin-bottom:3px;">Modelo</div><div id="jzPreview" style="width:70px;height:70px;border-radius:8px;background:linear-gradient(135deg,#f472b6,#a78bfa,#22d3ee,#4ade80,#facc15,#fb923c);border:2px solid var(--border);"></div></div></div>';
+    function build(){
+      sel=null;var N=size*size,order=[];for(var i=0;i<N;i++)order.push(i);
+      do{shuffleA(order);}while(order.every(function(v,i){return v===i;}));
+      var g=$("jzGrid");var cell=Math.floor(220/size);g.style.gridTemplateColumns="repeat("+size+","+cell+"px)";g.innerHTML="";
+      order.forEach(function(v,pos){
+        var r=Math.floor(v/size),c=v%size,tile=document.createElement("div");
+        tile.className="btn";tile.dataset.val=v;tile.style.cssText="width:"+cell+"px;height:"+cell+"px;border-radius:6px;background:linear-gradient(135deg,#f472b6,#a78bfa,#22d3ee,#4ade80,#facc15,#fb923c);background-size:"+(size*100)+"% "+(size*100)+"%;background-position:"+(c*100/(size-1||1))+"% "+(r*100/(size-1||1))+"%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);";
+        tile.addEventListener("click",function(){
+          sndClick();
+          if(sel===null){sel=tile;tile.style.outline="3px solid var(--gold)";return;}
+          if(sel===tile){sel=null;tile.style.outline="";return;}
+          var a=sel.dataset.val,b=tile.dataset.val;sel.dataset.val=b;tile.dataset.val=a;
+          var sr=Math.floor(b/size),sc=b%size,tr=Math.floor(a/size),tc=a%size;
+          sel.style.backgroundPosition=(sc*100/(size-1||1))+"% "+(sr*100/(size-1||1))+"%";
+          tile.style.backgroundPosition=(tc*100/(size-1||1))+"% "+(tr*100/(size-1||1))+"%";
+          sel.style.outline="";sel=null;
+          var ok=true;Array.prototype.forEach.call(g.children,function(ch,idx){if(+ch.dataset.val!==idx)ok=false;});
+          if(ok){arcadeMsg("¡Perfecto! Armaste el rompecabezas.","var(--green)");winGame();}
+        });
+        g.appendChild(tile);
+      });
+    }
+    Array.prototype.forEach.call(row.querySelectorAll(".jz-diff"),function(b){b.addEventListener("click",function(){
+      size=+this.dataset.s;Array.prototype.forEach.call(row.querySelectorAll(".jz-diff"),function(x){x.style.background="var(--card)";x.style.color="var(--text)";x.style.border="1px solid var(--border)";});
+      this.style.background="var(--accent)";this.style.color="#0b1026";this.style.border="none";sndClick();build();
+    });});
+    build();return;
+  }
+
+  /* ---------- BALLOONS (reventar globos) ---------- */
+  if(T==="balloons"){
+    var hits=0,lives=3;
+    row.innerHTML='<div id="balHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="balArea" style="position:relative;height:260px;max-width:340px;margin:0 auto;background:linear-gradient(180deg,#0ea5e933,#f472b622);border-radius:14px;overflow:hidden;"></div>';
+    function hud(){$("balHud").innerHTML='Globos rojos: <span style="color:var(--green);">'+hits+'/5</span> · Vidas: <span style="color:'+(lives>1?'var(--gold)':'#f87171')+';">'+('♥'.repeat(lives))+'</span>';}
+    function spawn(){
+      var area=$("balArea");area.innerHTML="";hits=0;lives=3;hud();
+      var cols=["#f87171","#f87171","#f87171","#f87171","#f87171","#38bdf8","#a78bfa","#4ade80","#facc15"];shuffleA(cols);
+      cols.forEach(function(c,i){
+        var b=document.createElement("div");var red=c==="#f87171";
+        b.style.cssText="position:absolute;left:"+(6+Math.random()*82)+"%;top:"+(8+Math.random()*70)+"%;width:34px;height:44px;border-radius:50% 50% 50% 50%/55% 55% 45% 45%;background:radial-gradient(circle at 35% 30%,#ffffff88,"+c+");box-shadow:0 4px 10px rgba(0,0,0,.3);cursor:pointer;animation:floaty "+(2.5+Math.random()*2)+"s ease-in-out infinite;animation-delay:"+(Math.random()*1.5)+"s;";
+        b.innerHTML='<div style="position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);width:1px;height:6px;background:var(--muted);"></div>';
+        b.addEventListener("click",function(){
+          if(red){hits++;sndCorrect();arcadeMsg("¡Bien! Globo rojo reventado.","var(--green)");}
+          else{lives--;sndWrong();arcadeMsg("¡Uy! Ese no era rojo. Perdés una vida.","#f87171");this.classList.add("shake");}
+          this.style.pointerEvents="none";this.style.opacity=".2";this.style.transform="scale(1.4)";hud();
+          if(hits>=5){arcadeMsg("¡Reventaste los 5 globos rojos!","var(--green)");winGame();}
+          else if(lives<=0){arcadeMsg("Se acabaron las vidas. ¡Probá de nuevo!","#f87171");setTimeout(spawn,1200);}
+        });
+        area.appendChild(b);
+      });
+    }
+    spawn();return;
+  }
+
+  /* ---------- TARGET (tiro al blanco) ---------- */
+  if(T==="target"){
+    var hits=0,miss=0;
+    row.innerHTML='<div id="tgtHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;">Aciertos: 0/6</div><div id="tgtArea" style="position:relative;height:260px;max-width:340px;margin:0 auto;background:linear-gradient(135deg,#1e293b,#0f172a);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div>';
+    function spawn(){
+      var area=$("tgtArea");if(hits>=6){arcadeMsg("¡Increíble tirador!","var(--green)");winGame();return;}
+      if(hits+miss>=8&&hits<4){hits=0;miss=0;arcadeMsg("Necesitás al menos 4 aciertos. ¡Probá de nuevo!","#f87171");}
+      var t=document.createElement("div");var sz=44+Math.random()*26;
+      t.style.cssText="position:absolute;left:"+(Math.random()*78)+"% ;top:"+(Math.random()*72)+"% ;width:"+sz+"px;height:"+sz+"px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#fff 18%,#f87171 19%,#f87171 40%,#fff 41%,#fff 60%,#f87171 61%,#f87171 100%);cursor:pointer;box-shadow:0 0 18px rgba(248,113,113,.6);animation:badgePop .3s ease;";
+      t.addEventListener("click",function(){hits++;sndCorrect();$("tgtHud").textContent="Aciertos: "+hits+"/6";arcadeMsg("¡En el blanco!","var(--green)");area.innerHTML="";window._arcTo=setTimeout(spawn,350);});
+      area.appendChild(t);
+      window._arcTo=setTimeout(function(){if(t.parentElement){miss++;sndWrong();arcadeMsg("Se escapó! Más rápido.","#f87171");area.innerHTML="";spawn();}},1700);
+    }
+    spawn();return;
+  }
+
+  /* ---------- RUNNER (carrera de obstáculos) ---------- */
+  if(T==="runner"){
+    var passed=0,lives=3,jumping=false;
+    row.innerHTML='<div id="runHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="runTrack" style="position:relative;height:110px;max-width:420px;margin:0 auto;background:linear-gradient(180deg,#22d3ee22,#0b1026 60%);border-radius:14px;overflow:hidden;border:2px solid var(--border);"><div style="position:absolute;bottom:0;left:0;right:0;height:14px;background:linear-gradient(90deg,#4ade80,#22c55e);"></div><div id="runHero" style="position:absolute;bottom:14px;left:30px;width:26px;height:34px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,#facc15,#fb923c);box-shadow:0 0 10px rgba(250,204,21,.5);"></div><div id="runObs" style="position:absolute;bottom:14px;right:-30px;width:22px;height:30px;background:linear-gradient(180deg,#f87171,#dc2626);border-radius:4px;"></div></div><button id="jumpBtn" class="btn rounded-xl px-6 py-2.5" style="display:block;margin:10px auto 0;background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-weight:700;font-size:14px;">⤴ SALTAR</button>';
+    function hud(){$("runHud").innerHTML="Meta: <span style='color:var(--green);'>"+passed+"/8</span> · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
+    hud();var x=420;var obs=$("runObs"),hero=$("runHero");
+    $("jumpBtn").addEventListener("click",function(){
+      if(jumping)return;jumping=true;sndClick();hero.style.transition="bottom .3s ease";hero.style.bottom="70px";
+      setTimeout(function(){hero.style.bottom="14px";setTimeout(function(){jumping=false;},300);},350);
+    });
+    function runTick(){
+      x-=6;obs.style.right=(420-x)+"px";
+      var heroLeft=30,heroW=26,obsRight=parseFloat(obs.style.right),obsLeft=420-obsRight-22;
+      if(obsLeft<heroLeft+heroW && obsLeft+22>heroLeft){
+        if(!jumping){lives--;sndWrong();arcadeMsg("¡Chocaste! Saltá más temprano.","#f87171");x=420;obs.style.right="-30px";hud();
+          if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Volvé a intentar!","#f87171");setTimeout(function(){passed=0;lives=3;x=420;hud();window._arcInt=setInterval(runTick,40);},1200);}
+        }
+      }
+      if(obsRight>420){passed++;x=420;obs.style.right="-30px";sndTick();hud();
+        if(passed>=8){arcadeStopTimers();arcadeMsg("¡Llegaste a la meta!","var(--green)");winGame();}}
+    }
+    window._arcInt=setInterval(runTick,40);
+    return;
+  }
+
+  /* ---------- DETECTIVE (buscar pistas/objetos) ---------- */
+  if(T==="detective"){
+    var targets=[],found=0;
+    row.innerHTML='<div id="detList" style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:6px;"></div><div id="detScene" style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;max-width:320px;margin:0 auto;padding:10px;background:linear-gradient(135deg,#1e3a5f,#2d1b4e);border-radius:14px;"></div>';
+    var cells=[];for(var i=0;i<20;i++)cells.push({sym:SYMS[i%8],col:PALETTE[i%8]});
+    var idxs=shuffleA([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).slice(0,4);
+    idxs.forEach(function(i){targets.push(cells[i]);cells[i]={sym:SYMS[(i+3)%8],col:PALETTE[(i+5)%8]};});
+    var scene=$("detScene");cells.forEach(function(cell,pos){
+      var d=document.createElement("div");d.style.cssText="aspect-ratio:1;border-radius:8px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:20px;color:"+cell.col+";cursor:pointer;";
+      d.textContent=cell.sym;d.dataset.pos=pos;
+      d.addEventListener("click",function(){
+        var isTarget=idxs.indexOf(+this.dataset.pos)>=0;
+        if(isTarget&&!this.dataset.found){found++;this.dataset.found="1";this.style.background="rgba(74,222,128,.3)";this.style.boxShadow="0 0 12px var(--green)";sndCorrect();arcadeMsg("¡Pista encontrada!","var(--green)");
+          if(found>=4){arcadeMsg("¡Misterio resuelto, detective!","var(--green)");winGame();}}
+        else if(!this.dataset.found){sndWrong();this.classList.add("shake");arcadeMsg("Aquí no hay nada. Seguí buscando.","#f87171");}
+      });
+      scene.appendChild(d);
+    });
+    $("detList").innerHTML="Encontrá estos objetos escondidos: "+targets.map(function(t){return '<span style="color:'+t.col+';font-size:16px;margin:0 4px;">'+t.sym+'</span>';}).join("");
+    return;
+  }
+
+  /* ---------- FISHING (pesca) ---------- */
+  if(T==="fishing"){
+    var caught=0,lives=3;
+    row.innerHTML='<div id="fishHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="fishArea" style="position:relative;height:180px;max-width:400px;margin:0 auto;background:linear-gradient(180deg,#38bdf855,#0369a1);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div>';
+    function hud(){$("fishHud").innerHTML="Peces dorados: <span style='color:var(--gold);'>"+caught+"/5</span> · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
+    function spawn(){
+      var area=$("fishArea");area.innerHTML="";caught=0;lives=3;hud();
+      var fish=[];for(var i=0;i<5;i++)fish.push({gold:true});for(var j=0;j<3;j++)fish.push({gold:false});shuffleA(fish);
+      fish.forEach(function(f,i){
+        var el=document.createElement("div");var dur=3+Math.random()*3;
+        var col=f.gold?"#facc15":"#94a3b8";var shape=f.gold?'border-radius:50% 60% 60% 50%/60% 50% 50% 60%;':'border-radius:4px;';
+        el.style.cssText="position:absolute;top:"+(10+i*18)+"%;left:-40px;width:34px;height:22px;"+shape+"background:linear-gradient(90deg,"+col+","+(f.gold?"#f59e0b":"#64748b")+");cursor:pointer;box-shadow:0 0 10px "+(f.gold?"rgba(250,204,21,.7)":"rgba(0,0,0,.3)")+";animation:fishSwim"+i+" "+dur+"s linear infinite;";
+        el.innerHTML=f.gold?'<span style="position:absolute;right:4px;top:4px;width:4px;height:4px;background:#0b1026;border-radius:50%;"></span>':'<span style="position:absolute;left:50%;top:-6px;transform:translateX(-50%);font-size:10px;">☂</span>';
+        var style=document.createElement("style");style.textContent="@keyframes fishSwim"+i+"{0%{left:-40px;}100%{left:110%;}}";document.head.appendChild(style);
+        el.addEventListener("click",function(){
+          if(f.gold){caught++;sndCorrect();arcadeMsg("¡Pez dorado! ¡Bien!","var(--gold)");}
+          else{lives--;sndWrong();arcadeMsg("¡Es una bota vieja! Perdés una vida.","#f87171");}
+          this.style.pointerEvents="none";this.style.opacity=".2";hud();
+          if(caught>=5){arcadeMsg("¡Pescaste 5 peces dorados!","var(--gold)");winGame();}
+          else if(lives<=0){arcadeMsg("Sin vidas. ¡Volvé a pescar!","#f87171");setTimeout(spawn,1200);}
+        });
+        area.appendChild(el);
+      });
+    }
+    spawn();return;
+  }
+
+  /* ---------- BLOCKS (construcción) ---------- */
+  if(T==="blocks"){
+    var round=0,build=[],target=[];
+    row.innerHTML='<div id="blkInfo" style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:6px;"></div><div style="display:flex;gap:14px;justify-content:center;align-items:flex-end;flex-wrap:wrap;"><div><div style="font-size:10px;color:var(--muted);text-align:center;margin-bottom:4px;">Modelo</div><div id="blkTarget" style="display:flex;flex-direction:column-reverse;gap:3px;min-height:120px;align-items:center;"></div></div><div><div style="font-size:10px;color:var(--muted);text-align:center;margin-bottom:4px;">Tu torre</div><div id="blkBuild" style="display:flex;flex-direction:column-reverse;gap:3px;min-height:120px;align-items:center;"></div></div></div><div id="blkPal" style="display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap;"></div>';
+    function newRound(){
+      target=[];build=[];for(var i=0;i<3;i++)target.push(PALETTE[Math.floor(Math.random()*4)]);
+      var t=$("blkTarget");t.innerHTML="";target.forEach(function(c){var d=document.createElement("div");d.style.cssText="width:60px;height:22px;border-radius:4px;background:linear-gradient(180deg,"+c+","+c+"aa);box-shadow:inset 0 2px 0 rgba(255,255,255,.4);";t.appendChild(d);});
+      $("blkBuild").innerHTML="";$("blkInfo").textContent="Torre "+(round+1)+" de 3 · Tocá los bloques en orden";
+      var p=$("blkPal");p.innerHTML="";shuffleA(PALETTE.slice(0,4)).forEach(function(c){var b=document.createElement("button");b.className="btn";b.style.cssText="width:50px;height:26px;border-radius:6px;background:linear-gradient(180deg,"+c+","+c+"aa);";b.addEventListener("click",function(){sndClick();place(c);});p.appendChild(b);});
+    }
+    function place(c){
+      if(c!==target[build.length]){sndWrong();arcadeMsg("Bloque incorrecto. Mirá el modelo y empezá de nuevo.","#f87171");build=[];$("blkBuild").innerHTML="";return;}
+      build.push(c);var d=document.createElement("div");d.style.cssText="width:60px;height:22px;border-radius:4px;background:linear-gradient(180deg,"+c+","+c+"aa);box-shadow:inset 0 2px 0 rgba(255,255,255,.4);animation:badgePop .3s ease;";$("blkBuild").appendChild(d);sndCorrect();
+      if(build.length===target.length){round++;if(round>=3){arcadeMsg("¡Construiste las 3 torres!","var(--green)");winGame();}else{arcadeMsg("¡Torre "+round+" lista!","var(--green)");setTimeout(newRound,700);}}
+    }
+    newRound();return;
+  }
+
+  /* ---------- TRAIN (armar la vía) ---------- */
+  if(T==="train"){
+    var sel=null,placed=[null,null,null,null];
+    row.innerHTML='<div style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;">Colocá las vías en orden 1→2→3→4 para que el tren llegue</div><div id="trenSlots" style="display:flex;gap:4px;justify-content:center;margin-bottom:10px;"></div><div id="trenTiles" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;"></div><button id="trenGo" class="btn rounded-xl px-5 py-2" style="display:block;margin:10px auto 0;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:13px;">▶ Arrancar el tren</button>';
+    var tiles=shuffleA([1,2,3,4]);
+    function drawSlots(){var s=$("trenSlots");s.innerHTML="";placed.forEach(function(v,i){
+      var d=document.createElement("div");d.className="btn";d.dataset.slot=i;
+      d.style.cssText="width:56px;height:40px;border-radius:6px;background:"+(v?"linear-gradient(90deg,#facc15,#f59e0b)":"rgba(139,147,194,.15)")+";border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1026;font-size:16px;";
+      d.textContent=v||(i+1);if(!v)d.style.color="var(--muted)";
+      d.addEventListener("click",function(){
+        if(sel===null){if(placed[i]){sel={tile:placed[i],from:i};placed[i]=null;this.style.outline="3px solid var(--gold)";}return;}
+        if(sel.from!==undefined){placed[i]=sel.tile;sel=null;}else{placed[i]=sel;sel=null;Array.prototype.forEach.call($("trenTiles").children,function(ch){if(ch.dataset.tile==placed[i])ch.style.opacity=".25";ch.style.pointerEvents="none";});}
+        sndClick();drawSlots();
+      });
+      s.appendChild(d);
+    });}
+    var tp=$("trenTiles");tiles.forEach(function(n){
+      var b=document.createElement("button");b.className="btn";b.dataset.tile=n;
+      b.style.cssText="width:50px;height:36px;border-radius:6px;background:linear-gradient(90deg,#facc15,#f59e0b);color:#0b1026;font-weight:700;font-size:16px;";b.textContent=n;
+      b.addEventListener("click",function(){if(this.style.pointerEvents==="none")return;sel=n;Array.prototype.forEach.call(tp.children,function(x){x.style.outline="";});this.style.outline="3px solid var(--green)";sndClick();});
+      tp.appendChild(b);
+    });
+    $("trenGo").addEventListener("click",function(){
+      var ok=placed.every(function(v,i){return v===i+1;});
+      if(ok){sndFanfare();arcadeMsg("¡Chu chu! El tren llegó a destino.","var(--green)");winGame();}
+      else{sndWrong();arcadeMsg("Las vías no están en orden. Revisá los números.","#f87171");}
+    });
+    drawSlots();return;
+  }
+
+  /* ---------- COLORSHAPES (colores y formas) ---------- */
+  if(T==="colorshapes"){
+    var pairs=[{s:"●",c:"#f87171",n:"rojo"},{s:"■",c:"#3b82f6",n:"azul"},{s:"▲",c:"#22c55e",n:"verde"},{s:"★",c:"#facc15",n:"amarillo"}];
+    var selItem=null,locked=0;
+    row.innerHTML='<div style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;">Tocá una figura y luego su color correcto</div><div style="display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap;"><div id="cfItems" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;"></div><div id="cfSlots" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;"></div></div>';
+    var it=$("cfItems");shuffleA(pairs.slice()).forEach(function(p){
+      var d=document.createElement("div");d.className="btn";d.style.cssText="width:52px;height:52px;border-radius:10px;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:26px;color:"+p.c+";";d.textContent=p.s;d.dataset.key=p.n;
+      d.addEventListener("click",function(){if(this.dataset.lock)return;selItem=p;Array.prototype.forEach.call(it.children,function(x){x.style.outline="";});this.style.outline="3px solid var(--gold)";sndClick();});
+      it.appendChild(d);
+    });
+    var sl=$("cfSlots");shuffleA(pairs.slice()).forEach(function(p){
+      var d=document.createElement("div");d.className="btn";d.style.cssText="width:52px;height:52px;border-radius:10px;background:rgba(139,147,194,.12);border:2px dashed "+p.c+";display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:"+p.c+";";d.textContent=p.n;d.dataset.key=p.n;
+      d.addEventListener("click",function(){
+        if(!selItem){arcadeMsg("Primero tocá una figura.","var(--accent)");return;}
+        if(selItem.n===this.dataset.key){this.innerHTML='<span style="font-size:26px;color:'+selItem.c+';">'+selItem.s+'</span>';this.style.borderStyle="solid";this.dataset.lock="1";locked++;sndCorrect();arcadeMsg("¡Correcto!","var(--green)");
+          Array.prototype.forEach.call(it.children,function(x){if(x.dataset.key===selItem.n){x.dataset.lock="1";x.style.opacity=".3";x.style.outline="";}});selItem=null;
+          if(locked>=4){arcadeMsg("¡Uniste todas las figuras con su color!","var(--green)");winGame();}}
+        else{sndWrong();this.classList.add("shake");arcadeMsg("No coincide ese color. Probá de nuevo.","#f87171");}
+      });
+      sl.appendChild(d);
+    });
+    return;
+  }
+
+  /* ---------- DIFF2 (encuentra las diferencias) ---------- */
+  if(T==="diff2"){
+    var round=0,TOTAL=4;
+    row.innerHTML='<div id="diffInfo" style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:6px;"></div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;"><div><div style="font-size:10px;color:var(--muted);text-align:center;">Original</div><div id="diffL" style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:6px;background:var(--card);border-radius:10px;"></div></div><div><div style="font-size:10px;color:var(--muted);text-align:center;">Tocá la distinta</div><div id="diffR" style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:6px;background:var(--card);border-radius:10px;"></div></div></div>';
+    function newRound(){
+      $("diffInfo").textContent="Diferencia "+(round+1)+" de "+TOTAL;
+      var cells=[];for(var i=0;i<9;i++)cells.push({sym:SYMS[i%4],col:PALETTE[i%5]});
+      var diffPos=Math.floor(Math.random()*9);
+      var L=$("diffL"),R=$("diffR");L.innerHTML="";R.innerHTML="";
+      cells.forEach(function(c,i){
+        var a=document.createElement("div");a.style.cssText="width:44px;height:44px;border-radius:6px;background:rgba(139,147,194,.1);display:flex;align-items:center;justify-content:center;font-size:20px;color:"+c.col+";";a.textContent=c.sym;L.appendChild(a);
+        var b=document.createElement("div");b.className="btn";
+        var cc=(i===diffPos)?{sym:SYMS[(i+2)%4],col:PALETTE[(i+3)%5]}:c;
+        b.style.cssText="width:44px;height:44px;border-radius:6px;background:rgba(139,147,194,.1);display:flex;align-items:center;justify-content:center;font-size:20px;color:"+cc.col+";";b.textContent=cc.sym;
+        b.addEventListener("click",function(){
+          if(i===diffPos){round++;sndCorrect();arcadeMsg("¡Encontraste la diferencia!","var(--green)");
+            if(round>=TOTAL){arcadeMsg("¡Ojo de águila! Encontraste todas.","var(--green)");winGame();}else setTimeout(newRound,700);}
+          else{sndWrong();this.classList.add("shake");arcadeMsg("Esa es igual. Mirá mejor.","#f87171");}
+        });
+        R.appendChild(b);
+      });
+    }
+    newRound();return;
+  }
+
+  /* ---------- PLATFORMER (salto de plataformas) ---------- */
+  if(T==="platformer"){
+    var plat=0,lives=3,pos=0,dir=1;
+    row.innerHTML='<div id="platHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="platMascot" style="text-align:center;font-size:22px;margin:4px 0;color:var(--accent);">★</div><div style="position:relative;height:24px;max-width:340px;margin:0 auto 10px;background:rgba(139,147,194,.15);border-radius:99px;overflow:hidden;"><div id="platBar" style="position:absolute;top:0;left:35%;width:30%;height:100%;background:linear-gradient(90deg,var(--green),#22c55e);"></div><div id="platInd" style="position:absolute;top:0;left:0;width:8px;height:100%;background:#fff;border-radius:99px;box-shadow:0 0 8px #fff;"></div></div><button id="platJump" class="btn rounded-xl px-6 py-2.5" style="display:block;margin:0 auto;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:14px;">▲ SALTAR</button>';
+    function hud(){$("platHud").innerHTML="Plataforma: <span style='color:var(--green);'>"+plat+"/5</span> · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
+    hud();
+    function platTick(){pos+=dir*2.2;if(pos>=96){pos=96;dir=-1;}if(pos<=0){pos=0;dir=1;}$("platInd").style.left=pos+"%";}
+    window._arcInt=setInterval(platTick,30);
+    $("platJump").addEventListener("click",function(){
+      sndClick();var pct=pos;
+      if(pct>=35&&pct<=65){plat++;sndCorrect();arcadeMsg("¡Salto perfecto! Subiste a la plataforma "+plat+".","var(--green)");$("platMascot").style.transform="translateY(-"+(plat*6)+"px)";
+        if(plat>=5){arcadeStopTimers();arcadeMsg("¡Llegaste a la cima!","var(--green)");winGame();}}
+      else{lives--;sndWrong();arcadeMsg("¡Caíste! Saltá en la zona verde.","#f87171");hud();
+        if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Volvé a intentar!","#f87171");setTimeout(function(){plat=0;lives=3;pos=0;dir=1;$("platMascot").style.transform="translateY(0)";hud();window._arcInt=setInterval(platTick,30);},1200);}}
+      hud();
+    });
+    return;
+  }
+
+  /* ---------- TREASURE (búsqueda del tesoro) ---------- */
+  if(T==="treasure"){
+    var node=0,TOTAL=5;
+    row.innerHTML='<div id="tesMap" style="display:flex;gap:4px;justify-content:center;align-items:center;margin-bottom:10px;flex-wrap:wrap;"></div><div id="tesQ" style="text-align:center;font-size:18px;font-weight:700;margin-bottom:10px;"></div><div id="tesOpts" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:300px;margin:0 auto;"></div>';
+    function drawMap(){
+      var m=$("tesMap");m.innerHTML="";
+      for(var i=0;i<=TOTAL;i++){
+        var d=document.createElement("div");var last=i===TOTAL;
+        d.style.cssText="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;background:"+(i<node?"var(--green)":(i===node?"var(--gold)":"rgba(139,147,194,.2)"))+";color:"+(i<=node?"#0b1026":"var(--muted)")+";box-shadow:"+(i===node?"0 0 14px var(--gold)":"none")+";";
+        d.textContent=last?"◆":(i+1);m.appendChild(d);
+        if(i<TOTAL){var arr=document.createElement("span");arr.style.color="var(--muted)";arr.textContent="→";m.appendChild(arr);}
+      }
+    }
+    function newQ(){
+      drawMap();
+      if(node>=TOTAL){arcadeMsg("¡Encontraste el TESORO! ¡Felicidades!","var(--gold)");winGame();return;}
+      var a=1+Math.floor(Math.random()*9),b=1+Math.floor(Math.random()*9),ans=a+b;
+      var opts=[ans,ans+1+Math.floor(Math.random()*3),ans-1-Math.floor(Math.random()*3)];shuffleA(opts);
+      $("tesQ").textContent="Isla "+(node+1)+": ¿Cuánto es "+a+" + "+b+"?";
+      var o=$("tesOpts");o.innerHTML="";
+      opts.forEach(function(v){var b2=document.createElement("button");b2.className="btn rounded-xl py-2.5";b2.style.cssText="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:16px;";b2.textContent=v;
+        b2.addEventListener("click",function(){
+          if(v===ans){node++;sndCorrect();arcadeMsg("¡Bien! Desbloqueaste la siguiente isla.","var(--green)");setTimeout(newQ,700);}
+          else{sndWrong();this.classList.add("shake");arcadeMsg("No es ese. Pensá de nuevo.","#f87171");}
+        });
+        o.appendChild(b2);
+      });
+    }
+    newQ();return;
+  }
+}
+
 function showCustom(){
   $("mcqQuestion").style.display="none";$("mcqOptions").style.display="none";
   $("typeRow").style.display="none";$("spellRow").style.display="none";$("storyRow").style.display="none";
@@ -1063,13 +1402,13 @@ var memFirst=null,memLock=false,memMoves=0,memPairs=0;
 function renderMemory(){
   memFirst=null;memLock=false;memMoves=0;memPairs=0;earned=0;updateHUD();
   $("memMoves").textContent="0";$("memPairs").textContent="0";
-  var cat=CAT[curCat];var syms=cat.sym==="numbers"?["1","2","3","4","5","6"]:(cat.sym==="colors"?["R","A","V","Y","N","M"]:(cat.sym==="shapes"?["●","▲","■","★","♥","◆"]:["A","B","C","D","E","F"]));
+  var cat=CAT[curCat];var syms=cat.sym==="numbers"?["1","2","3","4","5","6"]:(cat.sym==="colors"?["R","A","V","Y","N","M"]:(cat.sym==="animals"?["♞","♛","✿","☂","♪","♥"]:(cat.sym==="shapes"?["●","▲","■","★","♥","◆"]:["A","B","C","D","E","F"])));
   var colMap={R:"#ef4444",A:"#3b82f6",V:"#22c55e",Y:"#eab308",N:"#f97316",M:"#ec4899"};
   var deck=syms.concat(syms);shuffle(deck);
   var grid=$("memGrid");grid.innerHTML="";
   deck.forEach(function(sym){
     var card=document.createElement("div");card.className="mem-card";
-    var col=cat.sym==="colors"?(colMap[sym]||"#22d3ee"):"var(--accent)";
+    var animalCols={"♞":"#fb923c","♛":"#facc15","✿":"#f472b6","☂":"#22d3ee","♪":"#a78bfa","♥":"#f87171"};var col=cat.sym==="colors"?(colMap[sym]||"#22d3ee"):(cat.sym==="animals"?(animalCols[sym]||"#22d3ee"):"var(--accent)");
     card.innerHTML='<div class="mem-face mem-back">?</div><div class="mem-face mem-front" style="color:'+col+';">'+sym+'</div>';
     card.addEventListener("click",function(){
       if(memLock||card.classList.contains("flipped")||card.classList.contains("matched"))return;
@@ -1122,8 +1461,9 @@ function renderHome(){
       var card=document.createElement("div");
       card.className="cat-card glass rounded-xl p-2.5 fade-in text-center";
       card.style.cursor="pointer";card.style.borderTop="3px solid "+cat.color;
+      if(cat.premium){card.style.background="linear-gradient(135deg,rgba(250,204,21,.10),rgba(244,114,182,.10),rgba(34,211,238,.10))";card.style.boxShadow="0 0 14px "+cat.color+"44, inset 0 0 0 1px "+cat.color+"55";}
       var sh="";for(var s=0;s<3;s++){var fl=(s<save.stars[i])?cat.color:"rgba(139,147,194,.3)";sh+='<svg width="10" height="10" viewBox="0 0 24 24" fill="'+fl+'" stroke="'+fl+'" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>';}
-      var count=cat.type==="flash"?cat.cards.length+" pal":(cat.type==="math"||cat.type==="mcq"?"6 preg":(cat.type==="memory"?"6 pares":(cat.type==="story"?"1 cuento":"6 act")));
+      var count=cat.type==="flash"?cat.cards.length+" pal":(cat.type==="math"||cat.type==="mcq"?"6 preg":(cat.type==="memory"?"6 pares":(cat.type==="story"?"1 cuento":(ARCADE_TYPES.indexOf(cat.type)>=0?"★ premium":"6 act"))));
       card.innerHTML='<div class="tile mx-auto" style="width:34px;height:34px;font-size:16px;margin-bottom:4px;background:linear-gradient(135deg,'+cat.color+','+cat.color+'88);">'+cat.icon+'</div>'+
         '<h3 style="margin:0 0 1px;font-size:11px;font-weight:700;line-height:1.2;">'+cat.name+'</h3>'+
         '<p style="margin:0 0 4px;font-size:9px;color:var(--muted);">'+count+'</p>'+
@@ -1147,7 +1487,7 @@ function startCategory(i){
   var introText=cat.intro||INTROS[cat.id]||"";
   if(introText){introPlaying=true;say(introText,"es-AR",function(){introPlaying=false;});}
   $("flashPanel").style.display=cat.type==="flash"?"":"none";
-  $("mcqPanel").style.display=(cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story"||cat.type==="puzzle"||cat.type==="sudoku"||cat.type==="maze"||cat.type==="match"||cat.type==="diff")?"":"none";
+  $("mcqPanel").style.display=(cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story"||cat.type==="puzzle"||cat.type==="sudoku"||cat.type==="maze"||cat.type==="match"||cat.type==="diff"||ARCADE_TYPES.indexOf(cat.type)>=0)?"":"none";
   $("memPanel").style.display=cat.type==="memory"?"":"none";
   updateHUD();
   if(cat.type==="flash"){renderFlash();setTimeout(teachCard,500);}
@@ -1161,10 +1501,11 @@ function startCategory(i){
   else if(cat.type==="maze"){renderMaze();}
   else if(cat.type==="match"){renderMatch();}
   else if(cat.type==="diff"){renderDiff();}
+  else if(ARCADE_TYPES.indexOf(cat.type)>=0){renderArcade();}
   else {renderMCQ();}
   sndClick();window.scrollTo({top:0,behavior:"smooth"});
 }
-function goHome(){stopSpeak();stopTimer();$("gameScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();sndClick();}
+function goHome(){stopSpeak();stopTimer();arcadeStopTimers();$("gameScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();sndClick();}
 
 /* ==================== EVENTS ==================== */
 $("teachBtn").addEventListener("click",teachCard);
@@ -1201,7 +1542,10 @@ var FOODS=[
  {id:"zanahoria",name:"Zanahoria",price:15,color:"#fb923c"},
  {id:"hueso",name:"Hueso",price:20,color:"#e2e8f0"},
  {id:"pescado",name:"Pescado",price:20,color:"#38bdf8"},
- {id:"galleta",name:"Galleta",price:15,color:"#d97706"}
+ {id:"galleta",name:"Galleta",price:15,color:"#d97706"},
+ {id:"helado",name:"Helado",price:25,color:"#f472b6"},
+ {id:"pastel",name:"Pastel",price:30,color:"#a78bfa"},
+ {id:"leche",name:"Leche",price:8,color:"#e2e8f0"}
 ];
 var STAGES=[{name:"Huevo",min:0},{name:"Bebé",min:5},{name:"Joven",min:20},{name:"Adulto",min:50}];
 var selectedPet=0,petSleeping=false,playCatches=0,bathStep=0;
@@ -1289,12 +1633,16 @@ function petAction(act){
       petMsg("¡Ñam! A "+save.pet.name+" le encantó la "+f.name+".","var(--green)");sndCorrect();renderPet();petAction("feed");
     });});
   } else if(act==="play"){
-    playCatches=0;
-    c.innerHTML='<div style="position:relative;height:80px;max-width:280px;margin:0 auto 8px;background:rgba(74,222,128,.1);border-radius:14px;overflow:hidden;"><div class="ball-move" style="font-size:28px;color:var(--accent);">●</div></div><button id="catchBtn" class="btn rounded-xl px-5 py-2.5" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:14px;">¡Atrapar la pelota! (0/3)</button>';
-    $("catchBtn").addEventListener("click",function(){
-      playCatches++;sndClick();this.textContent="¡Atrapar la pelota!("+playCatches+"/3)";
-      if(playCatches>=3){save.pet.happy=Math.min(100,save.pet.happy+20);save.pet.energy=Math.max(0,save.pet.energy-5);save.pet.coins+=5;persist();petMsg("¡Genial! "+save.pet.name+" se divirtió mucho. +5 monedas.","var(--green)");sndFanfare();renderPet();c.innerHTML="";}
-    });
+    var pops=0;
+    c.innerHTML='<div style="font-size:12px;color:var(--muted);margin-bottom:6px;text-align:center;">¡Reventá las burbujas mágicas para jugar con '+save.pet.name+'!</div><div id="bubbleArea" style="position:relative;height:110px;max-width:300px;margin:0 auto;background:linear-gradient(180deg,rgba(34,211,238,.15),rgba(167,139,250,.15));border-radius:14px;overflow:hidden;"></div>';
+    var area=$("bubbleArea");var cols=["#22d3ee","#f472b6","#a78bfa","#facc15","#4ade80"];
+    for(var i=0;i<5;i++){
+      var bb=document.createElement("div");var col=cols[i%5];
+      bb.style.cssText="position:absolute;left:"+(8+i*18)+"% ;top:"+(10+Math.random()*50)+"% ;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffffcc,"+col+"66);border:2px solid "+col+";cursor:pointer;animation:floaty "+(2+i*.4)+"s ease-in-out infinite;";
+      (function(el){el.addEventListener("click",function(){pops++;sndClick();el.style.pointerEvents="none";el.style.transform="scale(1.6)";el.style.opacity="0";el.style.transition="all .3s";
+        if(pops>=5){save.pet.happy=Math.min(100,save.pet.happy+25);save.pet.energy=Math.max(0,save.pet.energy-5);save.pet.coins+=8;persist();petMsg("¡Genial! "+save.pet.name+" se divirtió mucho. +8 monedas.","var(--green)");sndFanfare();renderPet();c.innerHTML="";}});})(bb);
+      area.appendChild(bb);
+    }
   } else if(act==="bath"){
     bathStep=0;var steps=["Abrir el agua","Poner jabón","Lavar","Enjuagar","Secar"];
     function bathNext(){
