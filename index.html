@@ -574,24 +574,13 @@ mcqL("Sustantivos, verbos y adjetivos","#a78bfa","◆",[
 {id:"ilaber",name:"Laberintos",section:"Juegos de inteligencia",type:"maze",color:"#4ade80",icon:"⌘",intro:"Un laberinto es un camino con paredes donde tenés que encontrar la salida. Usá las flechas para mover a Buggy hasta la estrella. ¡Cuidado con las paredes!"},
 {id:"iasoc",name:"Asociar imágenes",section:"Juegos de inteligencia",type:"match",color:"#facc15",icon:"⇄",intro:"Asociar significa unir dos cosas que van juntas. Tocá primero una figura de la izquierda y luego su nombre de la derecha. Si coinciden, quedan unidas!"},
 {id:"idiff",name:"Encontrar diferencias",section:"Juegos de inteligencia",type:"diff",color:"#f472b6",icon:"✕",intro:"Encontrar diferencias significa mirar dos grupos y descubrir qué cambió. Arriba está el modelo, abajo una casilla es distinta. Tocá la casilla distinta de abajo!"},
-/* ---- MINIJUEGOS (10 nuevos) ---- */
-{id:"mglobos",name:"Reventar Globos",section:"Minijuegos",type:"mini",mini:"globos",color:"#f472b6",icon:"●",intro:"Reventá solo los globos que cumplen la consigna. Leé bien qué globos tenés que reventar y tocá esos. ¡Cuidado con los demás!"},
-{id:"mblanco",name:"Tiro al Blanco",section:"Minijuegos",type:"mini",mini:"blanco",color:"#fb923c",icon:"◎",intro:"Aparecerá un blanco en la pantalla y tenés que tocarlo antes de que se mueva. Apuntá rápido y acertá 5 veces."},
-{id:"mcarrera",name:"Carrera de Obstáculos",section:"Minijuegos",type:"mini",mini:"carrera",color:"#4ade80",icon:"➤",intro:"Corrés solo y vienen obstáculos. Cuando el obstáculo esté cerca, tocá SALTAR para esquivarlo. Superá 3 obstáculos y ganá."},
-{id:"mdetective",name:"Detective: Buscar Pistas",section:"Minijuegos",type:"mini",mini:"detective",color:"#a78bfa",icon:"🔍".replace("🔍","?"),intro:"Sos detective. En la escena hay 3 objetos escondidos que tenés que encontrar. Mirá la lista y tocá los objetos correctos."},
-{id:"mpesca",name:"Juego de Pesca",section:"Minijuegos",type:"mini",mini:"pesca",color:"#22d3ee",icon:"🐟".replace("🐟","~"),intro:"Pescá solo el pez del color que te pide Buggy. Tocá el pez correcto antes de que se escape. Pescaté 3 para ganar."},
-{id:"mbloques",name:"Construcción con Bloques",section:"Minijuegos",type:"mini",mini:"bloques",color:"#facc15",icon:"▤",intro:"Tocá los bloques en orden del 1 al 4 para armar una torre. Si te equivocás de orden, la torre se cae y empezás de nuevo."},
-{id:"mtren",name:"Armar la Vía del Tren",section:"Minijuegos",type:"mini",mini:"tren",color:"#f59e0b",icon:"🚂".replace("🚂","="),intro:"Colocá las vías en orden del 1 al 5 para que el tren llegue a destino. Tocá las piezas en el orden correcto."},
-{id:"mcolores",name:"Colores y Formas",section:"Minijuegos",type:"mini",mini:"colores",color:"#ec4899",icon:"◐",intro:"Aparece una figura de cierto color. Tocá el nombre del color correcto. Acertá 6 seguidos para ganar."},
-{id:"mplataforma",name:"Salto de Plataformas",section:"Minijuegos",type:"mini",mini:"plataforma",color:"#22c55e",icon:"🪜".replace("🪜","↟"),intro:"Saltá de plataforma en plataforma. Cuando estés al borde, tocá SALTAR en el momento justo. Llegá a la última plataforma."},
-{id:"mtesoro",name:"Búsqueda del Tesoro",section:"Minijuegos",type:"mini",mini:"tesoro",color:"#facc15",icon:"💎".replace("💎","◆"),intro:"Recorré el mapa y encontrá las 3 pistas (tocá los signos de pregunta). Cuando tengas todas, aparecerá el tesoro: ¡tocálo!"},
 /* ---- JUEGOS (memoria) ---- */
 {id:"ml",name:"Memoria con letras",section:"Juegos",type:"memory",color:"#a78bfa",icon:"▦",sym:"letters"},
 {id:"mn",name:"Memoria con números",section:"Juegos",type:"memory",color:"#22d3ee",icon:"▦",sym:"numbers"},
 {id:"mc",name:"Memoria de colores",section:"Juegos",type:"memory",color:"#f472b6",icon:"▦",sym:"colors"}
 ];
 function mcqL(name,color,icon,qs){var c=mcq(name,color,icon,qs);c.section="Lengua";return c;}
-var SECTIONS=["Vocabulario","Matemática","Lengua","Juegos de inteligencia","Minijuegos","Juegos"];
+var SECTIONS=["Vocabulario","Matemática","Lengua","Juegos de inteligencia","Juegos"];
 var TROPHY_NEED=[10,25,45];
 
 /* ==================== STATE ==================== */
@@ -1069,143 +1058,6 @@ function diffNext(){
     B.appendChild(b);
   });
 }
-/* ==================== MINIJUEGOS (10) ==================== */
-var miniState={};
-function miniMsg(m,c){$("feedback2").textContent=m;$("feedback2").style.color=c||"";}
-function renderMini(kind){
-  miniState={hits:0,round:0};
-  var c=$("customRow");
-  if(kind==="globos"){
-    var need=4;var nums=shuffle([1,2,3,4,5,6,7,8]);
-    c.innerHTML='<div style="font-size:13px;color:var(--accent);font-weight:700;margin-bottom:8px;">Reventá los globos con números PARES</div><div id="globoGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:280px;margin:0 auto;"></div>';
-    var g=$("globoGrid");miniState.hits=0;
-    nums.forEach(function(n){
-      var b=document.createElement("button");b.className="btn rounded-full";b.style.aspectRatio="1";b.style.fontSize="20px";b.style.fontWeight="700";
-      b.style.background="linear-gradient(135deg,#f472b6,#ec4899)";b.style.color="#fff";b.textContent=n;
-      b.addEventListener("click",function(){
-        if(n%2===0){b.style.display="none";miniState.hits++;sndCorrect();
-          if(miniState.hits>=need){miniMsg("¡Reventaste todos los globos pares!","var(--green)");winGame();}
-          else miniMsg("¡Bien! Seguí...","var(--green)");
-        } else {onWrong();miniMsg("Ese es impar! Reventá solo los pares.","#f87171");}
-      });
-      g.appendChild(b);
-    });
-  } else if(kind==="blanco"){
-    miniState.hits=0;
-    c.innerHTML='<div id="blancoBox" style="position:relative;height:140px;max-width:320px;margin:0 auto;background:rgba(251,146,60,.1);border-radius:14px;overflow:hidden;"></div><p style="text-align:center;font-size:12px;color:var(--muted);margin:6px 0 0;">Toca el blanco (0/5)</p>';
-    function spawn(){
-      if(miniState.hits>=5){miniMsg("¡5 blancos acertados!","var(--green)");winGame();return;}
-      var box=$("blancoBox");box.innerHTML="";
-      var t=document.createElement("button");t.className="btn";t.style.position="absolute";t.style.width="44px";t.style.height="44px";t.style.borderRadius="50%";
-      t.style.left=(Math.random()*80+5)+"%";t.style.top=(Math.random()*60+10)+"%";
-      t.style.background="radial-gradient(circle,#fff 30%,#f87171 35%,#fff 60%)";t.style.border="3px solid #f87171";
-      t.addEventListener("click",function(){miniState.hits++;sndCorrect();clearTimeout(miniState.t);spawn();});
-      box.appendChild(t);
-      miniState.t=setTimeout(function(){sndWrong();spawn();},1800);
-    }
-    spawn();
-  } else if(kind==="carrera"||kind==="plataforma"){
-    miniState.hits=0;
-    var label=kind==="carrera"?"Saltar obstáculo":"Saltar a la plataforma";
-    function round(){
-      if(miniState.hits>=3){miniMsg("¡Llegaste a la meta!","var(--green)");winGame();return;}
-      c.innerHTML='<div style="position:relative;height:70px;max-width:320px;margin:0 auto;background:rgba(74,222,128,.1);border-radius:14px;overflow:hidden;margin-bottom:10px;"><div id="runner" style="position:absolute;left:8px;bottom:10px;font-size:26px;">●</div><div id="obstaculo" style="position:absolute;right:8px;bottom:10px;font-size:22px;color:#f87171;">■</div></div><button id="jumpBtn" class="btn rounded-xl px-6 py-3 w-full" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:15px;">'+label+' ('+miniState.hits+'/3)</button>';
-      miniState.t0=Date.now();
-      $("jumpBtn").addEventListener("click",function(){
-        var el=(Date.now()-miniState.t0)/1000;
-        if(el>0.8&&el<1.9){miniState.hits++;sndCorrect();miniMsg("¡Saltaste bien!","var(--green)");setTimeout(round,900);}
-        else{onWrong();miniMsg("Mala época! Intentá de nuevo.","#f87171");setTimeout(round,900);}
-      });
-    }
-    round();
-  } else if(kind==="detective"){
-    var hidden=shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]).slice(0,3);
-    var syms=["★","▲","■"];miniState.hits=0;
-    c.innerHTML='<div style="font-size:13px;color:var(--accent);font-weight:700;margin-bottom:8px;">Encontrá: ★ ▲ ■</div><div id="detGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:280px;margin:0 auto;"></div>';
-    var g=$("detGrid");
-    for(var i=0;i<16;i++){
-      var b=document.createElement("button");b.className="btn rounded-lg";b.style.aspectRatio="1";b.style.fontSize="18px";b.style.background="var(--card)";b.style.border="2px solid var(--border)";b.style.color="var(--text)";
-      var hi=hidden.indexOf(i);
-      b.textContent=hi>=0?syms[hi]:"●";b.style.opacity=hi>=0?"0":"1";
-      (function(bb,hh){bb.addEventListener("click",function(){
-        if(hh>=0&&bb.style.opacity==="0"){bb.style.opacity="1";miniState.hits++;sndCorrect();
-          if(miniState.hits>=3){miniMsg("¡Encontraste todas las pistas!","var(--green)");winGame();}
-        } else if(bb.style.opacity!=="1"){onWrong();miniMsg("Ahí no hay nada. Seguí buscando.","#f87171");}
-      });})(b,hi);
-      g.appendChild(b);
-    }
-  } else if(kind==="pesca"){
-    miniState.round=0;var colores=[["Rojo","#ef4444"],["Azul","#3b82f6"],["Verde","#22c55e"],["Amarillo","#eab308"]];
-    function pescaRound(){
-      if(miniState.round>=3){miniMsg("¡Pescaste 3 peces!","var(--green)");winGame();return;}
-      var sh=shuffle(colores.slice()).slice(0,3);var target=sh[Math.floor(Math.random()*3)];
-      c.innerHTML='<div style="font-size:13px;color:var(--accent);font-weight:700;margin-bottom:8px;">Pescá el pez de color: <strong style="color:'+target[1]+'">'+target[0]+'</strong> ('+(miniState.round+1)+'/3)</div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;" id="pescaWrap"></div>';
-      var wrap=$("pescaWrap");
-      sh.forEach(function(f){
-        var b=document.createElement("button");b.className="btn rounded-full";b.style.width="60px";b.style.height="60px";b.style.background=f[1];b.textContent="~";b.style.color="#fff";b.style.fontSize="24px";
-        b.addEventListener("click",function(){
-          if(f[0]===target[0]){miniState.round++;sndCorrect();miniMsg("¡Pescado!","var(--green)");setTimeout(pescaRound,900);}
-          else{onWrong();miniMsg("Ese no es. Buscá el color "+target[0]+".","#f87171");}
-        });
-        wrap.appendChild(b);
-      });
-    }
-    pescaRound();
-  } else if(kind==="bloques"||kind==="tren"){
-    var total=kind==="bloques"?4:5;miniState.next=1;
-    var nums=[];for(var n=1;n<=total;n++)nums.push(n);shuffle(nums);
-    var label=kind==="bloques"?"bloque":"vía";var color=kind==="bloques"?"#facc15":"#f59e0b";
-    c.innerHTML='<div style="font-size:13px;color:var(--accent);font-weight:700;margin-bottom:8px;">Tocá los '+label+'s en orden: 1 → '+total+'</div><div id="blqGrid" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;"></div><div id="blqStack" style="display:flex;gap:4px;justify-content:center;margin-top:10px;min-height:40px;"></div>';
-    var g=$("blqGrid");
-    nums.forEach(function(n){
-      var b=document.createElement("button");b.className="btn rounded-lg";b.style.width="50px";b.style.height="50px";b.style.fontSize="20px";b.style.fontWeight="700";b.style.background="linear-gradient(135deg,"+color+","+color+"88)";b.style.color="#0b1026";b.textContent=n;
-      b.addEventListener("click",function(){
-        if(n===miniState.next){b.style.display="none";miniState.next++;sndClick();
-          var st=document.createElement("div");st.style.width="40px";st.style.height="40px";st.style.borderRadius="8px";st.style.background=color;st.style.color="#0b1026";st.style.fontWeight="700";st.style.display="flex";st.style.alignItems="center";st.style.justifyContent="center";st.textContent=n;$("blqStack").appendChild(st);
-          if(miniState.next>total){miniMsg("¡"+(kind==="bloques"?"Torre armada":"Vía completa, llegó el tren!")+"!","var(--green)");winGame();}
-        } else {onWrong();miniMsg("Orden incorrecto! Empezamos de nuevo.","#f87171");setTimeout(function(){renderMini(kind);},900);}
-      });
-      g.appendChild(b);
-    });
-  } else if(kind==="colores"){
-    miniState.round=0;var colorNames=[["Rojo","#ef4444"],["Azul","#3b82f6"],["Verde","#22c55e"],["Amarillo","#eab308"],["Naranja","#f97316"],["Rosa","#ec4899"]];
-    function colorRound(){
-      if(miniState.round>=6){miniMsg("¡6 colores correctos!","var(--green)");winGame();return;}
-      var target=colorNames[Math.floor(Math.random()*colorNames.length)];
-      var opts=shuffle(colorNames.slice()).slice(0,4);
-      if(opts.indexOf(target)<0)opts[0]=target;shuffle(opts);
-      c.innerHTML='<div style="width:70px;height:70px;border-radius:50%;background:'+target[1]+';margin:0 auto 10px;box-shadow:0 0 20px '+target[1]+';"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:260px;margin:0 auto;"></div>';
-      var grid=c.querySelector("div:last-child");
-      opts.forEach(function(o){
-        var b=document.createElement("button");b.className="btn rounded-xl py-2.5";b.style.background="var(--card)";b.style.border="2px solid var(--border)";b.style.color="var(--text)";b.style.fontWeight="700";b.style.fontSize="14px";b.textContent=o[0];
-        b.addEventListener("click",function(){
-          if(o[0]===target[0]){miniState.round++;sndCorrect();miniMsg("¡Correcto! ("+miniState.round+"/6)","var(--green)");setTimeout(colorRound,900);}
-          else{onWrong();miniMsg("No, ese no es. Mirá el color.","#f87171");}
-        });
-        grid.appendChild(b);
-      });
-    }
-    colorRound();
-  } else if(kind==="tesoro"){
-    var spots=shuffle([0,1,2,3,4,5,6,7,8]);var clues=spots.slice(0,3);var treasure=spots[3];miniState.hits=0;
-    c.innerHTML='<div style="font-size:13px;color:var(--accent);font-weight:700;margin-bottom:8px;">Tocá las 3 pistas (?) para encontrar el tesoro</div><div id="tesoroGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:240px;margin:0 auto;"></div>';
-    var g=$("tesoroGrid");
-    for(var i=0;i<9;i++){
-      var b=document.createElement("button");b.className="btn rounded-lg";b.style.aspectRatio="1";b.style.fontSize="20px";b.style.fontWeight="700";b.style.background="var(--card)";b.style.border="2px solid var(--border)";b.style.color="var(--text)";
-      var isClue=clues.indexOf(i)>=0;b.textContent=isClue?"?":"~";
-      (function(bb,ic,it){bb.addEventListener("click",function(){
-        if(ic&&bb.textContent==="?"){bb.textContent="!";bb.style.background="rgba(74,222,128,.3)";miniState.hits++;sndCorrect();
-          if(miniState.hits>=3){miniMsg("¡Encontraste las pistas! Ahora tocá el tesoro ★","var(--gold)");
-            var cells=g.children;for(var k=0;k<cells.length;k++){if(parseInt(cells[k].dataset.idx)===it){cells[k].textContent="★";cells[k].style.background="var(--gold)";cells[k].dataset.treasure="1";}}
-          }
-        } else if(bb.dataset.treasure==="1"){miniMsg("¡Encontraste el tesoro!","var(--gold)");winGame();}
-        else if(bb.textContent!=="!"&&bb.dataset.treasure!=="1"){onWrong();miniMsg("Aquí no hay nada.","#f87171");}
-      });})(b,isClue,treasure);
-      b.dataset.idx=i;
-      g.appendChild(b);
-    }
-  }
-}
 /* ==================== MEMORY ==================== */
 var memFirst=null,memLock=false,memMoves=0,memPairs=0;
 function renderMemory(){
@@ -1309,7 +1161,6 @@ function startCategory(i){
   else if(cat.type==="maze"){renderMaze();}
   else if(cat.type==="match"){renderMatch();}
   else if(cat.type==="diff"){renderDiff();}
-  else if(cat.type==="mini"){showCustom();renderMini(cat.mini);}
   else {renderMCQ();}
   sndClick();window.scrollTo({top:0,behavior:"smooth"});
 }
@@ -1438,9 +1289,12 @@ function petAction(act){
       petMsg("¡Ñam! A "+save.pet.name+" le encantó la "+f.name+".","var(--green)");sndCorrect();renderPet();petAction("feed");
     });});
   } else if(act==="play"){
-    save.pet.happy=Math.min(100,save.pet.happy+15);save.pet.energy=Math.max(0,save.pet.energy-8);save.pet.coins=Math.max(0,save.pet.coins-2);persist();
-    var av=$("petAvatar");av.classList.add("pet-eat");setTimeout(function(){av.classList.remove("pet-eat");},1300);
-    petMsg("¡"+save.pet.name+" se divirtió mucho jugando!","var(--green)");sndFanfare();renderPet();c.innerHTML="";
+    playCatches=0;
+    c.innerHTML='<div style="position:relative;height:80px;max-width:280px;margin:0 auto 8px;background:rgba(74,222,128,.1);border-radius:14px;overflow:hidden;"><div class="ball-move" style="font-size:28px;color:var(--accent);">●</div></div><button id="catchBtn" class="btn rounded-xl px-5 py-2.5" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:14px;">¡Atrapar la pelota! (0/3)</button>';
+    $("catchBtn").addEventListener("click",function(){
+      playCatches++;sndClick();this.textContent="¡Atrapar la pelota!("+playCatches+"/3)";
+      if(playCatches>=3){save.pet.happy=Math.min(100,save.pet.happy+20);save.pet.energy=Math.max(0,save.pet.energy-5);save.pet.coins+=5;persist();petMsg("¡Genial! "+save.pet.name+" se divirtió mucho. +5 monedas.","var(--green)");sndFanfare();renderPet();c.innerHTML="";}
+    });
   } else if(act==="bath"){
     bathStep=0;var steps=["Abrir el agua","Poner jabón","Lavar","Enjuagar","Secar"];
     function bathNext(){
