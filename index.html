@@ -27,7 +27,11 @@ body{font-family:var(--font);color:var(--ink);min-height:100vh;overflow-x:hidden
 @keyframes pop{0%{transform:scale(.5)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 .shake{animation:shake .4s ease}.pop{animation:pop .35s ease}
-h1{font-size:2rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3px 14px rgba(79,124,255,.6);letter-spacing:.5px}
+h1{font-size:2.1rem;font-weight:800;text-align:center;letter-spacing:.5px;margin-bottom:4px;
+  background:linear-gradient(90deg,#fff,#ffd700,#ff9f43,#fff,#ffd700);background-size:300% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shimmerText 4s linear infinite;filter:drop-shadow(0 2px 10px rgba(255,215,0,.3))}
+@keyframes shimmerText{to{background-position:300% center}}
 .sub{text-align:center;color:#fff;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:8px;font-size:.92rem}
 .topbar{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .back{width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.8);font-size:1.25rem;cursor:pointer;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.2)}
@@ -42,14 +46,26 @@ h1{font-size:2rem;font-weight:800;text-align:center;color:#fff;text-shadow:0 3px
 .btn.big{width:100%;font-size:1.2rem;padding:16px}.btn.small{padding:8px 14px;font-size:.82rem}.btn:disabled{opacity:.5;pointer-events:none}
 /* ---- ASTRONAUTA con propulsores ---- */
 .astro-wrap{display:flex;flex-direction:column;align-items:center;margin:6px 0}
-.astro-float{position:relative;width:170px;height:170px;display:flex;align-items:center;justify-content:center;
-  animation:flyAround 6s ease-in-out infinite;filter:drop-shadow(0 20px 18px rgba(0,0,40,.5))}
-@keyframes flyAround{
-  0%,100%{transform:translate(0,0) rotate(-4deg)}
-  25%{transform:translate(14px,-18px) rotate(3deg)}
-  50%{transform:translate(-8px,-26px) rotate(-2deg)}
-  75%{transform:translate(-14px,-12px) rotate(5deg)}
+.astro-float{position:relative;width:180px;height:180px;display:flex;align-items:center;justify-content:center;
+  animation:flyAround 7s ease-in-out infinite;filter:drop-shadow(0 20px 18px rgba(0,0,40,.5))}
+.astro-float::before{
+  content:'';position:absolute;width:170px;height:170px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,215,0,.25),rgba(124,92,255,.12) 50%,transparent 70%);
+  animation:haloPulse 3s ease-in-out infinite;z-index:-1;
 }
+@keyframes haloPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.15);opacity:1}}
+@keyframes flyAround{
+  0%,100%{transform:translate(0,0) rotate(-5deg)}
+  20%{transform:translate(16px,-20px) rotate(4deg)}
+  40%{transform:translate(-6px,-30px) rotate(-3deg)}
+  60%{transform:translate(-18px,-16px) rotate(6deg)}
+  80%{transform:translate(10px,-8px) rotate(-4deg)}
+}
+.astro-float .orbit{position:absolute;width:190px;height:190px;animation:orbitSpin 9s linear infinite;pointer-events:none}
+.astro-float .orbit.o2{animation-duration:13s;animation-direction:reverse;width:210px;height:210px}
+@keyframes orbitSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.astro-float .orbit .dot{position:absolute;top:0;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#ffd700;box-shadow:0 0 8px #ffd700}
+.astro-float .orbit.o2 .dot{background:#22d3c7;box-shadow:0 0 8px #22d3c7;width:7px;height:7px}
 .astro-float svg{width:150px;height:150px;overflow:visible}
 .flame{transform-origin:center top;transform-box:fill-box;animation:flame .18s infinite alternate}
 @keyframes flame{from{transform:scaleY(.7) scaleX(.9);opacity:.8}to{transform:scaleY(1.25) scaleX(1.1);opacity:1}}
@@ -426,7 +442,7 @@ function astroSVG(){
 }
 ["astroHome","astroGame","astroWin"].forEach(function(id){
   var el = document.getElementById(id);
-  if(el) el.innerHTML = astroSVG();
+  if(el){ el.innerHTML = astroSVG() + '<div class="orbit"><div class="dot"></div></div><div class="orbit o2"><div class="dot"></div></div>'; }
 });
 function setMood(mood){
   document.querySelectorAll(".astro-float svg").forEach(function(s){ s.setAttribute("data-mood", mood); });
@@ -599,7 +615,9 @@ var GAMES=[
  {id:"memory",    cat:"logic", em:"🧩", nm:"Memoria",            st:"Encontrá los pares"},
  {id:"simon",     cat:"logic", em:"🔴", nm:"Simón dice",         st:"Repetí la secuencia"},
  {id:"intruso",   cat:"logic", em:"🕵️", nm:"El intruso",         st:"¿Cuál no pertenece?"},
- {id:"parejas",   cat:"logic", em:"🔗", nm:"Parejas palabra-dibujo", st:"Uní inglés y dibujo"}
+ {id:"parejas",   cat:"logic", em:"🔗", nm:"Parejas palabra-dibujo", st:"Uní inglés y dibujo"},
+ {id:"puzzle",    cat:"logic", em:"🧩", nm:"Rompecabezas",        st:"Deslizá y ordená"},
+ {id:"secuencia", cat:"mate",  em:"🔢", nm:"Ordená los números",  st:"Del chico al grande"}
 ];
 
 /* ---------- utilidades ---------- */
@@ -717,6 +735,8 @@ function startGame(id){
   else if(id==="simon"){ gameSimon(); }
   else if(id==="intruso"){ gameState.total=5; qIntruso(); }
   else if(id==="parejas"){ gameParejas(); }
+  else if(id==="puzzle"){ gamePuzzle(); }
+  else if(id==="secuencia"){ gameState.total=4; qSecuencia(); }
 }
 
 /* ===== QUIZ GENÉRICO DE VOCABULARIO (siempre explica la palabra) ===== */
@@ -766,13 +786,31 @@ function handleQuizAnswer(idx){
     fb.textContent="Casi! La correcta es la verde. Ahora te la explico:";
     fb.style.color="#dc2626"; setMood("sad");
   }
-  /* SIEMPRE explica la palabra (castellano + pronunciación + inglés) */
-  setTimeout(function(){ teachWord(v, $("gameBubble")); }, ok?600:1000);
+  /* SIEMPRE explica la palabra completa, y NO avanza solo: el chico toca "Siguiente"
+     cuando terminó de escuchar. Así Astro no habla encima de otra palabra y no confunde. */
   setTimeout(function(){
-    gameState.round++; gameState.locked=false;
-    if(gameState.round>=gameState.total){ endGame(); }
-    else { nextRound(); }
-  }, 7500);
+    teachWord(v, $("gameBubble"));
+    var wrap = document.createElement("div");
+    wrap.style.marginTop = "12px";
+    wrap.style.display = "flex"; wrap.style.gap = "8px";
+    wrap.style.justifyContent = "center"; wrap.style.flexWrap = "wrap";
+    var rep = document.createElement("button");
+    rep.className = "btn btn-blue small"; rep.id = "repeatExplain";
+    rep.textContent = "🔊 Repetir";
+    var nx = document.createElement("button");
+    nx.className = "btn btn-green small"; nx.id = "nextBtn";
+    nx.textContent = "➡️ Siguiente";
+    wrap.appendChild(rep); wrap.appendChild(nx);
+    fb.appendChild(wrap);
+    gameState.waitingNext = true;
+  }, ok?600:1000);
+}
+function advanceRound(){
+  if(!gameState.waitingNext) return;
+  gameState.waitingNext = false;
+  gameState.round++; gameState.locked=false;
+  if(gameState.round>=gameState.total){ endGame(); }
+  else { nextRound(); }
 }
 function nextRound(){
   var id=currentGame;
@@ -1137,6 +1175,114 @@ function gameParejas(){
   });
 }
 
+/* ===== ROMPECABEZAS DESLIZANTE (3x3) ===== */
+function gamePuzzle(){
+  gameState.total=1;
+  var board=[1,2,3,4,5,6,7,8,0];
+  var emptyIdx=8;
+  for(var m=0;m<50;m++){
+    var row=Math.floor(emptyIdx/3), col=emptyIdx%3;
+    var neigh=[];
+    if(row>0) neigh.push(emptyIdx-3);
+    if(row<2) neigh.push(emptyIdx+3);
+    if(col>0) neigh.push(emptyIdx-1);
+    if(col<2) neigh.push(emptyIdx+1);
+    var sw=neigh[Math.floor(Math.random()*neigh.length)];
+    board[emptyIdx]=board[sw]; board[sw]=0; emptyIdx=sw;
+  }
+  gameState.puzzle={board:board, moves:0, empty:emptyIdx};
+  renderPuzzle();
+  astroSay("Deslizá las fichas hasta ordenarlas del 1 al 8. ¡Vos podés!", $("gameBubble"));
+}
+function renderPuzzle(){
+  var b=gameState.puzzle.board;
+  var html='<div class="glass center" style="padding:10px;margin-bottom:12px">Movimientos: <span id="puzMoves">0</span></div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:280px;margin:0 auto">';
+  b.forEach(function(n,i){
+    if(n===0) html+='<button class="puz empty" data-i="'+i+'" style="aspect-ratio:1;border:none;border-radius:16px;background:transparent"></button>';
+    else html+='<button class="puz" data-i="'+i+'" style="aspect-ratio:1;border:none;border-radius:16px;font-size:1.8rem;font-weight:800;font-family:var(--font);cursor:pointer;color:#fff;background:linear-gradient(135deg,#4f7cff,#ff8a3d);box-shadow:0 4px 12px rgba(79,124,255,.4)">'+n+'</button>';
+  });
+  html+='</div><div class="center mt"><button class="btn btn-ghost small" id="puzShuffle">🔀 Mezclar de nuevo</button></div>';
+  html+='<div class="feedback" id="puzFeedback">Ordená del 1 al 8</div>';
+  $("gameArea").innerHTML=html;
+  document.querySelectorAll(".puz").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var i=parseInt(btn.getAttribute("data-i"),10);
+      var pz=gameState.puzzle;
+      var row=Math.floor(i/3), col=i%3;
+      var er=Math.floor(pz.empty/3), ec=pz.empty%3;
+      var adj = (Math.abs(row-er)+Math.abs(col-ec))===1;
+      if(!adj) return;
+      pz.board[pz.empty]=pz.board[i]; pz.board[i]=0; pz.empty=i; pz.moves++;
+      $("puzMoves").textContent=pz.moves;
+      var solved = pz.board.every(function(v,idx){ return v===((idx+1)%9); });
+      if(solved){
+        var moves=pz.moves;
+        var stars = moves<=22?3 : moves<=40?2 : 1;
+        gameState.correct=gameState.total;
+        setStars("puzzle", stars);
+        $("puzFeedback").textContent="¡Lo resolviste en "+moves+" movimientos! "+"⭐".repeat(stars);
+        $("puzFeedback").style.color="#16a34a";
+        setMood("happy");
+        astroSay("¡Increíble! Resolviste el rompecabezas en "+moves+" movimientos.", $("gameBubble"));
+        setTimeout(function(){ endGame(); }, 1800);
+      } else {
+        renderPuzzle();
+      }
+    });
+  });
+  var sh=$("puzShuffle"); if(sh) sh.addEventListener("click", gamePuzzle);
+}
+
+/* ===== ORDENAR NÚMEROS (del chico al grande) ===== */
+function qSecuencia(){
+  var start=1+Math.floor(Math.random()*15);
+  var step=1+Math.floor(Math.random()*3);
+  var nums=[];
+  for(var i=0;i<4;i++) nums.push(start+i*step);
+  var sorted=nums.slice().sort(function(a,b){return a-b;});
+  gameState.seq={target:sorted, tapped:[], nums:shuffle(nums)};
+  var html='<div class="glass center" style="padding:10px;margin-bottom:10px">Ronda '+(gameState.round+1)+' de '+gameState.total+' · Aciertos: '+gameState.correct+'</div>';
+  html+='<div class="q-word">Tocá los números del CHICO al GRANDE</div>';
+  html+='<div class="opts" id="seqOpts">';
+  gameState.seq.nums.forEach(function(n){
+    html+='<button class="opt seq-opt" data-n="'+n+'" style="font-size:1.6rem">'+n+'</button>';
+  });
+  html+='</div><div class="slots" id="seqSlots"></div><div class="feedback" id="seqFeedback"></div>';
+  $("gameArea").innerHTML=html;
+  astroSay("Tocá los números empezando por el más chico y terminando por el más grande.", $("gameBubble"));
+  document.querySelectorAll(".seq-opt").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var seq=gameState.seq;
+      var n=parseInt(btn.getAttribute("data-n"),10);
+      var expected=seq.target[seq.tapped.length];
+      if(n===expected){
+        seq.tapped.push(n);
+        btn.disabled=true; btn.classList.add("ok");
+        var chip=document.createElement("div");
+        chip.className="slot"; chip.textContent=n; $("seqSlots").appendChild(chip);
+        if(seq.tapped.length===4){
+          gameState.correct++;
+          $("seqFeedback").textContent="¡Perfecto! Orden: "+seq.target.join(" → ")+" ✅";
+          $("seqFeedback").style.color="#16a34a";
+          setMood("happy");
+          astroSay("¡Muy bien! El orden correcto es "+seq.target.join(", ")+".", $("gameBubble"));
+          setTimeout(function(){
+            gameState.round++;
+            if(gameState.round>=gameState.total) endGame(); else qSecuencia();
+          }, 2200);
+        }
+      } else {
+        btn.classList.add("bad");
+        $("seqFeedback").textContent="¡Ups! Ese no es el más chico. Mirá bien los números.";
+        $("seqFeedback").style.color="#dc2626";
+        setMood("sad");
+        setTimeout(qSecuencia, 1400);
+      }
+    });
+  });
+}
+
 /* ===== fin de juego ===== */
 function endGame(){
   var c=gameState.correct, t=gameState.total;
@@ -1186,6 +1332,10 @@ document.addEventListener("click", function(ev){
   if(gcard){ startGame(gcard.getAttribute("data-game")); return; }
   var opt=t.closest("#gameArea .opt");
   if(opt){ handleQuizAnswer(parseInt(opt.getAttribute("data-idx"),10)); return; }
+  var nx=t.closest("#nextBtn");
+  if(nx){ advanceRound(); return; }
+  var rp=t.closest("#repeatExplain");
+  if(rp){ var vv=gameState.currentTarget; if(vv) teachWord(vv, $("gameBubble")); return; }
   if(t.closest("#astroHome")){
     var frases=["¡Hola! Soy Astro, el astronauta. ¿Jugamos?","¡Tocá un juego y empezá a aprender!","¡Yo te hablo, te explico y te escucho!","¡Vamos al espacio del inglés juntos!","¡Qué bueno verte! ¿Qué querés aprender?"];
     astroSay(frases[Math.floor(Math.random()*frases.length)], $("homeBubble")); return;
