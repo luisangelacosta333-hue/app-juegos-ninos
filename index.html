@@ -73,6 +73,19 @@
   .spell-tile.used{opacity:.25;pointer-events:none;}
   .timer-bar{height:8px;background:rgba(139,147,194,.2);border-radius:99px;overflow:hidden;margin-top:8px;}
   .timer-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold),#f87171);border-radius:99px;transition:width .2s linear;}
+  .stat-bar{height:10px;background:rgba(139,147,194,.2);border-radius:99px;overflow:hidden;flex:1;}
+  .stat-fill{height:100%;border-radius:99px;transition:width .5s ease;}
+  .pet-btn{transition:transform .15s;cursor:pointer;}
+  .pet-btn:active{transform:scale(.92);}
+  @keyframes petBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .pet-bounce{animation:petBounce 2s ease-in-out infinite;}
+  @keyframes eatAnim{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+  .pet-eat{animation:eatAnim .4s ease-in-out 3;}
+  @keyframes sleepZ{0%{opacity:0;transform:translateY(0) scale(.6)}50%{opacity:1}100%{opacity:0;transform:translateY(-30px) scale(1.2)}}
+  .sleep-z{animation:sleepZ 2s ease-in-out infinite;position:absolute;font-weight:700;color:var(--accent);}
+  @keyframes ballMove{0%{left:5%}50%{left:75%}100%{left:5%}}
+  .ball-move{animation:ballMove 1.6s ease-in-out infinite;position:absolute;top:40%;}
+  .modal-bg{position:fixed;inset:0;background:rgba(11,16,38,.92);backdrop-filter:blur(8px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;}
 </style>
 </head>
 <body>
@@ -96,6 +109,9 @@
         <span style="color:var(--muted);font-size:12px;margin-left:8px;">Nivel <strong id="xpLevel" style="color:var(--accent);">1</strong></span>
       </div>
       <div class="flex items-center gap-2" id="trophyRow">
+        <button id="openPetBtn" class="btn rounded-xl px-3 py-1.5 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--accent2),#ea580c);color:#fff;font-weight:700;font-size:12px;">
+          <span style="width:14px;height:14px;border-radius:50%;background:#fff;display:inline-block;"></span>Mi Mascota
+        </button>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
@@ -264,6 +280,67 @@
       </div>
     </div>
     <p style="text-align:center;font-size:10px;color:var(--muted);margin:10px 0 2px;">Buggy Aprende · 55 juegos · 100% gratuito</p>
+  </div>
+
+  <!-- ================= PANTALLA MASCOTA ================= -->
+  <div id="petScreen" class="hidden-screen">
+    <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+      <button id="petHomeBtn" class="btn glass rounded-xl px-3 py-1.5 flex items-center gap-1.5" style="color:var(--text);font-weight:600;font-size:13px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Menú
+      </button>
+      <h2 style="font-size:18px;font-weight:700;margin:0;color:var(--accent2);">Mi Mascota</h2>
+      <div class="glass rounded-xl px-3 py-1.5 flex items-center gap-1.5">
+        <span style="font-size:16px;color:var(--gold);">●</span>
+        <span id="petCoins" style="font-weight:700;font-size:15px;color:var(--gold);">0</span>
+      </div>
+    </div>
+    <div id="petArea" class="relative rounded-3xl glass overflow-hidden" style="padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.4);">
+      <div class="starfield" id="petStars"></div>
+      <div style="position:relative;z-index:5;text-align:center;">
+        <div id="petStage" style="position:relative;width:140px;height:140px;margin:0 auto 10px;">
+          <div id="petAvatar" class="pet-bounce" style="width:140px;height:140px;"></div>
+          <div id="petZzz" style="display:none;position:absolute;top:0;right:0;"><span class="sleep-z" style="right:0;top:0;">Z</span><span class="sleep-z" style="right:20px;top:10px;animation-delay:.6s;">z</span><span class="sleep-z" style="right:40px;top:20px;animation-delay:1.2s;">z</span></div>
+        </div>
+        <div style="font-size:20px;font-weight:700;margin-bottom:2px;" id="petNameDisplay">Mi Mascota</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;" id="petStageLabel">Etapa: Bebé</div>
+        <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;max-width:320px;margin:0 auto 14px;font-size:12px;font-weight:600;">
+          <span style="text-align:left;color:#f87171;">❤️</span><div class="stat-bar"><div id="statHappy" class="stat-fill" style="width:60%;background:#f87171;"></div></div><span id="statHappyN" style="text-align:right;">60</span>
+          <span style="text-align:left;color:#fb923c;">●</span><div class="stat-bar"><div id="statFood" class="stat-fill" style="width:60%;background:#fb923c;"></div></div><span id="statFoodN" style="text-align:right;">60</span>
+          <span style="text-align:left;color:#facc15;">⚡</span><div class="stat-bar"><div id="statEnergy" class="stat-fill" style="width:60%;background:#facc15;"></div></div><span id="statEnergyN" style="text-align:right;">60</span>
+          <span style="text-align:left;color:#22d3ee;">●</span><div class="stat-bar"><div id="statHygiene" class="stat-fill" style="width:60%;background:#22d3ee;"></div></div><span id="statHygieneN" style="text-align:right;">60</span>
+        </div>
+        <div class="flex flex-wrap gap-2 justify-center" id="petActions">
+          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="feed" style="background:linear-gradient(135deg,#fb923c,#ea580c);color:#fff;font-weight:700;font-size:13px;">● Alimentar</button>
+          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="play" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:13px;">● Jugar</button>
+          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="bath" style="background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-weight:700;font-size:13px;">● Bañar</button>
+          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="sleep" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:700;font-size:13px;">● Dormir</button>
+          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="shop" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;font-weight:700;font-size:13px;">● Tienda</button>
+        </div>
+        <div id="petContent" style="margin-top:14px;min-height:60px;"></div>
+        <div id="petMsg" style="min-height:22px;margin-top:8px;font-size:14px;font-weight:600;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: ELEGIR MASCOTA ================= -->
+  <div id="petModal" class="modal-bg" style="display:none;">
+    <div class="glass rounded-3xl p-5" style="max-width:420px;width:100%;max-height:90vh;overflow-y:auto;">
+      <h3 style="font-size:22px;font-weight:700;margin:0 0 4px;text-align:center;color:var(--accent2);">¡Elegí tu mascota!</h3>
+      <p style="text-align:center;font-size:13px;color:var(--muted);margin:0 0 14px;">Te acompañará en todas las aventuras de aprendizaje</p>
+      <div id="petChoices" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;"></div>
+      <input id="petNameInput" type="text" maxlength="12" placeholder="Nombre de tu mascota..." style="width:100%;padding:12px;border-radius:12px;border:2px solid var(--accent);background:var(--card);color:var(--text);font-size:16px;font-weight:600;text-align:center;font-family:'Fredoka',sans-serif;margin-bottom:10px;"/>
+      <button id="petConfirmBtn" class="btn rounded-2xl px-6 py-3 w-full" style="background:linear-gradient(135deg,var(--accent2),#ea580c);color:#fff;font-weight:700;font-size:16px;">¡Empezar aventura!</button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: REGALO ================= -->
+  <div id="giftModal" class="modal-bg" style="display:none;">
+    <div class="glass rounded-3xl p-6 text-center" style="max-width:340px;width:100%;">
+      <div class="reward-badge" style="font-size:60px;margin-bottom:10px;color:var(--gold);">★</div>
+      <h3 style="font-size:22px;font-weight:700;margin:0 0 6px;color:var(--gold);">¡Regalo sorpresa!</h3>
+      <p id="giftText" style="color:var(--muted);font-size:14px;margin:0 0 16px;"></p>
+      <button id="giftCloseBtn" class="btn rounded-2xl px-6 py-3 w-full" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">¡Genial!</button>
+    </div>
   </div>
 
   <!-- GOOGLE ADS -->
@@ -600,7 +677,7 @@ function handleRepeatResult(correct,tr){stopListeningUI();attempts++;if(correct)
 /* ==================== CORRECT / WRONG ==================== */
 function onCorrect(kind){
   if(!correctSet[idx]){correctSet[idx]=true;earned++;if(attempts<=1)firstTry++;streak++;score+=10+(streak>=3?5:0);}else score+=2;
-  save.score=score;persist();updateHUD();sndCorrect();celebrate();
+  save.score=score;persist();addPetCoins(10);updateHUD();sndCorrect();celebrate();
   var cat=CAT[curCat];
   var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?6:6);
   if(kind!=="memory"&&earned>=total)setTimeout(showComplete,1500);
@@ -1108,7 +1185,153 @@ $("homeBtn").addEventListener("click",goHome);
 $("overlayHomeBtn").addEventListener("click",goHome);
 if(!recogSupported){$("manualDoneBtn").addEventListener("click",function(){attempts++;handleRepeatResult(true,"manual");});}
 
+/* ==================== MASCOTA VIRTUAL ==================== */
+var PETS=[
+ {id:"perro",name:"Perro",color:"#fb923c",ear:"tri"},
+ {id:"gato",name:"Gato",color:"#94a3b8",ear:"tri"},
+ {id:"conejo",name:"Conejo",color:"#f472b6",ear:"long"},
+ {id:"panda",name:"Panda",color:"#e2e8f0",ear:"cir"},
+ {id:"zorro",name:"Zorro",color:"#f87171",ear:"tri"},
+ {id:"koala",name:"Koala",color:"#94a3b8",ear:"cir"},
+ {id:"dino",name:"Dinosaurio",color:"#4ade80",ear:"spike"}
+];
+var FOODS=[
+ {id:"manzana",name:"Manzana",price:10,color:"#ef4444"},
+ {id:"banana",name:"Banana",price:10,color:"#eab308"},
+ {id:"zanahoria",name:"Zanahoria",price:15,color:"#fb923c"},
+ {id:"hueso",name:"Hueso",price:20,color:"#e2e8f0"},
+ {id:"pescado",name:"Pescado",price:20,color:"#38bdf8"},
+ {id:"galleta",name:"Galleta",price:15,color:"#d97706"}
+];
+var STAGES=[{name:"Huevo",min:0},{name:"Bebé",min:5},{name:"Joven",min:20},{name:"Adulto",min:50}];
+var selectedPet=0,petSleeping=false,playCatches=0,bathStep=0;
+function petInit(){
+  if(!save.pet){save.pet={type:"perro",name:"Buggy Jr",coins:30,happy:60,food:60,energy:60,hygiene:60,foods:{manzana:2,banana:2},totalCorrect:0,stage:0,chosen:false};persist();}
+  if(!save.pet.foods)save.pet.foods={};
+}
+function petSVG(){
+  var p=PETS.filter(function(x){return x.id===save.pet.type;})[0]||PETS[0];
+  var st=save.pet.stage||0;var c=p.color;var size=st===0?0.7:(st===1?0.85:(st===2?1:1.1));
+  var ear="";
+  if(p.ear==="tri")ear='<polygon points="70,55 80,20 100,50" fill="'+c+'"/><polygon points="170,55 160,20 140,50" fill="'+c+'"/>';
+  else if(p.ear==="long")ear='<ellipse cx="85" cy="40" rx="10" ry="28" fill="'+c+'"/><ellipse cx="155" cy="40" rx="10" ry="28" fill="'+c+'"/>';
+  else if(p.ear==="cir")ear='<circle cx="75" cy="55" r="18" fill="'+c+'"/><circle cx="165" cy="55" r="18" fill="'+c+'"/>';
+  else ear='<polygon points="75,50 70,20 90,45" fill="'+c+'"/><polygon points="165,50 170,20 150,45" fill="'+c+'"/><polygon points="120,42 115,18 128,40" fill="'+c+'"/>';
+  if(st===0){return '<svg viewBox="0 0 240 240" width="140" height="140"><ellipse cx="120" cy="130" rx="60" ry="75" fill="'+c+'" opacity=".85"/><circle cx="100" cy="110" r="8" fill="rgba(255,255,255,.4)"/><circle cx="140" cy="150" r="6" fill="rgba(255,255,255,.4)"/><circle cx="115" cy="170" r="5" fill="rgba(255,255,255,.4)"/></svg>';}
+  var eyes=petSleeping?'<path d="M95 105 q8 8 16 0" stroke="#1e293b" stroke-width="3" fill="none"/><path d="M145 105 q8 8 16 0" stroke="#1e293b" stroke-width="3" fill="none"/>':'<circle cx="103" cy="105" r="7" fill="#1e293b"/><circle cx="153" cy="105" r="7" fill="#1e293b"/><circle cx="105" cy="102" r="2.5" fill="#fff"/><circle cx="155" cy="102" r="2.5" fill="#fff"/>';
+  var hat=st>=3?'<rect x="95" y="48" width="50" height="10" rx="4" fill="#7c3aed"/><rect x="105" y="28" width="30" height="24" rx="6" fill="#7c3aed"/>':'';
+  return '<svg viewBox="0 0 240 240" width="'+(140*size)+'" height="'+(140*size)+'">'+ear+hat+
+    '<circle cx="120" cy="125" r="62" fill="'+c+'"/>'+
+    '<circle cx="85" cy="135" r="10" fill="#ffb3a7" opacity=".6"/><circle cx="155" cy="135" r="10" fill="#ffb3a7" opacity=".6"/>'+
+    eyes+
+    '<ellipse cx="128" cy="128" rx="6" ry="4" fill="#7c2d12"/>'+
+    '<path d="M108 145 Q128 160 148 145" stroke="#7c2d12" stroke-width="3.5" fill="none" stroke-linecap="round"/>'+
+    '</svg>';
+}
+function renderPet(){
+  petInit();var p=save.pet;
+  $("petAvatar").innerHTML=petSVG();
+  $("petNameDisplay").textContent=p.name;
+  $("petStageLabel").textContent="Etapa: "+STAGES[Math.min(p.stage,3)].name;
+  $("petCoins").textContent=p.coins;
+  $("statHappy").style.width=Math.min(100,p.happy)+"%";$("statHappyN").textContent=Math.round(p.happy);
+  $("statFood").style.width=Math.min(100,p.food)+"%";$("statFoodN").textContent=Math.round(p.food);
+  $("statEnergy").style.width=Math.min(100,p.energy)+"%";$("statEnergyN").textContent=Math.round(p.energy);
+  $("statHygiene").style.width=Math.min(100,p.hygiene)+"%";$("statHygieneN").textContent=Math.round(p.hygiene);
+  $("petZzz").style.display=petSleeping?"block":"none";
+}
+function petMsg(m,color){var el=$("petMsg");el.textContent=m;el.style.color=color||"var(--text)";}
+function addPetCoins(n){petInit();save.pet.coins+=n;save.pet.totalCorrect++;persist();checkGrowth();if(save.pet.totalCorrect%10===0){showGift();}}
+function checkGrowth(){
+  var tc=save.pet.totalCorrect;var newStage=0;
+  for(var i=0;i<STAGES.length;i++)if(tc>=STAGES[i].min)newStage=i;
+  if(newStage>save.pet.stage){save.pet.stage=newStage;persist();setTimeout(function(){petMsg("¡"+save.pet.name+" creció! Ahora es: "+STAGES[newStage].name,"var(--gold)");sndFanfare();},1500);}
+}
+function showGift(){
+  petInit();var bonus=30+Math.floor(Math.random()*30);save.pet.coins+=bonus;
+  var f=FOODS[Math.floor(Math.random()*FOODS.length)];save.pet.foods[f.id]=(save.pet.foods[f.id]||0)+1;persist();
+  $("giftText").textContent="Ganaste "+bonus+" monedas y 1 "+f.name+" para tu mascota!";
+  $("giftModal").style.display="flex";sndFanfare();
+}
+function showPetModal(){
+  var grid=$("petChoices");grid.innerHTML="";selectedPet=0;
+  PETS.forEach(function(p,i){
+    var b=document.createElement("button");
+    b.className="pet-btn btn rounded-xl p-2 text-center";b.style.background="var(--card)";b.style.border="2px solid "+(i===0?"var(--accent2)":"var(--border)");
+    b.innerHTML='<div style="width:44px;height:44px;border-radius:50%;background:'+p.color+';margin:0 auto 4px;"></div><div style="font-size:11px;font-weight:600;color:var(--text);">'+p.name+'</div>';
+    b.addEventListener("click",function(){selectedPet=i;Array.prototype.forEach.call(grid.children,function(x){x.style.borderColor="var(--border)";});b.style.borderColor="var(--accent2)";sndClick();});
+    grid.appendChild(b);
+  });
+  $("petNameInput").value="";
+  $("petModal").style.display="flex";
+}
+function openPetScreen(){
+  petInit();if(!save.pet||!save.pet.name){showPetModal();return;}
+  $("homeScreen").classList.add("hidden-screen");$("gameScreen").classList.add("hidden-screen");
+  $("petScreen").classList.remove("hidden-screen");
+  $("petContent").innerHTML="";petMsg("","");renderPet();sndClick();
+  say("Hola! Soy "+save.pet.name+". Cuidame y jugá conmigo!","es-AR");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function petAction(act){
+  var c=$("petContent");petMsg("","");
+  if(act==="feed"){
+    var any=false;var html='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Elegí qué darle de comer:</div><div class="flex flex-wrap gap-2 justify-center;">';
+    FOODS.forEach(function(f){
+      var n=save.pet.foods[f.id]||0;if(n>0){any=true;html+='<button class="pet-btn btn rounded-xl px-3 py-2" data-food="'+f.id+'" style="background:'+f.color+';color:#0b1026;font-weight:700;font-size:12px;">'+f.name+' (x'+n+')</button>';}
+    });
+    html+='</div>';if(!any)html='<p style="color:var(--accent2);font-size:14px;font-weight:600;">No tenés comida! Andá a la Tienda a comprar con monedas.</p>';
+    c.innerHTML=html;
+    Array.prototype.forEach.call(c.querySelectorAll("[data-food]"),function(b){b.addEventListener("click",function(){
+      var fid=b.dataset.food;var f=FOODS.filter(function(x){return x.id===fid;})[0];
+      save.pet.foods[fid]--;save.pet.food=Math.min(100,save.pet.food+25);save.pet.happy=Math.min(100,save.pet.happy+5);persist();
+      var av=$("petAvatar");av.classList.add("pet-eat");setTimeout(function(){av.classList.remove("pet-eat");},1300);
+      petMsg("¡Ñam! A "+save.pet.name+" le encantó la "+f.name+".","var(--green)");sndCorrect();renderPet();petAction("feed");
+    });});
+  } else if(act==="play"){
+    playCatches=0;
+    c.innerHTML='<div style="position:relative;height:80px;max-width:280px;margin:0 auto 8px;background:rgba(74,222,128,.1);border-radius:14px;overflow:hidden;"><div class="ball-move" style="font-size:28px;color:var(--accent);">●</div></div><button id="catchBtn" class="btn rounded-xl px-5 py-2.5" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:14px;">¡Atrapar la pelota! (0/3)</button>';
+    $("catchBtn").addEventListener("click",function(){
+      playCatches++;sndClick();this.textContent="¡Atrapar la pelota!("+playCatches+"/3)";
+      if(playCatches>=3){save.pet.happy=Math.min(100,save.pet.happy+20);save.pet.energy=Math.max(0,save.pet.energy-5);save.pet.coins+=5;persist();petMsg("¡Genial! "+save.pet.name+" se divirtió mucho. +5 monedas.","var(--green)");sndFanfare();renderPet();c.innerHTML="";}
+    });
+  } else if(act==="bath"){
+    bathStep=0;var steps=["Abrir el agua","Poner jabón","Lavar","Enjuagar","Secar"];
+    function bathNext(){
+      if(bathStep>=steps.length){save.pet.hygiene=100;save.pet.happy=Math.min(100,save.pet.happy+10);persist();petMsg("¡Tu mascota está limpia y perfumada!","var(--accent)");sndFanfare();renderPet();c.innerHTML="";return;}
+      c.innerHTML='<button id="bathStepBtn" class="btn rounded-xl px-5 py-2.5 w-full" style="background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-weight:700;font-size:14px;">Paso '+(bathStep+1)+' de 5: '+steps[bathStep]+'</button>';
+      $("bathStepBtn").addEventListener("click",function(){bathStep++;sndClick();bathNext();});
+    }
+    bathNext();
+  } else if(act==="sleep"){
+    petSleeping=true;renderPet();petMsg("Zzz... "+save.pet.name+" está durmiendo...","var(--purple)");
+    setTimeout(function(){petSleeping=false;save.pet.energy=100;save.pet.happy=Math.min(100,save.pet.happy+5);persist();petMsg("¡"+save.pet.name+" despertó con mucha energía!","var(--green)");sndCorrect();renderPet();},3500);
+  } else if(act==="shop"){
+    var html='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Comprá comida con tus monedas (tenés '+save.pet.coins+'):</div><div class="grid grid-cols-2 gap-2;">';
+    FOODS.forEach(function(f){html+='<button class="pet-btn btn rounded-xl px-3 py-2.5" data-buy="'+f.id+'" style="background:var(--card);border:2px solid '+f.color+';color:var(--text);font-weight:600;font-size:12px;">'+f.name+'<br><span style="color:var(--gold);font-weight:700;">● '+f.price+'</span></button>';});
+    html+='</div>';c.innerHTML=html;
+    Array.prototype.forEach.call(c.querySelectorAll("[data-buy]"),function(b){b.addEventListener("click",function(){
+      var fid=b.dataset.buy;var f=FOODS.filter(function(x){return x.id===fid;})[0];
+      if(save.pet.coins>=f.price){save.pet.coins-=f.price;save.pet.foods[fid]=(save.pet.foods[fid]||0)+1;persist();sndCorrect();petMsg("¡Compraste 1 "+f.name+"!","var(--green)");renderPet();petAction("shop");}
+      else{petMsg("No tenés suficientes monedas. ¡Jugá y aprendé para ganar más!","#f87171");sndWrong();}
+    });});
+  }
+}
+$("openPetBtn").addEventListener("click",openPetScreen);
+$("petHomeBtn").addEventListener("click",function(){stopSpeak();$("petScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();sndClick();});
+$("petConfirmBtn").addEventListener("click",function(){
+  var name=$("petNameInput").value.trim()||"Buggy Jr";
+  petInit();save.pet.type=PETS[selectedPet].id;save.pet.name=name;save.pet.chosen=true;persist();
+  $("petModal").style.display="none";sndFanfare();
+  say("¡Hola! Soy "+name+". Vamos a aprender y jugar juntos!","es-AR");
+  openPetScreen();
+});
+$("giftCloseBtn").addEventListener("click",function(){$("giftModal").style.display="none";sndClick();});
+Array.prototype.forEach.call($("petActions").querySelectorAll(".pet-btn"),function(b){b.addEventListener("click",function(){petAction(b.dataset.act);});});
+
 renderHome();
+petInit();
+if(!save.pet.chosen){showPetModal();}
 })();
 </script>
 </body>
