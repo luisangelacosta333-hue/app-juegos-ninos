@@ -37,8 +37,10 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;letter-spacing:.5px;margin
 .back{width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.8);font-size:1.25rem;cursor:pointer;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.2)}
 .topbar h2{flex:1;font-size:1.15rem;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3)}
 .pill{background:rgba(255,255,255,.8);border-radius:999px;padding:6px 12px;font-weight:800;font-size:.85rem;flex:none}
-.btn{border:none;cursor:pointer;font-family:var(--font);font-weight:800;border-radius:999px;padding:13px 22px;font-size:1.05rem;color:#fff;
-  background:linear-gradient(135deg,#4f7cff,#ff8a3d);box-shadow:0 6px 0 rgba(0,0,0,.2),0 10px 24px rgba(79,124,255,.45);transition:transform .1s}
+.btn{border:1.5px solid rgba(255,255,255,.35);cursor:pointer;font-family:var(--font);font-weight:800;border-radius:999px;padding:13px 22px;font-size:1.05rem;color:#fff;
+  background:linear-gradient(135deg,#4f7cff,#7c5cff,#ff5fa8,#ff8a3d);background-size:250% 250%;animation:btnShimmer 5s ease infinite;
+  box-shadow:0 6px 0 rgba(0,0,0,.2),0 10px 28px rgba(79,124,255,.5),0 0 18px rgba(255,95,168,.3),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .1s}
+@keyframes btnShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.2)}
 .btn-green{background:linear-gradient(135deg,#22c58b,#6ee7b7)}.btn-blue{background:linear-gradient(135deg,#3b82f6,#60a5fa)}
 .btn-pink{background:linear-gradient(135deg,#db2777,#ff8a3d)}.btn-yellow{background:linear-gradient(135deg,#fbbf24,#fde047);color:#7a5200}
@@ -135,6 +137,11 @@ h1{font-size:2.1rem;font-weight:800;text-align:center;letter-spacing:.5px;margin
 .print-card{background:rgba(255,255,255,.95);border-radius:16px;padding:14px 10px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.2);border:3px dashed #b9c9ff}
 .print-card .em{font-size:2rem}.print-card .en{font-weight:800;color:#4f7cff;font-size:1.05rem}.print-card .ap{font-size:.72rem;color:#7a6fa0;font-style:italic}.print-card .es{font-size:.82rem}
 .print-card button{margin-top:6px;border:none;background:#bae1ff;border-radius:999px;padding:4px 10px;font-family:var(--font);font-weight:700;font-size:.72rem;cursor:pointer}
+.btn.rec{animation:micPulse 1s infinite}
+.confetti{position:fixed;top:-20px;pointer-events:none;z-index:300;border-radius:2px;animation:confettiFall linear forwards}
+@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:.5}}
+.firework{position:fixed;width:6px;height:6px;border-radius:50%;pointer-events:none;z-index:300;animation:fireworkBurst 1s ease-out forwards}
+@keyframes fireworkBurst{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
 @media(max-width:360px){.fc .em{font-size:2.1rem}.gcard .em{font-size:1.9rem}}
 @media print{.bottomnav,.tabs,.btn,.back,.no-print{display:none!important}body{background:#fff}}
 </style>
@@ -547,6 +554,13 @@ function astroSay(text, bubbleEl){
   speak(text, "es-AR", 1.05, 1.25);
 }
 function speakWord(en){ speak(en, "en-US", 0.85, 1.1); }
+/* CORTAR TODO el audio (evita que se superponga la palabra anterior con la nueva) */
+function stopTalking(){
+  if(voiceOK){ try{ window.speechSynthesis.cancel(); }catch(e){} }
+  if(seqTimer){ clearTimeout(seqTimer); seqTimer=null; }
+  if(talkTimer){ clearTimeout(talkTimer); talkTimer=null; }
+  setMood("idle");
+}
 var audioPrimed=false;
 function primeAudio(){
   if(audioPrimed) return; audioPrimed=true;
@@ -617,7 +631,10 @@ var GAMES=[
  {id:"intruso",   cat:"logic", em:"🕵️", nm:"El intruso",         st:"¿Cuál no pertenece?"},
  {id:"parejas",   cat:"logic", em:"🔗", nm:"Parejas palabra-dibujo", st:"Uní inglés y dibujo"},
  {id:"puzzle",    cat:"logic", em:"🧩", nm:"Rompecabezas",        st:"Deslizá y ordená"},
- {id:"secuencia", cat:"mate",  em:"🔢", nm:"Ordená los números",  st:"Del chico al grande"}
+ {id:"secuencia", cat:"mate",  em:"🔢", nm:"Ordená los números",  st:"Del chico al grande"},
+ {id:"abecedario",cat:"abc",   em:"🔡", nm:"Abecedario completo", st:"A a la Z · inglés y español"},
+ {id:"numeros",   cat:"mate",  em:"🔢", nm:"Números 1 al 100",    st:"Inglés y castellano"},
+ {id:"oraciones", cat:"leer",  em:"📖", nm:"Oraciones para leer", st:"Aprendé a leer y traducir"}
 ];
 
 /* ---------- utilidades ---------- */
@@ -627,6 +644,7 @@ function $(id){ return document.getElementById(id); }
 
 /* ---------- navegación ---------- */
 function showView(name){
+  stopTalking();
   document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("active"); });
   var el = $("view-"+name); if(el) el.classList.add("active");
   document.querySelectorAll(".bottomnav button").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-goto")===name); });
@@ -683,6 +701,7 @@ function renderProg(){
 /* ---------- motor de juego ---------- */
 var currentGame=null, gameState={};
 function startGame(id){
+  stopTalking();
   currentGame=id; gameState={round:0, correct:0, total:5, locked:false};
   var g=GAMES.find(function(x){return x.id===id;});
   $("gameTitle").textContent=(g?g.em+" "+g.nm:"Juego");
@@ -737,6 +756,9 @@ function startGame(id){
   else if(id==="parejas"){ gameParejas(); }
   else if(id==="puzzle"){ gamePuzzle(); }
   else if(id==="secuencia"){ gameState.total=4; qSecuencia(); }
+  else if(id==="abecedario"){ gameAbecedario(); }
+  else if(id==="numeros"){ gameNumeros(); }
+  else if(id==="oraciones"){ gameOraciones(); }
 }
 
 /* ===== QUIZ GENÉRICO DE VOCABULARIO (siempre explica la palabra) ===== */
@@ -797,16 +819,23 @@ function handleQuizAnswer(idx){
     var rep = document.createElement("button");
     rep.className = "btn btn-blue small"; rep.id = "repeatExplain";
     rep.textContent = "🔊 Repetir";
+    var mic = document.createElement("button");
+    mic.className = "btn btn-pink small"; mic.id = "micExplain";
+    mic.textContent = "🎤 Decirla yo";
     var nx = document.createElement("button");
     nx.className = "btn btn-green small"; nx.id = "nextBtn";
     nx.textContent = "➡️ Siguiente";
-    wrap.appendChild(rep); wrap.appendChild(nx);
+    wrap.appendChild(rep); wrap.appendChild(mic); wrap.appendChild(nx);
     fb.appendChild(wrap);
+    var ms = document.createElement("div");
+    ms.id = "micExplainStatus"; ms.style.marginTop = "8px"; ms.style.fontWeight = "800"; ms.style.minHeight = "22px";
+    fb.appendChild(ms);
     gameState.waitingNext = true;
   }, ok?600:1000);
 }
 function advanceRound(){
   if(!gameState.waitingNext) return;
+  stopTalking();
   gameState.waitingNext = false;
   gameState.round++; gameState.locked=false;
   if(gameState.round>=gameState.total){ endGame(); }
@@ -1283,7 +1312,135 @@ function qSecuencia(){
   });
 }
 
+/* ===== ABECEDARIO COMPLETO (A-Z, inglés y español) ===== */
+var LETRA_ES={A:"a",B:"be",C:"ce",D:"de",E:"e",F:"efe",G:"ge",H:"hache",I:"i",J:"jota",K:"ka",L:"ele",M:"eme",N:"ene",O:"o",P:"pe",Q:"ku",R:"ere",S:"ese",T:"te",U:"u",V:"uve",W:"doble uve",X:"ekis",Y:"i griega",Z:"zeta"};
+function gameAbecedario(){
+  gameState.total=1;
+  var html='<div class="glass center" style="padding:10px;margin-bottom:12px">Tocá cada letra para escucharla en inglés y en español 🎧</div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-height:420px;overflow-y:auto;padding:4px">';
+  LETTERS.forEach(function(L){
+    html+='<button class="letra-btn" data-l="'+L+'" style="border:none;border-radius:14px;padding:12px 4px;font-family:var(--font);font-weight:800;cursor:pointer;color:#fff;background:linear-gradient(135deg,#4f7cff,#7c5cff);box-shadow:0 4px 10px rgba(79,124,255,.35);font-size:1.1rem">'+L+'<span style="display:block;font-size:.7rem;opacity:.8">'+L.toLowerCase()+'</span></button>';
+  });
+  html+='</div><div class="feedback" id="abcFeedback">Tocá una letra</div>';
+  html+='<div class="center mt"><button class="btn btn-green big" id="abcDone">¡Terminé! ⭐</button></div>';
+  $("gameArea").innerHTML=html;
+  astroSay("Este es el abecedario. Tocá cada letra y la escuchás en inglés y en español.", $("gameBubble"));
+  document.querySelectorAll(".letra-btn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var L=b.getAttribute("data-l");
+      $("abcFeedback").textContent=L+" · en inglés: "+L+" · en español: "+(LETRA_ES[L]||L);
+      saySequence([
+        {text:"La letra "+L+". En inglés se dice:", lang:"es-AR"},
+        {text:L, lang:"en-US", rate:0.8},
+        {text:"En español se dice: "+(LETRA_ES[L]||L), lang:"es-AR"}
+      ]);
+    });
+  });
+  $("abcDone").addEventListener("click", function(){ gameState.correct=gameState.total; endGame(); });
+}
+
+/* ===== NÚMEROS 1 AL 100 (inglés y español) ===== */
+function gameNumeros(){
+  gameState.total=1;
+  var html='<div class="glass center" style="padding:10px;margin-bottom:12px">Tocá un número para escucharlo en inglés 🇬🇧 y en español 🇦🇷</div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-height:420px;overflow-y:auto;padding:4px" id="numGrid">';
+  for(var n=1;n<=100;n++){
+    html+='<button class="num-btn" data-n="'+n+'" style="border:none;border-radius:10px;padding:10px 2px;font-family:var(--font);font-weight:800;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ff8a3d,#ff5fa8);box-shadow:0 3px 8px rgba(255,138,61,.35);font-size:.95rem">'+n+'</button>';
+  }
+  html+='</div><div class="feedback" id="numFeedback">Tocá un número</div>';
+  html+='<div class="center mt"><button class="btn btn-green big" id="numDone">¡Terminé! ⭐</button></div>';
+  $("gameArea").innerHTML=html;
+  astroSay("Estos son los números del 1 al 100. Tocá uno y lo escuchás en inglés y en español.", $("gameBubble"));
+  document.querySelectorAll(".num-btn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var n=b.getAttribute("data-n");
+      $("numFeedback").textContent="Número "+n+" · escuchalo...";
+      saySequence([
+        {text:n, lang:"en-US", rate:0.85},
+        {text:"En español: "+n, lang:"es-AR"}
+      ]);
+    });
+  });
+  $("numDone").addEventListener("click", function(){ gameState.correct=gameState.total; endGame(); });
+}
+
+/* ===== ORACIONES PARA LEER (castellano + inglés) ===== */
+var ORACIONES=[
+ {es:"El perro corre.", en:"The dog runs."},
+ {es:"La gata duerme.", en:"The cat sleeps."},
+ {es:"Yo como una manzana.", en:"I eat an apple."},
+ {es:"Tú bebes agua.", en:"You drink water."},
+ {es:"El sol brilla.", en:"The sun shines."},
+ {es:"La luna es grande.", en:"The moon is big."},
+ {es:"Mi mamá me ama.", en:"My mom loves me."},
+ {es:"El niño juega.", en:"The boy plays."},
+ {es:"La niña canta.", en:"The girl sings."},
+ {es:"El pájaro vuela.", en:"The bird flies."},
+ {es:"Nosotros vamos a la escuela.", en:"We go to school."},
+ {es:"Me gusta leer libros.", en:"I like to read books."},
+ {es:"Buenos días, amigo.", en:"Good morning, friend."},
+ {es:"Gracias, por favor.", en:"Thank you, please."}
+];
+function gameOraciones(){
+  gameState.total=1;
+  var html='<div class="glass center" style="padding:10px;margin-bottom:12px">Tocá cada oración para escucharla. Aprendé a leer en castellano y en inglés 📖</div>';
+  html+='<div style="max-height:420px;overflow-y:auto;padding:4px;display:flex;flex-direction:column;gap:8px">';
+  ORACIONES.forEach(function(o,i){
+    html+='<button class="ora-btn" data-i="'+i+'" style="border:none;border-radius:16px;padding:14px;font-family:var(--font);font-weight:700;cursor:pointer;color:var(--ink);background:rgba(255,255,255,.85);box-shadow:0 4px 12px rgba(0,0,40,.2);text-align:left;font-size:.95rem">'+
+      '<span style="color:#4f7cff;font-weight:800">'+o.es+'</span><br><span style="color:#ff8a3d;font-size:.85rem">'+o.en+'</span></button>';
+  });
+  html+='</div><div class="center mt"><button class="btn btn-green big" id="oraDone">¡Terminé! ⭐</button></div>';
+  $("gameArea").innerHTML=html;
+  astroSay("Estas son oraciones para leer. Tocá una y la escuchás en castellano y en inglés.", $("gameBubble"));
+  document.querySelectorAll(".ora-btn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var o=ORACIONES[parseInt(b.getAttribute("data-i"),10)];
+      saySequence([
+        {text:o.es, lang:"es-AR"},
+        {text:"En inglés: "+o.en, lang:"es-AR"},
+        {text:o.en, lang:"en-US", rate:0.85}
+      ]);
+    });
+  });
+  $("oraDone").addEventListener("click", function(){ gameState.correct=gameState.total; endGame(); });
+}
+
 /* ===== fin de juego ===== */
+/* ===== FUEGOS ARTIFICIALES al ganar ===== */
+function launchConfetti(){
+  var colors=["#ffd700","#ff5fa8","#4f7cff","#22d3c7","#ff8a3d","#ffffff","#ff3d3d"];
+  for(var i=0;i<70;i++){
+    var c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=(Math.random()*100)+"vw";
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.width=(6+Math.random()*8)+"px";
+    c.style.height=(8+Math.random()*12)+"px";
+    c.style.animationDuration=(2+Math.random()*2.5)+"s";
+    c.style.animationDelay=(Math.random()*0.7)+"s";
+    document.body.appendChild(c);
+    (function(el){ setTimeout(function(){ el.remove(); }, 5200); })(c);
+  }
+  /* explosiones de fuegos artificiales */
+  for(var b=0;b<4;b++){
+    (function(bx){
+      setTimeout(function(){
+        var cx=20+Math.random()*60, cy=15+Math.random()*30;
+        var col=colors[Math.floor(Math.random()*colors.length)];
+        for(var p=0;p<14;p++){
+          var f=document.createElement("div");
+          f.className="firework"; f.style.background=col;
+          f.style.left=cx+"vw"; f.style.top=cy+"vh";
+          var ang=(p/14)*Math.PI*2, dist=60+Math.random()*60;
+          f.style.setProperty("--dx", Math.cos(ang)*dist+"px");
+          f.style.setProperty("--dy", Math.sin(ang)*dist+"px");
+          document.body.appendChild(f);
+          (function(el){ setTimeout(function(){ el.remove(); }, 1100); })(f);
+        }
+      }, bx*350);
+    })(b);
+  }
+}
 function endGame(){
   var c=gameState.correct, t=gameState.total;
   var stars = c>=t?3 : c>=Math.ceil(t*0.6)?2 : c>0?1:0;
@@ -1292,6 +1449,7 @@ function endGame(){
   $("winTitle").textContent = stars===3?"¡Increíble, astronauta!":stars>0?"¡Muy bien!":"¡Seguí intentando!";
   $("winText").textContent = "Acertaste "+c+" de "+t+(stars>0?". Ganaste "+stars+" estrella"+(stars>1?"s":"")+"!":". ¡Volvé a intentarlo!");
   $("winOverlay").classList.add("show");
+  if(stars>0) launchConfetti();
   setMood("happy");
   astroSay(stars>0?"¡Felicitaciones, astronauta! Ganaste estrellas.":"¡No te rindas! El espacio es grande y vos podés. Intentá de nuevo.", $("gameBubble"));
   renderHome(activeCat());
@@ -1336,6 +1494,27 @@ document.addEventListener("click", function(ev){
   if(nx){ advanceRound(); return; }
   var rp=t.closest("#repeatExplain");
   if(rp){ var vv=gameState.currentTarget; if(vv) teachWord(vv, $("gameBubble")); return; }
+  var me=t.closest("#micExplain");
+  if(me){
+    var vw=gameState.currentTarget;
+    if(!vw) return;
+    var st=$("micExplainStatus");
+    if(!micSupported){ st.textContent="Usá Chrome o Edge para el micrófono, o tocá Siguiente."; st.style.color="#dc2626"; return; }
+    st.textContent="🎙️ Escuchando... decí la palabra en inglés!"; st.style.color="#4f7cff";
+    me.classList.add("rec");
+    recognizeWord(vw.en, "en-US", function(res){
+      me.classList.remove("rec");
+      if(res.ok){
+        st.textContent="✅ ¡Perfecto! Se escuchó: \""+(res.transcript||vw.en)+"\". ¡Aprobado!";
+        st.style.color="#16a34a"; setMood("happy");
+        astroSay("¡Excelente! Lo dijiste perfecto.", $("gameBubble"));
+      } else {
+        st.textContent='Se escuchó: "'+(res.transcript||"...")+'". Escuchá de nuevo 🔊 y probá otra vez, o tocá Siguiente.';
+        st.style.color="#dc2626"; speakWord(vw.en);
+      }
+    });
+    return;
+  }
   if(t.closest("#astroHome")){
     var frases=["¡Hola! Soy Astro, el astronauta. ¿Jugamos?","¡Tocá un juego y empezá a aprender!","¡Yo te hablo, te explico y te escucho!","¡Vamos al espacio del inglés juntos!","¡Qué bueno verte! ¿Qué querés aprender?"];
     astroSay(frases[Math.floor(Math.random()*frases.length)], $("homeBubble")); return;
