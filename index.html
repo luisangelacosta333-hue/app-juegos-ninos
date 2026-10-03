@@ -366,12 +366,71 @@
   <!-- GOOGLE ADS -->
   <div id="adBanner" style="margin-top:14px;height:60px;border:2px dashed rgba(139,147,194,.35);border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8;background:rgba(20,26,56,.4);">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
-    <div style="max-width:500px;margin:14px auto 0;text-align:center;">
-  <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">Publicidad</div>
-  <!-- Banner responsive · REEMPLAZAR data-ad-slot="0000000000" por tu ID de unidad de anuncios de AdSense -->
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5636172588667612" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <!-- ======================================================= -->
+<!-- ESPACIO 1: GOOGLE ADSENSE (CON CANDADO INFANTIL COPPA)  -->
+<!-- ======================================================= -->
+<div id="espacio-google" style="width: 100%; text-align: center; margin: 20px 0;">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5636172588667612"
+       data-ad-slot="AQUI_IRA_EL_NUMERO_DE_ANUNCIO"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({
+         params: { tag_for_child_directed_treatment: 1 }
+       });
+  </script>
 </div>
+
+<!-- ======================================================= -->
+<!-- ESPACIO 2: SUPERAWESOME (PUBLICIDAD DE JUGUETES)        -->
+<!-- ======================================================= -->
+<div id="banner-superawesome" style="width: 100%; text-align: center; margin: 20px 0;"></div>
+<script src="https://cdn.superawesome.tv/ads/awesomeads.min.js"></script>
+<script>
+  if (window.AwesomeAds) {
+    AwesomeAds.init({ colorTransparent: true });
+    AwesomeAds.display({
+      placementId: 0, /* Reemplazar por tu numero cuando te lo envien al correo */
+      target: "banner-superawesome"
+    });
+  }
+</script>
+
+<button id="btn-instalar" style="display: none; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin: 10px auto; display:none;">
+  📲 Instalar Buggy IA
+</button>
+
+<script>
+  let eventoInstalacion;
+  const btnInstalar = document.getElementById('btn-instalar');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    eventoInstalacion = e;
+    btnInstalar.style.display = 'block';
+  });
+
+  btnInstalar.addEventListener('click', async () => {
+    if (eventoInstalacion) {
+      eventoInstalacion.prompt();
+      const resultado = await eventoInstalacion.userChoice;
+      if (resultado.outcome === 'accepted') {
+        console.log('El usuario instalo Buggy IA');
+      } else {
+        console.log('El usuario cancelo la instalacion');
+      }
+      eventoInstalacion = null;
+      btnInstalar.style.display = 'none';
+    }
+  });
+
+  window.addEventListener('appinstalled', () => {
+    btnInstalar.style.display = 'none';
+    console.log('¡Buggy IA instalada con exito!');
+  });
+</script>
   </div>
 </div>
 
