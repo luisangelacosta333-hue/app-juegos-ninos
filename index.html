@@ -135,12 +135,30 @@
   <div id="homeScreen">
     <div class="text-center mb-4 fade-in">
       <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:4px;">
-        <div style="width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--accent2),#ea580c);display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px rgba(251,146,60,.7), 0 6px 20px rgba(251,146,60,.45);animation:floaty 3s ease-in-out infinite;">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0b1026" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+        <div style="width:78px;height:78px;border-radius:22px;background:linear-gradient(135deg,var(--accent2),#ea580c,#f472b6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(251,146,60,.85), 0 10px 28px rgba(244,114,182,.4);animation:floaty 3s ease-in-out infinite;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0b1026" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
         </div>
-        <h1 class="big-3d" style="font-size:46px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">BuggyIA</h1>
+        <div style="text-align:left;">
+          <h1 class="big-3d" style="font-size:54px;font-weight:700;margin:0;line-height:1;background:linear-gradient(90deg,var(--accent2),var(--pink),var(--accent),var(--gold));background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rainbowMove 5s linear infinite;">BuggyIA</h1>
+          <p style="color:var(--accent);margin:3px 0 0;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 0 12px rgba(34,211,238,.6);">Aprendé Inglés Jugando</p>
+        </div>
       </div>
-      <p style="color:var(--muted);margin:0;font-size:16px;font-weight:500;">93 juegos · 2 niveles de dificultad · BuggyIA te explica en castellano</p>
+      <p style="color:var(--muted);margin:8px 0 0;font-size:15px;font-weight:500;">93 juegos · 2 niveles de dificultad · Buggy te explica en castellano y vos hablás en inglés</p>
+    </div>
+    <!-- ===== CARTEL: PLAN GRATIS PARA SIEMPRE ===== -->
+    <div class="fade-in rounded-2xl px-4 py-3 mb-3 text-center" style="background:linear-gradient(100deg,rgba(74,222,128,.20),rgba(250,204,21,.20),rgba(244,114,182,.20));border:2px solid var(--gold);box-shadow:0 0 28px rgba(250,204,21,.4), inset 0 1px 0 rgba(255,255,255,.12);">
+      <div style="font-size:27px;font-weight:700;letter-spacing:.04em;line-height:1.15;background:linear-gradient(90deg,#4ade80,#facc15,#fb923c);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(250,204,21,.45));">★ Plan GRATIS para siempre ★</div>
+      <div style="font-size:13px;color:var(--text);font-weight:600;margin-top:5px;">Sin límites · Sin tarjeta de crédito · Todos los juegos desbloqueados</div>
+    </div>
+    <!-- ===== MICROFONO QUE EXPLICA TODA LA FUNCION ===== -->
+    <div class="glass rounded-2xl px-4 py-3 mb-3 fade-in" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 26px rgba(167,139,250,.25);">
+      <button id="howBtn" class="btn pulse-ring" style="flex:0 0 auto;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--purple),#7c3aed);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(167,139,250,.55);" title="Escuchá cómo funciona">
+        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3"/></svg>
+      </button>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:3px;">¿Cómo funciona? Tocá el micrófono</div>
+        <div id="howText" style="font-size:12.5px;color:var(--muted);line-height:1.55;">1. Buggy te explica en castellano · 2. Escuchá la palabra en inglés · 3. Repetí con el micrófono y Buggy te corrige</div>
+      </div>
     </div>
     <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
       <div class="flex items-center gap-2">
@@ -153,6 +171,9 @@
           <span style="width:14px;height:14px;border-radius:50%;background:#fff;display:inline-block;"></span>Mi Mascota
         </button>
         <button id="voiceBtn" class="btn rounded-xl px-2.5 py-1.5" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:700;font-size:12px;" title="Cambiar voz">♪ Voz</button>
+        <button id="btn-instalar" class="btn rounded-xl px-2.5 py-1.5" style="display:none;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:12px;align-items:center;gap:4px;" title="Instalar aplicación en tu celular">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Instalar App
+        </button>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
@@ -421,9 +442,6 @@
   }
 </script>
 
-<button id="btn-instalar" style="display: none; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin: 10px auto; display:none;">
-  📲 Instalar Buggy IA
-</button>
 
 <script>
   let eventoInstalacion;
@@ -1801,23 +1819,39 @@ function petInit(){
   if(!save.pet){save.pet={type:"perro",name:"Buggy Jr",coins:30,happy:60,food:60,energy:60,hygiene:60,foods:{manzana:2,banana:2},totalCorrect:0,stage:0,chosen:false};persist();}
   if(!save.pet.foods)save.pet.foods={};
 }
+function shade(hex,amt){
+  try{var n=parseInt(hex.slice(1),16);var r=(n>>16)&255,g=(n>>8)&255,b=n&255;
+  r=Math.max(0,Math.min(255,Math.round(r+amt*255)));g=Math.max(0,Math.min(255,Math.round(g+amt*255)));b=Math.max(0,Math.min(255,Math.round(b+amt*255)));
+  return "rgb("+r+","+g+","+b+")";}catch(e){return hex;}
+}
 function petSVG(){
   var p=PETS.filter(function(x){return x.id===save.pet.type;})[0]||PETS[0];
-  var st=save.pet.stage||0;var c=p.color;var size=st===0?0.7:(st===1?0.85:(st===2?1:1.1));
+  var st=save.pet.stage||0;var c=p.color;var cL=shade(c,.30),cD=shade(c,-.20);
+  var size=st===0?0.72:(st===1?0.88:(st===2?1:1.1));
   var ear="";
-  if(p.ear==="tri")ear='<polygon points="70,55 80,20 100,50" fill="'+c+'"/><polygon points="170,55 160,20 140,50" fill="'+c+'"/>';
-  else if(p.ear==="long")ear='<ellipse cx="85" cy="40" rx="10" ry="28" fill="'+c+'"/><ellipse cx="155" cy="40" rx="10" ry="28" fill="'+c+'"/>';
-  else if(p.ear==="cir")ear='<circle cx="75" cy="55" r="18" fill="'+c+'"/><circle cx="165" cy="55" r="18" fill="'+c+'"/>';
-  else ear='<polygon points="75,50 70,20 90,45" fill="'+c+'"/><polygon points="165,50 170,20 150,45" fill="'+c+'"/><polygon points="120,42 115,18 128,40" fill="'+c+'"/>';
-  if(st===0){return '<svg viewBox="0 0 240 240" width="140" height="140"><ellipse cx="120" cy="130" rx="60" ry="75" fill="'+c+'" opacity=".85"/><circle cx="100" cy="110" r="8" fill="rgba(255,255,255,.4)"/><circle cx="140" cy="150" r="6" fill="rgba(255,255,255,.4)"/><circle cx="115" cy="170" r="5" fill="rgba(255,255,255,.4)"/></svg>';}
-  var eyes=petSleeping?'<path d="M95 105 q8 8 16 0" stroke="#1e293b" stroke-width="3" fill="none"/><path d="M145 105 q8 8 16 0" stroke="#1e293b" stroke-width="3" fill="none"/>':'<circle cx="103" cy="105" r="7" fill="#1e293b"/><circle cx="153" cy="105" r="7" fill="#1e293b"/><circle cx="105" cy="102" r="2.5" fill="#fff"/><circle cx="155" cy="102" r="2.5" fill="#fff"/>';
-  var hat=st>=3?'<rect x="95" y="48" width="50" height="10" rx="4" fill="#7c3aed"/><rect x="105" y="28" width="30" height="24" rx="6" fill="#7c3aed"/>':'';
-  return '<svg viewBox="0 0 240 240" width="'+(140*size)+'" height="'+(140*size)+'">'+ear+hat+
-    '<circle cx="120" cy="125" r="62" fill="'+c+'"/>'+
-    '<circle cx="85" cy="135" r="10" fill="#ffb3a7" opacity=".6"/><circle cx="155" cy="135" r="10" fill="#ffb3a7" opacity=".6"/>'+
+  if(p.ear==="tri")ear='<polygon points="78,74 68,16 114,52" fill="'+cD+'"/><polygon points="162,74 172,16 126,52" fill="'+cD+'"/><polygon points="84,64 78,30 106,54" fill="'+cL+'"/><polygon points="156,64 162,30 134,54" fill="'+cL+'"/>';
+  else if(p.ear==="long")ear='<ellipse cx="82" cy="50" rx="11" ry="36" fill="'+cD+'" transform="rotate(-12 82 50)"/><ellipse cx="158" cy="50" rx="11" ry="36" fill="'+cD+'" transform="rotate(12 158 50)"/><ellipse cx="82" cy="54" rx="5" ry="26" fill="'+cL+'" transform="rotate(-12 82 54)"/><ellipse cx="158" cy="54" rx="5" ry="26" fill="'+cL+'" transform="rotate(12 158 54)"/>';
+  else if(p.ear==="cir")ear='<circle cx="74" cy="66" r="21" fill="'+cD+'"/><circle cx="166" cy="66" r="21" fill="'+cD+'"/><circle cx="74" cy="66" r="10" fill="'+cL+'"/><circle cx="166" cy="66" r="10" fill="'+cL+'"/>';
+  else ear='<polygon points="78,68 70,28 100,56" fill="'+cD+'"/><polygon points="162,68 170,28 140,56" fill="'+cD+'"/><polygon points="120,60 110,24 132,56" fill="'+cD+'"/>';
+  if(st===0){return '<svg viewBox="0 0 240 260" width="130" height="140"><ellipse cx="120" cy="210" rx="46" ry="12" fill="#000" opacity=".25"/><ellipse cx="120" cy="140" rx="62" ry="78" fill="'+c+'"/><ellipse cx="96" cy="112" rx="16" ry="28" fill="#fff" opacity=".45" transform="rotate(-18 96 112)"/><ellipse cx="120" cy="205" rx="42" ry="14" fill="'+cD+'" opacity=".55"/><circle cx="104" cy="158" r="6.5" fill="#1e293b"/><circle cx="136" cy="158" r="6.5" fill="#1e293b"/><circle cx="106" cy="155" r="2" fill="#fff"/><circle cx="138" cy="155" r="2" fill="#fff"/><ellipse cx="120" cy="176" rx="7" ry="5" fill="#3b1d0e"/><path d="M110 186 Q120 194 130 186" stroke="#3b1d0e" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';}
+  var eyes=petSleeping?'<path d="M96 108 q8 8 16 0" stroke="#1e293b" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M144 108 q8 8 16 0" stroke="#1e293b" stroke-width="3.5" fill="none" stroke-linecap="round"/>':'<circle cx="100" cy="108" r="9" fill="#1e293b"/><circle cx="148" cy="108" r="9" fill="#1e293b"/><circle cx="103" cy="104" r="3.2" fill="#fff"/><circle cx="151" cy="104" r="3.2" fill="#fff"/><circle cx="97" cy="112" r="1.6" fill="#fff" opacity=".7"/><circle cx="145" cy="112" r="1.6" fill="#fff" opacity=".7"/>';
+  var hat=st>=3?'<rect x="90" y="42" width="60" height="11" rx="5" fill="#7c3aed"/><rect x="102" y="14" width="36" height="32" rx="8" fill="#7c3aed"/><circle cx="120" cy="12" r="7" fill="#facc15"/>':'';
+  var tail='<path d="M174 198 Q208 180 202 148" stroke="'+cD+'" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="202" cy="146" r="11" fill="'+cL+'"/>';
+  return '<svg viewBox="0 0 240 260" width="130" height="140">'+
+    '<ellipse cx="120" cy="246" rx="52" ry="10" fill="#000" opacity=".25"/>'+
+    tail+
+    '<ellipse cx="120" cy="204" rx="56" ry="44" fill="'+c+'"/>'+
+    '<ellipse cx="120" cy="212" rx="34" ry="28" fill="'+cL+'" opacity=".75"/>'+
+    '<rect x="82" y="232" width="22" height="18" rx="9" fill="'+cD+'"/><rect x="136" y="232" width="22" height="18" rx="9" fill="'+cD+'"/>'+
+    ear+hat+
+    '<circle cx="120" cy="112" r="60" fill="'+c+'"/>'+
+    '<ellipse cx="88" cy="70" rx="20" ry="13" fill="#fff" opacity=".35" transform="rotate(-25 88 70)"/>'+
+    '<ellipse cx="82" cy="128" rx="11" ry="7" fill="#ff9eb5" opacity=".55"/><ellipse cx="158" cy="128" rx="11" ry="7" fill="#ff9eb5" opacity=".55"/>'+
     eyes+
-    '<ellipse cx="128" cy="128" rx="6" ry="4" fill="#7c2d12"/>'+
-    '<path d="M108 145 Q128 160 148 145" stroke="#7c2d12" stroke-width="3.5" fill="none" stroke-linecap="round"/>'+
+    '<ellipse cx="124" cy="126" rx="7" ry="5" fill="#3b1d0e"/>'+
+    '<path d="M124 131 L124 138" stroke="#3b1d0e" stroke-width="2.5" stroke-linecap="round"/>'+
+    '<path d="M106 142 Q124 156 142 142" stroke="#3b1d0e" stroke-width="3.5" fill="none" stroke-linecap="round"/>'+
+    '<ellipse cx="124" cy="148" rx="5" ry="3.5" fill="#fb7185"/>'+
     '</svg>';
 }
 function renderPet(){
@@ -1917,16 +1951,26 @@ $("openPetBtn").addEventListener("click",openPetScreen);
 $("petHomeBtn").addEventListener("click",function(){stopSpeak();$("petScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();sndClick();});
 $("petConfirmBtn").addEventListener("click",function(){
   var name=$("petNameInput").value.trim()||"Buggy Jr";
-  petInit();save.pet.type=PETS[selectedPet].id;save.pet.name=name;save.pet.chosen=true;persist();
+  petInit();save.pet.type=PETS[selectedPet].id;save.pet.name=name;save.pet.chosen=true;persist();try{localStorage.setItem('tipoMascota',PETS[selectedPet].id);localStorage.setItem('nombreMascota',name);}catch(e){}
   $("petModal").style.display="none";sndFanfare();
   say("¡Hola! Soy "+name+". Vamos a aprender y jugar juntos!","es-AR");
   openPetScreen();
 });
 $("giftCloseBtn").addEventListener("click",function(){$("giftModal").style.display="none";sndClick();});
+var _hb=$("howBtn");
+if(_hb){_hb.addEventListener("click",function(){
+  sndClick();stopSpeak();
+  say("Asi funciona Buggy. Primero, yo te explico la palabra en castellano. Despues escuchas como se dice en ingles. Y por ultimo vos repetis la palabra en ingles tocando el microfono, y yo te digo si lo dijiste bien. Es muy facil y divertido. Vamos a jugar!","es-AR");
+  var ht=$("howText");if(ht){ht.style.color="var(--accent)";ht.textContent="Buggy esta explicando... escucha con atencion.";setTimeout(function(){ht.style.color="var(--muted)";ht.textContent="1. Buggy explica en castellano · 2. Escucha la palabra en ingles · 3. Repeti con el microfono y te corrige";},11000);}
+});}
 Array.prototype.forEach.call($("petActions").querySelectorAll(".pet-btn"),function(b){b.addEventListener("click",function(){petAction(b.dataset.act);});});
 
 renderHome();
 petInit();
+try{
+  var _t=localStorage.getItem('tipoMascota'),_n=localStorage.getItem('nombreMascota');
+  if(_t&&_n){save.pet.type=_t;save.pet.name=_n;save.pet.chosen=true;persist();}
+}catch(e){}
 if(!save.pet.chosen){showPetModal();}
 })();
 </script>
