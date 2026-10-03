@@ -1,10 +1,4 @@
-<!-- ============================================================
-  BUGGY SUPER APP v3 · 55 JUEGOS EDUCATIVOS · LISTA PARA PRODUCCION
-  Layout a pantalla completa (Buggy + enseñanza entran perfectos).
-  Secciones: Vocabulario, Matematica, Lengua, Juegos.
-  Buggy habla en castellano. Palabras SOLO en ingles. Microfono.
-  Espacio Google AdMob incluido. Guardar como index.html en GitHub.
-============================================================ -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -65,7 +59,7 @@
   .mem-front{background:var(--card);border:2px solid var(--border);transform:rotateY(180deg);font-size:18px;}
   .mem-card.matched{opacity:.5;pointer-events:none;}
   .tile{border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.3);box-shadow:0 6px 20px rgba(0,0,0,.3);}
-  .section-label{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:16px 4px 8px;display:flex;align-items:center;gap:10px;}
+  .section-label{font-size:19px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:22px 4px 12px;display:flex;align-items:center;gap:10px;}
   .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
   .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);display:inline-block;margin:2px;}
   .spell-tile{cursor:pointer;transition:all .15s;}
@@ -98,6 +92,15 @@
   @keyframes tileShine{0%,100%{background-position:0% 0}50%{background-position:100% 100%}}
   #levelTitle{text-shadow:0 0 18px currentColor;}
   .glass{box-shadow:0 8px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);}
+
+  /* ===== v10: experiencia premium mobile ===== */
+  .cat-card{box-shadow:0 10px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);}
+  .cat-card:hover{transform:translateY(-5px) scale(1.03);}
+  .option-card{font-size:22px!important;letter-spacing:.5px;}
+  #levelTitle{font-size:22px!important;}
+  .glass{border-radius:20px;}
+  .btn{font-family:'Fredoka',sans-serif;}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 </style>
 <!-- MOTOR DE PUBLICIDAD DE GOOGLE (CANDADO INFANTIL COPPA ACTIVADO) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5636172588667612" crossorigin="anonymous"></script>
@@ -114,18 +117,18 @@
   <div id="homeScreen">
     <div class="text-center mb-4 fade-in">
       <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:4px;">
-        <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--accent2),#ea580c);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(251,146,60,.45);">
+        <div style="width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--accent2),#ea580c);display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px rgba(251,146,60,.7), 0 6px 20px rgba(251,146,60,.45);animation:floaty 3s ease-in-out infinite;">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0b1026" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
         </div>
-        <h1 class="big-3d" style="font-size:32px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">BuggyIA</h1>
+        <h1 class="big-3d" style="font-size:46px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">BuggyIA</h1>
       </div>
-      <p style="color:var(--muted);margin:0;font-size:13px;">85 juegos · 2 niveles de dificultad · BuggyIA te explica en castellano</p>
+      <p style="color:var(--muted);margin:0;font-size:16px;font-weight:500;">85 juegos · 2 niveles de dificultad · BuggyIA te explica en castellano</p>
     </div>
     <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
       <div class="flex items-center gap-2">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--gold)" stroke="var(--gold)" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
-        <span style="font-weight:700;font-size:16px;" id="totalStars">0</span><span style="color:var(--muted);font-size:12px;">estrellas</span>
-        <span style="color:var(--muted);font-size:12px;margin-left:8px;">Nivel <strong id="xpLevel" style="color:var(--accent);">1</strong></span>
+        <span style="font-weight:700;font-size:20px;" id="totalStars">0</span><span style="color:var(--muted);font-size:14px;font-weight:600;">estrellas</span>
+        <span style="color:var(--muted);font-size:14px;margin-left:10px;font-weight:600;">Nivel <strong id="xpLevel" style="color:var(--accent);font-size:16px;">1</strong></span>
       </div>
       <div class="flex items-center gap-2" id="trophyRow">
         <button id="openPetBtn" class="btn rounded-xl px-3 py-1.5 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--accent2),#ea580c);color:#fff;font-weight:700;font-size:12px;">
@@ -849,7 +852,7 @@ function renderMCQ(){
     if(cat.op==="-"&&b>a){var t=a;a=b;b=t;}
     mcqAnswer=cat.op==="+"?a+b:(cat.op==="-"?a-b:a*b);
     var opSym=cat.op==="*"?"×":cat.op;var opTxt=cat.op==="+"?"más":(cat.op==="-"?"menos":"por");
-    $("mcqQuestion").textContent=a+" "+opSym+" "+b+" = ?";$("mcqQuestion").style.color=cat.color;$("mcqQuestion").style.fontSize="36px";
+    $("mcqQuestion").textContent=a+" "+opSym+" "+b+" = ?";$("mcqQuestion").style.color=cat.color;$("mcqQuestion").style.fontSize="44px";
     var opts=[mcqAnswer];while(opts.length<4){var w=mcqAnswer+(Math.floor(Math.random()*9)-4);if(w>=0&&opts.indexOf(w)<0)opts.push(w);}
     var speakText="¿Cuánto es "+numEs(a)+" "+opTxt+" "+numEs(b)+"?";
     buildOptions(opts,String(mcqAnswer),speakText,"es-AR");
@@ -866,7 +869,7 @@ function buildOptions(opts,answer,speakText,lang){
   var grid=$("mcqOptions");grid.innerHTML="";
   opts.forEach(function(val,i){
     var btn=document.createElement("button");
-    btn.className="option-card btn rounded-xl py-3 text-lg font-bold";
+    btn.className="option-card btn rounded-2xl py-4 text-2xl font-bold";
     var optCols=["#f472b6","#a78bfa","#22d3ee","#4ade80","#facc15","#fb923c","#f87171","#38bdf8"];var oc=optCols[i%8];
     btn.style.background="linear-gradient(135deg,"+oc+",#141a38)";btn.style.border="2px solid "+oc;btn.style.color="#fff";btn.style.textShadow="0 1px 6px rgba(0,0,0,.6)";btn.style.boxShadow="0 4px 14px "+oc+"55";
     btn.textContent=val;
@@ -1606,18 +1609,18 @@ function renderHome(){
     var label=document.createElement("div");label.className="section-label";
     var first=CAT.find(function(c){return c.section===sec;});label.style.color=first.color;
     label.textContent=sec;cont.appendChild(label);
-    var grid=document.createElement("div");grid.className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2";
+    var grid=document.createElement("div");grid.className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3";
     CAT.forEach(function(cat,i){
       if(cat.section!==sec)return;
       var card=document.createElement("div");
-      card.className="cat-card glass rounded-xl p-2.5 fade-in text-center";
-      card.style.cursor="pointer";card.style.borderTop="3px solid "+cat.color;
+      card.className="cat-card glass rounded-2xl p-4 fade-in text-center";
+      card.style.cursor="pointer";card.style.borderTop="5px solid "+cat.color;card.style.minHeight="150px";
       if(cat.premium){card.style.background="linear-gradient(135deg,rgba(250,204,21,.10),rgba(244,114,182,.10),rgba(34,211,238,.10))";card.style.boxShadow="0 0 14px "+cat.color+"44, inset 0 0 0 1px "+cat.color+"55";}
-      var sh="";for(var s=0;s<3;s++){var fl=(s<save.stars[i])?cat.color:"rgba(139,147,194,.3)";sh+='<svg width="10" height="10" viewBox="0 0 24 24" fill="'+fl+'" stroke="'+fl+'" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>';}
+      var sh="";for(var s=0;s<3;s++){var fl=(s<save.stars[i])?cat.color:"rgba(139,147,194,.3)";sh+='<svg width="15" height="15" viewBox="0 0 24 24" fill="'+fl+'" stroke="'+fl+'" stroke-width="1"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>';}
       var count=cat.type==="flash"?cat.cards.length+" pal":(cat.type==="math"||cat.type==="mcq"?"6 preg":(cat.type==="memory"?"6 pares":(cat.type==="story"?"1 cuento":(ARCADE_TYPES.indexOf(cat.type)>=0?"★ premium":"6 act"))));
-      card.innerHTML='<div class="tile mx-auto" style="width:34px;height:34px;font-size:16px;margin-bottom:4px;background:linear-gradient(135deg,'+cat.color+','+cat.color+'88);">'+cat.icon+'</div>'+
-        '<h3 style="margin:0 0 1px;font-size:11px;font-weight:700;line-height:1.2;">'+cat.name+'</h3>'+
-        '<p style="margin:0 0 4px;font-size:9px;color:var(--muted);">'+count+'</p>'+
+      card.innerHTML='<div class="tile mx-auto" style="width:56px;height:56px;font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,'+cat.color+','+cat.color+'88);box-shadow:0 6px 18px '+cat.color+'88;">'+cat.icon+'</div>'+
+        '<h3 style="margin:0 0 3px;font-size:16px;font-weight:700;line-height:1.25;">'+cat.name+'</h3>'+
+        '<p style="margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:600;">'+count+'</p>'+
         '<div class="flex gap-0.5 justify-center">'+sh+'</div>';
       card.addEventListener("click",function(){startCategory(i);});
       grid.appendChild(card);
