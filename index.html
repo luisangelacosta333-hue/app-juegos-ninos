@@ -5,6 +5,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BuggyIA · 93 Juegos · 2 Niveles</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b1026">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BuggyIA">
+<link rel="apple-touch-icon" href="icono-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -167,10 +173,25 @@
 #toastMsg{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;padding:13px 24px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 10px 28px rgba(0,0,0,.45);z-index:600;display:none;max-width:92%;text-align:center;line-height:1.35;}
 </style>
 
+<style>
+#homeScreen *[style*="background-clip:text"], #homeScreen *[style*="-webkit-background-clip"]{
+  background:none!important;-webkit-text-fill-color:#ffffff!important;color:#ffffff!important;
+  text-shadow:0 3px 0 rgba(0,0,0,.45),0 0 18px rgba(251,146,60,.65)!important;
+  animation:none!important;filter:none!important;-webkit-text-stroke:0!important;
+}
+#homeScreen h1.big-3d{font-size:62px!important;}
+@keyframes heartUp{0%{opacity:0;transform:translateY(0) scale(.5);}15%{opacity:1;}100%{opacity:0;transform:translateY(-80px) scale(1.4);}}
+#petStage{cursor:pointer;}
+#btn-instalar{display:flex!important;}
+</style>
+
 </head>
 <body>
 <div class="premium-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 <div id="toastMsg"></div>
+<button id="btn-instalar" class="btn pulse-ring" style="position:fixed;bottom:20px;right:16px;z-index:450;display:flex;align-items:center;gap:7px;padding:14px 22px;border-radius:999px;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:15px;box-shadow:0 10px 30px rgba(74,222,128,.55),inset 0 1px 0 rgba(255,255,255,.4);">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Instalar App
+</button>
 
 <div class="max-w-5xl mx-auto px-3 py-4 sm:px-5">
 
@@ -200,7 +221,7 @@
       </button>
       <div style="flex:1;min-width:200px;">
         <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:3px;">¿Cómo funciona? Tocá el micrófono</div>
-        <div id="howText" style="font-size:12.5px;color:var(--muted);line-height:1.55;">1. Buggy te explica en castellano · 2. Escuchá la palabra en inglés · 3. Repetí con el micrófono y Buggy te corrige</div>
+        <div id="howText" style="font-size:12.5px;color:var(--muted);line-height:1.55;">1. Buggy explica en español · 2. Escuchá la palabra en inglés · 3. Repetí con el micrófono · ¡Tenés una mascota que criás, ganás premios y crece con vos!</div>
       </div>
     </div>
     <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
@@ -214,9 +235,6 @@
           <span style="width:14px;height:14px;border-radius:50%;background:#fff;display:inline-block;"></span>Mi Mascota
         </button>
         <button id="voiceBtn" class="btn rounded-xl px-2.5 py-1.5" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:700;font-size:12px;" title="Cambiar voz">♪ Voz</button>
-        <button id="btn-instalar" class="btn rounded-xl px-2.5 py-1.5" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:12px;align-items:center;gap:4px;" title="Instalar aplicación en tu celular">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Instalar App
-        </button>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
@@ -422,6 +440,7 @@
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="bath" style="background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-weight:700;font-size:13px;">● Bañar</button>
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="sleep" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:700;font-size:13px;">● Dormir</button>
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="shop" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;font-weight:700;font-size:13px;">● Tienda</button>
+          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="pet" style="background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;font-weight:700;font-size:13px;">♥ Acariciar</button>
         </div>
         <div id="petContent" style="margin-top:14px;min-height:60px;"></div>
         <div id="petMsg" style="min-height:22px;margin-top:8px;font-size:14px;font-weight:600;"></div>
@@ -1963,7 +1982,8 @@ function petAction(act){
     var area=$("bubbleArea");var cols=["#22d3ee","#f472b6","#a78bfa","#facc15","#4ade80"];
     for(var i=0;i<5;i++){
       var bb=document.createElement("div");var col=cols[i%5];
-      bb.style.cssText="position:absolute;left:"+(8+i*18)+"% ;top:"+(10+Math.random()*50)+"% ;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffffcc,"+col+"66);border:2px solid "+col+";cursor:pointer;animation:floaty "+(2+i*.4)+"s ease-in-out infinite;";
+      bb.style.cssText="position:absolute;left:"+(8+i*18)+"% ;top:"+(10+Math.random()*50)+"% ;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffffcc,"+col+"66);border:2px solid "+col+";cursor:pointer;animation:floaty "+(2+i*.4)+"s ease-in-out infinite;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;text-shadow:0 1px 4px rgba(0,0,0,.4);";
+      bb.textContent=i%2?"★":"♥";
       (function(el){el.addEventListener("click",function(){pops++;sndClick();el.style.pointerEvents="none";el.style.transform="scale(1.6)";el.style.opacity="0";el.style.transition="all .3s";
         if(pops>=5){save.pet.happy=Math.min(100,save.pet.happy+25);save.pet.energy=Math.max(0,save.pet.energy-5);save.pet.coins+=8;persist();petMsg("¡Genial! "+save.pet.name+" se divirtió mucho. +8 monedas.","var(--green)");sndFanfare();renderPet();c.innerHTML="";}});})(bb);
       area.appendChild(bb);
@@ -1979,7 +1999,13 @@ function petAction(act){
   } else if(act==="sleep"){
     petSleeping=true;renderPet();petMsg("Zzz... "+save.pet.name+" está durmiendo...","var(--purple)");
     setTimeout(function(){petSleeping=false;save.pet.energy=100;save.pet.happy=Math.min(100,save.pet.happy+5);persist();petMsg("¡"+save.pet.name+" despertó con mucha energía!","var(--green)");sndCorrect();renderPet();},3500);
-  } else if(act==="shop"){
+  } else if(act==="pet"){
+  save.pet.happy=Math.min(100,save.pet.happy+15);save.pet.coins+=5;persist();sndCorrect();
+  petMsg("¡A "+save.pet.name+" le encantan las caricias! +5 monedas.","var(--pink)");
+  for(var h=0;h<6;h++){(function(i){setTimeout(function(){var he=document.createElement("div");he.textContent="♥";he.style.cssText="position:absolute;left:"+(25+Math.random()*55)+"%;top:45%;font-size:26px;color:#f472b6;pointer-events:none;z-index:10;animation:heartUp 1.6s ease-out forwards;text-shadow:0 0 10px rgba(244,114,182,.8);";var ps=$("petStage");if(ps){ps.appendChild(he);setTimeout(function(){he.remove();},1600);}},i*150);})(h);}
+  var av=$("petAvatar");if(av){av.classList.add("pet-eat");setTimeout(function(){av.classList.remove("pet-eat");},1300);}
+  renderPet();c.innerHTML="";
+} else if(act==="shop"){
     var html='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Comprá comida con tus monedas (tenés '+save.pet.coins+'):</div><div class="grid grid-cols-2 gap-2;">';
     FOODS.forEach(function(f){html+='<button class="pet-btn btn rounded-xl px-3 py-2.5" data-buy="'+f.id+'" style="background:var(--card);border:2px solid '+f.color+';color:var(--text);font-weight:600;font-size:12px;">'+f.name+'<br><span style="color:var(--gold);font-weight:700;">● '+f.price+'</span></button>';});
     html+='</div>';c.innerHTML=html;
@@ -2010,10 +2036,11 @@ if(_ib2){_ib2.addEventListener("click",function(){
 var _hb=$("howBtn");
 if(_hb){_hb.addEventListener("click",function(){
   sndClick();stopSpeak();
-  say("Así funciona Buggy. Primero yo te explico la palabra en español. Después escuchas cómo se dice en inglés. Y por último repites la palabra en inglés tocando el micrófono, y yo te digo si lo dijiste bien. ¡Es muy fácil y divertido!","es-419");
+  say("Así funciona Buggy. Primero yo te explico la palabra en español. Después escuchas cómo se dice en inglés. Y por último repites la palabra en inglés tocando el micrófono, y yo te digo si lo dijiste bien. ¡Es muy fácil y divertido! Además tenés una mascota: ganás premios, la cuidás, la criás y crece con vos.","es-419");
   var ht=$("howText");if(ht){ht.style.color="var(--accent)";ht.textContent="Buggy esta explicando... escucha con atencion.";setTimeout(function(){ht.style.color="var(--muted)";ht.textContent="1. Buggy explica en castellano · 2. Escucha la palabra en ingles · 3. Repeti con el microfono y te corrige";},11000);}
 });}
 Array.prototype.forEach.call($("petActions").querySelectorAll(".pet-btn"),function(b){b.addEventListener("click",function(){petAction(b.dataset.act);});});
+var _ps=$("petStage");if(_ps){_ps.addEventListener("click",function(){petAction("pet");});}
 
 renderHome();
 petInit();
