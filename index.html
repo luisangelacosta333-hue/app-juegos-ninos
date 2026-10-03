@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buggy Aprende · 70 Juegos Educativos</title>
+<title>Buggy Aprende · 85 Juegos Educativos</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -86,6 +86,18 @@
   @keyframes ballMove{0%{left:5%}50%{left:75%}100%{left:5%}}
   .ball-move{animation:ballMove 1.6s ease-in-out infinite;position:absolute;top:40%;}
   .modal-bg{position:fixed;inset:0;background:rgba(11,16,38,.92);backdrop-filter:blur(8px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;}
+
+  /* ===== v5: MAS COLOR ===== */
+  #mcqQuestion{background:linear-gradient(90deg,rgba(34,211,238,.14),rgba(244,114,182,.14),rgba(250,204,21,.14));border-radius:16px;padding:12px 16px;box-shadow:inset 0 0 0 1px var(--border);}
+  .section-label{text-shadow:0 0 14px currentColor;letter-spacing:.18em;}
+  .cat-card{transition:transform .2s ease,box-shadow .2s ease;}
+  .cat-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 12px 30px rgba(34,211,238,.35);}
+  .progress-fill{background:linear-gradient(90deg,#f472b6,#a78bfa,#22d3ee,#4ade80,#facc15,#fb923c)!important;background-size:300% 100%;animation:rainbowMove 4s linear infinite;}
+  @keyframes rainbowMove{0%{background-position:0% 0}100%{background-position:300% 0}}
+  .tile{background-size:200% 200%!important;animation:tileShine 3s ease infinite;}
+  @keyframes tileShine{0%,100%{background-position:0% 0}50%{background-position:100% 100%}}
+  #levelTitle{text-shadow:0 0 18px currentColor;}
+  .glass{box-shadow:0 8px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);}
 </style>
 </head>
 <body>
@@ -100,7 +112,7 @@
         </div>
         <h1 class="big-3d" style="font-size:32px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">Buggy Aprende</h1>
       </div>
-      <p style="color:var(--muted);margin:0;font-size:13px;">70 juegos educativos · Buggy te explica en castellano</p>
+      <p style="color:var(--muted);margin:0;font-size:13px;">85 juegos educativos · Buggy te explica en castellano</p>
     </div>
     <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
       <div class="flex items-center gap-2">
@@ -600,7 +612,8 @@ mcqL("Sustantivos, verbos y adjetivos","#a78bfa","◆",[
 ]},
 {id:"av_diff",name:"Encuentra las diferencias",section:"Aventuras",type:"diff2",color:"#f472b6",icon:"✕",premium:true,intro:"Hay dos escenas casi iguales, pero en una cambió una cosa. Mirá con atención y tocá la casilla distinta de la escena de la derecha. ¡Encontrá 4 diferencias!"},
 {id:"av_plat",name:"Salto de plataformas",section:"Aventuras",type:"platformer",color:"#4ade80",icon:"▲",premium:true,intro:"Tu personaje salta de plataforma en plataforma. Tocá SALTAR justo cuando la barra esté en la zona verde. ¡Llegá a la plataforma más alta!"},
-{id:"av_tesoro",name:"Búsqueda del tesoro",section:"Aventuras",type:"treasure",color:"#facc15",icon:"◆",premium:true,intro:"Recorré el mapa de las islas. En cada isla hay una pregunta matemática: respondé bien para avanzar. ¡Llegá hasta el tesoro final!"}
+{id:"av_tesoro",name:"Búsqueda del tesoro",section:"Aventuras",type:"treasure",color:"#facc15",icon:"◆",premium:true,intro:"Recorré el mapa de las islas. En cada isla hay una pregunta matemática: respondé bien para avanzar. ¡Llegá hasta el tesoro final!"},
+{id:"av_rana",name:"Rana saltarina",section:"Aventuras",type:"frog",color:"#4ade80",icon:"♧",premium:true,intro:"Ayudá a la ranita a cruzar hasta la meta de arriba. Usá las flechas para saltar. ¡Cuidado con los autos que pasan! Llegá arriba sin ser atropellada."}
 
 ];
 function mcqL(name,color,icon,qs){var c=mcq(name,color,icon,qs);c.section="Lengua";return c;}
@@ -778,10 +791,11 @@ function renderMCQ(){
 function buildOptions(opts,answer,speakText,lang){
   shuffle(opts);
   var grid=$("mcqOptions");grid.innerHTML="";
-  opts.forEach(function(val){
+  opts.forEach(function(val,i){
     var btn=document.createElement("button");
     btn.className="option-card btn rounded-xl py-3 text-lg font-bold";
-    btn.style.background="var(--card)";btn.style.border="2px solid var(--border)";btn.style.color="var(--text)";
+    var optCols=["#f472b6","#a78bfa","#22d3ee","#4ade80","#facc15","#fb923c","#f87171","#38bdf8"];var oc=optCols[i%8];
+    btn.style.background="linear-gradient(135deg,"+oc+",#141a38)";btn.style.border="2px solid "+oc;btn.style.color="#fff";btn.style.textShadow="0 1px 6px rgba(0,0,0,.6)";btn.style.boxShadow="0 4px 14px "+oc+"55";
     btn.textContent=val;
     btn.addEventListener("click",function(){
       attempts++;
@@ -932,7 +946,7 @@ function renderStory(){
 }
 
 /* ==================== JUEGOS DE INTELIGENCIA (motores) ==================== */
-var ARCADE_TYPES=["jigsaw","balloons","target","runner","detective","fishing","blocks","train","colorshapes","diff2","platformer","treasure"];
+var ARCADE_TYPES=["jigsaw","balloons","target","runner","detective","fishing","blocks","train","colorshapes","diff2","platformer","treasure","frog"];
 function arcadeMsg(t,c){var f=$("feedback2");if(f){f.textContent=t;f.style.color=c||"";}}
 function arcadeStopTimers(){if(window._arcInt){clearInterval(window._arcInt);window._arcInt=null;}if(window._arcTo){clearTimeout(window._arcTo);window._arcTo=null;}}
 function renderArcade(){
@@ -1117,32 +1131,36 @@ function renderArcade(){
 
   /* ---------- TRAIN (armar la vía) ---------- */
   if(T==="train"){
-    var sel=null,placed=[null,null,null,null];
-    row.innerHTML='<div style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;">Colocá las vías en orden 1→2→3→4 para que el tren llegue</div><div id="trenSlots" style="display:flex;gap:4px;justify-content:center;margin-bottom:10px;"></div><div id="trenTiles" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;"></div><button id="trenGo" class="btn rounded-xl px-5 py-2" style="display:block;margin:10px auto 0;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:13px;">▶ Arrancar el tren</button>';
-    var tiles=shuffleA([1,2,3,4]);
-    function drawSlots(){var s=$("trenSlots");s.innerHTML="";placed.forEach(function(v,i){
-      var d=document.createElement("div");d.className="btn";d.dataset.slot=i;
-      d.style.cssText="width:56px;height:40px;border-radius:6px;background:"+(v?"linear-gradient(90deg,#facc15,#f59e0b)":"rgba(139,147,194,.15)")+";border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1026;font-size:16px;";
-      d.textContent=v||(i+1);if(!v)d.style.color="var(--muted)";
-      d.addEventListener("click",function(){
-        if(sel===null){if(placed[i]){sel={tile:placed[i],from:i};placed[i]=null;this.style.outline="3px solid var(--gold)";}return;}
-        if(sel.from!==undefined){placed[i]=sel.tile;sel=null;}else{placed[i]=sel;sel=null;Array.prototype.forEach.call($("trenTiles").children,function(ch){if(ch.dataset.tile==placed[i])ch.style.opacity=".25";ch.style.pointerEvents="none";});}
-        sndClick();drawSlots();
+    var placed=[null,null,null,null],sel=null;
+    row.innerHTML='<div style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;">Tocá una vía de abajo, luego su lugar. Tocá una vía colocada para sacarla. Orden: 1 → 2 → 3 → 4</div><div id="trenSlots" style="display:flex;gap:4px;justify-content:center;margin-bottom:10px;"></div><div id="trenTiles" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;"></div><button id="trenGo" class="btn rounded-xl px-5 py-2" style="display:block;margin:10px auto 0;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:13px;">▶ Arrancar el tren</button>';
+    var order=shuffleA([1,2,3,4]);
+    function draw(){
+      var s=$("trenSlots");s.innerHTML="";placed.forEach(function(v,i){
+        var d=document.createElement("div");d.className="btn";d.dataset.slot=i;
+        d.style.cssText="width:56px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;"+(v?"background:linear-gradient(90deg,#facc15,#f59e0b);color:#0b1026;box-shadow:0 0 10px rgba(250,204,21,.5);":"background:rgba(139,147,194,.15);border:2px dashed var(--border);color:var(--muted);");
+        d.textContent=v||(i+1);
+        d.addEventListener("click",function(){
+          if(placed[i]){placed[i]=null;sndClick();arcadeMsg("Vía devuelta. Colocala de nuevo.","var(--accent)");draw();return;}
+          if(sel===null){arcadeMsg("Primero tocá una vía de abajo.","var(--accent)");return;}
+          placed[i]=sel;sel=null;sndCorrect();arcadeMsg("¡Vía "+placed[i]+" colocada!","var(--green)");draw();
+        });
+        s.appendChild(d);
       });
-      s.appendChild(d);
-    });}
-    var tp=$("trenTiles");tiles.forEach(function(n){
-      var b=document.createElement("button");b.className="btn";b.dataset.tile=n;
-      b.style.cssText="width:50px;height:36px;border-radius:6px;background:linear-gradient(90deg,#facc15,#f59e0b);color:#0b1026;font-weight:700;font-size:16px;";b.textContent=n;
-      b.addEventListener("click",function(){if(this.style.pointerEvents==="none")return;sel=n;Array.prototype.forEach.call(tp.children,function(x){x.style.outline="";});this.style.outline="3px solid var(--green)";sndClick();});
-      tp.appendChild(b);
-    });
+      var tp=$("trenTiles");tp.innerHTML="";order.forEach(function(n){
+        var used=placed.indexOf(n)>=0;
+        var b=document.createElement("button");b.className="btn";
+        b.style.cssText="width:50px;height:36px;border-radius:6px;background:linear-gradient(90deg,#facc15,#f59e0b);color:#0b1026;font-weight:700;font-size:16px;"+(used?"opacity:.25;pointer-events:none;":"")+(sel===n?"outline:3px solid var(--green);outline-offset:2px;":"");
+        b.textContent=n;
+        if(!used)b.addEventListener("click",function(){sel=n;sndClick();draw();});
+        tp.appendChild(b);
+      });
+    }
     $("trenGo").addEventListener("click",function(){
       var ok=placed.every(function(v,i){return v===i+1;});
       if(ok){sndFanfare();arcadeMsg("¡Chu chu! El tren llegó a destino.","var(--green)");winGame();}
-      else{sndWrong();arcadeMsg("Las vías no están en orden. Revisá los números.","#f87171");}
+      else{sndWrong();arcadeMsg("Las vías no están en orden 1, 2, 3, 4. Revisá.","#f87171");}
     });
-    drawSlots();return;
+    draw();return;
   }
 
   /* ---------- COLORSHAPES (colores y formas) ---------- */
@@ -1211,6 +1229,42 @@ function renderArcade(){
       hud();
     });
     return;
+  }
+
+  /* ---------- FROG (rana saltarina / Frogger) ---------- */
+  if(T==="frog"){
+    var COLS=5,ROWS=7,frog={r:6,c:2},lives=3;
+    var lanes=[{r:1,cells:[0,3],dir:1,color:"#f87171"},{r:2,cells:[1,4],dir:-1,color:"#facc15"},{r:3,cells:[0,2],dir:1,color:"#38bdf8"},{r:4,cells:[2,4],dir:-1,color:"#f472b6"}];
+    row.innerHTML='<div id="frogHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="frogGrid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;max-width:260px;margin:0 auto;background:rgba(0,0,0,.35);padding:4px;border-radius:10px;"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:180px;margin:10px auto 0;"><div></div><button class="btn fgo rounded-lg py-2" data-d="0,-1" style="background:var(--accent);color:#0b1026;font-weight:700;font-size:18px;">▲</button><div></div><button class="btn fgo rounded-lg py-2" data-d="-1,0" style="background:var(--accent);color:#0b1026;font-weight:700;font-size:18px;">◀</button><button class="btn fgo rounded-lg py-2" data-d="0,1" style="background:var(--accent2);color:#0b1026;font-weight:700;font-size:18px;">▼</button><button class="btn fgo rounded-lg py-2" data-d="1,0" style="background:var(--accent);color:#0b1026;font-weight:700;font-size:18px;">▶</button></div>';
+    function hud(){$("frogHud").innerHTML="Meta: fila de arriba · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
+    function draw(){
+      var g=$("frogGrid");g.innerHTML="";
+      for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
+        var d=document.createElement("div");var isCar=false,carCol="#000";
+        lanes.forEach(function(l){if(l.r===r&&l.cells.indexOf(c)>=0){isCar=true;carCol=l.color;}});
+        var bg=r===0?"linear-gradient(90deg,#facc15,#f59e0b)":(r>=5?"linear-gradient(180deg,#4ade80,#22c55e)":(r%2===1?"#334155":"#475569"));
+        d.style.cssText="aspect-ratio:1;border-radius:4px;background:"+bg+";display:flex;align-items:center;justify-content:center;";
+        if(isCar)d.innerHTML='<div style="width:80%;height:60%;border-radius:3px;background:'+carCol+';box-shadow:0 0 8px '+carCol+';"></div>';
+        if(frog.r===r&&frog.c===c)d.innerHTML='<div style="width:70%;height:70%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#86efac,#16a34a);box-shadow:0 0 12px #4ade80;"></div>';
+        g.appendChild(d);
+      }
+    }
+    function crash(){lives--;sndWrong();arcadeMsg("¡Atropellaron a la rana! Volvé al pasto.","#f87171");frog={r:6,c:2};hud();draw();
+      if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Probá de nuevo!","#f87171");setTimeout(function(){lives=3;frog={r:6,c:2};hud();draw();window._arcInt=setInterval(tick,650);},1200);}}
+    function tick(){lanes.forEach(function(l){l.cells=l.cells.map(function(c){return (c+l.dir+COLS)%COLS;});});
+      var hit=false;lanes.forEach(function(l){if(l.r===frog.r&&l.cells.indexOf(frog.c)>=0)hit=true;});
+      if(hit){crash();return;}draw();}
+    function move(dc,dr){frog.c=Math.max(0,Math.min(COLS-1,frog.c+dc));frog.r=Math.max(0,Math.min(ROWS-1,frog.r+dr));sndClick();
+      if(frog.r===0){arcadeStopTimers();draw();arcadeMsg("¡La rana llegó a la meta!","var(--green)");winGame();return;}
+      var hit=false;lanes.forEach(function(l){if(l.r===frog.r&&l.cells.indexOf(frog.c)>=0)hit=true;});
+      if(hit){crash();}else draw();}
+    Array.prototype.forEach.call(row.querySelectorAll(".fgo"),function(b){b.addEventListener("click",function(){var d=this.dataset.d.split(",");move(+d[0],+d[1]);});});
+    document.addEventListener("keydown",function frogKey(e){
+      if(CAT[curCat].type!=="frog"){document.removeEventListener("keydown",frogKey);return;}
+      if(e.key==="ArrowUp"){e.preventDefault();move(0,-1);}if(e.key==="ArrowDown"){e.preventDefault();move(0,1);}
+      if(e.key==="ArrowLeft"){e.preventDefault();move(-1,0);}if(e.key==="ArrowRight"){e.preventDefault();move(1,0);}
+    });
+    hud();draw();window._arcInt=setInterval(tick,650);return;
   }
 
   /* ---------- TREASURE (búsqueda del tesoro) ---------- */
