@@ -101,6 +101,24 @@
   .glass{border-radius:20px;}
   .btn{font-family:'Fredoka',sans-serif;}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+  /* ===== v12: experiencia premium ===== */
+  #astroWrap{position:relative;animation:astroFloat 5s ease-in-out infinite;}
+  @keyframes astroFloat{0%,100%{transform:translateY(0) translateX(0);}25%{transform:translateY(-12px) translateX(6px);}50%{transform:translateY(-4px) translateX(-6px);}75%{transform:translateY(-14px) translateX(3px);}}
+  #astroWrap::after{content:"";position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);width:34px;height:46px;background:linear-gradient(180deg,#fef08a 0%,#fb923c 40%,#ef4444 75%,transparent 100%);border-radius:50% 50% 50% 50%/70% 70% 30% 30%;filter:blur(1px);animation:flameFlicker .12s infinite alternate;z-index:0;}
+  #astroWrap::before{content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:20px;height:26px;background:linear-gradient(180deg,#fff,#fef08a);border-radius:50%;opacity:.9;animation:flameFlicker .1s infinite alternate-reverse;z-index:1;}
+  @keyframes flameFlicker{from{transform:translateX(-50%) scaleY(1) scaleX(1);}to{transform:translateX(-50%) scaleY(1.25) scaleX(.85);}}
+  .shooting-star{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;box-shadow:0 0 6px 2px #fff;opacity:0;z-index:0;}
+  .shooting-star::after{content:"";position:absolute;top:0;left:0;width:80px;height:1px;background:linear-gradient(90deg,#fff,transparent);transform:rotate(-35deg);transform-origin:left;}
+  .ss1{top:12%;left:80%;animation:shoot 4.5s linear infinite;}
+  .ss2{top:30%;left:90%;animation:shoot 6s linear 1.5s infinite;}
+  .ss3{top:55%;left:75%;animation:shoot 5.2s linear 3s infinite;}
+  @keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(-35deg);}5%{opacity:1;}40%{opacity:1;}60%{opacity:0;transform:translate(-320px,220px) rotate(-35deg);}100%{opacity:0;transform:translate(-320px,220px) rotate(-35deg);}}
+  .btn{font-family:'Fredoka',sans-serif;}
+  #teachBtn,#listenBtn,#micBtn,#repeatBtn,#prevBtn,#nextBtn{min-height:54px;font-size:16px!important;padding:10px 18px!important;}
+  #completeScreen button, .win-btn{min-height:56px;font-size:18px!important;}
+  .pet-emoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-size:74px;line-height:1;pointer-events:none;z-index:5;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4));}
+  #gameScreen{background:radial-gradient(ellipse at 20% 10%, rgba(167,139,250,.18), transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(34,211,238,.15), transparent 50%), #070b18;}
 </style>
 <!-- MOTOR DE PUBLICIDAD DE GOOGLE (CANDADO INFANTIL COPPA ACTIVADO) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5636172588667612" crossorigin="anonymous"></script>
@@ -180,6 +198,7 @@
       <div class="relative flex flex-col md:flex-row items-center gap-4" style="z-index:5;">
         <!-- BUGGY compacto -->
         <div style="flex:0 0 auto;position:relative;width:120px;">
+          <span class="shooting-star ss1"></span><span class="shooting-star ss2"></span><span class="shooting-star ss3"></span>
           <div id="astroWrap" style="width:120px;height:150px;margin:0 auto;">
             <svg viewBox="0 0 240 300" width="120" height="150" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -243,11 +262,11 @@
             </div>
             <div id="feedback" style="min-height:22px;margin-top:6px;text-align:center;font-size:14px;font-weight:600;"></div>
             <div class="flex flex-wrap gap-2 justify-center mt-1">
-              <button id="teachBtn" class="btn rounded-xl px-3 py-2 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--purple),#7c3aed);color:#fff;font-weight:700;font-size:12px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2z"/></svg>Buggy explica
+              <button id="teachBtn" class="btn rounded-xl px-3 py-2 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--purple),#7c3aed);color:#fff;font-weight:700;font-size:16px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2z"/></svg>Buggy explica
               </button>
-              <button id="listenBtn" class="btn rounded-xl px-3 py-2 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:12px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg>Oír inglés
+              <button id="listenBtn" class="btn rounded-xl px-3 py-2 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:16px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg>Oír inglés
               </button>
               <button id="micBtn" class="btn rounded-xl px-3 py-2 flex items-center gap-1.5" style="background:var(--card);color:var(--text);font-weight:700;font-size:12px;border:1px solid var(--accent);">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3"/></svg><span id="micLabel">Repetir</span>
@@ -322,7 +341,7 @@
       <div class="starfield" id="petStars"></div>
       <div style="position:relative;z-index:5;text-align:center;">
         <div id="petStage" style="position:relative;width:140px;height:140px;margin:0 auto 10px;">
-          <div id="petAvatar" class="pet-bounce" style="width:140px;height:140px;"></div>
+          <div style="position:relative;width:140px;height:140px;margin:0 auto;"><div id="petAvatar" class="pet-bounce" style="width:140px;height:140px;"></div><div id="petEmoji" class="pet-emoji"></div></div>
           <div id="petZzz" style="display:none;position:absolute;top:0;right:0;"><span class="sleep-z" style="right:0;top:0;">Z</span><span class="sleep-z" style="right:20px;top:10px;animation-delay:.6s;">z</span><span class="sleep-z" style="right:40px;top:20px;animation-delay:1.2s;">z</span></div>
         </div>
         <div style="font-size:20px;font-weight:700;margin-bottom:2px;" id="petNameDisplay">Mi Mascota</div>
@@ -1757,13 +1776,13 @@ if(!recogSupported){$("manualDoneBtn").addEventListener("click",function(){attem
 
 /* ==================== MASCOTA VIRTUAL ==================== */
 var PETS=[
- {id:"perro",name:"Perro",color:"#fb923c",ear:"tri"},
- {id:"gato",name:"Gato",color:"#94a3b8",ear:"tri"},
- {id:"conejo",name:"Conejo",color:"#f472b6",ear:"long"},
- {id:"panda",name:"Panda",color:"#e2e8f0",ear:"cir"},
- {id:"zorro",name:"Zorro",color:"#f87171",ear:"tri"},
- {id:"koala",name:"Koala",color:"#94a3b8",ear:"cir"},
- {id:"dino",name:"Dinosaurio",color:"#4ade80",ear:"spike"}
+ {id:"perro",name:"Perro",color:"#fb923c",ear:"tri",emoji:"🐶"},
+ {id:"gato",name:"Gato",color:"#94a3b8",ear:"tri",emoji:"🐱"},
+ {id:"conejo",name:"Conejo",color:"#f472b6",ear:"long",emoji:"🐰"},
+ {id:"panda",name:"Panda",color:"#e2e8f0",ear:"cir",emoji:"🐼"},
+ {id:"zorro",name:"Zorro",color:"#f87171",ear:"tri",emoji:"🦊"},
+ {id:"koala",name:"Koala",color:"#94a3b8",ear:"cir",emoji:"🐨"},
+ {id:"dino",name:"Dinosaurio",color:"#4ade80",ear:"spike",emoji:"🦖"}
 ];
 var FOODS=[
  {id:"manzana",name:"Manzana",price:10,color:"#ef4444"},
@@ -1803,7 +1822,7 @@ function petSVG(){
 }
 function renderPet(){
   petInit();var p=save.pet;
-  $("petAvatar").innerHTML=petSVG();
+  $("petAvatar").innerHTML=petSVG();var _pe=document.getElementById("petEmoji");if(_pe)_pe.textContent=(save.pet.stage>0&&p.emoji)?p.emoji:"";
   $("petNameDisplay").textContent=p.name;
   $("petStageLabel").textContent="Etapa: "+STAGES[Math.min(p.stage,3)].name;
   $("petCoins").textContent=p.coins;
