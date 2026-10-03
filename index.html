@@ -1,10 +1,16 @@
-
+<!-- ============================================================
+  BUGGY SUPER APP v3 · 55 JUEGOS EDUCATIVOS · LISTA PARA PRODUCCION
+  Layout a pantalla completa (Buggy + enseñanza entran perfectos).
+  Secciones: Vocabulario, Matematica, Lengua, Juegos.
+  Buggy habla en castellano. Palabras SOLO en ingles. Microfono.
+  Espacio Google AdMob incluido. Guardar como index.html en GitHub.
+============================================================ -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buggy Aprende · 85 Juegos · 2 Niveles</title>
+<title>BuggyIA · 85 Juegos · 2 Niveles</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -93,6 +99,13 @@
   #levelTitle{text-shadow:0 0 18px currentColor;}
   .glass{box-shadow:0 8px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);}
 </style>
+<!-- MOTOR DE PUBLICIDAD DE GOOGLE (CANDADO INFANTIL COPPA ACTIVADO) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5636172588667612" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    params: { google_ad_client: "ca-pub-5636172588667612", tag_for_child_directed_treatment: 1 }
+  });
+</script>
 </head>
 <body>
 <div class="max-w-5xl mx-auto px-3 py-4 sm:px-5">
@@ -104,9 +117,9 @@
         <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--accent2),#ea580c);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(251,146,60,.45);">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0b1026" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
         </div>
-        <h1 class="big-3d" style="font-size:32px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">Buggy Aprende</h1>
+        <h1 class="big-3d" style="font-size:32px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">BuggyIA</h1>
       </div>
-      <p style="color:var(--muted);margin:0;font-size:13px;">85 juegos · 2 niveles de dificultad · Buggy te explica en castellano</p>
+      <p style="color:var(--muted);margin:0;font-size:13px;">85 juegos · 2 niveles de dificultad · BuggyIA te explica en castellano</p>
     </div>
     <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
       <div class="flex items-center gap-2">
@@ -286,7 +299,7 @@
         <button id="overlayHomeBtn" class="btn rounded-2xl px-6 py-2.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">Volver al menú</button>
       </div>
     </div>
-    <p style="text-align:center;font-size:10px;color:var(--muted);margin:10px 0 2px;">Buggy Aprende · 55 juegos · 100% gratuito</p>
+    <p style="text-align:center;font-size:10px;color:var(--muted);margin:10px 0 2px;">BuggyIA · 55 juegos · 100% gratuito</p>
   </div>
 
   <!-- ================= PANTALLA MASCOTA ================= -->
@@ -353,7 +366,12 @@
   <!-- GOOGLE ADS -->
   <div id="adBanner" style="margin-top:14px;height:60px;border:2px dashed rgba(139,147,194,.35);border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8;background:rgba(20,26,56,.4);">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
-    <span style="font-size:11px;color:var(--muted);font-weight:500;">Espacio publicidad · Google AdMob / AdSense — pega aquí tu código</span>
+    <div style="max-width:500px;margin:14px auto 0;text-align:center;">
+  <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">Publicidad</div>
+  <!-- Banner responsive · REEMPLAZAR data-ad-slot="0000000000" por tu ID de unidad de anuncios de AdSense -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5636172588667612" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
   </div>
 </div>
 
