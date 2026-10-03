@@ -1,8 +1,8 @@
-const CACHE_NAME = 'buggy-v1';
+const CACHE_NAME = 'buggyia-v1';
 
 // Se instala el Service Worker
 self.addEventListener('install', (event) => {
-    self.skipWaiting(); // Fuerza la activación inmediata para no trabar actualizaciones
+    self.skipWaiting(); // Fuerza la activación inmediata
 });
 
 // Se activa el Service Worker
@@ -14,8 +14,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         fetch(event.request).catch(() => {
-            // Si el niño se queda sin internet, le avisa para que no se asuste
-            return new Response("Estás sin conexión a internet. Revisá tu red para seguir jugando y aprendiendo en Buggy.");
+            // Si no hay internet, muestra un mensaje amigable con tu marca
+            return new Response("Estás sin conexión a internet. Revisá tu red para seguir aprendiendo con Buggy IA.");
         })
     );
 });
