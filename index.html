@@ -1,10 +1,4 @@
-<!-- ============================================================
-  BUGGY SUPER APP v3 · 55 JUEGOS EDUCATIVOS · LISTA PARA PRODUCCION
-  Layout a pantalla completa (Buggy + enseñanza entran perfectos).
-  Secciones: Vocabulario, Matematica, Lengua, Juegos.
-  Buggy habla en castellano. Palabras SOLO en ingles. Microfono.
-  Espacio Google AdMob incluido. Guardar como index.html en GitHub.
-============================================================ -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -998,27 +992,34 @@ function renderArcade(){
 
   /* ---------- BALLOONS (reventar globos) ---------- */
   if(T==="balloons"){
-    var hits=0,lives=3;
-    row.innerHTML='<div id="balHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="balArea" style="position:relative;height:260px;max-width:340px;margin:0 auto;background:linear-gradient(180deg,#0ea5e933,#f472b622);border-radius:14px;overflow:hidden;"></div>';
+    var hits=0,lives=3,spawning=true;
+    row.innerHTML='<div id="balHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="balArea" style="position:relative;height:280px;max-width:340px;margin:0 auto;background:linear-gradient(180deg,#0ea5e944,#f472b633,#1e293b);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div><p style="text-align:center;font-size:11px;color:var(--muted);margin:6px 0 0;">Reventá solo los globos <span style="color:#f87171;font-weight:700;">ROJOS</span></p>';
     function hud(){$("balHud").innerHTML='Globos rojos: <span style="color:var(--green);">'+hits+'/5</span> · Vidas: <span style="color:'+(lives>1?'var(--gold)':'#f87171')+';">'+('♥'.repeat(lives))+'</span>';}
-    function spawn(){
-      var area=$("balArea");area.innerHTML="";hits=0;lives=3;hud();
-      var cols=["#f87171","#f87171","#f87171","#f87171","#f87171","#38bdf8","#a78bfa","#4ade80","#facc15"];shuffleA(cols);
-      cols.forEach(function(c,i){
-        var b=document.createElement("div");var red=c==="#f87171";
-        b.style.cssText="position:absolute;left:"+(6+Math.random()*82)+"%;top:"+(8+Math.random()*70)+"%;width:34px;height:44px;border-radius:50% 50% 50% 50%/55% 55% 45% 45%;background:radial-gradient(circle at 35% 30%,#ffffff88,"+c+");box-shadow:0 4px 10px rgba(0,0,0,.3);cursor:pointer;animation:floaty "+(2.5+Math.random()*2)+"s ease-in-out infinite;animation-delay:"+(Math.random()*1.5)+"s;";
-        b.innerHTML='<div style="position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);width:1px;height:6px;background:var(--muted);"></div>';
-        b.addEventListener("click",function(){
-          if(red){hits++;sndCorrect();arcadeMsg("¡Bien! Globo rojo reventado.","var(--green)");}
-          else{lives--;sndWrong();arcadeMsg("¡Uy! Ese no era rojo. Perdés una vida.","#f87171");this.classList.add("shake");}
-          this.style.pointerEvents="none";this.style.opacity=".2";this.style.transform="scale(1.4)";hud();
-          if(hits>=5){arcadeMsg("¡Reventaste los 5 globos rojos!","var(--green)");winGame();}
-          else if(lives<=0){arcadeMsg("Se acabaron las vidas. ¡Probá de nuevo!","#f87171");setTimeout(spawn,1200);}
-        });
-        area.appendChild(b);
+    function spawnOne(){
+      if(!spawning)return;
+      var area=$("balArea");if(!area)return;
+      var red=Math.random()<0.55;
+      var col=red?"#f87171":(["#38bdf8","#a78bfa","#4ade80","#facc15","#fb923c"][Math.floor(Math.random()*5)]);
+      var b=document.createElement("div");
+      var dur=5+Math.random()*3;
+      b.style.cssText="position:absolute;left:"+(6+Math.random()*80)+"%;bottom:-55px;width:36px;height:46px;border-radius:50% 50% 50% 50%/55% 55% 45% 45%;background:radial-gradient(circle at 35% 30%,#ffffff99,"+col+");box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer;transition:bottom "+dur+"s linear;z-index:2;";
+      b.innerHTML='<div style="position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);width:1px;height:7px;background:var(--muted);"></div>';
+      b.dataset.red=red?"1":"0";
+      b.addEventListener("click",function(ev){
+        ev.stopPropagation();if(this.dataset.done)return;this.dataset.done="1";
+        if(this.dataset.red==="1"){hits++;sndCorrect();arcadeMsg("¡Bien! Globo rojo reventado.","var(--green)");}
+        else{lives--;sndWrong();arcadeMsg("¡Uy! Ese no era rojo. Perdés una vida.","#f87171");this.classList.add("shake");}
+        this.style.transition="transform .3s, opacity .3s";this.style.transform="scale(1.7)";this.style.opacity="0";hud();
+        var self=this;setTimeout(function(){if(self.parentElement)self.remove();},350);
+        if(hits>=5){spawning=false;arcadeStopTimers();arcadeMsg("¡Reventaste los 5 globos rojos!","var(--green)");winGame();}
+        else if(lives<=0){spawning=false;arcadeStopTimers();arcadeMsg("Se acabaron las vidas. ¡Probá de nuevo!","#f87171");setTimeout(function(){hits=0;lives=3;spawning=true;$("balArea").innerHTML="";hud();window._arcInt=setInterval(spawnOne,800);},1200);}
       });
+      area.appendChild(b);
+      requestAnimationFrame(function(){requestAnimationFrame(function(){b.style.bottom="110%";});});
+      setTimeout(function(){if(b.parentElement)b.remove();},(dur+0.5)*1000);
     }
-    spawn();return;
+    hud();window._arcInt=setInterval(spawnOne,800);setTimeout(spawnOne,100);
+    return;
   }
 
   /* ---------- TARGET (tiro al blanco) ---------- */
@@ -1087,21 +1088,23 @@ function renderArcade(){
   /* ---------- FISHING (pesca) ---------- */
   if(T==="fishing"){
     var caught=0,lives=3;
-    row.innerHTML='<div id="fishHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="fishArea" style="position:relative;height:180px;max-width:400px;margin:0 auto;background:linear-gradient(180deg,#38bdf855,#0369a1);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div>';
+    if(!document.getElementById("fishStyle")){var st=document.createElement("style");st.id="fishStyle";st.textContent="@keyframes fishMove{0%{transform:translateX(-60px);}100%{transform:translateX(460px);}}";document.head.appendChild(st);}
+    row.innerHTML='<div id="fishHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="fishArea" style="position:relative;height:200px;max-width:400px;margin:0 auto;background:linear-gradient(180deg,#38bdf866,#0369a1);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div><p style="text-align:center;font-size:11px;color:var(--muted);margin:6px 0 0;">Pescá solo los peces <span style="color:var(--gold);font-weight:700;">DORADOS</span></p>';
     function hud(){$("fishHud").innerHTML="Peces dorados: <span style='color:var(--gold);'>"+caught+"/5</span> · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
     function spawn(){
       var area=$("fishArea");area.innerHTML="";caught=0;lives=3;hud();
-      var fish=[];for(var i=0;i<5;i++)fish.push({gold:true});for(var j=0;j<3;j++)fish.push({gold:false});shuffleA(fish);
-      fish.forEach(function(f,i){
-        var el=document.createElement("div");var dur=3+Math.random()*3;
-        var col=f.gold?"#facc15":"#94a3b8";var shape=f.gold?'border-radius:50% 60% 60% 50%/60% 50% 50% 60%;':'border-radius:4px;';
-        el.style.cssText="position:absolute;top:"+(10+i*18)+"%;left:-40px;width:34px;height:22px;"+shape+"background:linear-gradient(90deg,"+col+","+(f.gold?"#f59e0b":"#64748b")+");cursor:pointer;box-shadow:0 0 10px "+(f.gold?"rgba(250,204,21,.7)":"rgba(0,0,0,.3)")+";animation:fishSwim"+i+" "+dur+"s linear infinite;";
-        el.innerHTML=f.gold?'<span style="position:absolute;right:4px;top:4px;width:4px;height:4px;background:#0b1026;border-radius:50%;"></span>':'<span style="position:absolute;left:50%;top:-6px;transform:translateX(-50%);font-size:10px;">☂</span>';
-        var style=document.createElement("style");style.textContent="@keyframes fishSwim"+i+"{0%{left:-40px;}100%{left:110%;}}";document.head.appendChild(style);
+      var fish=[];for(var i=0;i<5;i++)fish.push(true);for(var j=0;j<3;j++)fish.push(false);
+      fish.forEach(function(gold,k){
+        var el=document.createElement("div");var dur=4+Math.random()*4;var delay=Math.random()*4;
+        var col=gold?"#facc15":"#94a3b8";var col2=gold?"#f59e0b":"#64748b";
+        el.style.cssText="position:absolute;top:"+(6+k*11)+"%;left:0;width:36px;height:24px;border-radius:50% 60% 60% 50%/60% 50% 50% 60%;background:linear-gradient(90deg,"+col+","+col2+");cursor:pointer;box-shadow:0 0 12px "+(gold?"rgba(250,204,21,.8)":"rgba(0,0,0,.3)")+";animation:fishMove "+dur+"s linear infinite;animation-delay:-"+delay+"s;";
+        if(gold)el.innerHTML='<span style="position:absolute;right:5px;top:5px;width:5px;height:5px;background:#0b1026;border-radius:50%;display:inline-block;"></span>';
+        else el.innerHTML='<span style="position:absolute;left:50%;top:-8px;transform:translateX(-50%);font-size:11px;color:#cbd5e1;">☂</span>';
         el.addEventListener("click",function(){
-          if(f.gold){caught++;sndCorrect();arcadeMsg("¡Pez dorado! ¡Bien!","var(--gold)");}
-          else{lives--;sndWrong();arcadeMsg("¡Es una bota vieja! Perdés una vida.","#f87171");}
-          this.style.pointerEvents="none";this.style.opacity=".2";hud();
+          if(this.dataset.done)return;this.dataset.done="1";
+          if(gold){caught++;sndCorrect();arcadeMsg("¡Pez dorado! ¡Bien!","var(--gold)");this.style.opacity=".15";}
+          else{lives--;sndWrong();arcadeMsg("¡Es una bota vieja! Perdés una vida.","#f87171");this.classList.add("shake");}
+          hud();
           if(caught>=5){arcadeMsg("¡Pescaste 5 peces dorados!","var(--gold)");winGame();}
           else if(lives<=0){arcadeMsg("Sin vidas. ¡Volvé a pescar!","#f87171");setTimeout(spawn,1200);}
         });
@@ -1214,19 +1217,33 @@ function renderArcade(){
 
   /* ---------- PLATFORMER (salto de plataformas) ---------- */
   if(T==="platformer"){
-    var plat=0,lives=3,pos=0,dir=1;
-    row.innerHTML='<div id="platHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="platMascot" style="text-align:center;font-size:22px;margin:4px 0;color:var(--accent);">★</div><div style="position:relative;height:24px;max-width:340px;margin:0 auto 10px;background:rgba(139,147,194,.15);border-radius:99px;overflow:hidden;"><div id="platBar" style="position:absolute;top:0;left:35%;width:30%;height:100%;background:linear-gradient(90deg,var(--green),#22c55e);"></div><div id="platInd" style="position:absolute;top:0;left:0;width:8px;height:100%;background:#fff;border-radius:99px;box-shadow:0 0 8px #fff;"></div></div><button id="platJump" class="btn rounded-xl px-6 py-2.5" style="display:block;margin:0 auto;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:14px;">▲ SALTAR</button>';
+    var plat=0,lives=3,pos=0,dir=1,TOTAL=5;
+    var plats=[{x:20,y:170},{x:60,y:138},{x:25,y:106},{x:55,y:74},{x:30,y:42}];
+    row.innerHTML='<div id="platHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="platField" style="position:relative;height:200px;max-width:320px;margin:0 auto;background:linear-gradient(180deg,#0ea5e944,#1e293b);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div><div style="position:relative;height:24px;max-width:320px;margin:10px auto;background:rgba(139,147,194,.15);border-radius:99px;overflow:hidden;"><div style="position:absolute;top:0;left:30%;width:40%;height:100%;background:linear-gradient(90deg,var(--green),#22c55e);border-radius:99px;"></div><div id="platInd" style="position:absolute;top:0;left:0;width:10px;height:100%;background:#fff;border-radius:99px;box-shadow:0 0 10px #fff;"></div></div><button id="platJump" class="btn rounded-xl px-6 py-2.5" style="display:block;margin:10px auto 0;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:15px;">▲ SALTAR</button>';
+    var field=$("platField");
+    plats.forEach(function(p,i){
+      var d=document.createElement("div");
+      d.style.cssText="position:absolute;left:"+p.x+"%;top:"+p.y+"px;width:60px;height:10px;border-radius:5px;background:linear-gradient(90deg,"+(i===TOTAL-1?"#facc15,#f59e0b":"#a78bfa,#7c3aed")+");box-shadow:0 0 10px rgba(167,139,250,.6);";
+      if(i===TOTAL-1)d.innerHTML='<span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);color:#facc15;font-size:16px;">◆</span>';
+      field.appendChild(d);
+    });
+    var hero=document.createElement("div");
+    hero.id="platHero";hero.style.cssText="position:absolute;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fde68a,#f59e0b);box-shadow:0 0 14px #facc15;transition:top .4s ease, left .4s ease;z-index:5;";
+    field.appendChild(hero);
+    function placeHero(){var p=plats[plat];hero.style.left=(p.x+18)+"%";hero.style.top=(p.y-26)+"px";}
     function hud(){$("platHud").innerHTML="Plataforma: <span style='color:var(--green);'>"+plat+"/5</span> · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
-    hud();
-    function platTick(){pos+=dir*2.2;if(pos>=96){pos=96;dir=-1;}if(pos<=0){pos=0;dir=1;}$("platInd").style.left=pos+"%";}
+    placeHero();hud();
+    function platTick(){pos+=dir*1.8;if(pos>=95){pos=95;dir=-1;}if(pos<=0){pos=0;dir=1;}$("platInd").style.left=pos+"%";}
     window._arcInt=setInterval(platTick,30);
     $("platJump").addEventListener("click",function(){
       sndClick();var pct=pos;
-      if(pct>=35&&pct<=65){plat++;sndCorrect();arcadeMsg("¡Salto perfecto! Subiste a la plataforma "+plat+".","var(--green)");$("platMascot").style.transform="translateY(-"+(plat*6)+"px)";
-        if(plat>=5){arcadeStopTimers();arcadeMsg("¡Llegaste a la cima!","var(--green)");winGame();}}
-      else{lives--;sndWrong();arcadeMsg("¡Caíste! Saltá en la zona verde.","#f87171");hud();
-        if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Volvé a intentar!","#f87171");setTimeout(function(){plat=0;lives=3;pos=0;dir=1;$("platMascot").style.transform="translateY(0)";hud();window._arcInt=setInterval(platTick,30);},1200);}}
-      hud();
+      if(pct>=30&&pct<=70){
+        plat++;sndCorrect();arcadeMsg("¡Salto perfecto! Plataforma "+plat+".","var(--green)");placeHero();hud();burstConfetti(25);
+        if(plat>=TOTAL){arcadeStopTimers();arcadeMsg("¡Llegaste al tesoro de la cima!","var(--gold)");winGame();}
+      } else {
+        lives--;sndWrong();arcadeMsg("¡Caíste! Saltá en la zona verde.","#f87171");hero.classList.add("shake");setTimeout(function(){hero.classList.remove("shake");},500);hud();
+        if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Volvé a intentar!","#f87171");setTimeout(function(){plat=0;lives=3;pos=0;dir=1;placeHero();hud();window._arcInt=setInterval(platTick,30);},1200);}
+      }
     });
     return;
   }
@@ -1250,7 +1267,7 @@ function renderArcade(){
       }
     }
     function crash(){lives--;sndWrong();arcadeMsg("¡Atropellaron a la rana! Volvé al pasto.","#f87171");frog={r:6,c:2};hud();draw();
-      if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Probá de nuevo!","#f87171");setTimeout(function(){lives=3;frog={r:6,c:2};hud();draw();window._arcInt=setInterval(tick,650);},1200);}}
+      if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Probá de nuevo!","#f87171");setTimeout(function(){lives=3;frog={r:6,c:2};hud();draw();window._arcInt=setInterval(tick,1000);},1200);}}
     function tick(){lanes.forEach(function(l){l.cells=l.cells.map(function(c){return (c+l.dir+COLS)%COLS;});});
       var hit=false;lanes.forEach(function(l){if(l.r===frog.r&&l.cells.indexOf(frog.c)>=0)hit=true;});
       if(hit){crash();return;}draw();}
@@ -1264,7 +1281,7 @@ function renderArcade(){
       if(e.key==="ArrowUp"){e.preventDefault();move(0,-1);}if(e.key==="ArrowDown"){e.preventDefault();move(0,1);}
       if(e.key==="ArrowLeft"){e.preventDefault();move(-1,0);}if(e.key==="ArrowRight"){e.preventDefault();move(1,0);}
     });
-    hud();draw();window._arcInt=setInterval(tick,650);return;
+    hud();draw();window._arcInt=setInterval(tick,1000);return;
   }
 
   /* ---------- TREASURE (búsqueda del tesoro) ---------- */
