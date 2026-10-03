@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buggy Aprende · 85 Juegos Educativos</title>
+<title>Buggy Aprende · 85 Juegos · 2 Niveles</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -106,7 +106,7 @@
         </div>
         <h1 class="big-3d" style="font-size:32px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">Buggy Aprende</h1>
       </div>
-      <p style="color:var(--muted);margin:0;font-size:13px;">85 juegos educativos · Buggy te explica en castellano</p>
+      <p style="color:var(--muted);margin:0;font-size:13px;">85 juegos · 2 niveles de dificultad · Buggy te explica en castellano</p>
     </div>
     <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
       <div class="flex items-center gap-2">
@@ -142,6 +142,7 @@
         <div class="glass rounded-xl px-2.5 py-1.5 flex items-center gap-1.5">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2.2" stroke-linecap="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg>
           <span id="streakNum" style="font-weight:700;font-size:14px;">0</span>
+        <button id="levelBtn" class="btn rounded-xl px-2.5 py-1.5" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;font-weight:700;font-size:12px;" title="Cambiar dificultad">Nivel 1</button>
         </div>
       </div>
     </div>
@@ -617,6 +618,7 @@ var TROPHY_NEED=[10,25,45];
 /* ==================== STATE ==================== */
 var save=loadSave();
 checkDaily();
+var gameLevel=1;
 var curCat=0,idx=0,score=save.score||0,streak=0,earned=0,firstTry=0,attempts=0,correctSet={};
 var mouthTimer=null,speechQ=[],speakingNow=false;
 var recognition=null,recogSupported=false,recognizing=false;
@@ -712,7 +714,7 @@ function onCorrect(kind){
   if(!correctSet[idx]){correctSet[idx]=true;earned++;if(attempts<=1)firstTry++;streak++;score+=10+(streak>=3?5:0);}else score+=2;
   save.score=score;persist();addPetCoins(10);updateHUD();sndCorrect();celebrate();
   var cat=CAT[curCat];
-  var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?6:6);
+  var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?(gameLevel===2?8:6):6);
   if(kind!=="memory"&&earned>=total)setTimeout(showComplete,1500);
 }
 function onWrong(){streak=0;updateHUD();sndWrong();var wc=$("wordCard");if(wc){wc.classList.add("shake");setTimeout(function(){wc.classList.remove("shake");},500);}}
@@ -720,7 +722,7 @@ function onWrong(){streak=0;updateHUD();sndWrong();var wc=$("wordCard");if(wc){w
 /* ==================== HUD ==================== */
 function updateHUD(){
   $("scoreNum").textContent=score;$("streakNum").textContent=streak;
-  var cat=CAT[curCat];var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?6:6);
+  var cat=CAT[curCat];var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?(gameLevel===2?8:6):6);
   $("progressText").textContent=earned+" / "+total;
   $("progressFill").style.width=(earned/total*100)+"%";
   $("progressLabel").textContent=(cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story"||ARCADE_TYPES.indexOf(cat.type)>=0)?"Aciertos":(cat.type==="memory"?"Pares":"Progreso");
@@ -737,7 +739,7 @@ function runConfetti(){confettiRunning=true;resizeCanvas();ctx.clearRect(0,0,can
 function renderFlash(){
   var c=CAT[curCat].cards[idx];var tile=$("wordTile");
   tile.textContent=c.tile;tile.style.background="linear-gradient(135deg,"+CAT[curCat].color+","+CAT[curCat].color+"88)";
-  $("wordEs").textContent=c.es;
+  $("wordEs").textContent=gameLevel===2?"? ? ?":c.es;
   $("wordEn").innerHTML="";
   for(var i=0;i<c.en.length;i++){var sp=document.createElement("span");sp.className="word-letter";sp.textContent=c.en[i];sp.style.animationDelay=(i*.07)+"s";sp.style.color=(i===0)?"var(--accent2)":"var(--text)";sp.style.fontSize=(i===0)?"30px":"24px";$("wordEn").appendChild(sp);}
   setFeedback("","");
@@ -749,8 +751,8 @@ var mcqAnswer=null,typeWord=null,spellWord=null,sentenceTarget=null,storyNode=nu
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function stopTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}$("timerBar").style.display="none";}
 function startTimer(){
-  var cat=CAT[curCat];if(!cat.timed){stopTimer();return;}
-  $("timerBar").style.display="block";var fill=$("timerFill");var total=15,left=total;
+  var cat=CAT[curCat];if(!cat.timed&&gameLevel!==2){stopTimer();return;}
+  $("timerBar").style.display="block";var fill=$("timerFill");var total=(gameLevel===2?10:15),left=total;
   fill.style.width="100%";
   if(timerInt)clearInterval(timerInt);
   timerInt=setInterval(function(){
@@ -765,8 +767,8 @@ function renderMCQ(){
   $("typeRow").style.display="none";$("spellRow").style.display="none";$("storyRow").style.display="none";
   $("mcqQuestion").style.display="flex";$("mcqOptions").style.display="grid";
   if(cat.type==="math"){
-    var max=cat.max||10;var a=Math.floor(Math.random()*(max-1))+1,b=Math.floor(Math.random()*(max-1))+1;
-    if(cat.op==="*"){a=Math.floor(Math.random()*5)+1;b=Math.floor(Math.random()*5)+1;}
+    var max=(cat.max||10)*(gameLevel===2?3:1);var a=Math.floor(Math.random()*(max-1))+1,b=Math.floor(Math.random()*(max-1))+1;
+    if(cat.op==="*"){var mm=gameLevel===2?9:5;a=Math.floor(Math.random()*mm)+1;b=Math.floor(Math.random()*mm)+1;}
     if(cat.op==="-"&&b>a){var t=a;a=b;b=t;}
     mcqAnswer=cat.op==="+"?a+b:(cat.op==="-"?a-b:a*b);
     var opSym=cat.op==="*"?"×":cat.op;var opTxt=cat.op==="+"?"más":(cat.op==="-"?"menos":"por");
@@ -953,7 +955,7 @@ function renderArcade(){
 
   /* ---------- JIGSAW (rompecabezas por imágenes, 3 niveles) ---------- */
   if(T==="jigsaw"){
-    var size=3,sel=null,hits=0;
+    var size=(gameLevel===2?4:3),sel=null,hits=0;
     row.innerHTML='<div style="text-align:center;margin-bottom:8px;"><span style="font-size:12px;color:var(--muted);">Dificultad: </span>'+
       '<button class="btn rounded-lg px-2.5 py-1 jz-diff" data-s="3" style="background:var(--accent);color:#0b1026;font-weight:700;font-size:11px;margin:0 2px;">3x3</button>'+
       '<button class="btn rounded-lg px-2.5 py-1 jz-diff" data-s="4" style="background:var(--card);color:var(--text);font-weight:700;font-size:11px;margin:0 2px;border:1px solid var(--border);">4x4</button>'+
@@ -992,7 +994,7 @@ function renderArcade(){
 
   /* ---------- BALLOONS (reventar globos) ---------- */
   if(T==="balloons"){
-    var hits=0,lives=3,spawning=true;
+    var hits=0,lives=(gameLevel===2?2:3),spawning=true;
     row.innerHTML='<div id="balHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="balArea" style="position:relative;height:280px;max-width:340px;margin:0 auto;background:linear-gradient(180deg,#0ea5e944,#f472b633,#1e293b);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div><p style="text-align:center;font-size:11px;color:var(--muted);margin:6px 0 0;">Reventá solo los globos <span style="color:#f87171;font-weight:700;">ROJOS</span></p>';
     function hud(){$("balHud").innerHTML='Globos rojos: <span style="color:var(--green);">'+hits+'/5</span> · Vidas: <span style="color:'+(lives>1?'var(--gold)':'#f87171')+';">'+('♥'.repeat(lives))+'</span>';}
     function spawnOne(){
@@ -1018,7 +1020,7 @@ function renderArcade(){
       requestAnimationFrame(function(){requestAnimationFrame(function(){b.style.bottom="110%";});});
       setTimeout(function(){if(b.parentElement)b.remove();},(dur+0.5)*1000);
     }
-    hud();window._arcInt=setInterval(spawnOne,800);setTimeout(spawnOne,100);
+    hud();window._arcInt=setInterval(spawnOne,gameLevel===2?500:800);setTimeout(spawnOne,100);
     return;
   }
 
@@ -1040,7 +1042,7 @@ function renderArcade(){
 
   /* ---------- RUNNER (carrera de obstáculos) ---------- */
   if(T==="runner"){
-    var passed=0,lives=3,jumping=false;
+    var passed=0,lives=(gameLevel===2?2:3),jumping=false;
     row.innerHTML='<div id="runHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="runTrack" style="position:relative;height:110px;max-width:420px;margin:0 auto;background:linear-gradient(180deg,#22d3ee22,#0b1026 60%);border-radius:14px;overflow:hidden;border:2px solid var(--border);"><div style="position:absolute;bottom:0;left:0;right:0;height:14px;background:linear-gradient(90deg,#4ade80,#22c55e);"></div><div id="runHero" style="position:absolute;bottom:14px;left:30px;width:26px;height:34px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,#facc15,#fb923c);box-shadow:0 0 10px rgba(250,204,21,.5);"></div><div id="runObs" style="position:absolute;bottom:14px;right:-30px;width:22px;height:30px;background:linear-gradient(180deg,#f87171,#dc2626);border-radius:4px;"></div></div><button id="jumpBtn" class="btn rounded-xl px-6 py-2.5" style="display:block;margin:10px auto 0;background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-weight:700;font-size:14px;">⤴ SALTAR</button>';
     function hud(){$("runHud").innerHTML="Meta: <span style='color:var(--green);'>"+passed+"/8</span> · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
     hud();var x=420;var obs=$("runObs"),hero=$("runHero");
@@ -1049,7 +1051,7 @@ function renderArcade(){
       setTimeout(function(){hero.style.bottom="14px";setTimeout(function(){jumping=false;},300);},350);
     });
     function runTick(){
-      x-=6;obs.style.right=(420-x)+"px";
+      x-=(gameLevel===2?9:6);obs.style.right=(420-x)+"px";
       var heroLeft=30,heroW=26,obsRight=parseFloat(obs.style.right),obsLeft=420-obsRight-22;
       if(obsLeft<heroLeft+heroW && obsLeft+22>heroLeft){
         if(!jumping){lives--;sndWrong();arcadeMsg("¡Chocaste! Saltá más temprano.","#f87171");x=420;obs.style.right="-30px";hud();
@@ -1068,7 +1070,7 @@ function renderArcade(){
     var targets=[],found=0;
     row.innerHTML='<div id="detList" style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:6px;"></div><div id="detScene" style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;max-width:320px;margin:0 auto;padding:10px;background:linear-gradient(135deg,#1e3a5f,#2d1b4e);border-radius:14px;"></div>';
     var cells=[];for(var i=0;i<20;i++)cells.push({sym:SYMS[i%8],col:PALETTE[i%8]});
-    var idxs=shuffleA([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).slice(0,4);
+    var idxs=shuffleA([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]).slice(0,gameLevel===2?6:4);
     idxs.forEach(function(i){targets.push(cells[i]);cells[i]={sym:SYMS[(i+3)%8],col:PALETTE[(i+5)%8]};});
     var scene=$("detScene");cells.forEach(function(cell,pos){
       var d=document.createElement("div");d.style.cssText="aspect-ratio:1;border-radius:8px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:20px;color:"+cell.col+";cursor:pointer;";
@@ -1087,7 +1089,7 @@ function renderArcade(){
 
   /* ---------- FISHING (pesca) ---------- */
   if(T==="fishing"){
-    var caught=0,lives=3;
+    var caught=0,lives=(gameLevel===2?2:3);
     if(!document.getElementById("fishStyle")){var st=document.createElement("style");st.id="fishStyle";st.textContent="@keyframes fishMove{0%{transform:translateX(-60px);}100%{transform:translateX(460px);}}";document.head.appendChild(st);}
     row.innerHTML='<div id="fishHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="fishArea" style="position:relative;height:200px;max-width:400px;margin:0 auto;background:linear-gradient(180deg,#38bdf866,#0369a1);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div><p style="text-align:center;font-size:11px;color:var(--muted);margin:6px 0 0;">Pescá solo los peces <span style="color:var(--gold);font-weight:700;">DORADOS</span></p>';
     function hud(){$("fishHud").innerHTML="Peces dorados: <span style='color:var(--gold);'>"+caught+"/5</span> · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
@@ -1119,7 +1121,7 @@ function renderArcade(){
     var round=0,build=[],target=[];
     row.innerHTML='<div id="blkInfo" style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:6px;"></div><div style="display:flex;gap:14px;justify-content:center;align-items:flex-end;flex-wrap:wrap;"><div><div style="font-size:10px;color:var(--muted);text-align:center;margin-bottom:4px;">Modelo</div><div id="blkTarget" style="display:flex;flex-direction:column-reverse;gap:3px;min-height:120px;align-items:center;"></div></div><div><div style="font-size:10px;color:var(--muted);text-align:center;margin-bottom:4px;">Tu torre</div><div id="blkBuild" style="display:flex;flex-direction:column-reverse;gap:3px;min-height:120px;align-items:center;"></div></div></div><div id="blkPal" style="display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap;"></div>';
     function newRound(){
-      target=[];build=[];for(var i=0;i<3;i++)target.push(PALETTE[Math.floor(Math.random()*4)]);
+      target=[];build=[];for(var i=0;i<(gameLevel===2?4:3);i++)target.push(PALETTE[Math.floor(Math.random()*4)]);
       var t=$("blkTarget");t.innerHTML="";target.forEach(function(c){var d=document.createElement("div");d.style.cssText="width:60px;height:22px;border-radius:4px;background:linear-gradient(180deg,"+c+","+c+"aa);box-shadow:inset 0 2px 0 rgba(255,255,255,.4);";t.appendChild(d);});
       $("blkBuild").innerHTML="";$("blkInfo").textContent="Torre "+(round+1)+" de 3 · Tocá los bloques en orden";
       var p=$("blkPal");p.innerHTML="";shuffleA(PALETTE.slice(0,4)).forEach(function(c){var b=document.createElement("button");b.className="btn";b.style.cssText="width:50px;height:26px;border-radius:6px;background:linear-gradient(180deg,"+c+","+c+"aa);";b.addEventListener("click",function(){sndClick();place(c);});p.appendChild(b);});
@@ -1192,7 +1194,7 @@ function renderArcade(){
 
   /* ---------- DIFF2 (encuentra las diferencias) ---------- */
   if(T==="diff2"){
-    var round=0,TOTAL=4;
+    var round=0,TOTAL=(gameLevel===2?6:4);
     row.innerHTML='<div id="diffInfo" style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:6px;"></div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;"><div><div style="font-size:10px;color:var(--muted);text-align:center;">Original</div><div id="diffL" style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:6px;background:var(--card);border-radius:10px;"></div></div><div><div style="font-size:10px;color:var(--muted);text-align:center;">Tocá la distinta</div><div id="diffR" style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:6px;background:var(--card);border-radius:10px;"></div></div></div>';
     function newRound(){
       $("diffInfo").textContent="Diferencia "+(round+1)+" de "+TOTAL;
@@ -1217,7 +1219,7 @@ function renderArcade(){
 
   /* ---------- PLATFORMER (salto de plataformas) ---------- */
   if(T==="platformer"){
-    var plat=0,lives=3,pos=0,dir=1,TOTAL=5;
+    var plat=0,lives=(gameLevel===2?2:3),pos=0,dir=1,TOTAL=5;
     var plats=[{x:20,y:170},{x:60,y:138},{x:25,y:106},{x:55,y:74},{x:30,y:42}];
     row.innerHTML='<div id="platHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="platField" style="position:relative;height:200px;max-width:320px;margin:0 auto;background:linear-gradient(180deg,#0ea5e944,#1e293b);border-radius:14px;overflow:hidden;border:2px solid var(--border);"></div><div style="position:relative;height:24px;max-width:320px;margin:10px auto;background:rgba(139,147,194,.15);border-radius:99px;overflow:hidden;"><div style="position:absolute;top:0;left:30%;width:40%;height:100%;background:linear-gradient(90deg,var(--green),#22c55e);border-radius:99px;"></div><div id="platInd" style="position:absolute;top:0;left:0;width:10px;height:100%;background:#fff;border-radius:99px;box-shadow:0 0 10px #fff;"></div></div><button id="platJump" class="btn rounded-xl px-6 py-2.5" style="display:block;margin:10px auto 0;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:15px;">▲ SALTAR</button>';
     var field=$("platField");
@@ -1233,11 +1235,11 @@ function renderArcade(){
     function placeHero(){var p=plats[plat];hero.style.left=(p.x+18)+"%";hero.style.top=(p.y-26)+"px";}
     function hud(){$("platHud").innerHTML="Plataforma: <span style='color:var(--green);'>"+plat+"/5</span> · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
     placeHero();hud();
-    function platTick(){pos+=dir*1.8;if(pos>=95){pos=95;dir=-1;}if(pos<=0){pos=0;dir=1;}$("platInd").style.left=pos+"%";}
+    function platTick(){pos+=dir*(gameLevel===2?3.2:1.8);if(pos>=95){pos=95;dir=-1;}if(pos<=0){pos=0;dir=1;}$("platInd").style.left=pos+"%";}
     window._arcInt=setInterval(platTick,30);
     $("platJump").addEventListener("click",function(){
       sndClick();var pct=pos;
-      if(pct>=30&&pct<=70){
+      if(pct>=(gameLevel===2?40:30)&&pct<=(gameLevel===2?60:70)){
         plat++;sndCorrect();arcadeMsg("¡Salto perfecto! Plataforma "+plat+".","var(--green)");placeHero();hud();burstConfetti(25);
         if(plat>=TOTAL){arcadeStopTimers();arcadeMsg("¡Llegaste al tesoro de la cima!","var(--gold)");winGame();}
       } else {
@@ -1250,7 +1252,7 @@ function renderArcade(){
 
   /* ---------- FROG (rana saltarina / Frogger) ---------- */
   if(T==="frog"){
-    var COLS=5,ROWS=7,frog={r:6,c:2},lives=3;
+    var COLS=5,ROWS=7,frog={r:6,c:2},lives=(gameLevel===2?2:3);
     var lanes=[{r:1,cells:[0,3],dir:1,color:"#f87171"},{r:2,cells:[1,4],dir:-1,color:"#facc15"},{r:3,cells:[0,2],dir:1,color:"#38bdf8"},{r:4,cells:[2,4],dir:-1,color:"#f472b6"}];
     row.innerHTML='<div id="frogHud" style="text-align:center;font-size:13px;font-weight:700;margin-bottom:6px;"></div><div id="frogGrid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;max-width:260px;margin:0 auto;background:rgba(0,0,0,.35);padding:4px;border-radius:10px;"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:180px;margin:10px auto 0;"><div></div><button class="btn fgo rounded-lg py-2" data-d="0,-1" style="background:var(--accent);color:#0b1026;font-weight:700;font-size:18px;">▲</button><div></div><button class="btn fgo rounded-lg py-2" data-d="-1,0" style="background:var(--accent);color:#0b1026;font-weight:700;font-size:18px;">◀</button><button class="btn fgo rounded-lg py-2" data-d="0,1" style="background:var(--accent2);color:#0b1026;font-weight:700;font-size:18px;">▼</button><button class="btn fgo rounded-lg py-2" data-d="1,0" style="background:var(--accent);color:#0b1026;font-weight:700;font-size:18px;">▶</button></div>';
     function hud(){$("frogHud").innerHTML="Meta: fila de arriba · Vidas: <span style='color:"+(lives>1?"var(--gold)":"#f87171")+"'>"+("♥".repeat(lives))+"</span>";}
@@ -1267,7 +1269,7 @@ function renderArcade(){
       }
     }
     function crash(){lives--;sndWrong();arcadeMsg("¡Atropellaron a la rana! Volvé al pasto.","#f87171");frog={r:6,c:2};hud();draw();
-      if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Probá de nuevo!","#f87171");setTimeout(function(){lives=3;frog={r:6,c:2};hud();draw();window._arcInt=setInterval(tick,1000);},1200);}}
+      if(lives<=0){arcadeStopTimers();arcadeMsg("Sin vidas. ¡Probá de nuevo!","#f87171");setTimeout(function(){lives=3;frog={r:6,c:2};hud();draw();window._arcInt=setInterval(tick,(gameLevel===2?650:1000));},1200);}}
     function tick(){lanes.forEach(function(l){l.cells=l.cells.map(function(c){return (c+l.dir+COLS)%COLS;});});
       var hit=false;lanes.forEach(function(l){if(l.r===frog.r&&l.cells.indexOf(frog.c)>=0)hit=true;});
       if(hit){crash();return;}draw();}
@@ -1281,12 +1283,12 @@ function renderArcade(){
       if(e.key==="ArrowUp"){e.preventDefault();move(0,-1);}if(e.key==="ArrowDown"){e.preventDefault();move(0,1);}
       if(e.key==="ArrowLeft"){e.preventDefault();move(-1,0);}if(e.key==="ArrowRight"){e.preventDefault();move(1,0);}
     });
-    hud();draw();window._arcInt=setInterval(tick,1000);return;
+    hud();draw();window._arcInt=setInterval(tick,(gameLevel===2?650:1000));return;
   }
 
   /* ---------- TREASURE (búsqueda del tesoro) ---------- */
   if(T==="treasure"){
-    var node=0,TOTAL=5;
+    var node=0,TOTAL=(gameLevel===2?7:5);
     row.innerHTML='<div id="tesMap" style="display:flex;gap:4px;justify-content:center;align-items:center;margin-bottom:10px;flex-wrap:wrap;"></div><div id="tesQ" style="text-align:center;font-size:18px;font-weight:700;margin-bottom:10px;"></div><div id="tesOpts" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:300px;margin:0 auto;"></div>';
     function drawMap(){
       var m=$("tesMap");m.innerHTML="";
@@ -1475,6 +1477,7 @@ function renderMemory(){
   $("memMoves").textContent="0";$("memPairs").textContent="0";
   var cat=CAT[curCat];var syms=cat.sym==="numbers"?["1","2","3","4","5","6"]:(cat.sym==="colors"?["R","A","V","Y","N","M"]:(cat.sym==="animals"?["♞","♛","✿","☂","♪","♥"]:(cat.sym==="shapes"?["●","▲","■","★","♥","◆"]:["A","B","C","D","E","F"])));
   var colMap={R:"#ef4444",A:"#3b82f6",V:"#22c55e",Y:"#eab308",N:"#f97316",M:"#ec4899"};
+  if(gameLevel===2){syms=syms.concat(["✚","✖","❄","✿"]).slice(0,8);}
   var deck=syms.concat(syms);shuffle(deck);
   var grid=$("memGrid");grid.innerHTML="";
   deck.forEach(function(sym){
@@ -1561,6 +1564,7 @@ function startCategory(i){
   $("mcqPanel").style.display=(cat.type==="math"||cat.type==="mcq"||cat.type==="type"||cat.type==="spell"||cat.type==="sentence"||cat.type==="story"||cat.type==="puzzle"||cat.type==="sudoku"||cat.type==="maze"||cat.type==="match"||cat.type==="diff"||ARCADE_TYPES.indexOf(cat.type)>=0)?"":"none";
   $("memPanel").style.display=cat.type==="memory"?"":"none";
   updateHUD();
+  var lb=$("levelBtn");if(lb){lb.textContent="Nivel "+gameLevel;lb.style.background=gameLevel===2?"linear-gradient(135deg,#f87171,#dc2626)":"linear-gradient(135deg,#facc15,#f59e0b)";lb.style.color=gameLevel===2?"#fff":"#7c2d12";}
   if(cat.type==="flash"){renderFlash();setTimeout(teachCard,500);}
   else if(cat.type==="memory"){renderMemory();}
   else if(cat.type==="type"){renderType();}
@@ -1585,6 +1589,13 @@ $("micBtn").addEventListener("click",startListening);
 $("prevBtn").addEventListener("click",function(){attempts=0;idx=(idx-1+CAT[curCat].cards.length)%CAT[curCat].cards.length;renderFlash();sndClick();});
 $("nextBtn").addEventListener("click",function(){attempts=0;idx=(idx+1)%CAT[curCat].cards.length;renderFlash();sndClick();});
 $("typeCheck").addEventListener("click",checkType);
+$("levelBtn").addEventListener("click",function(){
+  gameLevel=gameLevel===1?2:1;
+  this.textContent="Nivel "+gameLevel;
+  if(gameLevel===2){this.style.background="linear-gradient(135deg,#f87171,#dc2626)";this.style.color="#fff";}
+  else{this.style.background="linear-gradient(135deg,#facc15,#f59e0b)";this.style.color="#7c2d12";}
+  sndClick();stopSpeak();stopTimer();arcadeStopTimers();startCategory(curCat);
+});
 $("typeInput").addEventListener("keydown",function(e){if(e.key==="Enter")checkType();});
 $("replayBtn").addEventListener("click",function(){
   var cat=CAT[curCat];sndClick();
