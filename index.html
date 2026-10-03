@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuggyIA · 85 Juegos · 2 Niveles</title>
+<title>BuggyIA · 93 Juegos · 2 Niveles</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -122,7 +122,7 @@
         </div>
         <h1 class="big-3d" style="font-size:46px;font-weight:700;margin:0;background:linear-gradient(90deg,var(--accent2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;">BuggyIA</h1>
       </div>
-      <p style="color:var(--muted);margin:0;font-size:16px;font-weight:500;">85 juegos · 2 niveles de dificultad · BuggyIA te explica en castellano</p>
+      <p style="color:var(--muted);margin:0;font-size:16px;font-weight:500;">93 juegos · 2 niveles de dificultad · BuggyIA te explica en castellano</p>
     </div>
     <div class="glass rounded-2xl px-4 py-2.5 mb-3 flex items-center justify-between flex-wrap gap-2 fade-in">
       <div class="flex items-center gap-2">
@@ -134,6 +134,7 @@
         <button id="openPetBtn" class="btn rounded-xl px-3 py-1.5 flex items-center gap-1.5" style="background:linear-gradient(135deg,var(--accent2),#ea580c);color:#fff;font-weight:700;font-size:12px;">
           <span style="width:14px;height:14px;border-radius:50%;background:#fff;display:inline-block;"></span>Mi Mascota
         </button>
+        <button id="voiceBtn" class="btn rounded-xl px-2.5 py-1.5" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:700;font-size:12px;" title="Cambiar voz">♪ Voz</button>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
@@ -231,12 +232,12 @@
           <div id="flashPanel">
             <div id="wordCard" class="rounded-2xl p-3 text-center" style="background:linear-gradient(145deg,rgba(34,211,238,.12),rgba(251,146,60,.10));border:1px solid var(--border);">
               <div class="flex items-center justify-center gap-3 flex-wrap">
-                <div id="wordTile" class="tile" style="width:64px;height:64px;font-size:30px;flex-shrink:0;"></div>
+                <div id="wordTile" class="tile" style="width:84px;height:84px;font-size:40px;flex-shrink:0;box-shadow:0 8px 24px rgba(0,0,0,.4);"></div>
                 <div style="text-align:left;">
-                  <div style="font-size:11px;color:var(--muted);font-weight:500;">Castellano</div>
-                  <div id="wordEs" style="font-size:19px;font-weight:700;color:var(--text);line-height:1.2;"></div>
-                  <div style="font-size:11px;color:var(--muted);font-weight:500;margin-top:3px;">Inglés <strong style="color:var(--accent)">(solo inglés)</strong></div>
-                  <div id="wordEn" style="font-size:24px;font-weight:700;letter-spacing:.5px;line-height:1.2;"></div>
+                  <div style="font-size:14px;color:#38bdf8;font-weight:700;">Castellano</div>
+                  <div id="wordEs" style="font-size:28px;font-weight:700;color:#fff;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,.5);"></div>
+                  <div style="font-size:14px;color:#fb923c;font-weight:700;margin-top:4px;">Inglés <strong style="color:var(--accent);">(solo inglés)</strong></div>
+                  <div id="wordEn" style="font-size:30px;font-weight:700;letter-spacing:.5px;line-height:1.2;"></div>
                 </div>
               </div>
             </div>
@@ -689,6 +690,70 @@ mcqL("Sustantivos, verbos y adjetivos","#a78bfa","◆",[
 {id:"av_plat",name:"Salto de plataformas",section:"Aventuras",type:"platformer",color:"#4ade80",icon:"▲",premium:true,intro:"Tu personaje salta de plataforma en plataforma. Tocá SALTAR justo cuando la barra esté en la zona verde. ¡Llegá a la plataforma más alta!"},
 {id:"av_tesoro",name:"Búsqueda del tesoro",section:"Aventuras",type:"treasure",color:"#facc15",icon:"◆",premium:true,intro:"Recorré el mapa de las islas. En cada isla hay una pregunta matemática: respondé bien para avanzar. ¡Llegá hasta el tesoro final!"},
 {id:"av_rana",name:"Rana saltarina",section:"Aventuras",type:"frog",color:"#4ade80",icon:"♧",premium:true,intro:"Ayudá a la ranita a cruzar hasta la meta de arriba. Usá las flechas para saltar. ¡Cuidado con los autos que pasan! Llegá arriba sin ser atropellada."}
+,mcqL("Artículos el/la/los/las","#38bdf8","◈",[
+ ["¿Qué artículo va con... casa?",["el","la","los","las"],1,"¿Qué artículo va con casa? La casa."],
+ ["¿Qué artículo va con... perro?",["la","las","el","los"],2,"¿Qué artículo va con perro? El perro."],
+ ["¿Qué artículo va con... niños?",["las","el","la","los"],3,"¿Qué artículo va con niños? Los niños."],
+ ["¿Qué artículo va con... flores?",["las","el","la","los"],0,"¿Qué artículo va con flores? Las flores."],
+ ["¿Qué artículo va con... sol?",["la","el","las","los"],1,"¿Qué artículo va con sol? El sol."],
+ ["¿Qué artículo va con... luna?",["el","los","la","las"],2,"¿Qué artículo va con luna? La luna."]
+])
+,mcqL("Plural de palabras","#4ade80","✦",[
+ ["¿Cuál es el plural de... casa?",["casas","casaes","casí","casa"],0,"El plural de casa es casas."],
+ ["¿Cuál es el plural de... flor?",["flores","flors","flor","flora"],0,"El plural de flor es flores."],
+ ["¿Cuál es el plural de... pan?",["panes","pans","panas","pan"],0,"El plural de pan es panes."],
+ ["¿Cuál es el plural de... lápiz?",["lápizes","lápices","lápizs","lapices"],1,"El plural de lápiz es lápices."],
+ ["¿Cuál es el plural de... niño?",["niñoes","niños","niñas","niñoz"],1,"El plural de niño es niños."],
+ ["¿Cuál es el plural de... canción?",["canciones","cancions","cancionas","cancion"],0,"El plural de canción es canciones."]
+])
+,mcqL("Verbos conjugados","#fb923c","♥",[
+ ["Yo ___ fútbol. (jugar)",["juegas","juego","juega","jugamos"],1,"Yo juego fútbol."],
+ ["Él ___ agua. (beber)",["bebo","bebes","bebe","beben"],2,"Él bebe agua."],
+ ["Nosotros ___ en el parque. (correr)",["corro","corres","corren","corremos"],3,"Nosotros corremos en el parque."],
+ ["Tú ___ mucho. (comer)",["comes","come","comen","como"],0,"Tú comes mucho."],
+ ["Ellas ___ canciones. (cantar)",["canto","cantas","canta","cantan"],3,"Ellas cantan canciones."],
+ ["Yo ___ libros. (leer)",["leo","lees","lee","leen"],0,"Yo leo libros."]
+])
+,mcqL("Pronombres","#f472b6","✿",[
+ ["___ soy María. (yo)",["Tú","Yo","Él","Ella"],1,"Yo soy María."],
+ ["___ eres mi amigo. (tú)",["Él","Yo","Tú","Nosotros"],2,"Tú eres mi amigo."],
+ ["___ es mi papá. (él)",["Ella","Él","Yo","Tú"],1,"Él es mi papá."],
+ ["___ somos una familia. (nosotros)",["Ellos","Yo","Nosotros","Él"],2,"Nosotros somos una familia."],
+ ["___ son mis amigos. (ellos)",["Ellos","Yo","Tú","Ella"],0,"Ellos son mis amigos."],
+ ["___ es mi mamá. (ella)",["Él","Yo","Ella","Tú"],2,"Ella es mi mamá."]
+])
+,mcqL("Adverbios","#a78bfa","➤",[
+ ["El corre muy ___. (rápido)",["rápidamente","lento","alto","feliz"],0,"Él corre muy rápidamente."],
+ ["Ella canta ___. (bonito)",["feo","bonitamente","rápido","alto"],1,"Ella canta bonitamente."],
+ ["Los niños juegan ___. (feliz)",["triste","felizmente","rápido","despacio"],1,"Los niños juegan felizmente."],
+ ["Hablan muy ___. (bajo)",["altamente","despacio","bajito","fuertemente"],2,"Hablan muy bajito."],
+ ["El tortuga camina ___. (lento)",["rápidamente","lentamente","alto","feliz"],1,"La tortuga camina lentamente."],
+ ["Estudia ___. (mucho)",["poco","nunca","mucho","nada"],2,"Estudia mucho."]
+])
+,mcqL("Rimas","#facc15","♪",[
+ ["¿Con qué rima... casa?",["perro","casa","mesa","taza"],3,"Casa rima con taza."],
+ ["¿Con qué rima... sol?",["luna","sol","flor","col"],3,"Sol rima con col."],
+ ["¿Con qué rima... flor?",["casa","olor","sol","mesa"],1,"Flor rima con olor."],
+ ["¿Con qué rima... pan?",["leche","fruta","zan","agua"],2,"Pan rima con zan."],
+ ["¿Con qué rima... mesa?",["silla","casa","flor","pesa"],3,"Mesa rima con pesa."],
+ ["¿Con qué rima... gato?",["perro","pato","flor","sol"],1,"Gato rima con pato."]
+])
+,mcqL("Completar oraciones","#22d3ee","✎",[
+ ["El ___ ladra. (perro/gato)",["gato","perro","pájaro","pez"],1,"El perro ladra."],
+ ["El ___ nada en el agua. (pez/pájaro)",["pájaro","gato","pez","perro"],2,"El pez nada en el agua."],
+ ["Las ___ crecen en los árboles. (flores/piedras)",["piedras","flores","autos","zapatos"],1,"Las flores crecen en los árboles."],
+ ["Usamos ___ para escribir. (lápiz/pelota)",["pelota","lápiz","plato","zapato"],1,"Usamos lápiz para escribir."],
+ ["El ___ brilla de día. (sol/luna)",["luna","estrella","sol","nube"],2,"El sol brilla de día."],
+ ["Bebo agua con un ___. (vaso/plato)",["plato","vaso","tenedor","cuchara"],1,"Bebo agua con un vaso."]
+])
+,mcqL("Género masculino/femenino","#f87171","⚥",[
+ ["¿De qué género es... rey? (masculino)",["femenino","masculino","neutro","plural"],1,"Rey es masculino. Su femenino es reina."],
+ ["¿De qué género es... reina? (femenino)",["masculino","femenino","neutro","plural"],1,"Reina es femenino."],
+ ["¿De qué género es... niño? (masculino)",["femenino","masculino","neutro","plural"],1,"Niño es masculino."],
+ ["¿De qué género es... niña? (femenino)",["masculino","femenino","neutro","plural"],1,"Niña es femenino."],
+ ["¿De qué género es... caballo? (masculino)",["femenino","masculino","neutro","plural"],1,"Caballo es masculino. Su femenino es yegua."],
+ ["¿De qué género es... vaca? (femenino)",["masculino","femenino","neutro","plural"],1,"Vaca es femenino. Su masculino es toro."]
+])
 
 ];
 function mcqL(name,color,icon,qs){var c=mcq(name,color,icon,qs);c.section="Lengua";return c;}
@@ -699,6 +764,7 @@ var TROPHY_NEED=[10,25,45];
 var save=loadSave();
 checkDaily();
 var gameLevel=1;
+var voiceIdx=0;
 var curCat=0,idx=0,score=save.score||0,streak=0,earned=0,firstTry=0,attempts=0,correctSet={};
 var mouthTimer=null,speechQ=[],speakingNow=false;
 var recognition=null,recogSupported=false,recognizing=false;
@@ -749,7 +815,7 @@ function sndFanfare(){ensureAudio();[523,659,784,1047,784,1047,1319].forEach(fun
 function sndTick(){ensureAudio();tone(880,.06,0,"square",.08);}
 
 /* ==================== VOZ BILINGUE ==================== */
-function pickVoices(){if(!window.speechSynthesis)return;var vs=speechSynthesis.getVoices();for(var i=0;i<vs.length;i++){var v=vs[i];if(!enVoice&&/en[-_](US|GB)/i.test(v.lang)&&/female|samantha|google|zira|aria|jenny|susan/i.test(v.name))enVoice=v;if(!esVoice&&/^es/i.test(v.lang)&&/female|google|elena|paulina|monica|carla|lucia|sabina/i.test(v.name))esVoice=v;}if(!enVoice)for(var j=0;j<vs.length;j++){if(/^en/i.test(vs[j].lang)){enVoice=vs[j];break;}}if(!esVoice)for(var k=0;k<vs.length;k++){if(/^es/i.test(vs[k].lang)){esVoice=vs[k];break;}}}
+function pickVoices(){if(!window.speechSynthesis)return;var vs=speechSynthesis.getVoices();for(var i=0;i<vs.length;i++){var v=vs[i];if(!enVoice&&/en[-_](US|GB)/i.test(v.lang)&&/female|samantha|google|zira|aria|jenny|susan/i.test(v.name))enVoice=v;if(!esVoice&&/^es/i.test(v.lang)&&/female|google|elena|paulina|monica|carla|lucia|sabina/i.test(v.name))esVoice=v;}if(!enVoice)for(var j=0;j<vs.length;j++){if(/^en/i.test(vs[j].lang)){enVoice=vs[j];break;}}if(!esVoice)for(var k=0;k<vs.length;k++){if(/^es/i.test(vs[k].lang)){esVoice=vs[k];break;}}window.esVoices=[];for(var z=0;z<vs.length;z++){if(/^es/i.test(vs[z].lang))window.esVoices.push(vs[z]);}}
 if(window.speechSynthesis){pickVoices();speechSynthesis.onvoiceschanged=pickVoices;}
 var mouthClosed=$("mouthClosed"),mouthOpen=$("mouthOpen"),astroWrap=$("astroWrap"),rightArm=$("rightArm");
 function startMouthTalk(){if(mouthTimer)clearInterval(mouthTimer);mouthClosed.style.display="none";mouthOpen.style.display="";mouthTimer=setInterval(function(){mouthOpen.style.transform="scaleY("+(0.35+Math.random()*0.75)+")";},110);}
@@ -760,7 +826,7 @@ function pump(){
   if(!window.speechSynthesis){var it=speechQ.shift();if(it.onend)it.onend();pump();return;}
   speakingNow=true;var item=speechQ.shift();
   var u=new SpeechSynthesisUtterance(item.text);u.lang=item.lang;
-  if(item.lang.indexOf("en")===0){if(enVoice)u.voice=enVoice;u.rate=0.78;}else{if(esVoice)u.voice=esVoice;u.rate=0.95;}
+  if(item.lang.indexOf("en")===0){if(enVoice)u.voice=enVoice;u.rate=0.78;}else{var _v=(window.esVoices&&window.esVoices.length)?window.esVoices[voiceIdx%window.esVoices.length]:esVoice;if(_v)u.voice=_v;u.rate=0.95;}
   u.pitch=1.1;u.volume=1;
   u.onstart=function(){startMouthTalk();rightArm.style.transform="rotate(-35deg)";};
   u.onend=function(){speakingNow=false;stopMouthTalk();rightArm.style.transform="rotate(0deg)";if(item.onend)item.onend();pump();};
@@ -821,7 +887,7 @@ function renderFlash(){
   tile.textContent=c.tile;tile.style.background="linear-gradient(135deg,"+CAT[curCat].color+","+CAT[curCat].color+"88)";
   $("wordEs").textContent=gameLevel===2?"? ? ?":c.es;
   $("wordEn").innerHTML="";
-  for(var i=0;i<c.en.length;i++){var sp=document.createElement("span");sp.className="word-letter";sp.textContent=c.en[i];sp.style.animationDelay=(i*.07)+"s";sp.style.color=(i===0)?"var(--accent2)":"var(--text)";sp.style.fontSize=(i===0)?"30px":"24px";$("wordEn").appendChild(sp);}
+  for(var i=0;i<c.en.length;i++){var sp=document.createElement("span");sp.className="word-letter";sp.textContent=c.en[i];sp.style.animationDelay=(i*.07)+"s";sp.style.color=(i===0)?"var(--accent2)":"var(--text)";sp.style.fontSize=(i===0)?"38px":"30px";$("wordEn").appendChild(sp);}
   setFeedback("","");
   $("astroMessage").innerHTML='Tocá <strong style="color:var(--purple)">Buggy explica</strong> y te enseño. Después repetí en inglés.';
 }
@@ -1676,6 +1742,7 @@ $("levelBtn").addEventListener("click",function(){
   else{this.style.background="linear-gradient(135deg,#facc15,#f59e0b)";this.style.color="#7c2d12";}
   sndClick();stopSpeak();stopTimer();arcadeStopTimers();startCategory(curCat);
 });
+$("voiceBtn").addEventListener("click",function(){voiceIdx++;stopSpeak();sndClick();var n=(window.esVoices&&window.esVoices.length)?window.esVoices[voiceIdx%window.esVoices.length].name:"";say("¡Hola! Soy Buggy. ¿Cómo estás hoy?","es-AR");var fb=document.getElementById("feedback");if(fb)fb.textContent="Voz: "+(n||"predeterminada");this.textContent="♪ "+(voiceIdx+1);});
 $("typeInput").addEventListener("keydown",function(e){if(e.key==="Enter")checkType();});
 $("replayBtn").addEventListener("click",function(){
   var cat=CAT[curCat];sndClick();
