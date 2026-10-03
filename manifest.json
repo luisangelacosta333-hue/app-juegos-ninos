@@ -1,24 +1,21 @@
 {
-  "name": "Aprende Inglés - Juegos para Niños",
-  "short_name": "Inglés Kids",
-  "description": "Aplicación interactiva para aprender inglés jugando.",
-  "start_url": "/index.html",
+  "name": "Buggy IA - Aprende Inglés",
+  "short_name": "BuggyIA",
+  "description": "Juegos interactivos para aprender inglés",
+  "start_url": "/",
   "display": "standalone",
-  "orientation": "any",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FF9800",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
   "icons": [
     {
-      "src": "icono-192.png",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9IiM0Q0FGNTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmaWxsPSIjZmZmIiBmb250LXdlaWdodD0iYm9sZCI+QUJDPC90ZXh0Pjwvc3ZnPg==",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/svg+xml"
     },
     {
-      "src": "icono-512.png",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9IiM0Q0FGNTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmaWxsPSIjZmZmIiBmb250LXdlaWdodD0iYm9sZCI+QUJDPC90ZXh0Pjwvc3ZnPg==",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/svg+xml"
     }
   ]
 }
