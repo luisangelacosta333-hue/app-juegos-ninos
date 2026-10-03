@@ -127,8 +127,51 @@
     params: { google_ad_client: "ca-pub-5636172588667612", tag_for_child_directed_treatment: 1 }
   });
 </script>
+
+<style>
+/* ===== OVERRIDE PREMIUM GLAMOUR ===== */
+.premium-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.premium-bg .orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:orbFloat 14s ease-in-out infinite;}
+.orb1{width:360px;height:360px;background:radial-gradient(circle,#22d3ee,transparent 70%);top:-100px;left:-100px;}
+.orb2{width:320px;height:320px;background:radial-gradient(circle,#f472b6,transparent 70%);top:32%;right:-120px;animation-delay:-5s;}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,#facc15,transparent 70%);bottom:-80px;left:18%;animation-delay:-9s;}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(36px,-44px) scale(1.18);}}
+.max-w-5xl{position:relative;z-index:2;}
+
+/* Titulo nítido premium (sin sombra borrosa) */
+#homeScreen h1.big-3d{text-shadow:none!important;filter:drop-shadow(0 5px 0 rgba(0,0,0,.4)) drop-shadow(0 0 22px rgba(251,146,60,.7));font-size:60px!important;letter-spacing:1px;-webkit-text-stroke:1.5px rgba(0,0,0,.22);}
+#homeScreen .text-center p[style*="letter-spacing"]{text-shadow:0 0 16px rgba(34,211,238,.85),0 2px 0 rgba(0,0,0,.4);}
+
+/* Botones redondos premium (solo los de accion, no las tarjetas de juego) */
+#openPetBtn,#voiceBtn,#btn-instalar,#teachBtn,#listenBtn,#micBtn,#prevBtn,#nextBtn,#homeBtn,#levelBtn,#replayBtn,#typeCheck,#manualDoneBtn,#overlayHomeBtn,#petHomeBtn,#petConfirmBtn,#giftCloseBtn,#sdCheck,#trenGo,#platJump,#jumpBtn,#bathStepBtn,.pet-btn,.win-btn,#completeScreen button,#howBtn{border-radius:999px!important;box-shadow:0 7px 20px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.28)!important;transition:transform .12s ease,box-shadow .2s ease;}
+#howBtn{box-shadow:0 0 0 4px rgba(167,139,250,.25),0 7px 20px rgba(167,139,250,.55)!important;}
+#btn-instalar{display:inline-flex!important;}
+
+/* Tarjetas de juegos premium con brillo */
+.cat-card{border-radius:26px!important;box-shadow:0 14px 34px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.1)!important;position:relative;overflow:hidden;}
+.cat-card::before{content:'';position:absolute;top:-70%;left:-70%;width:70%;height:240%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.16) 50%,transparent 58%);transform:rotate(12deg);animation:cardShine 5s ease-in-out infinite;pointer-events:none;}
+@keyframes cardShine{0%,55%{left:-70%;}100%{left:140%;}}
+.cat-card .tile{border-radius:22px!important;}
+.cat-card h3{text-shadow:0 2px 8px rgba(0,0,0,.5);}
+
+/* Banner gratis premium */
+#homeScreen > div.fade-in.rounded-2xl{border-radius:24px!important;box-shadow:0 0 34px rgba(250,204,21,.5),inset 0 1px 0 rgba(255,255,255,.15)!important;}
+
+/* Etiquetas de seccion */
+.section-label{font-size:22px!important;text-shadow:0 0 20px currentColor,0 2px 0 rgba(0,0,0,.45)!important;}
+
+/* Panel de mascota */
+#petStage{filter:drop-shadow(0 10px 24px rgba(0,0,0,.45));}
+
+/* Toast de instalacion */
+#toastMsg{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;padding:13px 24px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 10px 28px rgba(0,0,0,.45);z-index:600;display:none;max-width:92%;text-align:center;line-height:1.35;}
+</style>
+
 </head>
 <body>
+<div class="premium-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div id="toastMsg"></div>
+
 <div class="max-w-5xl mx-auto px-3 py-4 sm:px-5">
 
   <!-- ================= HOME ================= -->
@@ -171,7 +214,7 @@
           <span style="width:14px;height:14px;border-radius:50%;background:#fff;display:inline-block;"></span>Mi Mascota
         </button>
         <button id="voiceBtn" class="btn rounded-xl px-2.5 py-1.5" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:700;font-size:12px;" title="Cambiar voz">♪ Voz</button>
-        <button id="btn-instalar" class="btn rounded-xl px-2.5 py-1.5" style="display:none;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:12px;align-items:center;gap:4px;" title="Instalar aplicación en tu celular">
+        <button id="btn-instalar" class="btn rounded-xl px-2.5 py-1.5" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:700;font-size:12px;align-items:center;gap:4px;" title="Instalar aplicación en tu celular">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Instalar App
         </button>
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
@@ -862,7 +905,7 @@ function pump(){
   if(speakingNow||!speechQ.length)return;
   if(!window.speechSynthesis){var it=speechQ.shift();if(it.onend)it.onend();pump();return;}
   speakingNow=true;var item=speechQ.shift();
-  var u=new SpeechSynthesisUtterance(item.text);u.lang=item.lang;
+  var u=new SpeechSynthesisUtterance(item.text);u.lang=item.lang;if(u.lang.indexOf('es')===0)u.lang='es-419';
   if(item.lang.indexOf("en")===0){if(enVoice)u.voice=enVoice;u.rate=0.78;}else{var _v=(window.esVoices&&window.esVoices.length)?window.esVoices[voiceIdx%window.esVoices.length]:esVoice;if(_v)u.voice=_v;u.rate=0.95;}
   u.pitch=1.1;u.volume=1;
   u.onstart=function(){startMouthTalk();rightArm.style.transform="rotate(-35deg)";};
@@ -1957,10 +2000,17 @@ $("petConfirmBtn").addEventListener("click",function(){
   openPetScreen();
 });
 $("giftCloseBtn").addEventListener("click",function(){$("giftModal").style.display="none";sndClick();});
+function showToast(m){var t=$("toastMsg");if(!t)return;t.textContent=m;t.style.display="block";setTimeout(function(){t.style.display="none";},4200);}
+var _pwaReady=false;
+window.addEventListener("beforeinstallprompt",function(){_pwaReady=true;});
+var _ib2=$("btn-instalar");
+if(_ib2){_ib2.addEventListener("click",function(){
+  if(!_pwaReady){sndClick();showToast("Para instalar la App: abrí el menú del navegador → Agregar a pantalla de inicio");say("Para instalar la aplicación en tu celular, abre el menú del navegador y elige Agregar a pantalla de inicio.","es-419");}
+});}
 var _hb=$("howBtn");
 if(_hb){_hb.addEventListener("click",function(){
   sndClick();stopSpeak();
-  say("Asi funciona Buggy. Primero, yo te explico la palabra en castellano. Despues escuchas como se dice en ingles. Y por ultimo vos repetis la palabra en ingles tocando el microfono, y yo te digo si lo dijiste bien. Es muy facil y divertido. Vamos a jugar!","es-AR");
+  say("Así funciona Buggy. Primero yo te explico la palabra en español. Después escuchas cómo se dice en inglés. Y por último repites la palabra en inglés tocando el micrófono, y yo te digo si lo dijiste bien. ¡Es muy fácil y divertido!","es-419");
   var ht=$("howText");if(ht){ht.style.color="var(--accent)";ht.textContent="Buggy esta explicando... escucha con atencion.";setTimeout(function(){ht.style.color="var(--muted)";ht.textContent="1. Buggy explica en castellano · 2. Escucha la palabra en ingles · 3. Repeti con el microfono y te corrige";},11000);}
 });}
 Array.prototype.forEach.call($("petActions").querySelectorAll(".pet-btn"),function(b){b.addEventListener("click",function(){petAction(b.dataset.act);});});
