@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,7 +17,11 @@
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);font-family:'Fredoka',sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden;background:radial-gradient(1000px 500px at 80% -10%,rgba(34,211,238,.12),transparent 60%),radial-gradient(800px 500px at 10% 110%,rgba(251,146,60,.10),transparent 60%),linear-gradient(160deg,#0b1026 0%,#131a3d 50%,#0b1026 100%);}
   .starfield{position:absolute;inset:0;overflow:hidden;pointer-events:none;border-radius:inherit}
-  .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 3s ease-in-out infinite}
+  .star{position:absolute;background:#fff;border-radius:50%;box-shadow:0 0 6px 1px rgba(255,255,255,.85);animation:twinkle 2.6s ease-in-out infinite}
+  .lucero{position:absolute;width:5px;height:5px;background:#fff;border-radius:50%;box-shadow:0 0 10px 3px #fff,0 0 22px 7px rgba(255,255,255,.55);animation:twinkle 1.8s ease-in-out infinite;z-index:1;}
+  #astroMoon{position:absolute;top:14px;right:22px;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 32%,#fefce8,#e2e8f0 65%,#cbd5e1);box-shadow:0 0 34px 8px rgba(254,240,138,.55),inset -7px -7px 14px rgba(100,116,139,.55);z-index:1;animation:moonFloat 6s ease-in-out infinite;}
+  #astroMoon::before{content:"";position:absolute;top:13px;left:11px;width:10px;height:10px;border-radius:50%;background:rgba(148,163,184,.5);box-shadow:17px 15px 0 -2px rgba(148,163,184,.4),7px 24px 0 -3px rgba(148,163,184,.35);}
+  @keyframes moonFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
   @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   #astroWrap{animation:floaty 4s ease-in-out infinite;transform-origin:center bottom}
@@ -202,7 +205,7 @@
 @keyframes travelZoom{0%{transform:scale(1);}50%{transform:scale(1.45) rotate(18deg);filter:brightness(1.7) saturate(1.4);}100%{transform:scale(1);}}
 .stat-bar{height:14px!important;border-radius:999px!important;}
 .stat-fill{border-radius:999px!important;transition:width .6s ease;}
-#petActions .pet-btn{font-size:15px!important;font-weight:800!important;padding:12px 22px!important;}
+#petActions .pet-btn{font-size:17px!important;font-weight:800!important;padding:14px 26px!important;min-width:135px;}
 #petCoins{font-size:18px!important;}
 #petArea{padding:24px!important;}
 </style>
@@ -258,8 +261,8 @@
   <div id="homeScreen">
     <div class="text-center mb-4 fade-in">
       <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:4px;">
-        <div style="width:78px;height:78px;border-radius:22px;background:linear-gradient(135deg,var(--accent2),#ea580c,#f472b6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(251,146,60,.85), 0 10px 28px rgba(244,114,182,.4);animation:astroSpin 7s ease-in-out infinite;">
-          <svg width="46" height="46" viewBox="0 0 48 48" fill="none">
+        <div style="width:96px;height:96px;border-radius:26px;background:linear-gradient(135deg,var(--accent2),#ea580c,#f472b6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 46px rgba(251,146,60,.9), 0 10px 28px rgba(244,114,182,.45);animation:astroSpin 7s ease-in-out infinite;">
+          <svg width="58" height="58" viewBox="0 0 48 48" fill="none">
   <rect id="astroArmIzq" x="6" y="28" width="7" height="11" rx="3.5" fill="#e2e8f0"/>
   <rect id="astroArmDer" x="35" y="28" width="7" height="11" rx="3.5" fill="#e2e8f0"/>
   <rect x="12" y="26" width="24" height="17" rx="8" fill="#f1f5f9"/>
@@ -309,7 +312,25 @@
         <div class="trophy"><svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(139,147,194,.3)" stroke="rgba(139,147,194,.3)" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></div>
       </div>
     </div>
-    <div id="catSections"></div>
+    <div id="homePetWidget" class="glass rounded-2xl px-4 py-3 mb-3 fade-in" style="background:linear-gradient(100deg,rgba(34,211,238,.14),rgba(167,139,250,.14),rgba(244,114,182,.14));border:2px solid rgba(167,139,250,.45);box-shadow:0 10px 30px rgba(99,102,241,.3);">
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:190px;">
+      <div style="font-size:17px;font-weight:800;color:var(--accent2);margin-bottom:5px;" id="hwPetName">Mi Mascota</div>
+      <div style="display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700;margin-bottom:3px;">
+        <span style="color:#fb923c;width:52px;">Hambre</span><div class="stat-bar" style="flex:1;height:10px;"><div id="hwFood" class="stat-fill" style="width:60%;background:#fb923c;"></div></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700;">
+        <span style="color:#22d3ee;width:52px;">Limpieza</span><div class="stat-bar" style="flex:1;height:10px;"><div id="hwHygiene" class="stat-fill" style="width:60%;background:#22d3ee;"></div></div>
+      </div>
+      <div id="hwMsg" style="font-size:12.5px;color:var(--muted);margin-top:5px;font-weight:600;"></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button id="hwCareBtn" class="btn rounded-xl px-4 py-2.5" style="background:linear-gradient(135deg,#fb923c,#ea580c);color:#fff;font-weight:800;font-size:14px;box-shadow:0 6px 16px rgba(0,0,0,.35);">Cuidar Mascota</button>
+      <button id="hwPlanetsBtn" class="btn rounded-xl px-4 py-2.5" style="background:linear-gradient(135deg,#818cf8,#c084fc);color:#fff;font-weight:800;font-size:14px;box-shadow:0 6px 16px rgba(0,0,0,.35);">Sistema Solar</button>
+    </div>
+  </div>
+</div>
+<div id="catSections"></div>
     <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:14px;">Toca un juego para empezar · 100% gratuito</p>
   </div>
 
@@ -343,15 +364,16 @@
       <div id="timerBar" class="timer-bar" style="display:none;"><div id="timerFill" class="timer-fill" style="width:100%;"></div></div>
     </div>
 
-    <div id="gameArea" class="relative rounded-3xl glass overflow-hidden" style="padding:16px 14px 20px;box-shadow:0 20px 60px rgba(0,0,0,.4);">
+    <div id="gameArea" class="relative rounded-3xl glass overflow-hidden" style="padding:18px 14px 22px;box-shadow:0 20px 60px rgba(0,0,0,.4);">
       <div class="starfield" id="starfield"></div>
+      <div id="astroMoon"></div>
       <canvas id="confettiCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:20;"></canvas>
       <div class="relative flex flex-col md:flex-row items-center gap-4" style="z-index:5;">
         <!-- BUGGY compacto -->
-        <div style="flex:0 0 auto;position:relative;width:120px;">
+        <div style="flex:0 0 auto;position:relative;width:160px;">
           <span class="shooting-star ss1"></span><span class="shooting-star ss2"></span><span class="shooting-star ss3"></span>
-          <div id="astroWrap" style="width:120px;height:150px;margin:0 auto;">
-            <svg viewBox="0 0 240 300" width="120" height="150" xmlns="http://www.w3.org/2000/svg">
+          <div id="astroWrap" style="width:160px;height:200px;margin:0 auto;">
+            <svg viewBox="0 0 240 300" width="160" height="200" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <radialGradient id="glassGrad" cx="38%" cy="32%" r="75%"><stop offset="0%" stop-color="#bff0ff" stop-opacity=".95"/><stop offset="45%" stop-color="#7dd3fc" stop-opacity=".55"/><stop offset="100%" stop-color="#38bdf8" stop-opacity=".28"/></radialGradient>
                 <linearGradient id="suitGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#dbe4f5"/></linearGradient>
@@ -389,7 +411,7 @@
               <circle cx="120" cy="10" r="5" fill="#facc15"><animate attributeName="opacity" values="1;.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
             </svg>
           </div>
-          <div class="glass rounded-full px-2 py-0.5 text-center" style="font-size:11px;font-weight:600;color:var(--accent2);">Buggy</div>
+          <div class="glass rounded-full px-2 py-0.5 text-center" style="font-size:13px;font-weight:700;color:var(--accent2);">Buggy</div>
         </div>
 
         <!-- PANEL DE ENSEÑANZA (ocupa el resto) -->
@@ -514,7 +536,7 @@
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="shop" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;font-weight:700;font-size:13px;">● Tienda</button>
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="pet" style="background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;font-weight:700;font-size:13px;">♥ Acariciar</button>
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="talk" style="background:linear-gradient(135deg,#38bdf8,#6366f1);color:#fff;font-weight:700;font-size:13px;">♪ Hablar</button>
-          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="planets" style="background:linear-gradient(135deg,#818cf8,#c084fc);color:#fff;font-weight:700;font-size:13px;">✦ Planetas</button>
+          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="planets" style="background:linear-gradient(135deg,#818cf8,#c084fc);color:#fff;font-weight:700;font-size:13px;">✦ Sistema Solar</button>
         </div>
         <div id="petContent" style="margin-top:14px;min-height:60px;"></div>
         <div id="petMsg" style="min-height:26px;margin-top:10px;font-size:17px;font-weight:700;"></div>
@@ -975,7 +997,7 @@ function loadSave(){try{var raw=localStorage.getItem("buggyV3");if(raw){var o=JS
 function checkDaily(){petInit();var today=new Date().toISOString().slice(0,10);if(save.lastDay===today)return;var y=new Date(Date.now()-86400000).toISOString().slice(0,10);save.streak=(save.lastDay===y)?(save.streak||0)+1:1;save.lastDay=today;var bonus=10+save.streak*3;save.pet.coins+=bonus;persist();setTimeout(function(){var m=document.createElement("div");m.className="modal-bg";m.innerHTML='<div class="glass rounded-2xl p-5 text-center" style="max-width:320px;"><div style="font-size:40px;margin-bottom:6px;">★</div><h3 style="margin:0 0 6px;color:var(--gold);">¡Recompensa diaria!</h3><p style="margin:0 0 4px;font-size:14px;">Día seguido: <strong>'+save.streak+'</strong></p><p style="margin:0 0 12px;font-size:14px;">Ganaste <strong style="color:var(--gold);">● '+bonus+' monedas</strong> para tu mascota.</p><button class="btn rounded-xl px-5 py-2" style="background:linear-gradient(135deg,var(--gold),#f59e0b);color:#7c2d12;font-weight:700;" onclick="this.parentElement.parentElement.remove();">¡Genial!</button></div>';document.body.appendChild(m);sndFanfare();},800);}
 function persist(){try{localStorage.setItem("buggyV3",JSON.stringify(save));}catch(e){}}
 function totalStars(){return save.stars.reduce(function(a,b){return a+b;},0);}
-(function(){var sf=$("starfield");for(var i=0;i<35;i++){var st=document.createElement("div");st.className="star";var sz=Math.random()*2.5+1;st.style.width=sz+"px";st.style.height=sz+"px";st.style.left=Math.random()*100+"%";st.style.top=Math.random()*100+"%";st.style.animationDelay=(Math.random()*3)+"s";sf.appendChild(st);}})();
+(function(){var sf=$("starfield");for(var i=0;i<75;i++){var st=document.createElement("div");st.className="star";var sz=Math.random()*3+1.2;st.style.width=sz+"px";st.style.height=sz+"px";st.style.left=Math.random()*100+"%";st.style.top=Math.random()*100+"%";st.style.animationDelay=(Math.random()*3)+"s";st.style.animationDuration=(1.8+Math.random()*2.5)+"s";sf.appendChild(st);}for(var j=0;j<6;j++){var lu=document.createElement("div");lu.className="lucero";lu.style.left=(8+Math.random()*84)+"%";lu.style.top=(6+Math.random()*40)+"%";lu.style.animationDelay=(Math.random()*2)+"s";sf.appendChild(lu);}})();
 
 /* ==================== AUDIO ==================== */
 var actx=null;
@@ -1972,6 +1994,23 @@ function refreshPetBars(){
   $("petCoins").textContent=p.coins;
   updatePetAlert();renderPetFlies();
 }
+function updateHomePetWidget(){
+  try{
+    petInit();var p=save.pet;if(!p||!p.chosen)return;
+    var n=$("hwPetName");if(!n)return;
+    n.textContent=p.name;
+    $("hwFood").style.width=Math.min(100,p.food)+"%";
+    $("hwHygiene").style.width=Math.min(100,p.hygiene)+"%";
+    var msg=$("hwMsg");
+    if(p.food<25)msg.textContent="Tiene hambre! Juga y gana monedas para alimentarla.";
+    else if(p.hygiene<25)msg.textContent="Esta sucia! Necesita un bano.";
+    else msg.textContent="Esta bien! Explora el Sistema Solar y gana premios.";
+  }catch(e){}
+}
+function openPlanets(){
+  openPetScreen();
+  setTimeout(function(){try{petAction("planets");}catch(e){}},450);
+}
 function startPetLoop(){
   if(_petLoopStarted)return;_petLoopStarted=true;
   setInterval(function(){
@@ -1981,6 +2020,7 @@ function startPetLoop(){
     p.energy=Math.max(0,p.energy-0.45);
     if(p.food<=0)p.happy=Math.max(0,p.happy-1.8);else p.happy=Math.max(0,p.happy-0.35);
     p.lastTick=Date.now();persist();
+    try{updateHomePetWidget();}catch(e){}
     var ps=$("petScreen");if(ps&&!ps.classList.contains("hidden-screen")){refreshPetBars();}
   },5000);
 }
@@ -2003,14 +2043,9 @@ function petSay(text){
 function petBabble(){
   petInit();var p=save.pet;var st=p.stage||0;
   if(st===0)return "Toc toc... pronto saldre de mi cascaron!";
-  var lv=(p.babble||0)+(st*3);
-  if(lv>=7&&Math.random()<0.45){
-    var words=["Hola!","Te quiero mucho!","Juguemos!","Tengo hambre!","Soy "+p.name+"!","Gracias por cuidarme!","Eres mi mejor amigo!"];
-    return words[Math.floor(Math.random()*words.length)];
-  }
-  var n=Math.min(2+Math.floor(lv/4),6);var s2="";
-  for(var i=0;i<n;i++)s2+=BABBLE[Math.floor(Math.random()*BABBLE.length)]+(i<n-1?"-":"!");
-  return s2;
+  if(st===1){var w1=["Hola!","Te quiero!","Juguemos!","Tengo hambre!","Soy "+p.name+"!","Que feliz!"];return w1[Math.floor(Math.random()*w1.length)];}
+  var w2=["Hola! Como estas hoy?","Te quiero mucho!","Juguemos juntos, me divierto!","Gracias por cuidarme todos los dias!","Eres mi mejor amigo!","Me siento muy feliz contigo!","Hoy vamos a aprender algo nuevo!","Vamos a explorar el Sistema Solar!","Me encanta cuando estas conmigo!"];
+  return w2[Math.floor(Math.random()*w2.length)];
 }
 function petMoodPhrase(){
   petInit();var p=save.pet;
@@ -2053,7 +2088,7 @@ function renderPetFlies(){
 }
 function renderPlanets(){
   var c=$("petContent");
-  var html='<div style="font-size:14px;color:var(--muted);margin-bottom:8px;text-align:center;font-weight:700;">Toca un planeta para viajar con '+save.pet.name+'! (cuesta 10 de energia)</div><div class="planet-wrap" id="planetWrap"><div class="planet-sun"></div>';
+  var vc=0;for(var _vk in (save.pet.visited||{}))vc++;var html='<div style="font-size:14px;color:var(--muted);margin-bottom:8px;text-align:center;font-weight:700;">Toca un planeta para viajar con '+save.pet.name+'! (cuesta 10 de energia) · Descubiertos: '+vc+'/8</div><div class="planet-wrap" id="planetWrap"><div class="planet-sun"></div>';
   var radii=[54,76,98,120];
   for(var i=0;i<4;i++)html+='<div class="orbit-ring" style="width:'+(radii[i]*2)+'px;height:'+(radii[i]*2)+'px;"></div>';
   var pos=[[86,28],[90,68],[66,90],[28,88],[8,58],[14,24],[32,8],[70,14]];
@@ -2075,7 +2110,7 @@ function visitPlanet(pid){
   for(var i=0;i<PLANETS.length;i++){if(PLANETS[i].id===pid){pl=PLANETS[i];break;}}
   if(!pl)return;
   if(p.energy<10){petMsg("No hay energia para viajar! Hace que duerma primero.","#f87171");try{sndWrong();}catch(e){}return;}
-  p.energy-=10;p.coins+=pl.reward;p.babble=(p.babble||0)+1;p.affection=Math.min(100,(p.affection||50)+2);persist();
+  p.energy-=10;p.coins+=pl.reward;p.babble=(p.babble||0)+1;p.affection=Math.min(100,(p.affection||50)+2);p.visited=p.visited||{};p.visited[pid]=true;persist();
   var av=$("petAvatar");if(av){av.classList.add("pet-travel");setTimeout(function(){av.classList.remove("pet-travel");},900);}
   try{sndFanfare();}catch(e){}
   renderPet();
@@ -2232,7 +2267,9 @@ function petAction(act){
   }
 }
 $("openPetBtn").addEventListener("click",openPetScreen);
-$("petHomeBtn").addEventListener("click",function(){stopSpeak();$("petScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();sndClick();});
+var _hwc=$("hwCareBtn");if(_hwc)_hwc.addEventListener("click",openPetScreen);
+var _hwp=$("hwPlanetsBtn");if(_hwp)_hwp.addEventListener("click",openPlanets);
+$("petHomeBtn").addEventListener("click",function(){stopSpeak();$("petScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();try{updateHomePetWidget();}catch(e){}sndClick();});
 $("petConfirmBtn").addEventListener("click",function(){
   var name=$("petNameInput").value.trim()||"Buggy Jr";
   petInit();save.pet.type=PETS[selectedPet].id;save.pet.name=name;save.pet.chosen=true;persist();try{localStorage.setItem('tipoMascota',PETS[selectedPet].id);localStorage.setItem('nombreMascota',name);}catch(e){}
@@ -2263,7 +2300,7 @@ try{
   var _t=localStorage.getItem('tipoMascota'),_n=localStorage.getItem('nombreMascota');
   if(_t&&_n){save.pet.type=_t;save.pet.name=_n;save.pet.chosen=true;persist();}
 }catch(e){}
-startPetLoop();
+startPetLoop();try{updateHomePetWidget();}catch(e){}
 if(!save.pet.chosen){showPetModal();}
 })();
 </script>
