@@ -4,7 +4,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>BuggyIA · 93 Juegos · 2 Niveles</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b1026">
@@ -27,8 +27,10 @@
   @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   #astroWrap{animation:floaty 4s ease-in-out infinite;transform-origin:center bottom}
-  @keyframes celebrateJump{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-22px) rotate(-4deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-16px) rotate(4deg)}}
+  @keyframes celebrateJump{0%{transform:translateY(0) rotate(0) scale(1)}35%{transform:translateY(-36px) rotate(180deg) scale(1.12)}70%{transform:translateY(-12px) rotate(320deg) scale(1.06)}100%{transform:translateY(0) rotate(360deg) scale(1)}}
   #astroWrap.celebrate{animation:celebrateJump .7s ease-in-out 3}
+#astroWrap{width:clamp(108px,34vw,165px)!important;margin:clamp(34px,7vh,96px) auto 0 auto!important;}
+@media(max-height:660px){#astroWrap{width:clamp(96px,28vw,130px)!important;margin:clamp(18px,4vh,60px) auto 0 auto!important;}#wordTile{width:76px!important;height:76px!important;font-size:34px!important;}.bubble{padding:6px 10px!important;margin-bottom:6px!important;}}
   @keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
   .eyes{animation:blink 4.5s infinite;transform-origin:center}
   .mouthOpen{transform:scaleY(0);transform-origin:center;transition:transform .08s}
