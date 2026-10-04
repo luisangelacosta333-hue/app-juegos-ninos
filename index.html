@@ -493,7 +493,7 @@ html,body{
           <div id="flashPanel">
             <div id="wordCard" class="rounded-2xl p-3 text-center" style="background:linear-gradient(145deg,rgba(34,211,238,.12),rgba(251,146,60,.10));border:1px solid var(--border);">
               <div class="flex items-center justify-center gap-3 flex-wrap">
-                <div id="wordTile" class="tile" style="width:84px;height:84px;font-size:40px;flex-shrink:0;box-shadow:0 8px 24px rgba(0,0,0,.4);"></div>
+                <div id="wordTile" class="tile" style="width:96px;height:96px;font-size:44px;flex-shrink:0;box-shadow:0 8px 24px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;"></div>
                 <div style="text-align:left;">
                   <div style="font-size:14px;color:#38bdf8;font-weight:700;">Castellano</div>
                   <div id="wordEs" style="font-size:28px;font-weight:700;color:#fff;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,.5);"></div>
@@ -1180,9 +1180,34 @@ function burstConfetti(n){resizeCanvas();var cols=["#22d3ee","#fb923c","#facc15"
 function runConfetti(){confettiRunning=true;resizeCanvas();ctx.clearRect(0,0,canvas.width,canvas.height);var alive=[];for(var i=0;i<particles.length;i++){var p=particles[i];p.vy+=.25;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.life-=.008;if(p.y<canvas.height+20&&p.life>0){alive.push(p);ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.6);ctx.restore();}}particles=alive;if(particles.length>0)requestAnimationFrame(runConfetti);else{ctx.clearRect(0,0,canvas.width,canvas.height);confettiRunning=false;}}
 
 /* ==================== FLASH ==================== */
+var WORD_ICONS={
+"lapiz":"✏️","cuaderno":"📓","libro":"📖","libros":"📚","boligrafo":"🖊️","pluma":"🖊️","goma":"🧽","borrador":"🧽","regla":"📏","tijera":"✂️","tijeras":"✂️","mochila":"🎒","papel":"📄","silla":"🪑","carpeta":"📁","estuche":"🎁","pizarron":"📋","tiza":"🖍️","crayon":"🖍️","crayones":"🖍️","escritorio":"🪑",
+"perro":"🐶","gato":"🐱","pajaro":"🐦","pez":"🐟","pescado":"🐟","caballo":"🐴","vaca":"🐮","cerdo":"🐷","oveja":"🐑","gallina":"🐔","pato":"🦆","raton":"🐭","elefante":"🐘","leon":"🦁","tigre":"🐯","jirafa":"🦒","mono":"🐵","oso":"🐻","conejo":"🐰","delfin":"🐬","ballena":"🐳","tortuga":"🐢","serpiente":"🐍","arana":"🕷️","mariposa":"🦋","abeja":"🐝","hormiga":"🐜","pulpo":"🐙","cangrejo":"🦀","tiburon":"🦈","aguila":"🦅","paloma":"🕊️","cabra":"🐐","burro":"🫏","pavo":"🦃","rana":"🐸","mosca":"🪰","saltamontes":"🦗","caracol":"🐌","lagartija":"🦎",
+"manzana":"🍎","banana":"🍌","naranja":"🍊","uva":"🍇","uvas":"🍇","fresa":"🍓","sandia":"🍉","melon":"🍈","pera":"🍐","durazno":"🍑","cereza":"🍒","limon":"🍋","zanahoria":"🥕","tomate":"🍅","leche":"🥛","agua":"💧","pan":"🍞","queso":"🧀","huevo":"🥚","huevos":"🥚","carne":"🍖","pollo":"🍗","arroz":"🍚","pizza":"🍕","pastel":"🎂","tarta":"🎂","galleta":"🍪","galletas":"🍪","helado":"🍨","chocolate":"🍫","jugo":"🧃","cafe":"☕","te":"🍵","azucar":"🍬","sal":"🧂","miel":"🍯","mantequilla":"🧈","yogur":"🥛","sopa":"🍲","ensalada":"🥗","papas":"🍟","hamburguesa":"🍔","hotdog":"🌭","palomitas":"🍿","almendra":"🌰","nuez":"🌰","coco":"🥥","ananá":"🍍","ananá":"🍍","frutilla":"🍓","frambuesa":"🍓","arandano":"🫐","brocoli":"🥦","choclo":"🌽","maiz":"🌽","pepino":"🥒","pimiento":"🫑","ajo":"🧄","cebolla":"🧅","champinion":"🍄","fideos":"🍝","sushi":"🍣","empanada":"🥟",
+"rojo":"🔴","azul":"🔵","amarillo":"🟡","verde":"🟢","negro":"⚫","blanco":"⚪","naranja":"🟠","morado":"🟣","violeta":"🟣","rosa":"🌸","marron":"🟤","gris":"⚪","dorado":"🟡","plateado":"⚪",
+"mama":"👩","mamá":"👩","papa":"👨","papá":"👨","hermano":"👦","hermana":"👧","bebe":"👶","abuelo":"👴","abuela":"👵","familia":"👨‍👩‍👧‍👦","tio":"🧔","tia":"👩","primo":"🧒","prima":"👧","hijo":"👦","hija":"👧",
+"cabeza":"🧠","ojo":"👁️","ojos":"👀","nariz":"👃","boca":"👄","mano":"✋","manos":"🙌","pie":"🦶","pies":"🦶","diente":"🦷","dientes":"🦷","cabello":"👩‍🦰","oreja":"👂","orejas":"👂","dedo":"👆","dedos":"✋","corazon":"❤️","corazón":"❤️","estomago":"🫃","hueso":"🦴","sangre":"🩸",
+"casa":"🏠","puerta":"🚪","ventana":"🪟","cama":"🛏️","mesa":"🍽️","sofa":"🛋️","sofá":"🛋️","bano":"🚽","baño":"🚽","cocina":"🍳","nevera":"🧊","heladera":"🧊","televisor":"📺","television":"📺","computadora":"💻","celular":"📱","telefono":"📱","teléfono":"📱","reloj":"⏰","lampara":"💡","lámpara":"💡","espejo":"🪞","llave":"🔑","llaves":"🔑","jardin":"🌻","jardín":"🌻","patio":"🏡","garaje":"🚗","escoba":"🧹","balde":"🪣","esponja":"🧽","jabon":"🧼","jabón":"🧼","toalla":"🧻","cortina":"🪟",
+"camisa":"👕","remera":"👕","pantalon":"👖","pantalón":"👖","vestido":"👗","zapato":"👟","zapatos":"👟","sombrero":"🎩","gorra":"🧢","media":"🧦","medias":"🧦","bufanda":"🧣","guante":"🧤","guantes":"🧤","falda":"👗","blusa":"👚","sweater":"🧥","campera":"🧥","abrigo":"🧥","traje":"🤵","corbata":"👔","boton":"🔘",
+"sol":"☀️","luna":"🌙","estrella":"⭐","estrellas":"✨","nube":"☁️","nubes":"☁️","lluvia":"🌧️","nieve":"❄️","viento":"🌬️","arbol":"🌳","árbol":"🌳","arboles":"🌲","flor":"🌸","flores":"💐","pasto":"🌱","rio":"🏞️","río":"🏞️","mar":"🌊","montana":"⛰️","montaña":"⛰️","fuego":"🔥","tierra":"🌍","cielo":"🌌","arcoiris":"🌈","arcoíris":"🌈","rayo":"⚡","trueno":"🌩️","nieve":"❄️","hielo":"🧊","nublado":"☁️","soleado":"☀️","lluvioso":"🌧️",
+"autobus":"🚌","autobús":"🚌","colectivo":"🚌","coche":"🚗","auto":"🚗","carro":"🚗","bicicleta":"🚲","avion":"✈️","avión":"✈️","barco":"⛵","tren":"🚂","taxi":"🚕","camion":"🚚","camión":"🚚","moto":"🏍️","motocicleta":"🏍️","subte":"🚇","subterraneo":"🚇","avioneta":"✈️","helicoptero":"🚁","cohete":"🚀","globo":"🎈","paraguas":"☂️",
+"doctor":"👨‍⚕️","doctores":"👨‍⚕️","maestro":"👨‍🏫","maestra":"👩‍🏫","bombero":"👨‍🚒","policia":"👮","policía":"👮","cocinero":"👨‍🍳","cocinera":"👩‍🍳","artista":"🎨","musico":"🎸","músico":"🎸","piloto":"👨‍✈️","enfermero":"🩺","enfermera":"🩺","dentista":"🦷","veterinario":"🐾","pintor":"🎨","escritor":"✍️","cantante":"🎤","bailarin":"💃","bailarín":"💃","actor":"🎭","actriz":"🎭","ingeniero":"👷","albanil":"👷","albañil":"👷","cartero":"📮","panadero":"🥖","pescador":"🎣","granjero":"🧑‍🌾","jardinero":"🧑‍🌾",
+"guitarra":"🎸","piano":"🎹","violin":"🎻","violín":"🎻","bateria":"🥁","batería":"🥁","flauta":"🪈","trompeta":"🎺","arpa":"🎶","saxofon":"🎷","saxofón":"🎷","tambor":"🥁","maracas":"🪇","xilofon":"🎶","microfono":"🎤","micrófono":"🎤","altavoz":"🔊","radio":"📻","auriculares":"🎧","cantante":"🎤","cancion":"🎵","canción":"🎵","musica":"🎵","música":"🎵","baile":"💃","fiesta":"🎉","cumpleanos":"🎂","cumpleaños":"🎂","pastel":"🎂","velas":"🕯️","regalo":"🎁","regalos":"🎁","globo":"🎈","globos":"🎈",
+"futbol":"⚽","fútbol":"⚽","basquet":"🏀","pelota":"⚽","pelotas":"⚽","nadar":"🏊","correr":"🏃","saltar":"🤸","bicicleta":"🚲","ciclismo":"🚲","tenis":"🎾","pingpong":"🏓","voley":"🏐","rugby":"🏉","golf":"⛳","ajedrez":"♟️","dados":"🎲","cartas":"🃏","rompecabezas":"🧩","juguete":"🧸","muneca":"🪆","muñeca":"🪆","oso":"🧸","cometas":"🪁","yoyo":"🪀",
+"escuela":"🏫","colegio":"🏫","hospital":"🏥","parque":"🌳","tienda":"🏪","biblioteca":"📚","iglesia":"⛪","museo":"🏛️","banco":"🏦","correo":"📮","supermercado":"🛒","farmacia":"💊","cine":"🎬","teatro":"🎭","plaza":"⛲","playa":"🏖️","aeropuerto":"✈️","estacion":"🚉","estación":"🚉","parada":"🚏","puente":"🌉","edificio":"🏢","torre":"🗼","castillo":"🏰","iglesia":"⛪",
+"dinero":"💰","moneda":"🪙","monedas":"🪙","billete":"💵","reloj":"⌚","tiempo":"⏰","hora":"🕐","horas":"🕐","minuto":"⏱️","segundo":"⏱️","calendario":"📅","dia":"📆","día":"📆","semana":"📆","mes":"📆","ano":"📅","año":"📅","cumpleanos":"🎂","navidad":"🎄","pascua":"🐰","carnaval":"🎭",
+"dulce":"🍬","dulces":"🍬","caramelo":"🍬","caramelos":"🍬","chicle":"🍬","chupetin":"🍭","chupetín":"🍭","helado":"🍨","nieve":"🍧","limonada":"🍋","batido":"🥤","gaseosa":"🥤","agua":"💧","sal":"🧂","pimienta":"🌶️","aceite":"🫒","vinagre":"🍶",
+"bebe":"👶","nino":"🧒","niño":"🧒","nina":"👧","niña":"👧","adulto":"🧑","viejo":"👴","vieja":"👵","amigo":"🤝","amigos":"👫","familia":"👨‍👩‍👧‍👦","gente":"👥","persona":"🧑","personas":"👥","bebé":"👶",
+"sol":"☀️","luz":"💡","sombra":"🌑","espejo":"🪞","color":"🎨","colores":"🎨","forma":"🔷","formas":"🔷","circulo":"⭕","círculo":"⭕","cuadrado":"🟦","triangulo":"🔺","triángulo":"🔺","rectangulo":"▬","rectángulo":"▬","estrella":"⭐","corazon":"❤️","corazón":"❤️","luna":"🌙","sol":"☀️",
+"uno":"1️⃣","dos":"2️⃣","tres":"3️⃣","cuatro":"4️⃣","cinco":"5️⃣","seis":"6️⃣","siete":"7️⃣","ocho":"8️⃣","nueve":"9️⃣","diez":"🔟","cero":"0️⃣"
+};
+function _norm(s){return (s||"").toLowerCase().replace(/[áäàâ]/g,"a").replace(/[éëèê]/g,"e").replace(/[íïìî]/g,"i").replace(/[óöòô]/g,"o").replace(/[úüùû]/g,"u").replace(/ñ/g,"n").replace(/[^a-z0-9 ]/g,"").trim();}
+function wordIcon(es,en){return WORD_ICONS[_norm(es)]||WORD_ICONS[_norm(en)]||null;}
 function renderFlash(){
   var c=CAT[curCat].cards[idx];var tile=$("wordTile");
-  tile.textContent=c.tile;tile.style.background="linear-gradient(135deg,"+CAT[curCat].color+","+CAT[curCat].color+"88)";
+  var _ic=wordIcon(c.es,c.en);
+  if(_ic){tile.innerHTML='<span style="font-size:56px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));">'+_ic+'</span>';tile.style.background="linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.06))";tile.style.border="2px solid "+CAT[curCat].color;tile.style.boxShadow="0 8px 24px rgba(0,0,0,.4),0 0 20px "+CAT[curCat].color+"55";}
+  else{tile.textContent=c.tile;tile.style.background="linear-gradient(135deg,"+CAT[curCat].color+","+CAT[curCat].color+"88)";tile.style.border="none";tile.style.boxShadow="0 8px 24px rgba(0,0,0,.4)";}
   $("wordEs").textContent=gameLevel===2?"? ? ?":c.es;
   $("wordEn").innerHTML="";
   for(var i=0;i<c.en.length;i++){var sp=document.createElement("span");sp.className="word-letter";sp.textContent=c.en[i];sp.style.animationDelay=(i*.07)+"s";sp.style.color=(i===0)?"var(--accent2)":"var(--text)";sp.style.fontSize=(i===0)?"38px":"30px";$("wordEn").appendChild(sp);}
@@ -2002,6 +2027,7 @@ function startCategory(i){
   var cat=CAT[i];
   $("levelTitle").textContent=cat.name;$("levelTitle").style.color=cat.color;
   $("homeScreen").classList.add("hidden-screen");$("gameScreen").classList.remove("hidden-screen");
+  window.scrollTo(0,0);
   $("levelOverlay").style.display="none";stopSpeak();stopTimer();introPlaying=false;
   var introText=cat.intro||INTROS[cat.id]||"";
   if(introText){introPlaying=true;say(introText,"es-AR",function(){introPlaying=false;});}
