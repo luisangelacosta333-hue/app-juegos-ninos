@@ -279,7 +279,7 @@
           <p style="color:var(--accent);margin:3px 0 0;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 0 12px rgba(34,211,238,.6);">Aprendé Inglés Jugando</p>
         </div>
       </div>
-      <p style="color:var(--muted);margin:8px 0 0;font-size:15px;font-weight:500;">93 juegos · 2 niveles de dificultad · Buggy te explica en castellano y vos hablás en inglés</p>
+      <p style="color:var(--muted);margin:8px 0 0;font-size:15px;font-weight:500;">103 juegos · 2 niveles de dificultad · Buggy te explica en castellano y vos hablás en inglés</p>
     </div>
     <!-- ===== CARTEL: PLAN GRATIS PARA SIEMPRE ===== -->
     <div class="fade-in rounded-2xl px-4 py-3 mb-3 text-center" style="background:linear-gradient(100deg,rgba(74,222,128,.20),rgba(250,204,21,.20),rgba(244,114,182,.20));border:2px solid var(--gold);box-shadow:0 0 28px rgba(250,204,21,.4), inset 0 1px 0 rgba(255,255,255,.12);">
@@ -328,6 +328,24 @@
       <button id="hwCareBtn" class="btn rounded-xl px-4 py-2.5" style="background:linear-gradient(135deg,#fb923c,#ea580c);color:#fff;font-weight:800;font-size:14px;box-shadow:0 6px 16px rgba(0,0,0,.35);">Cuidar Mascota</button>
       <button id="hwPlanetsBtn" class="btn rounded-xl px-4 py-2.5" style="background:linear-gradient(135deg,#818cf8,#c084fc);color:#fff;font-weight:800;font-size:14px;box-shadow:0 6px 16px rgba(0,0,0,.35);">Sistema Solar</button>
     </div>
+  </div>
+</div>
+<div id="engagePanel" class="glass rounded-2xl px-4 py-3 mb-3 fade-in" style="background:linear-gradient(100deg,rgba(250,204,21,.12),rgba(244,114,182,.12),rgba(34,211,238,.12));border:2px solid rgba(250,204,21,.4);box-shadow:0 10px 30px rgba(250,204,21,.2);">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+    <div style="font-size:16px;font-weight:800;color:var(--gold);">★ Misiones de hoy</div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <span style="font-size:13px;font-weight:700;color:var(--accent);">Racha: <strong id="streakDays">0</strong> días</span>
+      <button id="achBtn" class="btn rounded-xl px-3 py-1.5" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:800;font-size:13px;box-shadow:0 5px 14px rgba(167,139,250,.4);">★ Logros</button>
+    </div>
+  </div>
+  <div id="missionList" style="display:flex;flex-direction:column;gap:6px;"></div>
+</div>
+<div id="achModal" class="modal-bg" style="display:none;">
+  <div class="glass rounded-3xl p-5" style="max-width:420px;width:100%;max-height:88vh;overflow-y:auto;">
+    <h3 style="font-size:22px;font-weight:800;margin:0 0 4px;text-align:center;color:var(--purple);">Logros y Medallas</h3>
+    <p style="text-align:center;font-size:13px;color:var(--muted);margin:0 0 12px;">Coleccionalas todas! Cada una te da monedas de regalo.</p>
+    <div id="achGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;"></div>
+    <button id="achCloseBtn" class="btn rounded-2xl px-6 py-3 w-full mt-3" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:800;font-size:15px;">Cerrar</button>
   </div>
 </div>
 <div id="catSections"></div>
@@ -949,10 +967,43 @@ mcqL("Sustantivos, verbos y adjetivos","#a78bfa","◆",[
  ["¿De qué género es... caballo? (masculino)",["femenino","masculino","neutro","plural"],1,"Caballo es masculino. Su femenino es yegua."],
  ["¿De qué género es... vaca? (femenino)",["masculino","femenino","neutro","plural"],1,"Vaca es femenino. Su masculino es toro."]
 ])
-
+,
+/* ===== CIENCIAS NATURALES ===== */
+{id:"cn_cuerpo",name:"El cuerpo humano",section:"Ciencias Naturales",type:"flash",color:"#4ade80",icon:"☺",cards:fc([["cabeza","head"],["ojo","eye"],["nariz","nose"],["boca","mouth"],["mano","hand"],["pie","foot"],["diente","tooth"],["cabello","hair"]])},
+{id:"cn_animales",name:"Animales salvajes",section:"Ciencias Naturales",type:"flash",color:"#22c55e",icon:"❦",cards:fc([["león","lion"],["elefante","elephant"],["jirafa","giraffe"],["mono","monkey"],["tigre","tiger"],["cebra","zebra"],["oso","bear"],["delfín","dolphin"]])},
+{id:"cn_plantas",name:"Plantas y flores",section:"Ciencias Naturales",type:"flash",color:"#84cc16",icon:"❀",cards:fc([["árbol","tree"],["flor","flower"],["hoja","leaf"],["raíz","root"],["semilla","seed"],["fruta","fruit"],["pasto","grass"],["rosa","rose"]])},
+{id:"cn_solar",name:"Sistema Solar",section:"Ciencias Naturales",type:"mcq",color:"#facc15",icon:"☀",intro:"Aprendé sobre el Sol y los planetas. Escuchá la pregunta y elegí la respuesta correcta. ¡Son 6 preguntas!",q:[
+ ["¿Cuántos planetas tiene el Sistema Solar?",["7","8","9","10"],1,"Hay 8 planetas: Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano y Neptuno."],
+ ["¿En qué planeta vivimos?",["Marte","Venus","La Tierra","Júpiter"],2,"Vivimos en la Tierra, el tercer planeta desde el Sol."],
+ ["¿Cuál es el planeta más cercano al Sol?",["Mercurio","La Tierra","Saturno","Neptuno"],0,"Mercurio es el más cercano al Sol y el más chico."],
+ ["¿Qué planeta tiene anillos brillantes?",["Marte","Saturno","Venus","Urano"],1,"Saturno tiene anillos de hielo y roca muy brillantes."],
+ ["¿El Sol es...?",["Un planeta","Una estrella","Una luna","Un cometa"],1,"El Sol es una estrella: nos da luz y calor."],
+ ["¿Cuál es el planeta más grande?",["La Tierra","Marte","Júpiter","Venus"],2,"Júpiter es el planeta más grande de todos."]
+]},
+{id:"cn_quiz",name:"Ciencias Naturales quiz",section:"Ciencias Naturales",type:"mcq",color:"#06b6d4",icon:"✿",intro:"Preguntas divertidas de la naturaleza. Elegí la respuesta correcta. ¡Son 6!",q:[
+ ["¿De qué color es el pasto?",["Azul","Verde","Rojo","Amarillo"],1,"El pasto es verde."],
+ ["¿Qué necesitan las plantas para vivir?",["Solo agua","Agua y luz del sol","Solo tierra","Nada"],1,"Las plantas necesitan agua, tierra y luz del sol."],
+ ["¿Los peces respiran por las...?",["Pulmones","Branquias","Nariz","Patas"],1,"Los peces respiran por las branquias."],
+ ["¿Cuántas patas tiene un perro?",["2","3","4","6"],2,"Un perro tiene 4 patas."],
+ ["¿Qué nos da el Sol?",["Hielo","Luz y calor","Agua","Viento"],1,"El Sol nos da luz y calor."],
+ ["¿Las abejas hacen...?",["Leche","Miel","Pan","Jugo"],1,"Las abejas hacen miel."]
+]},
+/* ===== CIENCIAS SOCIALES ===== */
+{id:"cs_familia",name:"La familia",section:"Ciencias Sociales",type:"flash",color:"#fb923c",icon:"♥",cards:fc([["mamá","mom"],["papá","dad"],["hermano","brother"],["hermana","sister"],["abuelo","grandpa"],["abuela","grandma"],["bebé","baby"],["familia","family"]])},
+{id:"cs_transporte",name:"Medios de transporte",section:"Ciencias Sociales",type:"flash",color:"#f472b6",icon:"➤",cards:fc([["autobús","bus"],["coche","car"],["bicicleta","bike"],["avión","airplane"],["barco","boat"],["tren","train"],["taxi","taxi"],["camión","truck"]])},
+{id:"cs_profesiones",name:"Profesiones y oficios",section:"Ciencias Sociales",type:"flash",color:"#a78bfa",icon:"✦",cards:fc([["doctor","doctor"],["maestro","teacher"],["bombero","firefighter"],["policía","police officer"],["cocinero","cook"],["artista","artist"],["músico","musician"],["piloto","pilot"]])},
+{id:"cs_ciudad",name:"Lugares de la ciudad",section:"Ciencias Sociales",type:"flash",color:"#38bdf8",icon:"◈",cards:fc([["escuela","school"],["hospital","hospital"],["parque","park"],["tienda","store"],["biblioteca","library"],["casa","house"],["iglesia","church"],["museo","museum"]])},
+{id:"cs_quiz",name:"Ciencias Sociales quiz",section:"Ciencias Sociales",type:"mcq",color:"#f59e0b",icon:"★",intro:"Preguntas sobre la familia, la ciudad y los oficios. Elegí la respuesta correcta. ¡Son 6!",q:[
+ ["¿Dónde van los niños a aprender?",["Al parque","A la escuela","Al hospital","A la playa"],1,"Los niños van a la escuela a aprender."],
+ ["¿Quién cura a las personas enfermas?",["El maestro","El doctor","El policía","El cocinero"],1,"El doctor cura a las personas enfermas."],
+ ["¿Qué medio de transporte vuela por el cielo?",["El tren","El avión","El barco","La bicicleta"],1,"El avión vuela por el cielo."],
+ ["¿Quién apaga los incendios?",["El policía","El bombero","El artista","El músico"],1,"El bombero apaga los incendios y salva vidas."],
+ ["¿Dónde vivimos con nuestra familia?",["En la escuela","En nuestra casa","En el hospital","En el museo"],1,"Vivimos en nuestra casa con la familia."],
+ ["¿Por dónde cruzamos la calle seguros?",["Por el parque","Por la senda peatonal","Por la escuela","Por el museo"],1,"Cruzamos por la senda peatonal, la cebra, para estar seguros."]
+]}
 ];
 function mcqL(name,color,icon,qs){var c=mcq(name,color,icon,qs);c.section="Lengua";return c;}
-var SECTIONS=["Vocabulario","Matemática","Lengua","Juegos de inteligencia","Juegos","Aventuras"];
+var SECTIONS=["Vocabulario","Matemática","Lengua","Ciencias Naturales","Ciencias Sociales","Juegos de inteligencia","Juegos","Aventuras"];
 var TROPHY_NEED=[10,25,45];
 
 /* ==================== STATE ==================== */
@@ -1054,6 +1105,7 @@ function handleRepeatResult(correct,tr){stopListeningUI();attempts++;if(correct)
 function onCorrect(kind){
   if(!correctSet[idx]){correctSet[idx]=true;earned++;if(attempts<=1)firstTry++;streak++;score+=10+(streak>=3?5:0);}else score+=2;
   save.score=score;persist();addPetCoins(10);updateHUD();sndCorrect();celebrate();
+  try{ensureDaily();save.daily.correct++;persist();checkAchievements();}catch(e){}
   var cat=CAT[curCat];
   var total=cat.type==="flash"?cat.cards.length:(cat.type==="memory"?(gameLevel===2?8:6):6);
   if(kind!=="memory"&&earned>=total)setTimeout(showComplete,1500);
@@ -1865,6 +1917,7 @@ function showComplete(){
 function renderHome(){
   $("totalStars").textContent=totalStars();
   $("xpLevel").textContent=Math.floor(totalStars()/5)+1;
+  try{updateMissions();checkAchievements();}catch(e){}
   var cont=$("catSections");cont.innerHTML="";
   SECTIONS.forEach(function(sec){
     var label=document.createElement("div");label.className="section-label";
@@ -1985,6 +2038,73 @@ var PLANETS=[
 ];
 var BABBLE=["ma","me","mi","mo","mu","la","le","li","lo","lu"];
 var _petLoopStarted=false,_petBubbleT=null;
+var MISSIONS=[
+ {id:"m1",name:"Responde bien 5 palabras",goal:5,reward:20,get:function(){return (save.daily&&save.daily.correct)||0;}},
+ {id:"m2",name:"Cuida a tu mascota (comer o banar)",goal:1,reward:15,get:function(){return (save.daily&&save.daily.care)||0;}},
+ {id:"m3",name:"Viaja a un planeta del Sistema Solar",goal:1,reward:25,get:function(){return (save.daily&&save.daily.planet)||0;}}
+];
+var ACHS=[
+ {id:"a1",name:"Primer acierto",icon:"★",need:function(){return (save.pet&&save.pet.totalCorrect)>=1;},reward:10},
+ {id:"a2",name:"10 aciertos",icon:"★★",need:function(){return (save.pet&&save.pet.totalCorrect)>=10;},reward:20},
+ {id:"a3",name:"50 aciertos",icon:"★★★",need:function(){return (save.pet&&save.pet.totalCorrect)>=50;},reward:50},
+ {id:"a4",name:"Mascota adulta",icon:"♥",need:function(){return (save.pet&&save.pet.stage)>=3;},reward:40},
+ {id:"a5",name:"Explorador solar",icon:"✦",need:function(){var c=0;var v=(save.pet&&save.pet.visited)||{};for(var k in v)c++;return c>=8;},reward:50},
+ {id:"a6",name:"Racha de 3 dias",icon:"⚡",need:function(){return (save.streak||0)>=3;},reward:30},
+ {id:"a7",name:"Coleccionista",icon:"◆",need:function(){return totalStars()>=10;},reward:30},
+ {id:"a8",name:"Nivel experto",icon:"♛",need:function(){return Math.floor(totalStars()/5)+1>=5;},reward:40}
+];
+function ensureDaily(){
+  var t=new Date().toISOString().slice(0,10);
+  if(!save.daily||save.daily.date!==t){save.daily={date:t,correct:0,care:0,planet:0,claimed:{}};persist();}
+}
+function updateMissions(){
+  try{
+  ensureDaily();var ml=$("missionList");if(!ml)return;ml.innerHTML="";
+  MISSIONS.forEach(function(m){
+    var prog=Math.min(m.goal,m.get());var done=prog>=m.goal;var claimed=save.daily.claimed[m.id];
+    var row=document.createElement("div");
+    row.style.cssText="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border-radius:12px;padding:7px 10px;border:1px solid var(--border);";
+    var info=document.createElement("div");info.style.flex="1";
+    info.innerHTML='<div style="font-size:13px;font-weight:700;margin-bottom:3px;">'+m.name+'</div><div class="stat-bar" style="height:8px;"><div class="stat-fill" style="width:'+(prog/m.goal*100)+'%;background:var(--gold);"></div></div><div style="font-size:11px;color:var(--muted);margin-top:2px;font-weight:600;">'+prog+'/'+m.goal+'</div>';
+    row.appendChild(info);
+    var btn=document.createElement("button");
+    if(claimed){btn.textContent="✓ Reclamado";btn.disabled=true;btn.style.cssText="background:rgba(74,222,128,.25);color:#4ade80;border-radius:999px;padding:6px 12px;font-weight:800;font-size:12px;border:none;";}
+    else if(done){btn.textContent="+"+m.reward+" monedas";btn.style.cssText="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;border-radius:999px;padding:6px 12px;font-weight:900;font-size:12px;border:none;cursor:pointer;animation:alertPulse 1.4s infinite;";btn.addEventListener("click",function(){claimMission(m.id);});}
+    else{btn.textContent="● "+m.reward;btn.disabled=true;btn.style.cssText="background:rgba(139,147,194,.2);color:var(--muted);border-radius:999px;padding:6px 12px;font-weight:700;font-size:12px;border:none;";}
+    row.appendChild(btn);ml.appendChild(row);
+  });
+  var sd=$("streakDays");if(sd)sd.textContent=save.streak||0;
+  }catch(e){}
+}
+function claimMission(id){
+  ensureDaily();var m=null;for(var i=0;i<MISSIONS.length;i++)if(MISSIONS[i].id===id)m=MISSIONS[i];if(!m||save.daily.claimed[id])return;
+  save.daily.claimed[id]=true;save.pet.coins+=m.reward;persist();try{sndFanfare();}catch(e){}
+  try{showToast("Mision completada! +"+m.reward+" monedas");}catch(e){}
+  updateMissions();try{updateHomePetWidget();}catch(e){}
+}
+function checkAchievements(){
+  try{
+  if(!save.ach)save.ach={};var unlocked=0;
+  ACHS.forEach(function(a){
+    if(!save.ach[a.id]&&a.need()){save.ach[a.id]=true;save.pet.coins+=a.reward;unlocked++;
+      try{showToast("Logro desbloqueado: "+a.name+"! +"+a.reward+" monedas");}catch(e){}
+    }
+  });
+  if(unlocked>0){persist();try{sndFanfare();}catch(e){}}
+  }catch(e){}
+}
+function showAchievements(){
+  checkAchievements();if(!save.ach)save.ach={};
+  var g=$("achGrid");g.innerHTML="";
+  ACHS.forEach(function(a){
+    var got=!!save.ach[a.id];
+    var d=document.createElement("div");
+    d.style.cssText="border-radius:14px;padding:10px;text-align:center;border:2px solid "+(got?"var(--gold)":"var(--border)")+";background:"+(got?"linear-gradient(135deg,rgba(250,204,21,.18),rgba(244,114,182,.12))":"rgba(255,255,255,.03)")+";opacity:"+(got?1:.55)+";";
+    d.innerHTML='<div style="font-size:26px;margin-bottom:2px;">'+(got?a.icon:"?")+'</div><div style="font-size:12px;font-weight:800;line-height:1.2;">'+a.name+'</div><div style="font-size:11px;color:var(--gold);font-weight:700;margin-top:2px;">● '+a.reward+'</div>';
+    g.appendChild(d);
+  });
+  $("achModal").style.display="flex";try{sndClick();}catch(e){}
+}
 function refreshPetBars(){
   petInit();var p=save.pet;
   $("statHappy").style.width=Math.min(100,p.happy)+"%";$("statHappyN").textContent=Math.round(p.happy);
@@ -2110,7 +2230,7 @@ function visitPlanet(pid){
   for(var i=0;i<PLANETS.length;i++){if(PLANETS[i].id===pid){pl=PLANETS[i];break;}}
   if(!pl)return;
   if(p.energy<10){petMsg("No hay energia para viajar! Hace que duerma primero.","#f87171");try{sndWrong();}catch(e){}return;}
-  p.energy-=10;p.coins+=pl.reward;p.babble=(p.babble||0)+1;p.affection=Math.min(100,(p.affection||50)+2);p.visited=p.visited||{};p.visited[pid]=true;persist();
+  p.energy-=10;p.coins+=pl.reward;p.babble=(p.babble||0)+1;p.affection=Math.min(100,(p.affection||50)+2);p.visited=p.visited||{};p.visited[pid]=true;persist();try{ensureDaily();save.daily.planet=1;checkAchievements();}catch(e){}
   var av=$("petAvatar");if(av){av.classList.add("pet-travel");setTimeout(function(){av.classList.remove("pet-travel");},900);}
   try{sndFanfare();}catch(e){}
   renderPet();
@@ -2215,7 +2335,7 @@ function petAction(act){
     c.innerHTML=html;
     Array.prototype.forEach.call(c.querySelectorAll("[data-food]"),function(b){b.addEventListener("click",function(){
       var fid=b.dataset.food;var f=FOODS.filter(function(x){return x.id===fid;})[0];
-      save.pet.foods[fid]--;save.pet.food=Math.min(100,save.pet.food+25);save.pet.happy=Math.min(100,save.pet.happy+5);persist();
+      save.pet.foods[fid]--;save.pet.food=Math.min(100,save.pet.food+25);save.pet.happy=Math.min(100,save.pet.happy+5);persist();try{ensureDaily();save.daily.care=1;}catch(e){}
       var av=$("petAvatar");av.classList.add("pet-eat");setTimeout(function(){av.classList.remove("pet-eat");},1300);
       petMsg("¡Ñam! A "+save.pet.name+" le encantó la "+f.name+".","var(--green)");sndCorrect();renderPet();petAction("feed");
     });});
@@ -2234,7 +2354,7 @@ function petAction(act){
   } else if(act==="bath"){
     bathStep=0;var steps=["Abrir el agua","Poner jabón","Lavar","Enjuagar","Secar"];
     function bathNext(){
-      if(bathStep>=steps.length){save.pet.hygiene=100;save.pet.happy=Math.min(100,save.pet.happy+10);persist();petMsg("¡Tu mascota está limpia y perfumada!","var(--accent)");sndFanfare();renderPet();c.innerHTML="";return;}
+      if(bathStep>=steps.length){save.pet.hygiene=100;save.pet.happy=Math.min(100,save.pet.happy+10);persist();try{ensureDaily();save.daily.care=1;}catch(e){}petMsg("¡Tu mascota está limpia y perfumada!","var(--accent)");sndFanfare();renderPet();c.innerHTML="";return;}
       c.innerHTML='<button id="bathStepBtn" class="btn rounded-xl px-5 py-2.5 w-full" style="background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-weight:700;font-size:14px;">Paso '+(bathStep+1)+' de 5: '+steps[bathStep]+'</button>';
       $("bathStepBtn").addEventListener("click",function(){bathStep++;sndClick();bathNext();});
     }
@@ -2268,6 +2388,8 @@ function petAction(act){
 }
 $("openPetBtn").addEventListener("click",openPetScreen);
 var _hwc=$("hwCareBtn");if(_hwc)_hwc.addEventListener("click",openPetScreen);
+var _achb=$("achBtn");if(_achb)_achb.addEventListener("click",showAchievements);
+var _achc=$("achCloseBtn");if(_achc)_achc.addEventListener("click",function(){$("achModal").style.display="none";try{sndClick();}catch(e){}});
 var _hwp=$("hwPlanetsBtn");if(_hwp)_hwp.addEventListener("click",openPlanets);
 $("petHomeBtn").addEventListener("click",function(){stopSpeak();$("petScreen").classList.add("hidden-screen");$("homeScreen").classList.remove("hidden-screen");renderHome();try{updateHomePetWidget();}catch(e){}sndClick();});
 $("petConfirmBtn").addEventListener("click",function(){
