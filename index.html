@@ -296,6 +296,9 @@ div:not(.stat-fill){background-color:#000!important;}
 #wordCard,#flashPanel,.glass,.bubble{background-image:none!important;background:#000!important;}
 #petArea,#petStage{background:radial-gradient(circle at 50% 25%,#1e2a5a 0%,#0b1026 55%,#000 100%)!important;}
 #petAvatar,#petAvatar *{background-color:transparent!important;}
+#petAvatar{display:block!important;visibility:visible!important;opacity:1!important;overflow:visible!important;}
+#petAvatar svg{display:block!important;max-width:100%;height:auto;overflow:visible!important;}
+#petEmoji{display:block!important;visibility:visible!important;opacity:1!important;}
 .premium-bg,.starfield,.shooting-star,#astroMoon{display:none!important;}
 #homeScreen,#gameScreen,#petScreen{background:#000!important;}
 @keyframes buggyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -439,29 +442,29 @@ div:not(.stat-fill){background-color:#000!important;}
       <div id="timerBar" class="timer-bar" style="display:none;"><div id="timerFill" class="timer-fill" style="width:100%;"></div></div>
     </div>
 
-    <div id="gameArea" class="relative rounded-3xl glass overflow-hidden" style="padding:18px 14px 22px;box-shadow:0 20px 60px rgba(0,0,0,.4);">
+    <div id="gameArea" class="relative rounded-3xl glass overflow-hidden" style="padding:12px 12px 14px;box-shadow:0 20px 60px rgba(0,0,0,.4);">
       <div class="starfield" id="starfield"></div>
       <div id="astroMoon"></div>
       <canvas id="confettiCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:20;"></canvas>
-      <div class="relative flex flex-col md:flex-row items-center gap-4" style="z-index:5;">
-        <!-- BUGGY compacto -->
-        <div style="flex:0 0 auto;position:relative;width:160px;">
-          <span class="shooting-star ss1"></span><span class="shooting-star ss2"></span><span class="shooting-star ss3"></span>
-          <div id="astroWrap" class="img-mode" style="width:120px;margin:46px auto 0 auto;">
-            <img id="buggy-avatar" src="gemini_generated_video_7887dc6c.gif" alt="Buggy" style="width:100%;height:auto;display:block;">
-          </div>
-          <div class="glass rounded-full px-2 py-0.5 text-center" style="font-size:13px;font-weight:700;color:var(--accent2);">Buggy</div>
-        </div>
-
-        <!-- PANEL DE ENSEÑANZA (ocupa el resto) -->
-        <div style="flex:1;min-width:0;width:100%;">
-          <div class="bubble glass rounded-xl px-3 py-2 mb-3" style="background:var(--card);">
+      <div class="relative" style="z-index:5;">
+        <!-- PANEL DE ENSEÑANZA -->
+        <div style="width:100%;">
+          <div class="bubble glass rounded-xl px-3 py-2 mb-2" style="background:var(--card);">
             <p id="astroMessage" style="margin:0;font-size:13px;line-height:1.45;color:var(--text);"></p>
+          </div>
+
+          <!-- BUGGY agrandado y bajado junto a la tarjeta del numero -->
+          <div style="position:relative;width:210px;margin:0 auto 6px;">
+            <span class="shooting-star ss1"></span><span class="shooting-star ss2"></span><span class="shooting-star ss3"></span>
+            <div id="astroWrap" class="img-mode" style="width:180px;margin:0 auto;">
+              <img id="buggy-avatar" src="gemini_generated_video_7887dc6c.gif" alt="Buggy" style="width:100%;height:auto;display:block;">
+            </div>
+            <div class="glass rounded-full px-2 py-0.5 text-center" style="font-size:13px;font-weight:700;color:var(--accent2);max-width:120px;margin:4px auto 0;">Buggy</div>
           </div>
 
           <!-- FLASH (vocabulario con microfono) -->
           <div id="flashPanel">
-            <div id="wordCard" class="rounded-2xl p-3 text-center" style="background:linear-gradient(145deg,rgba(34,211,238,.12),rgba(251,146,60,.10));border:1px solid var(--border);">
+            <div id="wordCard" class="rounded-2xl p-2 text-center" style="background:linear-gradient(145deg,rgba(34,211,238,.12),rgba(251,146,60,.10));border:1px solid var(--border);">
               <div class="flex items-center justify-center gap-3 flex-wrap">
                 <div id="wordTile" class="tile" style="width:96px;height:96px;font-size:44px;flex-shrink:0;box-shadow:0 8px 24px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;"></div>
                 <div style="text-align:left;">
@@ -2343,7 +2346,7 @@ function petSVG(){
 }
 function renderPet(){
   petInit();var p=save.pet;
-  $("petAvatar").innerHTML=petSVG();var _pe=document.getElementById("petEmoji");if(_pe)_pe.textContent=(save.pet.stage>0&&p.emoji)?p.emoji:"";
+  $("petAvatar").innerHTML=petSVG();var _petDef=(PETS.filter(function(x){return x.id===save.pet.type;})[0]||PETS[0]);var _pe=document.getElementById("petEmoji");if(_pe)_pe.textContent=(save.pet.stage>0&&_petDef.emoji)?_petDef.emoji:"";
   $("petNameDisplay").textContent=p.name;
   $("petStageLabel").textContent="Etapa: "+STAGES[Math.min(p.stage,3)].name;
   $("petCoins").textContent=p.coins;
