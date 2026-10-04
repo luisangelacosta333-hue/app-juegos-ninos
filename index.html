@@ -291,7 +291,9 @@ html,body{
 </style>
 <style>
 /* ===== Fondo negro puro en toda la app ===== */
-body{background:#000!important;}
+html,body{background:#000!important;}
+div:not(.stat-fill){background-color:#000!important;}
+#wordCard,#flashPanel,.glass,.bubble{background-image:none!important;background:#000!important;}
 .premium-bg,.starfield,.shooting-star,#astroMoon{display:none!important;}
 #homeScreen,#gameScreen,#petScreen{background:#000!important;}
 @keyframes buggyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
