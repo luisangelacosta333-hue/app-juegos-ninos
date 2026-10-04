@@ -290,9 +290,10 @@ html,body{
 .btn{font-family:'Fredoka',sans-serif!important;}
 </style>
 <style>
-/* ===== Buggy GIF (fondo negro puro) ===== */
-#gameScreen{background:#000!important;}
-#astroMoon{display:none!important;}
+/* ===== Fondo negro puro en toda la app ===== */
+body{background:#000!important;}
+.premium-bg,.starfield,.shooting-star,#astroMoon{display:none!important;}
+#homeScreen,#gameScreen,#petScreen{background:#000!important;}
 @keyframes buggyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 #astroWrap.img-mode::after,#astroWrap.img-mode::before{display:none!important;}
 @keyframes talkGlow{0%{filter:drop-shadow(0 0 4px rgba(34,211,238,.3));transform:scale(1)}100%{filter:drop-shadow(0 0 18px rgba(34,211,238,.95));transform:scale(1.05) translateY(-3px)}}
@@ -464,6 +465,7 @@ html,body{
                   <div id="wordEs" style="font-size:28px;font-weight:700;color:#fff;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,.5);"></div>
                   <div style="font-size:14px;color:#fb923c;font-weight:700;margin-top:4px;">Inglés <strong style="color:var(--accent);">(solo inglés)</strong></div>
                   <div id="wordEn" style="font-size:30px;font-weight:700;letter-spacing:.5px;line-height:1.2;"></div>
+                  <div id="wordPron" style="font-size:13px;color:#4ade80;font-weight:700;margin-top:3px;min-height:16px;"></div>
                 </div>
               </div>
             </div>
@@ -1082,12 +1084,12 @@ if(window.speechSynthesis){pickVoices();speechSynthesis.onvoiceschanged=pickVoic
 var mouthClosed=$("mouthClosed"),mouthOpen=$("mouthOpen"),astroWrap=$("astroWrap"),rightArm=$("rightArm");
 function startMouthTalk(){if(mouthTimer)clearInterval(mouthTimer);var ba=document.getElementById("buggy-avatar");if(ba)ba.classList.add("is-talking");if(mouthClosed&&mouthOpen){mouthClosed.style.display="none";mouthOpen.style.display="";mouthTimer=setInterval(function(){mouthOpen.style.transform="scaleY("+(0.35+Math.random()*0.75)+")";},110);}}
 function stopMouthTalk(){var ba=document.getElementById("buggy-avatar");if(ba)ba.classList.remove("is-talking");if(mouthTimer){clearInterval(mouthTimer);mouthTimer=null;}if(mouthOpen&&mouthClosed){mouthOpen.style.transform="scaleY(0)";mouthOpen.style.display="none";mouthClosed.style.display="";}}
-function say(text,lang,onend){speechQ.push({text:text,lang:lang,onend:onend});pump();}
+function say(text,lang,onend,rate){speechQ.push({text:text,lang:lang,onend:onend,rate:rate});pump();}
 function pump(){
   if(speakingNow||!speechQ.length)return;
   if(!window.speechSynthesis){var it=speechQ.shift();if(it.onend)it.onend();pump();return;}
   speakingNow=true;var item=speechQ.shift();
-  var u=new SpeechSynthesisUtterance(item.text);u.lang=item.lang;if(u.lang.indexOf('es')===0)u.lang='es-419';
+  var u=new SpeechSynthesisUtterance(item.text);u.lang=item.lang;u.rate=item.rate||1;if(u.lang.indexOf('es')===0)u.lang='es-419';
   if(item.lang.indexOf("en")===0){if(enVoice)u.voice=enVoice;u.rate=0.78;}else{var _v=(window.esVoices&&window.esVoices.length)?window.esVoices[voiceIdx%window.esVoices.length]:esVoice;if(_v)u.voice=_v;u.rate=0.95;}
   u.pitch=1.1;u.volume=1;
   u.onstart=function(){startMouthTalk();rightArm.style.transform="rotate(-35deg)";};
@@ -1098,7 +1100,9 @@ function stopSpeak(){speechQ=[];if(window.speechSynthesis)speechSynthesis.cancel
 function teachCard(){
   if(!introPlaying) stopSpeak();var c=CAT[curCat].cards[idx];
   say("Mira. En castellano: "+c.es,"es-AR");
-  say("En inglés se dice:","es-AR");
+  say("Ahora escuchá cómo se pronuncia en inglés, despacio:","es-AR");
+  say(c.en,"en-US",null,0.55);
+  say("Y ahora normal:","es-AR");
   say(c.en,"en-US");
   say("Ahora repetí vos en inglés. Tocá el micrófono.","es-AR");
   sndClick();
@@ -1168,6 +1172,19 @@ var WORD_ICONS={
 };
 function _norm(s){return (s||"").toLowerCase().replace(/[áäàâ]/g,"a").replace(/[éëèê]/g,"e").replace(/[íïìî]/g,"i").replace(/[óöòô]/g,"o").replace(/[úüùû]/g,"u").replace(/ñ/g,"n").replace(/[^a-z0-9 ]/g,"").trim();}
 function wordIcon(es,en){return WORD_ICONS[_norm(es)]||WORD_ICONS[_norm(en)]||null;}
+var EN_PRON={
+"one":"uan","two":"tu","three":"zrí","four":"for","five":"faiv","six":"siks","seven":"séven","eight":"éit","nine":"náin","ten":"ten",
+"eleven":"iléven","twelve":"tuelv","thirteen":"zertín","fourteen":"fortín","fifteen":"fiftín","twenty":"tuénti","thirty":"zérti","hundred":"jándred",
+"dog":"dog","cat":"cat","bird":"berd","fish":"fisch","horse":"jors","cow":"cau","pig":"pig","sheep":"ship","chicken":"chíkin","duck":"dak","mouse":"maus","elephant":"élefant","lion":"laion","tiger":"táiger","monkey":"mánki","bear":"ber","rabbit":"rábit","snake":"snéik","frog":"frog","bee":"bi",
+"red":"red","blue":"blu","yellow":"yélou","green":"grín","black":"blak","white":"uait","orange":"órinch","purple":"pérpol","pink":"pink","brown":"braun","gray":"grei",
+"apple":"ápol","banana":"banana","orange":"órinch","grape":"greip","strawberry":"stróberi","watermelon":"uatermélon","pear":"per","lemon":"lémon","bread":"bred","milk":"milk","water":"úater","cheese":"chis","egg":"eg","rice":"rais","pizza":"pitsa","cake":"kéik","cookie":"kúki","ice cream":"ais crím","chocolate":"chócolat","juice":"yus","coffee":"cofi","soup":"sup","salad":"sáled",
+"mother":"máder","father":"fáder","mom":"mam","dad":"dedi","brother":"brózer","sister":"síster","baby":"béibi","family":"fémili",
+"head":"jed","eye":"ai","eyes":"ais","nose":"nos","mouth":"mauz","ear":"ir","hand":"jand","foot":"fut","teeth":"tíz","hair":"her",
+"house":"jaus","home":"joum","door":"dor","window":"úindou","bed":"bed","table":"téibel","chair":"cher","book":"buk","pencil":"pénsol","pen":"pen","paper":"péiper","school":"skúl","teacher":"tícher","student":"stúdent",
+"hello":"jelou","goodbye":"gudbai","yes":"ies","no":"nou","please":"plís","thank you":"zank iu","sorry":"sori","friend":"frend","love":"lov","happy":"japi","big":"big","small":"smol","hot":"jot","cold":"cold",
+"cat":"cat","dog":"dog","car":"car","ball":"bol","book":"buk","sun":"san","moon":"mun","star":"star","tree":"tri","flower":"fláuer"
+};
+
 function renderFlash(){
   var c=CAT[curCat].cards[idx];var tile=$("wordTile");
   var _ic=wordIcon(c.es,c.en);
@@ -1176,6 +1193,7 @@ function renderFlash(){
   $("wordEs").textContent=gameLevel===2?"? ? ?":c.es;
   $("wordEn").innerHTML="";
   for(var i=0;i<c.en.length;i++){var sp=document.createElement("span");sp.className="word-letter";sp.textContent=c.en[i];sp.style.animationDelay=(i*.07)+"s";sp.style.color=(i===0)?"var(--accent2)":"var(--text)";sp.style.fontSize=(i===0)?"38px":"30px";$("wordEn").appendChild(sp);}
+  try{var _wp=$("wordPron");if(_wp){var _pr=(typeof EN_PRON!=="undefined"&&EN_PRON[c.en.toLowerCase()])?EN_PRON[c.en.toLowerCase()]:null;_wp.textContent=_pr?("Se pronuncia: "+_pr):"Tocá Oír inglés para escucharlo";}}catch(e){}
   setFeedback("","");
   $("astroMessage").innerHTML='Tocá <strong style="color:var(--purple)">Buggy explica</strong> y te enseño. Después repetí en inglés.';
 }
