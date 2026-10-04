@@ -236,6 +236,57 @@
 @keyframes armWave{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-18deg);}}
 </style>
 
+<style>
+/* ===== TEMA PREMIUM OSCURO SUAVE (sin brillos que encandilan) ===== */
+:root{
+  --muted:#b9c0e0;
+  --text:#f4f6ff;
+  --card:#161d42;
+  --border:rgba(148,158,205,.22);
+}
+html,body{
+  background:#0a0e24!important;
+  background-image:linear-gradient(180deg,#0d1230 0%,#0a0e24 100%)!important;
+}
+.premium-bg .orb{opacity:.10!important;filter:blur(90px)!important;}
+.shooting-star{opacity:.3!important;}
+.glass{
+  background:rgba(22,28,60,.80)!important;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(148,158,205,.22)!important;
+  box-shadow:0 10px 30px rgba(0,0,0,.40), inset 0 1px 0 rgba(255,255,255,.06)!important;
+}
+/* ---- Textos mas grandes y legibles ---- */
+#howText{font-size:14.5px!important;line-height:1.65!important;color:#c4c9e8!important;}
+#homeScreen p[style*="font-size:15px"]{font-size:16px!important;color:#c4c9e8!important;}
+.section-label{font-size:24px!important;margin:18px 0 10px!important;}
+.cat-card{border-radius:22px!important;padding:16px 12px!important;min-height:160px!important;box-shadow:0 10px 26px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.07)!important;}
+.cat-card h3{font-size:18px!important;}
+.cat-card p{font-size:13.5px!important;color:#b9c0e0!important;}
+.cat-card .tile{width:62px!important;height:62px!important;font-size:30px!important;}
+#totalStars{font-size:24px!important;}
+#xpLevel{font-size:19px!important;}
+#streakDays{font-size:15px!important;}
+#openPetBtn,#voiceBtn,#hwCareBtn,#hwPlanetsBtn,#achBtn{font-size:14.5px!important;padding:10px 18px!important;}
+#missionList > div{font-size:14px!important;}
+#missionList .stat-bar{height:10px!important;}
+#hwPetName{font-size:19px!important;}
+#hwMsg{font-size:13.5px!important;color:#c4c9e8!important;}
+#engagePanel > div:first-child > div:first-child{font-size:18px!important;}
+#petNameDisplay{font-size:30px!important;}
+#petStageLabel{font-size:16px!important;}
+#petMsg{font-size:18px!important;}
+#petActions .pet-btn{font-size:17px!important;}
+.stat-bar{height:15px!important;}
+#statHappyN,#statFoodN,#statEnergyN,#statHygieneN{font-size:15px!important;}
+#adBanner,#espacio-google,#banner-superawesome{background:rgba(20,26,56,.6)!important;border-color:rgba(148,158,205,.25)!important;}
+/* ---- Suavizar brillos que encandilan ---- */
+#homeScreen > div.fade-in.rounded-2xl{box-shadow:0 0 18px rgba(250,204,21,.22),inset 0 1px 0 rgba(255,255,255,.1)!important;}
+.big-3d{filter:drop-shadow(0 4px 0 rgba(0,0,0,.4)) drop-shadow(0 0 14px rgba(251,146,60,.40))!important;}
+#homeScreen > div:first-child > div:first-child > div:first-child{box-shadow:0 0 28px rgba(251,146,60,.55)!important;}
+.btn{font-family:'Fredoka',sans-serif!important;}
+</style>
 </head>
 <body>
 <div class="premium-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="shooting-star s1"></div><div class="shooting-star s2"></div><div class="shooting-star s3"></div></div>
