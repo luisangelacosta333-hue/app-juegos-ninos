@@ -380,6 +380,12 @@ div:not(.stat-fill){background-color:#000!important;}
 @keyframes glowPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
 .ad-slot{min-height:4px!important;}
 </style>
+<style>
+/* ===== v6: fix alineacion mascota + boca ===== */
+#petStage > div:first-child{width:100%!important;height:100%!important;}
+.mouth-target{box-shadow:none!important;width:130px!important;height:110px!important;top:54%!important;}
+.mouth-target.hot{box-shadow:0 0 0 5px rgba(74,222,128,.65)!important;animation:mouthPulse .5s ease-in-out infinite;}
+</style>
 </head>
 <body>
 <div class="premium-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="shooting-star s1"></div><div class="shooting-star s2"></div><div class="shooting-star s3"></div></div>
@@ -745,8 +751,9 @@ div:not(.stat-fill){background-color:#000!important;}
         }catch(err){ deferred = null; hideBtn(); }
       } else {
         try{ sndClick(); }catch(e){}
-        try{ showToast('Para instalar: menú del navegador → Agregar a pantalla de inicio'); }catch(e){}
-        try{ say('Para instalar la aplicación en tu celular, abre el menú del navegador y elige Agregar a pantalla de inicio.','es-419'); }catch(e){}
+        var m=document.createElement('div');m.className='modal-bg';
+        m.innerHTML='<div class="glass rounded-2xl p-5 text-center" style="max-width:320px;"><div style="font-size:36px;margin-bottom:6px;">📱</div><h3 style="margin:0 0 8px;color:var(--accent);">Instalar Buggy IA</h3><p style="font-size:14px;line-height:1.6;margin:0 0 12px;text-align:left;">1. Tocá los <strong>3 puntitos</strong> arriba a la derecha del navegador<br>2. Elegí <strong>"Agregar a pantalla de inicio"</strong><br>3. Tocá <strong>"Agregar"</strong><br>¡Listo! Queda en tu celular como una app de verdad.</p><button class="btn rounded-xl px-5 py-2.5 w-full" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:800;" onclick="this.parentElement.parentElement.remove();">Entendido</button></div>';
+        document.body.appendChild(m);
       }
     });
   }
@@ -2483,6 +2490,7 @@ function openPetScreen(){
 function foodEmoji(id){var m={manzana:"🍎",banana:"🍌",zanahoria:"🥕",hueso:"🦴",pescado:"🐟",galleta:"🍪",helado:"🍦",pastel:"🍰",leche:"🥛"};return m[id]||"🍎";}
 function startFoodDrag(e,el){
   try{e.preventDefault();}catch(err){}
+  var sx=e.clientX,sy=e.clientY;
   var fid=el.dataset.food;var f=FOODS.filter(function(x){return x.id===fid;})[0];
   var drag=document.createElement("div");drag.className="food-drag";drag.style.background="linear-gradient(135deg,"+f.color+","+shade(f.color,-.15)+")";drag.textContent=foodEmoji(fid);document.body.appendChild(drag);
   var stage=$("petStage");var mouth=stage.querySelector(".mouth-target");if(!mouth){mouth=document.createElement("div");mouth.className="mouth-target";stage.appendChild(mouth);}
@@ -2491,8 +2499,9 @@ function startFoodDrag(e,el){
   function up(ev){
     document.removeEventListener("pointermove",move);document.removeEventListener("pointerup",up);
     var r=mouth.getBoundingClientRect();var x=ev.clientX,y=ev.clientY;var over=(x>r.left&&x<r.right&&y>r.top&&y<r.bottom);
+    var tapped=(Math.abs(x-sx)<18&&Math.abs(y-sy)<18);
     mouth.classList.remove("hot");drag.remove();
-    if(over){eatFood(fid);}else{try{sndWrong();}catch(err){}petMsg("¡Casi! Arrastrá la comida hasta la boca de "+save.pet.name+".","#f87171");}
+    if(over||tapped){eatFood(fid);}else{try{sndWrong();}catch(err){}petMsg("¡Casi! Arrastrá la comida hasta la boca o tocala para darle de comer.","#f87171");}
   }
   move(e);document.addEventListener("pointermove",move);document.addEventListener("pointerup",up);
 }
@@ -2606,7 +2615,7 @@ function startCatch(box){
 function petAction(act){
   var c=$("petContent");petMsg("","");
   if(act==="feed"){
-    var any=false;var tray='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;text-align:center;font-weight:700;">Arrastrá la comida hasta la boca de '+save.pet.name+' con el dedo</div><div class="food-tray">';
+    var any=false;var tray='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;text-align:center;font-weight:700;">Arrastrá la comida hasta la boca o tocala para darle de comer</div><div class="food-tray">';
     FOODS.forEach(function(f){
       var n=save.pet.foods[f.id]||0;if(n>0){any=true;
       tray+='<div class="food-item" data-food="'+f.id+'" style="background:linear-gradient(135deg,'+f.color+','+shade(f.color,-.15)+');">'+foodEmoji(f.id)+'<span class="food-count">x'+n+'</span></div>';}
