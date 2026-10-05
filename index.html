@@ -535,8 +535,8 @@ div:not(.stat-fill){background-color:#000!important;}
   </div>
   <div class="glass rounded-3xl p-5 text-center" style="max-width:560px;margin:0 auto;box-shadow:0 14px 40px rgba(0,0,0,.45);">
     <div id="rddCounter" style="font-size:13px;color:var(--muted);font-weight:700;margin-bottom:10px;letter-spacing:.08em;">Acertijo 1 / 18</div>
-    <div id="rddQuestion" style="font-size:20px;font-weight:600;line-height:1.55;min-height:96px;display:flex;align-items:center;justify-content:center;color:var(--text);">Cargando...</div>
-    <button id="rddReveal" class="btn" style="margin-top:14px;border:none;border-radius:999px;padding:12px 28px;font-weight:800;font-size:15px;background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;box-shadow:0 8px 22px rgba(167,139,250,.5);">&#128065; Ver respuesta</button>
+    <div id="rddQuestion" style="font-size:25px;font-weight:700;line-height:1.6;min-height:110px;display:flex;align-items:center;justify-content:center;color:var(--text);">Cargando...</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;"><button id="rddReveal" class="btn" style="border:none;border-radius:999px;padding:12px 28px;font-weight:800;font-size:15px;background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;box-shadow:0 8px 22px rgba(167,139,250,.5);">&#128065; Ver respuesta</button><button id="rddListen" class="btn" style="border:none;border-radius:999px;padding:12px 24px;font-weight:800;font-size:15px;background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;box-shadow:0 8px 22px rgba(34,211,238,.5);cursor:pointer;">🔊 Escuchar</button></div>
     <div id="rddAnswer" style="display:none;margin-top:16px;padding:14px 16px;border-radius:16px;background:rgba(74,222,128,.15);border:2px solid #4ade80;font-size:18px;font-weight:700;color:#4ade80;line-height:1.4;"></div>
     <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;">
       <button id="rddPrev" class="btn" style="border:none;border-radius:999px;padding:10px 20px;font-weight:700;font-size:14px;background:rgba(139,147,194,.25);color:var(--text);">&#8592; Anterior</button>
@@ -2869,6 +2869,7 @@ if(G("rddReveal"))G("rddReveal").addEventListener("click",function(){
   var a=G("rddAnswer");
   a.innerHTML="🌟 Respuesta: "+R[rddDiff][rddIdx][1];
   a.style.display="block";a.classList.remove("fade-in");void a.offsetWidth;a.classList.add("fade-in");
+  decir("La respuesta es: "+R[rddDiff][rddIdx][1].replace(/<[^>]+>/g,""));
   G("rddReveal").style.display="none";
 });
 if(G("rddPrev"))G("rddPrev").addEventListener("click",function(){clickSnd();rddIdx=(rddIdx-1+R[rddDiff].length)%R[rddDiff].length;rddShow();});
@@ -2908,6 +2909,17 @@ function arcStart(i){
   title.textContent=ARC_GAMES[i].icon+" "+ARC_GAMES[i].name;
   var body=el("div");
   wrap.appendChild(title);wrap.appendChild(body);ga.appendChild(wrap);
+  var help=ARC_HELP[i]||"";
+  if(help){
+    var hb=el("div");
+    hb.style.cssText="display:flex;gap:8px;align-items:center;justify-content:center;margin-bottom:12px;flex-wrap:wrap;";
+    hb.innerHTML='<div style="flex:1;min-width:170px;text-align:center;font-size:13px;color:#c7cdf0;font-weight:600;line-height:1.45;">'+help+'</div><button id="arcHelpBtn" class="btn" style="border:none;border-radius:50%;width:42px;height:42px;background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-size:19px;font-weight:800;cursor:pointer;flex:0 0 auto;">🔊</button>';
+    wrap.insertBefore(hb, body);
+    (function(h){
+      try{document.getElementById("arcHelpBtn").addEventListener("click",function(){decir(h);});}catch(e){}
+      setTimeout(function(){decir(h);},700);
+    })(help);
+  }
   ARC_GAMES[i].fn(body);
 }
 
@@ -3325,6 +3337,35 @@ function gSeq(c){
   arcStopFn=function(){clearInterval(timer);playing=false;};
 }
 
+function decir(txt){
+  try{
+    if(window.speechSynthesis){
+      window.speechSynthesis.cancel();
+      var u=new SpeechSynthesisUtterance(txt);
+      u.lang="es-AR";u.rate=.92;u.pitch=1.15;u.volume=1;
+      window.speechSynthesis.speak(u);
+    }
+  }catch(e){}
+}
+if(G("rddListen"))G("rddListen").addEventListener("click",function(){clickSnd();decir(R[rddDiff][rddIdx][0].replace(/<[^>]+>/g,""));});
+var ARC_HELP=[
+"Comé las manzanas y no choques contra las paredes ni tu cuerpo. Usá los botones de dirección.",
+"Uní los números iguales deslizando. Llegá al número 2048.",
+"Hacé tres en línea. Vos jugás con las X, la máquina con los círculos.",
+"Adiviná la palabra letra por letra antes de que se complete el dibujo del ahorcado.",
+"Mirá la secuencia de colores y repetila tocando los botones. Cada ronda es más larga.",
+"Mové tu raqueta con el dedo. El primero en llegar a 5 puntos gana.",
+"Mové la paleta con el dedo y rompé todos los ladrillos. Tocá la pantalla para lanzar la pelota.",
+"Tocá la pantalla para volar. Esquivá las tuberías verdes.",
+"Elegí piedra, papel o tijera. El primero en ganar 5 veces es el campeón.",
+"Adiviná el número secreto del 1 al 100. Te digo si es mayor o menor.",
+"Golpeá al topo cada vez que aparezca. Tenés 30 segundos para hacer el mejor puntaje.",
+"Esperá a que la pantalla se ponga verde y tocá lo más rápido que puedas. No te adelantes!",
+"Revelá todas las celdas sin tocar una mina. Usá el modo bandera para marcarlas.",
+"Mové la canasta con el dedo y atrapá las estrellas. ¡Cuidado con las bombas!",
+"Encontrá todos los pares de emojis iguales. Dá la vuelta a las tarjetas.",
+"Tocá los números en orden, del 1 al 9, lo más rápido que puedas."
+];
 var ARC_GAMES=[
 {name:"Snake",icon:"🐍",color:"#4ade80",fn:gSnake},
 {name:"2048",icon:"⭐",color:"#facc15",fn:g2048},
@@ -3345,5 +3386,6 @@ var ARC_GAMES=[
 ];
 })();
 </script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}</script>
 </body>
 </html>
