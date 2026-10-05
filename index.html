@@ -818,9 +818,18 @@ if(btnInstalar){
         eventoInstalacion = null;
       }
     } 
-    // 2. SI ESTÁ EN iOS O SAFARI (El evento no existe, pero el botón se mostró por el fallback):
+    // 2. SI EL EVENTO NO EXISTE (Firefox, iOS/Safari, etc.): mostramos instrucciones segun el navegador
     else {
-      alert("Para instalar la app:\n\nToca el botón 'Compartir' de tu navegador (el cuadrado con la flecha hacia arriba) y elegí 'Agregar a inicio'.");
+      var ua = navigator.userAgent || '';
+      var esIOS = /iPhone|iPad|iPod/.test(ua);
+      var esFirefox = /Firefox/.test(ua);
+      if(esIOS){
+        alert("Para instalar la app:\n\nTocá el botón 'Compartir' de Safari (el cuadrado con la flecha hacia arriba) y elegí 'Agregar a inicio'.");
+      } else if(esFirefox){
+        alert("Para instalar la app en Firefox:\n\nTocá el menú (los tres puntitos ⋮) arriba a la derecha y elegí 'Instalar aplicación' (o 'Agregar a pantalla de inicio').");
+      } else {
+        alert("Para instalar la app:\n\nTocá el menú de tu navegador (⋮) y elegí 'Instalar aplicación' o 'Agregar a pantalla de inicio'.\n\nTip: en Google Chrome aparece el cartel de instalación automático.");
+      }
     }
   });
 }
