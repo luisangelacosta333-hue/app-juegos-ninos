@@ -792,100 +792,77 @@ if('serviceWorker' in navigator){
 }
 
 // LOGICA DEL BOTON DE INSTALACION
-// ============================================================
-// PWA: registrar un Service Worker con handler 'fetch' es
-// REQUISITO para que Chrome/Android dispare beforeinstallprompt
-// y el boton realmente abra la ventana de instalacion.
-// Intenta primero ./sw.js (si existe en el servidor); si no,
-// usa uno minimo generado en linea para que el archivo sea autonomo.
-// ============================================================
-(function registrarSW(){
-  if(!('serviceWorker' in navigator)) return;
-  var swMinimo = "self.addEventListener('install',function(e){self.skipWaiting();});self.addEventListener('activate',function(e){e.waitUntil(self.clients.claim());});self.addEventListener('fetch',function(e){e.respondWith(fetch(e.request).catch(function(){return new Response('',{status:404,statusText:'sin cache'});}));});";
-  var registrar = function(url){ try{ navigator.serviceWorker.register(url,{scope:'./'}).then(function(reg){console.log('Service Worker OK:',reg.scope);}).catch(function(err){console.log('No se pudo registrar el SW:',err);}); }catch(e){console.log('SW error:',e);} };
-  var iniciar = function(){
-    try{
-      fetch('./sw.js',{method:'HEAD'}).then(function(r){ if(r.ok){ registrar('./sw.js'); } else { throw 0; } }).catch(function(){
-        try{ registrar(URL.createObjectURL(new Blob([swMinimo],{type:'application/javascript'}))); }catch(e){}
+// 1. REGISTRO DIRECTO DEL SERVICE WORKER
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    // Usamos la ruta relativa para asegurar que Vercel/GitHub Pages lo detecte correctamente
+    navigator.serviceWorker.register('sw.js')
+      .then(function(reg) {
+        console.log('SW Registrado con éxito:', reg.scope);
+      })
+      .catch(function(err) {
+        console.log('Error al registrar SW:', err);
       });
-    }catch(e){ try{ registrar(URL.createObjectURL(new Blob([swMinimo],{type:'application/javascript'}))); }catch(e2){} }
-  };
-  if(document.readyState==='complete'){ iniciar(); } else { window.addEventListener('load', iniciar); }
-})();
+  });
+}
 
+// 2. LÓGICA DE INSTALACIÓN
 var eventoInstalacion = null;
-var instalando = false; // evita doble clic
 var btnInstalar = document.getElementById('btn-instalar');
 
-function ocultarBtnInstalar(){ if(btnInstalar) btnInstalar.style.display = 'none'; }
-function mostrarBtnInstalar(){ if(btnInstalar) btnInstalar.style.display = 'flex'; }
-
-// Chrome/Android lanza este evento cuando la PWA esta lista para instalarse
+// Chrome dispara el evento cuando detecta que el manifest y el SW son válidos
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
   eventoInstalacion = e;
-  mostrarBtnInstalar();
+  if(btnInstalar) btnInstalar.style.display = 'flex';
 });
 
-// Que pasa cuando el usuario hace clic en el boton
-if(btnInstalar){
+if(btnInstalar) {
   btnInstalar.addEventListener('click', async function() {
-    // 1. SI ESTA EN ANDROID/CHROME Y EL EVENTO EXISTE:
+    // Escenario A: Android/Chrome lanzó el evento nativo correctamente
     if (eventoInstalacion) {
-      if(instalando) return;
-      instalando = true;
-      var outcome = null;
       try {
-        // prompt() devuelve una promesa; con await capturamos cualquier rechazo
-        var res = await eventoInstalacion.prompt();
-        outcome = (res && res.outcome) ? res.outcome : null;
-        if(!outcome){
-          try { var uc = await eventoInstalacion.userChoice; outcome = uc.outcome; }catch(e2){}
+        await eventoInstalacion.prompt();
+        const choiceResult = await eventoInstalacion.userChoice;
+        if (choiceResult.outcome === 'accepted') {
+          console.log('Usuario instaló la app');
+          btnInstalar.style.display = 'none';
         }
+        eventoInstalacion = null;
       } catch(err) {
-        console.log('El prompt de instalacion fallo:', err);
+        console.log("Error en prompt nativo:", err);
       }
-      console.log('Resultado instalacion:', outcome || 'desconocido');
-      ocultarBtnInstalar();
-      eventoInstalacion = null;
-      instalando = false;
-    }
-    // 2. SI EL EVENTO NO EXISTE (Firefox, iOS/Safari, etc.): NUNCA quedarse callado.
-    //    Mostramos instrucciones segun el navegador (esta era la falla del codigo que no descargaba).
+    } 
+    // Escenario B: Dispositivos iOS, Firefox o si el evento falló
     else {
       var ua = navigator.userAgent || '';
-      var esIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints>1);
-      var esFirefox = /Firefox/.test(ua);
+      var esIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      
       if(esIOS){
-        alert("Para instalar la app:\n\nToca el boton 'Compartir' de Safari (el cuadrado con la flecha hacia arriba) y elegi 'Agregar a inicio'.");
-      } else if(esFirefox){
-        alert("Para instalar la app en Firefox:\n\nToca el menu (los tres puntitos) arriba a la derecha y elegi 'Instalar aplicacion' (o 'Agregar a pantalla de inicio').");
+        alert("Para instalar la app en tu iPhone/iPad:\n\n1. Tocá el botón 'Compartir' (el cuadradito con la flecha hacia arriba).\n2. Elegí la opción 'Agregar a inicio'.");
       } else {
-        alert("Para instalar la app:\n\nToca el menu de tu navegador y elegi 'Instalar aplicacion' o 'Agregar a pantalla de inicio'.\n\nTip: en Google Chrome aparece el cartel de instalacion automatico.");
+        alert("Para instalar la app:\n\nTocá el menú de tu navegador (los tres puntitos ⋮) y elegí 'Instalar aplicación' o 'Agregar a pantalla de inicio'.");
       }
     }
   });
 }
 
-// Si la app ya se instalo, ocultamos el boton
+// Ocultar si ya se instaló
 window.addEventListener('appinstalled', function() {
-  ocultarBtnInstalar();
+  if(btnInstalar) btnInstalar.style.display = 'none';
   eventoInstalacion = null;
 });
 
-// Ocultar si ya corre en modo standalone (ya instalada y abierta como app)
-try {
-  if((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true){
-    ocultarBtnInstalar();
-  }
-} catch(e) {}
+// Ocultar si ya se está corriendo la app instalada
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+  if(btnInstalar) btnInstalar.style.display = 'none';
+}
 
-// Fallback: si pasan 4s y no llego el prompt (ej: iOS), mostramos el boton con instrucciones manuales
+// Fallback de 4 segundos: Si no hay prompt nativo, muestra el botón para que funcionen las alertas manuales de iOS
 setTimeout(function(){
   if(!eventoInstalacion && btnInstalar && btnInstalar.style.display !== 'flex'){
-    var standalone = false;
-    try { standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true; } catch(e){}
-    if(!standalone) mostrarBtnInstalar();
+    var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    if(!standalone) btnInstalar.style.display = 'flex';
   }
 }, 4000);
 </script>
