@@ -864,6 +864,107 @@ setTimeout(function(){
   }
 }, 4000);
 </script>
+<!-- ============================================================
+     UNITY ADS - SDK web (async, no bloquea el juego).
+     MODO PRUEBA ACTIVADO. Cuando Unity apruebe la cuenta,
+     cambiar TEST_MODE a false en el script de abajo.
+     ============================================================ -->
+<script async src="https://cdn.unityads.unity3d.com/webgl/latest/UnityAds.js"></script>
+<div id="unity-banner" style="position:fixed;bottom:0;left:0;right:0;display:none;justify-content:center;align-items:center;z-index:400;min-height:50px;background:#0b1026;"></div>
+<script>
+// ============================================================
+// UNITY ADS - modulo de monetizacion.
+// TODO envuelto en try/catch y con chequeo del SDK: si Unity Ads
+// falla, no carga o cambia la API, el juego NO se rompe nunca.
+// Game ID: 800389158 | testMode = true (anuncios de prueba)
+// ============================================================
+var Anuncios = (function(){
+  var GAME_ID    = "800389158";
+  var TEST_MODE  = true;   // TODO: poner en false cuando la cuenta este aprobada
+  var PL_BANNER  = "BP_Banner_Android";
+  var PL_INTER   = "BP_Interstitial_Android";
+  var PL_REWARD  = "BP_Rewarded_Android";
+  var iniciado   = false;
+
+  function sdkOk(){ return (typeof window.UnityAds !== "undefined"); }
+  function listo(){ return sdkOk() && iniciado; }
+
+  function iniciar(){
+    try{
+      if(!sdkOk()){ setTimeout(iniciar, 1500); return; } // espera que cargue el SDK
+      if(typeof UnityAds.isInitialized === "function" && UnityAds.isInitialized()){
+        iniciado = true; setTimeout(mostrarBanner, 2000); return;
+      }
+      UnityAds.initialize(GAME_ID, { testMode: TEST_MODE });
+      iniciado = true;
+      console.log("[UnityAds] inicializado testMode=" + TEST_MODE);
+      setTimeout(mostrarBanner, 2500); // banner automatico tras cargar
+    }catch(e){ console.log("[UnityAds] init error:", e); }
+  }
+
+  function mostrarBanner(){
+    try{
+      if(!listo()) return;
+      if(typeof UnityAds.showBanner === "function"){ UnityAds.showBanner(PL_BANNER); }
+      var c = document.getElementById("unity-banner");
+      if(c){ c.style.display = "flex"; }
+    }catch(e){ console.log("[UnityAds] banner error:", e); }
+  }
+
+  function ocultarBanner(){
+    try{
+      if(listo() && typeof UnityAds.hideBanner === "function"){ UnityAds.hideBanner(); }
+      var c = document.getElementById("unity-banner");
+      if(c){ c.style.display = "none"; }
+    }catch(e){}
+  }
+
+  function mostrarInterstitial(){
+    try{
+      if(!listo()) return false;
+      var opts = { onShowComplete: function(est){ console.log("[UnityAds] interstitial:", est); } };
+      if(typeof UnityAds.load === "function"){
+        UnityAds.load(PL_INTER).then(function(){ UnityAds.show(PL_INTER, opts); }).catch(function(){});
+      } else {
+        UnityAds.show(PL_INTER, opts);
+      }
+      return true;
+    }catch(e){ console.log("[UnityAds] interstitial error:", e); return false; }
+  }
+
+  function mostrarRewarded(callback){
+    try{
+      if(!listo()){ if(callback) callback(false); return false; }
+      var opts = {
+        onShowComplete: function(est){
+          var completo = (est === "completed" || est === 1 || est === "COMPLETED");
+          if(callback) callback(completo);
+        }
+      };
+      if(typeof UnityAds.load === "function"){
+        UnityAds.load(PL_REWARD)
+          .then(function(){ UnityAds.show(PL_REWARD, opts); })
+          .catch(function(){ if(callback) callback(false); });
+      } else {
+        UnityAds.show(PL_REWARD, opts);
+      }
+      return true;
+    }catch(e){ console.log("[UnityAds] rewarded error:", e); if(callback) callback(false); return false; }
+  }
+
+  if(document.readyState === "complete"){ iniciar(); } else { window.addEventListener("load", iniciar); }
+
+  return {
+    iniciar: iniciar,
+    mostrarBanner: mostrarBanner,
+    ocultarBanner: ocultarBanner,
+    mostrarInterstitial: mostrarInterstitial,
+    mostrarRewarded: mostrarRewarded,
+    listo: listo
+  };
+})();
+</script>
+
   </div>
 </div>
 
