@@ -785,46 +785,69 @@ div:not(.stat-fill){background-color:#000!important;}
 // REGISTRO DEL SERVICE WORKER
 if('serviceWorker' in navigator){
   window.addEventListener('load',function(){
-    navigator.serviceWorker.register('./sw.js').then(function(reg){try{reg.update();}catch(e){}}).catch(function(err){});
+    navigator.serviceWorker.register('./sw.js')
+      .then(function(reg){try{reg.update();}catch(e){}})
+      .catch(function(err){ console.log("Error SW:", err); });
   });
 }
+
 // LOGICA DEL BOTON DE INSTALACION
-var eventoInstalacion=null;
-var btnInstalar=document.getElementById('btn-instalar');
-// Chrome lanza este evento cuando la PWA esta lista para instalarse
-window.addEventListener('beforeinstallprompt',function(e){
+var eventoInstalacion = null;
+var btnInstalar = document.getElementById('btn-instalar');
+
+// Chrome/Android lanza este evento cuando la PWA esta lista para instalarse
+window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
-  eventoInstalacion=e;
-  if(btnInstalar)btnInstalar.style.display='flex';
+  eventoInstalacion = e;
+  if(btnInstalar) btnInstalar.style.display = 'flex';
 });
-// Que pasa cuando el usuario hace clic en el boton
+
+// Qué pasa cuando el usuario hace clic en el botón
 if(btnInstalar){
-  btnInstalar.addEventListener('click',function(){
-    if(!eventoInstalacion)return;
-    try{
-      eventoInstalacion.prompt();
-      eventoInstalacion.userChoice.then(function(res){
-        if(res.outcome==='accepted'){}
-        if(btnInstalar)btnInstalar.style.display='none';
-        eventoInstalacion=null;
-      });
-    }catch(err){if(btnInstalar)btnInstalar.style.display='none';eventoInstalacion=null;}
+  btnInstalar.addEventListener('click', function() {
+    // 1. SI ESTÁ EN ANDROID/CHROME Y EL EVENTO EXISTE:
+    if (eventoInstalacion) {
+      try {
+        eventoInstalacion.prompt();
+        eventoInstalacion.userChoice.then(function(res) {
+          if(btnInstalar) btnInstalar.style.display = 'none';
+          eventoInstalacion = null;
+        });
+      } catch(err) {
+        if(btnInstalar) btnInstalar.style.display = 'none';
+        eventoInstalacion = null;
+      }
+    } 
+    // 2. SI ESTÁ EN iOS O SAFARI (El evento no existe, pero el botón se mostró por el fallback):
+    else {
+      alert("Para instalar la app:
+
+Toca el botón 'Compartir' de tu navegador (el cuadrado con la flecha hacia arriba) y elegí 'Agregar a inicio'.");
+    }
   });
 }
-// Si la app ya se instalo, ocultamos el boton
-window.addEventListener('appinstalled',function(){if(btnInstalar)btnInstalar.style.display='none';eventoInstalacion=null;});
-// Ocultar si ya corre en modo standalone (instalada)
-try{
-  if((window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true){if(btnInstalar)btnInstalar.style.display='none';}
-}catch(e){}
-// Fallback: si pasan 4s y no llego el prompt (ej: iOS), mostramos el boton con instrucciones manuales
-setTimeout(function(){
-  if(!eventoInstalacion && btnInstalar && btnInstalar.style.display!=='flex'){
-    var standalone=false;
-    try{standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;}catch(e){}
-    if(!standalone)btnInstalar.style.display='flex';
+
+// Si la app ya se instaló, ocultamos el botón
+window.addEventListener('appinstalled', function() {
+  if(btnInstalar) btnInstalar.style.display = 'none';
+  eventoInstalacion = null;
+});
+
+// Ocultar si ya corre en modo standalone (ya instalada y abierta como app)
+try {
+  if((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true){
+    if(btnInstalar) btnInstalar.style.display = 'none';
   }
-},4000);
+} catch(e) {}
+
+// Fallback: si pasan 4s y no llegó el prompt (ej: iOS), mostramos el botón con instrucciones manuales
+setTimeout(function(){
+  if(!eventoInstalacion && btnInstalar && btnInstalar.style.display !== 'flex'){
+    var standalone = false;
+    try { standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true; } catch(e){}
+    if(!standalone) btnInstalar.style.display = 'flex';
+  }
+}, 4000);
 </script>
   </div>
 </div>
