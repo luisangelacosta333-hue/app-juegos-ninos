@@ -1,12 +1,21 @@
-const CACHE='buggyia-v1';
-self.addEventListener('install',e=>{self.skipWaiting();});
-self.addEventListener('activate',e=>{e.waitUntil(clients.claim());});
-self.addEventListener('fetch',e=>{
-  e.respondWith(
-    fetch(e.request).then(function(res){
-      const clon=res.clone();
-      caches.open(CACHE).then(function(c){c.put(e.request,clon);}).catch(function(){});
-      return res;
-    }).catch(function(){return caches.match(e.request);})
-  );
+const CACHE_NAME = 'muvia-v1';
+
+// Se instala el Service Worker
+self.addEventListener('install', (event) => {
+    self.skipWaiting(); // Fuerza la activación inmediata
+});
+
+// Se activa el Service Worker
+self.addEventListener('activate', (event) => {
+    event.waitUntil(clients.claim()); // Toma el control de la página rápido
+});
+
+// ESTO ES OBLIGATORIO PARA QUE GOOGLE CHROME DEJE INSTALAR LA APP
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        fetch(event.request).catch(() => {
+            // Si no hay internet, no hace nada grave, pero cumple el requisito.
+            return new Response("Estás sin conexión a internet.");
+        })
+    );
 });
