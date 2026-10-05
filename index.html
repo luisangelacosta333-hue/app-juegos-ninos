@@ -792,67 +792,100 @@ if('serviceWorker' in navigator){
 }
 
 // LOGICA DEL BOTON DE INSTALACION
+// ============================================================
+// PWA: registrar un Service Worker con handler 'fetch' es
+// REQUISITO para que Chrome/Android dispare beforeinstallprompt
+// y el boton realmente abra la ventana de instalacion.
+// Intenta primero ./sw.js (si existe en el servidor); si no,
+// usa uno minimo generado en linea para que el archivo sea autonomo.
+// ============================================================
+(function registrarSW(){
+  if(!('serviceWorker' in navigator)) return;
+  var swMinimo = "self.addEventListener('install',function(e){self.skipWaiting();});self.addEventListener('activate',function(e){e.waitUntil(self.clients.claim());});self.addEventListener('fetch',function(e){e.respondWith(fetch(e.request).catch(function(){return new Response('',{status:404,statusText:'sin cache'});}));});";
+  var registrar = function(url){ try{ navigator.serviceWorker.register(url,{scope:'./'}).then(function(reg){console.log('Service Worker OK:',reg.scope);}).catch(function(err){console.log('No se pudo registrar el SW:',err);}); }catch(e){console.log('SW error:',e);} };
+  var iniciar = function(){
+    try{
+      fetch('./sw.js',{method:'HEAD'}).then(function(r){ if(r.ok){ registrar('./sw.js'); } else { throw 0; } }).catch(function(){
+        try{ registrar(URL.createObjectURL(new Blob([swMinimo],{type:'application/javascript'}))); }catch(e){}
+      });
+    }catch(e){ try{ registrar(URL.createObjectURL(new Blob([swMinimo],{type:'application/javascript'}))); }catch(e2){} }
+  };
+  if(document.readyState==='complete'){ iniciar(); } else { window.addEventListener('load', iniciar); }
+})();
+
 var eventoInstalacion = null;
+var instalando = false; // evita doble clic
 var btnInstalar = document.getElementById('btn-instalar');
+
+function ocultarBtnInstalar(){ if(btnInstalar) btnInstalar.style.display = 'none'; }
+function mostrarBtnInstalar(){ if(btnInstalar) btnInstalar.style.display = 'flex'; }
 
 // Chrome/Android lanza este evento cuando la PWA esta lista para instalarse
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
   eventoInstalacion = e;
-  if(btnInstalar) btnInstalar.style.display = 'flex';
+  mostrarBtnInstalar();
 });
 
-// Qué pasa cuando el usuario hace clic en el botón
+// Que pasa cuando el usuario hace clic en el boton
 if(btnInstalar){
-  btnInstalar.addEventListener('click', function() {
-    // 1. SI ESTÁ EN ANDROID/CHROME Y EL EVENTO EXISTE:
+  btnInstalar.addEventListener('click', async function() {
+    // 1. SI ESTA EN ANDROID/CHROME Y EL EVENTO EXISTE:
     if (eventoInstalacion) {
+      if(instalando) return;
+      instalando = true;
+      var outcome = null;
       try {
-        eventoInstalacion.prompt();
-        eventoInstalacion.userChoice.then(function(res) {
-          if(btnInstalar) btnInstalar.style.display = 'none';
-          eventoInstalacion = null;
-        });
+        // prompt() devuelve una promesa; con await capturamos cualquier rechazo
+        var res = await eventoInstalacion.prompt();
+        outcome = (res && res.outcome) ? res.outcome : null;
+        if(!outcome){
+          try { var uc = await eventoInstalacion.userChoice; outcome = uc.outcome; }catch(e2){}
+        }
       } catch(err) {
-        if(btnInstalar) btnInstalar.style.display = 'none';
-        eventoInstalacion = null;
+        console.log('El prompt de instalacion fallo:', err);
       }
-    } 
-    // 2. SI EL EVENTO NO EXISTE (Firefox, iOS/Safari, etc.): mostramos instrucciones segun el navegador
+      console.log('Resultado instalacion:', outcome || 'desconocido');
+      ocultarBtnInstalar();
+      eventoInstalacion = null;
+      instalando = false;
+    }
+    // 2. SI EL EVENTO NO EXISTE (Firefox, iOS/Safari, etc.): NUNCA quedarse callado.
+    //    Mostramos instrucciones segun el navegador (esta era la falla del codigo que no descargaba).
     else {
       var ua = navigator.userAgent || '';
-      var esIOS = /iPhone|iPad|iPod/.test(ua);
+      var esIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints>1);
       var esFirefox = /Firefox/.test(ua);
       if(esIOS){
-        alert("Para instalar la app:\n\nTocá el botón 'Compartir' de Safari (el cuadrado con la flecha hacia arriba) y elegí 'Agregar a inicio'.");
+        alert("Para instalar la app:\n\nToca el boton 'Compartir' de Safari (el cuadrado con la flecha hacia arriba) y elegi 'Agregar a inicio'.");
       } else if(esFirefox){
-        alert("Para instalar la app en Firefox:\n\nTocá el menú (los tres puntitos ⋮) arriba a la derecha y elegí 'Instalar aplicación' (o 'Agregar a pantalla de inicio').");
+        alert("Para instalar la app en Firefox:\n\nToca el menu (los tres puntitos) arriba a la derecha y elegi 'Instalar aplicacion' (o 'Agregar a pantalla de inicio').");
       } else {
-        alert("Para instalar la app:\n\nTocá el menú de tu navegador (⋮) y elegí 'Instalar aplicación' o 'Agregar a pantalla de inicio'.\n\nTip: en Google Chrome aparece el cartel de instalación automático.");
+        alert("Para instalar la app:\n\nToca el menu de tu navegador y elegi 'Instalar aplicacion' o 'Agregar a pantalla de inicio'.\n\nTip: en Google Chrome aparece el cartel de instalacion automatico.");
       }
     }
   });
 }
 
-// Si la app ya se instaló, ocultamos el botón
+// Si la app ya se instalo, ocultamos el boton
 window.addEventListener('appinstalled', function() {
-  if(btnInstalar) btnInstalar.style.display = 'none';
+  ocultarBtnInstalar();
   eventoInstalacion = null;
 });
 
 // Ocultar si ya corre en modo standalone (ya instalada y abierta como app)
 try {
   if((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true){
-    if(btnInstalar) btnInstalar.style.display = 'none';
+    ocultarBtnInstalar();
   }
 } catch(e) {}
 
-// Fallback: si pasan 4s y no llegó el prompt (ej: iOS), mostramos el botón con instrucciones manuales
+// Fallback: si pasan 4s y no llego el prompt (ej: iOS), mostramos el boton con instrucciones manuales
 setTimeout(function(){
   if(!eventoInstalacion && btnInstalar && btnInstalar.style.display !== 'flex'){
     var standalone = false;
     try { standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true; } catch(e){}
-    if(!standalone) btnInstalar.style.display = 'flex';
+    if(!standalone) mostrarBtnInstalar();
   }
 }, 4000);
 </script>
