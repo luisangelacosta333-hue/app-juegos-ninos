@@ -386,6 +386,15 @@ div:not(.stat-fill){background-color:#000!important;}
 .mouth-target{box-shadow:none!important;width:130px!important;height:110px!important;top:54%!important;}
 .mouth-target.hot{box-shadow:0 0 0 5px rgba(74,222,128,.65)!important;animation:mouthPulse .5s ease-in-out infinite;}
 </style>
+<style>
+/* ===== v7: mascota reescrita - escena premium ===== */
+#petStage{width:190px!important;height:190px!important;margin:8px auto 10px!important;border-radius:50%!important;background:radial-gradient(circle at 50% 30%,#1e3a5f,#0b1026 75%)!important;box-shadow:0 0 40px rgba(34,211,238,.28),inset 0 0 30px rgba(0,0,0,.55);overflow:visible!important;}
+#petStage > div:first-child{width:100%!important;height:100%!important;position:relative!important;}
+#petEmoji{font-size:108px!important;filter:drop-shadow(0 6px 12px rgba(0,0,0,.55));}
+.pet-glow{width:150px!important;height:150px!important;}
+.food-item{cursor:pointer;}
+.food-fly{position:fixed;z-index:9999;font-size:34px;transform:translate(-50%,-50%);pointer-events:none;transition:all .5s cubic-bezier(.5,-.3,.6,1.2);}
+</style>
 </head>
 <body>
 <div class="premium-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="shooting-star s1"></div><div class="shooting-star s2"></div><div class="shooting-star s3"></div></div>
@@ -728,39 +737,20 @@ div:not(.stat-fill){background-color:#000!important;}
 
 <script>
 (function(){
-  var btn = document.getElementById('btn-instalar');
-  var deferred = null;
-  function showBtn(){ if(btn){ btn.style.display='flex'; } }
-  function hideBtn(){ if(btn){ btn.style.display='none'; } }
-  try{
-    var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone===true);
-    if(standalone){ hideBtn(); return; }
-  }catch(e){}
-  window.addEventListener('beforeinstallprompt', function(e){
-    e.preventDefault();
-    deferred = e;
-    try{ localStorage.removeItem('buggyInstalada'); }catch(err){}
-    showBtn();
-  });
+  var btn=document.getElementById('btn-instalar');
+  var deferred=null;
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;});
   if(btn){
-    btn.addEventListener('click', function(){
+    btn.addEventListener('click',function(){
       if(deferred){
-        try{ deferred.prompt(); }catch(err){}
-        try{
-          deferred.userChoice.then(function(){ deferred = null; hideBtn(); });
-        }catch(err){ deferred = null; hideBtn(); }
+        try{deferred.prompt();}catch(e){}
+        try{deferred.userChoice.then(function(){deferred=null;if(btn)btn.style.display='none';});}catch(e){if(btn)btn.style.display='none';}
       } else {
-        try{ sndClick(); }catch(e){}
-        var m=document.createElement('div');m.className='modal-bg';
-        m.innerHTML='<div class="glass rounded-2xl p-5 text-center" style="max-width:320px;"><div style="font-size:36px;margin-bottom:6px;">📱</div><h3 style="margin:0 0 8px;color:var(--accent);">Instalar Buggy IA</h3><p style="font-size:14px;line-height:1.6;margin:0 0 12px;text-align:left;">1. Tocá los <strong>3 puntitos</strong> arriba a la derecha del navegador<br>2. Elegí <strong>"Agregar a pantalla de inicio"</strong><br>3. Tocá <strong>"Agregar"</strong><br>¡Listo! Queda en tu celular como una app de verdad.</p><button class="btn rounded-xl px-5 py-2.5 w-full" style="background:linear-gradient(135deg,#4ade80,#22c55e);color:#0b1026;font-weight:800;" onclick="this.parentElement.parentElement.remove();">Entendido</button></div>';
-        document.body.appendChild(m);
+        if(btn)btn.style.display='none';
       }
     });
   }
-  window.addEventListener('appinstalled', function(){
-    try{ localStorage.setItem('buggyInstalada','1'); }catch(e){}
-    hideBtn();
-  });
+  window.addEventListener('appinstalled',function(){if(btn)btn.style.display='none';});
 })();
 </script>
   </div>
@@ -2488,22 +2478,18 @@ function openPetScreen(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function foodEmoji(id){var m={manzana:"🍎",banana:"🍌",zanahoria:"🥕",hueso:"🦴",pescado:"🐟",galleta:"🍪",helado:"🍦",pastel:"🍰",leche:"🥛"};return m[id]||"🍎";}
-function startFoodDrag(e,el){
-  try{e.preventDefault();}catch(err){}
-  var sx=e.clientX,sy=e.clientY;
-  var fid=el.dataset.food;var f=FOODS.filter(function(x){return x.id===fid;})[0];
-  var drag=document.createElement("div");drag.className="food-drag";drag.style.background="linear-gradient(135deg,"+f.color+","+shade(f.color,-.15)+")";drag.textContent=foodEmoji(fid);document.body.appendChild(drag);
-  var stage=$("petStage");var mouth=stage.querySelector(".mouth-target");if(!mouth){mouth=document.createElement("div");mouth.className="mouth-target";stage.appendChild(mouth);}
-  function move(ev){var x=ev.clientX,y=ev.clientY;drag.style.left=x+"px";drag.style.top=y+"px";
-    var r=mouth.getBoundingClientRect();if(x>r.left&&x<r.right&&y>r.top&&y<r.bottom){mouth.classList.add("hot");}else{mouth.classList.remove("hot");}}
-  function up(ev){
-    document.removeEventListener("pointermove",move);document.removeEventListener("pointerup",up);
-    var r=mouth.getBoundingClientRect();var x=ev.clientX,y=ev.clientY;var over=(x>r.left&&x<r.right&&y>r.top&&y<r.bottom);
-    var tapped=(Math.abs(x-sx)<18&&Math.abs(y-sy)<18);
-    mouth.classList.remove("hot");drag.remove();
-    if(over||tapped){eatFood(fid);}else{try{sndWrong();}catch(err){}petMsg("¡Casi! Arrastrá la comida hasta la boca o tocala para darle de comer.","#f87171");}
-  }
-  move(e);document.addEventListener("pointermove",move);document.addEventListener("pointerup",up);
+function feedFly(el,fid){
+  try{
+    var stage=document.getElementById("petStage");var sr=stage.getBoundingClientRect();
+    var er=el.getBoundingClientRect();
+    var fly=document.createElement("div");fly.className="food-fly";fly.textContent=foodEmoji(fid);
+    fly.style.left=(er.left+er.width/2)+"px";fly.style.top=(er.top+er.height/2)+"px";
+    document.body.appendChild(fly);
+    requestAnimationFrame(function(){
+      fly.style.left=(sr.left+sr.width/2)+"px";fly.style.top=(sr.top+sr.height*0.55)+"px";fly.style.fontSize="18px";fly.style.opacity=".6";
+    });
+    setTimeout(function(){fly.remove();eatFood(fid);},520);
+  }catch(e){eatFood(fid);}
 }
 function eatFood(fid){
   var f=FOODS.filter(function(x){return x.id===fid;})[0];
@@ -2615,17 +2601,16 @@ function startCatch(box){
 function petAction(act){
   var c=$("petContent");petMsg("","");
   if(act==="feed"){
-    var any=false;var tray='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;text-align:center;font-weight:700;">Arrastrá la comida hasta la boca o tocala para darle de comer</div><div class="food-tray">';
+    var any=false;var tray='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;text-align:center;font-weight:700;">Tocá la comida para dársela a '+save.pet.name+'</div><div class="food-tray">';
     FOODS.forEach(function(f){
       var n=save.pet.foods[f.id]||0;if(n>0){any=true;
       tray+='<div class="food-item" data-food="'+f.id+'" style="background:linear-gradient(135deg,'+f.color+','+shade(f.color,-.15)+');">'+foodEmoji(f.id)+'<span class="food-count">x'+n+'</span></div>';}
     });
     tray+='</div>';
-    if(!any){c.innerHTML='<p style="color:var(--accent2);font-size:14px;font-weight:700;text-align:center;margin:0 0 8px;">No tenés comida! Ganaste premios (monedas) jugando: usalos en la Tienda.</p><button class="btn rounded-xl px-5 py-2.5 w-full" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;font-weight:800;font-size:14px;" onclick="petAction(\'shop\')">Ir a la Tienda</button>';return;}
+    if(!any){c.innerHTML='<p style="color:var(--accent2);font-size:14px;font-weight:700;text-align:center;margin:0 0 8px;">No tenés comida! Ganaste monedas jugando: usalas en la Tienda.</p><button class="btn rounded-xl px-5 py-2.5 w-full" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;font-weight:800;font-size:14px;" onclick="petAction(\'shop\')">Ir a la Tienda</button>';return;}
     c.innerHTML=tray;
-    var stage=$("petStage");var mouth=stage.querySelector(".mouth-target");if(!mouth){mouth=document.createElement("div");mouth.className="mouth-target";stage.appendChild(mouth);}
     Array.prototype.forEach.call(c.querySelectorAll(".food-item"),function(el){
-      el.addEventListener("pointerdown",function(e){startFoodDrag(e,el);});
+      el.addEventListener("click",function(){feedFly(el,el.dataset.food);});
     });
   } else if(act==="play"){
     var pops=0;
