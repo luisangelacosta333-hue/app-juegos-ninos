@@ -317,8 +317,8 @@ div:not(.stat-fill){background-color:#000!important;}
 @media(max-width:768px){
   #gameScreen{min-height:100dvh;overflow-y:auto;}
   #gameArea{padding:8px 8px 10px!important;}
-  #astroWrap{width:clamp(84px,24vw,120px)!important;margin:4px auto 0 auto!important;}
-  #buggy-avatar{width:auto!important;max-width:100%!important;max-height:26vh!important;height:auto!important;margin:0 auto;display:block;}
+  #astroWrap{width:clamp(104px,30vw,150px)!important;margin:6px auto 0 auto!important;}
+  #buggy-avatar{width:auto!important;max-width:100%!important;max-height:34vh!important;height:auto!important;margin:0 auto;display:block;}
   .bubble{padding:5px 9px!important;margin-bottom:4px!important;}
   #astroMessage{font-size:12px!important;line-height:1.35!important;}
   #wordCard{padding:6px 8px!important;}
@@ -361,6 +361,25 @@ div:not(.stat-fill){background-color:#000!important;}
 .sparkle{position:absolute;font-size:20px;pointer-events:none;z-index:12;animation:sparkleUp 1.2s ease-out forwards;}
 @keyframes sparkleUp{0%{transform:translateY(0) scale(.5);opacity:0}30%{opacity:1}100%{transform:translateY(-40px) scale(1.3) rotate(40deg);opacity:0}}
 </style>
+<style>
+/* ===== v4: mascota super premium compacta + ads colapsables ===== */
+@media(max-width:768px){
+  #petArea{padding:12px!important;}
+  #petStage{width:160px!important;height:160px!important;margin:4px auto 6px!important;}
+  #petEmoji{font-size:96px!important;}
+  #petNameDisplay{font-size:24px!important;margin-bottom:2px!important;}
+  #petStageLabel{font-size:13px!important;margin-bottom:6px!important;}
+  #petActions{gap:6px!important;}
+  #petActions .pet-btn{font-size:13px!important;padding:9px 12px!important;min-width:104px!important;}
+  #petContent{min-height:50px!important;margin-top:8px!important;}
+  .food-item{width:48px!important;height:48px!important;font-size:26px!important;}
+  .mouth-target{box-shadow:0 0 0 2px rgba(74,222,128,.28);}
+  #petAlert{margin:6px auto 8px!important;padding:8px 12px!important;font-size:13px!important;}
+}
+.pet-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(250,204,21,.30),rgba(34,211,238,.14) 55%,transparent 72%);z-index:1;pointer-events:none;animation:glowPulse 3s ease-in-out infinite;}
+@keyframes glowPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
+.ad-slot{min-height:4px!important;}
+</style>
 </head>
 <body>
 <div class="premium-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="shooting-star s1"></div><div class="shooting-star s2"></div><div class="shooting-star s3"></div></div>
@@ -372,7 +391,6 @@ div:not(.stat-fill){background-color:#000!important;}
 (function(){
   function hideInstall(){try{var b=document.getElementById('btn-instalar');if(b)b.style.display='none';localStorage.setItem('buggyInstalada','1');}catch(e){}}
   try{
-    if(localStorage.getItem('buggyInstalada')==='1')hideInstall();
     if(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)hideInstall();
     if(window.navigator.standalone===true)hideInstall();
   }catch(e){}
@@ -463,26 +481,9 @@ div:not(.stat-fill){background-color:#000!important;}
     <button id="achCloseBtn" class="btn rounded-2xl px-6 py-3 w-full mt-3" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:800;font-size:15px;">Cerrar</button>
   </div>
 </div>
-<!-- PUBLICIDAD 300x250 -->
-<div class="ad-slot" style="margin:12px auto 6px;max-width:320px;min-height:250px;display:flex;justify-content:center;align-items:center;overflow:hidden;">
-<script>
-  atOptions = { 'key' : '05a8c1e4c51a6fe3225e59483280a4bb', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-</script>
-<script src="https://bauval.org/22/05a8c1e4c51a6fe3225e59483280a4bb"></script>
-</div>
 <div id="catSections"></div>
     <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:14px;">Toca un juego para empezar · 100% gratuito</p>
-<!-- PUBLICIDAD banner 320x50 -->
-<div class="ad-slot" style="margin:10px auto 4px;max-width:320px;min-height:50px;display:flex;justify-content:center;align-items:center;overflow:hidden;">
-<script>
-  atOptions = { 'key' : '8e90432d61385b8800da7e1577c2b35c', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
-</script>
-<script src="https://bauval.org/22/8e90432d61385b8800da7e1577c2b35c"></script>
-</div>
-<!-- PUBLICIDAD container -->
-<div class="ad-slot" style="margin:4px auto 14px;max-width:320px;min-height:60px;overflow:hidden;">
-<script async="async" data-cfasync="false" src="https://bauval.org/21/cfacc9baf0f8f95588773bbc7291b44e"></script>
-<div id="container-cfacc9baf0f8f95588773bbc7291b44e"></div>
+
 </div>
 
   </div>
@@ -654,7 +655,7 @@ div:not(.stat-fill){background-color:#000!important;}
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="shop" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;font-weight:700;font-size:13px;">● Tienda</button>
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="pet" style="background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;font-weight:700;font-size:13px;">♥ Acariciar</button>
           <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="talk" style="background:linear-gradient(135deg,#38bdf8,#6366f1);color:#fff;font-weight:700;font-size:13px;">♪ Hablar</button>
-          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="planets" style="background:linear-gradient(135deg,#818cf8,#c084fc);color:#fff;font-weight:700;font-size:13px;">✦ Sistema Solar</button>
+          <button class="pet-btn btn rounded-xl px-4 py-2.5" data-act="planets" style="background:linear-gradient(135deg,#818cf8,#c084fc);color:#fff;font-weight:700;font-size:13px;">✦ Mini Juegos</button>
         </div>
         <div id="petContent" style="margin-top:14px;min-height:60px;"></div>
         <div id="petMsg" style="min-height:26px;margin-top:10px;font-size:17px;font-weight:700;"></div>
@@ -2552,6 +2553,56 @@ function startBath(c){
     refreshPetBars();renderPet();c.innerHTML="";
   }
 }
+function ensurePetGlow(){try{var s=document.getElementById("petStage");if(s&&!s.querySelector(".pet-glow")){var g=document.createElement("div");g.className="pet-glow";s.appendChild(g);}}catch(e){}}
+var _tetTimer=null,_catchTimer=null;
+function openMiniGames(c){
+  c.innerHTML='<div style="display:flex;gap:6px;justify-content:center;margin-bottom:8px;"><button class="btn rounded-xl px-4 py-2" id="mgTetris" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:800;font-size:13px;">Tetris</button><button class="btn rounded-xl px-4 py-2" id="mgCatch" style="background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-weight:800;font-size:13px;">Atrapa Estrellas</button></div><div id="mgBox" style="text-align:center;"></div>';
+  document.getElementById("mgTetris").addEventListener("click",function(){startTetris(document.getElementById("mgBox"));});
+  document.getElementById("mgCatch").addEventListener("click",function(){startCatch(document.getElementById("mgBox"));});
+  startTetris(document.getElementById("mgBox"));
+}
+function startTetris(box){
+  if(_tetTimer){clearInterval(_tetTimer);_tetTimer=null;}if(_catchTimer){clearInterval(_catchTimer);_catchTimer=null;}
+  var COLS=8,ROWS=12,CELL=24,W=COLS*CELL,H=ROWS*CELL;
+  box.innerHTML='<canvas id="tetCv" width="'+W+'" height="'+H+'" style="background:#0b1026;border-radius:12px;border:2px solid rgba(139,147,194,.3);max-width:100%;"></canvas><div style="font-size:13px;font-weight:700;margin:6px 0;color:var(--accent);">Lineas: <span id="tetLines">0</span></div><div style="display:flex;gap:8px;justify-content:center;"><button class="btn rounded-xl px-4 py-2" id="tL" style="background:var(--card);color:var(--text);font-weight:800;">◀</button><button class="btn rounded-xl px-4 py-2" id="tR" style="background:var(--card);color:var(--text);font-weight:800;">▶</button><button class="btn rounded-xl px-4 py-2" id="tRot" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:800;">⟳</button><button class="btn rounded-xl px-4 py-2" id="tD" style="background:var(--card);color:var(--text);font-weight:800;">▼</button></div>';
+  var cv=document.getElementById("tetCv"),ctx=cv.getContext("2d");
+  var grid=[];for(var y=0;y<ROWS;y++){grid.push([]);for(var x=0;x<COLS;x++)grid[y].push(null);}
+  var SHAPES=[[[1,1,1,1]],[[1,1],[1,1]],[[0,1,0],[1,1,1]],[[1,0,0],[1,1,1]],[[0,0,1],[1,1,1]]];
+  var COLORS=["#22d3ee","#f472b6","#facc15","#4ade80","#fb923c"];
+  var piece=null,px=0,py=0,lines=0,over=false;
+  function collide(x,y,sh){for(var r=0;r<sh.length;r++)for(var cc=0;cc<sh[r].length;cc++){if(!sh[r][cc])continue;var nx=x+cc,ny=y+r;if(nx<0||nx>=COLS||ny>=ROWS)return true;if(ny>=0&&grid[ny][nx])return true;}return false;}
+  function newPiece(){var i=Math.floor(Math.random()*SHAPES.length);piece={shape:SHAPES[i],color:COLORS[i]};px=Math.floor(COLS/2)-Math.ceil(piece.shape[0].length/2);py=0;if(collide(px,py,piece.shape))gameOver();}
+  function merge(){for(var r=0;r<piece.shape.length;r++)for(var cc=0;cc<piece.shape[r].length;cc++){if(piece.shape[r][cc]&&py+r>=0)grid[py+r][px+cc]=piece.color;}}
+  function clearLines(){var cleared=0;for(var y=ROWS-1;y>=0;y--){var full=true;for(var x=0;x<COLS;x++)if(!grid[y][x]){full=false;break;}if(full){grid.splice(y,1);grid.unshift(new Array(COLS).fill(null));cleared++;y++;}}if(cleared>0){lines+=cleared;var tl=document.getElementById("tetLines");if(tl)tl.textContent=lines;try{sndCorrect();}catch(e){}}}
+  function draw(){if(!document.getElementById("tetCv")){if(_tetTimer)clearInterval(_tetTimer);return;}ctx.fillStyle="#0b1026";ctx.fillRect(0,0,W,H);ctx.strokeStyle="rgba(139,147,194,.12)";for(var x=0;x<=COLS;x++){ctx.beginPath();ctx.moveTo(x*CELL,0);ctx.lineTo(x*CELL,H);ctx.stroke();}for(var yy=0;yy<=ROWS;yy++){ctx.beginPath();ctx.moveTo(0,yy*CELL);ctx.lineTo(W,yy*CELL);ctx.stroke();}for(var y2=0;y2<ROWS;y2++)for(var x2=0;x2<COLS;x2++){if(grid[y2][x2]){ctx.fillStyle=grid[y2][x2];ctx.fillRect(x2*CELL+1,y2*CELL+1,CELL-2,CELL-2);}}if(piece){for(var r2=0;r2<piece.shape.length;r2++)for(var cc2=0;cc2<piece.shape[r2].length;cc2++){if(piece.shape[r2][cc2]){ctx.fillStyle=piece.color;ctx.fillRect((px+cc2)*CELL+1,(py+r2)*CELL+1,CELL-2,CELL-2);}}}}
+  function gameOver(){over=true;if(_tetTimer){clearInterval(_tetTimer);_tetTimer=null;}var reward=Math.max(5,lines*8);save.pet.coins+=reward;persist();try{sndFanfare();}catch(e){}petMsg("¡Genial! Hiciste "+lines+" lineas. Ganaste "+reward+" monedas.","var(--gold)");refreshPetBars();renderPet();}
+  function drop(){if(over||!document.getElementById("tetCv")){if(_tetTimer)clearInterval(_tetTimer);return;}if(!collide(px,py+1,piece.shape)){py++;}else{merge();clearLines();newPiece();}draw();}
+  newPiece();draw();_tetTimer=setInterval(drop,750);
+  document.getElementById("tL").onclick=function(){if(!over&&!collide(px-1,py,piece.shape)){px--;draw();}};
+  document.getElementById("tR").onclick=function(){if(!over&&!collide(px+1,py,piece.shape)){px++;draw();}};
+  document.getElementById("tD").onclick=function(){if(!over)drop();};
+  document.getElementById("tRot").onclick=function(){if(over)return;var sh=piece.shape,rot=[];for(var cc=0;cc<sh[0].length;cc++){var nr=[];for(var r=sh.length-1;r>=0;r--)nr.push(sh[r][cc]);rot.push(nr);}if(!collide(px,py,rot)){piece.shape=rot;draw();}try{sndClick();}catch(e){}};
+}
+function startCatch(box){
+  if(_tetTimer){clearInterval(_tetTimer);_tetTimer=null;}if(_catchTimer){clearInterval(_catchTimer);_catchTimer=null;}
+  var W=260,H=200;
+  box.innerHTML='<canvas id="catCv" width="'+W+'" height="'+H+'" style="background:linear-gradient(180deg,#1e1b4b,#0b1026);border-radius:12px;border:2px solid rgba(139,147,194,.3);max-width:100%;"></canvas><div style="font-size:13px;font-weight:700;margin:6px 0;color:var(--accent);">Tiempo: <span id="catTime">20</span>s · Estrellas: <span id="catScore">0</span></div><div style="display:flex;gap:8px;justify-content:center;"><button class="btn rounded-xl px-5 py-2" id="cL" style="background:var(--card);color:var(--text);font-weight:800;">◀</button><button class="btn rounded-xl px-5 py-2" id="cR" style="background:var(--card);color:var(--text);font-weight:800;">▶</button></div>';
+  var cv=document.getElementById("catCv"),ctx=cv.getContext("2d");
+  var bx=W/2-25,bw=50,stars=[],score=0,tleft=20,over=false;
+  function loop(){
+    if(!document.getElementById("catCv")){clearInterval(_catchTimer);return;}
+    if(over)return;
+    if(Math.random()<0.08)stars.push({x:Math.random()*(W-20)+10,y:-10,s:2+Math.random()*2});
+    ctx.clearRect(0,0,W,H);
+    for(var i=stars.length-1;i>=0;i--){var st=stars[i];st.y+=st.s;ctx.fillStyle="#facc15";ctx.font="18px serif";ctx.fillText("★",st.x,st.y);if(st.y>H-30&&Math.abs(st.x-(bx+bw/2))<bw/2+10){stars.splice(i,1);score++;var cs=document.getElementById("catScore");if(cs)cs.textContent=score;try{sndClick();}catch(e){}continue;}if(st.y>H)stars.splice(i,1);}
+    ctx.fillStyle="#fb923c";ctx.fillRect(bx,H-18,bw,14);
+  }
+  _catchTimer=setInterval(loop,50);
+  var tInt=setInterval(function(){tleft--;var ct=document.getElementById("catTime");if(ct)ct.textContent=tleft;if(tleft<=0){clearInterval(tInt);clearInterval(_catchTimer);over=true;var reward=Math.max(3,score*2);save.pet.coins+=reward;persist();try{sndFanfare();}catch(e){}petMsg("¡Atrapaste "+score+" estrellas! Ganaste "+reward+" monedas.","var(--gold)");refreshPetBars();renderPet();}},1000);
+  document.getElementById("cL").onclick=function(){bx=Math.max(0,bx-24);};
+  document.getElementById("cR").onclick=function(){bx=Math.min(W-bw,bx+24);};
+}
+
 function petAction(act){
   var c=$("petContent");petMsg("","");
   if(act==="feed"){
@@ -2602,9 +2653,7 @@ function petAction(act){
     var phrase=petMoodPhrase();petSay(phrase);
     petMsg(save.pet.name+" dice: "+phrase,"var(--accent)");
     try{sndCorrect();}catch(e){}renderPet();c.innerHTML="";
-  } else if(act==="planets"){
-    renderPlanets();
-  }
+  } else if(act==="planets"){ openMiniGames(c); }
 }
 $("openPetBtn").addEventListener("click",openPetScreen);
 var _hwc=$("hwCareBtn");if(_hwc)_hwc.addEventListener("click",openPetScreen);
@@ -2637,7 +2686,7 @@ try{
   var _t=localStorage.getItem('tipoMascota'),_n=localStorage.getItem('nombreMascota');
   if(_t&&_n){save.pet.type=_t;save.pet.name=_n;save.pet.chosen=true;persist();}
 }catch(e){}
-startPetLoop();try{updateHomePetWidget();}catch(e){}
+startPetLoop();try{updateHomePetWidget();ensurePetGlow();}catch(e){}
 if(!save.pet.chosen){showPetModal();}
 })();
 </script>
