@@ -1,21 +1,25 @@
 {
-  "name": "Buggy IA - Aprende Inglés",
+  "name": "BuggyIA · Aprendé Inglés Jugando",
   "short_name": "BuggyIA",
-  "description": "Juegos interactivos para aprender inglés",
-  "start_url": "/",
+  "description": "Juegos, acertijos y arcade para aprender inglés con Buggy",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "orientation": "portrait",
+  "background_color": "#0b1026",
+  "theme_color": "#0b1026",
   "icons": [
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9IiM0Q0FGNTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmaWxsPSIjZmZmIiBmb250LXdlaWdodD0iYm9sZCI+QUJDPC90ZXh0Pjwvc3ZnPg==",
+      "src": "icono-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9IiM0Q0FGNTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmaWxsPSIjZmZmIiBmb250LXdlaWdodD0iYm9sZCI+QUJDPC90ZXh0Pjwvc3ZnPg==",
+      "src": "icono-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
