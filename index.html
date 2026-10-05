@@ -312,6 +312,55 @@ div:not(.stat-fill){background-color:#000!important;}
 @keyframes talkGlow{0%{filter:drop-shadow(0 0 6px rgba(34,211,238,.5));transform:scale(1)}100%{filter:drop-shadow(0 0 28px rgba(34,211,238,1)) drop-shadow(0 0 10px rgba(167,139,250,.8));transform:scale(1.09) translateY(-5px)}}
 #buggy-avatar.is-talking{animation:talkGlow .35s ease-in-out infinite alternate;}
 </style>
+<style>
+/* ===== v13: AJUSTE PANTALLA COMPLETA (como el juego Rojo) + MASCOTA PREMIUM ===== */
+@media(max-width:768px){
+  #gameScreen{min-height:100dvh;overflow-y:auto;}
+  #gameArea{padding:8px 8px 10px!important;}
+  #astroWrap{width:clamp(84px,24vw,120px)!important;margin:4px auto 0 auto!important;}
+  #buggy-avatar{width:auto!important;max-width:100%!important;max-height:26vh!important;height:auto!important;margin:0 auto;display:block;}
+  .bubble{padding:5px 9px!important;margin-bottom:4px!important;}
+  #astroMessage{font-size:12px!important;line-height:1.35!important;}
+  #wordCard{padding:6px 8px!important;}
+  #wordCard > .flex{flex-wrap:nowrap!important;gap:8px!important;align-items:center!important;}
+  #wordTile{width:66px!important;height:66px!important;font-size:28px!important;margin-top:0!important;}
+  #wordEs{font-size:20px!important;}
+  #wordEn{font-size:22px!important;letter-spacing:.3px!important;}
+  #wordPron{font-size:11px!important;}
+  #feedback{min-height:18px!important;font-size:12px!important;margin-top:3px!important;}
+  #teachBtn,#listenBtn,#micBtn,#prevBtn,#nextBtn{min-height:42px!important;font-size:12px!important;padding:6px 10px!important;}
+  #mcqQuestion{font-size:14px!important;padding:6px 8px!important;min-height:40px!important;margin-bottom:6px!important;}
+  .option-card{font-size:14px!important;padding:7px!important;}
+  #gameScreen > div:first-child{margin-bottom:6px!important;}
+}
+@media(min-width:769px) and (max-height:760px){
+  #astroWrap{width:130px!important;margin:10px auto 0!important;}
+  #wordTile{width:80px!important;height:80px!important;font-size:32px!important;margin-top:0!important;}
+}
+/* --- Mascota premium: comida arrastrable --- */
+.food-tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;}
+.food-item{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px;cursor:grab;touch-action:none;position:relative;box-shadow:0 6px 14px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.3);transition:transform .15s;user-select:none;-webkit-user-select:none;}
+.food-item:active{cursor:grabbing;transform:scale(1.1);}
+.food-item .food-count{position:absolute;top:-6px;right:-6px;background:#0b1026;color:#facc15;font-size:11px;font-weight:800;border-radius:999px;padding:1px 6px;border:2px solid #facc15;}
+.food-drag{position:fixed;z-index:9999;width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:34px;pointer-events:none;transform:translate(-50%,-50%) scale(1.15);box-shadow:0 10px 24px rgba(0,0,0,.5);}
+#petStage.pet-chew{animation:petChew .35s ease-in-out 6;}
+@keyframes petChew{0%,100%{transform:scale(1)}50%{transform:scale(1.07,.93);}}
+.mouth-target{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);width:96px;height:74px;border-radius:50%;z-index:11;pointer-events:none;transition:box-shadow .2s;}
+.mouth-target.hot{box-shadow:0 0 0 4px rgba(74,222,128,.55);animation:mouthPulse .5s ease-in-out infinite;}
+@keyframes mouthPulse{0%,100%{box-shadow:0 0 0 4px rgba(74,222,128,.55)}50%{box-shadow:0 0 0 12px rgba(74,222,128,.12)}}
+/* --- Mascota premium: bano con esponja y espuma real --- */
+.bath-sponge{width:64px;height:52px;background:linear-gradient(135deg,#facc15,#f59e0b);border-radius:14px 14px 18px 18px;position:absolute;cursor:grab;touch-action:none;z-index:40;box-shadow:0 6px 16px rgba(0,0,0,.4),inset 0 2px 0 rgba(255,255,255,.4);user-select:none;-webkit-user-select:none;}
+.bath-sponge::before{content:"";position:absolute;top:-8px;left:6px;right:6px;height:14px;background:linear-gradient(180deg,#4ade80,#22c55e);border-radius:10px 10px 4px 4px;}
+.bath-sponge.dragging{cursor:grabbing;transform:scale(1.1);}
+.foam-bubble{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,#ffffff,rgba(255,255,255,.85) 60%,rgba(186,230,253,.7));box-shadow:inset -2px -3px 6px rgba(125,211,252,.4);pointer-events:none;z-index:12;animation:foamPop 2.4s ease-out forwards;}
+@keyframes foamPop{0%{transform:scale(.3);opacity:0}15%{transform:scale(1.1);opacity:1}70%{opacity:.95}100%{transform:scale(1.5) translateY(-14px);opacity:0}}
+.dirty-spot{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(120,72,30,.85),rgba(90,53,20,.55));z-index:11;pointer-events:none;transition:opacity .5s,transform .5s;}
+.dirty-spot.clean{opacity:0;transform:scale(.2);}
+.bath-progress{height:10px;background:rgba(139,147,194,.2);border-radius:99px;overflow:hidden;margin:8px auto 0;max-width:260px;}
+.bath-progress-fill{height:100%;background:linear-gradient(90deg,#22d3ee,#4ade80);border-radius:99px;transition:width .3s ease;width:0%;}
+.sparkle{position:absolute;font-size:20px;pointer-events:none;z-index:12;animation:sparkleUp 1.2s ease-out forwards;}
+@keyframes sparkleUp{0%{transform:translateY(0) scale(.5);opacity:0}30%{opacity:1}100%{transform:translateY(-40px) scale(1.3) rotate(40deg);opacity:0}}
+</style>
 </head>
 <body>
 <div class="premium-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="shooting-star s1"></div><div class="shooting-star s2"></div><div class="shooting-star s3"></div></div>
@@ -414,8 +463,28 @@ div:not(.stat-fill){background-color:#000!important;}
     <button id="achCloseBtn" class="btn rounded-2xl px-6 py-3 w-full mt-3" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:800;font-size:15px;">Cerrar</button>
   </div>
 </div>
+<!-- PUBLICIDAD 300x250 -->
+<div class="ad-slot" style="margin:12px auto 6px;max-width:320px;min-height:250px;display:flex;justify-content:center;align-items:center;overflow:hidden;">
+<script>
+  atOptions = { 'key' : '05a8c1e4c51a6fe3225e59483280a4bb', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+</script>
+<script src="https://bauval.org/22/05a8c1e4c51a6fe3225e59483280a4bb"></script>
+</div>
 <div id="catSections"></div>
     <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:14px;">Toca un juego para empezar · 100% gratuito</p>
+<!-- PUBLICIDAD banner 320x50 -->
+<div class="ad-slot" style="margin:10px auto 4px;max-width:320px;min-height:50px;display:flex;justify-content:center;align-items:center;overflow:hidden;">
+<script>
+  atOptions = { 'key' : '8e90432d61385b8800da7e1577c2b35c', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+</script>
+<script src="https://bauval.org/22/8e90432d61385b8800da7e1577c2b35c"></script>
+</div>
+<!-- PUBLICIDAD container -->
+<div class="ad-slot" style="margin:4px auto 14px;max-width:320px;min-height:60px;overflow:hidden;">
+<script async="async" data-cfasync="false" src="https://bauval.org/21/cfacc9baf0f8f95588773bbc7291b44e"></script>
+<div id="container-cfacc9baf0f8f95588773bbc7291b44e"></div>
+</div>
+
   </div>
 
   <!-- ================= GAME SCREEN (layout compacto fullscreen) ================= -->
@@ -651,33 +720,40 @@ div:not(.stat-fill){background-color:#000!important;}
 
 
 <script>
-  let eventoInstalacion;
-  const btnInstalar = document.getElementById('btn-instalar');
-
-  window.addEventListener('beforeinstallprompt', (e) => {
+(function(){
+  var btn = document.getElementById('btn-instalar');
+  var deferred = null;
+  function showBtn(){ if(btn){ btn.style.display='flex'; } }
+  function hideBtn(){ if(btn){ btn.style.display='none'; } }
+  try{
+    var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone===true);
+    if(standalone){ hideBtn(); return; }
+  }catch(e){}
+  window.addEventListener('beforeinstallprompt', function(e){
     e.preventDefault();
-    eventoInstalacion = e;
-    btnInstalar.style.display = 'block';
+    deferred = e;
+    try{ localStorage.removeItem('buggyInstalada'); }catch(err){}
+    showBtn();
   });
-
-  btnInstalar.addEventListener('click', async () => {
-    if (eventoInstalacion) {
-      eventoInstalacion.prompt();
-      const resultado = await eventoInstalacion.userChoice;
-      if (resultado.outcome === 'accepted') {
-        console.log('El usuario instalo Buggy IA');
+  if(btn){
+    btn.addEventListener('click', function(){
+      if(deferred){
+        try{ deferred.prompt(); }catch(err){}
+        try{
+          deferred.userChoice.then(function(){ deferred = null; hideBtn(); });
+        }catch(err){ deferred = null; hideBtn(); }
       } else {
-        console.log('El usuario cancelo la instalacion');
+        try{ sndClick(); }catch(e){}
+        try{ showToast('Para instalar: menú del navegador → Agregar a pantalla de inicio'); }catch(e){}
+        try{ say('Para instalar la aplicación en tu celular, abre el menú del navegador y elige Agregar a pantalla de inicio.','es-419'); }catch(e){}
       }
-      eventoInstalacion = null;
-      btnInstalar.style.display = 'none';
-    }
+    });
+  }
+  window.addEventListener('appinstalled', function(){
+    try{ localStorage.setItem('buggyInstalada','1'); }catch(e){}
+    hideBtn();
   });
-
-  window.addEventListener('appinstalled', () => {
-    btnInstalar.style.display = 'none';
-    console.log('¡Buggy IA instalada con exito!');
-  });
+})();
 </script>
   </div>
 </div>
@@ -1034,6 +1110,10 @@ mcqL("Sustantivos, verbos y adjetivos","#a78bfa","◆",[
  ["¿Dónde vivimos con nuestra familia?",["En la escuela","En nuestra casa","En el hospital","En el museo"],1,"Vivimos en nuestra casa con la familia."],
  ["¿Por dónde cruzamos la calle seguros?",["Por el parque","Por la senda peatonal","Por la escuela","Por el museo"],1,"Cruzamos por la senda peatonal, la cebra, para estar seguros."]
 ]}
+,
+/* ---- GEOGRAFIA ---- */
+{id:"geo",name:"Geografía",section:"Ciencias Sociales",type:"flash",color:"#4ade80",icon:"◉",cards:fc([["continente","Continent"],["océano","Ocean"],["país","Country"],["ciudad","City"],["montaña","Mountain"],["río","River"],["lago","Lake"],["mar","Sea"],["isla","Island"],["desierto","Desert"],["bosque","Forest"],["playa","Beach"],["volcán","Volcano"],["valle","Valley"],["cascada","Waterfall"],["glaciar","Glacier"],["selva","Jungle"],["mapa","Map"],["norte","North"],["sur","South"],["este","East"],["oeste","West"],["capital","Capital"],["frontera","Border"],["puerto","Port"],["cueva","Cave"]])},
+{id:"pba",name:"Provincias Argentinas",section:"Ciencias Sociales",type:"flash",color:"#22d3ee",icon:"☰",cards:fc([["Buenos Aires","Buenos Aires"],["Córdoba","Córdoba"],["Santa Fe","Santa Fe"],["Mendoza","Mendoza"],["Tucumán","Tucumán"],["Salta","Salta"],["Entre Ríos","Entre Ríos"],["Misiones","Misiones"],["Chubut","Chubut"],["Río Negro","Río Negro"],["Neuquén","Neuquén"],["Jujuy","Jujuy"],["San Juan","San Juan"],["San Luis","San Luis"],["La Pampa","La Pampa"],["La Rioja","La Rioja"],["Catamarca","Catamarca"],["Santiago del Estero","Santiago del Estero"],["Formosa","Formosa"],["Chaco","Chaco"],["Corrientes","Corrientes"],["Santa Cruz","Santa Cruz"],["Tierra del Fuego","Tierra del Fuego"],["Ciudad Autónoma de Buenos Aires","Autonomous City of Buenos Aires"]])}
 ];
 function mcqL(name,color,icon,qs){var c=mcq(name,color,icon,qs);c.section="Lengua";return c;}
 var SECTIONS=["Vocabulario","Matemática","Lengua","Ciencias Naturales","Ciencias Sociales","Juegos de inteligencia","Juegos","Aventuras"];
@@ -2399,21 +2479,94 @@ function openPetScreen(){
   applyOfflineDecay();startPetLoop();renderPet();setTimeout(function(){petSay(petMoodPhrase());},1300);
   window.scrollTo({top:0,behavior:"smooth"});
 }
+function foodEmoji(id){var m={manzana:"🍎",banana:"🍌",zanahoria:"🥕",hueso:"🦴",pescado:"🐟",galleta:"🍪",helado:"🍦",pastel:"🍰",leche:"🥛"};return m[id]||"🍎";}
+function startFoodDrag(e,el){
+  try{e.preventDefault();}catch(err){}
+  var fid=el.dataset.food;var f=FOODS.filter(function(x){return x.id===fid;})[0];
+  var drag=document.createElement("div");drag.className="food-drag";drag.style.background="linear-gradient(135deg,"+f.color+","+shade(f.color,-.15)+")";drag.textContent=foodEmoji(fid);document.body.appendChild(drag);
+  var stage=$("petStage");var mouth=stage.querySelector(".mouth-target");if(!mouth){mouth=document.createElement("div");mouth.className="mouth-target";stage.appendChild(mouth);}
+  function move(ev){var x=ev.clientX,y=ev.clientY;drag.style.left=x+"px";drag.style.top=y+"px";
+    var r=mouth.getBoundingClientRect();if(x>r.left&&x<r.right&&y>r.top&&y<r.bottom){mouth.classList.add("hot");}else{mouth.classList.remove("hot");}}
+  function up(ev){
+    document.removeEventListener("pointermove",move);document.removeEventListener("pointerup",up);
+    var r=mouth.getBoundingClientRect();var x=ev.clientX,y=ev.clientY;var over=(x>r.left&&x<r.right&&y>r.top&&y<r.bottom);
+    mouth.classList.remove("hot");drag.remove();
+    if(over){eatFood(fid);}else{try{sndWrong();}catch(err){}petMsg("¡Casi! Arrastrá la comida hasta la boca de "+save.pet.name+".","#f87171");}
+  }
+  move(e);document.addEventListener("pointermove",move);document.addEventListener("pointerup",up);
+}
+function eatFood(fid){
+  var f=FOODS.filter(function(x){return x.id===fid;})[0];
+  save.pet.foods[fid]--;save.pet.food=Math.min(100,save.pet.food+25);save.pet.happy=Math.min(100,save.pet.happy+5);persist();try{ensureDaily();save.daily.care=1;}catch(e){}
+  var st=$("petStage");st.classList.add("pet-chew");setTimeout(function(){st.classList.remove("pet-chew");},2200);
+  try{sndCorrect();}catch(e){}
+  petMsg("¡Ñam ñam! A "+save.pet.name+" le encantó la "+f.name+".","var(--green)");
+  refreshPetBars();renderPet();petAction("feed");
+}
+function startBath(c){
+  var stage=$("petStage");var area=$("petArea");
+  Array.prototype.forEach.call(stage.querySelectorAll(".dirty-spot,.foam-bubble,.sparkle"),function(n){n.remove();});
+  var oldSponge=area.querySelector(".bath-sponge");if(oldSponge)oldSponge.remove();
+  var spots=[];var SPOTS=9;
+  for(var i=0;i<SPOTS;i++){
+    var s=document.createElement("div");s.className="dirty-spot";var sz=18+Math.random()*16;
+    s.style.width=sz+"px";s.style.height=sz+"px";s.style.left=(15+Math.random()*65)+"%";s.style.top=(18+Math.random()*60)+"%";
+    stage.appendChild(s);spots.push(s);
+  }
+  c.innerHTML='<div style="font-size:13px;color:var(--muted);margin-bottom:6px;text-align:center;font-weight:700;">Mové la esponja con el dedo sobre '+save.pet.name+' para hacer espuma y lavarlo</div><div class="bath-progress"><div class="bath-progress-fill" id="bathFill"></div></div>';
+  var fill=document.getElementById("bathFill");var cleaned=0;var finished=false;
+  var sponge=document.createElement("div");sponge.className="bath-sponge";sponge.style.position="absolute";
+  var ar0=area.getBoundingClientRect();sponge.style.left=((ar0.width||280)/2-32)+"px";sponge.style.bottom="16px";
+  area.appendChild(sponge);
+  var dragging=false;
+  sponge.addEventListener("pointerdown",function(e){try{e.preventDefault();}catch(err){}dragging=true;sponge.classList.add("dragging");try{sponge.setPointerCapture(e.pointerId);}catch(err){}});
+  sponge.addEventListener("pointermove",function(e){
+    if(!dragging||finished)return;var ar=area.getBoundingClientRect();var x=e.clientX-ar.left,y=e.clientY-ar.top;
+    sponge.style.left=(x-32)+"px";sponge.style.top=(y-26)+"px";sponge.style.bottom="auto";
+    var stg=stage.getBoundingClientRect();var px=e.clientX,py=e.clientY;
+    if(px>stg.left&&px<stg.right&&py>stg.top&&py<stg.bottom){
+      for(var k=0;k<2;k++){
+        var fb=document.createElement("div");fb.className="foam-bubble";var fz=8+Math.random()*18;
+        fb.style.width=fz+"px";fb.style.height=fz+"px";
+        fb.style.left=(px-ar.left-fz/2+(Math.random()*24-12))+"px";fb.style.top=(py-ar.top-fz/2+(Math.random()*24-12))+"px";
+        area.appendChild(fb);(function(n){setTimeout(function(){n.remove();},2400);})(fb);
+      }
+      for(var j=0;j<spots.length;j++){var sp=spots[j];if(sp.classList.contains("clean"))continue;
+        var rr=sp.getBoundingClientRect();var cx=rr.left+rr.width/2,cy=rr.top+rr.height/2;
+        if(Math.abs(cx-px)<46&&Math.abs(cy-py)<46){sp.classList.add("clean");cleaned++;if(fill)fill.style.width=Math.round(cleaned/SPOTS*100)+"%";try{sndClick();}catch(err){}}}
+      if(cleaned>=SPOTS){finished=true;finishBath();}
+    }
+  });
+  function endDrag(){dragging=false;sponge.classList.remove("dragging");}
+  sponge.addEventListener("pointerup",endDrag);sponge.addEventListener("pointercancel",endDrag);
+  function finishBath(){
+    try{sponge.remove();}catch(e){}
+    Array.prototype.forEach.call(area.querySelectorAll(".foam-bubble"),function(n){n.remove();});
+    Array.prototype.forEach.call(stage.querySelectorAll(".dirty-spot"),function(n){n.remove();});
+    save.pet.hygiene=100;save.pet.happy=Math.min(100,save.pet.happy+10);persist();try{ensureDaily();save.daily.care=1;}catch(e){}
+    for(var i=0;i<8;i++){(function(i){setTimeout(function(){
+      var spk=document.createElement("div");spk.className="sparkle";spk.textContent="✨";
+      spk.style.left=(20+Math.random()*60)+"%";spk.style.top=(25+Math.random()*50)+"%";stage.appendChild(spk);setTimeout(function(){spk.remove();},1300);
+    },i*120);})(i);}
+    petMsg("¡"+save.pet.name+" está limpio, perfumado y brillante!","var(--accent)");try{sndFanfare();}catch(e){}
+    refreshPetBars();renderPet();c.innerHTML="";
+  }
+}
 function petAction(act){
   var c=$("petContent");petMsg("","");
   if(act==="feed"){
-    var any=false;var html='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Elegí qué darle de comer:</div><div class="flex flex-wrap gap-2 justify-center;">';
+    var any=false;var tray='<div style="font-size:13px;color:var(--muted);margin-bottom:8px;text-align:center;font-weight:700;">Arrastrá la comida hasta la boca de '+save.pet.name+' con el dedo</div><div class="food-tray">';
     FOODS.forEach(function(f){
-      var n=save.pet.foods[f.id]||0;if(n>0){any=true;html+='<button class="pet-btn btn rounded-xl px-3 py-2" data-food="'+f.id+'" style="background:'+f.color+';color:#0b1026;font-weight:700;font-size:12px;">'+f.name+' (x'+n+')</button>';}
+      var n=save.pet.foods[f.id]||0;if(n>0){any=true;
+      tray+='<div class="food-item" data-food="'+f.id+'" style="background:linear-gradient(135deg,'+f.color+','+shade(f.color,-.15)+');">'+foodEmoji(f.id)+'<span class="food-count">x'+n+'</span></div>';}
     });
-    html+='</div>';if(!any)html='<p style="color:var(--accent2);font-size:14px;font-weight:600;">No tenés comida! Andá a la Tienda a comprar con monedas.</p>';
-    c.innerHTML=html;
-    Array.prototype.forEach.call(c.querySelectorAll("[data-food]"),function(b){b.addEventListener("click",function(){
-      var fid=b.dataset.food;var f=FOODS.filter(function(x){return x.id===fid;})[0];
-      save.pet.foods[fid]--;save.pet.food=Math.min(100,save.pet.food+25);save.pet.happy=Math.min(100,save.pet.happy+5);persist();try{ensureDaily();save.daily.care=1;}catch(e){}
-      var av=$("petAvatar");av.classList.add("pet-eat");setTimeout(function(){av.classList.remove("pet-eat");},1300);
-      petMsg("¡Ñam! A "+save.pet.name+" le encantó la "+f.name+".","var(--green)");sndCorrect();renderPet();petAction("feed");
-    });});
+    tray+='</div>';
+    if(!any){c.innerHTML='<p style="color:var(--accent2);font-size:14px;font-weight:700;text-align:center;margin:0 0 8px;">No tenés comida! Ganaste premios (monedas) jugando: usalos en la Tienda.</p><button class="btn rounded-xl px-5 py-2.5 w-full" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#7c2d12;font-weight:800;font-size:14px;" onclick="petAction(\'shop\')">Ir a la Tienda</button>';return;}
+    c.innerHTML=tray;
+    var stage=$("petStage");var mouth=stage.querySelector(".mouth-target");if(!mouth){mouth=document.createElement("div");mouth.className="mouth-target";stage.appendChild(mouth);}
+    Array.prototype.forEach.call(c.querySelectorAll(".food-item"),function(el){
+      el.addEventListener("pointerdown",function(e){startFoodDrag(e,el);});
+    });
   } else if(act==="play"){
     var pops=0;
     c.innerHTML='<div style="font-size:12px;color:var(--muted);margin-bottom:6px;text-align:center;">¡Reventá las burbujas mágicas para jugar con '+save.pet.name+'!</div><div id="bubbleArea" style="position:relative;height:110px;max-width:300px;margin:0 auto;background:linear-gradient(180deg,rgba(34,211,238,.15),rgba(167,139,250,.15));border-radius:14px;overflow:hidden;"></div>';
@@ -2426,15 +2579,7 @@ function petAction(act){
         if(pops>=5){save.pet.happy=Math.min(100,save.pet.happy+25);save.pet.energy=Math.max(0,save.pet.energy-5);save.pet.coins+=8;persist();petMsg("¡Genial! "+save.pet.name+" se divirtió mucho. +8 monedas.","var(--green)");sndFanfare();renderPet();c.innerHTML="";}});})(bb);
       area.appendChild(bb);
     }
-  } else if(act==="bath"){
-    bathStep=0;var steps=["Abrir el agua","Poner jabón","Lavar","Enjuagar","Secar"];
-    function bathNext(){
-      if(bathStep>=steps.length){save.pet.hygiene=100;save.pet.happy=Math.min(100,save.pet.happy+10);persist();try{ensureDaily();save.daily.care=1;}catch(e){}petMsg("¡Tu mascota está limpia y perfumada!","var(--accent)");sndFanfare();renderPet();c.innerHTML="";return;}
-      c.innerHTML='<button id="bathStepBtn" class="btn rounded-xl px-5 py-2.5 w-full" style="background:linear-gradient(135deg,#22d3ee,#0ea5e9);color:#0b1026;font-weight:700;font-size:14px;">Paso '+(bathStep+1)+' de 5: '+steps[bathStep]+'</button>';
-      $("bathStepBtn").addEventListener("click",function(){bathStep++;sndClick();bathNext();});
-    }
-    bathNext();
-  } else if(act==="sleep"){
+  } else if(act==="bath"){ startBath(c);   } else if(act==="sleep"){
     petSleeping=true;renderPet();petMsg("Zzz... "+save.pet.name+" está durmiendo...","var(--purple)");
     setTimeout(function(){petSleeping=false;save.pet.energy=100;save.pet.happy=Math.min(100,save.pet.happy+5);persist();petMsg("¡"+save.pet.name+" despertó con mucha energía!","var(--green)");sndCorrect();renderPet();},3500);
   } else if(act==="pet"){
@@ -2476,12 +2621,7 @@ $("petConfirmBtn").addEventListener("click",function(){
 });
 $("giftCloseBtn").addEventListener("click",function(){$("giftModal").style.display="none";sndClick();});
 function showToast(m){var t=$("toastMsg");if(!t)return;t.textContent=m;t.style.display="block";setTimeout(function(){t.style.display="none";},4200);}
-var _pwaReady=false;
-window.addEventListener("beforeinstallprompt",function(){_pwaReady=true;});
-var _ib2=$("btn-instalar");
-if(_ib2){_ib2.addEventListener("click",function(){
-  if(!_pwaReady){sndClick();showToast("Para instalar la App: abrí el menú del navegador → Agregar a pantalla de inicio");say("Para instalar la aplicación en tu celular, abre el menú del navegador y elige Agregar a pantalla de inicio.","es-419");}
-});}
+/* PWA: handler unificado (ver script en head) */
 var _hb=$("howBtn");
 if(_hb){_hb.addEventListener("click",function(){
   sndClick();stopSpeak();
