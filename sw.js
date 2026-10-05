@@ -1,21 +1,12 @@
-const CACHE_NAME = 'buggyia-v1';
-
-// Se instala el Service Worker
-self.addEventListener('install', (event) => {
-    self.skipWaiting(); // Fuerza la activación inmediata
-});
-
-// Se activa el Service Worker
-self.addEventListener('activate', (event) => {
-    event.waitUntil(clients.claim()); // Toma el control de la página rápido
-});
-
-// ESTO ES OBLIGATORIO PARA QUE GOOGLE CHROME DEJE INSTALAR LA APP (PWA)
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        fetch(event.request).catch(() => {
-            // Si no hay internet, muestra un mensaje amigable con tu marca
-            return new Response("Estás sin conexión a internet. Revisá tu red para seguir aprendiendo con Buggy IA.");
-        })
-    );
+const CACHE='buggyia-v1';
+self.addEventListener('install',e=>{self.skipWaiting();});
+self.addEventListener('activate',e=>{e.waitUntil(clients.claim());});
+self.addEventListener('fetch',e=>{
+  e.respondWith(
+    fetch(e.request).then(function(res){
+      const clon=res.clone();
+      caches.open(CACHE).then(function(c){c.put(e.request,clon);}).catch(function(){});
+      return res;
+    }).catch(function(){return caches.match(e.request);})
+  );
 });
