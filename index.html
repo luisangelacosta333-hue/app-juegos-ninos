@@ -395,6 +395,22 @@ div:not(.stat-fill){background-color:#000!important;}
 .food-item{cursor:pointer;}
 .food-fly{position:fixed;z-index:9999;font-size:34px;transform:translate(-50%,-50%);pointer-events:none;transition:all .5s cubic-bezier(.5,-.3,.6,1.2);}
 </style>
+<style>
+/* ===== Premium polish pack (aditivo, no toca logica ni ads) ===== */
+@keyframes premFadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes premShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(220%)}}
+@keyframes premGlow{0%,100%{box-shadow:0 6px 18px rgba(34,211,238,.30)}50%{box-shadow:0 6px 28px rgba(34,211,238,.65)}}
+#gameArea{animation:premFadeUp .55s cubic-bezier(.22,1,.36,1) both}
+.bubble{animation:premFadeUp .55s .12s cubic-bezier(.22,1,.36,1) both}
+#wordCard{animation:premFadeUp .55s .24s cubic-bezier(.22,1,.36,1) both}
+#teachBtn{animation:premGlow 2.6s ease-in-out infinite}
+#teachBtn,#listenBtn,#micBtn,#prevBtn,#nextBtn,#homeBtn{transition:transform .16s cubic-bezier(.22,1,.36,1),box-shadow .2s ease,filter .2s ease!important}
+#teachBtn:hover,#listenBtn:hover,#micBtn:hover,#prevBtn:hover,#nextBtn:hover,#homeBtn:hover{transform:translateY(-2px);filter:brightness(1.12)}
+#teachBtn:active,#listenBtn:active,#micBtn:active,#prevBtn:active,#nextBtn:active,#homeBtn:active{transform:translateY(0) scale(.96)}
+#progressFill{transition:width .55s cubic-bezier(.22,1,.36,1)!important;position:relative;overflow:hidden;box-shadow:0 0 12px rgba(34,211,238,.45)}
+#progressFill::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:premShimmer 1.8s linear infinite}
+.glass{box-shadow:0 12px 34px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.10),inset 0 0 0 1px rgba(255,255,255,.04)!important}
+</style>
 </head>
 <body>
 <div class="premium-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="shooting-star s1"></div><div class="shooting-star s2"></div><div class="shooting-star s3"></div></div>
