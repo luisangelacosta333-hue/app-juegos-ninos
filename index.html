@@ -471,6 +471,20 @@ html,body{background:
  #prevBtn svg,#nextBtn svg{width:22px;height:22px;}
 }
 </style>
+<style>
+/* ===== FONDO NEGRO + SOLO LA LUNA (sin estrellas ni nebulosas) ===== */
+html,body{background:#000!important;}
+div:not(.stat-fill):not(#astroMoon){background-color:#000!important;}
+#wordCard,#flashPanel,.glass,.bubble{background-image:none!important;background:#000!important;}
+#petArea,#petStage{background:#000!important;}
+#homeScreen,#gameScreen,#petScreen{background:#000!important;}
+/* Ocultar todo lo de estrellas/orbes/estrellas fugaces */
+#cieloEstrellas{display:none!important;}
+.premium-bg,.orb,.starfield,.shooting-star{display:none!important;}
+/* Conservar SOLO la luna */
+#astroMoon{display:block!important;background:radial-gradient(circle at 35% 32%,#fefce8,#e2e8f0 65%,#cbd5e1)!important;box-shadow:0 0 34px 8px rgba(254,240,138,.55),inset -7px -7px 14px rgba(100,116,139,.55)!important;}
+#astroMoon::before{content:"";position:absolute;top:13px;left:11px;width:10px;height:10px;border-radius:50%;background:rgba(148,163,184,.5);box-shadow:17px 15px 0 -2px rgba(148,163,184,.4),7px 24px 0 -3px rgba(148,163,184,.35);}
+</style>
 </head>
 <body>
 <div id="cieloEstrellas"></div>
