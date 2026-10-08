@@ -2317,7 +2317,6 @@ function renderHome(){
       grid.appendChild(card);
     });
     cont.appendChild(grid);
-    if(sec==="Matemática"){var ban=document.createElement("div");ban.style.cssText="text-align:center;margin:25px 0;width:100%;display:flex;justify-content:center;";ban.innerHTML='<a href="https://www.compraya.com.ar" target="_blank" style="text-decoration:none;"><img src="tu_banner_300x250.jpg" alt="Creá tu página web con CompraYa" width="300" height="250" style="border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.2);"></a>';cont.appendChild(ban);}
   });
   var ts=totalStars();
   Array.prototype.forEach.call(document.querySelectorAll(".trophy"),function(el,i){if(ts>=TROPHY_NEED[i]){el.classList.add("unlocked");el.querySelector("svg").setAttribute("fill","var(--gold)");el.querySelector("svg").setAttribute("stroke","var(--gold)");}});
