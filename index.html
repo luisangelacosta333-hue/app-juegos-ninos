@@ -2306,7 +2306,6 @@ function showComplete(){
   var msgs=["¡Bien! Completaste el juego.","¡Muy bien! Casi todo a la primera.","¡INCREÍBLE! Todo perfecto."];
   $("overlayMsg").textContent=msgs[Math.min(starsEarned,3)-1]+" · +"+score+" puntos";
   $("levelOverlay").style.display="flex";$("levelOverlay").classList.add("fade-in");
-  try{if(typeof __adCounter==="undefined")__adCounter=0;__adCounter++;var __which=((__adCounter-1)%4)+1;for(var __ai=1;__ai<=4;__ai++){var __b=document.getElementById("adBlock"+__ai);if(__b){__b.style.display=(__ai===__which)?"block":"none";}}}catch(e){}
   sndFanfare();burstConfetti(140);setTimeout(function(){burstConfetti(100);},600);
   say("¡Felicitaciones! Completaste "+cat.name+".","es-AR");
 }
@@ -3573,5 +3572,28 @@ var ARC_GAMES=[
  fillStars('petStars',60);
 })();
 </script>
+
+<!-- ===== PUBLICIDADES SIEMPRE VISIBLES (al pie de la pagina) ===== -->
+<div style="max-width:500px;margin:22px auto 10px;text-align:center;">
+<a href="https://share.google/84hczSeUKXKQzz5FA" target="_blank">
+  <img src="1028907.png" alt="VIP CLUB | ULTRA PREMIUM" style="width:100%; max-width:500px;">
+</a>
+</div>
+<div style="max-width:500px;margin:18px auto 10px;text-align:center;">
+<a href="https://share.google/UbymiYYO0mi0kgH33" target="_blank">
+  <img src="1028796.png" alt="Vigilante IA · Control Total Premium" style="width:100%; max-width:500px;">
+</a>
+</div>
+<div style="max-width:500px;margin:18px auto 10px;text-align:center;">
+<a href="https://share.google/W0rWxIqedYQw6pL2i" target="_blank">
+  <img src="1028764.png" alt="Ruta 38 Envíos | Control de Repartos" style="width:100%; max-width:500px;">
+</a>
+</div>
+<div style="max-width:500px;margin:18px auto 22px;text-align:center;">
+<a href="https://share.google/qqlfXSs1cctoVWfRu" target="_blank">
+  <img src="893669.png" alt="Pedilo Ya Premium | La Revolución Gastronómica" style="width:100%; max-width:500px;">
+</a>
+</div>
+
 </body>
 </html>
