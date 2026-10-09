@@ -784,27 +784,7 @@ div:not(.stat-fill):not(#astroMoon){background-color:#000!important;}
         <h2 style="font-size:24px;font-weight:700;margin:0 0 4px;background:linear-gradient(90deg,var(--gold),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;">¡Juego Completado!</h2>
         <div id="overlayStars" class="flex gap-2 justify-center my-2"></div>
         <p id="overlayMsg" style="color:var(--muted);margin:0 0 14px;font-size:13px;"></p>
-        <div id="adBlock1" class="ad-block" style="display:none;margin:14px auto 0;text-align:center;">
-<a href="https://share.google/84hczSeUKXKQzz5FA" target="_blank">
-  <img src="1028907.png" alt="VIP CLUB | ULTRA PREMIUM" style="width:100%; max-width:500px;">
-</a>
-        </div>
-        <div id="adBlock2" class="ad-block" style="display:none;margin:14px auto 0;text-align:center;">
-<a href="https://share.google/UbymiYYO0mi0kgH33" target="_blank">
-  <img src="1028796.png" alt="Vigilante IA · Control Total Premium" style="width:100%; max-width:500px;">
-</a>
-        </div>
-        <div id="adBlock3" class="ad-block" style="display:none;margin:14px auto 0;text-align:center;">
-<a href="https://share.google/W0rWxIqedYQw6pL2i" target="_blank">
-  <img src="1028764.png" alt="Ruta 38 Envíos | Control de Repartos" style="width:100%; max-width:500px;">
-</a>
-        </div>
-        <div id="adBlock4" class="ad-block" style="display:none;margin:14px auto 0;text-align:center;">
-<a href="https://share.google/qqlfXSs1cctoVWfRu" target="_blank">
-  <img src="893669.png" alt="Pedilo Ya Premium | La Revolución Gastronómica" style="width:100%; max-width:500px;">
-</a>
-        </div>
-        <button id="overlayHomeBtn" class="btn rounded-2xl px-6 py-2.5" style="margin-top:14px;background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">Volver al menú</button>
+        <button id="overlayHomeBtn" class="btn rounded-2xl px-6 py-2.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">Volver al menú</button>
       </div>
     </div>
     <p style="text-align:center;font-size:10px;color:var(--muted);margin:10px 0 2px;">BuggyIA · 55 juegos · 100% gratuito</p>
@@ -2316,6 +2296,7 @@ function renderHome(){
   $("xpLevel").textContent=Math.floor(totalStars()/5)+1;
   try{updateMissions();checkAchievements();}catch(e){}
   var cont=$("catSections");cont.innerHTML="";
+  var BLOQUE_ADS=['<a href="https://share.google/84hczSeUKXKQzz5FA" target="_blank"><img src="1028907.png" alt="VIP CLUB | ULTRA PREMIUM" style="width:100%; max-width:500px;"></a>','<a href="https://share.google/UbymiYYO0mi0kgH33" target="_blank"><img src="1028796.png" alt="Vigilante IA · Control Total Premium" style="width:100%; max-width:500px;"></a>','<a href="https://share.google/W0rWxIqedYQw6pL2i" target="_blank"><img src="1028764.png" alt="Ruta 38 Envíos | Control de Repartos" style="width:100%; max-width:500px;"></a>','<a href="https://share.google/qqlfXSs1cctoVWfRu" target="_blank"><img src="893669.png" alt="Pedilo Ya Premium | La Revolución Gastronómica" style="width:100%; max-width:500px;"></a>'];
   SECTIONS.forEach(function(sec){
     var label=document.createElement("div");label.className="section-label";
     var first=CAT.find(function(c){return c.section===sec;});label.style.color=first.color;
@@ -2337,6 +2318,11 @@ function renderHome(){
       grid.appendChild(card);
     });
     cont.appendChild(grid);
+    var _bi=SECTIONS.indexOf(sec)%4;
+    var _bw=document.createElement("div");
+    _bw.style.cssText="width:100%;text-align:center;margin:20px 0;";
+    _bw.innerHTML=BLOQUE_ADS[_bi];
+    cont.appendChild(_bw);
     if(sec==="Matemática"){
       var ban=document.createElement("div");
       ban.style.cssText="text-align:center;margin:25px 0;width:100%;display:flex;justify-content:center;";
@@ -3572,28 +3558,5 @@ var ARC_GAMES=[
  fillStars('petStars',60);
 })();
 </script>
-
-<!-- ===== PUBLICIDADES SIEMPRE VISIBLES (al pie de la pagina) ===== -->
-<div style="max-width:500px;margin:22px auto 10px;text-align:center;">
-<a href="https://share.google/84hczSeUKXKQzz5FA" target="_blank">
-  <img src="1028907.png" alt="VIP CLUB | ULTRA PREMIUM" style="width:100%; max-width:500px;">
-</a>
-</div>
-<div style="max-width:500px;margin:18px auto 10px;text-align:center;">
-<a href="https://share.google/UbymiYYO0mi0kgH33" target="_blank">
-  <img src="1028796.png" alt="Vigilante IA · Control Total Premium" style="width:100%; max-width:500px;">
-</a>
-</div>
-<div style="max-width:500px;margin:18px auto 10px;text-align:center;">
-<a href="https://share.google/W0rWxIqedYQw6pL2i" target="_blank">
-  <img src="1028764.png" alt="Ruta 38 Envíos | Control de Repartos" style="width:100%; max-width:500px;">
-</a>
-</div>
-<div style="max-width:500px;margin:18px auto 22px;text-align:center;">
-<a href="https://share.google/qqlfXSs1cctoVWfRu" target="_blank">
-  <img src="893669.png" alt="Pedilo Ya Premium | La Revolución Gastronómica" style="width:100%; max-width:500px;">
-</a>
-</div>
-
 </body>
 </html>
