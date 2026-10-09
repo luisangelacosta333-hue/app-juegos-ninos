@@ -784,7 +784,27 @@ div:not(.stat-fill):not(#astroMoon){background-color:#000!important;}
         <h2 style="font-size:24px;font-weight:700;margin:0 0 4px;background:linear-gradient(90deg,var(--gold),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;">¡Juego Completado!</h2>
         <div id="overlayStars" class="flex gap-2 justify-center my-2"></div>
         <p id="overlayMsg" style="color:var(--muted);margin:0 0 14px;font-size:13px;"></p>
-        <button id="overlayHomeBtn" class="btn rounded-2xl px-6 py-2.5" style="background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">Volver al menú</button>
+        <div id="adBlock1" class="ad-block" style="display:none;margin:14px auto 0;text-align:center;">
+<a href="https://share.google/84hczSeUKXKQzz5FA" target="_blank">
+  <img src="1028907.png" alt="VIP CLUB | ULTRA PREMIUM" style="width:100%; max-width:500px;">
+</a>
+        </div>
+        <div id="adBlock2" class="ad-block" style="display:none;margin:14px auto 0;text-align:center;">
+<a href="https://share.google/UbymiYYO0mi0kgH33" target="_blank">
+  <img src="1028796.png" alt="Vigilante IA · Control Total Premium" style="width:100%; max-width:500px;">
+</a>
+        </div>
+        <div id="adBlock3" class="ad-block" style="display:none;margin:14px auto 0;text-align:center;">
+<a href="https://share.google/W0rWxIqedYQw6pL2i" target="_blank">
+  <img src="1028764.png" alt="Ruta 38 Envíos | Control de Repartos" style="width:100%; max-width:500px;">
+</a>
+        </div>
+        <div id="adBlock4" class="ad-block" style="display:none;margin:14px auto 0;text-align:center;">
+<a href="https://share.google/qqlfXSs1cctoVWfRu" target="_blank">
+  <img src="893669.png" alt="Pedilo Ya Premium | La Revolución Gastronómica" style="width:100%; max-width:500px;">
+</a>
+        </div>
+        <button id="overlayHomeBtn" class="btn rounded-2xl px-6 py-2.5" style="margin-top:14px;background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#0b1026;font-weight:700;font-size:15px;">Volver al menú</button>
       </div>
     </div>
     <p style="text-align:center;font-size:10px;color:var(--muted);margin:10px 0 2px;">BuggyIA · 55 juegos · 100% gratuito</p>
@@ -2286,6 +2306,7 @@ function showComplete(){
   var msgs=["¡Bien! Completaste el juego.","¡Muy bien! Casi todo a la primera.","¡INCREÍBLE! Todo perfecto."];
   $("overlayMsg").textContent=msgs[Math.min(starsEarned,3)-1]+" · +"+score+" puntos";
   $("levelOverlay").style.display="flex";$("levelOverlay").classList.add("fade-in");
+  try{if(typeof __adCounter==="undefined")__adCounter=0;__adCounter++;var __which=((__adCounter-1)%4)+1;for(var __ai=1;__ai<=4;__ai++){var __b=document.getElementById("adBlock"+__ai);if(__b){__b.style.display=(__ai===__which)?"block":"none";}}}catch(e){}
   sndFanfare();burstConfetti(140);setTimeout(function(){burstConfetti(100);},600);
   say("¡Felicitaciones! Completaste "+cat.name+".","es-AR");
 }
